@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Nissan: Ambassador Club 2017</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Fullscreen Background Image Slideshow with CSS3 - A Css-only fullscreen background image slideshow" />
+        <meta name="keywords" content="css3, css-only, fullscreen, background, slideshow, images, content" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+<script src="/includes/jquery-1.11.3.min.js"></script>
+<link href="/includes/jalert/dist/jAlert.css" rel="stylesheet">
+<script src="/includes/jalert/dist/jAlert.min.js"></script>
+<script src="/includes/jalert/dist/jAlert-functions.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/includes/jconfirm/css/jquery-confirm.css"/>
+<script src="/includes/jconfirm/js/jquery-confirm.js"></script>
+<link rel="stylesheet" type="text/css" href="/includes/jconfirm/css/jquery-confirm.css"/>
+
+        <!-- CSS -->
+        <link href="css/fonts.css" rel="stylesheet">
+        <link href="css/demo.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!---->
+
+<script>
+	function MultipleLogins()
+	{
+			   $.confirm ({
+				boxWidth: '450',
+				useBootstrap: false,
+				title: 'Multiple Logins Detected',
+			   	content: '<p>Another computer is currently signed on using this email.</p><p>Click Continue to log out the other sessions and continue with this session.</p>',
+			   	autoClose: 'cancelAction|10000',
+			   	escapeKey: 'cancelAction',
+			   	buttons: {
+							confirm: {
+										btnClass: 'btn',
+										text: 'Continue',
+										action: function () {
+
+												$.post("post.php",
+													   {
+														action: 'UseSession'
+													   },
+													   function(response){
+															$("#debug").html(response);
+															self.location="./";
+
+														});
+										}
+									},
+							cancelAction: {
+											btnClass: 'btn',
+											text: 'Cancel Login',
+											action: function () {
+													$.post("post.php",
+													   {
+														action: 'logout'
+													   }
+												);
+											}
+									}
+				}
+		});
+	}
+		</script>
+
+    </head>
+    <body id="page">
+    <section>
+
+
+
+        <ul class="cb-slideshow">
+            <li><span></span><div></li>
+            <li><span></span><div></li>
+            <li><span></span><div></li>
+            <li><span></span><div></li>
+            <li><span></span><div></li>
+            <li><span></span><div><!--<h3>bal·ance</h3></div>--></li>
+        </ul>
+
+
+
+
+
+    <div class="container-loop">
+
+            <div class="codrops-top">
+
+
+            <a href="#">
+            <!--<img alt="Nissan" src="images/NT_logo.jpg" width="120px" /> -->
+            </a>
+
+
+
+                <span class="right">
+                </span>
+              <div class="clr"></div>
+      </div><!--Codrops top bar -->
+
+            <header>
+
+
+             <div class="login-form">
+
+        <!-- <h1 class="title text-center">Welcome</h1>-->
+
+			<form id="login-form" method="post" action="/post.php" target="hf" class="form-signin" role="form" >
+           	<input type="hidden" name="action" value="login">
+
+            <div align="center"><img src="images/nissanac-logo-footer.png" width="240px" style="padding-bottom:20px"></div>
+
+				<input name="email" id="email" type="email" class="form-control"placeholder="Email" autofocus>
+				<input name="password" id="password" type="password" class="form-control" placeholder="Password">
+				<input class="btn btn-block bt-login" type="submit">Sign In</input>
+			</form>
+
+			<iframe id="hf" name="hf" style="height:1px; width:1px; visibility: hidden; position:absolute; z-index: 1"></iframe>
+
+			<div class="form-footer">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-7">
+						<!-- <i class="fa fa-lock"></i> -->
+						<a style="color:#999999;" href="#forgotpassword" > Forgot password? </a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-5">
+						<!-- <i class="fa fa-check"></i> -->
+
+
+						<script>
+                        /*function scrollToAnchor(aid){
+                        var aTag = $("a[name='"+ aid +"']");
+                        $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+                        }
+
+                        $("#register").click(function() {
+                        scrollToAnchor('id3');
+                        });*/
+                        </script>
+
+
+                        <a style="color:#999999;"  href="#eligible">New to Nissan?</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+               <!--
+                <h1>CSS3 <span>Fullscreen Slideshow</span></h1>
+                <h2>A CSS-only slideshow for background images</h2>
+				<p class="codrops-demos">
+					<a href="#" class="current-demo">Demo 1</a>
+					<a href="index2.html">Demo 2</a>
+					<a href="index3.html">Demo 3</a>
+					<a href="index4.html">Demo 4</a>
+				</p>
+                -->
+
+
+            </header>
+        </div>
+
+
+
+
+       </section>
+
+
+
+
+
+
+       <!--start portfolio -->
+     <section id="eligible" >
+
+
+        	<div class="container">
+
+            <div style="margin:0 auto; height: 600px; padding-top:200px; text-align: center; font-size:16px; margin-bottom:200px;">
+
+
+ <!--
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+-->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+           <span style="font-size:50px; color:#FFFFFF;">New to Nissan? </span> <br><br>
+
+
+
+            <div class="bs-example">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. Can I join Ambassador Club?</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>If you are currently employed by Nissan Australia in one of the following job functions at a Nissan Dealership in Australia you are automatically invited to register and participate in the program:<br>
+
+• Sales Manager<br>
+• F&I Manager<br>
+• Financial Controller<br>
+• Retail Sales Consultant<br>
+• Fleet Manager / Fleet Sales Consultant<br>
+• Service Manager<br>
+• Service Advisor<br>
+• Stock Controllers<br>
+• Parts Manager<br>
+• Parts Sales Representative<br>
+</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. How do I register for Ambassador Club?</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Go to <a href="http://nissan-events.com.au/ac2017/reg" target="_blank">www.nissanevents.com.au/ac2017/reg</a> and successfully complete the 2017 Nissan Ambassador Club registration form including a requirement to accept the program terms and conditions as directed.
+On completion, you will receive a confirmation e-Mail for your Nissan Ambassador Club registration. </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. Further queries?</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>The Nissan Ambassador Club Service Centre can be contacted on:<br><br>
+
+Telephone:  	03 9544 9054<br>
+Facsimile:  	03 9544 9045<br>
+Email: 		info@nissanac.com.au
+</p>
+                </div>
+            </div>
+        </div>
+
+
+       <!--
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4. Further queries?</a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>The Nissan Ambassador Club Service Centre can be contacted on:<br><br>
+
+Telephone:  	03 9544 9054<br>
+Facsimile:  	03 9544 9045<br>
+Email: 		info@nissanac.com.au
+</p>
+                </div>
+            </div>
+        </div>Å
+        -->Å
+
+
+    </div>
+	<p style="color:#FFFFFF;" ><strong>Note:</strong> Click on any of the above tabs to see more information. Go back to <a href="#">login</a> </p>
+
+
+
+            </div>
+
+
+            </div>
+
+
+
+
+     </div>
+
+     </section>
+<!--end portfolio-->
+
+       <!--start portfolio -->
+     <section id="forgotpassword">
+
+
+        	<div class="container">
+
+            <div style="margin:0 auto; height: 600px; width:500px; padding-top:200px; text-align: center; font-size:50px; margin-bottom:100px;">
+
+
+            <p style="color:#FFFFFF;">Forgot Password?</p>
+
+            <p style="font-size:14px; color:#FFFFFF">Please enter your registered email address.</p>
+
+				<input name="Email" id="Email" type="password" class="form-control" placeholder="Email Address" style="margin:10px 0px">
+                <button style="background-color:#000000;" class="btn btn-block bt-login" type="submit">Submit</button>
+
+
+
+                <p style="color:#FFFFFF; font-size:14px; padding-top:10px;" ><strong>Note:</strong> Go back to <a href="#">login</a> </p>
+            </div>
+
+
+
+            </div>
+
+
+
+
+     </section>
+<!--end portfolio-->
+
+
+
+    </body>
+</html>

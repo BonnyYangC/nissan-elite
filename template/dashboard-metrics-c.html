@@ -1,0 +1,581 @@
+  <style>
+	  /*
+	  .table-responsive {
+	overflow-x: hidden;
+	overflow-y: hidden;
+	  }*/
+
+	  .sm {
+		  font-size: 9px;
+	  }
+</style>
+       <!-- Page Header -->
+        <div class="row">
+
+      <div class="col-lg-12">
+        <h1 class="page-header">MY Metrics - <em>FINANCIAL CONTROLLER</em></h1> </div>
+
+
+
+
+
+      <!-- <div class="col-xs-6 col-sm-6 col-md-4"><img style="float:right;" src="../images/jeep-md.png" width="119" height="45"></div>-->
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row" style="padding-bottom:20px">
+
+
+        <div class="col-md-12 col-sm-12">
+
+
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+
+		google.charts.load('current', {'packages':['corechart']});
+
+		google.charts.setOnLoadCallback(drawVisualization);
+		google.charts.setOnLoadCallback(drawVisualization3);
+		google.charts.setOnLoadCallback(drawVisualization4);
+		google.charts.setOnLoadCallback(drawVisualization5);
+	 setTimeout(function () { adjustLegendMargin(); }, 4000);
+
+        /* Moves the legend up slightly for each chart */
+        function adjustLegendMargin () {
+            const charts = document.querySelectorAll('svg');
+
+            for (let i = 0; i < charts.length; i++) {
+                let children = charts[i].querySelector('g').querySelectorAll('*');
+
+                for (let j = 0; j < children.length; j++) {
+                    children[j].setAttribute('y', children[j].getAttribute('y') - 10);
+                }
+            }
+        }
+	  function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Month', 'Frequency', 'Ontime'],
+         {FINANCIAL}
+      ]);
+
+    var options = {
+	chartArea:{left:98,top:40,bottom:40,width:'75%',height:'75%'},
+        legend: 'top',
+
+	//title : 'MATCHED OW',
+	//vAxis: {title: 'Metrics'},
+
+		// Move Legend to top
+		legend: 'top',
+
+
+		// Scale V Axis to maximum height
+			vAxis: {
+			viewWindowMode: 'explicit',
+			viewWindow: {
+				max:375
+			}
+			, ticks: new Array(3).fill(125).map((n, i) => n * (i + 1))
+		},
+
+    animation: {
+      duration: 1600,
+      easing: 'out',
+			startup: true
+    },
+      colors: ['#c40030' ],
+
+      seriesType: 'bars'
+      //,series: {5: {type: 'line'}}
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+
+
+  }
+
+
+
+
+
+
+        function drawVisualization3() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Month', 'Balance', 'Submission'],
+         {QUALITY}
+      ]);
+
+    var options = {
+			chartArea:{left:100,top:40,bottom:40,width:'75%',height:'75%'},
+                    // Move Legend to top
+		legend: 'top',
+        // Scale V Axis to maximum height
+			vAxis: {
+			viewWindowMode: 'explicit',
+			viewWindow: {
+				max:550
+			}
+			, ticks: new Array(10).fill(55).map((n, i) => n * (i + 1))
+            },
+			    animation: {
+      duration: 1600,
+      easing: 'out',
+			startup: true
+    },
+
+
+      //title : 'DLRRECOMMENDATION',
+      colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
+	  //vAxis: {title: 'Metrics'},      hAxis: {title: 'Month'},
+
+      seriesType: 'bars',
+      //series: {1: {type: 'line'} , 2: {type: 'line'}}
+
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div3'));
+    chart.draw(data, options);
+  }
+
+          function drawVisualization4() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Month',  'Checklist', 'Meeting'],
+         {MANAGEMENT}
+      ]);
+
+    var options = {
+	  chartArea:{left:90,top:40,bottom:40,width:'76%',height:'75%'},
+        // Move Legend to top
+		legend: 'top',
+        // Scale V Axis to maximum height
+			vAxis: {
+			viewWindowMode: 'explicit',
+			viewWindow: {
+				max:600
+			}
+			, ticks: new Array(6).fill(100).map((n, i) => n * (i + 1))
+            },
+	      animation: {
+      duration: 1600,
+      easing: 'out',
+			startup: true
+    },
+
+      //title : 'NEW VEHICLE SALES',
+
+      colors: ['#555555'],
+	 // vAxis: {title: 'Metrics'}, hAxis: {title: 'Month'},
+
+      seriesType: 'bars'
+      //series: {5: {type: 'line'}},
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div4'));
+    chart.draw(data, options);
+  }
+
+
+            function drawVisualization5() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Month', 'Online' , 'Classroom' ],
+         {TRAINING}
+      ]);
+
+    var options = {
+	  chartArea:{left:40,top:40,bottom:40,width:'75%',height:'75%'},
+        legend: 'top',
+        // Scale V Axis to maximum height
+			vAxis: {
+			viewWindowMode: 'explicit',
+			viewWindow: {
+				max:450
+			}
+			, ticks: new Array(9).fill(50).map((n, i) => n * (i + 1))
+            },
+	  animation: {
+      duration: 2000,
+      easing: 'out',
+			startup:  true
+    },
+      //title : 'NEW VEHICLE SALES',
+      colors: ['#111111', '#333333' ,'#555555','#999999' ,'#999999' , 'd2d2d2'],
+	  isStacked: true,
+	 // vAxis: {title: 'Metrics'},hAxis: {title: 'Month'},
+
+      seriesType: 'bars'
+      //series: {5: {type: 'line'}},
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div5'));
+    chart.draw(data, options);
+  }
+
+    </script>
+
+
+
+
+    <div class="row graph-back-top">
+
+    <div class="col-md-7">
+
+    <h3>1. Dealer Financial Reporting</h3>
+        <div class="table-responsive">
+            <div id="chart_div" style="width: 100%; min-height: 400px;">
+            </div>
+
+        <table class="table table-condensed" style="width: 593px;" >
+          <col>
+          <tr class="table-top-row" align="center">
+            <td></td>
+            <td>APR</td>
+            <td>MAY</td>
+            <td>JUN</td>
+            <td>JUL</td>
+            <td>AUG</td>
+            <td>SEP</td>
+            <td>OCT</td>
+            <td>NOV</td>
+            <td>DEC</td>
+            <td>JAN</td>
+            <td>FEB</td>
+            <td>MAR</td>
+          </tr>
+          <tr>
+            <td class="nissangray-light-back">FREQUENCY</td>
+            {FREQUENCY-RESULTS}
+          </tr>
+           <tr>
+            <td class="nissangray-light-back">ONTIME</td>
+            {ONTIME-RESULTS}
+          </tr>
+       </table>
+
+        </div>
+        <br>
+
+
+    </div>
+
+    <div class="col-md-5">
+    <h3>Dealer Financial Reporting Guide</h3>
+
+    <table class="table small-table">
+      <col>
+      <col>
+      <col>
+      <col>
+      <tr class="table-top-row">
+        <td>Financial Controller</td>
+        <td align="center">Submitted<br>
+          Frequency</td>
+        <td align="center">Ontime<br>
+          Monthly</td>
+        </tr>
+      <tr>
+        <td>Category A, B, C</td>
+        <td align="center">225</td>
+        <td align="center">375</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+
+
+	</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="row graph-back">
+
+    <div class="col-md-7">
+
+    <h3>2. Quality Of Data Submitted</h3>
+        <div class="table-responsive">
+            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
+            </div>
+        <table class="table table-condensed" style="width: 593px;" >
+          <col>
+          <tr class="table-top-row" align="center">
+            <td></td>
+            <td>APR</td>
+            <td>MAY</td>
+            <td>JUN</td>
+            <td>JUL</td>
+            <td>AUG</td>
+            <td>SEP</td>
+            <td>OCT</td>
+            <td>NOV</td>
+            <td>DEC</td>
+            <td>JAN</td>
+            <td>FEB</td>
+            <td>MAR</td>
+          </tr>
+          <tr>
+            <td class="nissangray-light-back">BALANCE</td>
+            {BALANCE-RESULTS}
+          </tr>
+          <tr>
+            <td class="nissangray-light-back">SUBMISSION</td>
+            {SUBMISSION-RESULTS}
+          </tr>
+       </table>
+
+        </div>
+
+        <br>
+
+
+
+    </div>
+
+    <div class="col-md-5">
+    <h3>Quality of Data GUIDE - Balancing Item</h3>
+
+    <table class="table small-table">
+      <col>
+      <col>
+      <col>
+      <col>
+      <tr class="table-top-row">
+        <td>Financial Controller</td>
+        <td align="center">Success</td>
+        <td align="center">Failure</td>
+        </tr>
+      <tr>
+        <td>Category A, B, C</td>
+        <td align="center">550</td>
+        <td align="center">0</td>
+        </tr>
+    </table>
+
+    <p>&nbsp;</p>
+    <h3>Quality of Data GUIDE - Date of Submission</h3>
+    <table class="table small-table">
+      <col>
+      <col>
+      <col>
+      <col>
+      <tr class="table-top-row">
+        <td>Financial Controller</td>
+        <td align="center">1-11</td>
+        <td align="center">12</td>
+        <td align="center">13</td>
+        <td align="center">14</td>
+        <td align="center">15</td>
+        <td align="center">16</td>
+        <td align="center">17</td>
+        <td align="center">18</td>
+        <td align="center">19</td>
+        <td align="center">20</td>
+        </tr>
+      <tr>
+        <td>Category A, B, C</td>
+        <td align="center">300</td>
+        <td align="center">270</td>
+        <td align="center">240</td>
+        <td align="center">210</td>
+        <td align="center">180</td>
+        <td align="center">150</td>
+        <td align="center">120</td>
+        <td align="center">90</td>
+        <td align="center">60</td>
+        <td align="center">30</td>
+        </tr>
+    </table>
+
+	</div>
+
+</div>
+
+
+
+
+<div class="row graph-back">
+
+    <div class="col-md-7">
+
+    <h3>3. Nissan Business Management</h3>
+        <div class="table-responsive">
+            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
+            </div>
+               <table class="table table-condensed" style="width: 593px;" >
+          <col>
+          <tr class="table-top-row" align="center">
+            <td></td>
+            <td>APR</td>
+            <td>MAY</td>
+            <td>JUN</td>
+            <td>JUL</td>
+            <td>AUG</td>
+            <td>SEP</td>
+            <td>OCT</td>
+            <td>NOV</td>
+            <td>DEC</td>
+            <td>JAN</td>
+            <td>FEB</td>
+            <td>MAR</td>
+          </tr>
+          <tr>
+            <td class="nissangray-light-back">CHECKLIST</td>
+            {CHECKLIST-RESULTS}
+          </tr>
+          <tr>
+            <td class="nissangray-light-back">MEETING</td>
+            {MEETING-RESULTS}
+          </tr>
+       </table>     </div>
+
+        <br>
+
+
+
+    </div>
+
+
+
+    <div class="col-md-5">
+    <h3>	NIssan Business Management GUIDE</h3>
+
+    <table class="table small-table">
+      <col>
+      <col>
+      <col>
+      <col>
+      <tr class="table-top-row">
+        <td>Financial Controller</td>
+        <td align="center">
+          Accounting
+          Checklist<br>
+          Monthly (max)
+        </td>
+        <td align="center">
+          Accountant
+          Meetings<br>
+          Each
+        </td>
+        </tr>
+      <tr>
+        <td>Category A, B, C</td>
+        <td align="center">100</td>
+        <td align="center">600</td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="row graph-back">
+
+    <div class="col-md-7">
+
+    <h3>4. Training </h3>
+        <div class="table-responsive">
+            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
+            </div>
+               </div>
+
+        <br>
+
+
+    </div>
+
+    <div class="col-md-5">
+    <h3>TRAINING GUIDE</h3>
+
+    <table class="table small-table" >
+      <col>
+      <col>
+      <col>
+      <col>
+      <tr class="table-top-row">
+        <td>Competency Modules</td>
+        <td>Credits</td>
+        </tr>
+      <tr class="active">
+        <td>Online Modules</td>
+        <td>450</td>
+        </tr>
+    </table>
+        <p>
+          <em>Refer to the <a href="http://nissanac-1819.local/Dashboard/MembersGuide">AC18 Member Guide</a> for full details.</em>
+        </p>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+          <br>
+         <br><br><br><br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+<br>
+
+        </div>
+
+
+            <div class="table-responsive"><!-- <h4><a href="leaderboards.html">FULL NATIONAL LEADERBOARD ></a></h4>-->
+            </div>
+
+
+   		</div>
+
+
+
+
+        </div>
+        <!-- /.row -->
+        <div class="row" style="padding-bottom:30px"></div>
+
+        <!-- Projects Row -->
+        <div class="row" style="padding-bottom:20px"></div>
+        <!-- /.row -->
+
+
+        <!-- Projects Row -->
+        <div class="row"></div>
+        <!--  <hr>   /.row -->

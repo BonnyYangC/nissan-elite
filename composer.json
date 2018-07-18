@@ -1,0 +1,20 @@
+{
+  "name": "2018 Nissan AC",
+  "description": "2018 Nissan AC",
+  "require": {
+    "doctrine/orm": "2.5.14",
+    "vlucas/phpdotenv": "^2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    },
+    "files": [
+      "app/helpers/general.php",
+      "init.php",
+      "includes/db.php",
+      "includes/functions.php",
+      "includes/functions_nissan.php"
+    ]
+  }
+}

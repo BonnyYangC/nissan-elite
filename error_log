@@ -1,0 +1,1 @@
+[21-Jun-2017 14:18:43 Australia/Melbourne] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nissanaccom/public_html/index.php:1) in /home/nissanaccom/public_html/init.php on line 24
