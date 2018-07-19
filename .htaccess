@@ -7,3 +7,9 @@ RewriteRule		^Dashboard/includes/(.*)$					/includes/$1						[QSA,NC,L]
 RewriteRule		^Dashboard/Metrics/(.*)$					/index.php?action=dashboard&page=metrics&override_role=$1	[QSA,NC,L]
 RewriteRule		^Dashboard/(.*)$							/index.php?action=dashboard&page=$1	[QSA,NC,L]
 RewriteRule		^Dashboard$									/index.php?action=dashboard			[QSA,NC,L]
+
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]

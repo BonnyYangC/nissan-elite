@@ -20,7 +20,7 @@ class database {
 		$this->User = array();
 		if ($_SERVER['SERVER_ADDR']=='127.0.0.1' || $_SERVER['SERVER_ADDR']=='172.16.30.108')
 		{
-			$this->conn=mysql_connect("localhost","root","") or die("Failed to connect to database");
+			$this->conn=mysql_connect("localhost","root","root") or die("Failed to connect to database");
 			mysql_select_db("destinat_db",$this->conn);
 		}
 		else

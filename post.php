@@ -1,4 +1,5 @@
 <?PHP
+    require_once __DIR__ . '/vendor/autoload.php';
 	require("init.php");
 
 	$action="";

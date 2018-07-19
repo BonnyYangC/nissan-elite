@@ -1,8 +1,12 @@
 ﻿<?PHP
 	require_once __DIR__ . '/vendor/autoload.php';
-//	require("init.php");
+	define(DEV_MODE, env('DEV_MODE',true));
+	require("init.php");
 
-	define(DEV_MODE, true);
+	/**
+	 *	Setup the route
+	 */
+	\App\core\Route::Instance()->get('/something/about',\App\controller\UsersController::class, 'login');
 
 	if ( !isset($Application['User']) ||empty($Application['User']) )
 	{

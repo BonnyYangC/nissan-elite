@@ -1,0 +1,122 @@
+{% extends 'layout/login.twig' %}
+{% block content %}
+    <section>
+        <ul class="cb-slideshow">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+        </ul>
+        <div class="container-loop">
+            <div class="codrops-top">
+                <a href="#"></a>
+                <span class="right">
+                    </span>
+                <div class="clr"></div>
+            </div>
+            <header>
+                <div class="login-form">
+                    <form id="login-form" method="post" action="/post.php" target="hf" class="form-signin" role="form" >
+                        <input type="hidden" name="action" value="login">
+                        <div align="center"><img src="{{ asset('images/nissanac-logo-footer.png') }}" width="240px" style="padding-bottom:20px"></div>
+                        <input name="email" id="email" type="email" class="form-control"placeholder="Email" autofocus />
+                        <input name="password" id="password" type="password" class="form-control" placeholder="Password" />
+                        <input class="btn btn-block bt-login" type="submit" />
+                    </form>
+                    <iframe id="hf" name="hf" style="height:1px; width:1px; visibility: hidden; position:absolute; z-index: 1"></iframe>
+                    <div class="form-footer">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-7">
+                                <!-- <i class="fa fa-lock"></i> -->
+                                <a style="color:#999999;" href="#forgotpassword" > Forgot password? </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-5">
+                                <!-- <i class="fa fa-check"></i> -->
+
+                                <a style="color:#999999;"  href="#eligible">New to Nissan?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </section>
+    <section id="eligible" >
+        <div class="container">
+            <div style="margin:0 auto; height: 600px; padding-top:200px; text-align: center; font-size:16px; margin-bottom:200px;">
+                <span style="font-size:50px; color:#FFFFFF;">New to Nissan? </span> <br><br>
+                <div class="bs-example">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. Can I join Ambassador Club?</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>If you are currently employed by Nissan Australia in one of the following job functions at a Nissan Dealership in Australia you are automatically invited to register and participate in the program:<br>
+                                        • Sales Manager<br>
+                                        • F&I Manager<br>
+                                        • Financial Controller<br>
+                                        • Retail Sales Consultant<br>
+                                        • Fleet Manager / Fleet Sales Consultant<br>
+                                        • Service Manager<br>
+                                        • Service Advisor<br>
+                                        • Stock Controllers<br>
+                                        • Parts Manager<br>
+                                        • Parts Sales Representative<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. How do I register for Ambassador Club?</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Go to <a href="http://nissan-events.com.au/ac2017/reg" target="_blank">www.nissanevents.com.au/ac2017/reg</a> and successfully complete the 2017 Nissan Ambassador Club registration form including a requirement to accept the program terms and conditions as directed.
+                                        On completion, you will receive a confirmation e-Mail for your Nissan Ambassador Club registration. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. Further queries?</a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>The Nissan Ambassador Club Service Centre can be contacted on:<br><br>
+
+                                        Telephone:  	03 9544 9054<br>
+                                        Facsimile:  	03 9544 9045<br>
+                                        Email: 		info@nissanac.com.au
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color:#FFFFFF;" ><strong>Note:</strong> Click on any of the above tabs to see more information. Go back to <a href="#">login</a> </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="forgotpassword">
+        <div class="container">
+            <div style="margin:0 auto; height: 600px; width:500px; padding-top:200px; text-align: center; font-size:50px; margin-bottom:100px;">
+                <p style="color:#FFFFFF;">Forgot Password?</p>
+                <p style="font-size:14px; color:#FFFFFF">Please enter your registered email address.</p>
+                <input name="Email" id="Email" type="password" class="form-control" placeholder="Email Address" style="margin:10px 0px">
+                <button style="background-color:#000000;" class="btn btn-block bt-login" type="submit">Submit</button>
+                <p style="color:#FFFFFF; font-size:14px; padding-top:10px;" ><strong>Note:</strong> Go back to <a href="#">login</a> </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
