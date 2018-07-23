@@ -2,8 +2,6 @@
 /**
  * Switch on all PHP error if in DEV mode
  */
-error_reporting(DEV_MODE ? E_ALL : 0);
-
 set_time_limit ( 360 );
 
 //require_once("includes/functions.php");

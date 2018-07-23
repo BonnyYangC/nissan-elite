@@ -603,5 +603,45 @@ class database {
 		}
 		return $retval;
 	}
+
+    /**
+     * Build query stmt then return of run
+     * @param $tableName
+     * @param $params
+     * @param bool $getStmtOnly
+     * @return bool|array
+     */
+    public function simpleQuery($tableName, $params, $getStmtOnly = false){
+        $where = [];
+        $whereCondition = '';
+        foreach ($params as $param) {
+            if(is_array($param)){
+                if(count($param) === 2){
+                    $where[] = $param[0].'=\''.$param[1].'\'';
+                }elseif (count($param) === 3){
+                    $where[] = $param[0].$param[1].'\''.$param[2].'\'';
+                }
+            }
+        }
+
+        if(count($where)>0){
+            $whereCondition = ' WHERE '.implode(' AND ',$where);
+        }
+        $sql='SELECT * FROM '.$tableName.$whereCondition;
+
+        if($getStmtOnly){
+            return $sql;
+        }
+
+        $rows = [];
+        if ($rs2=mysql_query($sql, $this->conn) )
+        {
+            while ($data = mysql_fetch_array($rs2))
+            {
+                $rows[]=$data;
+            }
+        }
+        return count($rows)>0 ? $rows : false;
+    }
 }
 ?>

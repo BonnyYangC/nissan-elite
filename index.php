@@ -1,54 +1,14 @@
-﻿<?PHP
-	require_once __DIR__ . '/vendor/autoload.php';
-	define(DEV_MODE, env('DEV_MODE',true));
-	require("init.php");
+<?php
+/**
+ * Entry point of the NissanAC application
+ * User: justinwang
+ * Date: 23/7/18
+ * Time: 11:34 AM
+ */
+error_reporting(E_ERROR);
+ini_set('display_errors', TRUE);
+require_once __DIR__ . '/vendor/autoload.php';
 
-	/**
-	 *	Setup the route
-	 */
-	\App\core\Route::Instance()->get('/something/about',\App\controller\UsersController::class, 'login');
-
-	if ( !isset($Application['User']) ||empty($Application['User']) )
-	{
-		open_template("login.html");
-	}
-	else
-	{
-		
-		/**************************************
-				Choose content to display
-		***************************************/
-		$action='';
-		if (isset($_GET['action']) || isset($_POST['action']) )
-		{
-			$action = strtolower( isset($_GET['action']) ? $_GET['action'] : $_POST['action']);
-		}
-		
-		$displayskin = true;
-		$background='background-color: #FFFFFF; padding:0 25px;';
-		switch ($action)
-		{
-			case 'dashboard':
-				include "modules/dashboard.php";
-				break;
-			default:
-				open_template("3-brands.html");
-				$displayskin=false;
-				break;
-		}
-		
-		if ($displayskin)
-		{
-			open_template("main.html", array(
-					"CONTENT" => $content,
-					"FIRSTNAME" => $Application['User']['firstname'],
-					"LASTNAME" => $Application['User']['lastname'],
-					"COMPANY-NAME" => $Application['User']['company_name'],
-					"BACKGROUND" => $background,
-					"METRICSNAV" => nissan_get_metrics_nav_html($Application['User'])
-					));
-
-		}
-
-	}
-?>
+\App\core\Route::Instance()->get('/',\App\controller\UsersController::class, 'login');
+\App\core\Route::Instance()->get('/home',\App\controller\UsersController::class, 'home');
+\App\core\Route::Instance()->post('/user/login',\App\controller\UsersController::class, 'verify_user');

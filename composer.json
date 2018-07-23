@@ -2,10 +2,16 @@
   "name": "2018 Nissan AC",
   "description": "2018 Nissan AC",
   "require": {
-    "doctrine/orm": "2.5.14",
     "vlucas/phpdotenv": "^2.5",
     "twig/twig": "~1.0",
-    "klein/klein": "^2.1"
+    "klein/klein": "^2.1",
+    "aura/session": "^2.1",
+    "ircmaxell/random-lib": "^1.2",
+    "paragonie/random_compat": "^9.99",
+    "ramsey/uuid": "^3.8",
+    "nesbot/carbon": "^1.32",
+    "broadway/uuid-generator": "^0.4.0",
+    "catfan/medoo": "^1.5"
   },
   "autoload": {
     "psr-4": {

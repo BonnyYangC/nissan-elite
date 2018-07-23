@@ -8,12 +8,21 @@
 
 namespace App\core;
 
+use Klein\App;
 use Klein\Klein;
 use Klein\Request;
+use Klein\Response;
+use Klein\ServiceProvider;
 
 class Route
 {
     private $pool = [];
+
+    /**
+     * Default redirect to path
+     * @var string
+     */
+    public $redirectTo = '/home';
 
     /**
      * @var Route null
@@ -51,30 +60,32 @@ class Route
         $this->_router->respond(
             'GET',
             $path,
-            function(Request $request) use ($controller, $action){
-                $c = new $controller();
+            function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
+                $c = new $controller($request,$response);
                 $c->$action($request);
             }
         );
-        $this->_router->dispatch();
+//        $this->_router->dispatch();
     }
 
     /**
      * Handle All Post type request
-     * @param string $path
-     * @param string $controller   The class name of controller
-     * @param string $action               The function name you want to run
+     * @param $path
+     * @param $controller
+     * @param $action
      */
     public function post($path,$controller,$action){
         $this->_router->respond(
             'POST',
             $path,
-            function(Request $request) use ($controller, $action){
-                $c = new $controller();
-                $c->$action($request);
+            function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
+                $c = new $controller($request, $response);
+                $redirectTo = $c->$action($request, $response);
+                if($redirectTo){
+                    $response->redirect($redirectTo)->send();
+                }
             }
         );
-
         $this->_router->dispatch();
     }
 
@@ -86,5 +97,11 @@ class Route
     public function group($groupName, $closure){
         $this->_router->with($groupName, $closure() );
         $this->_router->dispatch();
+    }
+
+    public function redirect($url, $params = []){
+//        $resp = new Response();
+//        $resp->redirect($url);
+        return $this->_router->response()->redirect($url)->send();
     }
 }

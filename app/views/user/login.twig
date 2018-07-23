@@ -18,12 +18,12 @@
             </div>
             <header>
                 <div class="login-form">
-                    <form id="login-form" method="post" action="/post.php" target="hf" class="form-signin" role="form" >
+                    <form id="login-form" method="post" action="{{ url('user/login') }}" class="form-signin" role="form" >
                         <input type="hidden" name="action" value="login">
                         <div align="center"><img src="{{ asset('images/nissanac-logo-footer.png') }}" width="240px" style="padding-bottom:20px"></div>
                         <input name="email" id="email" type="email" class="form-control"placeholder="Email" autofocus />
                         <input name="password" id="password" type="password" class="form-control" placeholder="Password" />
-                        <input class="btn btn-block bt-login" type="submit" />
+                        <input class="btn btn-block" type="submit" />
                     </form>
                     <iframe id="hf" name="hf" style="height:1px; width:1px; visibility: hidden; position:absolute; z-index: 1"></iframe>
                     <div class="form-footer">

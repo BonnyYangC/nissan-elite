@@ -8,6 +8,8 @@
 
 namespace App\core;
 
+use Klein\Request;
+use Klein\Response;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
@@ -24,9 +26,19 @@ class BaseController
     protected $twigLoader = null;
     protected $debugMode = null;
 
-    public function __construct()
-    {
+    /**
+     * @var Request
+     */
+    protected $request;
+    /**
+     * @var Response
+     */
+    protected $response;
 
+    public function __construct(Request $request, Response $response)
+    {
+        $this->request = $request;
+        $this->response = $response;
     }
 
     /**

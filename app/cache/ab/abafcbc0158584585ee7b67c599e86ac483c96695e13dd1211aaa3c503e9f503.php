@@ -26,12 +26,9 @@ class __TwigTemplate_794963447d7856d77b6e5ea0068d581214504fc54bcf3e744daa04f0df0
         // line 4
         echo twig_escape_filter($this->env, asset("/includes/jalert/dist/jAlert-functions.min.js"), "html", null, true);
         echo "\"></script>
-<script src=\"";
-        // line 5
-        echo twig_escape_filter($this->env, asset("/includes/jconfirm/js/jquery-confirm.js"), "html", null, true);
-        echo "\"></script>
-<script src=\"";
+";
         // line 6
+        echo "<script src=\"";
         echo twig_escape_filter($this->env, asset("js/modernizr.custom.86080.js"), "html", null, true);
         echo "\"></script>
 <script>
@@ -90,7 +87,7 @@ class __TwigTemplate_794963447d7856d77b6e5ea0068d581214504fc54bcf3e744daa04f0df0
 
     public function getDebugInfo()
     {
-        return array (  35 => 6,  31 => 5,  27 => 4,  23 => 3,  19 => 1,);
+        return array (  31 => 6,  27 => 4,  23 => 3,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -107,7 +104,7 @@ class __TwigTemplate_794963447d7856d77b6e5ea0068d581214504fc54bcf3e744daa04f0df0
 <script src=\"http://lib.gekkocreations.com.au/bootstrap/js/bootstrap.bundle.min.js\"></script>
 <script src=\"{{ asset('/includes/jalert/dist/jAlert.min.js') }}\"></script>
 <script src=\"{{ asset('/includes/jalert/dist/jAlert-functions.min.js') }}\"></script>
-<script src=\"{{ asset('/includes/jconfirm/js/jquery-confirm.js') }}\"></script>
+{#<script src=\"{{ asset('/includes/jconfirm/js/jquery-confirm.js') }}\"></script>#}
 <script src=\"{{ asset('js/modernizr.custom.86080.js') }}\"></script>
 <script>
     function MultipleLogins()

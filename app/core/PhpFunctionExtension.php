@@ -34,8 +34,8 @@ class PhpFunctionExtension extends \Twig_Extension
         /**
          * Self defined functions
          */
-        'asset',
-        'url'
+        'asset',    // Give the asset url
+        'url',      // Give the route url
     );
     public function __construct(array $functions = array())
     {

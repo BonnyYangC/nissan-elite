@@ -46,7 +46,10 @@ class __TwigTemplate_cce435ece581bb238ffffa53ca55220d973cd3f2f74c85a1a5a4d444176
             </div>
             <header>
                 <div class=\"login-form\">
-                    <form id=\"login-form\" method=\"post\" action=\"/post.php\" target=\"hf\" class=\"form-signin\" role=\"form\" >
+                    <form id=\"login-form\" method=\"post\" action=\"";
+        // line 21
+        echo twig_escape_filter($this->env, url("user/login"), "html", null, true);
+        echo "\" class=\"form-signin\" role=\"form\" >
                         <input type=\"hidden\" name=\"action\" value=\"login\">
                         <div align=\"center\"><img src=\"";
         // line 23
@@ -54,7 +57,7 @@ class __TwigTemplate_cce435ece581bb238ffffa53ca55220d973cd3f2f74c85a1a5a4d444176
         echo "\" width=\"240px\" style=\"padding-bottom:20px\"></div>
                         <input name=\"email\" id=\"email\" type=\"email\" class=\"form-control\"placeholder=\"Email\" autofocus />
                         <input name=\"password\" id=\"password\" type=\"password\" class=\"form-control\" placeholder=\"Password\" />
-                        <input class=\"btn btn-block bt-login\" type=\"submit\" />
+                        <input class=\"btn btn-block\" type=\"submit\" />
                     </form>
                     <iframe id=\"hf\" name=\"hf\" style=\"height:1px; width:1px; visibility: hidden; position:absolute; z-index: 1\"></iframe>
                     <div class=\"form-footer\">
@@ -165,7 +168,7 @@ class __TwigTemplate_cce435ece581bb238ffffa53ca55220d973cd3f2f74c85a1a5a4d444176
 
     public function getDebugInfo()
     {
-        return array (  53 => 23,  31 => 3,  28 => 2,  11 => 1,);
+        return array (  56 => 23,  51 => 21,  31 => 3,  28 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -198,12 +201,12 @@ class __TwigTemplate_cce435ece581bb238ffffa53ca55220d973cd3f2f74c85a1a5a4d444176
             </div>
             <header>
                 <div class=\"login-form\">
-                    <form id=\"login-form\" method=\"post\" action=\"/post.php\" target=\"hf\" class=\"form-signin\" role=\"form\" >
+                    <form id=\"login-form\" method=\"post\" action=\"{{ url('user/login') }}\" class=\"form-signin\" role=\"form\" >
                         <input type=\"hidden\" name=\"action\" value=\"login\">
                         <div align=\"center\"><img src=\"{{ asset('images/nissanac-logo-footer.png') }}\" width=\"240px\" style=\"padding-bottom:20px\"></div>
                         <input name=\"email\" id=\"email\" type=\"email\" class=\"form-control\"placeholder=\"Email\" autofocus />
                         <input name=\"password\" id=\"password\" type=\"password\" class=\"form-control\" placeholder=\"Password\" />
-                        <input class=\"btn btn-block bt-login\" type=\"submit\" />
+                        <input class=\"btn btn-block\" type=\"submit\" />
                     </form>
                     <iframe id=\"hf\" name=\"hf\" style=\"height:1px; width:1px; visibility: hidden; position:absolute; z-index: 1\"></iframe>
                     <div class=\"form-footer\">
