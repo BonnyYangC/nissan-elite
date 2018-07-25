@@ -28,11 +28,28 @@ class DataSource extends BaseModel
     ];
 
     /**
+     * Map for database table's name => user's Role
+     * @var array
+     */
+    private static $_rolesMap = [
+        'nissan_salesconsultants'       => 'Sales Consultant',
+        'nissan_salesmanagers'          => 'Sales Manager',
+        'nissan_serviceadvisors'        => 'Service Advisor',
+        'nissan_fi'                     => 'Finance & Insurance Manager',
+        'nissan_stockcontroller'        => 'Stock Controller',
+        'nissan_financialcontrollers'   => 'Financial Controller',
+        'nissan_partsmanager'           => 'Parts Manager',
+        'nissan_partsrep'               => 'Parts & Sales Representitive',
+        'nissan_servicemanagers'        => 'Service Manager'
+    ];
+
+    /**
      * Tables array of the user has position
      * @var array|null
      */
     private static $_positionList           = null;
     private static $_multipleRoleMetrics    = null;
+    private static $_tableRoleMetrics       = null;
 
     /**
      *  A user may have multiple positions, this method returns an array
@@ -44,6 +61,7 @@ class DataSource extends BaseModel
     public static function GetDataAllPositions (User $user) {
         if(is_null(self::$_multipleRoleMetrics)){
             self::$_multipleRoleMetrics = [];
+            self::$_tableRoleMetrics = [];
             $tables = self::GetPositionList($user);
             $database = self::DB();
             foreach ($tables as $table) {
@@ -59,10 +77,23 @@ class DataSource extends BaseModel
                     self::$_multipleRoleMetrics[$table]['Results'][date('M-Y', strtotime($row['period']))] = $row;
                     self::$_multipleRoleMetrics[$table]['Excellence'] = $row['excellence'];
                 }
+                // Setup the table name and role array to render "Metrics" menu item. 就为了前端菜单渲染一下 Metrics 菜单
+                self::$_tableRoleMetrics[$table] = self::$_rolesMap[$table];
             }
         }
-
         return self::$_multipleRoleMetrics;
+    }
+
+    /**
+     * Get database table name => role name array by given user
+     * @param User $user
+     * @return null
+     */
+    public static function GetTableRoleMetrics(User $user){
+        if(is_null(self::$_tableRoleMetrics)){
+            self::GetDataAllPositions($user);
+        }
+        return self::$_tableRoleMetrics;
     }
 
     /**

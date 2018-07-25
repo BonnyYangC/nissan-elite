@@ -55,6 +55,9 @@ class DashboardController extends BaseController
 
             $this->dataForView['multiple_role_metrics'] =
                 NissanDataSource::GetDataAllPositions($this->userObject);
+
+            $this->dataForView['table_role_array'] =
+                NissanDataSource::GetTableRoleMetrics($this->userObject);
         }
     }
 

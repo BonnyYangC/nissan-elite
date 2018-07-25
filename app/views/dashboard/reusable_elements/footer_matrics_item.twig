@@ -1,0 +1,11 @@
+{#
+    这个是用来在页脚菜单中生成 Metrics 子菜单的模板.
+    所使用的数据, 来自 DashboardController 的 beforeRender 方法中注入的数据, 主要是就是当前登陆用户所关联的数据表 tableName=>roleName
+#}
+{% if count(multiple_role_metrics) > 1 %}
+    {% for tableName,role in table_role_array %}
+        <li><a href="{{ url('/Dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
+    {% endfor %}
+{% else %}
+    <li><a href="{{ asset('/Dashboard/Metrics') }}">Metrics</a></li>
+{% endif %}

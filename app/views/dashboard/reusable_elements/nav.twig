@@ -1,0 +1,27 @@
+<div class="container" id="banner">
+    <nav class="navbar navbar-inverse back navbar-static-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li> <a href="{{ url('/Dashboard') }}">My Dashboard</a> </li>
+                {% include 'dashboard/reusable_elements/nav_matrics_item.twig' %}
+                <li> <a href="{{ url('/Dashboard/Leaderboards') }}">Rankings</a> </li>
+                <li> <a href="{{ url('/Dashboard/Incentives') }}">Incentives</a> </li>
+                <li> <a href="{{ url('/Dashboard/Calendar') }}">Calendar</a> </li>
+                <li> <a href="{{ url('/Dashboard/MembersGuide') }}">Members Guide</a> </li>
+                <li> <a href="{{ url('/Dashboard/Account') }}">Account</a> </li>
+                <li> <a href="{{ url('/Dashboard/ProductChallenge') }}">Product Challenge</a> </li>
+                <li> <a href="{{ url('/Dashboard/MDguild') }}">MD Guild</a> </li>
+                <li> <a href="{{ url('/Dashboard/FAQ') }}">FAQs</a> </li>
+                <li> <a href="{{ url('/') }}" style="color:#111111;">< HOME</a> </li>
+            </ul>
+        </div>
+    </nav>
+</div>

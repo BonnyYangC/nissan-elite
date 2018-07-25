@@ -32,6 +32,8 @@ class PhpFunctionExtension extends \Twig_Extension
         'wordwrap',
         'gettype',
         'empty',
+        'count',
+        'date',
         /**
          * Self defined functions
          */

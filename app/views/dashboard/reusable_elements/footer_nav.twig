@@ -1,0 +1,35 @@
+<div class="container">
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <p>&copy; Nissan Ambassador Club Program {{ date('Y') }}<br>
+                    <br>
+                    <br>
+                    All enquiries: <br>
+                    <a href="mailto:info@nissanac.com.au?subject=Nissan Ambassador Club Online Enquiry">info@nissanac.com.au</a> <br>
+                    <a href="{{ asset('images/members/AC-MEMBERS-GUIDE-2018.pdf#page=38') }}">Term & Conditions</a></p>
+            </div>
+            <div class="col-lg-3">
+                <ul class="nav">
+                    <li> <a href="{{ url('/') }}">HOME</a> </li>
+                    <li> <a href="{{ url('/Dashboard') }}">My Dashboard</a> </li>
+                    {% include 'dashboard/reusable_elements/footer_matrics_item.twig' %}
+                    <li> <a href="{{ url('/Dashboard/Leaderboards') }}">Rankings</a> </li>
+                    <li> <a href="{{ url('/Dashboard/Incentives') }}">Incentives</a> </li>
+                    <li> <a href="{{ url('/Dashboard/Calendar') }}">Calendar</a> </li>
+                    <li> <a href="{{ url('/Dashboard/MembersGuide') }}">Members Guide</a> </li>
+                    <li> <a href="{{ url('/Dashboard/Account') }}">Account</a> </li>
+                    <li> <a href="{{ url('/Dashboard/ProductChallenge') }}">Product Challenge</a> </li>
+                    <li> <a href="{{ url('/Dashboard/MDguild') }}">MD Guild</a> </li>
+                    <li> <a href="{{ url('/Dashboard/FAQ') }}">FAQs</a> </li>
+                </ul>
+            </div>
+            <div class="col-lg-5" align="right"> <img src="{{ asset('/images/nissanac-logo-footer.png') }}" width="183"/> </div>
+        </div>
+    </footer>
+</div>

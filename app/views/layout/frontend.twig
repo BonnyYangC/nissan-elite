@@ -2,7 +2,14 @@
 <html>
     {{ include('layout/reusable_elements/head.twig') }}
     <body style="background-color:#000000;">
+    {# Load the top bar from the reuseable element of dashboard #}
+    {% include 'dashboard/reusable_elements/top_bar.twig' %}
+    {# Load the navigator from the reuseable element of dashboard #}
+    {% include 'dashboard/reusable_elements/nav.twig' %}
     {% block content %}{% endblock %}
+    {# Load the footer section from the reuseable element of dashboard #}
+    {{ include('dashboard/reusable_elements/footer_nav.twig') }}
+    {# Load all js script tags from the reuseable element of layout #}
     {{ include('layout/reusable_elements/footer.twig') }}
     </body>
 </html>
