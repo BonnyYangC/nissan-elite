@@ -62,10 +62,9 @@ class Route
             $path,
             function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
                 $c = new $controller($request,$response);
-                $c->$action($request);
+                $c->$action();
             }
         );
-//        $this->_router->dispatch();
     }
 
     /**
@@ -80,12 +79,18 @@ class Route
             $path,
             function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
                 $c = new $controller($request, $response);
-                $redirectTo = $c->$action($request, $response);
+                $redirectTo = $c->$action();
                 if($redirectTo){
                     $response->redirect($redirectTo)->send();
                 }
             }
         );
+    }
+
+    /**
+     * the point of dispatch route
+     */
+    public function dispatch(){
         $this->_router->dispatch();
     }
 

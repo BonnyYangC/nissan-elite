@@ -27,6 +27,21 @@ class BaseController
     protected $debugMode = null;
 
     /**
+     * Hooks before view rendered; function names array
+     * @var array
+     */
+    public $hooksBefore = [
+        'beforeRender'  =>null
+    ];
+    /**
+     * Hooks after view rendered; function names array
+     * @var array
+     */
+    public $hooksAfter = [
+        'afterRender'   =>null
+    ];
+
+    /**
      * @var Request
      */
     protected $request;
@@ -42,10 +57,26 @@ class BaseController
     }
 
     /**
+     * @param null $param
+     */
+    public function beforeRender($param = null){
+
+    }
+
+    /**
+     * @param null $param
+     */
+    public function afterRender($param = null){
+
+    }
+
+    /**
      * Render twig template
      * @param $filePath
+     * @param array $hooksBefore
+     * @param array $hooksAfter
      */
-    public function render($filePath){
+    public function render($filePath,$hooksBefore=[],$hooksAfter=[]){
         try{
             if(strpos($filePath, '/') === 0){
                 // if the give file path start with /, then remove it
@@ -56,8 +87,28 @@ class BaseController
                 $filePath .= self::VIEW_TEMPLATE_EXT;
             }
 
+            /**
+             * Execute controller hooks function
+             */
+            if(!empty($hooksBefore)){
+                $this->hooksBefore = array_merge($this->hooksBefore, $hooksBefore);
+            }
+            if(!empty($hooksAfter)){
+                $this->hooksAfter = array_merge($this->hooksAfter, $hooksAfter);
+            }
+            foreach ($this->hooksBefore as $functionName=>$params) {
+                $this->$functionName($params);
+            }
+
+            // Hook function is a good place to inject some general data into view
             echo $this->loadTemplateFile()->render($filePath, $this->dataForView);
-            exit(0);
+
+            /**
+             * Execute controller after hooks function
+             */
+            foreach ($this->hooksAfter as $functionName=>$params) {
+                $this->$functionName($params);
+            }
         }catch (\Exception $exception){
             dump($exception->getMessage());
             exit(44);

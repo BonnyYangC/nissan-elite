@@ -8,12 +8,11 @@
 
 namespace App\controller;
 use App\core\BaseController as Controller;
-use App\core\Route;
 use App\models\Session;
 use Carbon\Carbon;
 use Klein\Request;
-use App\models\User;
 use Klein\Response;
+use App\models\User;
 
 class UsersController extends Controller
 {
@@ -22,39 +21,109 @@ class UsersController extends Controller
         parent::__construct($request, $response);
     }
 
-    public function login(Request $request){
-        $this->render('user/login');
-        return;
-    }
+    /**
+     * Entry page
+     */
+    public function login(){
+        $this->dataForView['errorMsg'] = session_flash('error_msg');
+        // check if session still available
+        $userData = session_get('user_data_array',true);
+        if($userData && isset($userData['id']) && !empty($userData['id'])){
+            // Refresh the session data
+            $user = new User();
+            $user->find($userData['id']);
+            $uuid = random_str(uniqid());
+            $this->_setUserSessionData($uuid, $user);
 
-    public function home(){
-        dump($this->request->cookies());
-        dump(session_get('user_data_array'));
-        echo 'home';
+            $this->dataForView['grid'] = $this->_get3BrandsGridData();
+            // Render dashboard view
+            $this->render('user/entry_point');
+        }else{
+            // Render login view
+            $this->render('user/login');
+        }
         return;
     }
 
     /**
-     * @param Request $request
-     * @param Response $response
+     * User logout
+     */
+    public function logout(){
+        get_session_instance()->destroy();
+        $this->response->redirect('/')->send();
+    }
+
+    /**
+     *  Get grid data for entry page.
+     */
+    private function _get3BrandsGridData(){
+        $imageAssetPrefix = 'images/tiles/images/';
+        return [
+            [
+                'url'=>url('dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-my-dashboard.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard/MembersGuide'),
+                'src'=>asset($imageAssetPrefix.'tile-nissanac.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-rankings.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'nissan-productchallenge.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'md-guild.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-incentives.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-training.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'whatsnews-nissannews.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-ce.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'nissan-doty.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-worldrewards.jpg'),
+            ],
+            [
+                'url'=>url('/dashboard'),
+                'src'=>asset($imageAssetPrefix.'tile-calendar.jpg'),
+            ],
+        ];
+    }
+
+    /**
+     * User login verification
      * @return string
      */
-    public function verify_user(Request $request, Response $response){
-        $email = $request->param('email');
-        $password = $request->param('password');
+    public function verify_user(){
+        $email = $this->request->param('email');
+        $password = $this->request->param('password');
         $user = new User();
         $loginSuccess = $user->login($email,$password);
 
         if ( $loginSuccess )
         {
             $uuid = random_str(uniqid());
-            $response->cookie('uuid',$uuid,time() + 3600,'/',url());
-
-            session_set(env('SESSION_SEGMENT','_nissanac'), $uuid);
-            session_set('user_data_array', [
-                'id'=>$user->getId(),
-                'name'=>$user->getName()
-            ]);
+            $this->_setUserSessionData($uuid, $user);
 
             // Need generate an uuid and save into session
             $session = new Session();
@@ -63,13 +132,27 @@ class UsersController extends Controller
                 'user_id'=>$user->getId(),
                 'datestamp'=>Carbon::now()
             ]);
-            return '/home';
         }
         else
         {
             // Login failed
-            session_flash('msg','These credentials do not match our records.');
-            return '/';
+            session_flash('error_msg','These credentials do not match our records.');
         }
+        return '/';
+    }
+
+    /**
+     * Save user data into session
+     * @param $uuid
+     * @param User $user
+     */
+    private function _setUserSessionData($uuid,User $user){
+        $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
+
+        session_set(env('SESSION_SEGMENT','_nissanac'), $uuid);
+        session_set('user_data_array', [
+            'id'=>$user->getId(),
+            'name'=>$user->getName()
+        ]);
     }
 }

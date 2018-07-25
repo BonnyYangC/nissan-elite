@@ -1,0 +1,15 @@
+RewriteEngine On    # Turn on the rewriting engine
+RewriteRule		^Dashboard/images/(.*)$						/images/$1							[QSA,NC,L]
+RewriteRule		^/images/(.*)$								/images/$1							[QSA,NC,L]
+RewriteRule		^Dashboard/css/(.*)$						/css/$1								[QSA,NC,L]
+RewriteRule		^Dashboard/js/(.*)$							/js/$1								[QSA,NC,L]
+RewriteRule		^Dashboard/includes/(.*)$					/includes/$1						[QSA,NC,L]
+RewriteRule		^Dashboard/Metrics/(.*)$					/index_old.php?action=dashboard&page=metrics&override_role=$1	[QSA,NC,L]
+RewriteRule		^Dashboard/(.*)$							/index_old.php?action=dashboard&page=$1	[QSA,NC,L]
+RewriteRule		^Dashboard$									/index_old.php?action=dashboard			[QSA,NC,L]
+
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]

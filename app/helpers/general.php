@@ -66,7 +66,7 @@ if(!function_exists('session_get')){
         $session = get_session_instance();
         $segment = $session->getSegment(env('SESSION_SEGMENT',DEFAULT_SESSION_SEGMENT_NAME));
         $result = $segment->get($key);
-        return $isJsonString ? json_decode($result) : $result;
+        return $isJsonString ? json_decode($result, true) : $result;
     }
 }
 
@@ -80,11 +80,12 @@ if(!function_exists('session_flash')){
     function session_flash($key=null, $val = null){
         $session = get_session_instance();
         if(is_null($val)){
-            $session->getSegment(env('SESSION_SEGMENT',DEFAULT_SESSION_SEGMENT_NAME))
-                ->getFlash($key);
+            return $session->getSegment(env('SESSION_SEGMENT',DEFAULT_SESSION_SEGMENT_NAME))
+                ->getFlash($key,null);
         }else{
             $session->getSegment(env('SESSION_SEGMENT',DEFAULT_SESSION_SEGMENT_NAME))
-                ->setFlash($key, $val);
+                ->setFlashNow($key, $val);
+            $session->commit();
         }
     }
 }
@@ -161,6 +162,9 @@ if(!function_exists('url')){
      * @return string
      */
     function url($uri=null){
+        if(strpos($uri,'/') === 0){
+            $uri = substr($uri,1);
+        }
         return env('SITE_URL').$uri;
     }
 }

@@ -39,22 +39,31 @@ class BaseModel
      * Is in the debug mode
      * @var bool
      */
-    private $_debug = false;
+    protected $_debug = false;
 
     /**
      * Where conditions go here
      * @var array
      */
-    private $_whereArray = [];
+    protected $_whereArray = [];
 
     /**
      * Buffer of all statements
      * @var array
      */
-    private $_statementsPool= [];
+    protected $_statementsPool= [];
 
-    public function __construct()
+    /**
+     * BaseModel constructor.
+     * If id provided, retrieve from DB
+     * @param null $id
+     */
+    public function __construct($id=null)
     {
+        // Set the debug flag
+        $this->_debug = env('DEV_MODE',true);
+
+        // Setup db connection
         if(is_null(self::$_db)){
             self::$_db = new Medoo([
                 'database_type' => env('DB_DRIVER','mysql'),
@@ -65,8 +74,13 @@ class BaseModel
                 // optional
                 'charset'       => env('DB_CHARSET','utf8'),
                 'port'          => env('DB_PORT',3306),
-                'logging'       => env('DEV_MODE',true),
+                'logging'       => $this->_debug,
             ]);
+        }
+
+        // find the record if id is given
+        if($id){
+            $this->find($id);
         }
     }
 
@@ -98,6 +112,14 @@ class BaseModel
      */
     public function getId(){
         return $this->rowData[$this->idFieldName];
+    }
+
+    /**
+     * Get database table name
+     * @return mixed
+     */
+    public function getTableName(){
+        return $this->tableName;
     }
 
     /**
@@ -254,6 +276,16 @@ class BaseModel
     public function setToDebugMode(){
         $this->_debug = true;
         return $this;
+    }
+
+    /**
+     * For relations between tables: one-to-many
+     * @param $className
+     * @param $foreignKey
+     * @param $options
+     */
+    protected function hasMany($className, $foreignKey, $options){
+        // todo: impl this in future
     }
 
     /**
