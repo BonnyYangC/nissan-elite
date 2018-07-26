@@ -37,10 +37,11 @@ class PhpFunctionExtension extends \Twig_Extension
         /**
          * Self defined functions
          */
-        'asset',    // Give the asset url
-        'url',      // Give the route url
-        'session_get',      // Retrieve data from session
-        'session_flash',      // Retrieve data from session flash
+        'asset',                // Give the asset url
+        'url',                  // Give the route url
+        'session_get',          // Retrieve data from session
+        'session_flash',        // Retrieve data from session flash
+        'gaga_indicator_init',  // Retrieve data from session flash
     );
     public function __construct(array $functions = array())
     {

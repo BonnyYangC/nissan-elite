@@ -15,6 +15,16 @@ class Credit extends BaseModel
     const TABLE_NAME = 'nissan_credits';
     protected $tableName = 'nissan_credits';
 
+    const CONSUL        = 10000;
+    const DIPLOMAT      = 25000;
+    const AMBASSADOR    = 30000;
+    const PREMIER       = 50000;
+
+    const PREMIER_COLOR       = '#B47C37';
+    const AMBASSADOR_COLOR       = '#546E22';
+    const DIPLOMAT_COLOR       = '#BC2628';
+    const CONSUL_COLOR       = '#525357';
+
     /**
      *
      * @param User $user
@@ -53,5 +63,9 @@ class Credit extends BaseModel
             $credits[date("M-Y", strtotime($row['period']))] = $row;
         }
         return $credits;
+    }
+
+    public static function GetYtdColor($ytd){
+
     }
 }

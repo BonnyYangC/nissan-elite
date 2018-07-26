@@ -22,6 +22,11 @@ class Ranking extends BaseModel
     protected $tableName    = 'nissan_rankings';
 
     /**
+     * Variables for how to show the leader board
+     */
+    const LEADER_BOARD_TABLE_MAX_ROW = 5;
+
+    /**
      * Count how many record's ranking is lower than give user and ranking in a period
      * 获取在给定时间条件下, 排名比给定 user 要低的
      * @param User $user

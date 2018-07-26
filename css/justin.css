@@ -1,0 +1,23 @@
+.bg-white{
+    background: #ffffff;
+}
+.pl-25{
+    padding-left: 25px;
+}
+.pr-25{
+    padding-right: 25px;
+}
+.table-responsive {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.leader-board tr td a.matched{
+    font-family: 'nissan_brandregular';
+}
+.g1{
+    background-color: #f7f7f7;
+    #background-position:center;
+    background-size:400px;
+    background-repeat:no-repeat;
+    height: 220px;
+}

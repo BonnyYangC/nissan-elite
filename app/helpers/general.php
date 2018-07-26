@@ -8,6 +8,27 @@
 $GLOBALS['session_instance'] = null;
 const DEFAULT_SESSION_SEGMENT_NAME = 'session_segment';
 
+if(!function_exists('gaga_indicator_init')){
+    /**
+     * @param $elementId
+     * @param int $CONSUL
+     * @param int $DIPLOMAT
+     * @param int $AMBASSADOR
+     * @param int $PREMIER
+     * @param int $max
+     * @return string
+     */
+    function gaga_indicator_init($elementId,$CONSUL=12000,$DIPLOMAT=22000,$AMBASSADOR=27000,$PREMIER=38000,$max=50000){
+        $min=0;
+        $gage_indicators = "";
+        $gage_indicators .= "generateGageIndicator('$elementId', " . ($CONSUL / $max) * 100 . ", '#525357', 'Consul');";
+        $gage_indicators .= "generateGageIndicator('$elementId', " . ($DIPLOMAT / $max) * 100 . ", '#BC2628', 'Diplomat');";
+        $gage_indicators .= "generateGageIndicator('$elementId', " . ($AMBASSADOR / $max) * 100 . ", '#546E22', 'Ambassador');";
+        $gage_indicators .= "generateGageIndicator('$elementId', " . ($PREMIER / $max) * 100 . ", '#B47C37', 'Premier');";
+        return $gage_indicators;
+    }
+}
+
 if(!function_exists('env')){
     /**
      * @param $key

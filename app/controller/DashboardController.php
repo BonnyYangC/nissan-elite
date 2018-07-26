@@ -15,6 +15,7 @@ use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\User;
 use Carbon\Carbon;
+use function Couchbase\defaultDecoder;
 use Klein\Request;
 use Klein\Response;
 
@@ -91,19 +92,14 @@ class DashboardController extends BaseController
             // Get the latest ranking date
             $thisPeriod = $this->_getThisPeriod($user);
             // 获取了所有的 Rankings: Get all rankings
-            $this->dataForView['Rankings'] = Ranking::Query($user, $thisPeriod);
+            $rankings = Ranking::Query($user, $thisPeriod);
+            $this->dataForView['Rankings'] = $rankings;
 
             $myRanking = null;
             $currentUserRankingRecord = Ranking::Query($user, $thisPeriod, true);
             if($currentUserRankingRecord){
                 $myRanking = $currentUserRankingRecord['ranking'];
                 $this->dataForView['Registered'] = $currentUserRankingRecord['registered'];
-            }
-
-            // 获取 Regional 的 Rankings: 实际就是结合上一步计算自己的排名
-            $regionalRanking = Ranking::countRegionalRankingLessThan($user, $thisPeriod, $myRanking);
-            if($regionalRanking){
-                $this->dataForView['MyRanking'] = $regionalRanking + 1;
             }
 
             /**
@@ -115,10 +111,88 @@ class DashboardController extends BaseController
              * 计算Credits
              */
             $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($user,env('YEAR',2017));
+
+            /**
+             * 以上是基础数据, 以下为页面中的特定数据
+             */
+
+            // 获取 Regional 的 Rankings: 实际就是结合上一步计算自己的排名
+            $regionalRanking = Ranking::countRegionalRankingLessThan($user, $thisPeriod, $myRanking);
+            if($regionalRanking){
+                $this->dataForView['MyRanking'] = $regionalRanking + 1;
+            }
+
+            // 处理 Leader Board 的表格: Leader board 只有5个位置
+            $iAmInTopList = false;
+            $leaderBoardTableData = [];
+            foreach ($rankings as $index=>$item) {
+                if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
+                    if($item['member_id'] == $user->getEmployeeCode()){
+                        $iAmInTopList = true;
+                    }
+                    $leaderBoardTableData[] = $item;
+                }else{
+                    // 已经超出了前五名
+                    if(!$iAmInTopList){
+                        if($item['member_id'] == $user->getEmployeeCode()){
+                            $leaderBoardTableData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
+                            break;
+                        }
+                    }
+                }
+            }
+            $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
+            // 处理 Leader Board 的表格 结束
+
+            // GAGA indicator
+            $this->_handleGagaIndicatorData();
+            // GAGA indicator end
         }
 
         $this->render('dashboard/main');
         return;
+    }
+
+    private function _handleGagaIndicatorData(){
+        $data= $this->dataForView['Results'];
+        $ytd=0;
+        $lifetime=0;
+        $monthly='';
+        $metrics='';
+        $min=0;
+        $max=100;
+        $color="#CCCCC";
+        $txt="";
+        $dollar="";
+        $excellence=0;
+        $aryCredits=$this->dataForView['Credits'];
+        $training='';
+
+        for($i=0; $i<12; $i++)
+        {
+            $period=mktime(0,0,0,4+$i,1,env('YEAR',2018));
+            if(isset($aryCredits[date("M-Y", $period)]))
+            {
+                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
+
+                $monthly.=(empty($monthly) ? '' : ',') . "['" . date("M", $period) . "'," . $aryCredits[date("M-Y", $period)]['mtd'] . "]";
+            }
+            else
+            {
+                $monthly.=(empty($monthly) ? '' : ',') . "['" . date("M", $period) . "',0]";
+
+            }
+            if (isset($data[date("M-Y", $period)]))
+            {
+                $lifetime=(isset($data[date("M-Y", $period)]['lifetime']) ? $data[date("M-Y", $period)]['lifetime'] : $data[date("M-Y", $period)]['credit_mtd']);
+                $excellence=$data[date("M-Y", $period)]['excellence'];
+            }
+
+        }
+
+        $this->dataForView['yearToDateTotal'] = $ytd;
+        $this->dataForView['minLevel'] = 0;
+        $this->dataForView['maxLevel'] = 3000;
     }
 
     private function _handleRanking($rows, User $user){

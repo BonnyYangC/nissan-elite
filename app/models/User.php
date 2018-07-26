@@ -49,6 +49,42 @@ class User extends BaseModel
         }
     }
 
+    public function getGagaDataRange(){
+        $result = [];
+        switch ($this->position){
+            case self::FI:
+                $result=[300,600,1000,1500];
+                break;
+            case self::FLEET_SALES_MANAGER:
+                $result=[500,1000,1500,2000];
+                break;
+            case self::SALES_MANAGER:
+                $result=[500,1000,1500,2000];
+                break;
+            case self::SERVICE_ADVISERS:
+                $result=[150,400,1000,1500];
+                break;
+            case self::STOCK_CONTROLLER:
+                $result=[150,400,1000,1500];
+                break;
+            case self::FINANCE_CONTROLLER:
+                $result=[300,600,1000,1500];
+                break;
+            case self::PARTS_MANAGER:
+                $result=[150,400,1000,1500];
+                break;
+            case self::PARTS_SALES_REP:
+                $result=[150,400,1000,1500];
+                break;
+            case self::SERVICE_MANAGER:
+                $result=[150,400,1000,1500];
+                break;
+            default:
+                break;
+        }
+        return $result;
+    }
+
     /**
      * Init user's basic info about company and position ...
      * @return $this
