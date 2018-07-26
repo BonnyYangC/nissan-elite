@@ -89,4 +89,104 @@ $(document).ready(function(){
             }
         });
     }
+    // Calendar page
+    if($('#calendar').length === 1){
+        var currentYear = new Date().getFullYear();
+        var CALENDAR = $('#calendar').calendar({
+            dataSource: calendarEvents,
+            clickDay: function (e) {
+                dayClicked(e.events);
+            },
+            renderEnd: function (year) {
+                try {
+                    highlightMonths();
+                } catch (e) {}
+            },
+            mouseOnDay: function(e) {
+                if(e.events.length > 0) {
+                    var content = '';
+
+                    for(var i in e.events) {
+                        content += '<div class="event-tooltip-content">'
+                            + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                            + '</div>';
+                    }
+
+                    $(e.element).popover({
+                        trigger: 'manual',
+                        container: 'body',
+                        html:true,
+                        content: content
+                    });
+
+                    $(e.element).popover('show');
+                }
+            },
+            mouseOutDay: function(e) {
+                if(e.events.length > 0) {
+                    $(e.element).popover('hide');
+                }
+            }
+        });
+        //
+        var monthHighlightFeatureEnabled = false;
+        var EARLIEST_START, LATEST_FINISH;
+
+        function dayClicked (events) {
+            if (!monthHighlightFeatureEnabled) {
+                return false;
+            }
+
+            function getFurthest (events, prop, mathFunc) {
+                var dates = [];
+
+                for (var i = 0; i < events.length; i++) {
+                    dates.push(events[i][prop]);
+                }
+
+                return new Date(mathFunc.apply(null, dates));
+            }
+
+            EARLIEST_START = getFurthest(events, 'startDate', Math.min);
+            LATEST_FINISH = getFurthest(events, 'endDate', Math.max);
+
+            highlightMonths();
+        }
+
+        /* Accepts a '<table class="month">' element */
+        function getLastDayOfMonth (monthTable) {
+            var day_DIVs = monthTable.querySelectorAll('div.day-content');
+
+            /* The last day of the month should simply be the length of this
+            NodeList */
+            return day_DIVs.length;
+        }
+
+        function highlightMonths () {
+            var month_TABLEs = document.querySelectorAll('table.month');
+
+            for (var i = 0; i < month_TABLEs.length; i++) {
+                tryHighlight(month_TABLEs[i], i);
+            }
+        }
+
+        function tryHighlight (monthTable, index) {
+            var currentYear = CALENDAR.getYear();
+            var month = index;
+            var lastDayOfMonth = getLastDayOfMonth(monthTable);
+
+            /* Actal Date object */
+            var lastDateOfMonth = new Date(currentYear, month, lastDayOfMonth);
+
+            if (
+                (lastDateOfMonth >= EARLIEST_START && lastDateOfMonth <= LATEST_FINISH) ||
+                (lastDateOfMonth.getMonth() == EARLIEST_START.getMonth() && lastDateOfMonth.getYear() == EARLIEST_START.getYear()) ||
+                (lastDateOfMonth.getMonth() == LATEST_FINISH.getMonth() && lastDateOfMonth.getYear() == LATEST_FINISH.getYear())
+            ) {
+                monthTable.setAttribute('class', 'month highlighted');
+            } else {
+                monthTable.setAttribute('class', 'month');
+            }
+        }
+    }
 });

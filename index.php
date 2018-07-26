@@ -42,6 +42,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 \App\core\Route::Instance()->get('/dashboard/ProductChallengeCurrentEvent',\App\controller\StaticPagesController::class, 'product_challenge_current_event');
 
 \App\core\Route::Instance()->get('/dashboard/Account',\App\controller\AccountsController::class, 'account');
+\App\core\Route::Instance()->get('/dashboard/Calendar',\App\controller\AccountsController::class, 'calendar');
 
 /**
  * This is a must do action: dispatch at last
