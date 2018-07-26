@@ -1,0 +1,50 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+    <div class="container bg-white">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">PRODUCT CHALLENGE</h1>
+            </div>
+        </div>
+        <div class="row pb-20">
+            <div class="col-md-9 mb-60">
+                <div class="border12 center-block">
+                    <img src="{{ asset('images/12.jpg') }}" class="img-responsive" alt="" />
+                </div>
+
+                <h3>NATIONAL PRODUCT CHALLENGE EVENTS</h3>
+
+                <p>The Nissan Product Challenge Events are a game of skill and knowledge.</p>
+
+                <p>The events have been running for over 15 years and are attended annually by over 1000 Nissan dealership employees and Nissan Australia staff. There are 7 events nationally.</p>
+
+                <p>Each dealership is invited to their respective Regions event and can bring along a team of up to 12 staff members. Representation across every department is encouraged.</p>
+
+                <p>Teams compete for the title of
+                    <strong>State Product Challenge Champion</strong> and
+                    <strong>National Masters Champion.</strong>.</p>
+
+                <p>There are 3 rounds of questions throughout the evening. Each round consists of 15 questions ranging from Product Knowledge, Finance, Training, Parts, Service and even Ambassador Club rules and guidelines. Maximum points per round is 25 unless
+                    an Ace card is used which will double the score for that round. (1 Ace card per dealership, can be used once only during the event)</p>
+
+                <p>First prize, for each of the seven
+                    <strong>State Product Challenge Champions</strong>, is a superb Product Challenge perpetual trophy and $2000 in Ambassador Club Reward cards, to be divided within the winning dealership’s team. The Runner-up receives $800 in Ambassador Club
+                    Reward cards.</p>
+
+                <p>The
+                    <strong>National Masters Champion</strong> is awarded to the dealership with the highest score nationally at the completion of the 7 events. Currently held by
+                    <strong>Unley Nissan</strong>, the winner will receive a magnificent perpetual trophy and $2000 in Ambassador Club reward cards to go towards a dealership celebratory lunch or dinner.</p>
+
+                <p>An important part of the Product Challenge events is the
+                    <strong>Rewards and Recognition</strong> section of the evening. Here we get to present Loyalty Awards to members in front of their peers. Very proud moments for each of the Ambassador Club high achieving members.</p>
+            </div>
+
+
+            <div class="col-md-3">
+                <a href="{{ url('/dashboard/ProductChallengeWinners') }}"><button type="button" class="btn btn-default btn-lg btn-block">Winners</button></a>
+                <a href="{{ url('/dashboard/ProductChallengeCurrentEvent') }}"><button type="button" class="btn btn-default btn-lg btn-block">Current Event</button></a>
+                <img style="margin: 0 auto; margin-top: 25px;" class="img-responsive" src="{{ asset('images/PRODUCT_CHALLENGE_16.jpg') }}" width="80%" alt="">
+            </div>
+        </div>
+    </div>
+{% endblock %}

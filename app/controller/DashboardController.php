@@ -21,12 +21,12 @@ use Klein\Response;
 
 class DashboardController extends BaseController
 {
-    private $currentUserId = null;
+    protected $currentUserId = null;
 
     /**
      * @var User
      */
-    private $userObject = null;
+    protected $userObject = null;
 
     public function __construct(Request $request, Response $response)
     {

@@ -53,7 +53,9 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/md_guide');
         return;
     }
-
+    /**
+     * Load md_guide_members view
+     */
     public function md_guide_members(){
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
@@ -61,7 +63,9 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/md_guide_members');
         return;
     }
-
+    /**
+     * Load md_guide_high_achievers view
+     */
     public function md_guide_high_achievers(){
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
@@ -69,7 +73,9 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/md_guide_high_achievers');
         return;
     }
-
+    /**
+     * Load md_guide_high_achievers_winners view
+     */
     public function md_guide_high_achievers_winners(){
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
@@ -77,7 +83,9 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/md_guide_high_achievers_winners');
         return;
     }
-
+    /**
+     * Load md_guide_events view
+     */
     public function md_guide_events(){
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
@@ -85,7 +93,9 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/md_guide_events');
         return;
     }
-
+    /**
+     * Load md_guide_events_past view
+     */
     public function md_guide_events_past(){
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
@@ -94,11 +104,34 @@ class StaticPagesController extends DashboardController
         return;
     }
 
+    /**
+     * Load md_guide_events_high_achievers view
+     */
     public function md_guide_events_high_achievers(){
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
         $this->render('dashboard/static/md_guide_events_high_achievers');
+        return;
+    }
+
+    /**
+     * Load product challenge view
+     */
+    public function product_challenge(){
+        $this->render('dashboard/static/product_challenge');
+        return;
+    }
+    /**
+     * Load product challenge winner view
+     */
+    public function product_challenge_winner(){
+        $this->render('dashboard/static/product_challenge_winner');
+        return;
+    }
+
+    public function product_challenge_current_event(){
+        $this->render('dashboard/static/product_challenge_current_event');
         return;
     }
 }

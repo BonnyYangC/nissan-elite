@@ -1,0 +1,71 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+   <div class="container bg-white">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">My ACCOUNT</h1>
+            </div>
+        </div>
+        <div class="row pb-20">
+            <div class="col-md-9 mb-200">
+                <h3>Personal Details</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr class="table-top-row">
+                            <td><strong>Details</strong></td>
+                            <td><strong>Ambassador Club Member</strong></td>
+                        </tr>
+
+                        <tr class="active">
+                            <td><strong>Ambassador/Student Number</strong></td>
+                            <td>{{ user.employee_code }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Title</strong></td>
+                            <td>{{ user.salutation }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td><strong>First</strong></td>
+                            <td>{{ user.firstname }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Surname</strong></td>
+                            <td> {{ user.lastname }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td><strong>Date of Birth</strong></td>
+                            <td>{{ user.dob }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile</strong></td>
+                            <td>{{ user.mobile }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td><strong>Email Address</strong></td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dealership</strong></td>
+                            <td>{{ user.company_name }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td><strong>Dealer Code</strong></td>
+                            <td>{{ user.company_code }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Department</strong></td>
+                            <td>{{ user.department_name }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td><strong>Position</strong></td>
+                            <td>{{ user.position_desc }}</td>
+                        </tr>
+                    </table>
+                    <p>
+                        The details above are currently held on the Nissan mainframe (NISCOM). Please check they are correct. If not, please update, ask your Dealership to update, or email <a href="mailto:info@nissanac.com.au">info@nissanac.com.au</a> immediately. Incorrect details may mean your AC17 credits are incorrect<br>
+                    </p>
+                </div>
+            </div>
+       </div>
+   </div>
+{% endblock %}

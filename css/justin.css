@@ -7,8 +7,14 @@
 .mt-40{
     margin-top: 40px;
 }
+.mb-60{
+    margin-bottom: 60px;
+}
 .mb-20{
     margin-bottom: 20px;
+}
+.pb-20{
+    padding-bottom: 20px;
 }
 .pl-25{
     padding-left: 25px;
@@ -18,6 +24,9 @@
 }
 .mb-320{
     margin-bottom: 320px;
+}
+.mb-200{
+    margin-bottom: 200px;
 }
 .table-responsive {
     overflow-x: hidden;

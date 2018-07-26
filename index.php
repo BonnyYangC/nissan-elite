@@ -37,6 +37,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-past',\App\controller\StaticPagesController::class, 'md_guide_events_past');
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
 
+\App\core\Route::Instance()->get('/dashboard/ProductChallenge',\App\controller\StaticPagesController::class, 'product_challenge');
+\App\core\Route::Instance()->get('/dashboard/ProductChallengeWinners',\App\controller\StaticPagesController::class, 'product_challenge_winner');
+\App\core\Route::Instance()->get('/dashboard/ProductChallengeCurrentEvent',\App\controller\StaticPagesController::class, 'product_challenge_current_event');
+
+\App\core\Route::Instance()->get('/dashboard/Account',\App\controller\AccountsController::class, 'account');
+
 /**
  * This is a must do action: dispatch at last
  */
