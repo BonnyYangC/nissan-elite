@@ -34,6 +34,7 @@ class DashboardController extends BaseController
         $userData = session_get('user_data_array',true);
         if($userData && isset($userData['id'])){
             $this->currentUserId = $userData['id'];
+            $this->userObject = new User($this->currentUserId);
         }else{
             // Session expired, go to login
             $response->redirect('/')->send();
@@ -66,8 +67,11 @@ class DashboardController extends BaseController
      * This function is for "My Dashboard" menu item
      */
     public function dashboard(){
-        $user = new User($this->currentUserId);
-        $this->userObject = $user;
+        if(empty($this->userObject)){
+            $user = new User($this->currentUserId);
+            $this->userObject = $user;
+        }
+        $user = $this->userObject;
 
         if ($user){
             /**

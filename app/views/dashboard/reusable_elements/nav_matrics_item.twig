@@ -9,10 +9,10 @@
     </a>
     <ul class="dropdown-menu">
     {% for tableName,role in table_role_array %}
-        <li><a href="{{ url('/Dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
+        <li><a href="{{ url('/dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
     {% endfor %}
     </ul>
 </li>
 {% else %}
-    <li><a href="{{ asset('/Dashboard/Metrics') }}">Metrics</a></li>
+    <li><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
 {% endif %}

@@ -7,8 +7,10 @@
  */
 
 namespace App\controller;
+use App\models\nissan\DataSource;
 use App\models\nissan\Events;
 use App\models\nissan\Incentives;
+use App\models\User;
 use Klein\Request;
 use Klein\Response;
 
@@ -24,6 +26,43 @@ class AccountsController extends DashboardController
         parent::__construct($request, $response);
     }
 
+    /**
+     * Load metrics page
+     */
+    public function metrics(){
+        $overrideRole = $this->request->param('override_role');
+
+        if(!$overrideRole){
+            $data = DataSource::Query($this->userObject);
+            $position_to_use = $this->userObject->position;
+        }else{
+            // For multiple role support
+            $position_to_use =  null;
+        }
+
+
+
+        switch ($position_to_use){
+            case User::FI:
+                $this->_prepareForFinanceAndInsurance();
+                break;
+            default:
+                break;
+        }
+        $this->render('dashboard/metrics');
+        return;
+    }
+
+    /**
+     * Prepare metrics data for Finance And Insurance
+     */
+    private function _prepareForFinanceAndInsurance(){
+
+    }
+
+    /**
+     * Load incentives page
+     */
     public function incentives(){
         $status = strtoupper($this->request->param('status'));
 
