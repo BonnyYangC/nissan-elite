@@ -45,3 +45,6 @@
 .bg-md-guide{
     background-color: #231f20; padding:0 25px; color:#FFFFFF;
 }
+.squarebutton{
+    background-size: cover;
+}

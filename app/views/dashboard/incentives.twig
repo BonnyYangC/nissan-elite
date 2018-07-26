@@ -38,8 +38,6 @@
                     </ul>
 
                 </div>
-
-
             </div>
 
             <!-- Start Sidebar -->
@@ -80,26 +78,21 @@
                 </div>
             </div>
         </div>
-
-
-
-        <!-- Projects Row -->
-        <div class="row" style="padding-bottom:20px">
+        {# Finished #}
+        <div class="row pb-20">
             <div class="col-md-3" style="padding-bottom:0px;"></div>
             <div class="row" id="Finished"></div>
             <hr>
-            <h3>Just Finished</h3>
+            <h3 class="pl-25">Just Finished</h3>
             <br>
             <div class="col-md-11"> {{ finished|raw }}</div>
         </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row" style="padding-bottom:20px">
+        {# Past #}
+        <div class="row pb-20">
             <div class="col-md-3" style="padding-bottom:0px;"></div>
             <div class="row" id="Past"></div>
             <hr>
-            <h3>Past</h3>
+            <h3 class="pl-25">Past</h3>
             <br>
             <div class="col-md-11"> {{ past|raw }}</div>
         </div>

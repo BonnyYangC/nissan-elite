@@ -44,6 +44,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 \App\core\Route::Instance()->get('/dashboard/Account',\App\controller\AccountsController::class, 'account');
 \App\core\Route::Instance()->get('/dashboard/Calendar',\App\controller\AccountsController::class, 'calendar');
 \App\core\Route::Instance()->get('/dashboard/Incentives',\App\controller\AccountsController::class, 'incentives');
+\App\core\Route::Instance()->get('/dashboard/Leaderboards',\App\controller\StaticPagesController::class, 'leader_boards');
 
 /**
  * This is a must do action: dispatch at last

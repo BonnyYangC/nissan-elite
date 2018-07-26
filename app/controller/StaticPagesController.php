@@ -129,9 +129,18 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/product_challenge_winner');
         return;
     }
-
+    /**
+     * Load product_challenge_current_event view
+     */
     public function product_challenge_current_event(){
         $this->render('dashboard/static/product_challenge_current_event');
+        return;
+    }
+    /**
+     * Load leader boards view
+     */
+    public function leader_boards(){
+        $this->render('dashboard/static/leader_boards');
         return;
     }
 }
