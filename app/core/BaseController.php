@@ -22,7 +22,10 @@ class BaseController
     /**
      * @var array To hold all variables which will be used in view
      */
-    protected $dataForView = [];
+    protected $dataForView = [
+        'extra_css'=>[],    // css which for a special page, must be a absolute URL
+        'extra_js'=>[]      // js which for a special page, must be a absolute URL
+    ];
     protected $twigLoader = null;
     protected $debugMode = null;
 

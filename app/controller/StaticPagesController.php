@@ -17,13 +17,54 @@ use Klein\Response;
  */
 class StaticPagesController extends DashboardController
 {
+    /**
+     * StaticPagesController constructor.
+     * @param Request $request
+     * @param Response $response
+     */
     public function __construct(Request $request, Response $response)
     {
         parent::__construct($request, $response);
     }
 
+    /**
+     * Load members guide view
+     */
     public function members_guide(){
-        $this->render('dashboard/members_guide');
+        $this->render('dashboard/static/members_guide');
+        return;
+    }
+
+    /**
+     * Load FAQ view
+     */
+    public function faq(){
+        $this->render('dashboard/static/faq');
+        return;
+    }
+
+    /**
+     * Load md guide view
+     */
+    public function md_guide(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->dataForView['extra_js'] = [
+            asset('js/md-guild.js')
+        ];
+        $this->render('dashboard/static/md_guide');
+        return;
+    }
+
+    public function md_guide_members(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->dataForView['extra_js'] = [
+            asset('js/md-guild.js')
+        ];
+        $this->render('dashboard/static/md_guide_members');
         return;
     }
 }

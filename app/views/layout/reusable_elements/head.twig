@@ -15,4 +15,9 @@
     <link href="{{ asset('/includes/jconfirm/css/jquery-confirm.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/justin.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ asset('/images/favicon.png') }}" />
+    {% for css in extra_css %}
+        <link href="{{ css }}" rel="stylesheet">
+    {% endfor %}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>#}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 </head>
