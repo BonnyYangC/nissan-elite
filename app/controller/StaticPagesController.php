@@ -50,9 +50,6 @@ class StaticPagesController extends DashboardController
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
-        $this->dataForView['extra_js'] = [
-            asset('js/md-guild.js')
-        ];
         $this->render('dashboard/static/md_guide');
         return;
     }
@@ -61,10 +58,47 @@ class StaticPagesController extends DashboardController
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
-        $this->dataForView['extra_js'] = [
-            asset('js/md-guild.js')
-        ];
         $this->render('dashboard/static/md_guide_members');
+        return;
+    }
+
+    public function md_guide_high_achievers(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->render('dashboard/static/md_guide_high_achievers');
+        return;
+    }
+
+    public function md_guide_high_achievers_winners(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->render('dashboard/static/md_guide_high_achievers_winners');
+        return;
+    }
+
+    public function md_guide_events(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->render('dashboard/static/md_guide_events');
+        return;
+    }
+
+    public function md_guide_events_past(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->render('dashboard/static/md_guide_events_past');
+        return;
+    }
+
+    public function md_guide_events_high_achievers(){
+        $this->dataForView['extra_css'] = [
+            asset('css/md-guild.css')
+        ];
+        $this->render('dashboard/static/md_guide_events_high_achievers');
         return;
     }
 }

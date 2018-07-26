@@ -1,0 +1,78 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+<div class="container bg-white">
+    <div class="container-layer container-layer--light">
+        <h1>NISSAN AMBASSADOR CLUB<br>HIGH ACHIEVER AWARD</h1>
+        <div class="row">
+            <div class="col-lg-9 col-sm-12">
+                <p>
+                    An exclusive invitation to join our Managing Director’s Guild Event is now extended to our High Achievers. Introduced in
+                    the AC16 program this is now an annual award. The criteria for achieving High Achiever Status demands excellence
+                    in every area of your job description. There are no minimum lifetime credits to earn but much to experience
+                    in meeting our esteemed Guild members along with your peers and partner in recognition of your outstanding
+                    achievement. If you are ranked in one of the places listed in the table below at 31 March in the current
+                    AC program your place is secured.
+                </p>
+                <table class="md-guild-table md-guild-table--red md-guild-table--full-width">
+                    <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>National Ranking</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Sales Manager</td>
+                        <td>1<sup>st</sup> and 2<sup>nd</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Retail Sales Consultant</td>
+                        <td>1<sup>st</sup> and 2<sup>nd</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Fleet Manager or Fleet Consultant</td>
+                        <td>1<sup>st</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Parts Manager</td>
+                        <td>1<sup>st</sup> and 2<sup>nd</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Service Manager</td>
+                        <td>1<sup>st</sup> and 2<sup>nd</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Stock Controller</td>
+                        <td>1<sup>st</sup></td>
+                    </tr>
+                    <tr>
+                        <td>F&I Manager</td>
+                        <td>1<sup>st</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Financial Controller</td>
+                        <td>1<sup>st</sup></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>TOTAL</strong>
+                        </td>
+                        <td>
+                            <strong>12 Winners Nationally</strong>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+                <a href="{{ url('/dashboard/MDguild-high-achievers-winners') }}">
+                    <button type="button" class="btn btn-default btn-lg btn-block">Winners</button>
+                </a>
+                <a href="{{ url('/dashboard/MDguild') }}">
+                    <button type="button" class="btn btn-default btn-lg btn-block">Back</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

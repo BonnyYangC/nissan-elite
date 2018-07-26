@@ -1,0 +1,54 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+    <div class="container bg-white" id="md-guide-winner-app">
+        <div class="container-layer container-layer--light">
+            <h1>HIGH ACHIEVER HONOUR BOARD</h1>
+            <div class="row">
+                <div class="col-lg-9 col-sm-12">
+                    <p>
+                        Congratulations to our 2017 High Achiever Winners. We look forward to welcoming you at Port Douglas in August.
+                    </p>
+                    <h2>2017 (PORT DOUGLAS)</h2>
+                    <table class="md-guild-table md-guild-table--red md-guild-table--emphasize-left md-guild-table--full-width">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Dealership</th>
+                        </tr>
+                        </thead>
+                        <tbody data-source="/data/md-guild/guild-high-achievers-winners-2017.json" id="this-year-winner-data">
+                        <!-- To modify the contents of this table, use the data file above-->
+                        <tr v-for="(row, key, index) in thisYear" :key="index">
+                            <td>${ row[0] }</td>
+                            <td>${ row[1] }</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h2>2016 (HAMILTON ISLAND)</h2>
+                    <table class="md-guild-table md-guild-table--red md-guild-table--emphasize-left md-guild-table--full-width">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Dealership</th>
+                        </tr>
+                        </thead>
+                        <tbody data-source="/data/md-guild/guild-high-achievers-winners-2016.json" id="last-year-winner-data">
+                        <!-- To modify the contents of this table, use the data file above-->
+                        <tr v-for="(row, key, index) in lastYear" :key="index">
+                            <td>${ row[0] }</td>
+                            <td>${ row[1] }</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <a href="{{ url('/dashboard/MDguild-high-achievers') }}">
+                        <button type="button" class="btn btn-default btn-lg btn-block">Back</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
