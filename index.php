@@ -27,6 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  * Route: /dashboard  -> Dashboard view
  */
 \App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard');
+\App\core\Route::Instance()->get('/dashboard/MembersGuide',\App\controller\StaticPagesController::class, 'members_guide');
 
 /**
  * This is a must do action: dispatch at last

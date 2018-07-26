@@ -1,6 +1,15 @@
 .bg-white{
     background: #ffffff;
 }
+.mt-20{
+    margin-top: 20px;
+}
+.mt-40{
+    margin-top: 40px;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
 .pl-25{
     padding-left: 25px;
 }
