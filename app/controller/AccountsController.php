@@ -15,6 +15,7 @@ use App\models\role\FinanceController;
 use App\models\role\FleetSalesManager;
 use App\models\role\PartsManager;
 use App\models\role\SalesManager;
+use App\models\role\StockController;
 use App\models\User;
 use Klein\Request;
 use Klein\Response;
@@ -70,11 +71,27 @@ class AccountsController extends DashboardController
             case User::SALES_MANAGER:
                 $this->_prepareForSalesManager();
                 break;
+            case User::STOCK_CONTROLLER:
+                $this->_prepareForStockController();
+                break;
             default:
                 break;
         }
         $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
         return;
+    }
+
+    /**
+     * Prepare metrics data for Stock manager
+     */
+    private function _prepareForStockController(){
+        $role = new StockController($this->userObject);
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->name.'.js')
+        ];
     }
 
     /**

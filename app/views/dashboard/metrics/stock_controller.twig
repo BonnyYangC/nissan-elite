@@ -1,93 +1,26 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var MATCHED_OW = [{{ metrics.MATCHED_OW|raw }}];
-        var NEW_VEHICLE_SALES = [{{ metrics.NEW_VEHICLE_SALES|raw }}];
-        var RECOMMENDATIONS = [{{ metrics.RECOMMENDATIONS|raw }}];
-        var FOLLOW_UP = [{{ metrics.FOLLOW_UP|raw }}];
-        var MIDMTH_RETAIL = [{{ metrics.MIDMTH_RETAIL|raw }}];
+        var STOCK_COVER = [{{ metrics.STOCK_COVER|raw }}];
+        var OW = [{{ metrics.OW|raw }}];
+        var RETAIL = [{{ metrics.RETAIL|raw }}];
+        var MATCHED = [{{ metrics.MATCHED|raw }}];
+        var DAVO = [{{ metrics.DAVO|raw }}];
         var TRAINING = [{{ metrics.TRAINING|raw }}];
     </script>
     <div class="container bg-white pl-25 pr-25">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    <a class="print-icon" href="#" onclick="window.print();return false;">
-                        <i class="fa fa-print" aria-hidden="true" title="Print"></i>
-                    </a>
-                    <br>
-                    MY Metrics - <em>SALES MANAGER</em>
-                </h1>
+                <h1 class="page-header">MY Metrics - <em>Stock Controller</em></h1>
             </div>
         </div>
         <div class="row pb-20">
             <div class="col-md-12 col-sm-12">
                 <div class="row graph-back-top">
-                    <div class="col-md-7">
-                        <h3>1. MATCHED OW</h3>
-                        <div class="table-responsive">
-                            <div id="chart_div" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.MATCHED_OW_RESULTS }}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <h3>MATCHED OW GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">0 or 1 unit Variation</td>
-                                <td align="center">2 unit Variation</td>
-                                <td align="center">3 unit Variation</td>
-                            </tr>
-                            <tr>
-                                <td>Category A</td>
-                                <td align="center">310</td>
-                                <td align="center"></td>
-                                <td align="center">105</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">310</td>
-                                <td align="center"></td>
-                                <td align="center">105</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">310</td>
-                                <td align="center">105</td>
-                                <td align="center"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="row graph-back">
                     <div class="col-md-7" >
                         <div class="table-responsive">
-                            <h3>2. NEW VEHICLE SALES</h3>
-                            <div id="chart_div2" style="min-width: 600px; min-height: 500px;"></div>
+                            <h3>1. DEaler Stock Cover</h3>
+                            <div id="chart_div" style="min-width: 600px; min-height: 500px;"></div>
                             <table class="table table-condensed" style="width: 593px;" >
                                 <tr class="table-top-row" align="center">
                                     <td></td>
@@ -106,50 +39,35 @@
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.{SALES_RESULTS} }}
+                                    {{ metrics.STOCK_COVER_RESULTS }}
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <h3>NEW VEHICLE SALES GUIDE</h3>
+                        <h3>DEALER STOCK COVER (DAYS) GUIDE</h3>
                         <table class="table small-table">
                             <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">100%</td>
-                                <td align="center">110%</td>
-                                <td align="center">120%</td>
-                                <td align="center">140%</td>
+                                <td>Stock Controller </td>
+                                <td align="center">≥ 50 Days Stock Cover</td>
                             </tr>
                             <tr>
-                                <td> Category A</td>
-                                <td align="center">820</td>
-                                <td align="center">1220</td>
-                                <td align="center">1620</td>
-                                <td align="center">2420</td>
+                                <td>Category A &amp; B</td>
+                                <td align="center">300</td>
                             </tr>
                             <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">820</td>
-                                <td align="center">1020</td>
-                                <td align="center">1220</td>
-                                <td align="center">1620</td>
-                            </tr>
-                            <tr>
                                 <td>Category C</td>
-                                <td align="center">820</td>
-                                <td align="center">1020</td>
-                                <td align="center">1220</td>
-                                <td align="center">1620</td>
+                                <td align="center">300</td>
                             </tr>
                         </table>
                     </div>
                 </div>
+
                 <div class="row graph-back">
                     <div class="col-md-7">
-                        <h3>3. DLR RECOMMENDATION R3M</h3>
+                        <h3>2. OW DATA ENTRY COMPLIANCE</h3>
                         <div class="table-responsive">
-                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
+                            <div id="chart_div2" style="min-width: 600px; min-height: 400px;">
                             </div>
                             <table class="table table-condensed" style="width: 593px;" >
                                 <tr class="table-top-row" align="center">
@@ -169,111 +87,39 @@
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.RECOMMENDATION_RESULTS }}
+                                    {{ metrics.OW_RESULTS }}
                                 </tr>
                             </table>
+
                         </div>
                     </div>
-
                     <div class="col-md-5">
-                        <h3>DLR RECOMMENDATION R3M GUIDE</h3>
+                        <h3>OW DATA ENTRY COMPLIANCE GUIDE</h3>
                         <table class="table small-table">
                             <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">84-87.9</td>
-                                <td align="center">≥ 88</td>
+                                <td>Stock Controller </td>
+                                <td align="center">≤ 1 Missed Days</td>
+                                <td align="center">2 to 3 Missed Days</td>
                             </tr>
                             <tr>
-                                <td> Category A</td>
-                                <td align="center">500</td>
-                                <td align="center">1000</td>
+                                <td>Category A &amp; B</td>
+                                <td align="center">275</td>
+                                <td align="center">100</td>
                             </tr>
                             <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">500</td>
-                                <td align="center">1000</td>
-                            </tr>
-                            <tr>
                                 <td>Category C</td>
-                                <td align="center">500</td>
-                                <td align="center">1000</td>
+                                <td align="center">275</td>
+                                <td align="center">100</td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="row graph-back">
                     <div class="col-md-7">
-                        <h3>4. FOLLOWED UP% R3M</h3>
+                        <h3>3. Dealer Retail Forecast </h3>
                         <div class="table-responsive">
-                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
-                            </div>
+                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;"></div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.FU_RESULTS }}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-5">
-                        <h3>FOLLOWED UP% R3M GUIDE</h3>
-
-                        <table class="table small-table">
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">100%</td>
-                            </tr>
-                            <tr>
-                                <td> Category A</td>
-                                <td align="center">500</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">500</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">500</td>
-                            </tr>
-                        </table>
-                        <p>&nbsp;</p>
-
-
-                    </div>
-
-                </div>
-
-
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>5. DEALER RETAIL FORECAST</h3>
-                        <div class="table-responsive">
-                            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <col>
                                 <tr class="table-top-row" align="center">
                                     <td></td>
                                     <td>APR</td>
@@ -295,26 +141,131 @@
                                 </tr>
                             </table>
                         </div>
+                        <br>
                     </div>
-
                     <div class="col-md-5">
-                        <h3>DEALER RETAIL FORECAST GUIDE</h3>
+                        <h3>Dealer Retail Forecast GUIDE</h3>
                         <table class="table small-table">
                             <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">Yes</td>
+                                <td>Stock Controller </td>
+                                <td align="center">Entered 2<sup>nd</sup> Monday of month (NISCOM)</td>
                             </tr>
                             <tr>
-                                <td> Category A</td>
+                                <td>Category A &amp; B</td>
                                 <td align="center">250</td>
                             </tr>
                             <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">250</td>
-                            </tr>
-                            <tr>
                                 <td>Category C</td>
                                 <td align="center">250</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>4. Matched OW Compliance</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {{ metrics.MATCHED_RESULTS }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>Matched Ow Compliance GUIDE</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td nowrap>Stock Controller </td>
+                                <td align="center">0 or 1 unit Variation</td>
+                                <td align="center">2 unit Variation</td>
+                                <td align="center">3 unit Variation</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>Category A &amp; B</td>
+                                <td align="center">310</td>
+                                <td align="center"></td>
+                                <td align="center">105</td>
+                            </tr>
+                            <tr class="active">
+                                <td nowrap>Category C</td>
+                                <td align="center">310</td>
+                                <td align="center">105</td>
+                                <td align="center"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>5. DAVO Orders Limit % Acceptance</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {{ metrics.DAVO_RESULTS }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>Davo Orders - Limit % acceptance GUIDE</h3>
+
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Stock Controller </td>
+                                <td align="center">≥ 60%</td>
+                                <td align="center">≥ 80%</td>
+                            </tr>
+                            <tr>
+                                <td>Category A &amp; B</td>
+                                <td align="center">175</td>
+                                <td align="center">550</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Category C</td>
+                                <td align="center">175</td>
+                                <td align="center">450</td>
                             </tr>
                         </table>
                     </div>
@@ -327,28 +278,25 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-5">
-                        <h3>TRAINING GUIDE</h3>
+                        <h3>Training Guide</h3>
                         <table class="table small-table" >
                             <tr class="table-top-row">
                                 <td>Competency Modules</td>
                                 <td>Credits</td>
                             </tr>
                             <tr class="active">
-                                <td>Certified Retail Sales Consultants</td>
-                                <td>800</td>
+                                <td>Online Modules</td>
+                                <td>450</td>
                             </tr>
                             <tr class="active">
-                                <td>Certified Sales Manager</td>
-                                <td>100 - 400</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Bonus</td>
-                                <td>2,000</td>
+                                <td>Dealer Forward Order System (DAVO)</td>
+                                <td>500</td>
                             </tr>
                         </table>
                         <p>
-                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC18 Member Guide</a> for full details.</em>
+                            <em>Refer to the <a href="http://nissanac-1819.local/Dashboard/MembersGuide">AC18 Member Guide</a> for full details.</em>
                         </p>
                     </div>
                 </div>
