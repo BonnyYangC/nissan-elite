@@ -15,7 +15,6 @@ use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\User;
 use Carbon\Carbon;
-use function Couchbase\defaultDecoder;
 use Klein\Request;
 use Klein\Response;
 

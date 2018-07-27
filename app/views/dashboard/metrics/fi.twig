@@ -1,0 +1,320 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+    <script>
+        var followUp = [{{ metrics.FOLLOW_UP|raw }}];
+        var NFSA = [{{ metrics.NFSA|raw }}];
+        var INSURANCE = [{{ metrics.INSURANCE|raw }}];
+        var EMW = [{{ metrics.EMW|raw }}];
+        var PENETRATION = [{{ metrics.PENETRATION|raw }}];
+    </script>
+    <div class="container bg-white">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">MY Metrics - <em>Finance &amp; Insurance</em></h1>
+            </div>
+        </div>
+        <div class="row pb-20">
+            <div class="col-md-12 col-sm-12">
+                <div class="row graph-back">
+                    <div class="col-md-7" >
+                        <div class="table-responsive">
+                            <h3>1. NFSA Contracts</h3>
+                            <div id="chart_div2" style="min-width: 600px; min-height: 500px;"></div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {{ metrics.NFSA_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-5">
+                        <h3>NFSA Contracts GUIDE</h3>
+
+                        <table class="table small-table">
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <tr class="table-top-row">
+                                <td>F&amp;I Manager </td>
+                                <td align="center">NFSA Finance Contract</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">40</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <h3>2. Loyalty & Retention Bonus</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div10" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {LOYALTY-RETENTION-BONUS}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>Loyalty & Retention Bonus Guide</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td nowrap>F&amp;I Manager </td>
+                                <td align="center">Loyalty & Retention Bonus</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>Category A, B, C</td>
+                                <td align="center">10</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <h3>3. Insurance – MVI/VPI/MVI &amp; VPI pkg</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <col>
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">MVI</td>
+                                    {{ metrics.INSURANCE_MVI_RESULTS|raw }}
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">VPI</td>
+                                    {{ metrics.INSURANCE_VPI_RESULTS|raw }}
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">Package</td>
+                                    {{ metrics.INSURANCE_PKG_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>Insurance Guide</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td nowrap>F&amp;I Manager </td>
+                                <td align="center">MVI Motor Vehicle Insurance</td>
+                                <td align="center">VPI Motor Equity Insurance</td>
+                                <td align="center">MVI &amp; VPI Package^</td>
+                            </tr>
+                            <tr>
+                                <td nowrap>Category A, B, C</td>
+                                <td align="center">20</td>
+                                <td align="center">20</td>
+                                <td align="center">5</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>4. EMW Genuine/Extended</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <col>
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">Genuine</td>
+                                    {{ metrics.EMW_RESULTS|raw }}
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">Extended</td>
+                                    {{ metrics.MMU_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>EMW Genuine/Extended Guide</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td nowrap>F&amp;I Manager</td>
+                                <td align="center">EMW Sale Genuine (NAPS)</td>
+                                <td align="center">EMW Extended<br>(Used/non- Nissan)</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">40</td>
+                                <td align="center">5</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>4. Dealer Sales Penetration</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <col>
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {{ metrics.PENETRATION_RESULT|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>Dealer Sales Penetration Guide</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>F&amp;I Manager</td>
+                                <td align="center">30.0% - 44.9%</td>
+                                <td align="center">45% - 59.9%</td>
+                                <td align="center">60% - 74.9%</td>
+                                <td align="center">75% or more</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">250</td>
+                                <td align="center">500</td>
+                                <td align="center">750</td>
+                                <td align="center">1000</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>5. CE - F&I Satisfaction - Single Mth</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div6" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {FOLLOW-UP-RESULTS}
+                                    {{ metrics.FOLLOW_UP_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>CE - F&I Satisfaction - Single Mth Guide</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>F&amp;I Manager</td>
+                                <td align="center">86.0%</td>
+                                <td align="center">86.1 - 89.9%</td>
+                                <td align="center">90% or greater</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">100</td>
+                                <td align="center">300</td>
+                                <td align="center">500</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -68,43 +68,43 @@ class UsersController extends Controller
                 'src'=>asset($imageAssetPrefix.'tile-nissanac.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>url('/dashboard/Leaderboards'),
                 'src'=>asset($imageAssetPrefix.'tile-rankings.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>url('/dashboard/ProductChallenge'),
                 'src'=>asset($imageAssetPrefix.'nissan-productchallenge.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>url('/dashboard/MDguild'),
                 'src'=>asset($imageAssetPrefix.'md-guild.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>url('/dashboard/Incentives'),
                 'src'=>asset($imageAssetPrefix.'tile-incentives.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>'http://nissanlearningacademy.com.au/',
                 'src'=>asset($imageAssetPrefix.'tile-training.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>'http://www.nissan.com.au/Discover/News',
                 'src'=>asset($imageAssetPrefix.'whatsnews-nissannews.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>'https://www.nissanfeedback.com.au/Report/login.php',
                 'src'=>asset($imageAssetPrefix.'tile-ce.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>'http://nissan-events.com.au/excellence-fy17/ac/welcome.html',
                 'src'=>asset($imageAssetPrefix.'nissan-doty.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>'#',
                 'src'=>asset($imageAssetPrefix.'tile-worldrewards.jpg'),
             ],
             [
-                'url'=>url('/dashboard'),
+                'url'=>url('/dashboard/Calendar'),
                 'src'=>asset($imageAssetPrefix.'tile-calendar.jpg'),
             ],
         ];

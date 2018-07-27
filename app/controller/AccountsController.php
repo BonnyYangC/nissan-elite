@@ -10,6 +10,7 @@ namespace App\controller;
 use App\models\nissan\DataSource;
 use App\models\nissan\Events;
 use App\models\nissan\Incentives;
+use App\models\role\FI;
 use App\models\User;
 use Klein\Request;
 use Klein\Response;
@@ -40,8 +41,6 @@ class AccountsController extends DashboardController
             $position_to_use =  null;
         }
 
-
-
         switch ($position_to_use){
             case User::FI:
                 $this->_prepareForFinanceAndInsurance();
@@ -49,7 +48,12 @@ class AccountsController extends DashboardController
             default:
                 break;
         }
-        $this->render('dashboard/metrics');
+//        dump($this->dataForView['metrics']['NFSA']);
+//        dump($this->dataForView['metrics']['EMW']);
+//        dump($this->dataForView['metrics']['INSURANCE']);
+//        dump($this->dataForView['metrics']['PENETRATION']);
+//        dd($this->dataForView['metrics']['FOLLOW_UP']);
+        $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
         return;
     }
 
@@ -57,7 +61,13 @@ class AccountsController extends DashboardController
      * Prepare metrics data for Finance And Insurance
      */
     private function _prepareForFinanceAndInsurance(){
-
+        $financeAndInsurance = new FI($this->userObject);
+        $this->dataForView['metrics'] = $financeAndInsurance->getMetrics();
+        $this->dataForView['metrics_template_file_name'] = $financeAndInsurance->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/fi.js')
+        ];
     }
 
     /**
