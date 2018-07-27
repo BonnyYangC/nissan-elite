@@ -78,6 +78,9 @@ class AccountsController extends DashboardController
             case User::PARTS_SALES_REP:
                 $this->_prepareForPartsSalesRep();
                 break;
+            case User::SERVICE_MANAGER:
+                $this->_prepareForServiceManager();
+                break;
             default:
                 break;
         }
@@ -86,7 +89,20 @@ class AccountsController extends DashboardController
     }
 
     /**
-     * Prepare metrics data for Stock manager
+     * Prepare metrics data for service manager
+     */
+    private function _prepareForServiceManager(){
+        $role = new PartsSalesRep($this->userObject);
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->name.'.js')
+        ];
+    }
+
+    /**
+     * Prepare metrics data for parts sales rep
      */
     private function _prepareForPartsSalesRep(){
         $role = new PartsSalesRep($this->userObject);

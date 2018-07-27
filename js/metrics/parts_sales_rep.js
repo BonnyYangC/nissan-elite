@@ -1,5 +1,4 @@
-    google.charts.load('current', {'packages':['corechart']});
-
+google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawVisualization);
 google.charts.setOnLoadCallback(drawVisualization6);
 
