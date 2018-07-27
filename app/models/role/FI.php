@@ -49,14 +49,19 @@ class FI
         $this->user = $user;
     }
 
-    public function getMetrics(){
+    /**
+     * Fetch data and prepare for metrics
+     * @param $data
+     * @return array
+     */
+    public function getMetrics($data){
+
         $nfsa=$nfsa_results=$emw=$emw_results=$mmu_results=$ins=$mvi_results=$vpi_results=$pkg_results=$penetration=$penetration_results=$fu=$fu_results='';
 
         $class='nissangray-light-back';
 
-        foreach (range(0,11) as $i) {
-            $period=mktime(0,0,0,4+$i,1,2017);
-            $period=mktime(0,0,0,4+$i,1,2017);
+        for($i=0; $i<12; $i++) {
+            $period=mktime(0,0,0,4+$i,1,env('YEAR'),2017);
             $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
             if(isset($data[date("M-Y", $period)]))
             {

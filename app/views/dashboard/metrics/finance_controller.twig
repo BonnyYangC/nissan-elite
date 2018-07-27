@@ -1,0 +1,235 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+<script>
+    var FINANCIAL = [{{ metrics.FINANCIAL|raw }}];
+    var QUALITY = [{{ metrics.QUALITY|raw }}];
+    var MANAGEMENT = [{{ metrics.MANAGEMENT|raw }}];
+    var TRAINING = [{{ metrics.TRAINING|raw }}];
+</script>
+    <div class="container bg-white">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">MY Metrics - <em>FINANCIAL CONTROLLER</em></h1>
+            </div>
+        </div>
+        <div class="row pb-20 pl-10">
+            <div class="col-md-12 col-sm-12">
+                <div class="row graph-back-top">
+                    <div class="col-md-7">
+                        <h3>1. Dealer Financial Reporting</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div" style="width: 100%; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">FREQUENCY</td>
+                                    {{ metrics.FREQUENCY_RESULTS|raw }}
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">ONTIME</td>
+                                    {{ metrics.ONTIME_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>Dealer Financial Reporting Guide</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Financial Controller</td>
+                                <td align="center">Submitted<br>
+                                    Frequency</td>
+                                <td align="center">Ontime<br>
+                                    Monthly</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">225</td>
+                                <td align="center">375</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>2. Quality Of Data Submitted</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <col>
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">BALANCE</td>
+                                    {{ metrics.BALANCE_RESULTS|raw }}
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">SUBMISSION</td>
+                                    {{ metrics.SUBMISSION_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>Quality of Data GUIDE - Balancing Item</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Financial Controller</td>
+                                <td align="center">Success</td>
+                                <td align="center">Failure</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">550</td>
+                                <td align="center">0</td>
+                            </tr>
+                        </table>
+                        <h3>Quality of Data GUIDE - Date of Submission</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Financial Controller</td>
+                                <td align="center">1-11</td>
+                                <td align="center">12</td>
+                                <td align="center">13</td>
+                                <td align="center">14</td>
+                                <td align="center">15</td>
+                                <td align="center">16</td>
+                                <td align="center">17</td>
+                                <td align="center">18</td>
+                                <td align="center">19</td>
+                                <td align="center">20</td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">300</td>
+                                <td align="center">270</td>
+                                <td align="center">240</td>
+                                <td align="center">210</td>
+                                <td align="center">180</td>
+                                <td align="center">150</td>
+                                <td align="center">120</td>
+                                <td align="center">90</td>
+                                <td align="center">60</td>
+                                <td align="center">30</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>3. Nissan Business Management</h3>
+                        <div class="table-responsive">
+                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                            <table class="table table-condensed" style="width: 593px;" >
+                                <tr class="table-top-row" align="center">
+                                    <td></td>
+                                    <td>APR</td>
+                                    <td>MAY</td>
+                                    <td>JUN</td>
+                                    <td>JUL</td>
+                                    <td>AUG</td>
+                                    <td>SEP</td>
+                                    <td>OCT</td>
+                                    <td>NOV</td>
+                                    <td>DEC</td>
+                                    <td>JAN</td>
+                                    <td>FEB</td>
+                                    <td>MAR</td>
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">CHECKLIST</td>
+                                    {{ metrics.CHECKLIST_RESULTS|raw }}
+                                </tr>
+                                <tr>
+                                    <td class="nissangray-light-back">MEETING</td>
+                                    {{ metrics.MEETING_RESULTS|raw }}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>NIssan Business Management GUIDE</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Financial Controller</td>
+                                <td align="center">
+                                    Accounting
+                                    Checklist<br>
+                                    Monthly (max)
+                                </td>
+                                <td align="center">
+                                    Accountant
+                                    Meetings<br>
+                                    Each
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Category A, B, C</td>
+                                <td align="center">100</td>
+                                <td align="center">600</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row graph-back">
+                    <div class="col-md-7">
+                        <h3>4. Training </h3>
+                        <div class="table-responsive">
+                            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>TRAINING GUIDE</h3>
+                        <table class="table small-table" >
+                            <tr class="table-top-row">
+                                <td>Competency Modules</td>
+                                <td>Credits</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Online Modules</td>
+                                <td>450</td>
+                            </tr>
+                        </table>
+                        <p>
+                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC18 Member Guide</a> for full details.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

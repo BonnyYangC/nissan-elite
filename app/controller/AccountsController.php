@@ -11,12 +11,20 @@ use App\models\nissan\DataSource;
 use App\models\nissan\Events;
 use App\models\nissan\Incentives;
 use App\models\role\FI;
+use App\models\role\FinanceController;
 use App\models\User;
 use Klein\Request;
 use Klein\Response;
 
 class AccountsController extends DashboardController
 {
+    /**
+     * Data for metrics
+     * @var null
+     */
+    private $metricsData = null;
+    private $excellence = null;
+
     /**
      * StaticPagesController constructor.
      * @param Request $request
@@ -35,6 +43,8 @@ class AccountsController extends DashboardController
 
         if(!$overrideRole){
             $data = DataSource::Query($this->userObject);
+            $this->metricsData = $data['result']['Results'];
+            $this->excellence = $data['result']['Excellence'];
             $position_to_use = $this->userObject->position;
         }else{
             // For multiple role support
@@ -45,16 +55,27 @@ class AccountsController extends DashboardController
             case User::FI:
                 $this->_prepareForFinanceAndInsurance();
                 break;
+            case User::FINANCE_CONTROLLER:
+                $this->_prepareForFinanceController();
+                break;
             default:
                 break;
         }
-//        dump($this->dataForView['metrics']['NFSA']);
-//        dump($this->dataForView['metrics']['EMW']);
-//        dump($this->dataForView['metrics']['INSURANCE']);
-//        dump($this->dataForView['metrics']['PENETRATION']);
-//        dd($this->dataForView['metrics']['FOLLOW_UP']);
         $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
         return;
+    }
+
+    /**
+     * Prepare metrics data for Finance Controller
+     */
+    private function _prepareForFinanceController(){
+        $financeController = new FinanceController($this->userObject);
+        $this->dataForView['metrics'] = $financeController->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $financeController->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/finance_controller.js')
+        ];
     }
 
     /**
@@ -62,7 +83,7 @@ class AccountsController extends DashboardController
      */
     private function _prepareForFinanceAndInsurance(){
         $financeAndInsurance = new FI($this->userObject);
-        $this->dataForView['metrics'] = $financeAndInsurance->getMetrics();
+        $this->dataForView['metrics'] = $financeAndInsurance->getMetrics($this->metricsData);
         $this->dataForView['metrics_template_file_name'] = $financeAndInsurance->name;
         $this->dataForView['extra_js'] = [
             'https://www.gstatic.com/charts/loader.js',
