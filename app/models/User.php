@@ -9,6 +9,8 @@
 namespace App\models;
 
 
+use App\models\nissan\DataSource;
+
 class User extends BaseModel
 {
     // Nissan user's position define
@@ -40,6 +42,13 @@ class User extends BaseModel
      * @var Company
      */
     private $company = null;
+
+    /**
+     * User's positions
+     * @var null | array
+     */
+    private $positions = null;
+
 
     public function __construct($id = null)
     {
@@ -94,7 +103,13 @@ class User extends BaseModel
         $this->setCompany();
         // Get user's department name and position desc
         $this->setDepartmentNameAndPositionDesc();
+        // Get user's Positions
+        $this->positions = DataSource::GetPositionList($this);
         return $this;
+    }
+
+    public function getPositions(){
+        return $this->positions;
     }
 
     /**

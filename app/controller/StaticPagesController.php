@@ -31,6 +31,7 @@ class StaticPagesController extends DashboardController
      * Load members guide view
      */
     public function members_guide(){
+        $this->dataForView['currentUri'] = 'MembersGuide';
         $this->render('dashboard/static/members_guide');
         return;
     }
@@ -39,6 +40,7 @@ class StaticPagesController extends DashboardController
      * Load FAQ view
      */
     public function faq(){
+        $this->dataForView['currentUri'] = 'FAQ';
         $this->render('dashboard/static/faq');
         return;
     }
@@ -47,6 +49,7 @@ class StaticPagesController extends DashboardController
      * Load md guide view
      */
     public function md_guide(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -57,6 +60,7 @@ class StaticPagesController extends DashboardController
      * Load md_guide_members view
      */
     public function md_guide_members(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -67,6 +71,7 @@ class StaticPagesController extends DashboardController
      * Load md_guide_high_achievers view
      */
     public function md_guide_high_achievers(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -77,6 +82,7 @@ class StaticPagesController extends DashboardController
      * Load md_guide_high_achievers_winners view
      */
     public function md_guide_high_achievers_winners(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -87,6 +93,7 @@ class StaticPagesController extends DashboardController
      * Load md_guide_events view
      */
     public function md_guide_events(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -97,6 +104,7 @@ class StaticPagesController extends DashboardController
      * Load md_guide_events_past view
      */
     public function md_guide_events_past(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -108,6 +116,7 @@ class StaticPagesController extends DashboardController
      * Load md_guide_events_high_achievers view
      */
     public function md_guide_events_high_achievers(){
+        $this->dataForView['currentUri'] = 'MDguild';
         $this->dataForView['extra_css'] = [
             asset('css/md-guild.css')
         ];
@@ -119,6 +128,7 @@ class StaticPagesController extends DashboardController
      * Load product challenge view
      */
     public function product_challenge(){
+        $this->dataForView['currentUri'] = 'ProductChallenge';
         $this->render('dashboard/static/product_challenge');
         return;
     }
@@ -126,6 +136,7 @@ class StaticPagesController extends DashboardController
      * Load product challenge winner view
      */
     public function product_challenge_winner(){
+        $this->dataForView['currentUri'] = 'ProductChallenge';
         $this->render('dashboard/static/product_challenge_winner');
         return;
     }
@@ -133,6 +144,7 @@ class StaticPagesController extends DashboardController
      * Load product_challenge_current_event view
      */
     public function product_challenge_current_event(){
+        $this->dataForView['currentUri'] = 'ProductChallenge';
         $this->render('dashboard/static/product_challenge_current_event');
         return;
     }
@@ -140,6 +152,7 @@ class StaticPagesController extends DashboardController
      * Load leader boards view
      */
     public function leader_boards(){
+        $this->dataForView['currentUri'] = 'LeaderBoards';
         $this->render('dashboard/static/leader_boards');
         return;
     }

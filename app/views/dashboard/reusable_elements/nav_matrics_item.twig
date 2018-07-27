@@ -4,7 +4,7 @@
 #}
 {% if count(multiple_role_metrics) > 1 %}
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <a href="#" class="dropdown-toggle {{ currentUri=='Metrics' ? 'current' : null }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         Metrics <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
@@ -14,5 +14,5 @@
     </ul>
 </li>
 {% else %}
-    <li><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
+    <li class="{{ currentUri=='Metrics' ? 'current' : null }}"><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
 {% endif %}

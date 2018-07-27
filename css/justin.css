@@ -51,3 +51,9 @@
 .squarebutton{
     background-size: cover;
 }
+.navbar .current a{
+    border-bottom: solid;
+}
+.footer-nav .current a{
+    color: #c40030;
+}

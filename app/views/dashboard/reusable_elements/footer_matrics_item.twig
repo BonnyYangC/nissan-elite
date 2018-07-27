@@ -4,8 +4,8 @@
 #}
 {% if count(multiple_role_metrics) > 1 %}
     {% for tableName,role in table_role_array %}
-        <li><a href="{{ url('/dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
+        <li class="{{ currentUri=='Metrics' ? 'current' : null }}"><a href="{{ url('/dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
     {% endfor %}
 {% else %}
-    <li><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
+    <li class="{{ currentUri=='Metrics' ? 'current' : null }}"><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
 {% endif %}

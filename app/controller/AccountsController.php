@@ -26,13 +26,6 @@ use Klein\Response;
 class AccountsController extends DashboardController
 {
     /**
-     * Data for metrics
-     * @var null
-     */
-    private $metricsData = null;
-    private $excellence = null;
-
-    /**
      * StaticPagesController constructor.
      * @param Request $request
      * @param Response $response
@@ -46,17 +39,9 @@ class AccountsController extends DashboardController
      * Load metrics page
      */
     public function metrics(){
-        $overrideRole = $this->request->param('override_role');
-
-        if(!$overrideRole){
-            $data = DataSource::Query($this->userObject);
-            $this->metricsData = $data['result']['Results'];
-            $this->excellence = $data['result']['Excellence'];
-            $position_to_use = $this->userObject->position;
-        }else{
-            // For multiple role support
-            $position_to_use =  null;
-        }
+        $this->dataForView['currentUri'] = 'Metrics';
+        // Get user's position
+        $position_to_use = $this->userObject->position;
 
         switch ($position_to_use){
             case User::FI:
@@ -214,6 +199,7 @@ class AccountsController extends DashboardController
      * Load incentives page
      */
     public function incentives(){
+        $this->dataForView['currentUri'] = 'Incentives';
         $status = strtoupper($this->request->param('status'));
 
         $current=$thumb=$finished=$past='';
@@ -286,6 +272,7 @@ class AccountsController extends DashboardController
      * Load account page
      */
     public function account(){
+        $this->dataForView['currentUri'] = 'Account';
         $this->dataForView['user'] = $this->userObject;
         $this->render('dashboard/account');
         return;
@@ -295,6 +282,7 @@ class AccountsController extends DashboardController
      * Load calendar view
      */
     public function calendar(){
+        $this->dataForView['currentUri'] = 'Calendar';
         $nissanEvents = Events::Load();
         $eventsJsObjectString = '';
         if($nissanEvents){

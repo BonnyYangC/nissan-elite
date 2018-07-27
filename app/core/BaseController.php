@@ -8,6 +8,8 @@
 
 namespace App\core;
 
+use App\models\User;
+use App\models\nissan\DataSource;
 use Klein\Request;
 use Klein\Response;
 use Twig\Loader\FilesystemLoader;

@@ -10,16 +10,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li> <a href="{{ url('/dashboard') }}">My dashboard</a> </li>
+                <li class="{{ currentUri=='dashboard' ? 'current' : null }}"> <a href="{{ url('/dashboard') }}">My dashboard</a> </li>
                 {% include 'dashboard/reusable_elements/nav_matrics_item.twig' %}
-                <li> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
-                <li> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>
-                <li> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a> </li>
-                <li> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a> </li>
-                <li> <a href="{{ url('/dashboard/Account') }}">Account</a> </li>
-                <li> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a> </li>
-                <li> <a href="{{ url('/dashboard/MDguild') }}">MD Guild</a> </li>
-                <li> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a> </li>
+                <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
+                <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>
+                <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a> </li>
+                <li class="{{ currentUri=='MembersGuide' ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a> </li>
+                <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a> </li>
+                <li class="{{ currentUri=='ProductChallenge' ? 'current' : null }}"> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a> </li>
+                <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">MD Guild</a> </li>
+                <li class="{{ currentUri=='FAQ' ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a> </li>
                 <li> <a href="{{ url('/') }}" style="color:#111111;">< HOME</a> </li>
             </ul>
         </div>

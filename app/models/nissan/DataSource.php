@@ -73,6 +73,11 @@ class DataSource extends BaseModel
                         'ORDER'=>'period'
                     ]
                 );
+
+                if(env('DEV_MODE',false)){
+                    dump($database->log());
+                }
+
                 foreach ($rows as $row) {
                     self::$_multipleRoleMetrics[$table]['Results'][date('M-Y', strtotime($row['period']))] = $row;
                     self::$_multipleRoleMetrics[$table]['Excellence'] = $row['excellence'];
@@ -122,10 +127,11 @@ class DataSource extends BaseModel
     /**
      * Query data source by given user
      * @param User $user
+     * @param string $targetTableName
      * @return array|bool
      */
-    public static function Query(User $user){
-        $currentTableName = self::nissan_get_table_name_from_abbr($user->position);
+    public static function Query(User $user, $targetTableName = null){
+        $currentTableName = $targetTableName ? $targetTableName : self::nissan_get_table_name_from_abbr($user->position);
         $wheres = [
             'member_id'=>$user->getEmployeeCode(),
             'ORDER' => ['period' => 'ASC']
@@ -142,6 +148,10 @@ class DataSource extends BaseModel
             '*',
             $wheres
         );
+
+        if(env('DEV_MODE',false)){
+            dump($database->log());
+        }
 
         return [
             'view_name'=>$currentTableName,
@@ -170,7 +180,10 @@ class DataSource extends BaseModel
      * @return string
      */
     public static function nissan_get_abbr_from_table_name ($table) {
-        return strtoupper(self::$_maps[$table]);
+        if(isset(self::$_maps[$table])){
+            return strtoupper(self::$_maps[$table]);
+        }
+        return false;
     }
 
     /**
@@ -179,6 +192,7 @@ class DataSource extends BaseModel
      * @return string
      */
     public static function nissan_get_table_name_from_abbr ($abbr) {
+        dump($abbr);
         $result = null;
         $abbr = strtoupper($abbr);
         foreach (self::$_maps as $tableName => $value) {

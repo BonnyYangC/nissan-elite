@@ -38,7 +38,14 @@ if(!function_exists('env')){
     function env($key, $default=false){
         $dotenv = new \Dotenv\Dotenv(__DIR__);
         $dotenv->load();
-        return getenv($key) ? getenv($key) : $default;
+        $result = getenv($key);
+        if($result === 'false'){
+            $result = false;
+        }
+        if($result === 'true'){
+            $result = true;
+        }
+        return $result ? $result : $default;
     }
 }
 
