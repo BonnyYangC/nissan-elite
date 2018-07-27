@@ -12,6 +12,8 @@ use App\models\nissan\Events;
 use App\models\nissan\Incentives;
 use App\models\role\FI;
 use App\models\role\FinanceController;
+use App\models\role\FleetSalesManager;
+use App\models\role\PartsManager;
 use App\models\User;
 use Klein\Request;
 use Klein\Response;
@@ -58,11 +60,43 @@ class AccountsController extends DashboardController
             case User::FINANCE_CONTROLLER:
                 $this->_prepareForFinanceController();
                 break;
+            case User::PARTS_MANAGER:
+                $this->_prepareForPartsManager();
+                break;
+            case User::FLEET_SALES_MANAGER:
+                $this->_prepareForFleetSalesManager();
+                break;
             default:
                 break;
         }
         $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
         return;
+    }
+
+    /**
+     * Prepare metrics data for Parts Manager
+     */
+    private function _prepareForFleetSalesManager(){
+        $role = new FleetSalesManager($this->userObject);
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->name.'.js')
+        ];
+    }
+
+    /**
+     * Prepare metrics data for Parts Manager
+     */
+    private function _prepareForPartsManager(){
+        $role = new PartsManager($this->userObject);
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->name.'.js')
+        ];
     }
 
     /**

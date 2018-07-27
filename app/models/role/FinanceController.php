@@ -23,6 +23,11 @@ class FinanceController
         $this->user = $user;
     }
 
+    /**
+     * Handle finance controller's metrics data
+     * @param $data
+     * @return array
+     */
     public function getMetrics($data){
         $financial=$frequency_results=$ontime_results=$quality=$balance_results=$submission_results=$management=$checklist_results=$meeting_results=$training='';
         $class='nissangray-light-back';
