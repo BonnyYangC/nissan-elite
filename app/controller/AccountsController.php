@@ -16,6 +16,8 @@ use App\models\role\FleetSalesManager;
 use App\models\role\PartsManager;
 use App\models\role\PartsSalesRep;
 use App\models\role\SalesManager;
+use App\models\role\ServiceAdviser;
+use App\models\role\ServiceManager;
 use App\models\role\StockController;
 use App\models\User;
 use Klein\Request;
@@ -81,6 +83,9 @@ class AccountsController extends DashboardController
             case User::SERVICE_MANAGER:
                 $this->_prepareForServiceManager();
                 break;
+            case User::SERVICE_ADVISERS:
+                $this->_prepareForServiceAdviser();
+                break;
             default:
                 break;
         }
@@ -91,8 +96,21 @@ class AccountsController extends DashboardController
     /**
      * Prepare metrics data for service manager
      */
+    private function _prepareForServiceAdviser(){
+        $role = new ServiceAdviser($this->userObject);
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->name.'.js')
+        ];
+    }
+
+    /**
+     * Prepare metrics data for service manager
+     */
     private function _prepareForServiceManager(){
-        $role = new PartsSalesRep($this->userObject);
+        $role = new ServiceManager($this->userObject);
         $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
         $this->dataForView['metrics_template_file_name'] = $role->name;
         $this->dataForView['extra_js'] = [
