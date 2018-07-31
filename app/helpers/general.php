@@ -29,6 +29,34 @@ if(!function_exists('gaga_indicator_init')){
     }
 }
 
+if(!function_exists('get_month_array')){
+
+    function get_months_array(){
+        return [
+            'APR','MAY','JUN','JUL',
+            'AUG','SEP','OCT','NOV',
+            'DEC','JAN','FEB','MAR'
+        ];
+    }
+}
+
+if(!function_exists('convert_array_to_js_2_dimension_array')){
+    /**
+     * 把一维度的数组, 转成 js 的二维数组
+     * @param array $data 键值对的数组
+     * @return string
+     */
+    function convert_array_to_js_2_dimension_array($data){
+        array_walk(
+            $data,
+            function(&$value, $key){
+                $value = "['$key',$value]";
+            }
+        );
+        return '[' . implode(',', $data) . ']';
+    }
+}
+
 if(!function_exists('env')){
     /**
      * @param $key

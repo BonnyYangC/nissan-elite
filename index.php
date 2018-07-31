@@ -27,7 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  * Route: /dashboard  -> Dashboard view
  */
 // static pages
-\App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard');
+\App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard_new');
 \App\core\Route::Instance()->get('/dashboard/MembersGuide',\App\controller\StaticPagesController::class, 'members_guide');
 \App\core\Route::Instance()->get('/dashboard/FAQ',\App\controller\StaticPagesController::class, 'faq');
 \App\core\Route::Instance()->get('/dashboard/MDguild',\App\controller\StaticPagesController::class, 'md_guide');

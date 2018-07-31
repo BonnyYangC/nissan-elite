@@ -57,3 +57,26 @@
 .footer-nav .current a{
     color: #c40030;
 }
+
+/* dashboard page */
+.fc-day-grid-container.fc-scroller {
+    height: auto!important;
+    overflow-y: auto;
+}
+.fc-day-header {
+    background-color: #c40030;
+    color: #FFFFFF;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+.fc-day-header, .fc-day-number {
+    font-size: 9px;
+}
+.fc-toolbar h2 {
+    font-size: 14px;
+    margin: 0;
+    color: #c40030;
+}
+.fc button .fc-icon {
+    font-size: 10px;
+}

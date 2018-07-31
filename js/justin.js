@@ -90,7 +90,7 @@ $(document).ready(function(){
         });
     }
     // Calendar page
-    if($('#calendar').length === 1){
+    if($('#calendar').length === 1 && typeof calendarEvents !== 'undefined'){
         var currentYear = new Date().getFullYear();
         var CALENDAR = $('#calendar').calendar({
             dataSource: calendarEvents,

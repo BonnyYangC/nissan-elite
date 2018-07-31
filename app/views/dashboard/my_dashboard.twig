@@ -1,0 +1,305 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+    <div class="container bg-white pl-25 pr-25">
+    <div class="ac-tooltip">1000</div>
+    <div class="row">
+        <div class="col-md-9">
+            <h1 class="page-header" > <span style="font-size:20px; padding-top:0;">Welcome {{ user.firstname }}</span></h1>
+        </div>
+    </div>
+    <!-- Projects Row -->
+    <div class="row">
+    <div class="col-md-9">
+        <div class="table-responsive">
+            {% set chartInitData = {'title': 'Monthly Credits','el_id':'bar-chart'} %}
+            {% include 'dashboard/widget_element/bar-chart.twig' with chartInitData %}
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 portfolio-item">
+                <h3>LEADERBOARD</h3>
+                <div class="table-responsive">
+                    <table class="table leader-board">
+                        <tr class="table-top-row">
+                            <td></td>
+                            <td>Ambassador Club</td>
+                            <td>Dealership</td>
+                            <td>State</td>
+                        </tr>
+                        {% for row in leaderBoardTableData %}
+                            <tr>
+                                <td>{{ row.ranking }}</td>
+                                <td>
+                                    {% if row.member_id == user.employee_code %}
+                                        <a href="{{ url('/Dashboard/Leaderboards') }}" class="matched">
+                                            {{ row.firstname }} {{ row.lastname }}
+                                        </a>
+                                    {% else %}
+                                        {{ row.firstname }} {{ row.lastname }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ row.company_name }}</td>
+                                <td>{{ row.company_state }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3>Current STATUS LEVEL</h3>
+                <div class="table-responsive">
+                    <script>
+                        window.YEAR_TO_DATE = {{ dashboard.ytd }};
+                        window.MIN = {{ dashboard.statusChart.min }};
+                        window.MAX = {{ dashboard.statusChart.max }};
+                        window.LEVEL_COLOR = '{{ dashboard.statusChart.color }}';
+                        window.GAGE_DATA = {{ json_encode(dashboard.statusChart.gageArray)|raw }};
+                    </script>
+                    <div id="g1" style="background-color: #f7f7f7; #background-position:center; background-size:400px; background-repeat:no-repeat; height: 220px;"></div>
+
+                    <p align="center">
+                        <b><span style="color:#ff0000;margin-top:20px;">{{ dashboard.statusChart.toReach }}</span> {{ dashboard.statusChart.colorText }}</b>
+                    </p>
+
+                    <h3>Dollar Rewards</h3>
+                    <div class="table-responsive" >
+                        <table class="table" >
+                            <tr class="nissangray-back">
+                                <td align="center">Consul</td>
+                                <td align="center">Diplomat</td>
+                                <td align="center">Ambassador</td>
+                                <td align="center">Premier</td>
+                            </tr>
+                            <tr class="active">
+                                {% set dollorDataRanges = dashboard.rewardsDollars %}
+                                {% for val in dollorDataRanges %}
+                                    <td align="center">${{ val }}</td>
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <!---- Sales Percentage---->
+                <h3><a href="{METRICS-IND-RESULTS-LINK}">Credits earned per Month (View Individual Results)</a></h3>
+                {MULTIPLE-ROLE-SELECT}
+                <!-- <div style="padding: 10px 0;">
+                  <strong>You have had multiple roles: </strong>
+                  <select id="metricsRoleSelect">
+                    <option value="nissan_salesconsultants">Sales Consultant</option>
+                    <option value="nissan_salesmanagers">Sales Manager</option>
+                  </select>
+                </div> -->
+                <script>
+                    // var metricsRoleSelect = document.getElementById('metricsRoleSelect');
+                    //
+                    // if (metricsRoleSelect) {
+                    //     metricsRoleSelect.addEventListener('change', function (e) {
+                    //         window.location.href = '/Dashboard/' + e.target.value;
+                    //     });
+                    // }
+                </script>
+                <div class="table-responsive" >
+                    <div style="width: 95%">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                    <script>
+                        // var barChartData = {
+                        //     labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December" , "January", "February", "March"],
+                        //     datasets: [{METRICS}]
+                        //
+                        // };
+                        // window.onload = function() {
+                        //     var ctx = document.getElementById("canvas").getContext("2d");
+                        //     window.myBar = new Chart(ctx, {
+                        //         type: 'bar',
+                        //         data: barChartData,
+                        //         options: {
+                        //             tooltips: {
+                        //                 mode: 'index',
+                        //                 intersect: false
+                        //             },
+                        //             responsive: true,
+                        //             scales: {
+                        //                 xAxes: [{
+                        //                     stacked: true,
+                        //                 }],
+                        //                 yAxes: [{
+                        //                     stacked: true
+                        //                 }]
+                        //             }
+                        //         }
+                        //     });
+                        // };
+                        //
+                        // document.getElementById('randomizeData').addEventListener('click', function() {
+                        //     barChartData.datasets.forEach(function(dataset, i) {
+                        //         dataset.data = dataset.data.map(function() {
+                        //             return randomScalingFactor();
+                        //         });
+                        //     });
+                        //     window.myBar.update();
+                        // });
+                    </script>
+                    <br>
+                    <p>On completion of your annual registration credits will be applied in same month.</p>
+                    <p>Credits will also be applied in same month for dealer excellence if your dealer achieved in the previous year.</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" style="padding-bottom:0px;">
+        <h3>RANKINGS &amp; CREDITS</h3>
+        <div class="table-responsive">
+            <table class="table centre-text">
+                <tr class="nissangray-back">
+                    <td colspan="2">Your Current Ranking</td>
+                </tr>
+                <tr class="nissangray-light-back"> {RANKING} </tr>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table centre-text">
+                <tr class="table-top-row">
+                    <td>YTD Credits</td>
+                </tr>
+                <tr class="light-back">
+                    <td><span class="rank">{YTD}</span><br></td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table centre-text">
+                <tr class="table-top-row">
+                    <td><!-- <a href="lifetime-credits.html" style="color:#FFF;" title="Click here for your Lifetime credits">Lifetime Credits</a>-->
+
+                        <a href="/Dashboard/Lifetime" data-toggle="popover"  style="color:#ffffff">Lifetime Credits</a>
+                        <script>
+                            // $(document).ready(function(){
+                            //     $('[data-toggle="popover"]').popover();
+                            // });
+                        </script>
+                    </td>
+                </tr>
+                <tr class="light-back">
+                    <td><span class="rank">{LIFETIME}</span><br></td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table centre-text">
+                <tr class="nissangray-back">
+                    <td colspan="2">Are you registered?</td>
+                </tr>
+                <tr class="nissangray-light-back">
+                    <td><span class="rank" > <a href="#" style="color:#FFFFFF; text-decoration:none;"title="You are eligible for the AC2017 Program">{REGISTERED}</a></span><br>{REGISTERED-LINK}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table centre-text">
+                <tr class="nissangray-back">
+                    <td colspan="2">Training on track?</td>
+                </tr>
+                <tr class="nissangray-light-back">
+                    <td><span class="rank" > </span> <a href="http://www.nissanlearningacademy.com.au" target="_blank">
+                            <button style="background-color:#c40030; color: #FFFFFF; width:100%; margin:0 auto; font-weight: lighter; font-size:11px;" type="button" class="btn btn-primary btn-block">Check your criteria in the <br>AC Member Guide and complete at <br>www.nissanlearningacademy.com.au</button>
+                        </a> <br></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table centre-text">
+                <tr class="nissangray-back">
+                    <td colspan="2">Dealer Excellence</td>
+                </tr>
+                <tr class="nissangray-light-back">
+                    <td><span class="rank" style="color:#FFFFFF;"> {EXCELLENCE}</span>{EXCELLENCE-TEXT}</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <h3><a href="/Dashboard/Calendar" style="margin-top:20px;">Calendar</a></h3>
+        <div id="calendar"></div>
+
+        <script>
+            // $(document).ready(function() {
+            //
+            //     $('#calendar').fullCalendar({
+            //         header: {
+            //             left: 'prev',
+            //             center: 'title',
+            //             right: 'next'
+            //         },
+            //         eventClick: function(date, jsEvent, view) {
+            //
+            //             window.location.href = '/Dashboard/Calendar';
+            //
+            //         },
+            //         dayClick: function(date, jsEvent, view) {
+            //
+            //             window.location.href = '/Dashboard/Calendar';
+            //
+            //         },
+            //         navLinks: true, // can click day/week names to navigate views
+            //         editable: true,
+            //         eventLimit: true, // allow "more" link when too many events,
+            //         height: 350,
+            //         dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            //         events: [
+            //             {EVENTS}
+            //         ]
+            //     });
+            //
+            // });
+
+        </script>
+        </div>
+
+        <!---- Customer Experience ---->
+
+        <div class="table-responsive">
+
+            <!--
+            <div id="chart_div" style="width: 900px; height: 500px; background-color:;"></div>
+        -->
+        </div>
+        <div class="table-responsive">
+            <!----Line Graph----->
+            <table class="columns">
+            <tr>
+            <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
+        </tr>
+        </table>
+        </div>
+        <br>
+        </div>
+        <!-- /.row --><!-- Projects Row -->
+        <div class="row" style="padding-top:20px"> </div>
+            <!-- /.row -->
+
+            <!-- Projects Row -->
+            <div class="row"></div>
+            <!--  <hr>   /.row -->
+
+            <!-- Chart.js -->
+
+        <script>
+
+
+        </script>
+
+    </div>
+{% endblock %}

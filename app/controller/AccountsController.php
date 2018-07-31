@@ -15,6 +15,7 @@ use App\models\role\FinanceController;
 use App\models\role\FleetSalesManager;
 use App\models\role\PartsManager;
 use App\models\role\PartsSalesRep;
+use App\models\role\RetailSalesConsultant;
 use App\models\role\SalesManager;
 use App\models\role\ServiceAdviser;
 use App\models\role\ServiceManager;
@@ -40,6 +41,9 @@ class AccountsController extends DashboardController
      */
     public function metrics(){
         $this->dataForView['currentUri'] = 'Metrics';
+        // Load user's metrics data
+        $this->fetchUserMetricsData();
+
         // Get user's position
         $position_to_use = $this->userObject->position;
 
@@ -52,6 +56,12 @@ class AccountsController extends DashboardController
                 break;
             case User::PARTS_MANAGER:
                 $this->_prepareForPartsManager();
+                break;
+            case User::RETAIL_SALES_CONSULTANTS:
+                $this->_prepareForRetailSalesConsultant();
+                break;
+            case User::FLEET_SALES_CONSULTANTS:
+                $this->_prepareForRetailSalesConsultant();
                 break;
             case User::FLEET_SALES_MANAGER:
                 $this->_prepareForFleetSalesManager();
@@ -74,8 +84,24 @@ class AccountsController extends DashboardController
             default:
                 break;
         }
+
+        $this->dataForView['monthsArray'] = get_months_array();
+
         $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
         return;
+    }
+
+    /**
+     * Prepare metrics data for service manager
+     */
+    private function _prepareForRetailSalesConsultant(){
+        $role = new RetailSalesConsultant($this->userObject);
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->name.'.js')
+        ];
     }
 
     /**

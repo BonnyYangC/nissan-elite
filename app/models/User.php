@@ -58,6 +58,10 @@ class User extends BaseModel
         }
     }
 
+    public function getDollarRewardsRange(){
+        return $this->getGagaDataRange();
+    }
+
     public function getGagaDataRange(){
         $result = [];
         switch ($this->position){
@@ -65,6 +69,12 @@ class User extends BaseModel
                 $result=[300,600,1000,1500];
                 break;
             case self::FLEET_SALES_MANAGER:
+                $result=[500,1000,1500,2000];
+                break;
+            case self::RETAIL_SALES_CONSULTANTS:
+                $result=[500,1000,1500,2000];
+                break;
+            case self::FLEET_SALES_CONSULTANTS:
                 $result=[500,1000,1500,2000];
                 break;
             case self::SALES_MANAGER:
@@ -179,10 +189,18 @@ class User extends BaseModel
         return $this;
     }
 
+    /**
+     * Get current user's employee_code field value
+     * @return mixed
+     */
     public function getEmployeeCode(){
         return $this->rowData['employee_code'];
     }
 
+    /**
+     * Alias of getEmployeeCode() function
+     * @return mixed
+     */
     public function getMemberId(){
         return $this->getEmployeeCode();
     }

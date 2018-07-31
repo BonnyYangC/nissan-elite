@@ -9,7 +9,7 @@
 namespace App\models\role;
 
 use App\models\User;
-class FleetSalesManager
+class FleetSalesManager implements IRole
 {
     private $user;
 
@@ -68,5 +68,19 @@ class FleetSalesManager
             "FOLLOWUP_RESULTS" => $fu_results,
             "TRAINING" => $training
         ];
+    }
+
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->name;
+    }
+
+    public function getDashboardViewData($data, $ytd)
+    {
+        // TODO: Implement getDashboardViewData() method.
     }
 }

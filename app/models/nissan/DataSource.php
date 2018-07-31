@@ -192,7 +192,6 @@ class DataSource extends BaseModel
      * @return string
      */
     public static function nissan_get_table_name_from_abbr ($abbr) {
-        dump($abbr);
         $result = null;
         $abbr = strtoupper($abbr);
         foreach (self::$_maps as $tableName => $value) {

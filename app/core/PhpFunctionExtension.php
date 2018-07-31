@@ -34,6 +34,7 @@ class PhpFunctionExtension extends \Twig_Extension
         'empty',
         'count',
         'date',
+        'json_encode',
         /**
          * Self defined functions
          */

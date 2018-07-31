@@ -15,6 +15,7 @@ use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\role\FI;
 use App\models\role\IRole;
+use App\models\role\RetailSalesConsultant;
 use App\models\User;
 use Carbon\Carbon;
 use Klein\Request;
@@ -101,6 +102,172 @@ class DashboardController extends BaseController
         ];
     }
 
+    private function _prepareDashboardData(IRole $role, $ytd = null){
+        $ytd = is_null($ytd) ? env('YEAR',2017) : $ytd;
+        $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
+        $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
+
+        $this->dataForView['extra_css'] = [
+            asset('/includes/fullcalendar/fullcalendar.min.css')
+        ];
+
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            'https://www.google.com/jsapi',
+            asset('js/justgage/raphael-2.1.4.min.js'),
+            asset('js/justgage/justgage.js'),
+            asset('js/bar-graph/bar-graph.js'),
+            asset('/includes/fullcalendar/lib/moment.min.js'),
+            asset('/includes/fullcalendar/fullcalendar.min.js'),
+            asset('js/dashboard/'.$role->getTemplateName().'.js')
+        ];
+    }
+
+
+
+    public function dashboard_new(){
+        if(empty($this->userObject)){
+            $user = new User($this->currentUserId);
+            $this->userObject = $user;
+        }
+        $this->fetchDashboardData();
+
+        $role = null;
+
+        switch ($this->userObject->position){
+            case User::FI:
+                $this->_prepareForFinanceAndInsurance();
+                break;
+            case User::FINANCE_CONTROLLER:
+                $this->_prepareForFinanceController();
+                break;
+            case User::PARTS_MANAGER:
+                $this->_prepareForPartsManager();
+                break;
+            case User::RETAIL_SALES_CONSULTANTS:
+                $role = new RetailSalesConsultant($this->userObject);
+                $this->_prepareDashboardData($role);
+                break;
+            case User::FLEET_SALES_CONSULTANTS:
+                $this->_prepareForRetailSalesConsultant();
+                break;
+            case User::FLEET_SALES_MANAGER:
+                $this->_prepareForFleetSalesManager();
+                break;
+            case User::SALES_MANAGER:
+                $this->_prepareForSalesManager();
+                break;
+            case User::STOCK_CONTROLLER:
+                $this->_prepareForStockController();
+                break;
+            case User::PARTS_SALES_REP:
+                $this->_prepareForPartsSalesRep();
+                break;
+            case User::SERVICE_MANAGER:
+                $this->_prepareForServiceManager();
+                break;
+            case User::SERVICE_ADVISERS:
+                $this->_prepareForServiceAdviser();
+                break;
+            default:
+                break;
+        }
+
+        $this->render('dashboard/my_dashboard');
+        return;
+    }
+
+    /**
+     * Load user's metrics data from data base
+     */
+    protected function fetchUserMetricsData(){
+        $overrideRole = $this->request->param('override_role');
+
+        if(!$overrideRole){
+            $data = DataSource::Query($this->userObject);
+            $this->metricsData = $data['result']['Results'];
+            $this->excellence = $data['result']['Excellence'];
+        }else{
+            // Todo: For multiple role support
+        }
+    }
+
+    protected function fetchDashboardData(){
+        $this->dataForView['Results']       = [];
+        $this->dataForView['Registered']    = Ranking::NOT_REGISTERED;
+        $this->dataForView['Excellence']    = 0;
+        $this->dataForView['MyRanking']     = null;
+        $this->dataForView['Rankings']      = null;
+        $this->dataForView['History']       = null;
+        $this->dataForView['Credits']       = null;
+
+        $result = DataSource::Query($this->userObject);
+        $this->dataForView['Results'] = $result['result']['Results'];
+        $this->dataForView['Excellence'] = $result['result']['Excellence'];
+
+        /**
+         * 获取所有的排名, 自己的排名
+         */
+        // Get the latest ranking date
+        $thisPeriod = $this->_getThisPeriod($this->userObject);
+        // 获取了所有的 Rankings: Get all rankings
+        $rankings = Ranking::Query($this->userObject, $thisPeriod);
+        $this->dataForView['Rankings'] = $rankings;
+
+        $myRanking = null;
+        $currentUserRankingRecord = Ranking::Query($this->userObject, $thisPeriod, true);
+        if($currentUserRankingRecord){
+            $myRanking = $currentUserRankingRecord['ranking'];
+            $this->dataForView['Registered'] = $currentUserRankingRecord['registered'];
+        }
+
+        /**
+         * 计算历史数据
+         */
+        $this->dataForView['History'] = History::All($this->userObject);
+
+        /**
+         * 计算Credits
+         */
+        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,env('YEAR',2017));
+
+        /**
+         * 以上是基础数据, 以下为页面中的特定数据
+         */
+
+        // 获取 Regional 的 Rankings: 实际就是结合上一步计算自己的排名
+        $regionalRanking = Ranking::countRegionalRankingLessThan($this->userObject, $thisPeriod, $myRanking);
+        if($regionalRanking){
+            $this->dataForView['MyRanking'] = $regionalRanking + 1;
+        }
+
+        // 处理 Leader Board 的表格: Leader board 只有5个位置
+        $iAmInTopList = false;
+        $leaderBoardTableData = [];
+        foreach ($rankings as $index=>$item) {
+            if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
+                if($item['member_id'] == $this->userObject->getEmployeeCode()){
+                    $iAmInTopList = true;
+                }
+                $leaderBoardTableData[] = $item;
+            }else{
+                // 已经超出了前五名
+                if(!$iAmInTopList){
+                    if($item['member_id'] == $this->userObject->getEmployeeCode()){
+                        $leaderBoardTableData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
+                        break;
+                    }
+                }
+            }
+        }
+        $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
+        // 处理 Leader Board 的表格 结束
+
+        // GAGA indicator
+        $this->_handleGagaIndicatorData();
+        // GAGA indicator end
+    }
+
     /**
      * This function is for "My Dashboard" menu item
      */
@@ -151,7 +318,7 @@ class DashboardController extends BaseController
             $this->dataForView['History']       = null;
             $this->dataForView['Credits']       = null;
 
-            $result = NissanDataSource::Query($user);
+            $result = DataSource::Query($user);
             $this->dataForView['Results'] = $result['result']['Results'];
             $this->dataForView['Excellence'] = $result['result']['Excellence'];
 

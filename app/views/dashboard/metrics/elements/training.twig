@@ -1,0 +1,49 @@
+<script>
+    var TRAINING = {{ metrics.JS_training|raw }};
+</script>
+<div class="row graph-back pl-10">
+    <div class="col-md-7">
+        <h3>{{ index }}. TRAINING</h3>
+        <div class="table-responsive">
+            <div id="chart_div6" style="min-width: 600px; min-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <h3>TRAINING GUIDE - RETAIL SALES CONSULTANT</h3>
+        <table class="table small-table" >
+            <tr class="table-top-row">
+                <td>Competency Modules</td>
+                <td>Credits</td>
+            </tr>
+            <tr class="active">
+                <td>Certified Retail Sales Consultant</td>
+                <td>800</td>
+            </tr>
+            <tr class="active">
+                <td>Sales Executive Certification</td>
+                <td>150 - 400</td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+        <h3>TRAINING GUIDE - FLEET SALES CONSULTANT & FLEET SALES MANAGER</h3>
+        <table class="table small-table" >
+            <tr class="table-top-row">
+                <td>Competency Modules</td>
+                <td>Credits</td>
+            </tr>
+            <tr class="active">
+                <td>Certified Fleet Sales Manager & Consultant</td>
+                <td>800</td>
+            </tr>
+            <tr class="active">
+                <td>Fleet Sales Manager & Consultant</td>
+                <td>200</td>
+            </tr>
+        </table>
+        <p>
+            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC18 Member Guide</a> for full details.</em>
+        </p>
+    </div>
+</div>
