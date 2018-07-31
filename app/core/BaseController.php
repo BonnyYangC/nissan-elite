@@ -115,7 +115,14 @@ class BaseController
                 $this->$functionName($params);
             }
         }catch (\Exception $exception){
-            dump($exception->getMessage());
+            if(env('DEV_MODE',false)){
+                dump($exception->getMessage());
+                dump($exception->getLine());
+                dump($exception->getFile());
+                dump($exception->getTraceAsString());
+            }else{
+                echo 'The page you request is not exist!';
+            }
             exit(44);
         }
     }

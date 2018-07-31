@@ -146,11 +146,13 @@ class DashboardController extends BaseController
             asset('/includes/fullcalendar/lib/moment.min.js'),
             asset('/includes/fullcalendar/fullcalendar.min.js'),
             asset('js/dashboard/utils.js')
-//            asset('js/dashboard/'.$role->getTemplateName().'.js')
         ];
     }
 
 
+    /**
+     * Dashboard request handler
+     */
     public function dashboard_new(){
         if(empty($this->userObject)){
             $user = new User($this->currentUserId);

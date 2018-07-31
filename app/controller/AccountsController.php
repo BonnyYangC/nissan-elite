@@ -13,6 +13,7 @@ use App\models\nissan\Incentives;
 use App\models\role\FI;
 use App\models\role\FinanceController;
 use App\models\role\FleetSalesManager;
+use App\models\role\IRole;
 use App\models\role\PartsManager;
 use App\models\role\PartsSalesRep;
 use App\models\role\RetailSalesConsultant;
@@ -47,6 +48,11 @@ class AccountsController extends DashboardController
         // Get user's position
         $position_to_use = $this->userObject->position;
 
+        /**
+         * @var IRole $role
+         */
+        $role = null;
+
         switch ($position_to_use){
             case User::FI:
                 $this->_prepareForFinanceAndInsurance();
@@ -58,7 +64,7 @@ class AccountsController extends DashboardController
                 $this->_prepareForPartsManager();
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
-                $this->_prepareForRetailSalesConsultant();
+                $role = new RetailSalesConsultant($this->userObject);
                 break;
             case User::FLEET_SALES_CONSULTANTS:
                 $this->_prepareForRetailSalesConsultant();
@@ -67,7 +73,7 @@ class AccountsController extends DashboardController
                 $this->_prepareForFleetSalesManager();
                 break;
             case User::SALES_MANAGER:
-                $this->_prepareForSalesManager();
+                $role = new SalesManager($this->userObject);
                 break;
             case User::STOCK_CONTROLLER:
                 $this->_prepareForStockController();
@@ -85,10 +91,31 @@ class AccountsController extends DashboardController
                 break;
         }
 
+        $this->_prepareForMetricsData($role);
+
         $this->dataForView['monthsArray'] = get_months_array();
 
-        $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
+//        $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
+        $this->render('dashboard/metrics/'.$role->getTemplateName());
         return;
+    }
+
+    /**
+     * Refined load metrics data
+     * @param IRole $role
+     * @return bool
+     */
+    private function _prepareForMetricsData(IRole $role){
+        if(!$role){
+            return false;
+        }
+        $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
+        $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            asset('js/metrics/'.$role->getTemplateName().'.js')
+        ];
+        return true;
     }
 
     /**
@@ -149,10 +176,10 @@ class AccountsController extends DashboardController
     private function _prepareForStockController(){
         $role = new StockController($this->userObject);
         $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
-        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
         $this->dataForView['extra_js'] = [
             'https://www.gstatic.com/charts/loader.js',
-            asset('js/metrics/'.$role->name.'.js')
+            asset('js/metrics/'.$role->getTemplateName().'.js')
         ];
     }
 
@@ -162,10 +189,10 @@ class AccountsController extends DashboardController
     private function _prepareForSalesManager(){
         $role = new SalesManager($this->userObject);
         $this->dataForView['metrics'] = $role->getMetrics($this->metricsData);
-        $this->dataForView['metrics_template_file_name'] = $role->name;
+        $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
         $this->dataForView['extra_js'] = [
             'https://www.gstatic.com/charts/loader.js',
-            asset('js/metrics/'.$role->name.'.js')
+            asset('js/metrics/'.$role->getTemplateName().'.js')
         ];
     }
 

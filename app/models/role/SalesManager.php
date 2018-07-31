@@ -68,7 +68,7 @@ class SalesManager extends BaseRole implements IRole
 
         }
 
-        return [
+        $result = [
             "MATCHED_OW" => $matched,
             "MATCHED_OW_RESULTS" => $matched_results,
             "NEW_VEHICLE_SALES" => $new,
@@ -81,6 +81,8 @@ class SalesManager extends BaseRole implements IRole
             "RETAIL_RESULTS" => $retail_results,
             "TRAINING" => $training
         ];
+
+        return $result;
     }
 
     /**
@@ -102,7 +104,7 @@ class SalesManager extends BaseRole implements IRole
          * 开始确认并查找当前用户的名次: Region and National
          */
         $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
-            ? $data['MyRanking'] : null;
+            ? $data['MyRanking'] : $data['Regional'];
 
         $rankingNationally = null;
         if(isset($data['Rankings']) && !empty($data['Rankings'])){
