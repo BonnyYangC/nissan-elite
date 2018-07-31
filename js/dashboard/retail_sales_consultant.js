@@ -1,5 +1,5 @@
+// Gage starts
 gadeIndicatorStartingZIndex = 20;
-
 function generateGageIndicator (gageId, percent, color, text) {
     var dec = percent * 0.01;
     var total = 180 + (-180 * dec);
@@ -24,10 +24,6 @@ function generateGageIndicator (gageId, percent, color, text) {
 for (var i = 0; i < GAGE_DATA.length; i++){
     generateGageIndicator('g1',GAGE_DATA[i][0],GAGE_DATA[i][1],GAGE_DATA[i][2]);
 }
-// {{ gaga_indicator_init('gi')|raw  }}
-/*----JustGauge - Documentation is here http://justgage.com/-- */
-/*-----------------Number Format------------------*/
-
 document.addEventListener("DOMContentLoaded", function(event) {
 
     var g1 = new JustGage({
@@ -50,10 +46,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         },
         gaugeWidthScale: 0.35
     });
-    document.getElementById('gauge_refresh').addEventListener('click', function() {
-        g1.refresh(getRandomInt(0, 100));
-    });
+    // document.getElementById('gauge_refresh').addEventListener('click', function() {
+    //     g1.refresh(getRandomInt(0, 100));
+    // });
 });
+// End of gage
 
 // MONTHLY CREDITS
 var monthlyCreditTableArray = [

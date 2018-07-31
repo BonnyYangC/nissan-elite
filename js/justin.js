@@ -189,4 +189,27 @@ $(document).ready(function(){
             }
         }
     }
+
+    // General calendar widget
+    if(typeof CALENDAR_EVENTS !== 'undefined' && $('#calendar').length > 0){
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev',
+                center: 'title',
+                right: 'next'
+            },
+            eventClick: function(date, jsEvent, view) {
+                window.location.href = '/dashboard/Calendar';
+            },
+            dayClick: function(date, jsEvent, view) {
+                window.location.href = '/dashboard/Calendar';
+            },
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events,
+            height: 350,
+            dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            events: CALENDAR_EVENTS
+        });
+    }
 });

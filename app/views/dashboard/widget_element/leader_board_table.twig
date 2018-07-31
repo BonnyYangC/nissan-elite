@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table leader-board">
+        <tr class="table-top-row">
+            <td></td>
+            <td>Ambassador Club</td>
+            <td>Dealership</td>
+            <td>State</td>
+        </tr>
+        {% for row in leaderBoardTableData %}
+            <tr>
+                <td>{{ row.ranking }}</td>
+                <td>
+                    {% if row.member_id == user.employee_code %}
+                        <a href="{{ url('/Dashboard/Leaderboards') }}" class="matched">
+                            {{ row.firstname }} {{ row.lastname }}
+                        </a>
+                    {% else %}
+                        {{ row.firstname }} {{ row.lastname }}
+                    {% endif %}
+                </td>
+                <td>{{ row.company_name }}</td>
+                <td>{{ row.company_state }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

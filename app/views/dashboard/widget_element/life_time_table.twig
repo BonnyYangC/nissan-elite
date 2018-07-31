@@ -1,0 +1,12 @@
+<div class="table-responsive">
+    <table class="table centre-text">
+        <tr class="table-top-row">
+            <td>
+                <a href="{{ url('/dashboard/Lifetime') }}" class="tw">Lifetime Credits</a>
+            </td>
+        </tr>
+        <tr class="light-back">
+            <td><span class="rank">{{ empty(dashboard.lifeTime) ? null : number_format(dashboard.lifeTime,0) }}</span><br></td>
+        </tr>
+    </table>
+</div>

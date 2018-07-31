@@ -11,6 +11,7 @@ namespace App\controller;
 use App\core\BaseController;
 use App\models\nissan\Credit;
 use App\models\nissan\DataSource;
+use App\models\nissan\Events;
 use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\role\FI;
@@ -20,6 +21,7 @@ use App\models\User;
 use Carbon\Carbon;
 use Klein\Request;
 use Klein\Response;
+use Zend\Json\Json;
 
 class DashboardController extends BaseController
 {
@@ -105,6 +107,11 @@ class DashboardController extends BaseController
     private function _prepareDashboardData(IRole $role, $ytd = null){
         $ytd = is_null($ytd) ? env('YEAR',2017) : $ytd;
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
+        $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
+
+//        echo Json::prettyPrint(Json::encode($this->dataForView['nissan_events']));
+//        dd($this->dataForView['nissan_events']);
+
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
 
         $this->dataForView['extra_css'] = [

@@ -30,4 +30,21 @@ class Events extends BaseModel
             ]
         );
     }
+
+    /**
+     * Load Nissan events
+     * @param string $orderBy
+     * @return array|bool
+     */
+    public static function LoadForCalendarEvents($orderBy = 'datestamp'){
+        $database = self::DB();
+        $events = $database->select(
+            self::TABLE_NAME,
+            ['title','datestamp(start)'],
+            [
+                'ORDER'=>[$orderBy]
+            ]
+        );
+        return $events;
+    }
 }

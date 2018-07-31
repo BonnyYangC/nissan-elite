@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    {# Gage chart: set up some variables for gage js #}
+    <script>
+        window.YEAR_TO_DATE = {{ dashboard.ytd }};
+        window.MIN = {{ dashboard.statusChart.min }};
+        window.MAX = {{ dashboard.statusChart.max }};
+        window.LEVEL_COLOR = '{{ dashboard.statusChart.color }}';
+        window.GAGE_DATA = {{ json_encode(dashboard.statusChart.gageArray)|raw }};
+    </script>
+    <div id="g1" class="gage-wrap"></div>
+    {# Gage chart: end #}
+
+    <p align="center">
+        <b><span style="color:#ff0000;margin-top:20px;">{{ dashboard.statusChart.toReach }}</span> {{ dashboard.statusChart.colorText }}</b>
+    </p>
+
+    <h3>Dollar Rewards</h3>
+    <div class="table-responsive" >
+        <table class="table" >
+            <tr class="nissangray-back">
+                <td align="center">Consul</td>
+                <td align="center">Diplomat</td>
+                <td align="center">Ambassador</td>
+                <td align="center">Premier</td>
+            </tr>
+            <tr class="active">
+                {% set dollorDataRanges = dashboard.rewardsDollars %}
+                {% for val in dollorDataRanges %}
+                    <td align="center">${{ val }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>

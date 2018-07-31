@@ -1,6 +1,10 @@
 .bg-white{
     background: #ffffff;
 }
+.txt-white, .tw{
+    color: #ffffff !important;
+    text-decoration:none;
+}
 .mt-20{
     margin-top: 20px;
 }
@@ -12,6 +16,9 @@
 }
 .mb-20{
     margin-bottom: 20px;
+}
+.pb-0{
+    padding-bottom: 0;
 }
 .pb-20{
     padding-bottom: 20px;
@@ -41,6 +48,13 @@
 .g1{
     background-color: #f7f7f7;
     #background-position:center;
+    background-size:400px;
+    background-repeat:no-repeat;
+    height: 220px;
+}
+.gage-wrap{
+    background-color: #f7f7f7;
+    background-position:center;
     background-size:400px;
     background-repeat:no-repeat;
     height: 220px;

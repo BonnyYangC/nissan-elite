@@ -1,0 +1,5 @@
+<h3><a href="{{ url('/dashboard/Calendar') }}" class="mt-20">Calendar</a></h3>
+<div id="calendar" class="mb-20"></div>
+<script>
+    window.CALENDAR_EVENTS = {{ json_encode(calendar_events)|raw }};
+</script>

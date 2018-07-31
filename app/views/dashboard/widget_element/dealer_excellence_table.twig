@@ -1,0 +1,25 @@
+<div class="table-responsive">
+    <table class="table centre-text">
+        <tr class="nissangray-back">
+            <td colspan="2">Dealer Excellence</td>
+        </tr>
+        <tr class="nissangray-light-back">
+            <td>
+                            <span class="rank tw">
+                                {% if dashboard.excellence %}
+                                    &#10004;
+                                {% else %}
+                                    X
+                                {% endif %}
+                            </span>
+                {% if dashboard.excellence %}
+                    <p class="tw">2,000 Credits Applied</p>
+                {% else %}
+                    <p class="tw">
+                        refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') }}">Dealer Excellence overview</a>
+                    </p>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>

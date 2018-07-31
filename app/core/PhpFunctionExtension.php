@@ -43,6 +43,10 @@ class PhpFunctionExtension extends \Twig_Extension
         'session_get',          // Retrieve data from session
         'session_flash',        // Retrieve data from session flash
         'gaga_indicator_init',  // Retrieve data from session flash
+        'ordinal',              // Add suffix to number
+        'env',                  // output any env setting
+        'number_format',        // format number
+        'empty',                // format number
     );
     public function __construct(array $functions = array())
     {

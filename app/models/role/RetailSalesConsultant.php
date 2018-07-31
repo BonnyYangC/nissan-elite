@@ -67,18 +67,20 @@ class RetailSalesConsultant implements IRole
     public function getDashboardViewData($data, $ytdParam)
     {
         // TODO: Implement getDashboardViewData() method.
-        $new=$sr=$fu='';
-        $mm='';
-
         $ytd = 0;
 
 
         $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
+        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking'] ? $data['MyRanking'] : null;
 
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
+
+//            dump(date("M-Y", $period));
+//            dump($aryCredits[date("M-Y", $period)]);
+
             if(isset($aryCredits[date("M-Y", $period)]))
             {
                 $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
@@ -107,12 +109,20 @@ class RetailSalesConsultant implements IRole
                 $this->training['data'][]  = 0;
             }
 
-            if (isset($data[date("M-Y", $period)]))
+            if ( !$this->lifeTime && isset($dataResults[date("M-Y", $period)]))
             {
-                $this->lifeTime =(isset($data[date("M-Y", $period)]['lifetime']) ? $data[date("M-Y", $period)]['lifetime'] : $data[date("M-Y", $period)]['credit_mtd']);
+                $this->lifeTime =
+                    (isset($dataResults[date("M-Y", $period)]['lifetime']) ?
+                        $dataResults[date("M-Y", $period)]['lifetime'] :
+                        $dataResults[date("M-Y", $period)]['credit_mtd']);
+            }
+
+            if ( !$this->excellence)
+            {
                 $this->excellence =$data[date("M-Y", $period)]['excellence'];
             }
         }
+
 
 //        $metrics = Json::encode();
 //        echo Json::prettyPrint($metrics);
@@ -134,14 +144,15 @@ class RetailSalesConsultant implements IRole
                 $this->training,
             ],
             'statusChart'=>[
-                'jsGage'=>$status->getGageIndicatorJsString(),
                 'gageArray'=>$status->getGageIndicators(),
                 'color'=>$status->getColor(),
                 'colorText'=>$status->getColorText(),
                 'toReach'=>$status->getToReach(),
                 'min'=>$status->getMin(),
                 'max'=>$status->getMax(),
-            ]
+            ],
+            'rankingNationally'=> null,
+            'rankingRegionally'=> $myRegionallyRanking,
         ];
     }
 

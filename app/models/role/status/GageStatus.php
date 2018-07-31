@@ -88,14 +88,14 @@ class GageStatus
     }
 
     /**
-     * 获取整个的字符串
+     * @deprecated No use any more
      * @param string $id
      * @return string
      */
     public function getGageIndicatorJsString($id='g1'){
         $result = '';
         foreach ($this->getGageIndicators() as $gageIndicator) {
-            $result .= 'generateGageIndicator("'.$id.'",'.$gageIndicator[0].',"'.$gageIndicator[1].'","'.$gageIndicator[2].'")';
+            $result .= 'generateGageIndicator("'.$id.'",'.$gageIndicator[0].',"'.$gageIndicator[1].'","'.$gageIndicator[2].'");';
         }
         return $result;
     }

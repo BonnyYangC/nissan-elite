@@ -29,6 +29,16 @@ if(!function_exists('gaga_indicator_init')){
     }
 }
 
+if(!function_exists('ordinal')){
+    function ordinal($number) {
+        $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+        if ((($number % 100) >= 11) && (($number%100) <= 13))
+            return $number. 'th';
+        else
+            return $number. $ends[$number % 10];
+    }
+}
+
 if(!function_exists('get_month_array')){
 
     function get_months_array(){
