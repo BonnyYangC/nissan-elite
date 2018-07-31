@@ -202,4 +202,13 @@ class DataSource extends BaseModel
         }
         return $result;
     }
+
+    /**
+     * Get Role name by given database table name
+     * @param $name
+     * @return string
+     */
+    public static function getRoleNameByDatabaseTableName($name){
+        return self::$_rolesMap[$name];
+    }
 }

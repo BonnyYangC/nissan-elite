@@ -168,10 +168,12 @@ function drawCharts() {
     }
   };
 
-  var lineChart = new google.visualization.LineChart(document.getElementById('line-chart'));
-  //lineChart.draw(zeroLineData, lineOptions);
-  lineChart.draw(lineData, lineOptions);
-  
+  if(document.getElementById('line-chart')){
+      var lineChart = new google.visualization.LineChart(document.getElementById('line-chart'));
+      //lineChart.draw(zeroLineData, lineOptions);
+      lineChart.draw(lineData, lineOptions);
+  }
+
   // BEGIN PIE CHART
   
   // pie chart data
@@ -212,7 +214,9 @@ function drawCharts() {
       }
     }
   };
-  // draw pie chart
-  var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
-  pieChart.draw(pieData, pieOptions);
+    // draw pie chart
+    if(document.getElementById('pie-chart')){
+        var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+        pieChart.draw(pieData, pieOptions);
+    }
 }

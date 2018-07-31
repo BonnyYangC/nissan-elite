@@ -10,7 +10,6 @@ namespace App\models\role;
 
 use App\models\role\status\RetailSalesConsultantStatus;
 use App\models\User;
-use Zend\Json\Json;
 
 class RetailSalesConsultant implements IRole
 {
@@ -40,22 +39,22 @@ class RetailSalesConsultant implements IRole
     public $excellence = null;
     public $newVehicleSales = [
         'label'=>'New Vehicle Sales',
-        'backgroundColor' => 'black',
+        'backgroundColor' => '#111111',
         'data'=>[]
     ];
     public $salesRecommendationSaturation   = [
         'label'=>'Sales Recommendation R6M',
-        'backgroundColor' => 'darkgrey',
+        'backgroundColor' => '#333333',
         'data'=>[]
     ];
     public $followUpSaturation             = [
         'label'=>'Follow Up R6M',
-        'backgroundColor' => 'midgrey',
+        'backgroundColor' => '#555555',
         'data'=>[]
     ];
     public $training = [
         'label'=>'Training',
-        'backgroundColor' => 'lightred',
+        'backgroundColor' => '#c40030',
         'data'=>[]
     ];
 
@@ -68,18 +67,32 @@ class RetailSalesConsultant implements IRole
     {
         // TODO: Implement getDashboardViewData() method.
         $ytd = 0;
-
-
         $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
-        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking'] ? $data['MyRanking'] : null;
+
+        /**
+         * 开始确认并查找当前用户的名次: Region and National
+         */
+        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
+            ? $data['MyRanking'] : null;
+
+        $rankingNationally = null;
+        if(isset($data['Rankings']) && !empty($data['Rankings'])){
+            // 从 ranking 的表格里循环查找, 直到确定自己的名次
+            foreach ($data['Rankings'] as $index => $ranking) {
+                if($ranking['member_id'] == $this->user->getEmployeeCode()){
+                    $rankingNationally = $index + 1;
+                    break;
+                }
+            }
+        }
+        /**
+         * 开始确认并查找当前用户的名次: End
+         */
 
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
-
-//            dump(date("M-Y", $period));
-//            dump($aryCredits[date("M-Y", $period)]);
 
             if(isset($aryCredits[date("M-Y", $period)]))
             {
@@ -151,7 +164,7 @@ class RetailSalesConsultant implements IRole
                 'min'=>$status->getMin(),
                 'max'=>$status->getMax(),
             ],
-            'rankingNationally'=> null,
+            'rankingNationally'=> $rankingNationally,
             'rankingRegionally'=> $myRegionallyRanking,
         ];
     }

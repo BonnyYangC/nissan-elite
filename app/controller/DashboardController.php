@@ -109,15 +109,26 @@ class DashboardController extends BaseController
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
 
-//        echo Json::prettyPrint(Json::encode($this->dataForView['nissan_events']));
-//        dd($this->dataForView['nissan_events']);
+        /**
+         * 设置用户的角色: Set user roles
+         */
+        $this->setUserCurrentRoleAndTableName();
+        $this->dataForView['targetDatabaseTableName'] = $this->targetTableName;
+        $this->dataForView['userHasMultipleRoles'] = $this->userHasMultipleRoles;
+        $this->dataForView['userPositions'] = [];
+        foreach ($this->userObject->getPositions() as $databaseTableName) {
+            $this->dataForView['userPositions'][$databaseTableName] = DataSource::getRoleNameByDatabaseTableName($databaseTableName);
+        }
+        $this->dataForView['asRole'] = $this->asRole;
+        /**
+         * 设置用户的角色 End
+         */
 
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
 
         $this->dataForView['extra_css'] = [
             asset('/includes/fullcalendar/fullcalendar.min.css')
         ];
-
         $this->dataForView['extra_js'] = [
             'https://www.gstatic.com/charts/loader.js',
             'https://www.google.com/jsapi',
@@ -131,12 +142,15 @@ class DashboardController extends BaseController
     }
 
 
-
     public function dashboard_new(){
         if(empty($this->userObject)){
             $user = new User($this->currentUserId);
             $this->userObject = $user;
         }
+
+        /**
+         * Inject All necessary data to the view
+         */
         $this->fetchDashboardData();
 
         $role = null;
@@ -203,7 +217,6 @@ class DashboardController extends BaseController
         $this->dataForView['Results']       = [];
         $this->dataForView['Registered']    = Ranking::NOT_REGISTERED;
         $this->dataForView['Excellence']    = 0;
-        $this->dataForView['MyRanking']     = null;
         $this->dataForView['Rankings']      = null;
         $this->dataForView['History']       = null;
         $this->dataForView['Credits']       = null;
@@ -242,12 +255,6 @@ class DashboardController extends BaseController
          * 以上是基础数据, 以下为页面中的特定数据
          */
 
-        // 获取 Regional 的 Rankings: 实际就是结合上一步计算自己的排名
-        $regionalRanking = Ranking::countRegionalRankingLessThan($this->userObject, $thisPeriod, $myRanking);
-        if($regionalRanking){
-            $this->dataForView['MyRanking'] = $regionalRanking + 1;
-        }
-
         // 处理 Leader Board 的表格: Leader board 只有5个位置
         $iAmInTopList = false;
         $leaderBoardTableData = [];
@@ -269,10 +276,6 @@ class DashboardController extends BaseController
         }
         $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
         // 处理 Leader Board 的表格 结束
-
-        // GAGA indicator
-        $this->_handleGagaIndicatorData();
-        // GAGA indicator end
     }
 
     /**
@@ -360,10 +363,10 @@ class DashboardController extends BaseController
              */
 
             // 获取 Regional 的 Rankings: 实际就是结合上一步计算自己的排名
-            $regionalRanking = Ranking::countRegionalRankingLessThan($user, $thisPeriod, $myRanking);
-            if($regionalRanking){
-                $this->dataForView['MyRanking'] = $regionalRanking + 1;
-            }
+//            $regionalRanking = Ranking::countRegionalRankingLessThan($user, $thisPeriod, $myRanking);
+//            if($regionalRanking){
+//                $this->dataForView['MyRanking'] = $regionalRanking + 1;
+//            }
 
             // 处理 Leader Board 的表格: Leader board 只有5个位置
             $iAmInTopList = false;

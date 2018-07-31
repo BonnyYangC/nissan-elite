@@ -8,7 +8,7 @@
         </div>
     </div>
     <!-- Projects Row -->
-    <div class="row">
+    <div class="row pb-20">
         <div class="col-md-9">
             <div class="table-responsive">
                 {% set chartInitData = {'title': 'Monthly Credits','el_id':'bar-chart'} %}
@@ -31,70 +31,11 @@
                 <div class="col-md-12">
                     <!---- Sales Percentage---->
                     <h3><a href="{METRICS-IND-RESULTS-LINK}">Credits earned per Month (View Individual Results)</a></h3>
-                    {MULTIPLE-ROLE-SELECT}
-                    <!-- <div style="padding: 10px 0;">
-                      <strong>You have had multiple roles: </strong>
-                      <select id="metricsRoleSelect">
-                        <option value="nissan_salesconsultants">Sales Consultant</option>
-                        <option value="nissan_salesmanagers">Sales Manager</option>
-                      </select>
-                    </div> -->
-                    <script>
-                        // var metricsRoleSelect = document.getElementById('metricsRoleSelect');
-                        //
-                        // if (metricsRoleSelect) {
-                        //     metricsRoleSelect.addEventListener('change', function (e) {
-                        //         window.location.href = '/Dashboard/' + e.target.value;
-                        //     });
-                        // }
-                    </script>
-                    <div class="table-responsive" >
-                        <div style="width: 95%">
-                            <canvas id="canvas"></canvas>
-                        </div>
-                        <script>
-                            // var barChartData = {
-                            //     labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December" , "January", "February", "March"],
-                            //     datasets: [{METRICS}]
-                            //
-                            // };
-                            // window.onload = function() {
-                            //     var ctx = document.getElementById("canvas").getContext("2d");
-                            //     window.myBar = new Chart(ctx, {
-                            //         type: 'bar',
-                            //         data: barChartData,
-                            //         options: {
-                            //             tooltips: {
-                            //                 mode: 'index',
-                            //                 intersect: false
-                            //             },
-                            //             responsive: true,
-                            //             scales: {
-                            //                 xAxes: [{
-                            //                     stacked: true,
-                            //                 }],
-                            //                 yAxes: [{
-                            //                     stacked: true
-                            //                 }]
-                            //             }
-                            //         }
-                            //     });
-                            // };
-                            //
-                            // document.getElementById('randomizeData').addEventListener('click', function() {
-                            //     barChartData.datasets.forEach(function(dataset, i) {
-                            //         dataset.data = dataset.data.map(function() {
-                            //             return randomScalingFactor();
-                            //         });
-                            //     });
-                            //     window.myBar.update();
-                            // });
-                        </script>
-                        <br>
-                        <p>On completion of your annual registration credits will be applied in same month.</p>
-                        <p>Credits will also be applied in same month for dealer excellence if your dealer achieved in the previous year.</p>
-                    </div>
-                    <hr>
+                    {% if userHasMultipleRoles %}
+                        {% include 'dashboard/widget_element/credits_earned/multiple_roles.twig' %}
+                    {% else %}
+                        {% include 'dashboard/widget_element/credits_earned/single_role.twig' %}
+                    {% endif %}
                 </div>
             </div>
         </div>

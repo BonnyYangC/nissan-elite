@@ -45,13 +45,10 @@
 .leader-board tr td a.matched{
     font-family: 'nissan_brandregular';
 }
-.g1{
-    background-color: #f7f7f7;
-    #background-position:center;
-    background-size:400px;
-    background-repeat:no-repeat;
-    height: 220px;
+.dashboard-canvas-wrap{
+    width: 95%;
 }
+.dashboard-canvas-wrap
 .gage-wrap{
     background-color: #f7f7f7;
     background-position:center;

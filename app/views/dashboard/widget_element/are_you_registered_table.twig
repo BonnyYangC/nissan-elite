@@ -7,11 +7,21 @@
             <td>
                 <span class="rank">
                     <a href="#" class="tw" title="You are eligible for the AC2017 Program">
-                        {REGISTERED}
+                        {% if user.registered %}
+                            &#10004;
+                        {% else %}
+                            X
+                        {% endif %}
                     </a>
                 </span>
                 <br>
-                {REGISTERED-LINK}
+                {% if user.registered %}
+                    <p class="tw">250 Credits Applied</p>
+                {% else %}
+                    <a href="{{ env('eventRegisterUrl') }}" target="_blank">
+                        <button style="background-color:#c40030; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
+                    </a>
+                {% endif %}
             </td>
         </tr>
     </table>

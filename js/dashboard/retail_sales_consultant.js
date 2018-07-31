@@ -25,7 +25,6 @@ for (var i = 0; i < GAGE_DATA.length; i++){
     generateGageIndicator('g1',GAGE_DATA[i][0],GAGE_DATA[i][1],GAGE_DATA[i][2]);
 }
 document.addEventListener("DOMContentLoaded", function(event) {
-
     var g1 = new JustGage({
         id: 'g1',
         value: YEAR_TO_DATE,
@@ -46,9 +45,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         },
         gaugeWidthScale: 0.35
     });
-    // document.getElementById('gauge_refresh').addEventListener('click', function() {
-    //     g1.refresh(getRandomInt(0, 100));
-    // });
 });
 // End of gage
 
@@ -62,3 +58,47 @@ for (var i=0;i<JS_credits.length;i++){
 var barData = google.visualization.arrayToDataTable(monthlyCreditTableArray);
 
 google.setOnLoadCallback(drawCharts);
+
+// credits earned metrics
+$(document).ready(function(){
+    if(typeof CREDITS_EARNED_METRICS !== 'undefined'){
+        var barChartData = {
+            // labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December" , "January", "February", "March"],
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" , "Jan", "Feb", "Mar"],
+            datasets: CREDITS_EARNED_METRICS
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("credits-earned-canvas").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+        };
+        if(document.getElementById('randomizeData')){
+            document.getElementById('randomizeData').addEventListener('click', function() {
+                barChartData.datasets.forEach(function(dataset, i) {
+                    dataset.data = dataset.data.map(function() {
+                        return randomScalingFactor();
+                    });
+                });
+                window.myBar.update();
+            });
+        }
+    }
+});
+// credits earned metrics: end
