@@ -48,8 +48,8 @@
 .dashboard-canvas-wrap{
     width: 95%;
 }
-.dashboard-canvas-wrap
-.gage-wrap{
+
+.gage-wrap, .g1{
     background-color: #f7f7f7;
     background-position:center;
     background-size:400px;

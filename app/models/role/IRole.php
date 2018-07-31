@@ -25,5 +25,5 @@ interface IRole
 
     public function getMetrics($data);
 
-    public function getDashboardViewData($data,$ytd);
+    public function getDashboardViewData($data,$ytdParam);
 }

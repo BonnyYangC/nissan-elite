@@ -11,58 +11,21 @@ namespace App\models\role;
 use App\models\role\status\RetailSalesConsultantStatus;
 use App\models\User;
 
-class RetailSalesConsultant implements IRole
+class RetailSalesConsultant extends BaseRole implements IRole
 {
-    private $user;
-
     public $name='retail_sales_consultant';
-
-    /**
-     * Metrics data
-     * @var array
-     */
-    public $JS_newVehicleSales = [];
-    public $JS_reCommendation  = [];
-    public $JS_followUpCredits = [];
-    public $JS_training        = [];
-    public $salesResult                 = [];
-    public $salesRecommendationResult   = [];
-    public $followUpCredits             = [];
-
-    /**
-     * Dashboard data
-     * @var array
-     */
-    public $credits = [];
-    public $JS_credits = [];
-    public $lifeTime = null;
-    public $excellence = null;
-    public $newVehicleSales = [
-        'label'=>'New Vehicle Sales',
-        'backgroundColor' => '#111111',
-        'data'=>[]
-    ];
-    public $salesRecommendationSaturation   = [
-        'label'=>'Sales Recommendation R6M',
-        'backgroundColor' => '#333333',
-        'data'=>[]
-    ];
-    public $followUpSaturation             = [
-        'label'=>'Follow Up R6M',
-        'backgroundColor' => '#555555',
-        'data'=>[]
-    ];
-    public $training = [
-        'label'=>'Training',
-        'backgroundColor' => '#c40030',
-        'data'=>[]
-    ];
 
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
+    /**
+     * Retrieve data for dashboard view
+     * @param $data
+     * @param $ytdParam
+     * @return array
+     */
     public function getDashboardViewData($data, $ytdParam)
     {
         // TODO: Implement getDashboardViewData() method.
@@ -122,7 +85,7 @@ class RetailSalesConsultant implements IRole
                 $this->training['data'][]  = 0;
             }
 
-            if ( !$this->lifeTime && isset($dataResults[date("M-Y", $period)]))
+            if (isset($dataResults[date("M-Y", $period)]))
             {
                 $this->lifeTime =
                     (isset($dataResults[date("M-Y", $period)]['lifetime']) ?
@@ -136,10 +99,7 @@ class RetailSalesConsultant implements IRole
             }
         }
 
-
-//        $metrics = Json::encode();
-//        echo Json::prettyPrint($metrics);
-//        dd(11);
+        // Status
         $status = new RetailSalesConsultantStatus($ytd);
 
         return [

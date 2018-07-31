@@ -58,11 +58,11 @@ class User extends BaseModel
         }
     }
 
+    /**
+     * Get the user's dollar reward range
+     * @return array
+     */
     public function getDollarRewardsRange(){
-        return $this->getGagaDataRange();
-    }
-
-    public function getGagaDataRange(){
         $result = [];
         switch ($this->position){
             case self::FI:
@@ -102,6 +102,10 @@ class User extends BaseModel
                 break;
         }
         return $result;
+    }
+
+    public function getGagaDataRange(){
+        return $this->getDollarRewardsRange();
     }
 
     /**

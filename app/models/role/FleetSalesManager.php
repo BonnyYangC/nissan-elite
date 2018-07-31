@@ -9,15 +9,12 @@
 namespace App\models\role;
 
 use App\models\User;
-class FleetSalesManager implements IRole
+class FleetSalesManager extends RetailSalesConsultant
 {
-    private $user;
-
     public $name='fleet_sales_manager';
-
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
     /**
@@ -26,7 +23,6 @@ class FleetSalesManager implements IRole
      * @return array
      */
     public function getMetrics($data){
-
         $new=$recommendation=$FU=$training=$matched_results=$sales_results=$recommendation_results=$fu_results='';
         $class='nissangray-light-back';
         for($i=0; $i<12; $i++)
@@ -54,9 +50,7 @@ class FleetSalesManager implements IRole
                 $sales_results.='<td class="' . $class . '">&nbsp;</td>';
                 $recommendation_results.='<td class="' . $class . '">&nbsp;</td>';
                 $fu_results.='<td class="' . $class . '">&nbsp;</td>';
-
             }
-
         }
 
         return [
@@ -82,5 +76,6 @@ class FleetSalesManager implements IRole
     public function getDashboardViewData($data, $ytd)
     {
         // TODO: Implement getDashboardViewData() method.
+        parent::getDashboardViewData($data, $ytd);
     }
 }

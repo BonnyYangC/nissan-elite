@@ -15,8 +15,11 @@ use App\models\nissan\Events;
 use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\role\FI;
+use App\models\role\FleetSalesConsultant;
+use App\models\role\FleetSalesManager;
 use App\models\role\IRole;
 use App\models\role\RetailSalesConsultant;
+use App\models\role\SalesManager;
 use App\models\User;
 use Carbon\Carbon;
 use Klein\Request;
@@ -104,6 +107,11 @@ class DashboardController extends BaseController
         ];
     }
 
+    /**
+     * Retrieve data and pass to the view by Given role and year
+     * @param IRole $role
+     * @param null $ytd
+     */
     private function _prepareDashboardData(IRole $role, $ytd = null){
         $ytd = is_null($ytd) ? env('YEAR',2017) : $ytd;
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
@@ -137,7 +145,8 @@ class DashboardController extends BaseController
             asset('js/bar-graph/bar-graph.js'),
             asset('/includes/fullcalendar/lib/moment.min.js'),
             asset('/includes/fullcalendar/fullcalendar.min.js'),
-            asset('js/dashboard/'.$role->getTemplateName().'.js')
+            asset('js/dashboard/utils.js')
+//            asset('js/dashboard/'.$role->getTemplateName().'.js')
         ];
     }
 
@@ -167,16 +176,15 @@ class DashboardController extends BaseController
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
                 $role = new RetailSalesConsultant($this->userObject);
-                $this->_prepareDashboardData($role);
                 break;
             case User::FLEET_SALES_CONSULTANTS:
-                $this->_prepareForRetailSalesConsultant();
+                $role = new FleetSalesConsultant($this->userObject);
                 break;
             case User::FLEET_SALES_MANAGER:
-                $this->_prepareForFleetSalesManager();
+                $role = new FleetSalesManager($this->userObject);
                 break;
             case User::SALES_MANAGER:
-                $this->_prepareForSalesManager();
+                $role = new SalesManager($this->userObject);
                 break;
             case User::STOCK_CONTROLLER:
                 $this->_prepareForStockController();
@@ -194,6 +202,7 @@ class DashboardController extends BaseController
                 break;
         }
 
+        $this->_prepareDashboardData($role);
         $this->render('dashboard/my_dashboard');
         return;
     }

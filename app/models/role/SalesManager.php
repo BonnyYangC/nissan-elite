@@ -7,17 +7,16 @@
  */
 
 namespace App\models\role;
+use App\models\role\status\SalesManagerStatus;
 use App\models\User;
 
-class SalesManager
+class SalesManager extends BaseRole implements IRole
 {
-    private $user;
-
     public $name='sales_manager';
 
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
     /**
@@ -81,6 +80,121 @@ class SalesManager
             "MIDMTH_RETAIL" => $retail,
             "RETAIL_RESULTS" => $retail_results,
             "TRAINING" => $training
+        ];
+    }
+
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->name;
+    }
+
+    public function getDashboardViewData($data, $ytdParam)
+    {
+        $ytd = 0;
+        $aryCredits = $data['Credits'];
+        $dataResults = $data['Results'];
+
+        /**
+         * 开始确认并查找当前用户的名次: Region and National
+         */
+        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
+            ? $data['MyRanking'] : null;
+
+        $rankingNationally = null;
+        if(isset($data['Rankings']) && !empty($data['Rankings'])){
+            // 从 ranking 的表格里循环查找, 直到确定自己的名次
+            foreach ($data['Rankings'] as $index => $ranking) {
+                if($ranking['member_id'] == $this->user->getEmployeeCode()){
+                    $rankingNationally = $index + 1;
+                    break;
+                }
+            }
+        }
+        /**
+         * 开始确认并查找当前用户的名次: End
+         */
+
+        for($i=0; $i<12; $i++)
+        {
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+
+            if(isset($aryCredits[date("M-Y", $period)]))
+            {
+                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
+                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                /**
+                 * From Data results
+                 */
+                $this->matchedOW['data'][] = intval($dataResults[date("M-Y", $period)]['order_write_credit']);
+                $this->newVehicleSales['data'][] = intval($dataResults[date("M-Y", $period)]['actual_sales']);
+                $this->followUpPercentage['data'][]  = intval($dataResults[date("M-Y", $period)]['follow_up_ce']);
+                $this->DlrRec['data'][]  = intval($dataResults[date("M-Y", $period)]['ce_recomendation']);
+                $this->middleMonth['data'][]  = intval($dataResults[date("M-Y", $period)]['retail_midmth']);
+                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
+                    + $dataResults[date("M-Y", $period)]['pathway']
+                    + $dataResults[date("M-Y", $period)]['classroom'];
+            }
+            else
+            {
+                $this->JS_credits[date("M", $period)]  = 0;
+                /**
+                 * From Data results
+                 */
+                $this->matchedOW['data'][] = 0;
+                $this->newVehicleSales['data'][]  = 0;
+                $this->followUpPercentage['data'][]  = 0;
+                $this->DlrRec['data'][]  = 0;
+                $this->middleMonth['data'][]  = 0;
+                $this->training['data'][]  = 0;
+            }
+
+            if (isset($dataResults[date("M-Y", $period)]))
+            {
+                $this->lifeTime =
+                    (isset($dataResults[date("M-Y", $period)]['lifetime']) ?
+                        $dataResults[date("M-Y", $period)]['lifetime'] :
+                        $dataResults[date("M-Y", $period)]['credit_mtd']);
+            }
+
+            if ( !$this->excellence)
+            {
+                $this->excellence =$data[date("M-Y", $period)]['excellence'];
+            }
+        }
+
+        // Status
+        $status = new SalesManagerStatus($ytd);
+
+        return [
+            // For js array
+            "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
+            // For PHP array
+            "lifeTime"      =>$this->lifeTime,
+            "excellence"    =>$this->excellence,
+            "ytd"           =>$ytd,
+            'rewardsDollars'=>$this->user->getDollarRewardsRange(),
+            'metricsCurrentStatus'   =>[
+                $this->matchedOW,
+                $this->newVehicleSales,
+                $this->DlrRec,
+                $this->followUpPercentage,
+                $this->middleMonth,
+                $this->training,
+            ],
+            'statusChart'=>[
+                'gageArray'=>$status->getGageIndicators(),
+                'color'=>$status->getColor(),
+                'colorText'=>$status->getColorText(),
+                'toReach'=>$status->getToReach(),
+                'min'=>$status->getMin(),
+                'max'=>$status->getMax(),
+            ],
+            'rankingNationally'=> $rankingNationally,
+            'rankingRegionally'=> $myRegionallyRanking,
         ];
     }
 }
