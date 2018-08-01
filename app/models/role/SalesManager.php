@@ -103,19 +103,19 @@ class SalesManager extends BaseRole implements IRole
         /**
          * 开始确认并查找当前用户的名次: Region and National
          */
-        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
-            ? $data['MyRanking'] : $data['Regional'];
-
-        $rankingNationally = null;
-        if(isset($data['Rankings']) && !empty($data['Rankings'])){
-            // 从 ranking 的表格里循环查找, 直到确定自己的名次
-            foreach ($data['Rankings'] as $index => $ranking) {
-                if($ranking['member_id'] == $this->user->getEmployeeCode()){
-                    $rankingNationally = $index + 1;
-                    break;
-                }
-            }
-        }
+//        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
+//            ? $data['MyRanking'] : $data['Regional'];
+//
+//        $rankingNationally = null;
+//        if(isset($data['Rankings']) && !empty($data['Rankings'])){
+//            // 从 ranking 的表格里循环查找, 直到确定自己的名次
+//            foreach ($data['Rankings'] as $index => $ranking) {
+//                if($ranking['member_id'] == $this->user->getEmployeeCode()){
+//                    $rankingNationally = $index + 1;
+//                    break;
+//                }
+//            }
+//        }
         /**
          * 开始确认并查找当前用户的名次: End
          */
@@ -195,8 +195,6 @@ class SalesManager extends BaseRole implements IRole
                 'min'=>$status->getMin(),
                 'max'=>$status->getMax(),
             ],
-            'rankingNationally'=> $rankingNationally,
-            'rankingRegionally'=> $myRegionallyRanking,
         ];
     }
 }

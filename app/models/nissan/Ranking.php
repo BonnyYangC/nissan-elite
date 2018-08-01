@@ -130,7 +130,6 @@ class Ranking extends BaseModel
                 $result = $result[0];
             }
         }
-
         return $result;
     }
 
@@ -169,6 +168,11 @@ class Ranking extends BaseModel
             'period',
             $where
         );
+
+        if(env('DEV_MODE', false)){
+            dump($database->log());
+        }
+
         if($result){
             return Carbon::createFromFormat('Y-m-d',$result);
         }

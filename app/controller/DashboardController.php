@@ -82,14 +82,14 @@ class DashboardController extends BaseController
         if($this->userObject){
             $this->dataForView['user'] = $this->userObject;
             // 从原来的代码看, 似乎这两个也是必须的
-            $this->dataForView['positions'] =
-                DataSource::GetPositionList($this->userObject);
+//            $this->dataForView['positions'] =
+//                DataSource::GetPositionList($this->userObject);
 
-            $this->dataForView['multiple_role_metrics'] =
-                DataSource::GetDataAllPositions($this->userObject);
+//            $this->dataForView['multiple_role_metrics'] =
+//                DataSource::GetDataAllPositions($this->userObject);
 
-            $this->dataForView['table_role_array'] =
-                DataSource::GetTableRoleMetrics($this->userObject);
+//            $this->dataForView['table_role_array'] =
+//                DataSource::GetTableRoleMetrics($this->userObject);
         }
     }
 
@@ -226,9 +226,8 @@ class DashboardController extends BaseController
 
     protected function fetchDashboardData(){
         $this->dataForView['Results']       = [];
-        $this->dataForView['Registered']    = Ranking::NOT_REGISTERED;
+
         $this->dataForView['Excellence']    = 0;
-        $this->dataForView['Rankings']      = null;
         $this->dataForView['History']       = null;
         $this->dataForView['Credits']       = null;
 
@@ -239,18 +238,10 @@ class DashboardController extends BaseController
         /**
          * 获取所有的排名, 自己的排名
          */
-        // Get the latest ranking date
-        $thisPeriod = $this->_getThisPeriod($this->userObject);
-        // 获取了所有的 Rankings: Get all rankings
-        $rankings = Ranking::Query($this->userObject, $thisPeriod);
-        $this->dataForView['Rankings'] = $rankings;
-
-        $myRanking = null;
-        $currentUserRankingRecord = Ranking::Query($this->userObject, $thisPeriod, true);
-        if($currentUserRankingRecord){
-            $myRanking = $currentUserRankingRecord['ranking'];
-            $this->dataForView['Registered'] = $currentUserRankingRecord['registered'];
-        }
+        $rankings = $this->_makeRankingReady();
+        /**
+         * 获取所有的排名, 自己的排名 end
+         */
 
         /**
          * 计算历史数据
@@ -287,6 +278,35 @@ class DashboardController extends BaseController
         }
         $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
         // 处理 Leader Board 的表格 结束
+    }
+
+    /**
+     * 获取所有的排名, 自己的排名
+     * @return array|bool
+     */
+    private function _makeRankingReady(){
+        // Get the latest ranking date
+        $thisPeriod = $this->_getThisPeriod($this->userObject);
+        // 获取了所有的 Rankings: Get all rankings
+        $rankings = Ranking::Query($this->userObject, $thisPeriod);
+        $this->dataForView['Rankings'] = $rankings;
+
+        $nationalRanking = null;
+        foreach ($rankings as $ranking) {
+            if($ranking['member_id'] == $this->userObject->getEmployeeCode()){
+                $this->userObject->registered = $ranking['registered'] === Ranking::REGISTERED;
+                $nationalRanking = $ranking['ranking'];
+                break;
+            }
+        }
+
+        /**
+         * Calculate the region and nationally ranking
+         */
+        $this->dataForView['rankingNationally'] = $nationalRanking;
+        $rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$nationalRanking);
+        $this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+        return $rankings;
     }
 
     /**
@@ -432,6 +452,9 @@ class DashboardController extends BaseController
         }
     }
 
+    /**
+     * @Deprecated
+     */
     private function _handleGagaIndicatorData(){
         $data= $this->dataForView['Results'];
         $ytd=0;

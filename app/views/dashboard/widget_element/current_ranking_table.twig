@@ -5,12 +5,12 @@
         </tr>
         <tr class="nissangray-light-back">
             <td>
-                <span class="rank">{{ dashboard.rankingNationally ? ordinal(dashboard.rankingNationally) : 'N/A' }}</span><br>
+                <span class="rank">{{ rankingNationally ? ordinal(rankingNationally) : 'N/A' }}</span><br>
                 <p>Nationally</p>
             </td>
-            {% if dashboard.rankingRegionally %}
+            {% if rankingRegionally %}
                 <td>
-                    <span class="rank">{{ ordinal(dashboard.rankingRegionally) }}</span><br>
+                    <span class="rank">{{ ordinal(rankingRegionally) }}</span><br>
                     <p>Regionally</p>
                 </td>
             {% endif %}

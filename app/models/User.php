@@ -122,6 +122,10 @@ class User extends BaseModel
         return $this;
     }
 
+    /**
+     * Get current user's positions
+     * @return array|null
+     */
     public function getPositions(){
         return $this->positions;
     }
