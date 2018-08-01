@@ -21,7 +21,7 @@
             content: 'YTD ';
         }
     </style>
-    <div class="container bg-white">
+    <div class="container bg-white" id="member-ranking-app">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">MEMBER RANKINGS</h1>
@@ -29,203 +29,99 @@
         </div>
         <div class="col-md-12" style="margin-bottom: 140px;">
             <div class="col-md-12">
-
-                <div id="myPopup" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Sales Manager - May </h4>
-                                <a class="print-icon" href="#" onclick="window.print();return false;"><i class="fa fa-print" aria-hidden="true" title="Print"></i></a> </div>
-                            <div class="modal-body">
-                                <div class="table-responsive" id="myPopup-Results"> </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Modal -->
-
-                <div class="row"> <br>
-                    <br>
+                <div class="row mt-40">
                     <div class="panel-group" id="accordion">
                         <div class="col-md-6">
-                            <div class="panel panel-default"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                    <div class="panel-heading squarebutton button-sales"> Sales</div>
-                                </a>
-                                <div id="collapseOne" class="panel-collapse collapse">
-                                    <div class="panel-body panel-square" >
-                                        <div class="col-md-4">
-                                            <h4 class="white">Sales Manager</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('M','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('M','C','R');">Current Regional</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('M','P','N');">Previous National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('M','P','R');">Previous Regional</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h4 class="white">Retail Sales Consultant</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('R','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('R','C','R');">Current Regional</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('R','P','N');">Previous National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('R','P','R');">Previous Regional</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h4 class="white">Fleet Manager/Sales Consultant</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('F','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('F','C','R');">Current Regional</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('F','P','N');">Previous National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('F','P','R');">Previous Regional</a></td>
-                                                </tr>
-                                            </table>
+                            {% for group in userGroups1 %}
+                                <div class="panel panel-default">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ group.name }}" style="{{ group.style }}">
+                                        <div class="panel-heading squarebutton {{ group.className }}">{{ group.name }}</div>
+                                    </a>
+                                    <div id="collapse{{ group.name }}" class="panel-collapse collapse">
+                                        <div class="panel-body panel-square" >
+                                            {% for member in group.members %}
+                                            <div class="col-md-{{ 12/count(group.members) }}">
+                                                <h4 class="white">{{ member.name }}</h4>
+                                                <table class="table">
+                                                {% if group.forAll %}
+                                                    {% for action in rankingForAll %}
+                                                    <tr>
+                                                        <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% for action in rankingForNationalOnly %}
+                                                        <tr>
+                                                            <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                </table>
+                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- -->
-                            <!-- -->
-                            <div class="panel panel-default" > <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-family: 'nissan_brandbold', Helvetica, Arial, sans-serif;">
-                                    <div class="panel-heading squarebutton button-service"> Service </div>
-                                </a>
-                                <div id="collapseTwo" class="panel-collapse collapse">
-                                    <div class="panel-body panel-square">
-                                        <div class="col-md-6">
-                                            <h4>Service Manager</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('SM','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('SM','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h4>Service Advisor</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('SA','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('SA','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
-
-                        <!--/end half-->
-
                         <div class="col-md-6">
-                            <div class="panel panel-default" > <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" >
-                                    <div class="panel-heading squarebutton button-parts"> Parts </div>
-                                </a>
-                                <div id="collapseThree" class="panel-collapse collapse">
-                                    <div class="panel-body panel-square">
-                                        <div class="col-md-6">
-                                            <h4>Parts Manager</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('PM','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('PM','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h4>Parts Sales Representative</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('PS','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('PS','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                                    <div class="panel-heading squarebutton button-admin"> Admin </div>
-                                </a>
-                                <div id="collapseFour" class="panel-collapse collapse">
-                                    <div class="panel-body panel-square">
-                                        <div class="col-md-4">
-                                            <h4>F&I Manager</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('I','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('I','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h4>Financial Controller</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('C','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('C','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h4>Stock Controller</h4>
-                                            <table class="table">
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('SC','C','N');">Current National</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a data-toggle="modal" href="#myPopup" onclick="showresults('SC','P','N');">Previous National</a></td>
-                                                </tr>
-                                            </table>
+                            {% for group in userGroups2 %}
+                                <div class="panel panel-default">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ group.name }}" style="{{ group.style }}">
+                                        <div class="panel-heading squarebutton {{ group.className }}">{{ group.name }}</div>
+                                    </a>
+                                    <div id="collapse{{ group.name }}" class="panel-collapse collapse">
+                                        <div class="panel-body panel-square" >
+                                            {% for member in group.members %}
+                                                <div class="col-md-{{ 12/count(group.members) }}">
+                                                    <h4 class="white">{{ member.name }}</h4>
+                                                    <table class="table">
+                                                        {% if group.forAll %}
+                                                            {% for action in rankingForAll %}
+                                                                <tr>
+                                                                    <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            {% for action in rankingForNationalOnly %}
+                                                                <tr>
+                                                                    <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </table>
+                                                </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
 
+                <div class="">
+                    <el-dialog title="" :visible.sync="dialogTableVisible">
+                        <div class="rankings-modal-title-wrap">
+                            <h4 class="modal-title">Sales Manager - May </h4>
+                            <a class="print-icon" href="#" v-on:click="printThis()"><i class="fa fa-print" aria-hidden="true" title="Print"></i></a>
+                        </div>
+                        <div class="rankings-table-title-wrap">
+                            <h3 class="text-center text-capitalize">${ modalTitle }</h3>
+                        </div>
+                        <div class="table-responsive" v-for="(block, idx) in blocks" :key="idx">
+                            <h3>${ block.category }</h3>
+                            <el-table :data="block.rows" stripe :row-class-name="tableRowClassName">
+                                <el-table-column property="r" label="Rank" width="80"></el-table-column>
+                                <el-table-column class-name="bold-text" width="200" property="n" label="Name"></el-table-column>
+                                <el-table-column property="d" width="280" label="Dealership"></el-table-column>
+                                <el-table-column property="s" label="State"></el-table-column>
+                                <el-table-column property="c" label="Credits"></el-table-column>
+                                <el-table-column align="center" class-name="reg" property="re" label="Registered"></el-table-column>
+                            </el-table>
+                        </div>
+                    </el-dialog>
+                </div>
             </div>
         </div>
     </div>

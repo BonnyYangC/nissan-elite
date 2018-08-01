@@ -212,4 +212,49 @@ $(document).ready(function(){
             events: CALENDAR_EVENTS
         });
     }
+
+    // Member rankings
+    var memberRankingsEl = document.getElementById('member-ranking-app');
+    if(memberRankingsEl){
+        var MemberRankingsApp = new Vue({
+            el: '#member-ranking-app',
+            delimiters: ['${', '}'],
+            data(){
+                return {
+                    blocks:[],
+                    modalTitle:'',
+                    dialogTableVisible:false,
+                    tableTitle:'Some title'
+                };
+            },
+            created(){
+
+            },
+            methods: {
+                handleClick: function(role, action){
+                    var that = this;
+                    axios.get(
+                        '/dashboard/get-rankings?role='+role+'&action='+action
+                    ).then(function(res){
+                        console.log(res.data);
+                        if(res.data.error_no === 100){
+                            that.blocks = res.data.data.blocks;
+                            that.modalTitle = res.data.data.modalTitle;
+                            that.dialogTableVisible = true;
+                        }
+                    });
+                },
+                printThis: function(){
+                    window.print();
+                    return false;
+                },
+                tableRowClassName({row, rowIndex}) {
+                    if (row.re === 'NO') {
+                        return 'warning-row';
+                    }
+                    return '';
+                }
+            }
+        });
+    }
 });

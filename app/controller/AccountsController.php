@@ -12,6 +12,7 @@ use App\models\nissan\Events;
 use App\models\nissan\Incentives;
 use App\models\role\FI;
 use App\models\role\FinanceController;
+use App\models\role\FleetSalesConsultant;
 use App\models\role\FleetSalesManager;
 use App\models\role\IRole;
 use App\models\role\PartsManager;
@@ -55,37 +56,37 @@ class AccountsController extends DashboardController
 
         switch ($position_to_use){
             case User::FI:
-                $this->_prepareForFinanceAndInsurance();
+                $role = new FI($this->userObject);
                 break;
             case User::FINANCE_CONTROLLER:
-                $this->_prepareForFinanceController();
+                $role = new FinanceController($this->userObject);
                 break;
             case User::PARTS_MANAGER:
-                $this->_prepareForPartsManager();
+                $role = new PartsManager($this->userObject);
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
                 $role = new RetailSalesConsultant($this->userObject);
                 break;
             case User::FLEET_SALES_CONSULTANTS:
-                $this->_prepareForRetailSalesConsultant();
+                $role = new FleetSalesConsultant($this->userObject);
                 break;
             case User::FLEET_SALES_MANAGER:
-                $this->_prepareForFleetSalesManager();
+                $role = new FleetSalesManager($this->userObject);
                 break;
             case User::SALES_MANAGER:
                 $role = new SalesManager($this->userObject);
                 break;
             case User::STOCK_CONTROLLER:
-                $this->_prepareForStockController();
+                $role = new StockController($this->userObject);
                 break;
             case User::PARTS_SALES_REP:
-                $this->_prepareForPartsSalesRep();
+                $role = new PartsSalesRep($this->userObject);
                 break;
             case User::SERVICE_MANAGER:
-                $this->_prepareForServiceManager();
+                $role = new ServiceManager($this->userObject);
                 break;
             case User::SERVICE_ADVISERS:
-                $this->_prepareForServiceAdviser();
+                $role = new ServiceAdviser($this->userObject);
                 break;
             default:
                 break;

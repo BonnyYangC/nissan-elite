@@ -27,7 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  * Route: /dashboard  -> Dashboard view
  */
 // static pages
-\App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard_new');
+\App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard');
 \App\core\Route::Instance()->get('/dashboard/MembersGuide',\App\controller\StaticPagesController::class, 'members_guide');
 \App\core\Route::Instance()->get('/dashboard/FAQ',\App\controller\StaticPagesController::class, 'faq');
 \App\core\Route::Instance()->get('/dashboard/MDguild',\App\controller\StaticPagesController::class, 'md_guide');
@@ -37,7 +37,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 \App\core\Route::Instance()->get('/dashboard/MDguild-events',\App\controller\StaticPagesController::class, 'md_guide_events');
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-past',\App\controller\StaticPagesController::class, 'md_guide_events_past');
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
-\App\core\Route::Instance()->get('/dashboard/Leaderboards',\App\controller\StaticPagesController::class, 'leader_boards');
 // static pages end
 // dynamic pages
 \App\core\Route::Instance()->get('/dashboard/ProductChallenge',\App\controller\StaticPagesController::class, 'product_challenge');
@@ -49,7 +48,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 \App\core\Route::Instance()->get('/dashboard/Incentives',\App\controller\AccountsController::class, 'incentives');
 \App\core\Route::Instance()->get('/dashboard/Metrics',\App\controller\AccountsController::class, 'metrics');
 
-
+// Ajax calls: For get rankings
+\App\core\Route::Instance()->get('/dashboard/Leaderboards',\App\controller\RankingsController::class, 'leader_boards');
+\App\core\Route::Instance()->get('/dashboard/get-rankings',\App\controller\RankingsController::class, 'get_rankings');
 /**
  * This is a must do action: dispatch at last
  */

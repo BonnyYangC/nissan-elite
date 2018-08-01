@@ -18,6 +18,12 @@ class Ranking extends BaseModel
     const NOT_REGISTERED    = 'NO';
     const REGISTERED        = 'YES';
 
+    const CURRENT           = 'Current';
+    const PREVIOUS          = 'Previous';
+    const REGIONAL          = 'Regional';
+    const NATIONAL          = 'National';
+
+
     const TABLE_NAME        = 'nissan_rankings';
     protected $tableName    = 'nissan_rankings';
 
@@ -130,6 +136,83 @@ class Ranking extends BaseModel
                 $result = $result[0];
             }
         }
+        return $result;
+    }
+
+    public static function GetByRole($position, Carbon $period, $region){
+        $companyJoin = ['users.company_id'=>'company_id'];
+
+        if($region === self::NATIONAL){
+            $order = [
+                'nissan_rankings.category','nissan_rankings.ranking'
+            ];
+        }else{
+            $order = [
+                'company.region',
+                'nissan_rankings.category',
+                'nissan_rankings.ranking',
+            ];
+        }
+
+        if($position === User::FLEET_SALES_CONSULTANTS || $position === User::FLEET_SALES_MANAGER){
+            // Use 'IN' condition
+            $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
+            $companyJoin['nissan_rankings.category'] = 'category';
+
+            if($region === self::NATIONAL){
+                $order = 'nissan_rankings.ranking';
+            }else{
+                $order = [
+                    'company.region',
+                    'nissan_rankings.ranking',
+                ];
+            }
+        }
+
+        $where = [
+            'AND'=>[
+//                'nissan_rankings.category'=>$user->getCompany()->category,
+                'role'=>$position,
+                'period'=>$period->format('Y-m').'-01'
+            ],
+            "ORDER" => $order
+        ];
+
+        $joins = [
+            '[><]users'=>['member_id'=>'employee_code'],
+            '[><]company'=>$companyJoin,
+            '[><]lookups'=>[
+                    'company.region'=>'code',
+                    'company.parent_id'=>'company_id',
+            ],
+        ];
+
+        $database = self::DB();
+
+        $columns = [
+            'nissan_rankings.id',
+            'nissan_rankings.period',
+            'nissan_rankings.member_id',
+            'nissan_rankings.dealer_code',
+            'nissan_rankings.ranking',
+            'nissan_rankings.category',
+            'nissan_rankings.registered',
+            'nissan_rankings.total',
+            'users.firstname',
+            'users.lastname',
+            'company.company_name',
+            'company.region',
+            'company.parent_id',
+            'company.company_state'
+        ];
+
+        $result = $database->select(
+            self::TABLE_NAME,
+            $joins,
+            $columns,
+            $where
+        );
+
         return $result;
     }
 

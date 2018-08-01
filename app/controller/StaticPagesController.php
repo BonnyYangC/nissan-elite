@@ -7,6 +7,7 @@
  */
 
 namespace App\controller;
+use App\models\User;
 use Klein\Request;
 use Klein\Response;
 
@@ -146,14 +147,6 @@ class StaticPagesController extends DashboardController
     public function product_challenge_current_event(){
         $this->dataForView['currentUri'] = 'ProductChallenge';
         $this->render('dashboard/static/product_challenge_current_event');
-        return;
-    }
-    /**
-     * Load leader boards view
-     */
-    public function leader_boards(){
-        $this->dataForView['currentUri'] = 'LeaderBoards';
-        $this->render('dashboard/static/leader_boards');
         return;
     }
 }

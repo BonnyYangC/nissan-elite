@@ -108,19 +108,6 @@ class DashboardController extends BaseController
 
 
     /**
-     * @param IRole $role
-     * @param int $ytd
-     */
-    private function _prepareForFinanceAndInsurance(IRole $role,$ytd){
-        $this->dataForView['dash'] = $role->getDashboardViewData($this->metricsData, $ytd);
-        $this->dataForView['dash_template_file_name'] = $role->getTemplateName();
-        $this->dataForView['extra_js'] = [
-            'https://www.gstatic.com/charts/loader.js',
-            asset('js/dashboard/'.$role->getTemplateName().'.js')
-        ];
-    }
-
-    /**
      * Retrieve data and pass to the view by Given role and year
      * @param IRole $role
      * @param null $ytd
@@ -166,7 +153,7 @@ class DashboardController extends BaseController
     /**
      * Dashboard request handler
      */
-    public function dashboard_new(){
+    public function dashboard(){
         if(empty($this->userObject)){
             $user = new User($this->currentUserId);
             $this->userObject = $user;
@@ -240,9 +227,11 @@ class DashboardController extends BaseController
         }
     }
 
+    /**
+     * Fetch data for dashboard view and inject
+     */
     protected function fetchDashboardData(){
         $this->dataForView['Results']       = [];
-
         $this->dataForView['Excellence']    = 0;
         $this->dataForView['History']       = null;
         $this->dataForView['Credits']       = null;
@@ -332,7 +321,7 @@ class DashboardController extends BaseController
     /**
      * This function is for "My Dashboard" menu item
      */
-    public function dashboard(){
+    public function dashboard_no_use(){
         if(empty($this->userObject)){
             $user = new User($this->currentUserId);
             $this->userObject = $user;
@@ -472,68 +461,13 @@ class DashboardController extends BaseController
         }
     }
 
-    /**
-     * @Deprecated
-     */
-    private function _handleGagaIndicatorData(){
-        $data= $this->dataForView['Results'];
-        $ytd=0;
-        $lifetime=0;
-        $monthly='';
-        $metrics='';
-        $min=0;
-        $max=100;
-        $color="#CCCCC";
-        $txt="";
-        $dollar="";
-        $excellence=0;
-        $aryCredits=$this->dataForView['Credits'];
-        $training='';
-
-        for($i=0; $i<12; $i++)
-        {
-            $period=mktime(0,0,0,4+$i,1,env('YEAR',2018));
-            if(isset($aryCredits[date("M-Y", $period)]))
-            {
-                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
-
-                $monthly.=(empty($monthly) ? '' : ',') . "['" . date("M", $period) . "'," . $aryCredits[date("M-Y", $period)]['mtd'] . "]";
-            }
-            else
-            {
-                $monthly.=(empty($monthly) ? '' : ',') . "['" . date("M", $period) . "',0]";
-
-            }
-            if (isset($data[date("M-Y", $period)]))
-            {
-                $lifetime=(isset($data[date("M-Y", $period)]['lifetime']) ? $data[date("M-Y", $period)]['lifetime'] : $data[date("M-Y", $period)]['credit_mtd']);
-                $excellence=$data[date("M-Y", $period)]['excellence'];
-            }
-
-        }
-
-        $this->dataForView['yearToDateTotal'] = $ytd;
-        $this->dataForView['minLevel'] = 0;
-        $this->dataForView['maxLevel'] = 3000;
-    }
-
-    private function _handleRanking($rows, User $user){
-        $result = [];
-        foreach ($rows as $row) {
-            $result[] = $row;
-            if($row['member_id'] == $user->getEmployeeCode()){
-                $this->dataForView['Registered'] = $row['registered'];
-            }
-        }
-        return $result;
-    }
 
     /**
      * Generate the "this period" data
      * @param User $user
      * @return Carbon|null|string
      */
-    private function _getThisPeriod(User $user){
+    protected function _getThisPeriod(User $user){
         $thisPeriod = date('Y-m').'-01';
         $thisPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
 

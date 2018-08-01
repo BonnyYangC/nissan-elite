@@ -91,3 +91,37 @@
 .fc button .fc-icon {
     font-size: 10px;
 }
+/* rankings */
+.rankings-modal-title-wrap{
+    margin-top: -41px;
+    padding-bottom: 16px;
+    border-bottom: solid 1px #cccccc;
+}
+.rankings-table-title-wrap{
+    margin-top: 24px;
+}
+.rankings-table-title-wrap h3{
+    font-size: 28px !important;
+    text-transform: uppercase;
+}
+.el-table__header thead tr{
+    background-color: #c40030;
+    color: white;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+.el-table__header thead tr th{
+    background-color: #c40030;
+    color: white;
+    line-height: 1.42857143;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: lighter;
+}
+.bold-text{
+    font-weight: bold;
+}
+.warning-row td.reg{
+    color: red;
+}
