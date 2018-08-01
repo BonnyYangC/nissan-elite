@@ -20,6 +20,7 @@ use App\models\role\FleetSalesManager;
 use App\models\role\IRole;
 use App\models\role\RetailSalesConsultant;
 use App\models\role\SalesManager;
+use App\models\role\ServiceAdviser;
 use App\models\User;
 use Carbon\Carbon;
 use Klein\Request;
@@ -39,6 +40,13 @@ class DashboardController extends BaseController
      * @var bool
      */
     protected $userHasMultipleRoles = false;
+
+    /**
+     * Need to show the regional ranking in dashboard page
+     * @var bool
+     */
+    protected $needRegionalRanking = false;
+
     /**
      * 这个是一个要操作的数据表名称, 和用户当前提交上来的 asRole 相关
      * @var null |string
@@ -165,6 +173,7 @@ class DashboardController extends BaseController
         $this->fetchDashboardData();
 
         $role = null;
+        $needRegionalRanking = false;
 
         switch ($this->userObject->position){
             case User::FI:
@@ -177,15 +186,19 @@ class DashboardController extends BaseController
                 $this->_prepareForPartsManager();
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
+                $this->needRegionalRanking = true;
                 $role = new RetailSalesConsultant($this->userObject);
                 break;
             case User::FLEET_SALES_CONSULTANTS:
+                $this->needRegionalRanking = true;
                 $role = new FleetSalesConsultant($this->userObject);
                 break;
             case User::FLEET_SALES_MANAGER:
+                $this->needRegionalRanking = true;
                 $role = new FleetSalesManager($this->userObject);
                 break;
             case User::SALES_MANAGER:
+                $this->needRegionalRanking = true;
                 $role = new SalesManager($this->userObject);
                 break;
             case User::STOCK_CONTROLLER:
@@ -198,7 +211,7 @@ class DashboardController extends BaseController
                 $this->_prepareForServiceManager();
                 break;
             case User::SERVICE_ADVISERS:
-                $this->_prepareForServiceAdviser();
+                $role = new ServiceAdviser($this->userObject);
                 break;
             default:
                 break;
@@ -304,8 +317,12 @@ class DashboardController extends BaseController
          * Calculate the region and nationally ranking
          */
         $this->dataForView['rankingNationally'] = $nationalRanking;
-        $rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$nationalRanking);
-        $this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+
+        $this->dataForView['rankingRegionally'] = null;
+        if($this->needRegionalRanking){
+            $rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$nationalRanking);
+            $this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+        }
         return $rankings;
     }
 

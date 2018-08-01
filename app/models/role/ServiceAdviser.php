@@ -8,16 +8,15 @@
 
 namespace App\models\role;
 
+use App\models\role\status\ServiceAdviserStatus;
 use App\models\User;
-class ServiceAdviser
+class ServiceAdviser extends BaseRole implements IRole
 {
-    private $user;
-
     public $name='service_adviser';
 
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
     /**
@@ -73,6 +72,86 @@ class ServiceAdviser
             "FOLLOW_UP" => $fu,
             "FOLLOW_UP_RESULTS" => $fu_results,
             "TRAINING" => $training,
+        ];
+    }
+
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->name;
+    }
+
+    public function getDashboardViewData($data, $ytdParam)
+    {
+        $ytd = 0;
+        $aryCredits = $data['Credits'];
+        $dataResults = $data['Results'];
+
+        for($i=0; $i<12; $i++)
+        {
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+
+            if(isset($aryCredits[date("M-Y", $period)]))
+            {
+                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
+                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                /**
+                 * From Data results
+                 */
+                $this->serviceRecommendation['data'][] = intval($dataResults[date("M-Y", $period)]['recom_credit']);
+                $this->advice['data'][] = intval($dataResults[date("M-Y", $period)]['trust_credit']);
+                $this->VehicleCleanliness['data'][]  = intval($dataResults[date("M-Y", $period)]['fu_credit']);
+                $this->EMW['data'][]  = intval($dataResults[date("M-Y", $period)]['emw_credit']);
+                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
+                    + $dataResults[date("M-Y", $period)]['pathway']
+                    + $dataResults[date("M-Y", $period)]['classroom'];
+            }
+            else
+            {
+                $this->JS_credits[date("M", $period)]  = 0;
+                /**
+                 * From Data results
+                 */
+                $this->serviceRecommendation['data'][] = 0;
+                $this->advice['data'][]  = 0;
+                $this->VehicleCleanliness['data'][]  = 0;
+                $this->EMW['data'][]  = 0;
+                $this->training['data'][]  = 0;
+            }
+
+            // User parent method to handle lifeTime and excellence
+            $this->_setupLifeTimeAndExcellence($data, $period);
+        }
+
+        // Status
+        $status = new ServiceAdviserStatus($ytd);
+
+        return [
+            // For js array
+            "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
+            // For PHP array
+            "lifeTime"      =>$this->lifeTime,
+            "excellence"    =>$this->excellence,
+            "ytd"           =>$ytd,
+            'rewardsDollars'=>$this->user->getDollarRewardsRange(),
+            'metricsCurrentStatus'   =>[
+                $this->serviceRecommendation,
+                $this->advice,
+                $this->VehicleCleanliness,
+                $this->EMW,
+                $this->training,
+            ],
+            'statusChart'=>[
+                'gageArray'=>$status->getGageIndicators(),
+                'color'=>$status->getColor(),
+                'colorText'=>$status->getColorText(),
+                'toReach'=>$status->getToReach(),
+                'min'=>$status->getMin(),
+                'max'=>$status->getMax(),
+            ],
         ];
     }
 }

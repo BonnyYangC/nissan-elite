@@ -36,19 +36,19 @@ class RetailSalesConsultant extends BaseRole implements IRole
         /**
          * 开始确认并查找当前用户的名次: Region and National
          */
-        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
-            ? $data['MyRanking'] : null;
-
-        $rankingNationally = null;
-        if(isset($data['Rankings']) && !empty($data['Rankings'])){
-            // 从 ranking 的表格里循环查找, 直到确定自己的名次
-            foreach ($data['Rankings'] as $index => $ranking) {
-                if($ranking['member_id'] == $this->user->getEmployeeCode()){
-                    $rankingNationally = $index + 1;
-                    break;
-                }
-            }
-        }
+//        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
+//            ? $data['MyRanking'] : null;
+//
+//        $rankingNationally = null;
+//        if(isset($data['Rankings']) && !empty($data['Rankings'])){
+//            // 从 ranking 的表格里循环查找, 直到确定自己的名次
+//            foreach ($data['Rankings'] as $index => $ranking) {
+//                if($ranking['member_id'] == $this->user->getEmployeeCode()){
+//                    $rankingNationally = $index + 1;
+//                    break;
+//                }
+//            }
+//        }
         /**
          * 开始确认并查找当前用户的名次: End
          */
@@ -85,18 +85,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->training['data'][]  = 0;
             }
 
-            if (isset($dataResults[date("M-Y", $period)]))
-            {
-                $this->lifeTime =
-                    (isset($dataResults[date("M-Y", $period)]['lifetime']) ?
-                        $dataResults[date("M-Y", $period)]['lifetime'] :
-                        $dataResults[date("M-Y", $period)]['credit_mtd']);
-            }
-
-            if ( !$this->excellence)
-            {
-                $this->excellence =$data[date("M-Y", $period)]['excellence'];
-            }
+            $this->_setupLifeTimeAndExcellence($data,$period);
         }
 
         // Status
@@ -124,8 +113,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 'min'=>$status->getMin(),
                 'max'=>$status->getMax(),
             ],
-            'rankingNationally'=> $rankingNationally,
-            'rankingRegionally'=> $myRegionallyRanking,
+//            'rankingNationally'=> $rankingNationally,
+//            'rankingRegionally'=> $myRegionallyRanking,
         ];
     }
 
