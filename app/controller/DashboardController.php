@@ -15,6 +15,7 @@ use App\models\nissan\Events;
 use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\role\FI;
+use App\models\role\FinanceController;
 use App\models\role\FleetSalesConsultant;
 use App\models\role\FleetSalesManager;
 use App\models\role\IRole;
@@ -179,7 +180,7 @@ class DashboardController extends BaseController
                 $this->_prepareForFinanceAndInsurance();
                 break;
             case User::FINANCE_CONTROLLER:
-                $this->_prepareForFinanceController();
+                $role = new FinanceController($this->userObject);
                 break;
             case User::PARTS_MANAGER:
                 $this->_prepareForPartsManager();

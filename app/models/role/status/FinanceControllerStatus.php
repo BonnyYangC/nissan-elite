@@ -3,16 +3,16 @@
  * Created by PhpStorm.
  * User: justinwang
  * Date: 1/8/18
- * Time: 11:38 AM
+ * Time: 12:00 PM
  */
 
 namespace App\models\role\status;
 
 
-class StockControllerStatus extends GageStatus
+class FinanceControllerStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(9000, 12000, 16000, 22000, $yearToDate, 30000);
+        parent::__construct(9000, 12000, 16000, 20000, $yearToDate, 30000);
     }
 }
