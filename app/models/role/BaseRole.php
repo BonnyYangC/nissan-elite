@@ -36,12 +36,12 @@ class BaseRole
     public $excellence = null;
     public $newVehicleSales = [
         'label'=>'New Vehicle Sales',
-        'backgroundColor' => '#333333',
+        'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
     public $salesRecommendationSaturation   = [
         'label'=>'Sales Recommendation R6M',
-        'backgroundColor' => IColor::DART_GREY, // dark grey
+        'backgroundColor' => IColor::DARK_GREY, // dark grey
         'data'=>[]
     ];
     public $followUpSaturation             = [
@@ -71,7 +71,7 @@ class BaseRole
     ];
     public $middleMonth = [
         'label'=>'Mid Mth',
-        'backgroundColor' => '#d2d2d2',
+        'backgroundColor' => IColor::LIGHT_GREY,
         'data'=>[]
     ];
 
@@ -83,7 +83,7 @@ class BaseRole
     ];
     public $advice = [
         'label'=>'Advice',
-        'backgroundColor' => IColor::DART_GREY,
+        'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
     public $VehicleCleanliness = [

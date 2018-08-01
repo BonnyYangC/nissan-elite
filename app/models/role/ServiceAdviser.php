@@ -8,6 +8,7 @@
 
 namespace App\models\role;
 
+use App\models\role\status\IColor;
 use App\models\role\status\ServiceAdviserStatus;
 use App\models\User;
 class ServiceAdviser extends BaseRole implements IRole
@@ -101,10 +102,11 @@ class ServiceAdviser extends BaseRole implements IRole
                 /**
                  * From Data results
                  */
-                $this->serviceRecommendation['data'][] = intval($dataResults[date("M-Y", $period)]['recom_credit']);
-                $this->advice['data'][] = intval($dataResults[date("M-Y", $period)]['trust_credit']);
-                $this->VehicleCleanliness['data'][]  = intval($dataResults[date("M-Y", $period)]['fu_credit']);
-                $this->EMW['data'][]  = intval($dataResults[date("M-Y", $period)]['emw_credit']);
+                $this->matchedOW['data'][] = intval($dataResults[date("M-Y", $period)]['order_write_credit']);
+                $this->newVehicleSales['data'][] = intval($dataResults[date("M-Y", $period)]['actual_sales']);
+                $this->followUpPercentage['data'][]  = intval($dataResults[date("M-Y", $period)]['follow_up_ce']);
+                $this->DlrRec['data'][]  = intval($dataResults[date("M-Y", $period)]['ce_recomendation']);
+                $this->middleMonth['data'][]  = intval($dataResults[date("M-Y", $period)]['retail_midmth']);
                 $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
                     + $dataResults[date("M-Y", $period)]['pathway']
                     + $dataResults[date("M-Y", $period)]['classroom'];
@@ -115,15 +117,15 @@ class ServiceAdviser extends BaseRole implements IRole
                 /**
                  * From Data results
                  */
-                $this->serviceRecommendation['data'][] = 0;
-                $this->advice['data'][]  = 0;
-                $this->VehicleCleanliness['data'][]  = 0;
-                $this->EMW['data'][]  = 0;
+                $this->matchedOW['data'][] = 0;
+                $this->newVehicleSales['data'][]  = 0;
+                $this->followUpPercentage['data'][]  = 0;
+                $this->DlrRec['data'][]  = 0;
+                $this->middleMonth['data'][]  = 0;
                 $this->training['data'][]  = 0;
             }
 
-            // User parent method to handle lifeTime and excellence
-            $this->_setupLifeTimeAndExcellence($data, $period);
+            $this->_setupLifeTimeAndExcellence($data,$period);
         }
 
         // Status
@@ -138,10 +140,11 @@ class ServiceAdviser extends BaseRole implements IRole
             "ytd"           =>$ytd,
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
-                $this->serviceRecommendation,
-                $this->advice,
-                $this->VehicleCleanliness,
-                $this->EMW,
+                $this->matchedOW,
+                $this->newVehicleSales,
+                $this->DlrRec,
+                $this->followUpPercentage,
+                $this->middleMonth,
                 $this->training,
             ],
             'statusChart'=>[

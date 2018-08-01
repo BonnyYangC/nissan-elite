@@ -21,6 +21,7 @@ use App\models\role\IRole;
 use App\models\role\RetailSalesConsultant;
 use App\models\role\SalesManager;
 use App\models\role\ServiceAdviser;
+use App\models\role\StockController;
 use App\models\User;
 use Carbon\Carbon;
 use Klein\Request;
@@ -171,9 +172,7 @@ class DashboardController extends BaseController
          * Inject All necessary data to the view
          */
         $this->fetchDashboardData();
-
         $role = null;
-        $needRegionalRanking = false;
 
         switch ($this->userObject->position){
             case User::FI:
@@ -202,7 +201,7 @@ class DashboardController extends BaseController
                 $role = new SalesManager($this->userObject);
                 break;
             case User::STOCK_CONTROLLER:
-                $this->_prepareForStockController();
+                $role = new StockController($this->userObject);
                 break;
             case User::PARTS_SALES_REP:
                 $this->_prepareForPartsSalesRep();

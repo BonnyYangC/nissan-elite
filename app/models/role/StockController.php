@@ -8,16 +8,46 @@
 
 namespace App\models\role;
 
+use App\models\role\status\IColor;
+use App\models\role\status\StockControllerStatus;
 use App\models\User;
-class StockController
+class StockController extends BaseRole implements IRole
 {
-    private $user;
-
     public $name='stock_controller';
+
+    /**
+     * View's data
+     */
+    public $StockCover = [
+        'label'=>'Stock Cover',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
+    public $OWDataEntry = [
+        'label'=>'OW Data Entry',
+        'backgroundColor' => IColor::DARK_GREY,
+        'data'=>[]
+    ];
+    public $RetailMidMth = [
+        'label'=>'Retail % Mid Mth',
+        'backgroundColor' => IColor::MID_GREY,
+        'data'=>[]
+    ];
+    public $OWCompliance = [
+        'label'=>'OW Compliance',
+        'backgroundColor' => IColor::LOW_RED,
+        'data'=>[]
+    ];
+    public $Davo = [
+        'label'=>'Davo',
+        'backgroundColor' => IColor::LIGHT_GREY,
+        'data'=>[]
+    ];
+    /* Views data */
 
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
     /**
@@ -79,6 +109,89 @@ class StockController
             "DAVO" => $davo,
             "DAVO_RESULTS" => $davo_results,
             "TRAINING" => $training
+        ];
+    }
+
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->name;
+    }
+
+    public function getDashboardViewData($data, $ytdParam)
+    {
+        $ytd = 0;
+        $aryCredits = $data['Credits'];
+        $dataResults = $data['Results'];
+
+        for($i=0; $i<12; $i++)
+        {
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+
+            if(isset($aryCredits[date("M-Y", $period)]))
+            {
+                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
+                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                /**
+                 * From Data results
+                 */
+                $this->StockCover['data'][] = intval($dataResults[date("M-Y", $period)]['stock_credit']);
+                $this->OWDataEntry['data'][] = intval($dataResults[date("M-Y", $period)]['ow_credit']);
+                $this->RetailMidMth['data'][]  = intval($dataResults[date("M-Y", $period)]['retail_credit']);
+                $this->OWCompliance['data'][]  = intval($dataResults[date("M-Y", $period)]['matched_credit']);
+                $this->Davo['data'][]  = intval($dataResults[date("M-Y", $period)]['davo_credit']);
+                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
+                    + $dataResults[date("M-Y", $period)]['pathway']
+                    + $dataResults[date("M-Y", $period)]['classroom'];
+            }
+            else
+            {
+                $this->JS_credits[date("M", $period)]  = 0;
+                /**
+                 * From Data results
+                 */
+                $this->StockCover['data'][] = 0;
+                $this->OWDataEntry['data'][]  = 0;
+                $this->RetailMidMth['data'][]  = 0;
+                $this->OWCompliance['data'][]  = 0;
+                $this->Davo['data'][]  = 0;
+                $this->training['data'][]  = 0;
+            }
+
+            // User parent method to handle lifeTime and excellence
+            $this->_setupLifeTimeAndExcellence($data, $period);
+        }
+
+        // Status
+        $status = new StockControllerStatus($ytd);
+
+        return [
+            // For js array
+            "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
+            // For PHP array
+            "lifeTime"      =>$this->lifeTime,
+            "excellence"    =>$this->excellence,
+            "ytd"           =>$ytd,
+            'rewardsDollars'=>$this->user->getDollarRewardsRange(),
+            'metricsCurrentStatus'   =>[
+                $this->StockCover,
+                $this->OWDataEntry,
+                $this->RetailMidMth,
+                $this->OWCompliance,
+                $this->Davo,
+                $this->training,
+            ],
+            'statusChart'=>[
+                'gageArray'=>$status->getGageIndicators(),
+                'color'=>$status->getColor(),
+                'colorText'=>$status->getColorText(),
+                'toReach'=>$status->getToReach(),
+                'min'=>$status->getMin(),
+                'max'=>$status->getMax(),
+            ],
         ];
     }
 }
