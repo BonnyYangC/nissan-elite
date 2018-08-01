@@ -19,9 +19,12 @@ use App\models\role\FinanceController;
 use App\models\role\FleetSalesConsultant;
 use App\models\role\FleetSalesManager;
 use App\models\role\IRole;
+use App\models\role\PartsManager;
+use App\models\role\PartsSalesRep;
 use App\models\role\RetailSalesConsultant;
 use App\models\role\SalesManager;
 use App\models\role\ServiceAdviser;
+use App\models\role\ServiceManager;
 use App\models\role\StockController;
 use App\models\User;
 use Carbon\Carbon;
@@ -177,13 +180,13 @@ class DashboardController extends BaseController
 
         switch ($this->userObject->position){
             case User::FI:
-                $this->_prepareForFinanceAndInsurance();
+                $role = new FI($this->userObject);
                 break;
             case User::FINANCE_CONTROLLER:
                 $role = new FinanceController($this->userObject);
                 break;
             case User::PARTS_MANAGER:
-                $this->_prepareForPartsManager();
+                $role = new PartsManager($this->userObject);
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
                 $this->needRegionalRanking = true;
@@ -205,10 +208,10 @@ class DashboardController extends BaseController
                 $role = new StockController($this->userObject);
                 break;
             case User::PARTS_SALES_REP:
-                $this->_prepareForPartsSalesRep();
+                $role = new PartsSalesRep($this->userObject);
                 break;
             case User::SERVICE_MANAGER:
-                $this->_prepareForServiceManager();
+                $role = new ServiceManager($this->userObject);
                 break;
             case User::SERVICE_ADVISERS:
                 $role = new ServiceAdviser($this->userObject);

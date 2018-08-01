@@ -9,9 +9,11 @@
 namespace App\models\role;
 
 
+use App\models\role\status\FiStatus;
+use App\models\role\status\IColor;
 use App\models\User;
 
-class FI implements IRole
+class FI extends BaseRole implements IRole
 {
     const MAX           = 60000;
     const MIN           = 0;
@@ -28,114 +30,104 @@ class FI implements IRole
 
     private $dollars = [300,600,1000,1500];
 
-    /**
-     * @var User
-     */
-    private $user;
-
     public $name='fi';
+
+    public $NFSA_Contracts = [
+        'label'=>'NFSA Contracts',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
+    public $Insurance = [
+        'label'=>'Insurance',
+        'backgroundColor' => IColor::DARK_GREY,
+        'data'=>[]
+    ];
+    public $EMW_Genuine_Extended = [
+        'label'=>'EMW Genuine/Extended',
+        'backgroundColor' => IColor::MID_GREY,
+        'data'=>[]
+    ];
+    public $SalesPenetration = [
+        'label'=>'Sales Penetration',
+        'backgroundColor' => IColor::LOW_RED,
+        'data'=>[]
+    ];
+    public $FollowUp = [
+        'label'=>'Follow Up',
+        'backgroundColor' => IColor::LOW_RED,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
-    public function getDashboardViewData($data, $ytd)
+    public function getDashboardViewData($data, $ytdParam)
     {
-        // TODO: Implement getDashboardViewData() method.
-        $nfsa=$ins=$emw=$penetration=$fu='';
-
-        $dollar='<tr class="active">';
-        foreach ($this->dollars as $item) {
-            $dollar .= '<td align="center">$'.$item.'</td>';
-        }
-        $dollar .= '</tr>';
+        $ytd = 0;
+        $aryCredits = $data['Credits'];
+        $dataResults = $data['Results'];
 
         for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,env('YEAR',2017));
-            if(isset($data[date("M-Y", $period)]))
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+
+            if(isset($aryCredits[date("M-Y", $period)]))
             {
-                $nfsa.=(empty($nfsa)
-                        ? '{ label: \'NFSA Contracts\', backgroundColor: window.chartColors.black, data:['
-                        : ',') . $data[date("M-Y", $period)]['credit_actual_sales'];
-                $ins.=(empty($ins)
-                        ? '{ label: \'Insurance\', backgroundColor: window.chartColors.darkgrey, data:['
-                        : ',') . ($data[date("M-Y", $period)]['credits_mvi'] + $data[date("M-Y", $period)]['credits_vpi'] + $data[date("M-Y", $period)]['credits_pkg']);
-                $emw.=(empty($emw)
-                        ? '{ label: \'EMW Genuine/Extended\', backgroundColor: window.chartColors.midgrey, data:['
-                        : ',') . $data[date("M-Y", $period)]['credits_emw'];
-                $penetration.=(empty($penetration)
-                        ? '{ label: \'Sales Penetration\', backgroundColor: window.chartColors.lowred, data:['
-                        : ',') . $data[date("M-Y", $period)]['credits_penetration'];
-                $fu.=(empty($fu)
-                        ? '{ label: \'Follow Up\', backgroundColor: window.chartColors.lightgrey, data:['
-                        : ',') . $data[date("M-Y", $period)]['credits_fi'];
+                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
+                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                /**
+                 * From Data results
+                 */
+                $this->NFSA_Contracts['data'][] = intval($dataResults[date("M-Y", $period)]['credit_actual_sales']);
+                $this->Insurance['data'][] = intval($dataResults[date("M-Y", $period)]['credits_mvi']);
+                $this->EMW_Genuine_Extended['data'][]  = intval($dataResults[date("M-Y", $period)]['credits_emw']);
+                $this->SalesPenetration['data'][]  = intval($dataResults[date("M-Y", $period)]['credits_penetration']);
+                $this->FollowUp['data'][]  = intval($dataResults[date("M-Y", $period)]['credits_fi']);
             }
             else
             {
-                $nfsa.=(empty($nfsa)
-                        ? '{ label: \'NFSA Contracts\', backgroundColor: window.chartColors.black, data:['
-                        : ',') . '0';
-                $ins.=(empty($ins)
-                        ? '{ label: \'Insurance\', backgroundColor: window.chartColors.darkgrey, data:['
-                        : ',') . '0';
-                $emw.=(empty($emw)
-                        ? '{ label: \'EMW Genuine/Extended\', backgroundColor: window.chartColors.midgrey, data:['
-                        : ',') . '0';
-                $penetration.=(empty($penetration)
-                        ? '{ label: \'Sales Penetration\', backgroundColor: window.chartColors.lowred, data:['
-                        : ',') . '0';
-                $fu.=(empty($fu)
-                        ? '{ label: \'Follow Up\', backgroundColor: window.chartColors.lightgrey, data:['
-                        : ',') . '0';
+                $this->JS_credits[date("M", $period)]  = 0;
+                /**
+                 * From Data results
+                 */
+                $this->NFSA_Contracts['data'][] = 0;
+                $this->Insurance['data'][]  = 0;
+                $this->EMW_Genuine_Extended['data'][]  = 0;
+                $this->SalesPenetration['data'][]  = 0;
+                $this->FollowUp['data'][]  = 0;
             }
+
+            $this->_setupLifeTimeAndExcellence($data,$period);
         }
 
-        $nfsa.=']}';
-        $ins.=']}';
-        $emw.=']}';
-        $penetration.=']}';
-        $fu.=']}';
-        $metrics=$nfsa . ',' . $ins . ',' . $emw . ',' . $penetration . ',' . $fu;
-
-        /* Status Level Thresholds */
-        $gage_indicators = "";
-        $gage_indicators .= "generateGageIndicator('g1', " . (self::CONSUL / self::MAX) * 100 . ", '".self::CONSUL_COLOR."', '".IRole::CONSUL_STR ."');";
-        $gage_indicators .= "generateGageIndicator('g1', " . (self::DIPLOMAT / self::MAX) * 100 . ", '".self::DIPLOMAT_COLOR."', '".IRole::DIPLOMAT_STR ."');";
-        $gage_indicators .= "generateGageIndicator('g1', " . (self::AMBASSADOR / self::MAX) * 100 . ", '".self::AMBASSADOR_COLOR."', '".IRole::AMBASSADOR_STR ."');";
-        $gage_indicators .= "generateGageIndicator('g1', " . (self::PREMIER / self::MAX) * 100 . ", '".self::PREMIER_COLOR."', '".IRole::PREMIER_STR ."');";
-
-        if ( $ytd>= self::PREMIER) {
-            //	Premier
-            $color=self::PREMIER_COLOR;
-            $txt='';
-        } elseif ($ytd>=self::AMBASSADOR) {
-            //	Ambassador
-            // $min=6000;
-            $color=self::PREMIER_COLOR;
-            $txt = '<span style="color:#ff0000;margin-top:20px;">' . number_format(self::PREMIER - $ytd,0) . '</span> credits to reach Premier level';
-        } elseif ($ytd >=self::DIPLOMAT) {
-            //	Diplomat
-            // $min=11000;
-            $color=self::DIPLOMAT_COLOR;
-            $txt = '<span style="color:#ff0000;margin-top:20px;">' . number_format(self::AMBASSADOR-$ytd,0) . '</span> credits to reach Ambassador level';
-        } elseif ($ytd >= self::CONSUL) {
-            //	Consul
-            $color=self::CONSUL_COLOR;
-            $txt = '<span style="color:#ff0000;margin-top:20px;">' . number_format(self::DIPLOMAT-$ytd,0) . '</span> credits to reach Diplomat level';
-        } else {
-            //$min=$ytd;
-            $color='#000';
-            $txt = '<span style="color:#ff0000;margin-top:20px;">' . number_format(self::CONSUL - $ytd,0) . '</span> credits to reach Consul level';
-        }
+        // Status
+        $status = new FiStatus($ytd);
 
         return [
-            'color'             =>$color,
-            'txt'               =>$txt,
-            'gage_indicators'   =>$gage_indicators,
-            'metrics'           =>$metrics,
-            'dollar'            =>$dollar,
+            // For js array
+            "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
+            // For PHP array
+            "lifeTime"      =>$this->lifeTime,
+            "excellence"    =>$this->excellence,
+            "ytd"           =>$ytd,
+            'rewardsDollars'=>$this->user->getDollarRewardsRange(),
+            'metricsCurrentStatus'   =>[
+                $this->NFSA_Contracts,
+                $this->Insurance,
+                $this->EMW_Genuine_Extended,
+                $this->SalesPenetration,
+                $this->FollowUp,
+            ],
+            'statusChart'=>[
+                'gageArray'=>$status->getGageIndicators(),
+                'color'=>$status->getColor(),
+                'colorText'=>$status->getColorText(),
+                'toReach'=>$status->getToReach(),
+                'min'=>$status->getMin(),
+                'max'=>$status->getMax(),
+            ],
         ];
     }
 

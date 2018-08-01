@@ -8,16 +8,22 @@
 
 namespace App\models\role;
 
+use App\models\role\status\PartsSalesRepStatus;
 use App\models\User;
-class PartsSalesRep
+use App\models\role\status\IColor;
+class PartsSalesRep extends BaseRole implements IRole
 {
-    private $user;
-
     public $name='parts_sales_rep';
+
+    public $GENUINE_REPLACEMENT_PARTS = [
+        'label'=>'GENUINE REPLACEMENT PARTS',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
-        $this->user = $user;
+        parent::__construct($user);
     }
 
     /**
@@ -54,6 +60,76 @@ class PartsSalesRep
             "GRP" => $grp,
             "GRP_RESULTS" => $grp_results,
             "TRAINING" => $training,
+        ];
+    }
+
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        return $this->name;
+    }
+
+    public function getDashboardViewData($data, $ytdParam)
+    {
+        $ytd = 0;
+        $aryCredits = $data['Credits'];
+        $dataResults = $data['Results'];
+
+        for($i=0; $i<12; $i++)
+        {
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+
+            if(isset($aryCredits[date("M-Y", $period)]))
+            {
+                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
+                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                /**
+                 * From Data results
+                 */
+                $this->GENUINE_REPLACEMENT_PARTS['data'][] = intval($dataResults[date("M-Y", $period)]['grp_credit']);
+                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
+                    + $dataResults[date("M-Y", $period)]['pathway']
+                    + $dataResults[date("M-Y", $period)]['classroom'];
+            }
+            else
+            {
+                $this->JS_credits[date("M", $period)]  = 0;
+                /**
+                 * From Data results
+                 */
+                $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
+                $this->training['data'][]  = 0;
+            }
+
+            $this->_setupLifeTimeAndExcellence($data,$period);
+        }
+
+        // Status
+        $status = new PartsSalesRepStatus($ytd);
+
+        return [
+            // For js array
+            "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
+            // For PHP array
+            "lifeTime"      =>$this->lifeTime,
+            "excellence"    =>$this->excellence,
+            "ytd"           =>$ytd,
+            'rewardsDollars'=>$this->user->getDollarRewardsRange(),
+            'metricsCurrentStatus'   =>[
+                $this->GENUINE_REPLACEMENT_PARTS,
+                $this->training,
+            ],
+            'statusChart'=>[
+                'gageArray'=>$status->getGageIndicators(),
+                'color'=>$status->getColor(),
+                'colorText'=>$status->getColorText(),
+                'toReach'=>$status->getToReach(),
+                'min'=>$status->getMin(),
+                'max'=>$status->getMax(),
+            ],
         ];
     }
 }
