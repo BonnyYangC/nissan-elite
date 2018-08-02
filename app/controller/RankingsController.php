@@ -33,12 +33,23 @@ class RankingsController extends DashboardController
         parent::__construct($request, $response);
     }
 
+    /**
+     * Get rankings data in Json format According to the request
+     */
     public function get_rankings(){
         $result = [];
         $modalTitle = 'YTD ';
 
         if($this->userObject){
-            $role = $this->request->param('role');
+            $role = trim( $this->request->param('role') );
+
+            /**
+             * If the role is Fleet sales or fleet sales manager, means no category needed
+             */
+            $roles = explode(' ',$role);
+            $isFleetSalesOrFleetSalesManager = count($roles) > 1;
+            $role = $isFleetSalesOrFleetSalesManager ? $role[0] : $role;
+
             list($period, $region) = explode(' ',$this->request->param('action'));
 
             $thisPeriod = $this->_getThisPeriod($this->userObject);
@@ -49,36 +60,45 @@ class RankingsController extends DashboardController
             }
             $modalTitle .= $thisPeriod->format('F Y');
 
-            $resultSet = Ranking::GetByRole($role,$thisPeriod,$region);
+            // Retrieve result set from database
+            $resultSet = Ranking::GetByRole(
+                $isFleetSalesOrFleetSalesManager ? $role[0] : $role,
+                $thisPeriod,
+                $region
+            );
+            // Loop result set to convert array to new structure for frontend json
 
-            if($region === Ranking::NATIONAL){
-                foreach ($resultSet as $key => $item) {
-                    if(!isset($result[$item['category']])){
-                        $result[$item['category']] = [];
-                        $result[$item['category']]['category'] = 'Category '.$item['category'];
-                        $result[$item['category']]['rows'] = [];
-                    }
-
-                    $item['total'] = floatval($item['total']);
-                    $result[$item['category']]['rows'][] = [
-                        'cn'=> $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
-                        'r' => $item['ranking'], // rank
-                        'n' =>ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
-                        'd' =>$item['company_name'], // Dealership
-                        's' =>$item['company_state'], // state
-                        'c' => number_format($item['total']), // credits
-                        're'=> $item['registered'] // registered
-                    ];
-                }
-            }elseif ($region === Ranking::REGIONAL){
+            if($isFleetSalesOrFleetSalesManager){
                 /**
-                 * Somthing like:
-                    Easter
-                 *      -> Category A
-                 *      -> Category B
+                 * In this case, not category title required
+                 * 在这种情况下, 不需要分 category, 所以 categoryName 为0
+                 */
+                $result[0] = [];
+                $result[0]['category'] = null;
+                $result[0]['rows'] = [];
+
+                foreach ($resultSet as $key => $item) {
+                    $item['total'] = floatval($item['total']);
+                    $rankingIndexNumber = $region === Ranking::REGIONAL ?
+                        count($result[0]['rows'])+1 // Regional
+                        : null; // National
+
+                    $result[0]['rows'][] = $this->_convertRankingRowForFrontendJson(
+                        $item,
+                        $role,
+                        $rankingIndexNumber
+                    );
+                }
+            }else{
+                /**
+                 * category title required
+                 * 在这种情况下, 需要分 category 以及 region, 所以 categoryName 要分别的生成
                  */
                 foreach ($resultSet as $key => $item) {
-                    $categoryName = Company::GetRegionName($item['region']).' - Category '.$item['category'];
+                    $categoryName = $region === Ranking::REGIONAL ?
+                        Company::GetRegionName($item['region']).' - Category '.$item['category'] // Regional
+                        : 'Category '.$item['category'];    // National
+
                     if(!isset($result[$categoryName])){
                         $result[$categoryName] = [];
                         $result[$categoryName]['category'] = $categoryName;
@@ -86,23 +106,54 @@ class RankingsController extends DashboardController
                     }
 
                     $item['total'] = floatval($item['total']);
-                    $result[$categoryName]['rows'][] = [
-                        'cn'=> $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
-                        'r' => count($result[$categoryName]['rows'])+1, // rank
-                        'n' =>ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
-                        'd' =>$item['company_name'], // Dealership
-                        's' =>$item['company_state'], // state
-                        'c' => number_format($item['total']), // credits
-                        're'=> $item['registered'] // registered
-                    ];
+
+                    $rankingIndexNumber = $region === Ranking::REGIONAL ?
+                        count($result[$categoryName]['rows'])+1 // Regional
+                        : null; // National
+
+                    $result[$categoryName]['rows'][] = $this->_convertRankingRowForFrontendJson(
+                        $item,
+                        $role,
+                        $rankingIndexNumber
+                    );
                 }
             }
-
-
+            echo JsonBuilder::Success([
+                'blocks'=>array_values($result),
+                'modalTitle'=>$modalTitle
+            ]);
         }
-        echo JsonBuilder::Success(['blocks'=>array_values($result),'modalTitle'=>$modalTitle]);
+        else{
+            echo JsonBuilder::Error();
+        }
     }
 
+    /**
+     * Convert database result row array to json array item.
+     * It's for reduce the key name length, transfer less data across the internet.
+     * @param $item
+     * @param $role
+     * @param null $rank
+     * @return array
+     */
+    private function _convertRankingRowForFrontendJson($item, $role, $rank = null){
+        return [
+            'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
+            'r' =>  $rank ? $rank : $item['ranking'], // rank
+            'n' =>  ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
+            'd' =>  $item['company_name'], // Dealership
+            's' =>  $item['company_state'], // state
+            'c' =>  number_format($item['total']), // credits
+            're'=>  $item['registered'] // registered
+        ];
+    }
+
+    /**
+     * Get a className for a given role for the style's control in the frontend
+     * @param $credits
+     * @param $role
+     * @return string
+     */
     private function _parseUserStatusLevel($credits, $role){
         /**
          * @var GageStatus $status
@@ -150,15 +201,15 @@ class RankingsController extends DashboardController
             default:
                 break;
         }
-        return $status->getClassString($credits);
+        return $status->getClassString();
     }
 
     /**
      * Load leader boards view
+     * URI: /dashboard/Leaderboards
      */
     public function leader_boards(){
         $this->dataForView['currentUri'] = 'LeaderBoards';
-
         /**
          * 方便的产生
          */
@@ -176,6 +227,10 @@ class RankingsController extends DashboardController
         return;
     }
 
+    /**
+     * Generate data array for column 2
+     * @return array
+     */
     private function _getUsersGroupsArray2(){
         return [
             [
@@ -208,6 +263,10 @@ class RankingsController extends DashboardController
         ];
     }
 
+    /**
+     * Generate data array for column 1
+     * @return array
+     */
     private function _getUsersGroupsArray1(){
         return [
             [

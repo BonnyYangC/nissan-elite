@@ -236,11 +236,15 @@ $(document).ready(function(){
                     axios.get(
                         '/dashboard/get-rankings?role='+role+'&action='+action
                     ).then(function(res){
-                        console.log(res.data);
                         if(res.data.error_no === 100){
                             that.blocks = res.data.data.blocks;
                             that.modalTitle = res.data.data.modalTitle;
                             that.dialogTableVisible = true;
+                        }else{
+                            that.$notify.error({
+                                title: 'Notes',
+                                message: 'System is busy, please try again!'
+                            });
                         }
                     });
                 },
