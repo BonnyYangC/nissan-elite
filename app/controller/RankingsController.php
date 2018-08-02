@@ -8,7 +8,6 @@
 
 namespace App\controller;
 
-
 use App\core\JsonBuilder;
 use App\models\Company;
 use App\models\role\status\FinanceControllerStatus;

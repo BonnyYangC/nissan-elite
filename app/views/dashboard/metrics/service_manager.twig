@@ -1,11 +1,12 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var CLEAN = [{{ metrics.CLEAN|raw }}];
-        var EMW = [{{ metrics.EMW|raw }}];
-        var RECOMMENDATION = [{{ metrics.RECOMMENDATION|raw }}];
-        var FOLLOWUP = [{{ metrics.FOLLOWUP|raw }}];
-        var TRAINING = [{{ metrics.TRAINING|raw }}];
+        var CLEAN = {{ json_encode(metrics.CLEAN)|raw }};
+        var EMW = {{ json_encode(metrics.EMW)|raw }};
+        var RECOMMENDATION = {{ json_encode(metrics.RECOMMENDATION)|raw }};
+        var FOLLOWUP = {{ json_encode(metrics.FOLLOWUP)|raw }};
+        var TRAINING = {{ json_encode(metrics.TRAINING)|raw }};
+        var CUSTOMER_PAID_REPAIR = {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }};
     </script>
     <div class="container bg-white pr-25 pr-25">
         <div class="row">
@@ -22,25 +23,10 @@
                             <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
                             </div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {RECOMMENDATION-RESULTS}
-                                    {{ metrics.RECOMMENDATION_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RECOMMENDATION_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -71,25 +57,10 @@
                             </div>
 
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {CLEAN-RESULTS}
-                                    {{ metrics.CLEAN_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CLEAN_RESULTS } %}
                                 </tr>
                             </table>
 
@@ -120,25 +91,10 @@
                             <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
                             </div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {FOLLOWUP-RESULTS}
-                                    {{ metrics.FOLLOWUP_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FOLLOWUP_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -165,27 +121,12 @@
                     <div class="col-md-7" >
                         <div class="table-responsive">
                             <h3>4. Customer Paid Repair Orders vs Target Monthly Target</h3>
-                            <div id="chart_div10" style="min-width: 600px; min-height: 500px;"></div>
+                            <div id="chart_customer_paid_repair" style="min-width: 600px; min-height: 500px;"></div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {EMW-RESULTS}
-                                    {{ metrics.EMW_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.customerPaidRepairCredits } %}
                                 </tr>
                             </table>
                         </div>
@@ -194,12 +135,7 @@
 
                     <div class="col-md-5">
                         <h3>Customer Paid Repair Orders vs Target Monthly Target GUIDE</h3>
-
                         <table class="table small-table">
-                            <col>
-                            <col>
-                            <col>
-                            <col>
                             <tr class="table-top-row">
                                 <td>Service Manager</td>
                                 <td align="center">100-109.9%</td>
@@ -213,13 +149,7 @@
                                 <td align="center">730</td>
                             </tr>
                         </table>
-                        <p>&nbsp;</p>
-
-
                     </div>
-
-
-
                 </div>
                 <div class="row graph-back">
                     <div class="col-md-7" >
@@ -227,24 +157,10 @@
                             <h3>5. Genuine EMW Sales</h3>
                             <div id="chart_div2" style="min-width: 600px; min-height: 500px;"></div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.EMW_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.EMW_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -265,7 +181,7 @@
                 </div>
                 <div class="row graph-back">
                     <div class="col-md-7">
-                        <h3>5. TRAINING</h3>
+                        <h3>6. TRAINING</h3>
                         <div class="table-responsive">
                             <div id="chart_div6" style="min-width: 600px; min-height: 400px;">
                             </div>

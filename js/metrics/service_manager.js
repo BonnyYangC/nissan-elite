@@ -5,6 +5,7 @@ google.charts.setOnLoadCallback(drawVisualization2);
 google.charts.setOnLoadCallback(drawVisualization3);
 google.charts.setOnLoadCallback(drawVisualization4);
 google.charts.setOnLoadCallback(drawVisualization6);
+google.charts.setOnLoadCallback(drawCustomerPaidRepairChart);
 
 setTimeout(function () { adjustLegendMargin(); }, 4000);
 
@@ -233,5 +234,42 @@ function drawVisualization6() {
     };
 
     var chart = new google.visualization.ComboChart(document.getElementById('chart_div6'));
+    chart.draw(data, options);
+}
+
+function drawCustomerPaidRepairChart() {
+    // Some raw data (not necessarily accurate)
+    var dArray = [
+        ['Month', 'Credits']
+    ];
+    for (var i=0;i<CUSTOMER_PAID_REPAIR.length;i++){
+        dArray.push(CUSTOMER_PAID_REPAIR[i]);
+    }
+    var data = google.visualization.arrayToDataTable(dArray);
+
+    var options = {
+        chartArea:{left:65,top:40,bottom:40,width:'80%',height:'75%'},
+        legend: 'top',
+        animation: {
+            duration: 1600,
+            easing: 'out',
+            startup: true
+        },
+        //title : 'NEW VEHICLE SALES',
+
+        colors: ['#555555'],
+        vAxis: {
+            viewWindowMode: 'explicit',
+            viewWindow: {
+                max: 730
+            }
+            , ticks: new Array(5).fill(146).map((n, i) => n * (i + 1))
+        },
+
+        seriesType: 'bars'
+        //series: {5: {type: 'line'}},
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_customer_paid_repair'));
     chart.draw(data, options);
 }

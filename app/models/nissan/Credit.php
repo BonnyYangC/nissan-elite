@@ -49,6 +49,12 @@ class Credit extends BaseModel
                 ]
             ]
         );
+
+        if(env('DEV_MODE', false)){
+            dump($database->log());
+            dump('Credit -> QueryByUserAndYearPeriod');
+        }
+
         return self::_handle($rows);
     }
 
@@ -63,9 +69,5 @@ class Credit extends BaseModel
             $credits[date("M-Y", strtotime($row['period']))] = $row;
         }
         return $credits;
-    }
-
-    public static function GetYtdColor($ytd){
-
     }
 }

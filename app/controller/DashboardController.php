@@ -251,7 +251,7 @@ class DashboardController extends BaseController
         /**
          * 计算历史数据
          */
-        $this->dataForView['History'] = History::All($this->userObject);
+        $this->dataForView['History'] = History::GetAll($this->userObject);
 
         /**
          * 计算Credits
@@ -292,11 +292,13 @@ class DashboardController extends BaseController
     private function _makeRankingReady(){
         // Get the latest ranking date
         $thisPeriod = $this->_getThisPeriod($this->userObject);
+
         // 获取了所有的 Rankings: Get all rankings
         $rankings = Ranking::Query($this->userObject, $thisPeriod);
+
         $this->dataForView['Rankings'] = $rankings;
 
-        $nationalRanking = null;
+        $nationalRanking = '';
         foreach ($rankings as $ranking) {
             if($ranking['member_id'] == $this->userObject->getEmployeeCode()){
                 $this->userObject->registered = $ranking['registered'] === Ranking::REGISTERED;
@@ -310,133 +312,13 @@ class DashboardController extends BaseController
          */
         $this->dataForView['rankingNationally'] = $nationalRanking;
 
-        $this->dataForView['rankingRegionally'] = null;
+        $this->dataForView['rankingRegionally'] = '';
         if($this->needRegionalRanking){
             $rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$nationalRanking);
             $this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
         }
+
         return $rankings;
-    }
-
-    /**
-     * This function is for "My Dashboard" menu item
-     */
-    public function dashboard_no_use(){
-        if(empty($this->userObject)){
-            $user = new User($this->currentUserId);
-            $this->userObject = $user;
-        }
-        $user = $this->userObject;
-
-        $selected_role = $this->getUserRole();
-
-        if($this->userHasMultipleRoles){
-            // todo: Load data for multiple roles
-        }
-
-//        $ytd=0;
-//        $lifetime=0;
-//        $monthly='';
-//        $metrics='';
-//        $min=0;
-//        $max=100;
-//        $color="#CCCCC";
-//        $txt="";
-//        $dollar="";
-//        $excellence=0;
-//        $aryCredits=$Application['User']['Credits'];
-//        $training='';
-
-        $override_results = null;
-
-        if (!empty($selected_role)) {
-//            $override_results = $Application['User']['multiple_role_metrics'][$selected_role]['Results'];
-        }
-
-
-        if ($user){
-
-            /**
-             * 尝试还原 db.php 中的 fetch_current_user 方法
-             * Use $this->>dataForView to replace the $row
-             */
-            $this->dataForView['Results']       = [];
-            $this->dataForView['Registered']    = Ranking::NOT_REGISTERED;
-            $this->dataForView['Excellence']    = 0;
-            $this->dataForView['MyRanking']     = null;
-            $this->dataForView['Rankings']      = null;
-            $this->dataForView['History']       = null;
-            $this->dataForView['Credits']       = null;
-
-            $result = DataSource::Query($user);
-            $this->dataForView['Results'] = $result['result']['Results'];
-            $this->dataForView['Excellence'] = $result['result']['Excellence'];
-
-            /**
-             * 获取所有的排名, 自己的排名
-             */
-            // Get the latest ranking date
-            $thisPeriod = $this->_getThisPeriod($user);
-            // 获取了所有的 Rankings: Get all rankings
-            $rankings = Ranking::Query($user, $thisPeriod);
-            $this->dataForView['Rankings'] = $rankings;
-
-            $myRanking = null;
-            $currentUserRankingRecord = Ranking::Query($user, $thisPeriod, true);
-            if($currentUserRankingRecord){
-                $myRanking = $currentUserRankingRecord['ranking'];
-                $this->dataForView['Registered'] = $currentUserRankingRecord['registered'];
-            }
-
-            /**
-             * 计算历史数据
-             */
-            $this->dataForView['History'] = History::All($user);
-
-            /**
-             * 计算Credits
-             */
-            $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($user,env('YEAR',2017));
-
-            /**
-             * 以上是基础数据, 以下为页面中的特定数据
-             */
-
-            // 获取 Regional 的 Rankings: 实际就是结合上一步计算自己的排名
-//            $regionalRanking = Ranking::countRegionalRankingLessThan($user, $thisPeriod, $myRanking);
-//            if($regionalRanking){
-//                $this->dataForView['MyRanking'] = $regionalRanking + 1;
-//            }
-
-            // 处理 Leader Board 的表格: Leader board 只有5个位置
-            $iAmInTopList = false;
-            $leaderBoardTableData = [];
-            foreach ($rankings as $index=>$item) {
-                if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
-                    if($item['member_id'] == $user->getEmployeeCode()){
-                        $iAmInTopList = true;
-                    }
-                    $leaderBoardTableData[] = $item;
-                }else{
-                    // 已经超出了前五名
-                    if(!$iAmInTopList){
-                        if($item['member_id'] == $user->getEmployeeCode()){
-                            $leaderBoardTableData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
-                            break;
-                        }
-                    }
-                }
-            }
-            $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
-            // 处理 Leader Board 的表格 结束
-
-            // GAGA indicator
-            $this->_handleGagaIndicatorData();
-            // GAGA indicator end
-        }
-
-        $this->render('dashboard/main');
-        return;
     }
 
     /**

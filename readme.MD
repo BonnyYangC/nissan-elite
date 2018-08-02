@@ -1,5 +1,6 @@
 # Project Documentation: Nissan AC
 This project is build on top of pure PHP, no existed PHP framework such as CI/Laravel is used. The project is still follow the MVC architecture but implemented from zero, any other developers could refer the following guide which describe the request->response lifecycle:
+- System requirements: PHP 5.6 or above; MySqli extension; URL rewrite module must be ON
 - Entry point: index.php (No rewrite rule request in .htaccess, all will be into index.php)
 - Routes: Support HTTP/RestFul request. Just add your route in the index.php file.
 - Controllers: app/controller folder, all business logic should be in this folder
@@ -34,6 +35,7 @@ This project is build on top of pure PHP, no existed PHP framework such as CI/La
 - No need to set up the database schema mapping for each model. Some magic functions have been created, you can use the following way to manipulate database:
     
     
+
     $product = new Product();
     
     $product->find( $id = 1, ['name',['price']]);
@@ -69,13 +71,13 @@ OR
 - For best practice, no database interactions in controller's class, but the business logic only
 - To get the request instance, use $this->request; To get the response instance, use $this->response
 - Put all variables into $this->dataForView array, this array's items will be injected into view automatically, any variable can be accessed by using the item's key
-- To render the view, $this->render('path/to/view');
+- To render the view, $this->render( 'path/to/view' );
 - To retrieve the current logged in user's data from session, in any controller, do:
 
 
-    $userDataArray = session_get('user_data_array', true);
+    $userDataArray = session_get( 'user_data_array', true );
     
-    $user = new User($userDataArray['id']); // Get the user instance by user's id
+    $user = new User( $userDataArray['id'] ); // Get the user instance by user's id
     
     
 # Pending issues:

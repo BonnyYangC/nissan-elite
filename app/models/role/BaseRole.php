@@ -10,6 +10,8 @@ namespace App\models\role;
 
 use App\models\role\status\IColor;
 use App\models\User;
+use Carbon\Carbon;
+
 class BaseRole
 {
     protected $user;
@@ -122,5 +124,28 @@ class BaseRole
         {
             $this->excellence =$data[date("M-Y", $period)]['excellence'];
         }
+    }
+
+    /**
+     * @param Carbon $carbon
+     * @param $values
+     * @return array
+     */
+    protected function _buildForJs(Carbon $carbon, $values){
+        $result = [
+            $carbon->format('M'),
+        ];
+        if(is_array($values)){
+            foreach ($values as $value) {
+                $result[] = floatval($value);
+            }
+        }else{
+            $result[] = floatval($values);
+        }
+        return $result;
+    }
+
+    protected function _buildForTableElement($value = null, $demicals = 1){
+        return $value ? number_format(floatval($value),$demicals) : 0.0;
     }
 }

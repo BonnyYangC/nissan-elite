@@ -22,21 +22,7 @@
                             <h3>1. DEaler Stock Cover</h3>
                             <div id="chart_div" style="min-width: 600px; min-height: 500px;"></div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
                                     {{ metrics.STOCK_COVER_RESULTS }}
@@ -70,21 +56,7 @@
                             <div id="chart_div2" style="min-width: 600px; min-height: 400px;">
                             </div>
                             <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
                                     {{ metrics.OW_RESULTS }}

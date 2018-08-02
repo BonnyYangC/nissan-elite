@@ -49,7 +49,6 @@ class Ranking extends BaseModel
 
         $where = [
             'AND'=>[
-                'nissan_rankings.category'  =>$user->getCompany()->category,
                 'nissan_rankings.ranking[<]'=>$rankingToCompare,
                 'nissan_rankings.period'    =>$carbon->format('Y-m-d'),
                 'role'                      =>$position,
@@ -57,6 +56,12 @@ class Ranking extends BaseModel
             ],
             "ORDER" => "ranking"
         ];
+
+        $category = $user->getCompany()->category;
+        if($category){
+            $where['AND']['nissan_rankings.category'] = $category;
+        }
+
         $joins = [
             '[><]users'=>['member_id'=>'employee_code'],
             '[><]company'=>['users.company_id'=>'company_id'],
@@ -69,6 +74,11 @@ class Ranking extends BaseModel
             '*',
             $where
         );
+
+        if(env('DEV_MODE', false)){
+            dump($database->log());
+            dump('Ranking model -> countRegionalRankingLessThan action');
+        }
 
         return $result;
     }
@@ -89,12 +99,16 @@ class Ranking extends BaseModel
 
         $where = [
             'AND'=>[
-                'nissan_rankings.category'=>$user->getCompany()->category,
                 'role'=>$position,
                 'period'=>$carbon->format('Y-m-d')
             ],
             "ORDER" => "ranking"
         ];
+
+        $category = $user->getCompany()->category;
+        if($category){
+            $where['AND']['category'] = $category;
+        }
 
         if($forGivenUserOnly){
             // It means, only query the current user only
@@ -129,6 +143,11 @@ class Ranking extends BaseModel
             $columns,
             $where
         );
+
+        if(env('DEV_MODE', false)){
+            dump($database->log());
+            dump('Ranking model -> Query action');
+        }
 
         if($forGivenUserOnly){
             // Because it's just for one person, so return the one dimension array
@@ -178,7 +197,6 @@ class Ranking extends BaseModel
 
         $where = [
             'AND'=>[
-//                'nissan_rankings.category'=>$user->getCompany()->category,
                 'role'=>$position,
                 'period'=>$period->format('Y-m').'-01'
             ],
@@ -245,10 +263,14 @@ class Ranking extends BaseModel
 
         $where = [
             'AND'=>[
-                'category'=>$user->getCompany()->category,
                 'role'=>$position
             ]
         ];
+
+        $category = $user->getCompany()->category;
+        if($category){
+            $where['AND']['category'] = $category;
+        }
 
         /**
          * Medoo us __call() magic function to generate this 'max' shortcut function
@@ -260,7 +282,8 @@ class Ranking extends BaseModel
         );
 
         if(env('DEV_MODE', false)){
-            dump($database->log());
+            dump($database->log() );
+            dump('QueryThisPeriod action');
         }
 
         if($result){

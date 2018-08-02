@@ -21,9 +21,8 @@ class History extends BaseModel
      * @param User $user
      * @return array|bool
      */
-    public static function All(User $user){
+    public static function GetAll(User $user){
         $database = self::DB();
-
         $rows = $database->select(
             self::TABLE_NAME,
             '*',
