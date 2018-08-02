@@ -19,10 +19,7 @@
       "App\\": "app/"
     },
     "files": [
-      "app/helpers/general.php",
-      "includes/functions.php",
-      "includes/functions_nissan.php",
-      "includes/db.php"
+      "app/helpers/general.php"
     ]
   }
 }

@@ -82,6 +82,8 @@ class BaseModel
         if($id){
             $this->find($id);
         }
+
+        return $this;
     }
 
     /**
@@ -104,6 +106,15 @@ class BaseModel
             'logging'       => env('DEV_MODE',true),
         ]);
         return self::$_db;
+    }
+
+    /**
+     * retrieve all records
+     * @return array|bool
+     */
+    public function all(){
+        $db = self::DB();
+        return $db->select(self::getTableName(),['*']);
     }
 
     /**
