@@ -248,11 +248,11 @@ $(document).ready(function(){
                     window.print();
                     return false;
                 },
-                tableRowClassName({row, rowIndex}) {
+                tableRowClassName: function({row, rowIndex}) {
                     if (row.re === 'NO') {
-                        return 'warning-row';
+                        return row.cn + ' warning-row';
                     }
-                    return '';
+                    return row.cn ;
                 }
             }
         });

@@ -10,6 +10,16 @@ namespace App\controller;
 
 
 use App\core\JsonBuilder;
+use App\models\Company;
+use App\models\role\status\FinanceControllerStatus;
+use App\models\role\status\FiStatus;
+use App\models\role\status\GageStatus;
+use App\models\role\status\PartsSalesRepStatus;
+use App\models\role\status\RetailSalesConsultantStatus;
+use App\models\role\status\SalesManagerStatus;
+use App\models\role\status\ServiceAdviserStatus;
+use App\models\role\status\ServiceManagerStatus;
+use App\models\role\status\StockControllerStatus;
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
@@ -41,48 +51,106 @@ class RankingsController extends DashboardController
 
             $resultSet = Ranking::GetByRole($role,$thisPeriod,$region);
 
-            foreach ($resultSet as $key => $item) {
-                if(!isset($result[$item['category']])){
-                    $result[$item['category']] = [];
-                    $result[$item['category']]['category'] = 'Category '.$item['category'];
-                    $result[$item['category']]['rows'] = [];
+            if($region === Ranking::NATIONAL){
+                foreach ($resultSet as $key => $item) {
+                    if(!isset($result[$item['category']])){
+                        $result[$item['category']] = [];
+                        $result[$item['category']]['category'] = 'Category '.$item['category'];
+                        $result[$item['category']]['rows'] = [];
+                    }
+
+                    $item['total'] = floatval($item['total']);
+                    $result[$item['category']]['rows'][] = [
+                        'cn'=> $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
+                        'r' => $item['ranking'], // rank
+                        'n' =>ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
+                        'd' =>$item['company_name'], // Dealership
+                        's' =>$item['company_state'], // state
+                        'c' => number_format($item['total']), // credits
+                        're'=> $item['registered'] // registered
+                    ];
                 }
-                $result[$item['category']]['rows'][] = [
-                    'r' => $region===Ranking::NATIONAL ? $item['ranking'] : count($result[$item['category']]['rows'])+1, // rank
-                    'n' =>ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
-                    'd' =>$item['company_name'], // Dealership
-                    's' =>$item['company_state'], // state
-                    'c' => number_format(floatval($item['total'])), // credits
-                    're'=> $item['registered'] // registered
-                ];
+            }elseif ($region === Ranking::REGIONAL){
+                /**
+                 * Somthing like:
+                    Easter
+                 *      -> Category A
+                 *      -> Category B
+                 */
+                foreach ($resultSet as $key => $item) {
+                    $categoryName = Company::GetRegionName($item['region']).' - Category '.$item['category'];
+                    if(!isset($result[$categoryName])){
+                        $result[$categoryName] = [];
+                        $result[$categoryName]['category'] = $categoryName;
+                        $result[$categoryName]['rows'] = [];
+                    }
+
+                    $item['total'] = floatval($item['total']);
+                    $result[$categoryName]['rows'][] = [
+                        'cn'=> $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
+                        'r' => count($result[$categoryName]['rows'])+1, // rank
+                        'n' =>ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
+                        'd' =>$item['company_name'], // Dealership
+                        's' =>$item['company_state'], // state
+                        'c' => number_format($item['total']), // credits
+                        're'=> $item['registered'] // registered
+                    ];
+                }
             }
 
-//            dd($result);
+
         }
-
-//        $result[] = [
-//            'category'=>'Category A',
-//            'rows'=>[
-//                [
-//                    'r' =>1, // rank
-//                    'n' =>'Some One', // name
-//                    'd' =>'Ha ha ha', // Dealership
-//                    's' =>'QLD', // state
-//                    'c' => 1000, // credits
-//                    're'=>1 // registered
-//                ],
-//                [
-//                    'r' =>1, // rank
-//                    'n' =>'Some One', // name
-//                    'd' =>'Ha ha ha', // Dealership
-//                    's' =>'QLD', // state
-//                    'c' => 1000, // credits
-//                    're'=>'YES' // registered
-//                ]
-//            ]
-//        ];
-
         echo JsonBuilder::Success(['blocks'=>array_values($result),'modalTitle'=>$modalTitle]);
+    }
+
+    private function _parseUserStatusLevel($credits, $role){
+        /**
+         * @var GageStatus $status
+         */
+        $status = null;
+
+        switch ($role){
+            case User::FI:
+                $status = new FiStatus($credits);
+                break;
+            case User::FINANCE_CONTROLLER:
+                $status = new FinanceControllerStatus($credits);
+                break;
+            case User::PARTS_MANAGER:
+                $status = new PartsSalesRepStatus($credits);
+                break;
+            case User::RETAIL_SALES_CONSULTANTS:
+                $this->needRegionalRanking = true;
+                $status = new RetailSalesConsultantStatus($credits);
+                break;
+            case User::FLEET_SALES_CONSULTANTS:
+                $this->needRegionalRanking = true;
+                $status = new RetailSalesConsultantStatus($credits);
+                break;
+            case User::FLEET_SALES_MANAGER:
+                $this->needRegionalRanking = true;
+                $status = new RetailSalesConsultantStatus($credits);
+                break;
+            case User::SALES_MANAGER:
+                $this->needRegionalRanking = true;
+                $status = new SalesManagerStatus($credits);
+                break;
+            case User::STOCK_CONTROLLER:
+                $status = new StockControllerStatus($credits);
+                break;
+            case User::PARTS_SALES_REP:
+                $status = new PartsSalesRepStatus($credits);
+                break;
+            case User::SERVICE_MANAGER:
+                $status = new ServiceManagerStatus($credits);
+                break;
+            case User::SERVICE_ADVISERS:
+                $status = new ServiceAdviserStatus($credits);
+                break;
+            default:
+                break;
+        }
+        return $status->getClassString($credits);
     }
 
     /**

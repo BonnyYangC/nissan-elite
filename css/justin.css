@@ -125,3 +125,15 @@
 .warning-row td.reg{
     color: red;
 }
+.T-P td.sales-name{
+    color: #B47C37;
+}
+.T-A td.sales-name{
+    color: #BC2628;
+}
+.T-D td.sales-name{
+    color: #546E22;
+}
+.T-C td.sales-name{
+    color: #525357;
+}

@@ -139,6 +139,13 @@ class Ranking extends BaseModel
         return $result;
     }
 
+    /**
+     * Get by give role
+     * @param $position
+     * @param Carbon $period
+     * @param $region
+     * @return array|bool
+     */
     public static function GetByRole($position, Carbon $period, $region){
         $companyJoin = ['users.company_id'=>'company_id'];
 

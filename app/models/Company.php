@@ -12,8 +12,40 @@ namespace App\models;
 class Company extends BaseModel
 {
     const NISSAN_COMPANY_ID = 8;
+    const REGION_EASTERN_SHORT = 'E';
+    const REGION_EASTERN = 'Eastern';
+    const REGION_WESTERN_SHORT = 'W';
+    const REGION_WESTERN = 'Western';
+    const REGION_NORTHERN_SHORT = 'N';
+    const REGION_NORTHERN = 'Northern';
+    const REGION_SOUTHERN_SHORT = 'E';
+    const REGION_SOUTHERN = 'Southern';
+
     protected $tableName = 'company';
     protected $idFieldName = 'company_id';
+
+    /**
+     * Get region name by give short code
+     * @param $regionCode
+     * @return string
+     */
+    public static function GetRegionName($regionCode){
+        $region = self::REGION_SOUTHERN;
+        switch ($regionCode){
+            case self::REGION_EASTERN_SHORT:
+                $region = self::REGION_EASTERN;
+                break;
+            case self::REGION_WESTERN_SHORT:
+                $region = self::REGION_WESTERN;
+                break;
+            case self::REGION_NORTHERN_SHORT:
+                $region = self::REGION_NORTHERN;
+                break;
+            default:
+                break;
+        }
+        return $region;
+    }
 
     public function load(User $user, Lookup $lookup){
 

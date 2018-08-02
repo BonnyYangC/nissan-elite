@@ -19,6 +19,12 @@ class GageStatus
     const CONSUL_COLOR        = '#525357';
     const DEFAULT_COLOR       = '#000000';
 
+    const PREMIER_CLASS_STRING       = 'T-P';
+    const AMBASSADOR_CLASS_STRING     = 'T-A';
+    const DIPLOMAT_CLASS_STRING       = 'T-D';
+    const CONSUL_CLASS_STRING        = 'T-C';
+    const DEFAULT_CLASS_STRING        = '';
+
     private $consul = null;
     private $diplomat = null;
     private $ambassador = null;
@@ -47,16 +53,16 @@ class GageStatus
         $this->yearToDate = $yearToDate;
         $this->setGageIndicators([
             [
-                ($this->consul/$this->max) * 100, '#525357', 'Consul'
+                ($this->consul/$this->max) * 100, self::CONSUL_COLOR, 'Consul'
             ],
             [
-                ($this->diplomat/$this->max) * 100, '#BC2628', 'Diplomat'
+                ($this->diplomat/$this->max) * 100, self::DIPLOMAT_COLOR, 'Diplomat'
             ],
             [
-                ($this->ambassador/$this->max) * 100, '#546E22', 'Ambassador'
+                ($this->ambassador/$this->max) * 100, self::AMBASSADOR_COLOR, 'Ambassador'
             ],
             [
-                ($this->premier/$this->max) * 100, '#B47C37', 'Premier'
+                ($this->premier/$this->max) * 100, self::PREMIER_COLOR, 'Premier'
             ],
         ]);
         $this->initColor();
@@ -66,17 +72,17 @@ class GageStatus
      * Init the color's attributes
      */
     public function initColor(){
-        if($this->yearToDate >= $this->premier){
+        if($this->_inBetween($this->premier)){
             $this->color = self::PREMIER_COLOR;
-        }elseif($this->yearToDate >= $this->ambassador){
+        }elseif($this->_inBetween($this->ambassador, $this->premier)){
             $this->color = self::AMBASSADOR_COLOR;
             $this->colorText = 'credits to reach '.ucfirst(IRole::PREMIER_STR).' level';
             $this->toReach = $this->premier - $this->yearToDate;
-        }elseif($this->yearToDate >= $this->diplomat){
+        }elseif($this->_inBetween($this->diplomat, $this->ambassador)){
             $this->color = self::DIPLOMAT_COLOR;
             $this->colorText = 'credits to reach '.ucfirst(IRole::AMBASSADOR_STR).' level';
             $this->toReach = $this->ambassador - $this->yearToDate;
-        }elseif($this->yearToDate >= $this->consul){
+        }elseif($this->_inBetween($this->consul, $this->diplomat)){
             $this->color = self::CONSUL_COLOR;
             $this->colorText = 'credits to reach '.ucfirst(IRole::DIPLOMAT_STR).' level';
             $this->toReach = $this->diplomat - $this->yearToDate;
@@ -84,6 +90,39 @@ class GageStatus
             $this->color = self::DEFAULT_COLOR;
             $this->colorText = 'credits to reach '.ucfirst(IRole::CONSUL_STR).' level';
             $this->toReach = $this->consul - $this->yearToDate;
+        }
+    }
+
+    /**
+     * Return a string for different credits value
+     * @return string
+     */
+    public function getClassString(){
+        $classString = self::DEFAULT_CLASS_STRING;
+
+        if($this->_inBetween($this->premier)){
+            $classString = self::PREMIER_CLASS_STRING;
+        }elseif ($this->_inBetween($this->ambassador, $this->premier)){
+            $classString = self::DIPLOMAT_CLASS_STRING;
+        }elseif ( $this->_inBetween($this->diplomat, $this->ambassador) ){
+            $classString = self::AMBASSADOR_CLASS_STRING;
+        }elseif ( $this->_inBetween($this->consul, $this->diplomat) ){
+            $classString = self::CONSUL_CLASS_STRING;
+        }
+        return $classString;
+    }
+
+    /**
+     * Compare year to date value is in which range
+     * @param $smaller
+     * @param null $bigger
+     * @return bool
+     */
+    private function _inBetween($smaller, $bigger = null){
+        if(is_null($bigger)){
+            return $this->yearToDate >= $smaller;
+        }else{
+            return $this->yearToDate >= $smaller && $this->yearToDate < $bigger;
         }
     }
 
