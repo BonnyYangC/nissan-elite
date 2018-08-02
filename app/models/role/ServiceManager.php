@@ -21,8 +21,6 @@ class ServiceManager extends BaseRole implements IRole
         parent::__construct($user);
     }
 
-
-
     /**
      * Handle parts manager's metrics data
      * @param $data
@@ -166,84 +164,4 @@ class ServiceManager extends BaseRole implements IRole
         ];
     }
 
-
-    /**
-     * Handle parts manager's metrics data
-     * @param $data
-     * @return array
-     */
-    public function getMetrics_Old($data){
-        $recommendation=$recommendation_results=$clean=$clean_results=$fu=$fu_results=$emw=$emw_results=$training='';
-        $class='nissangray-light-back';
-
-        $customerPaidRepairCredits = [];
-        $customerPaidRepair = [];
-
-        $startPoint = Carbon::createFromDate(env('YEAR')-1,3,1,env('DEFAULT_TIMEZONE'));
-
-        for($i=0; $i<12; $i++)
-        {
-            $period=mktime(0,0,0,4+$i,1,env('YEAR'));
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-
-            $key = $startPoint->addMonth()->format('M-Y');
-
-            if(isset($data[date("M-Y", $period)]))
-            {
-                $recommendation.=(empty($recommendation) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['recommendation_credit'] . "]";
-                $clean.=(empty($clean) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['vclean_credit'] . "]";
-                $fu.=(empty($fu) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['followup_credit'] . "]";
-                $emw.=(empty($emw) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['emw_credit'] . "]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['training'] . "," . $data[date("M-Y", $period)]['classroom']  . "]";
-
-
-                $recommendation_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['recommendation'] . '</td>';
-                $clean_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['vclean'] . '</td>';
-                $fu_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['followup'] . '</td>';
-                $emw_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['emw'],0) . '</td>';
-
-                $customerPaidRepair[] = [
-                    date("M", $period),
-                    $data[date("M-Y", $period)]['cpr'] ? $data[date("M-Y", $period)]['cpr'] : 0
-                ];
-                $customerPaidRepairCredits[] = $data[date("M-Y", $period)]['cpr_credit']
-                    ? $data[date("M-Y", $period)]['cpr_credit']
-                    : 0;
-            }
-            else
-            {
-                $recommendation.=(empty($recommendation) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $clean.=(empty($clean) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $fu.=(empty($fu) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $emw.=(empty($emw) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
-
-                $recommendation_results.='<td class="' . $class . '">&nbsp;</td>';
-                $clean_results.='<td class="' . $class . '">&nbsp;</td>';
-                $fu_results.='<td class="' . $class . '">&nbsp;</td>';
-
-                $emw_results.='<td class="' . $class . '">&nbsp;</td>';
-
-                $customerPaidRepair[] = [
-                    $data[date("M-Y", $period)]['cpr'] ? $data[date("M-Y", $period)]['cpr'] : 0,
-                    0
-                ];
-                $customerPaidRepairCredits[] = 0;
-            }
-
-        }
-        return [
-            "RECOMMENDATION" => $recommendation,
-            "RECOMMENDATION_RESULTS" => $recommendation_results,
-            "CLEAN" => $clean,
-            "CLEAN_RESULTS" => $clean_results,
-            "FOLLOWUP" => $fu,
-            "FOLLOWUP_RESULTS" => $fu_results,
-            "EMW" => $emw,
-            "EMW_RESULTS" => $emw_results,
-            "TRAINING" => $training,
-            "CUSTOMER_PAID_REPAIR" => $customerPaidRepair,
-            "customerPaidRepairCredits" => $customerPaidRepairCredits,
-        ];
-    }
 }

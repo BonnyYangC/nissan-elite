@@ -81,6 +81,11 @@ OR
     
     
 # Pending issues:
+- Refine all metrics view with new strategy as "service manager"
+- Remove deprecated PHP files in modules and includes
+- Re-build the js and css folder
+- Add a public_html folder to hide the frameworks code from public; 
+- Move the index.php into public_html
 
 
 
