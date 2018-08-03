@@ -17,6 +17,12 @@ class BaseRole
     protected $user;
 
     /**
+     * @var Carbon $startPoint
+     * To generate the array's key when iterate the metrics data
+     */
+    protected $startPoint = null;
+
+    /**
      * Metrics data
      * @var array
      */
@@ -103,6 +109,7 @@ class BaseRole
     public function __construct(User $user = null)
     {
         $this->user = $user;
+        $this->startPoint = Carbon::createFromDate(env('YEAR'),3,1,env('DEFAULT_TIMEZONE'));
     }
 
     /**
@@ -131,7 +138,12 @@ class BaseRole
      * @param $values
      * @return array
      */
-    protected function _buildForJs(Carbon $carbon, $values){
+    protected function _buildForJs($values, Carbon $carbon = null){
+        $carbon = $carbon ? $carbon : $this->startPoint;
+        if(is_null($carbon)){
+            return [];
+        }
+
         $result = [
             $carbon->format('M'),
         ];
@@ -145,6 +157,11 @@ class BaseRole
         return $result;
     }
 
+    /**
+     * @param null $value
+     * @param int $demicals
+     * @return float|string
+     */
     protected function _buildForTableElement($value = null, $demicals = 1){
         return $value ? number_format(floatval($value),$demicals) : 0.0;
     }

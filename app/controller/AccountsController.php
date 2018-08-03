@@ -95,8 +95,6 @@ class AccountsController extends DashboardController
         $this->_prepareForMetricsData($role);
 
         $this->dataForView['monthsArray'] = get_months_array();
-
-//        $this->render('dashboard/metrics/'.$this->dataForView['metrics_template_file_name']);
         $this->render('dashboard/metrics/'.$role->getTemplateName());
         return;
     }

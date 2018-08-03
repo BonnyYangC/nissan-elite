@@ -31,7 +31,10 @@ class ServiceManager extends BaseRole implements IRole
         $customerPaidRepairCredits = [];
         $customerPaidRepair = [];
 
-        $startPoint = Carbon::createFromDate(env('YEAR'),3,1,env('DEFAULT_TIMEZONE'));
+        /**
+         * @var Carbon $startPoint
+         */
+        $startPoint = $this->startPoint;
 
         for($i=0; $i<12; $i++)
         {
@@ -39,27 +42,27 @@ class ServiceManager extends BaseRole implements IRole
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
-                $customerPaidRepair[]   = $this->_buildForJs($startPoint, $item['cpr_credit']);
-                $recommendation[]       = $this->_buildForJs($startPoint, $item['recommendation_credit']);
-                $clean[]                = $this->_buildForJs($startPoint, $item['vclean_credit']);
-                $fu[]                   = $this->_buildForJs($startPoint, $item['followup_credit']);
-                $emw[]                  = $this->_buildForJs($startPoint, $item['emw_credit']);
-                $training[]             = $this->_buildForJs($startPoint, [$item['training'],$item['classroom']]);
+                $customerPaidRepair[]   = $this->_buildForJs($item['cpr_credit']);
+                $recommendation[]       = $this->_buildForJs($item['recommendation_credit']);
+                $clean[]                = $this->_buildForJs($item['vclean_credit']);
+                $fu[]                   = $this->_buildForJs($item['followup_credit']);
+                $emw[]                  = $this->_buildForJs($item['emw_credit']);
+                $training[]             = $this->_buildForJs([$item['training'],$item['classroom']]);
 
-                $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'],2);
+                $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'] * 100,0) .'%';
                 $recommendation_results[]       = $this->_buildForTableElement($item['recommendation']);
                 $clean_results[]                = $this->_buildForTableElement($item['vclean']);
                 $fu_results[]                   = $this->_buildForTableElement($item['followup']);
-                $emw_results[]                  = $this->_buildForTableElement($item['emw']);
+                $emw_results[]                  = $this->_buildForTableElement($item['emw'],0);
             }
             else
             {
-                $customerPaidRepair[]   = $this->_buildForJs($startPoint, 0);
-                $recommendation[]       = $this->_buildForJs($startPoint, 0);
-                $clean[]                = $this->_buildForJs($startPoint, 0);
-                $fu[]                   = $this->_buildForJs($startPoint, 0);
-                $emw[]                  = $this->_buildForJs($startPoint, 0);
-                $training[]             = $this->_buildForJs($startPoint, [0,0]);
+                $customerPaidRepair[]   = $this->_buildForJs(0);
+                $recommendation[]       = $this->_buildForJs(0);
+                $clean[]                = $this->_buildForJs(0);
+                $fu[]                   = $this->_buildForJs(0);
+                $emw[]                  = $this->_buildForJs(0);
+                $training[]             = $this->_buildForJs([0,0]);
 
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement();
                 $recommendation_results[]       = $this->_buildForTableElement();

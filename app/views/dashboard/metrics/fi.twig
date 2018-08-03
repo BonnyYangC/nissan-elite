@@ -1,11 +1,52 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var followUp = [{{ metrics.FOLLOW_UP|raw }}];
-        var NFSA = [{{ metrics.NFSA|raw }}];
-        var INSURANCE = [{{ metrics.INSURANCE|raw }}];
-        var EMW = [{{ metrics.EMW|raw }}];
-        var PENETRATION = [{{ metrics.PENETRATION|raw }}];
+        var CHART_DATA = [
+            {
+                el: 'chart-nfsa',
+                max: 2000,
+                length: 8,
+                step: 250,
+                colors: ['#999999'],
+                dataSource: {{ json_encode(metrics.NFSA)|raw }}
+            },
+            {
+                el: 'chart-mvi-vpi-pkg',
+                max: 800,
+                length: 8,
+                step: 100,
+                colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
+                pilot: ['Month', 'MVI', 'VPI', 'Package'],
+                dataSource: {{ json_encode(metrics.INSURANCE)|raw }}
+            },
+            {
+                el: 'chart-emw',
+                max: 2000,
+                length: 8,
+                step: 250,
+                colors: ['#555555','#c40030' ,'#c40030'],
+                pilot: ['Month','Genuine', 'Extended'],
+                dataSource: {{ json_encode(metrics.EMW)|raw }}
+            },
+            {
+                el: 'chart-penetration',
+                max: 1000,
+                length: 4,
+                step: 250,
+                colors: ['#c40030'],
+                pilot: ['Month','Credits'],
+                dataSource: {{ json_encode(metrics.PENETRATION)|raw }}
+            },
+            {
+                el: 'chart-follow-up',
+                max: 500,
+                length: 5,
+                step: 100,
+                colors: ['#555555'],
+                pilot: ['Month','Credits'],
+                dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
+            },
+        ];
     </script>
     <div class="container bg-white">
         <div class="row">
@@ -19,40 +60,19 @@
                     <div class="col-md-7" >
                         <div class="table-responsive">
                             <h3>1. NFSA Contracts</h3>
-                            <div id="chart_div2" style="min-width: 600px; min-height: 500px;"></div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-nfsa" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.NFSA_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.NFSA_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
                     </div>
-
-
                     <div class="col-md-5">
                         <h3>NFSA Contracts GUIDE</h3>
-
                         <table class="table small-table">
-                            <col>
-                            <col>
-                            <col>
-                            <col>
                             <tr class="table-top-row">
                                 <td>F&amp;I Manager </td>
                                 <td align="center">NFSA Finance Contract</td>
@@ -68,24 +88,9 @@
                     <div class="col-md-7">
                         <h3>2. Loyalty & Retention Bonus</h3>
                         <div class="table-responsive">
-                            <div id="chart_div10" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-nfsa" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
                                     {LOYALTY-RETENTION-BONUS}
@@ -108,42 +113,28 @@
                     </div>
 
                 </div>
+
                 <div class="row">
                     <div class="col-md-7">
                         <h3>3. Insurance – MVI/VPI/MVI &amp; VPI pkg</h3>
                         <div class="table-responsive">
-                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <col>
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-mvi-vpi-pkg" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">MVI</td>
-                                    {{ metrics.INSURANCE_MVI_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.INSURANCE_MVI_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">VPI</td>
-                                    {{ metrics.INSURANCE_VPI_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.INSURANCE_VPI_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">Package</td>
-                                    {{ metrics.INSURANCE_PKG_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.INSURANCE_PKG_RESULTS } %}
                                 </tr>
                             </table>
+
                         </div>
                     </div>
 
@@ -169,32 +160,16 @@
                     <div class="col-md-7">
                         <h3>4. EMW Genuine/Extended</h3>
                         <div class="table-responsive">
-                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <col>
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-emw" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">Genuine</td>
-                                    {{ metrics.EMW_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.EMW_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">Extended</td>
-                                    {{ metrics.MMU_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MMU_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -219,28 +194,12 @@
                     <div class="col-md-7">
                         <h3>4. Dealer Sales Penetration</h3>
                         <div class="table-responsive">
-                            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <col>
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-penetration" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.PENETRATION_RESULT|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.PENETRATION_RESULT } %}
                                 </tr>
                             </table>
                         </div>
@@ -269,28 +228,12 @@
                     <div class="col-md-7">
                         <h3>5. CE - F&I Satisfaction - Single Mth</h3>
                         <div class="table-responsive">
-                            <div id="chart_div6" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-follow-up" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {FOLLOW-UP-RESULTS}
-                                    {{ metrics.FOLLOW_UP_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FOLLOW_UP_RESULTS } %}
                                 </tr>
                             </table>
                         </div>

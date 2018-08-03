@@ -1,7 +1,6 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var TRAINING = {{ json_encode(metrics.TRAINING)|raw }};
         var CHART_DATA = [
             {
                 el: 'chart-recommendation',
