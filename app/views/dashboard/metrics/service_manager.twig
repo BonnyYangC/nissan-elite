@@ -1,12 +1,59 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var CLEAN = {{ json_encode(metrics.CLEAN)|raw }};
-        var EMW = {{ json_encode(metrics.EMW)|raw }};
-        var RECOMMENDATION = {{ json_encode(metrics.RECOMMENDATION)|raw }};
-        var FOLLOWUP = {{ json_encode(metrics.FOLLOWUP)|raw }};
         var TRAINING = {{ json_encode(metrics.TRAINING)|raw }};
-        var CUSTOMER_PAID_REPAIR = {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }};
+        var CHART_DATA = [
+            {
+                el: 'chart-recommendation',
+                max: 730,
+                length: 5,
+                step: 146,
+                colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
+                dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
+            },
+            {
+                el: 'chart-clean',
+                max: 730,
+                length: 5,
+                step: 146,
+                colors: ['#c40030'],
+                dataSource: {{ json_encode(metrics.CLEAN)|raw }}
+            },
+            {
+                el: 'chart-follow-up',
+                max: 730,
+                length: 5,
+                step: 146,
+                colors: ['#555555'],
+                dataSource: {{ json_encode(metrics.FOLLOWUP)|raw }}
+            },
+            {
+                el: 'chart-emw',
+                max: 400,
+                length: 4,
+                step: 100,
+                colors: ['#c40030'],
+                dataSource: {{ json_encode(metrics.EMW)|raw }}
+            },
+            {
+                el: 'chart_customer_paid_repair',
+                max: 730,
+                length: 5,
+                step: 146,
+                colors: ['#555555'],
+                dataSource: {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }}
+            },
+            {
+                el: 'chart-training',
+                duration: 2000,
+                pilot: ['Month', 'Online', 'Classroom' ],
+                max: 3000,
+                length: 6,
+                step: 500,
+                colors: ['#111111', '#333333' ,'#555555','#999999' ,'#999999' , 'd2d2d2'],
+                dataSource: {{ json_encode(metrics.TRAINING)|raw }}
+            }
+        ];
     </script>
     <div class="container bg-white pr-25 pr-25">
         <div class="row">
@@ -20,9 +67,9 @@
                     <div class="col-md-7">
                         <h3>1. Overall Satisfaction - R3M (Target 73%)</h3>
                         <div class="table-responsive">
-                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
+                            <div id="chart-recommendation" class="metrics-chart-wrap">
                             </div>
-                            <table class="table table-condensed" style="width: 593px;" >
+                            <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
@@ -53,17 +100,14 @@
                     <div class="col-md-7">
                         <h3>2. Value for Money - R3M (Target 62%)</h3>
                         <div class="table-responsive">
-                            <div id="chart_div" style="min-width: 600px; min-height: 400px;">
-                            </div>
-
-                            <table class="table table-condensed" style="width: 593px;" >
+                            <div class="metrics-chart-wrap" id="chart-clean"></div>
+                            <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
                                     {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CLEAN_RESULTS } %}
                                 </tr>
                             </table>
-
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -88,9 +132,9 @@
                     <div class="col-md-7">
                         <h3>3. F1 (Fixed First Time) - R3M (Target 72%)</h3>
                         <div class="table-responsive">
-                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
+                            <div id="chart-follow-up" class="metrics-chart-wrap">
                             </div>
-                            <table class="table table-condensed" style="width: 593px;" >
+                            <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
@@ -121,8 +165,8 @@
                     <div class="col-md-7" >
                         <div class="table-responsive">
                             <h3>4. Customer Paid Repair Orders vs Target Monthly Target</h3>
-                            <div id="chart_customer_paid_repair" style="min-width: 600px; min-height: 500px;"></div>
-                            <table class="table table-condensed" style="width: 593px;" >
+                            <div class="metrics-chart-wrap" id="chart_customer_paid_repair"></div>
+                            <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
@@ -131,8 +175,6 @@
                             </table>
                         </div>
                     </div>
-
-
                     <div class="col-md-5">
                         <h3>Customer Paid Repair Orders vs Target Monthly Target GUIDE</h3>
                         <table class="table small-table">
@@ -155,7 +197,7 @@
                     <div class="col-md-7" >
                         <div class="table-responsive">
                             <h3>5. Genuine EMW Sales</h3>
-                            <div id="chart_div2" style="min-width: 600px; min-height: 500px;"></div>
+                            <div id="chart-emw" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed" style="width: 593px;" >
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
@@ -183,13 +225,13 @@
                     <div class="col-md-7">
                         <h3>6. TRAINING</h3>
                         <div class="table-responsive">
-                            <div id="chart_div6" style="min-width: 600px; min-height: 400px;">
+                            <div id="chart-training" class="metrics-chart-wrap">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <h3>TRAINING GUIDE</h3>
-                        <table class="table small-table" >
+                        <table class="table small-table">
                             <tr class="table-top-row">
                                 <td>Competency Modules</td>
                                 <td>Credits</td>

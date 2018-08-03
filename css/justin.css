@@ -137,3 +137,9 @@
 .T-C td.sales-name{
     color: #525357;
 }
+.metrics-chart-wrap{
+    min-width: 600px; min-height: 400px;
+}
+.metrics-table-wrap{
+    width: 593px;
+}

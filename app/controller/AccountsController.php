@@ -114,7 +114,7 @@ class AccountsController extends DashboardController
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
         $this->dataForView['extra_js'] = [
             'https://www.gstatic.com/charts/loader.js',
-            asset('js/metrics/'.$role->getTemplateName().'.js')
+            asset('js/metrics/utils.js') // new way to render the chart
         ];
         return true;
     }
