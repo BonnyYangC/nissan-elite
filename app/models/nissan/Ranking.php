@@ -107,7 +107,7 @@ class Ranking extends BaseModel
 
         $category = $user->getCompany()->category;
         if($category){
-            $where['AND']['category'] = $category;
+            $where['AND']['nissan_rankings.category'] = $category;
         }
 
         if($forGivenUserOnly){
