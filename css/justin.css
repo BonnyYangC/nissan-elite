@@ -17,6 +17,9 @@
 .mb-20{
     margin-bottom: 20px;
 }
+.pt-9{
+    padding-top: 9px !important;
+}
 .pb-0{
     padding-bottom: 0;
 }
@@ -142,4 +145,7 @@
 }
 .metrics-table-wrap{
     width: 593px;
+}
+.sm{
+    font-size: 10px;
 }

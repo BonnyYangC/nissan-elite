@@ -1,10 +1,47 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
 <script>
-    var FINANCIAL = [{{ metrics.FINANCIAL|raw }}];
-    var QUALITY = [{{ metrics.QUALITY|raw }}];
-    var MANAGEMENT = [{{ metrics.MANAGEMENT|raw }}];
     var TRAINING = [{{ metrics.TRAINING|raw }}];
+
+    var CHART_DATA = [
+        {
+            el: 'chart-financial',
+            max: 375,
+            length: 3,
+            step: 125,
+            colors: ['#999999','#555555','#c40030'],
+            pilot: ['Month', 'Frequency', 'Ontime'],
+            dataSource: {{ json_encode(metrics.FINANCIAL)|raw }}
+        },
+        {
+            el: 'chart-quality',
+            max: 550,
+            length: 10,
+            step: 55,
+            colors: ['#999999','#555555','#c40030'],
+            pilot: ['Month', 'Balance', 'Submission'],
+            dataSource: {{ json_encode(metrics.QUALITY)|raw }}
+        },
+        {
+            el: 'chart-MANAGEMENT',
+            max: 600,
+            length: 6,
+            step: 100,
+            colors: ['#999999', '#555555' ,'#c40030'],
+            pilot: ['Month','Checklist', 'Meeting'],
+            dataSource: {{ json_encode(metrics.MANAGEMENT)|raw }}
+        },
+        {
+            el: 'chart-training',
+            duration: 2000,
+            pilot: ['Month', 'Online', 'Classroom' ],
+            max: 450,
+            length: 9,
+            step: 50,
+            colors: ['#111111','#c40030'],
+            dataSource: {{ json_encode(metrics.TRAINING)|raw }}
+        }
+    ];
 </script>
     <div class="container bg-white">
         <div class="row">
@@ -18,31 +55,16 @@
                     <div class="col-md-7">
                         <h3>1. Dealer Financial Reporting</h3>
                         <div class="table-responsive">
-                            <div id="chart_div" style="width: 100%; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-financial" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">FREQUENCY</td>
-                                    {{ metrics.FREQUENCY_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FREQUENCY_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">ONTIME</td>
-                                    {{ metrics.ONTIME_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.ONTIME_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -66,36 +88,21 @@
                         </table>
                     </div>
                 </div>
+
                 <div class="row graph-back">
                     <div class="col-md-7">
                         <h3>2. Quality Of Data Submitted</h3>
                         <div class="table-responsive">
-                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <col>
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-quality" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">BALANCE</td>
-                                    {{ metrics.BALANCE_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.BALANCE_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">SUBMISSION</td>
-                                    {{ metrics.SUBMISSION_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SUBMISSION_RESULTS,'extraClass':'sm pt-9' } %}
                                 </tr>
                             </table>
                         </div>
@@ -150,31 +157,16 @@
                     <div class="col-md-7">
                         <h3>3. Nissan Business Management</h3>
                         <div class="table-responsive">
-                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-MANAGEMENT" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">CHECKLIST</td>
-                                    {{ metrics.CHECKLIST_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CHECKLIST_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">MEETING</td>
-                                    {{ metrics.MEETING_RESULTS|raw }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MEETING_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -208,8 +200,7 @@
                     <div class="col-md-7">
                         <h3>4. Training </h3>
                         <div class="table-responsive">
-                            <div id="chart_div5" style="min-width: 600px; min-height: 400px;">
-                            </div>
+                            <div id="chart-training" class="metrics-chart-wrap"></div>
                         </div>
                     </div>
                     <div class="col-md-5">

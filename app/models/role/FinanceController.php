@@ -11,6 +11,8 @@ namespace App\models\role;
 use App\models\role\status\FinanceControllerStatus;
 use App\models\role\status\IColor;
 use App\models\User;
+use Carbon\Carbon;
+
 class FinanceController extends BaseRole implements IRole
 {
     public $name='finance_controller';
@@ -58,40 +60,40 @@ class FinanceController extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $financial=$frequency_results=$ontime_results=$quality=$balance_results=$submission_results=$management=$checklist_results=$meeting_results=$training='';
-        $class='nissangray-light-back';
-
         for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,2017);
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-            if(isset($data[date("M-Y", $period)]))
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($data[$key]) ? $data[$key] : null;
+            if($item)
             {
-                $financial.=(empty($financial) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['frequency_credits'] . "," . $data[date("M-Y", $period)]['ontime_credits'] . "]";
-                $quality.=(empty($quality) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['balance_credit'] . "," . $data[date("M-Y", $period)]['quality_credit'] . "]";
-                $management.=(empty($management) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['checklist_credit'] . "," . $data[date("M-Y", $period)]['meeting_credit'] . "]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['training'] . "," . $data[date("M-Y", $period)]['classroom'] . "]";
+                $financial[]    = $this->_buildForJs( [$item['frequency_credits'], $item['ontime_credits']] );
+                $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
+                $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
+                $financial[]    = $this->_buildForJs( [$item['training'], $item['classroom']] );
 
+                $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
+                $ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
+                $balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
 
-                $frequency_results.='<td class="' . $class . '">' . ($data[date("M-Y", $period)]['frequency']==1 ? "YES" : "NO") . '</td>';
-                $ontime_results.='<td class="' . $class . '">' . ($data[date("M-Y", $period)]['ontime']==1 ? "YES" : "NO") . '</td>';
-                $balance_results.='<td class="' . $class . '">' . ($data[date("M-Y", $period)]['balance']==1 ? "YES" : "NO") . '</td>';
-                $submission_results.='<td class="' . $class . '"><span class="sm">' . (empty($data[date("M-Y", $period)]['quality']) ? '' : date("d-M", strtotime($data[date("M-Y", $period)]['quality']))) . '</span></td>';
-                $checklist_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['checklist'],0) . '</td>';
-                $meeting_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['meeting'],0) . '</td>';
+                $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
+                $submission_results[]   = $sub->format('d/M');
+
+                $checklist_results[]    = $this->_buildForTableElement($item['checklist'],0);
+                $meeting_results[]      = $this->_buildForTableElement($item['meeting'],0);
             }
             else
             {
-                $financial.=(empty($financial) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
-                $quality.=(empty($quality) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
-                $management.=(empty($management) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
+                $financial[]    = $this->_buildForJs( [0,0] );
+                $quality[]      = $this->_buildForJs( [0,0] );
+                $management[]   = $this->_buildForJs( [0,0] );
+                $training[]     = $this->_buildForJs( [0,0] );
 
-                $frequency_results.='<td class="' . $class . '">&nbsp;</td>';
-                $ontime_results.='<td class="' . $class . '">&nbsp;</td>';
-                $balance_results.='<td class="' . $class . '">&nbsp;</td>';
-                $submission_results.='<td class="' . $class . '">&nbsp;</td>';
-                $checklist_results.='<td class="' . $class . '">&nbsp;</td>';
-                $meeting_results.='<td class="' . $class . '">&nbsp;</td>';
+                $frequency_results[]    = null;
+                $ontime_results[]       = null;
+                $balance_results[]      = null;
+                $submission_results[]   = null;
+                $checklist_results[]    = null;
+                $meeting_results[]      = null;
             }
         }
 

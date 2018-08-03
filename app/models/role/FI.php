@@ -145,20 +145,14 @@ class FI extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-
         $nfsa=$nfsa_results=$emw=$emw_results=$mmu_results=$ins=$mvi_results=$vpi_results=$pkg_results=$penetration=$penetration_results=$fu=$fu_results=[];
-
-        $class='nissangray-light-back';
-
         for($i=0; $i<12; $i++) {
-            $period=mktime(0,0,0,4+$i,1,env('YEAR'),2017);
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
 
             if($item)
             {
+                // chart
                 $nfsa[] = $this->_buildForJs($item['credit_actual_sales']);
                 $emw[] = $this->_buildForJs(
                     [
@@ -176,12 +170,7 @@ class FI extends BaseRole implements IRole
                 $penetration[] = $this->_buildForJs($item['credits_penetration']);
                 $fu[] = $this->_buildForJs($item['credits_fi']);
 
-//                $nfsa.=(empty($nfsa) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['credit_actual_sales']) ? '0' : $data[date("M-Y", $period)]['credit_actual_sales']) . "]";
-//                $emw.=(empty($emw) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['credits_emw']) ? '0' : $data[date("M-Y", $period)]['credits_emw']) . "," . (empty($data[date("M-Y", $period)]['credits_mmu']) ? '0' : $data[date("M-Y", $period)]['credits_mmu']) . "]";
-//                $ins.=(empty($ins) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['credits_mvi']) ? '0' : $data[date("M-Y", $period)]['credits_mvi']) . "," . (empty($data[date("M-Y", $period)]['credits_vpi']) ? '0' : $data[date("M-Y", $period)]['credits_vpi']) . "," . $data[date("M-Y", $period)]['credits_pkg'] . "]";
-//                $penetration.=(empty($penetration) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['credits_penetration']) ? '0' : $data[date("M-Y", $period)]['credits_penetration']) . "]";
-//                $fu.=(empty($fu) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['credits_fi']) ? '0' : $data[date("M-Y", $period)]['credits_fi']) . "]";
-
+                // table
                 $nfsa_results[] = $this->_buildForTableElement($item['sales_nfsa']);
                 $emw_results[] = $this->_buildForTableElement($item['sales_emw']);
                 $mmu_results[] = $this->_buildForTableElement($item['sales_mmu']);
@@ -190,15 +179,6 @@ class FI extends BaseRole implements IRole
                 $pkg_results[] = $this->_buildForTableElement($item['sales_pkg']);
                 $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 0 ) . '%';
                 $fu_results[] = $this->_buildForTableElement($item['score_fi']);
-
-//                $nfsa_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['sales_nfsa'],0) . '</td>';
-//                $emw_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['sales_emw'],0) . '</td>';
-//                $mmu_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['sales_mmu'],0) . '</td>';
-//                $mvi_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['sales_mvi'],0) . '</td>';
-//                $vpi_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['sales_vpi'],0) . '</td>';
-//                $pkg_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['sales_pkg'],0) . '</td>';
-//                $penetration_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['penetration']*100,0) . '%</td>';
-//                $fu_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['score_fi'] . '</td>';
             }
             else
             {
@@ -208,12 +188,6 @@ class FI extends BaseRole implements IRole
                 $penetration[] = $this->_buildForJs(0);
                 $fu[] = $this->_buildForJs(0);
 
-//                $nfsa.=(empty($nfsa) ? '' : ',') . "['" . date("M", $period) . "',0]";
-//                $emw.=(empty($emw) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
-//                $ins.=(empty($ins) ? '' : ',') . "['" . date("M", $period) . "',0,0,0]";
-//                $penetration.=(empty($penetration) ? '' : ',') . "['" . date("M", $period) . "',0]";
-//                $fu.=(empty($fu) ? '' : ',') . "['" . date("M", $period) . "',0]";
-
                 $nfsa_results[] = $this->_buildForTableElement();
                 $emw_results[] = $this->_buildForTableElement();
                 $mmu_results[] = $this->_buildForTableElement();
@@ -222,18 +196,9 @@ class FI extends BaseRole implements IRole
                 $pkg_results[] = $this->_buildForTableElement();
                 $penetration_results[] = $this->_buildForTableElement();
                 $fu_results[] = $this->_buildForTableElement();
-
-//                $nfsa_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $emw_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $mmu_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $mvi_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $vpi_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $pkg_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $penetration_results.='<td class="' . $class . '">&nbsp;</td>';
-//                $fu_results.='<td class="' . $class . '">&nbsp;</td>';
             }
         }
-        $metrics =  [
+        return  [
             "NFSA" => $nfsa,
             "NFSA_RESULTS" => $nfsa_results,
             "EMW" => $emw,
@@ -248,6 +213,5 @@ class FI extends BaseRole implements IRole
             "FOLLOW_UP" => $fu,
             "FOLLOW_UP_RESULTS" => $fu_results
         ];
-        return $metrics;
     }
 }

@@ -15,7 +15,7 @@
                 max: 800,
                 length: 8,
                 step: 100,
-                colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
+                colors: ['#999999', '#555555' ,'#c40030' ,'#111111'],
                 pilot: ['Month', 'MVI', 'VPI', 'Package'],
                 dataSource: {{ json_encode(metrics.INSURANCE)|raw }}
             },
@@ -24,7 +24,7 @@
                 max: 2000,
                 length: 8,
                 step: 250,
-                colors: ['#555555','#c40030' ,'#c40030'],
+                colors: ['#555555','#c40030' ,'#111111'],
                 pilot: ['Month','Genuine', 'Extended'],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
             },

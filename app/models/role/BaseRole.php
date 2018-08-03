@@ -165,4 +165,12 @@ class BaseRole
     protected function _buildForTableElement($value = null, $demicals = 1){
         return $value ? number_format(floatval($value),$demicals) : 0.0;
     }
+
+    /**
+     * @param null $value
+     * @return string
+     */
+    protected function _buildForTableYesOrNoElement($value){
+        return $value == '1' ? 'YES' : 'NO';
+    }
 }
