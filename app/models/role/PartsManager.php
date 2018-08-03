@@ -37,31 +37,46 @@ class PartsManager extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $grp=$grp_results=$gas=$gas_results=$training='';
-        $class='nissangray-light-back';
-
+        $grp=$grp_results=$gas=$gas_results=$training=[];
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,2017);
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-            if(isset($data[date("M-Y", $period)]))
+            $class=1;
+
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($data[$key]) ? $data[$key] : null;
+
+            if($item)
             {
-                $grp.=(empty($grp) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['grp_credit'] . "]";
-                $gas.=(empty($gas) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['gas_credit'] . "]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['classroom']  . "]";
+//                $grp.=(empty($grp) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['grp_credit'] . "]";
+//                $gas.=(empty($gas) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['gas_credit'] . "]";
+//                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['classroom']  . "]";
 
+                $grp[] = $this->_buildForJs($item['grp_credit']);
+                $gas[] = $this->_buildForJs($item['gas_credit']);
+                $training[] = $this->_buildForJs($item['classroom']);
 
-                $grp_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['grp']*100,0) . '%</td>';
-                $gas_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['gas']*100,0) . '%</td>';
+//                $grp_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['grp']*100,0) . '%</td>';
+//                $gas_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['gas']*100,0) . '%</td>';
+
+                $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
+                $gas_results[] = $this->_buildForTableElement($item['gas']*100,0).'%';
             }
             else
             {
-                $grp.=(empty($grp) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $gas.=(empty($gas) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0]";
+//                $grp.=(empty($grp) ? '' : ',') . "['" . date("M", $period) . "',0]";
+//                $gas.=(empty($gas) ? '' : ',') . "['" . date("M", $period) . "',0]";
+//                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0]";
 
-                $grp_results.='<td class="' . $class . '">&nbsp;</td>';
-                $gas_results.='<td class="' . $class . '">&nbsp;</td>';
+                $grp[] = $this->_buildForJs(0);
+                $gas[] = $this->_buildForJs(0);
+                $training[] = $this->_buildForJs(0);
+
+//                $grp_results.='<td class="' . $class . '">&nbsp;</td>';
+//                $gas_results.='<td class="' . $class . '">&nbsp;</td>';
+
+                $grp_results[] = null;
+                $gas_results[] = null;
             }
         }
         return [
