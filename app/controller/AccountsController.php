@@ -46,26 +46,23 @@ class AccountsController extends DashboardController
         // Load user's metrics data
         $this->fetchUserMetricsData();
 
-        // Get user's position
-        $position_to_use = $this->userObject->position;
-
         /**
          * @var IRole $role
          */
         $role = null;
 
-        switch ($position_to_use){
+        switch ($this->userObject->position){
             case User::FI:
-                $role = new FI($this->userObject);
+                $role = new FI($this->userObject);  // Refined
                 break;
             case User::FINANCE_CONTROLLER:
-                $role = new FinanceController($this->userObject);
+                $role = new FinanceController($this->userObject); // Refined
                 break;
             case User::PARTS_MANAGER:
-                $role = new PartsManager($this->userObject);
+                $role = new PartsManager($this->userObject);    // Refined
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
-                $role = new RetailSalesConsultant($this->userObject);
+                $role = new RetailSalesConsultant($this->userObject);   // Refined
                 break;
             case User::FLEET_SALES_CONSULTANTS:
                 $role = new FleetSalesConsultant($this->userObject);

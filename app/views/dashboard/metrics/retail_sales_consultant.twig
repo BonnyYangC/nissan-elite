@@ -22,7 +22,7 @@
                 el: 'chart-recommendation',
                 max: 5000,
                 length: 10,
-                step: 50,
+                step: 500,
                 colors: ['#999999'],
                 dataSource: {{ json_encode(metrics.JS_reCommendation)|raw }}
             },
@@ -31,7 +31,7 @@
                 max: 1500,
                 length: 6,
                 step: 250,
-                colors: ['#111111', '#333333' ,'#555555','#999999' ,'#999999' , 'd2d2d2'],
+                colors: ['#999999' ,'#c40030','d2d2d2'],
                 pilot: ['Month', 'Pathway' ,'Process' , 'Classroom' ],
                 dataSource: {{ json_encode(metrics.JS_training)|raw }}
             }

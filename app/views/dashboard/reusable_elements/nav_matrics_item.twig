@@ -8,13 +8,13 @@
         Metrics <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-    {% for database_table_name,label in userPositions %}
+    {% for database_table_name,item in userPositions %}
         <li>
-            <a href="{{ url('/dashboard/Metrics?asRole=') }}{{ database_table_name }}">
+            <a href="{{ url('/dashboard/Metrics?asRole=') }}{{ item.abbr }}">
                 {% if database_table_name == targetDatabaseTableName %}
-                <span class="text-danger"><i class="fa fa-check-circle"></i>&nbsp;{{ label }}</span>
+                <span class="text-danger"><i class="fa fa-check-circle"></i>&nbsp;{{ item.text }}</span>
                 {% else %}
-                {{ label }}
+                {{ item.text }}
                 {% endif %}
             </a>
         </li>

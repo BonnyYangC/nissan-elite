@@ -16,7 +16,7 @@ class DataSource extends BaseModel
      * @var array
      */
     private static $_maps = [
-        'nissan_salesconsultants'       => User::RETAIL_SALES_CONSULTANTS,
+        'nissan_salesconsultants'       => [User::RETAIL_SALES_CONSULTANTS,User::FLEET_SALES_MANAGER,User::FLEET_SALES_CONSULTANTS],
         'nissan_salesmanagers'          => User::SALES_MANAGER,
         'nissan_serviceadvisors'        => User::SERVICE_ADVISERS,
         'nissan_fi'                     => User::FI,
@@ -32,6 +32,20 @@ class DataSource extends BaseModel
      * @var array
      */
     private static $_rolesMap = [
+        User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
+        User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
+        User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
+        User::SALES_MANAGER                 => 'Sales Manager',
+        User::SERVICE_ADVISERS              => 'Service Advisor',
+        User::FI                            => 'Finance & Insurance Manager',
+        User::STOCK_CONTROLLER              => 'Stock Controller',
+        User::FINANCE_CONTROLLER            => 'Financial Controller',
+        User::PARTS_MANAGER                 => 'Parts Manager',
+        User::PARTS_SALES_REP               => 'Parts & Sales Representative',
+        User::SERVICE_MANAGER               => 'Service Manager'
+    ];
+
+    private static $_rolesMapOld = [
         'nissan_salesconsultants'       => 'Sales Consultant',
         'nissan_salesmanagers'          => 'Sales Manager',
         'nissan_serviceadvisors'        => 'Service Advisor',
@@ -41,6 +55,20 @@ class DataSource extends BaseModel
         'nissan_partsmanager'           => 'Parts Manager',
         'nissan_partsrep'               => 'Parts & Sales Representative',
         'nissan_servicemanagers'        => 'Service Manager'
+    ];
+
+    private static $_rolesTableNameMap = [
+        User::RETAIL_SALES_CONSULTANTS      => 'nissan_salesconsultants',
+        User::FLEET_SALES_MANAGER           => 'nissan_salesconsultants',
+        User::FLEET_SALES_CONSULTANTS       => 'nissan_salesconsultants',
+        User::SALES_MANAGER                 => 'nissan_salesmanagers',
+        User::SERVICE_ADVISERS              => 'nissan_serviceadvisors',
+        User::FI                            => 'nissan_fi',
+        User::STOCK_CONTROLLER              => 'nissan_stockcontroller',
+        User::FINANCE_CONTROLLER            => 'nissan_financialcontrollers',
+        User::PARTS_MANAGER                 => 'nissan_partsmanager',
+        User::PARTS_SALES_REP               => 'nissan_partsrep',
+        User::SERVICE_MANAGER               => 'nissan_servicemanagers'
     ];
 
     /**
@@ -102,22 +130,35 @@ class DataSource extends BaseModel
     }
 
     /**
+     * Get user's positions array; One conditions, for support multiple roles, the user's position has to be set before calling this function
+     * 获取用户所有可能的职务的方法. 为了正确获取, 在本方法被调用之前, 必须保证 user 对象的 position 已经被设置, 才能支持多职位的情况
      * @param User $user
      * @return array|null
      */
     public static function GetPositionList(User $user) {
         if(is_null(self::$_positionList)){
-            $tables = array_keys(self::$_maps);
             $database = self::DB();
             self::$_positionList = [];
-            foreach ($tables as $table) {
+            // Todo : 这里的设计是 - 用户表中的用户角色可能随时发生变化, 因此需要查询所有的表格, 如果有记录条数返回, 表示有对应表角色的数据
+            foreach (self::$_maps as $table => $positionAbbr) {
                 $num_rows = $database->count(
                     $table,
                     '*',
                     ['member_id'=>$user->getEmployeeCode()]
                 );
                 if ($num_rows > 0) {
-                    self::$_positionList[] = $table;
+                    $abbr = $positionAbbr;
+                    if(is_string($positionAbbr)){
+                        $theRoleName = self::getRoleNameByAbbr($positionAbbr);
+                    }else{
+                        // Position abbr is an array now, so have to use user's current position
+                        $theRoleName = self::getRoleNameByAbbr($user->position);
+                        $abbr = $user->position;
+                    }
+                    self::$_positionList[$table] = [
+                        'abbr'=>$abbr,
+                        'text'=>$theRoleName
+                    ];
                 }
             }
         }
@@ -175,40 +216,53 @@ class DataSource extends BaseModel
 
 
     /**
-     * Get abbr from table name
+     * Get user position abbr from table name
+     * 根据给定的数据库表名称获取对应的职务缩写
      * @param $table
-     * @return string
+     * @return string|array|null
      */
     public static function nissan_get_abbr_from_table_name ($table) {
         if(isset(self::$_maps[$table])){
-            return strtoupper(self::$_maps[$table]);
+            return self::$_maps[$table];
         }
-        return false;
+        return null;
     }
 
     /**
-     * Get data source table name from abbr
+     * Get database table name from user position abbr
+     * 从用户的职位缩写获取对应的数据库表名称
      * @param $abbr
      * @return string
      */
     public static function nissan_get_table_name_from_abbr ($abbr) {
-        $result = null;
-        $abbr = strtoupper($abbr);
-        foreach (self::$_maps as $tableName => $value) {
-            if($value == $abbr){
-                $result = $tableName;
-                break;
-            }
-        }
-        return $result;
+        return self::$_rolesTableNameMap[$abbr];
     }
 
     /**
      * Get Role name by given database table name
-     * @param $name
+     * 根据给定的数据库表名称获取职务的文字说明. 因为通过表明会可能得到一个缩写的数组, 因此需要一个 user 对象
+     * @param $tableName
+     * @param User $user
      * @return string
      */
-    public static function getRoleNameByDatabaseTableName($name){
-        return self::$_rolesMap[$name];
+    public static function getRoleNameByDatabaseTableName($tableName, User $user = null){
+        $abbr = self::nissan_get_abbr_from_table_name($tableName);
+        if(is_array($abbr)){
+            $abbr = $user ? $user->position : null;
+        }
+        return self::getRoleNameByAbbr($abbr);
+    }
+
+    /**
+     * Get role name text by abbr
+     * 获取职务的文字信息, 根据给定的职务缩写
+     * @param $abbr
+     * @return mixed
+     */
+    public static function getRoleNameByAbbr($abbr){
+        if(empty($abbr)){
+            return null;
+        }
+        return self::$_rolesMap[$abbr];
     }
 }

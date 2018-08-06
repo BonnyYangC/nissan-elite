@@ -3,8 +3,16 @@
     所使用的数据, 来自 DashboardController 的 beforeRender 方法中注入的数据, 主要是就是当前登陆用户所关联的数据表 tableName=>roleName
 #}
 {% if count(multiple_role_metrics) > 1 %}
-    {% for tableName,role in table_role_array %}
-        <li class="{{ currentUri=='Metrics' ? 'current' : null }}"><a href="{{ url('/dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
+    {% for database_table_name,item in userPositions %}
+        <li class="{{ database_table_name == targetDatabaseTableName ? 'current' : null }}">
+            <a href="{{ url('/dashboard/Metrics?asRole=') }}{{ item.abbr }}">
+                {% if database_table_name == targetDatabaseTableName %}
+                    <span class="text-danger"><i class="fa fa-check-circle"></i>&nbsp;{{ item.text }}</span>
+                {% else %}
+                    {{ item.text }}
+                {% endif %}
+            </a>
+        </li>
     {% endfor %}
 {% else %}
     <li class="{{ currentUri=='Metrics' ? 'current' : null }}"><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
