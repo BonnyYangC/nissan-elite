@@ -71,13 +71,13 @@ class AccountsController extends DashboardController
                 $role = new FleetSalesManager($this->userObject);   // Refined
                 break;
             case User::SALES_MANAGER:
-                $role = new SalesManager($this->userObject);
+                $role = new SalesManager($this->userObject);    // Refined
                 break;
             case User::STOCK_CONTROLLER:
-                $role = new StockController($this->userObject);
+                $role = new StockController($this->userObject);// Refined
                 break;
             case User::PARTS_SALES_REP:
-                $role = new PartsSalesRep($this->userObject);
+                $role = new PartsSalesRep($this->userObject);// Refined
                 break;
             case User::SERVICE_MANAGER:
                 $role = new ServiceManager($this->userObject);
