@@ -225,13 +225,20 @@ if(!function_exists('url')){
     /**
      * Build url for js, css and images
      * @param string $uri
+     * @param array $params
      * @return string
      */
-    function url($uri=null){
+    function url($uri=null, $params = []){
         if(strpos($uri,'/') === 0){
             $uri = substr($uri,1);
         }
-        return env('SITE_URL').$uri;
+        $paramsString = '';
+        if(is_array($params)) {
+            if (count($params) > 0) {
+                $paramsString = '?' . http_build_query($params);
+            }
+        }
+        return env('SITE_URL').$uri.$paramsString;
     }
 }
 

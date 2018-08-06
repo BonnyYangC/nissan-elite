@@ -2,14 +2,22 @@
     这个是用来在菜单中生成 Metrics 子菜单的模板.
     所使用的数据, 来自 DashboardController 的 beforeRender 方法中注入的数据, 主要是就是当前登陆用户所关联的数据表 tableName=>roleName
 #}
-{% if count(multiple_role_metrics) > 1 %}
+{% if userHasMultipleRoles %}
 <li class="dropdown">
     <a href="#" class="dropdown-toggle {{ currentUri=='Metrics' ? 'current' : null }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         Metrics <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-    {% for tableName,role in table_role_array %}
-        <li><a href="{{ url('/dashboard/Metrics/') }}{{ tableName }}">{{ role }}</a></li>
+    {% for database_table_name,label in userPositions %}
+        <li>
+            <a href="{{ url('/dashboard/Metrics?asRole=') }}{{ database_table_name }}">
+                {% if database_table_name == targetDatabaseTableName %}
+                <span class="text-danger"><i class="fa fa-check-circle"></i>&nbsp;{{ label }}</span>
+                {% else %}
+                {{ label }}
+                {% endif %}
+            </a>
+        </li>
     {% endfor %}
     </ul>
 </li>

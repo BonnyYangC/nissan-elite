@@ -45,6 +45,7 @@ class DashboardController extends BaseController
      * @var bool
      */
     protected $userHasMultipleRoles = false;
+    protected $userPositions = [];  // All current user's positions go here
 
     /**
      * Need to show the regional ranking in dashboard page
@@ -77,6 +78,15 @@ class DashboardController extends BaseController
         if($userData && isset($userData['id'])){
             $this->currentUserId = $userData['id'];
             $this->userObject = new User($this->currentUserId);
+
+            /**
+             * 设置用户的角色: Set user roles
+             */
+            $this->setUserCurrentRoleAndTableName();
+            /**
+             * 设置用户的角色 End
+             */
+
         }else{
             // Session expired, go to login
             $response->redirect('/')->send();
@@ -116,22 +126,6 @@ class DashboardController extends BaseController
         $ytd = is_null($ytd) ? env('YEAR',2017) : $ytd;
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
-
-        /**
-         * 设置用户的角色: Set user roles
-         */
-        $this->setUserCurrentRoleAndTableName();
-        $this->dataForView['targetDatabaseTableName'] = $this->targetTableName;
-        $this->dataForView['userHasMultipleRoles'] = $this->userHasMultipleRoles;
-        $this->dataForView['userPositions'] = [];
-        foreach ($this->userObject->getPositions() as $databaseTableName) {
-            $this->dataForView['userPositions'][$databaseTableName] = DataSource::getRoleNameByDatabaseTableName($databaseTableName);
-        }
-        $this->dataForView['asRole'] = $this->asRole;
-        /**
-         * 设置用户的角色 End
-         */
-
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
 
         $this->dataForView['extra_css'] = [
@@ -328,19 +322,49 @@ class DashboardController extends BaseController
     public function setUserCurrentRoleAndTableName(){
         // 先尝试获取是否用户提交了 asRole, 这个值应该是数据表的名字
         $asRole = $this->request->param('asRole');
-//        $this->userHasMultipleRoles = !is_null($this->request->param('override_role'));
+
+        // 获取当前用户的默认 Position
+        $this->asRole = $this->userObject->position;
+
+        // Find all user's roles
+        $this->userPositions = $this->userObject->getPositions();
+        $this->userHasMultipleRoles = count($this->userPositions) > 1;
 
         if($asRole){
             // For multiple role support, 用户是有多个角色的, 但是此次请求使用当前找到的角色
-            $this->userHasMultipleRoles = count($this->userObject->getPositions()) > 1;
             $abbr = DataSource::nissan_get_abbr_from_table_name($asRole);
             if($abbr){
                 $this->asRole = $abbr;
             }
-        }else{
-            $this->asRole = $this->userObject->position;
-            $this->targetTableName = DataSource::nissan_get_table_name_from_abbr($this->asRole);
+            /**
+             * Force the current user uses this requested role
+             */
+            $this->userObject->position = $this->asRole;
         }
+
+        // By default, give current user a default position
+        $this->targetTableName = DataSource::nissan_get_table_name_from_abbr($this->userObject->position);
+
+        // Set to the view
+        $this->dataForView['userHasMultipleRoles'] = $this->userHasMultipleRoles;
+        $this->dataForView['asRole'] = $this->asRole;
+        $this->dataForView['currentRoleText'] = DataSource::getRoleNameByDatabaseTableName($this->targetTableName);
+        $this->dataForView['targetDatabaseTableName'] = $this->targetTableName;
+
+        $this->dataForView['userPositions'] = [];
+        foreach ($this->userPositions as $databaseTableName) {
+            $this->dataForView['userPositions'][$databaseTableName] = DataSource::getRoleNameByDatabaseTableName($databaseTableName);
+        }
+        /**
+         *  userPositions array is in the below structure
+            array(2) {
+                ["nissan_salesconsultants"]=>
+                    string(16) "Sales Consultant"
+                ["nissan_salesmanagers"]=>
+                    string(13) "Sales Manager"
+            }
+         *
+         */
     }
 
 

@@ -39,7 +39,7 @@ class DataSource extends BaseModel
         'nissan_stockcontroller'        => 'Stock Controller',
         'nissan_financialcontrollers'   => 'Financial Controller',
         'nissan_partsmanager'           => 'Parts Manager',
-        'nissan_partsrep'               => 'Parts & Sales Representitive',
+        'nissan_partsrep'               => 'Parts & Sales Representative',
         'nissan_servicemanagers'        => 'Service Manager'
     ];
 

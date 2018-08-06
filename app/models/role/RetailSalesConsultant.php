@@ -124,10 +124,15 @@ class RetailSalesConsultant extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
+        $new=$recommendation=$FU=$training=$sales_results=$recommendation_results=$fu_results=[];
         for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,2017);
-            if(isset($data[date("M-Y", $period)]))
+//            $period=mktime(0,0,0,4+$i,1,2017);
+
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($data[$key]) ? $data[$key] : null;
+
+            if($item)
             {
                 /**
                  *  Deprecated
@@ -141,16 +146,24 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $fu_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['follow_up_score'] . '</td>';
                 */
 
+                $new[]              = $this->_buildForJs($item['credit_actual_sales']);
+                $recommendation[]   = $this->_buildForJs($item['ce_recommendation']);
+                $FU[]               = $this->_buildForJs($item['follow_up_credit']);
+                $training[]         = $this->_buildForJs([$item['pathway'],$item['training'],$item['classroom']]);
+
                 // 新的方式
-                $this->JS_newVehicleSales[date("M", $period)] = $data[date("M-Y", $period)]['credit_actual_sales']; // JS OBJECT
-                $this->JS_reCommendation[date("M", $period)] = $data[date("M-Y", $period)]['ce_recommendation'];    // JS OBJECT
-                $this->JS_followUpCredits[date("M", $period)] = $data[date("M-Y", $period)]['follow_up_credit'];    // JS OBJECT
-                $this->JS_training[] = "['".date("M", $period)."',".$data[date("M-Y", $period)]['pathway'].",".$data[date("M-Y", $period)]['training'].",".$data[date("M-Y", $period)]['classroom']."]";
+//                $this->JS_newVehicleSales[date("M", $period)] = $data[date("M-Y", $period)]['credit_actual_sales']; // JS OBJECT
+//                $this->JS_reCommendation[date("M", $period)] = $data[date("M-Y", $period)]['ce_recommendation'];    // JS OBJECT
+//                $this->JS_followUpCredits[date("M", $period)] = $data[date("M-Y", $period)]['follow_up_credit'];    // JS OBJECT
+//                $this->JS_training[] = "['".date("M", $period)."',".$data[date("M-Y", $period)]['pathway'].",".$data[date("M-Y", $period)]['training'].",".$data[date("M-Y", $period)]['classroom']."]";
 
+                $sales_results[]            = $this->_buildForTableElement($item['sales']);
+                $recommendation_results[]   = $this->_buildForTableElement($item['score_recommendation']);
+                $fu_results[]               = $this->_buildForTableElement($item['follow_up_score']);
 
-                $this->salesResult[] = $data[date("M-Y", $period)]['sales'];
-                $this->salesRecommendationResult[date("M", $period)] = $data[date("M-Y", $period)]['score_recommendation'];
-                $this->followUpCredits[] = $data[date("M-Y", $period)]['follow_up_score'];
+//                $this->salesResult[] = $data[date("M-Y", $period)]['sales'];
+//                $this->salesRecommendationResult[date("M", $period)] = $data[date("M-Y", $period)]['score_recommendation'];
+//                $this->followUpCredits[] = $data[date("M-Y", $period)]['follow_up_score'];
             }
             else
             {
@@ -168,30 +181,39 @@ class RetailSalesConsultant extends BaseRole implements IRole
                  * */
 
                 // 新的方式
-                $this->JS_newVehicleSales[date("M", $period)] = 0;
-                $this->JS_reCommendation[date("M", $period)]  = 0;
-                $this->JS_followUpCredits[date("M", $period)]  = 0;
-                $this->JS_training[] = "['".date("M", $period)."',0,0,0]";
+//                $this->JS_newVehicleSales[date("M", $period)] = 0;
+//                $this->JS_reCommendation[date("M", $period)]  = 0;
+//                $this->JS_followUpCredits[date("M", $period)]  = 0;
+//                $this->JS_training[] = "['".date("M", $period)."',0,0,0]";
 
-                $this->salesResult[] = null;
-                $this->salesRecommendationResult[] = null;
-                $this->followUpCredits[] = null;
+                $new[]              = $this->_buildForJs(0);
+                $recommendation[]   = $this->_buildForJs(0);
+                $FU[]               = $this->_buildForJs(0);
+                $training[]         = $this->_buildForJs([0,0,0]);
+
+//                $this->salesResult[] = null;
+//                $this->salesRecommendationResult[] = null;
+//                $this->followUpCredits[] = null;
+
+                $sales_results[]            = null;
+                $recommendation_results[]   = null;
+                $fu_results[]               = null;
             }
 
         }
 
-        $this->JS_training = '['.implode(',',$this->JS_training).']';
+//        $this->JS_training = '['.implode(',',$this->JS_training).']';
 
         return [
             // For js array
-            "JS_newVehicleSales"    =>convert_array_to_js_2_dimension_array($this->JS_newVehicleSales),
-            "JS_reCommendation"     =>convert_array_to_js_2_dimension_array($this->JS_reCommendation),
-            "JS_followUpCredits"    =>convert_array_to_js_2_dimension_array($this->JS_followUpCredits),
-            "JS_training"           =>$this->JS_training,
+            "JS_newVehicleSales"    =>$new,
+            "JS_reCommendation"     =>$recommendation,
+            "JS_followUpCredits"    =>$FU,
+            "JS_training"           =>$training,
             // For PHP array
-            "salesResult"               =>$this->salesResult,
-            "salesRecommendationResult" =>$this->salesRecommendationResult,
-            "followUpCredits"           =>$this->followUpCredits,
+            "salesResult"               =>$sales_results,
+            "salesRecommendationResult" =>$recommendation_results,
+            "followUpCredits"           =>$fu_results,
         ];
     }
 

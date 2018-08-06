@@ -1,8 +1,8 @@
 <div style="padding: 10px 0;">
     <strong>You have had multiple roles: </strong>
     <select id="metricsRoleSelect">
-        {% for label,database_table_name in userPositions %}
-        <option value="{{ database_table_name }}" {{ asRole==database_table_name ? 'selected' : null }}>{{ label }}</option>
+        {% for database_table_name,label in userPositions %}
+        <option value="{{ database_table_name }}" {{ targetDatabaseTableName==database_table_name ? 'selected' : null }}>{{ label }}</option>
         {% endfor %}
     </select>
 </div>
@@ -10,7 +10,7 @@
     var metricsRoleSelect = document.getElementById('metricsRoleSelect');
     if (metricsRoleSelect) {
         metricsRoleSelect.addEventListener('change', function (e) {
-            window.location.href = '/dashboard/' + e.target.value;
+            window.location.href = '/dashboard?asRole=' + e.target.value;
         });
     }
 </script>

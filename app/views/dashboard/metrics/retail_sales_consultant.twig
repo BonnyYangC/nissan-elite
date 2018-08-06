@@ -1,10 +1,41 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        {#var NEW_VEHICLE_SALES = [{{ metrics.NEW_VEHICLE_SALES|raw }}];#}
-        {#var SALES_RECOMMENDATION = [{{ metrics.SALES_RECOMMENDATION|raw }}];#}
-        {#var FOLLOW_UP_CREDITS = [{{ metrics.FOLLOW_UP_CREDITS|raw }}];#}
-        var TRAINING = [{{ metrics.TRAINING|raw }}];
+        var CHART_DATA = [
+            {
+                el: 'chart-followup',
+                max: 60,
+                length: 6,
+                step: 10,
+                colors: ['#999999'],
+                dataSource: {{ json_encode(metrics.JS_followUpCredits)|raw }}
+            },
+            {
+                el: 'chart-vehicle-sales',
+                max: 5000,
+                length: 10,
+                step: 500,
+                colors: ['#999999'],
+                dataSource: {{ json_encode(metrics.JS_newVehicleSales)|raw }}
+            },
+            {
+                el: 'chart-recommendation',
+                max: 5000,
+                length: 10,
+                step: 50,
+                colors: ['#999999'],
+                dataSource: {{ json_encode(metrics.JS_reCommendation)|raw }}
+            },
+            {
+                el: 'chart-training',
+                max: 1500,
+                length: 6,
+                step: 250,
+                colors: ['#111111', '#333333' ,'#555555','#999999' ,'#999999' , 'd2d2d2'],
+                pilot: ['Month', 'Pathway' ,'Process' , 'Classroom' ],
+                dataSource: {{ json_encode(metrics.JS_training)|raw }}
+            }
+        ];
     </script>
     <div class="container bg-white pl-25">
         <div class="row">
@@ -20,10 +51,159 @@
         </div>
         <div class="row pb-20 pl-10">
             <div class="col-md-12 col-sm-12  pb-20 pl-10">
-                {% include 'dashboard/metrics/elements/new_vehicle_sales.twig' with {'index':1} %}
-                {% include 'dashboard/metrics/elements/sales_recommendation.twig' with {'index':2} %}
-                {% include 'dashboard/metrics/elements/follow_up_credits.twig' with {'index':3} %}
-                {% include 'dashboard/metrics/elements/training.twig' with {'index':4} %}
+
+                <div class="row graph-back-top pl-10">
+                    <div class="col-md-7" >
+                        <div class="table-responsive">
+                            <h3>1. NEW VEHICLE SALES</h3>
+                            <div id="chart-vehicle-sales" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesResult } %}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>NEW VEHICLE SALES GUIDE</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Sales Member</td>
+                                <td>Retail</td>
+                                <td>Fleet</td>
+                            </tr>
+                            <tr>
+                                <td>Retail Sales Consultant </td>
+                                <td align="center">80</td>
+                                <td align="center">40</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Fleet Sales Manager / Fleet Sales   Consultant </td>
+                                <td align="center">40</td>
+                                <td align="center">80</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row graph-back pl-10">
+                    <div class="col-md-7">
+                        <div class="table-responsive">
+                            <h3>2. SALES RECOMMENDATION R6M</h3>
+                            <div id="chart-recommendation" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesRecommendationResult } %}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>SALES RECOMMENDATION R6M GUIDE</h3>
+
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Sales Member</td>
+                                <td>84-87.9</td>
+                                <td>≥88</td>
+                            </tr>
+                            <tr>
+                                <td>Retail Sales Consultant </td>
+                                <td align="center">50%</td>
+                                <td align="center">100%</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Fleet Sales Manager / Fleet Sales   Consultant </td>
+                                <td align="center">50%</td>
+                                <td align="center">100%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row graph-back pl-10">
+                    <div class="col-md-7">
+                        <h3>3. FOLLOW UP SATURATION R6M</h3>
+                        <div class="table-responsive">
+                            <div id="chart-followup" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                                <tr>
+                                    <td class="nissangray-light-back">RESULT</td>
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.followUpCredits } %}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>FOLLOW UP SATURATION R6M GUIDE</h3>
+                        <table class="table small-table">
+                            <tr class="table-top-row">
+                                <td>Sales Member</td>
+                                <td>100%</td>
+                            </tr>
+                            <tr>
+                                <td>Retail Sales Consultant </td>
+                                <td align="center">60</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Fleet Sales Manager / Fleet Sales   Consultant </td>
+                                <td align="center">60</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row graph-back pl-10">
+                    <div class="col-md-7">
+                        <h3>4. TRAINING</h3>
+                        <div class="table-responsive">
+                            <div id="chart-training" class="metrics-chart-wrap"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h3>TRAINING GUIDE - RETAIL SALES CONSULTANT</h3>
+                        <table class="table small-table" >
+                            <tr class="table-top-row">
+                                <td>Competency Modules</td>
+                                <td>Credits</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Certified Retail Sales Consultant</td>
+                                <td>800</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Sales Executive Certification</td>
+                                <td>150 - 400</td>
+                            </tr>
+                        </table>
+                        <p>&nbsp;</p>
+                        <h3>TRAINING GUIDE - FLEET SALES CONSULTANT & FLEET SALES MANAGER</h3>
+                        <table class="table small-table" >
+                            <tr class="table-top-row">
+                                <td>Competency Modules</td>
+                                <td>Credits</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Certified Fleet Sales Manager & Consultant</td>
+                                <td>800</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Fleet Sales Manager & Consultant</td>
+                                <td>200</td>
+                            </tr>
+                        </table>
+                        <p>
+                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC18 Member Guide</a> for full details.</em>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

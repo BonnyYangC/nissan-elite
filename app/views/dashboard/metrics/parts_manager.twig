@@ -1,9 +1,6 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var GRP = [{{ metrics.GRP|raw }}];
-        var GAS = [{{ metrics.GAS|raw }}];
-        var TRAINING = [{{ metrics.TRAINING|raw }}];
         var CHART_DATA = [
             {
                 el: 'chart-grp',
