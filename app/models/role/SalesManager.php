@@ -25,47 +25,42 @@ class SalesManager extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $matched=$new=$recommendations=$followup=$retail=$training=$matched_results=$sales_results=$recommendation_results=$fu_results=$retail_results='';
-
-        $class='nissangray-light-back';
-
+        $matched=$new=$recommendations=$followup=$retail=$training=$matched_results=$sales_results=$recommendation_results=$fu_results=$retail_results=[];
         for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,2017);
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-            if(isset($data[date("M-Y", $period)]))
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($data[$key]) ? $data[$key] : null;
+
+            if($item)
             {
-                $matched.=(empty($matched) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['order_write_credit'] . "]";
-                $new.=(empty($new) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['actual_sales'] . "]";
-                $recommendations.=(empty($recommendations) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['ce_recomendation']  . "]";
-                $followup.=(empty($followup) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['follow_up_ce'] . "]";
-                $retail.=(empty($retail) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['retail_midmth'] . "]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['training'] . "," . $data[date("M-Y", $period)]['pathway'] . "," . $data[date("M-Y", $period)]['classroom']  . "]";
+                $matched[] = $this->_buildForJs($item['order_write_credit']);
+                $new[] = $this->_buildForJs($item['actual_sales']);
+                $recommendations[] = $this->_buildForJs($item['ce_recomendation']);
+                $followup[] = $this->_buildForJs($item['follow_up_ce']);
+                $retail[] = $this->_buildForJs($item['retail_midmth']);
+                $training[]         = $this->_buildForJs([$item['pathway'],$item['training'],$item['classroom']]);
 
-
-                $matched_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['order_write_variation'] . '</td>';
-                $sales_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['percent'] . '%</td>';
-                $recommendation_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['score_recommendation'] . '</td>';
-                $fu_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['follow_up_score'] . '</td>';
-                $retail_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['retail_percentage']*100 . '%</td>';
+                $matched_results[]  = $this->_buildForTableElement($item['order_write_variation']);
+                $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';
+                $recommendation_results[] = $this->_buildForTableElement($item['score_recommendation'],0).'%';
+                $fu_results[]       = $this->_buildForTableElement($item['follow_up_score'],0).'%';
+                $retail_results[]   = $this->_buildForTableElement($item['retail_percentage']*100,0).'%';
             }
             else
             {
-                $matched.=(empty($matched) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $new.=(empty($new) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $recommendations.=(empty($recommendations) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $followup.=(empty($followup) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $retail.=(empty($retail) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0,0,0]";
+                $matched[] = $this->_buildForJs(0);
+                $new[] = $this->_buildForJs(0);
+                $recommendations[] = $this->_buildForJs(0);
+                $followup[] = $this->_buildForJs(0);
+                $retail[] = $this->_buildForJs(0);
+                $training[]         = $this->_buildForJs([0,0,0]);
 
-                $matched_results.='<td class="' . $class . '">&nbsp;</td>';
-                $sales_results.='<td class="' . $class . '">&nbsp;</td>';
-                $recommendation_results.='<td class="' . $class . '">&nbsp;</td>';
-                $fu_results.='<td class="' . $class . '">&nbsp;</td>';
-                $retail_results.='<td class="' . $class . '">&nbsp;</td>';
-
+                $matched_results[] = null;
+                $sales_results[] = null;
+                $recommendation_results[] = null;
+                $fu_results[] = null;
+                $retail_results[] = null;
             }
-
         }
 
         $result = [

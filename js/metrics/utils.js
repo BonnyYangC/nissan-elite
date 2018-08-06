@@ -30,6 +30,9 @@ function newDrawFunc(obj){
     if(!obj.type){
         obj.type = 'bars';
     }
+    if(!obj.isStacked){
+        obj.isStacked = false;
+    }
 
     var options = {
         chartArea:{left:65,top:40,bottom:40,width:'80%',height:'75%'},
@@ -47,6 +50,7 @@ function newDrawFunc(obj){
             }
             , ticks: new Array(obj.length).fill(obj.step).map((n, i) => n * (i + 1))
         },
+        isStacked: obj.isStacked,
         seriesType: obj.type
     };
     var chart = new google.visualization.ComboChart(document.getElementById(obj.el));
