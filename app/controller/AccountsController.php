@@ -80,10 +80,10 @@ class AccountsController extends DashboardController
                 $role = new PartsSalesRep($this->userObject);// Refined
                 break;
             case User::SERVICE_MANAGER:
-                $role = new ServiceManager($this->userObject);
+                $role = new ServiceManager($this->userObject);  // Refined
                 break;
             case User::SERVICE_ADVISERS:
-                $role = new ServiceAdviser($this->userObject);
+                $role = new ServiceAdviser($this->userObject); // Refined
                 break;
             default:
                 break;

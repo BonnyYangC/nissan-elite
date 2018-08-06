@@ -26,40 +26,42 @@ class ServiceAdviser extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training='';
-        $class='nissangray-light-back';
+        $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training=$cpr=$cpr_result='';
 
         for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,2017);
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-            if(isset($data[date("M-Y", $period)]))
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($data[$key]) ? $data[$key] : null;
+
+            if($item)
             {
-                $recommendation.=(empty($recommendation) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['trust_credit']) ? '0' : $data[date("M-Y", $period)]['trust_credit']) . "]";
-                $emw.=(empty($emw) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['emw_credit']) ? '0' : $data[date("M-Y", $period)]['emw_credit']) . "]";
-                $advice.=(empty($advice) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['recom_credit']) ? '0' : $data[date("M-Y", $period)]['recom_credit']) . "]";
-                $fu.=(empty($fu) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['fu_credit']) ? '0' : $data[date("M-Y", $period)]['fu_credit']) . "]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . (empty($data[date("M-Y", $period)]['training']) ? '0' : $data[date("M-Y", $period)]['training']) . "," .  (empty($data[date("M-Y", $period)]['classroom']) ? '0' : $data[date("M-Y", $period)]['classroom']) ."]";
+                $recommendation[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
+                $emw[] = $this->_buildForJs($item['emw_credit']?$item['emw_credit']:0);
+                $advice[] = $this->_buildForJs($item['recom_credit']?$item['recom_credit']:0);
+                $fu[] = $this->_buildForJs($item['fu_credit']?$item['fu_credit']:0);
+                $cpr[] = $this->_buildForJs($item['cpr']?$item['cpr']:0);
+                $training[] = $this->_buildForJs([$item['training']?$item['training']:0,$item['classroom']?$item['classroom']:0]);
 
-
-                $advice_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['trust_score'] . '</td>';
-                $emw_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['emw_score'],0) . '</td>';
-                $recommendation_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['recom_score'] . '</td>';
-                $fu_results.='<td class="' . $class . '">' . $data[date("M-Y", $period)]['fu_score'] . '</td>';
+                $advice_results[] = $this->_buildForTableElement($item['trust_score']);
+                $emw_results[] = $this->_buildForTableElement($item['emw_score'],0);
+                $recommendation_results[] = $this->_buildForTableElement($item['recom_score']);
+                $fu_results[] = $this->_buildForTableElement($item['fu_score']);
+                $cpr_result[] = $this->_buildForTableElement($item['cpr_credit']);
             }
             else
             {
-                $recommendation.=(empty($recommendation) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $emw.=(empty($emw) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $advice.=(empty($advice) ? '' : ',') . "['" . date("M", $period) . ",',0]";
-                $fu.=(empty($fu) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0,0]";
+                $recommendation[]   = $this->_buildForJs(0);
+                $emw[]              = $this->_buildForJs(0);
+                $advice[]           = $this->_buildForJs(0);
+                $fu[]               = $this->_buildForJs(0);
+                $cpr[]               = $this->_buildForJs(0);
+                $training[]   = $this->_buildForJs([0,0]);
 
-                $advice_results.='<td class="' . $class . '">&nbsp;</td>';
-                $emw_results.='<td class="' . $class . '">&nbsp;</td>';
-                $recommendation_results.='<td class="' . $class . '">&nbsp;</td>';
-                $fu_results.='<td class="' . $class . '">&nbsp;</td>';
-
+                $advice_results[]           = null;
+                $emw_results[]              = null;
+                $recommendation_results[]   = null;
+                $fu_results[]               = null;
+                $cpr_result[]               = null;
             }
         }
 
@@ -73,6 +75,9 @@ class ServiceAdviser extends BaseRole implements IRole
             "FOLLOW_UP" => $fu,
             "FOLLOW_UP_RESULTS" => $fu_results,
             "TRAINING" => $training,
+            // New field of 2018
+            "CPR" => $cpr,
+            "CPR_RESULT" => $cpr_result,
         ];
     }
 

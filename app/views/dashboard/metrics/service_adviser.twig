@@ -1,11 +1,63 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
-        var ADVICE = [{{ metrics.ADVICE|raw }}];
-        var EMW = [{{ metrics.EMW|raw }}];
-        var RECOMMENDATION = [{{ metrics.RECOMMENDATION|raw }}];
-        var FOLLOW_UP = [{{ metrics.FOLLOW_UP|raw }}];
-        var TRAINING = [{{ metrics.TRAINING|raw }}];
+        {#var ADVICE = [{{ metrics.ADVICE|raw }}];#}
+        {#var EMW = [{{ metrics.EMW|raw }}];#}
+        {#var RECOMMENDATION = [{{ metrics.RECOMMENDATION|raw }}];#}
+        {#var FOLLOW_UP = [{{ metrics.FOLLOW_UP|raw }}];#}
+        {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
+        var CHART_DATA = [
+            {
+                el: 'chart-recommend',
+                max: 700,
+                length: 7,
+                step: 100,
+                colors: ['#c40030'],
+                dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
+            },
+            {
+                el: 'chart-advice',
+                max: 700,
+                length: 7,
+                step: 100,
+                colors: ['#999999'],
+                dataSource: {{ json_encode(metrics.ADVICE)|raw }}
+            },
+            {
+                el: 'chart-emw',
+                max: 400,
+                length: 4,
+                step: 100,
+                colors: ['#c40030'],
+                dataSource: {{ json_encode(metrics.EMW)|raw }}
+            },
+            {
+                el: 'chart-follow-up',
+                max: 500,
+                length: 5,
+                step: 100,
+                colors: ['#999999'],
+                dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
+            },
+            {
+                el: 'chart-cpr',
+                max: 1000,
+                length: 5,
+                step: 100,
+                colors: ['#555555'],
+                dataSource: {{ json_encode(metrics.CPR)|raw }}
+            },
+            {
+                el: 'chart-training',
+                pilot: ['Month', 'Online', 'Classroom'],
+                max: 1000,
+                length: 5,
+                step: 200,
+                colors: ['#111111','#c40030','#999999'],
+                isStacked: true,
+                dataSource: {{ json_encode(metrics.TRAINING)|raw }}
+            },
+        ];
     </script>
     <div class="container bg-white pl-25 pr-25">
         <div class="row">
@@ -19,27 +71,12 @@
                     <div class="col-md-7">
                         <h3>1. Overall Satisfaction - R3M (Target 73%)</h3>
                         <div class="table-responsive">
-                            <div id="chart_div" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-recommend" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.RECOMMENDATION_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RECOMMENDATION_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -67,27 +104,12 @@
                     <div class="col-md-7">
                         <h3>2. Value for Money - R3M (Target 62%)</h3>
                         <div class="table-responsive">
-                            <div id="chart_div3" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-advice" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.ADVICE_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.ADVICE_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -114,28 +136,12 @@
                     <div class="col-md-7">
                         <h3>3. Advice you can Trust - R3M (Target 72%)</h3>
                         <div class="table-responsive">
-                            <div id="chart_div4" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <col>
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-follow-up" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.FOLLOW_UP_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FOLLOW_UP_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -162,27 +168,12 @@
                     <div class="col-md-7">
                         <h3>4. Customer Paid Repair Orders vs Target Monthly Target</h3>
                         <div class="table-responsive">
-                            <div id="chart_div10" style="min-width: 600px; min-height: 400px;">
-                            </div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-cpr" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.FOLLOW_UP_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CPR_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -209,26 +200,12 @@
                     <div class="col-md-7" >
                         <div class="table-responsive">
                             <h3>5. Genuine EMW Sales</h3>
-                            <div id="chart_div2" style="min-width: 600px; min-height: 500px;"></div>
-                            <table class="table table-condensed" style="width: 593px;" >
-                                <tr class="table-top-row" align="center">
-                                    <td></td>
-                                    <td>APR</td>
-                                    <td>MAY</td>
-                                    <td>JUN</td>
-                                    <td>JUL</td>
-                                    <td>AUG</td>
-                                    <td>SEP</td>
-                                    <td>OCT</td>
-                                    <td>NOV</td>
-                                    <td>DEC</td>
-                                    <td>JAN</td>
-                                    <td>FEB</td>
-                                    <td>MAR</td>
-                                </tr>
+                            <div id="chart-emw" class="metrics-chart-wrap"></div>
+                            <table class="table table-condensed metrics-table-wrap">
+                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {{ metrics.EMW_RESULTS }}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.EMW_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -251,8 +228,7 @@
                     <div class="col-md-7">
                         <h3>5. TRAINING</h3>
                         <div class="table-responsive">
-                            <div id="chart_div6" style="min-width: 600px; min-height: 400px;">
-                            </div>
+                            <div id="chart-training" class="metrics-chart-wrap"></div>
                         </div>
                     </div>
                     <div class="col-md-5">
