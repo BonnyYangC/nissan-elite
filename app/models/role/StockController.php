@@ -56,46 +56,42 @@ class StockController extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $stock=$stock_results=$ow=$ow_results=$retail=$retail_results=$matched=$matched_results=$davo=$davo_results=$training='';
-
-        $class='nissangray-light-back';
+        $stock=$stock_results=$ow=$ow_results=$retail=$retail_results=$matched=$matched_results=$davo=$davo_results=$training=[];
 
         for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,2017);
-            $class=($class=='nissangray-light-back' ? 'nissangray-light' : 'nissangray-light-back');
-            if(isset($data[date("M-Y", $period)]))
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($data[$key]) ? $data[$key] : null;
+            if($item)
             {
-                $stock.=(empty($stock) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['stock_credit'] . "]";
-                $ow.=(empty($ow) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['ow_credit'] . "]";
-                $retail.=(empty($retail) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['retail_credit'] . "]";
-                $matched.=(empty($matched) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['matched_credit'] . "]";
-                $davo.=(empty($davo) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['davo_credit'] . "]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "'," . $data[date("M-Y", $period)]['training'] . "]";
+                $stock[] = $this->_buildForJs($item['stock_credit']);
+                $ow[] = $this->_buildForJs($item['ow_credit']);
+                $retail[] = $this->_buildForJs($item['retail_credit']);
+                $matched[] = $this->_buildForJs($item['matched_credit']);
+                $davo[] = $this->_buildForJs($item['davo_credit']);
+                $training[] = $this->_buildForJs($item['training']);
 
-
-                $stock_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['stock'],0) . '</td>';
-                $ow_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['ow'],0) . '</td>';
-                $retail_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['retail']*100,0) . '%</td>';
-                $matched_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['matched'],0) . '</td>';
-                $davo_results.='<td class="' . $class . '">' . number_format($data[date("M-Y", $period)]['davo']*100,0) . '%</td>';
+                $stock_results[] = $this->_buildForTableElement($item['stock'],0);
+                $ow_results[] = $this->_buildForTableElement($item['ow'],0);
+                $retail_results[] = $this->_buildForTableElement($item['retail']*100,0).'%';
+                $matched_results[] = $this->_buildForTableElement($item['matched'],0);
+                $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
             }
             else
             {
-                $stock.=(empty($stock) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $ow.=(empty($ow) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $retail.=(empty($retail) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $matched.=(empty($matched) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $davo.=(empty($davo) ? '' : ',') . "['" . date("M", $period) . "',0]";
-                $training.=(empty($training) ? '' : ',') . "['" . date("M", $period) . "',0]";
+                $stock[] = $this->_buildForJs(0);
+                $ow[] = $this->_buildForJs($item['ow_credit']);
+                $retail[] = $this->_buildForJs(0);
+                $matched[] = $this->_buildForJs(0);
+                $davo[] = $this->_buildForJs(0);
+                $training[] = $this->_buildForJs(0);
 
-                $stock_results.='<td class="' . $class . '">&nbsp;</td>';
-                $ow_results.='<td class="' . $class . '">&nbsp;</td>';
-                $retail_results.='<td class="' . $class . '">&nbsp;</td>';
-                $matched_results.='<td class="' . $class . '">&nbsp;</td>';
-                $davo_results.='<td class="' . $class . '">&nbsp;</td>';
+                $stock_results[] = null;
+                $ow_results[] = null;
+                $retail_results[] = null;
+                $matched_results[] = null;
+                $davo_results[] = null;
             }
-
         }
         return [
             "STOCK_COVER" => $stock,
