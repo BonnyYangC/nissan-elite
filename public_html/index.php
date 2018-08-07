@@ -6,8 +6,8 @@
  * Time: 11:34 AM
  */
 
-error_reporting(E_ERROR);
-ini_set('display_errors', TRUE);
+error_reporting(env('DEV_MODE',false) ? E_ERROR : 0);
+ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
