@@ -46,6 +46,14 @@
                 pilot: ['Month','Credits'],
                 dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
             },
+            {
+                el: 'chart-retention',
+                max: 10,
+                length: 10,
+                step: 1,
+                colors: ['#111111'],
+                dataSource: {{ json_encode(metrics.RETENTION)|raw }}
+            },
         ];
     </script>
     <div class="container bg-white">
@@ -88,12 +96,12 @@
                     <div class="col-md-7">
                         <h3>2. Loyalty & Retention Bonus</h3>
                         <div class="table-responsive">
-                            <div id="chart-nfsa" class="metrics-chart-wrap"></div>
+                            <div id="chart-retention" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {LOYALTY-RETENTION-BONUS}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RETENTION_RESULTS } %}
                                 </tr>
                             </table>
                         </div>

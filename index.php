@@ -51,6 +51,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 // Ajax calls: For get rankings
 \App\core\Route::Instance()->get('/dashboard/Leaderboards',\App\controller\RankingsController::class, 'leader_boards');
 \App\core\Route::Instance()->get('/dashboard/get-rankings',\App\controller\RankingsController::class, 'get_rankings');
+
+// Admin Only
+\App\core\Route::Instance()->get('/admin-panel', \App\controller\backend\AdminController::class,'index');
 /**
  * This is a must do action: dispatch at last
  */

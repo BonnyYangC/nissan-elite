@@ -46,6 +46,16 @@ class UsersController extends Controller
     }
 
     /**
+     * Is admin user login
+     * @param $username
+     * @param $password
+     * @return bool
+     */
+    public function _isAdminLogin($username,$password){
+        return $username === env('ADMIN_USER') && $password === env('ADMIN_PASSWORD');
+    }
+
+    /**
      * User logout
      */
     public function logout(){
@@ -117,6 +127,18 @@ class UsersController extends Controller
     public function verify_user(){
         $email = $this->request->param('email');
         $password = $this->request->param('password');
+
+        // Check if admin user
+        if($this->_isAdminLogin($email, $password)){
+            try{
+                $this->_setAdminSessionData(random_str(uniqid()));
+                $this->response->redirect('/admin-panel')->send();
+            }catch (\Exception $exception){
+                echo 'System error';
+            }
+            return null;
+        }
+
         $user = new User();
         $loginSuccess = $user->login($email,$password);
 
@@ -153,6 +175,19 @@ class UsersController extends Controller
         session_set('user_data_array', [
             'id'=>$user->getId(),
             'name'=>$user->getName()
+        ]);
+    }
+
+    /**
+     * Save admin data into session
+     * @param $uuid
+     */
+    private function _setAdminSessionData($uuid){
+        $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
+
+        session_set(env('SESSION_SEGMENT','_nissanac'), $uuid);
+        session_set('admin_data_array', [
+            'email'=>env('ADMIN_USER',false)
         ]);
     }
 }

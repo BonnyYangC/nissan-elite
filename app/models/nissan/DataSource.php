@@ -31,7 +31,7 @@ class DataSource extends BaseModel
      * Map for database table's name => user's Role
      * @var array
      */
-    private static $_rolesMap = [
+    public static $_rolesMap = [
         User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
         User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
         User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
@@ -45,7 +45,7 @@ class DataSource extends BaseModel
         User::SERVICE_MANAGER               => 'Service Manager'
     ];
 
-    private static $_rolesMapOld = [
+    public static $_rolesMapOld = [
         'nissan_salesconsultants'       => 'Sales Consultant',
         'nissan_salesmanagers'          => 'Sales Manager',
         'nissan_serviceadvisors'        => 'Service Advisor',
@@ -57,7 +57,7 @@ class DataSource extends BaseModel
         'nissan_servicemanagers'        => 'Service Manager'
     ];
 
-    private static $_rolesTableNameMap = [
+    public static $_rolesTableNameMap = [
         User::RETAIL_SALES_CONSULTANTS      => 'nissan_salesconsultants',
         User::FLEET_SALES_MANAGER           => 'nissan_salesconsultants',
         User::FLEET_SALES_CONSULTANTS       => 'nissan_salesconsultants',
