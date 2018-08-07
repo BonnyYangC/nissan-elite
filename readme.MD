@@ -80,7 +80,7 @@ OR
     $user = new User( $userDataArray['id'] ); // Get the user instance by user's id
     
     
-# Pending issues:
+# Pending issues: (All Done)
 - Refine all metrics view with new strategy as "service manager"
 - Remove deprecated PHP files in modules and includes
 - Re-build the js and css folder

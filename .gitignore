@@ -5,3 +5,4 @@
 /node_modules
 /app/cache
 /app/storage/public/uploads
+/app/helpers/.env
