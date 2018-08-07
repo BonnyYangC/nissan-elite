@@ -54,6 +54,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Admin Only
 \App\core\Route::Instance()->get('/admin-panel', \App\controller\backend\AdminController::class,'index');
+\App\core\Route::Instance()->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer');
 /**
  * This is a must do action: dispatch at last
  */

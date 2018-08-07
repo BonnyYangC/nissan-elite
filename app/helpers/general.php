@@ -50,6 +50,18 @@ if(!function_exists('get_month_array')){
     }
 }
 
+if(!function_exists('uploaded_file_path')){
+    /**
+     * 创建 uploads 目录中文件的快捷方法. 如果给定的参数为 null, 则仅返回到 uploads 目录的绝对路径
+     * Easy way to build file's path in uploads folder
+     * @param null $filePath
+     * @return array|bool|false|string
+     */
+    function uploaded_file_path($filePath=null){
+        return env('PUBLIC_UPLOADS_PATH_ROOT').$filePath;
+    }
+}
+
 if(!function_exists('convert_array_to_js_2_dimension_array')){
     /**
      * 把一维度的数组, 转成 js 的二维数组

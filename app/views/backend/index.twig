@@ -2,89 +2,91 @@
 {% block content %}
     <div class="container">
         <div class="content">
-            <h2 class="m-4">CSV file uploader</h2>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">For</label>
-                </div>
-                <div class="field-body">
-                    <div class="field is-narrow">
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select name="for">
-                                    {% for role,label in roles %}
-                                        <option value="{{ role }}">{{ label }}</option>
-                                    {% endfor %}
-                                </select>
+            <div class="card  mt-20">
+                <div class="card-content">
+                    <div class="content">
+                        <form action="{{ url('/admin/importer/csv') }}" method="post" enctype="multipart/form-data" class="form">
+                            <h2 class="m-4">CSV file uploader</h2>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Action</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="action_type">
+                                                    <option value="validation">Data Validation</option>
+                                                    <option value="sync">Database Sync</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Replace Or Append?</label>
-                </div>
-                <div class="field-body">
-                    <div class="field is-narrow">
-                        <div class="control">
-                            <label class="radio">
-                                <input type="radio" name="action" value="replace">
-                                Replace
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="member" value="append">
-                                Append
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Subject</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <div class="file has-name">
-                                <label class="file-label">
-                                    <input class="file-input" type="file" name="resume">
-                                    <span class="file-cta">
-                                          <span class="file-icon">
-                                            <i class="fas fa-upload"></i>
-                                          </span>
-                                          <span class="file-label">
-                                            Choose a file…
-                                          </span>
-                                    </span>
-                                    <span class="file-name">
-
-                                    </span>
-                                </label>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">For</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="for" required>
+                                                    <option value="">Please choose position ...</option>
+                                                    {% for role,label in roles %}
+                                                        <option value="{{ role }}">{{ label }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <!-- Left empty for spacing -->
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-default">
-                                Validate File
-                            </button>
-                            <button class="button is-primary">
-                                Upload
-                            </button>
-                        </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">CSV File</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="file has-name">
+                                                <label class="file-label">
+                                                    <input class="file-input" type="file" name="csv" required>
+                                                    <span class="file-cta">
+                                                          <span class="file-icon">
+                                                            <i class="fas fa-upload"></i>
+                                                          </span>
+                                                          <span class="file-label">
+                                                            Choose a file…
+                                                          </span>
+                                                    </span>
+                                                    <span class="file-name">
+                                                        Max file size: 2M
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label">
+                                    <!-- Left empty for spacing -->
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary" type="submit" id="submit-import-btn">
+                                                <i id="submit-btn-waiting" class="fas fa-database"></i>&nbsp;&nbsp;&nbsp;
+                                                <span id="submit-btn-txt">Submit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -134,6 +134,14 @@ class BaseModel
     }
 
     /**
+     * Set database table name
+     * @return mixed
+     */
+    public function setTableName($name){
+        $this->tableName = $name;
+    }
+
+    /**
      * Save current model, base on if ID is valid, it insert or update all fields
      * @return boolean
      */

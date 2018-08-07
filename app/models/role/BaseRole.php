@@ -8,11 +8,12 @@
 
 namespace App\models\role;
 
+use App\models\BaseModel;
 use App\models\role\status\IColor;
 use App\models\User;
 use Carbon\Carbon;
 
-class BaseRole
+class BaseRole extends BaseModel
 {
     protected $user;
 

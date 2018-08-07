@@ -23,6 +23,7 @@ use App\models\role\ServiceAdviser;
 use App\models\role\ServiceManager;
 use App\models\role\StockController;
 use App\models\User;
+use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;
 
@@ -49,45 +50,48 @@ class AccountsController extends DashboardController
         /**
          * @var IRole $role
          */
-        $role = null;
+        $role = RoleFactory::GetRole(
+            $this->userObject->position,
+            $this->userObject
+        );
 
-        switch ($this->userObject->position){
-            case User::FI:
-                $role = new FI($this->userObject);  // Refined
-                break;
-            case User::FINANCE_CONTROLLER:
-                $role = new FinanceController($this->userObject); // Refined
-                break;
-            case User::PARTS_MANAGER:
-                $role = new PartsManager($this->userObject);    // Refined
-                break;
-            case User::RETAIL_SALES_CONSULTANTS:
-                $role = new RetailSalesConsultant($this->userObject);   // Refined
-                break;
-            case User::FLEET_SALES_CONSULTANTS:
-                $role = new FleetSalesConsultant($this->userObject);
-                break;
-            case User::FLEET_SALES_MANAGER:
-                $role = new FleetSalesManager($this->userObject);   // Refined
-                break;
-            case User::SALES_MANAGER:
-                $role = new SalesManager($this->userObject);    // Refined
-                break;
-            case User::STOCK_CONTROLLER:
-                $role = new StockController($this->userObject);// Refined
-                break;
-            case User::PARTS_SALES_REP:
-                $role = new PartsSalesRep($this->userObject);// Refined
-                break;
-            case User::SERVICE_MANAGER:
-                $role = new ServiceManager($this->userObject);  // Refined
-                break;
-            case User::SERVICE_ADVISERS:
-                $role = new ServiceAdviser($this->userObject); // Refined
-                break;
-            default:
-                break;
-        }
+//        switch ($this->userObject->position){
+//            case User::FI:
+//                $role = new FI($this->userObject);  // Refined
+//                break;
+//            case User::FINANCE_CONTROLLER:
+//                $role = new FinanceController($this->userObject); // Refined
+//                break;
+//            case User::PARTS_MANAGER:
+//                $role = new PartsManager($this->userObject);    // Refined
+//                break;
+//            case User::RETAIL_SALES_CONSULTANTS:
+//                $role = new RetailSalesConsultant($this->userObject);   // Refined
+//                break;
+//            case User::FLEET_SALES_CONSULTANTS:
+//                $role = new FleetSalesConsultant($this->userObject);
+//                break;
+//            case User::FLEET_SALES_MANAGER:
+//                $role = new FleetSalesManager($this->userObject);   // Refined
+//                break;
+//            case User::SALES_MANAGER:
+//                $role = new SalesManager($this->userObject);    // Refined
+//                break;
+//            case User::STOCK_CONTROLLER:
+//                $role = new StockController($this->userObject);// Refined
+//                break;
+//            case User::PARTS_SALES_REP:
+//                $role = new PartsSalesRep($this->userObject);// Refined
+//                break;
+//            case User::SERVICE_MANAGER:
+//                $role = new ServiceManager($this->userObject);  // Refined
+//                break;
+//            case User::SERVICE_ADVISERS:
+//                $role = new ServiceAdviser($this->userObject); // Refined
+//                break;
+//            default:
+//                break;
+//        }
 
         $this->_prepareForMetricsData($role);
 
