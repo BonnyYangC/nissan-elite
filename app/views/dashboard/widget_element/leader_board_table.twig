@@ -11,7 +11,7 @@
                 <td>{{ row.ranking }}</td>
                 <td>
                     {% if row.member_id == user.employee_code %}
-                        <a href="{{ url('/Dashboard/Leaderboards') }}" class="matched">
+                        <a href="{{ url('/dashboard/Leaderboards') }}" class="matched">
                             {{ row.firstname }} {{ row.lastname }}
                         </a>
                     {% else %}
