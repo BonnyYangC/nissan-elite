@@ -22,7 +22,6 @@ use App\models\role\SalesManager;
 use App\models\role\ServiceAdviser;
 use App\models\role\ServiceManager;
 use App\models\role\StockController;
-use App\models\User;
 use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;

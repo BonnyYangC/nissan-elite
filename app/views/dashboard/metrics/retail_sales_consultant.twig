@@ -31,8 +31,9 @@
                 max: 1500,
                 length: 6,
                 step: 250,
-                colors: ['#999999' ,'#c40030','d2d2d2'],
+                colors: ['#111111' ,'#c40030','d2d2d2'],
                 pilot: ['Month', 'Pathway' ,'Process' , 'Classroom' ],
+                isStacked: true,
                 dataSource: {{ json_encode(metrics.JS_training)|raw }}
             }
         ];

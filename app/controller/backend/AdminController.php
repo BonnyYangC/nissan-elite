@@ -214,7 +214,7 @@ class AdminController extends BaseController
                 $map = DbMap::FinanceControllerTable();
                 break;
             case 'nissan_partsmanager':
-                $map = DbMap::FinanceControllerTable();
+                $map = DbMap::PartsManagerTable();
                 break;
             case 'nissan_stockcontroller':
                 $map = DbMap::StockControllerTable();

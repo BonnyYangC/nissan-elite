@@ -52,25 +52,29 @@ class RetailSalesConsultant extends BaseRole implements IRole
         /**
          * 开始确认并查找当前用户的名次: End
          */
+//        dump($dataResults);
 
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
 
-            if(isset($aryCredits[date("M-Y", $period)]))
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
+
+            if($item)
             {
-                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
-                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                $ytd=$item['credit_ytd'];
+                $this->JS_credits[date("M", $period)] = $item['credit_mtd'].'';
 
                 /**
                  * From Data results
                  */
-                $this->newVehicleSales['data'][] = intval($dataResults[date("M-Y", $period)]['credit_actual_sales']);
-                $this->salesRecommendationSaturation['data'][]  = intval($dataResults[date("M-Y", $period)]['ce_recommendation']);
-                $this->followUpSaturation['data'][]  = intval($dataResults[date("M-Y", $period)]['follow_up_credit']);
-                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
-                    + $dataResults[date("M-Y", $period)]['pathway']
-                    + $dataResults[date("M-Y", $period)]['classroom'];
+                $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
+                $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
+                $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
+                $this->training['data'][]  = $item['training']
+                    + $item['pathway']
+                    + $item['classroom'];
             }
             else
             {
