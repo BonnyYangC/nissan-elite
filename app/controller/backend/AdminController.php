@@ -180,9 +180,13 @@ class AdminController extends BaseController
     private function _getNotFoundTableHtml(){
         $html = '<br><h2>CSV rows not matched</h2><table border="1"><tbody><tr><td>Line #</td><td>Content</td></tr>';
         foreach ($this->notFoundArray as $csvFileLineNumber=>$rowData) {
-            $html .= '<tr><td>'.$csvFileLineNumber.'</td><td>'.$rowData.'</td></tr>';
+            $html .= '<tr><td>'.$csvFileLineNumber.'</td>';
+            foreach ($rowData as $item) {
+                $html .= '<td>'.$item.'</td>';
+            }
+            $html .= '</tr>';
         }
-        return $html .= '</tbody></table>';
+        return $html . '</tbody></table>';
     }
 
     /**
