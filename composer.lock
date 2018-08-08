@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6fe942c09a8d0c9655e6e1759a7e570",
+    "content-hash": "d10de0df84566c73ed28ab3e473bf697",
     "packages": [
         {
             "name": "aura/session",
@@ -202,36 +202,6 @@
                 "validation"
             ],
             "time": "2018-03-13T18:36:56+00:00"
-        },
-        {
-            "name": "gargron/fileupload",
-            "version": "v1.4.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Gargron/fileupload.git",
-                "reference": "fd2b79c9b868b9987925e098f5562231e691ce7d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Gargron/fileupload/zipball/fd2b79c9b868b9987925e098f5562231e691ce7d",
-                "reference": "fd2b79c9b868b9987925e098f5562231e691ce7d",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "FileUpload\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "File uploading library capable of handling large/chunked/multiple file uploads",
-            "time": "2017-05-19T17:43:52+00:00"
         },
         {
             "name": "ircmaxell/random-lib",
@@ -449,16 +419,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.32.0",
+            "version": "1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "64563e2b9f69e4db1b82a60e81efa327a30ff343"
+                "reference": "55667c1007a99e82030874b1bb14d24d07108413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/64563e2b9f69e4db1b82a60e81efa327a30ff343",
-                "reference": "64563e2b9f69e4db1b82a60e81efa327a30ff343",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/55667c1007a99e82030874b1bb14d24d07108413",
+                "reference": "55667c1007a99e82030874b1bb14d24d07108413",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +470,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-07-05T06:59:26+00:00"
+            "time": "2018-08-07T08:39:47+00:00"
         },
         {
             "name": "paragonie/random_compat",
