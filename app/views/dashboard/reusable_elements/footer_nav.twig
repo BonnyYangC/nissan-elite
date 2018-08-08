@@ -17,7 +17,7 @@
             <div class="col-lg-3">
                 <ul class="nav footer-nav">
                     <li> <a href="{{ url('/') }}">HOME</a> </li>
-                    <li> <a href="{{ url('/dashboard') }}">My dashboard</a> </li>
+                    <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard') }}">My dashboard</a> </li>
                     {% include 'dashboard/reusable_elements/footer_matrics_item.twig' %}
                     <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
                     <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>
