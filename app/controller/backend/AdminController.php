@@ -52,17 +52,15 @@ class AdminController extends BaseController
         $isSyncAction = $this->request->param('action_type') == 'sync';
 
         $uploader = new FileUploader($this->request);
-        list($files, $header) = $uploader->store('csv');
+        $filePath = $uploader->store('csv');
 
         $syncedRowsCount = 0;
 
-        if(count($files) > 0){
+        if($filePath){
             /**
              * @var File $file
              */
-            $file = $files[0];
-            if ($file->completed) {
-                $filePath =  $file->getRealPath();
+            if (file_exists($filePath)) {
                 $user = new User();
                 $roleAbbr = $this->request->param('for');
                 $model = RoleFactory::GetModel($roleAbbr ,$user);
@@ -76,7 +74,9 @@ class AdminController extends BaseController
                         $this->_matchDbFields($row, $tableName);
                     }
                 }
-
+                /**
+                 * Get database connection
+                 */
                 $db = BaseModel::DB();
 
 
@@ -97,7 +97,7 @@ class AdminController extends BaseController
                                         // 数据同步的操作
                                         if($currentFieldName == 'id'){
                                             $model->id = $fieldValue;
-                                            $model->find($fieldValue);
+//                                            $model->find($fieldValue);
                                         }elseif($currentFieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $model->period = $periodConverted;

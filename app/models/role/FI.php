@@ -28,8 +28,6 @@ class FI extends BaseRole implements IRole
     const CONSUL_COLOR        = '#525357';
     const DEFAULT_COLOR       = '#000000';
 
-    private $dollars = [300,600,1000,1500];
-
     public $name='fi';
 
     public $NFSA_Contracts = [
@@ -63,28 +61,35 @@ class FI extends BaseRole implements IRole
         parent::__construct($user);
     }
 
+    /**
+     * Generate the data for dashboard view
+     * @param $data
+     * @param $ytdParam
+     * @return array
+     */
     public function getDashboardViewData($data, $ytdParam)
     {
         $ytd = 0;
-        $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
 
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 
-            if(isset($aryCredits[date("M-Y", $period)]))
+            if($item)
             {
-                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
-                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                $ytd=$item['credit_ytd'];
+                $this->JS_credits[$period] = $item['credit_mtd'];
                 /**
                  * From Data results
                  */
-                $this->NFSA_Contracts['data'][] = intval($dataResults[date("M-Y", $period)]['credit_actual_sales']);
-                $this->Insurance['data'][] = intval($dataResults[date("M-Y", $period)]['credits_mvi']);
-                $this->EMW_Genuine_Extended['data'][]  = intval($dataResults[date("M-Y", $period)]['credits_emw']);
-                $this->SalesPenetration['data'][]  = intval($dataResults[date("M-Y", $period)]['credits_penetration']);
-                $this->FollowUp['data'][]  = intval($dataResults[date("M-Y", $period)]['credits_fi']);
+                $this->NFSA_Contracts['data'][] = intval($item['credit_actual_sales']);
+                $this->Insurance['data'][] = intval($item['credits_mvi']);
+                $this->EMW_Genuine_Extended['data'][]  = intval($item['credits_emw']);
+                $this->SalesPenetration['data'][]  = intval($item['credits_penetration']);
+                $this->FollowUp['data'][]  = intval($item['credits_fi']);
             }
             else
             {
@@ -110,7 +115,7 @@ class FI extends BaseRole implements IRole
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
             // For PHP array
             "lifeTime"      =>$this->lifeTime,
-            "excellence"    =>$this->excellence,
+            "excellence"    =>$this->excellenceResult,
             "ytd"           =>$ytd,
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[

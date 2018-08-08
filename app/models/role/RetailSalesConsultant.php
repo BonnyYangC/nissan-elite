@@ -30,30 +30,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
     {
         // TODO: Implement getDashboardViewData() method.
         $ytd = 0;
-        $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
-
-        /**
-         * 开始确认并查找当前用户的名次: Region and National
-         */
-//        $myRegionallyRanking = isset($data['MyRanking']) && $data['MyRanking']
-//            ? $data['MyRanking'] : null;
-//
-//        $rankingNationally = null;
-//        if(isset($data['Rankings']) && !empty($data['Rankings'])){
-//            // 从 ranking 的表格里循环查找, 直到确定自己的名次
-//            foreach ($data['Rankings'] as $index => $ranking) {
-//                if($ranking['member_id'] == $this->user->getEmployeeCode()){
-//                    $rankingNationally = $index + 1;
-//                    break;
-//                }
-//            }
-//        }
-        /**
-         * 开始确认并查找当前用户的名次: End
-         */
-//        dump($dataResults);
-
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
@@ -100,7 +77,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
             // For PHP array
             "lifeTime"      =>$this->lifeTime,
-            "excellence"    =>$this->excellence,
+            "excellence"    =>$this->excellenceResult,
             "ytd"           =>$ytd,
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[

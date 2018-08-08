@@ -89,31 +89,38 @@ class SalesManager extends BaseRole implements IRole
         return $this->name;
     }
 
+    /**
+     * Retrieve data for dashboard view
+     * @param $data
+     * @param $ytdParam
+     * @return array
+     */
     public function getDashboardViewData($data, $ytdParam)
     {
         $ytd = 0;
-        $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
 
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 
-            if(isset($aryCredits[date("M-Y", $period)]))
+            if($item)
             {
-                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
-                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                $ytd = $item['credit_ytd'];
+                $this->JS_credits[date("M", $period)] = $item['credit_mtd'];
                 /**
                  * From Data results
                  */
-                $this->matchedOW['data'][] = intval($dataResults[date("M-Y", $period)]['order_write_credit']);
-                $this->newVehicleSales['data'][] = intval($dataResults[date("M-Y", $period)]['actual_sales']);
-                $this->followUpPercentage['data'][]  = intval($dataResults[date("M-Y", $period)]['follow_up_ce']);
-                $this->DlrRec['data'][]  = intval($dataResults[date("M-Y", $period)]['ce_recomendation']);
-                $this->middleMonth['data'][]  = intval($dataResults[date("M-Y", $period)]['retail_midmth']);
-                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
-                    + $dataResults[date("M-Y", $period)]['pathway']
-                    + $dataResults[date("M-Y", $period)]['classroom'];
+                $this->matchedOW['data'][]          = intval($item['order_write_credit']);
+                $this->newVehicleSales['data'][]    = intval($item['actual_sales']);
+                $this->followUpPercentage['data'][] = intval($item['follow_up_ce']);
+                $this->DlrRec['data'][]             = intval($item['ce_recomendation']);
+                $this->middleMonth['data'][]        = intval($item['retail_midmth']);
+                $this->training['data'][]           = $item['training']
+                    + $item['pathway']
+                    + $item['classroom'];
             }
             else
             {
@@ -140,7 +147,7 @@ class SalesManager extends BaseRole implements IRole
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
             // For PHP array
             "lifeTime"      =>$this->lifeTime,
-            "excellence"    =>$this->excellence,
+            "excellence"    =>$this->excellenceResult,
             "ytd"           =>$ytd,
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[

@@ -127,21 +127,24 @@ class StockController extends BaseRole implements IRole
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
 
-            if(isset($aryCredits[date("M-Y", $period)]))
+            $key = $this->startPoint->addMonth()->format('M-Y');
+            $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
+
+            if($item)
             {
-                $ytd=$aryCredits[date("M-Y", $period)]['ytd'];
-                $this->JS_credits[date("M", $period)] = $aryCredits[date("M-Y", $period)]['mtd'];
+                $ytd=$item['ytd'];
+                $this->JS_credits[date("M", $period)] = $item['mtd'];
                 /**
                  * From Data results
                  */
-                $this->StockCover['data'][] = intval($dataResults[date("M-Y", $period)]['stock_credit']);
-                $this->OWDataEntry['data'][] = intval($dataResults[date("M-Y", $period)]['ow_credit']);
-                $this->RetailMidMth['data'][]  = intval($dataResults[date("M-Y", $period)]['retail_credit']);
-                $this->OWCompliance['data'][]  = intval($dataResults[date("M-Y", $period)]['matched_credit']);
-                $this->Davo['data'][]  = intval($dataResults[date("M-Y", $period)]['davo_credit']);
-                $this->training['data'][]  = $dataResults[date("M-Y", $period)]['training']
-                    + $dataResults[date("M-Y", $period)]['pathway']
-                    + $dataResults[date("M-Y", $period)]['classroom'];
+                $this->StockCover['data'][] = intval($item['stock_credit']);
+                $this->OWDataEntry['data'][] = intval($item['ow_credit']);
+                $this->RetailMidMth['data'][]  = intval($item['retail_credit']);
+                $this->OWCompliance['data'][]  = intval($item['matched_credit']);
+                $this->Davo['data'][]  = intval($item['davo_credit']);
+                $this->training['data'][]  = $item['training']
+                    + $item['pathway']
+                    + $item['classroom'];
             }
             else
             {
@@ -169,7 +172,7 @@ class StockController extends BaseRole implements IRole
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
             // For PHP array
             "lifeTime"      =>$this->lifeTime,
-            "excellence"    =>$this->excellence,
+            "excellence"    =>$this->excellenceResult,
             "ytd"           =>$ytd,
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[

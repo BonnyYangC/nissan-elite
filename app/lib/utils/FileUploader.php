@@ -8,13 +8,8 @@
 
 namespace App\lib\utils;
 
-
 use Klein\Request;
-use FileUpload\Validator\Simple as SimpleValidator;
-use FileUpload\PathResolver\Simple as SimplePathResolver;
-use FileUpload\FileSystem\Simple as SimpleFileSystem;
-use FileUpload\FileNameGenerator\Random as NameGenerator;
-use FileUpload\FileUpload;
+use Delight\FileUpload\FileUpload;
 
 class FileUploader
 {
@@ -29,27 +24,40 @@ class FileUploader
     }
 
     /**
+     * Upload a single file
      * @param string $fileInputName
      * @param null $folderPath
-     * @return array
+     * @return bool|string
      */
     public function store($fileInputName='file', $folderPath = null){
-        $validator = new SimpleValidator('2M');
-
-        // Todo: 需要检查给定的文件夹是否存在, 如果不存在, 则需要创建它
         $folderPath = is_null($folderPath) ? env('PUBLIC_UPLOADS_PATH_ROOT') : $folderPath;
-        $pathresolver = new SimplePathResolver($folderPath);
-        $filesystem = new SimpleFileSystem();
-        $fileupload = new FileUpload($this->_request->files()->get($fileInputName),$this->_request->server()->all());
 
-        $fileupload->setPathResolver($pathresolver);
-        $fileupload->setFileSystem($filesystem);
-        $fileupload->addValidator($validator);
+        try{
+            $upload = new FileUpload();
+            $upload->withMaximumSizeInMegabytes(4);
+            $upload->withTargetDirectory($folderPath);
+            $upload->from($fileInputName);
 
-        $nameGenerator = new NameGenerator(); // 32 characters long by default
+            $uploadedFile = $upload->save();
+            return $uploadedFile->getPath();
+        }catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+            // input not found
+        }
+        catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+            // invalid filename
+        }
+        catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+            // invalid extension
+        }
+        catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+            // file too large
+        }
+        catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+            // upload cancelled
+        }
+        catch (\Exception $exception){
 
-        // Doing the deed
-        $fileupload->setFileNameGenerator($nameGenerator);
-        return  $fileupload->processAll();
+        }
+        return false;
     }
 }

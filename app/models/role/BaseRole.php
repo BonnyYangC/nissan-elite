@@ -42,7 +42,7 @@ class BaseRole extends BaseModel
     public $credits = [];
     public $JS_credits = [];
     public $lifeTime = null;
-    public $excellence = null;
+    public $excellenceResult = null;
     public $newVehicleSales = [
         'label'=>'New Vehicle Sales',
         'backgroundColor' => IColor::DARK_GREY,
@@ -109,6 +109,7 @@ class BaseRole extends BaseModel
 
     public function __construct(User $user = null)
     {
+        parent::__construct();
         $this->user = $user;
         $this->startPoint = Carbon::createFromDate(env('YEAR'),3,1,env('DEFAULT_TIMEZONE'));
     }
@@ -128,9 +129,9 @@ class BaseRole extends BaseModel
                     $dataResults[date("M-Y", $period)]['credit_mtd']);
         }
 
-        if ( !$this->excellence)
+        if ( !$this->excellenceResult)
         {
-            $this->excellence =$data[date("M-Y", $period)]['excellence'];
+            $this->excellenceResult =$data[date("M-Y", $period)]['excellence'];
         }
     }
 
