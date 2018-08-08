@@ -82,6 +82,9 @@ OR
     
 # Pending issues: 
 - Service advisor: no ce_recommendation field for DlrRec in Dashboard view, double check with Pam
+- Sales manager: 2 not matched rows found in csv file: line 102 and 286
+- FI: 1 not matched row found: line 1051; 2 new fields need to be add in nissan_fi table: sales_nfsa_retention, credits_nfsa_retention
+
 
 
 

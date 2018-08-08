@@ -107,10 +107,16 @@ class AdminController extends BaseController
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $model->period = $periodConverted;
                                         }elseif(isset($this->indexes[$currentFieldName])){
-                                            $model->$currentFieldName =
+                                            $newValue =
                                                 empty($row[$this->indexes[$currentFieldName]]) ?
                                                     $fieldValue :                   // If csv value is empty, then use the original
                                                     $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
+                                            if(strtoupper($newValue) == 'YES'){
+                                                $newValue = 1;
+                                            }elseif (strtoupper($newValue) == 'NO'){
+                                                $newValue = 0;
+                                            }
+                                            $model->$currentFieldName = $newValue;
                                         }
                                     }else{
                                         if($currentFieldName == 'id'){
@@ -180,15 +186,26 @@ class AdminController extends BaseController
      * @return string
      */
     private function _getNotFoundTableHtml(){
-        $html = '<br><h2>CSV rows not matched</h2><table border="1"><tbody><tr><td>Line #</td>'.$this->resultTableHead.'</tr>';
+        $html = '<br><h2>CSV rows not matched</h2><table border="1"><tbody><tr><th>Line #</th>';
+        $head = '';
+        $content = '';
+        $index = 0;
+
         foreach ($this->notFoundArray as $csvFileLineNumber=>$rowData) {
-            $html .= '<tr><td>'.$csvFileLineNumber.'</td>';
-            foreach ($rowData as $item) {
-                $html .= '<td>'.$item.'</td>';
+            if($index === 0){
+                $index++;
+                for ($idx = 0; $idx < count($rowData); $idx++){
+                    $head .= '<th></th>';
+                }
+                $head .= '</tr>';
             }
-            $html .= '</tr>';
+            $content .= '<tr><td>'.$csvFileLineNumber.'</td>';
+            foreach ($rowData as $item) {
+                $content .= '<td>'.$item.'</td>';
+            }
+            $content .= '</tr>';
         }
-        return $html . '</tbody></table>';
+        return $html . $head . $content . '</tbody></table>';
     }
 
     /**
