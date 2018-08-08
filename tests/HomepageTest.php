@@ -28,7 +28,6 @@ class HomepageTest extends TestCase
                 'base_uri' => env('SITE_URL')
             ]
         );
-
         $this->domParser = new Dom;
     }
 
