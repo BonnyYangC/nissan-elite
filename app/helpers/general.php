@@ -254,6 +254,12 @@ if(!function_exists('url')){
     }
 }
 
+if(!function_exists('console_log')){
+    function console_log($str){
+        echo ' - ' . $str . PHP_EOL;
+    }
+}
+
 if(!function_exists('dump')){
     function dump($str){
         echo '<pre>';

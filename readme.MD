@@ -82,7 +82,7 @@ OR
     
 # Testing
 - Use PHPUnit as the testing framework
-- Run all test cases: 
+- Run all test cases: composer test
 - Run a specific test case: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/MyTest
 
 # Pending issues: 
