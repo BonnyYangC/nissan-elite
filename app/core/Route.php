@@ -50,13 +50,64 @@ class Route
         return self::$_INSTANCE;
     }
 
+    public function getPool(){
+        return $this->pool;
+    }
+
+    /**
+     * 根据给定的 name 返回 url 路由
+     * @param $routeName
+     * @return null|string
+     */
+    public function path($routeName){
+        $path = null;
+        foreach ($this->pool as $route) {
+            if($route['routeName'] == $routeName){
+                $path = url($route['path']);
+                break;
+            }
+        }
+        return $path;
+    }
+
+    /**
+     * Give the last route in the pool a name
+     * @param $routeName
+     * @return $this
+     */
+    public function name($routeName){
+        // Get the last route from pool
+        $route = count($this->pool)>0 ?
+            $this->pool[count($this->pool) -1] : null;
+
+        if($route){
+            $this->pool[count($this->pool) -1]['routeName'] = $routeName;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Push a new path to the routes pool
+     * @param $path
+     */
+    private function _pushToPool($path){
+        $this->pool[] = [
+            'path'=>$path,
+            'routeName'=>null
+        ];
+    }
+
     /**
      * Handle All Get type request
-     * @param string $path
-     * @param string $controller   The class name of controller
-     * @param string $action               The function name you want to run
+     * @param $path
+     * @param $controller
+     * @param $action
+     * @return Route
      */
     public function get($path,$controller,$action){
+        $this->_pushToPool($path);
+
         $this->_router->respond(
             'GET',
             $path,
@@ -65,6 +116,7 @@ class Route
                 $c->$action();
             }
         );
+        return $this;
     }
 
     /**
@@ -72,8 +124,11 @@ class Route
      * @param $path
      * @param $controller
      * @param $action
+     * @return $this
      */
     public function post($path,$controller,$action){
+        $this->_pushToPool($path);
+
         $this->_router->respond(
             'POST',
             $path,
@@ -85,6 +140,7 @@ class Route
                 }
             }
         );
+        return $this;
     }
 
     /**

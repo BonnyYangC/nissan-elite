@@ -12,15 +12,21 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 /**
  * Route: /  -> It's the entry point of the application, will render login and 3brands grid view
  */
-\App\core\Route::Instance()->get('/',\App\controller\UsersController::class, 'login');
+\App\core\Route::Instance()
+    ->get('/',\App\controller\UsersController::class, 'login')
+    ->name('homepage');
 /**
  * Route: /user/logout  -> Log the current user out safely
  */
-\App\core\Route::Instance()->get('/user/logout',\App\controller\UsersController::class, 'logout');
+\App\core\Route::Instance()
+    ->get('/user/logout',\App\controller\UsersController::class, 'logout')
+    ->name('user.logout');
 /**
  * Route: /user/login  -> Authentication
  */
-\App\core\Route::Instance()->post('/user/login',\App\controller\UsersController::class, 'verify_user');
+\App\core\Route::Instance()
+    ->post('/user/login',\App\controller\UsersController::class, 'verify_user')
+    ->name('user.login.post');
 
 // Functional modules routes start
 /**

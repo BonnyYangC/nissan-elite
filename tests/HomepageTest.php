@@ -49,7 +49,15 @@ class HomepageTest extends TestCase
         $this->assertGreaterThanOrEqual(1, count($elements));
 
         // Output result
-        console_log('Homepage is OK!');
+//        console_log('Homepage is OK!');
+    }
+
+    public function testAdminLogin(){
+
+        $this->http->post(
+            url('/user/login'),
+            ['email'=>env('ADMIN_USER'),'password'=>env('ADMIN_PASSWORD')]
+        );
     }
 
     public function tearDown() {

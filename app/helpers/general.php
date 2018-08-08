@@ -50,6 +50,17 @@ if(!function_exists('get_month_array')){
     }
 }
 
+if(!function_exists('get_route')){
+    /**
+     * Get url by give route's name
+     * @param $name
+     * @return null|string
+     */
+    function get_route($name){
+        return \App\core\Route::Instance()->path($name);
+    }
+}
+
 if(!function_exists('uploaded_file_path')){
     /**
      * 创建 uploads 目录中文件的快捷方法. 如果给定的参数为 null, 则仅返回到 uploads 目录的绝对路径
