@@ -80,6 +80,11 @@ OR
     $user = new User( $userDataArray['id'] ); // Get the user instance by user's id
     
     
+# Testing
+- Use PHPUnit as the testing framework
+- Run all test cases: 
+- Run a specific test case: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/MyTest
+
 # Pending issues: 
 - Service advisor: no ce_recommendation field for DlrRec in Dashboard view, double check with Pam
 - Sales manager: 2 not matched rows found in csv file: line 102 and 286

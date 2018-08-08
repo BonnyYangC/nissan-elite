@@ -8,13 +8,14 @@
 
 namespace App\core;
 
-use App\models\User;
-use App\models\nissan\DataSource;
+use Klein\App;
 use Klein\Request;
 use Klein\Response;
+use Klein\ServiceProvider;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
+use Jenssegers\Agent\Agent;
 
 class BaseController
 {
@@ -55,13 +56,44 @@ class BaseController
      */
     protected $response;
 
-    public function __construct(Request $request, Response $response)
+    /**
+     * @var ServiceProvider
+     */
+    protected $serviceProvider;
+
+    /**
+     * @var App
+     */
+    protected $appInstance;
+
+    /**
+     * The client agent
+     * @var Agent
+     */
+    protected $clientAgent;
+
+    /**
+     * BaseController constructor.
+     * @param Request $request
+     * @param Response $response
+     * @param ServiceProvider|null $serviceProvider
+     * @param App|null $app
+     */
+    public function __construct(Request $request, Response $response, ServiceProvider $serviceProvider = null, App $app = null)
     {
         $this->request = $request;
         $this->response = $response;
+        $this->serviceProvider = $serviceProvider;
+        $this->appInstance = $app;
+
+        /**
+         * Init the browser/client agent instance
+         */
+        $this->clientAgent = new Agent();
     }
 
     /**
+     * Life circle function, actions to do before render method is called
      * @param null $param
      */
     public function beforeRender($param = null){
@@ -69,6 +101,7 @@ class BaseController
     }
 
     /**
+     * Life circle function, actions to do after render method is called
      * @param null $param
      */
     public function afterRender($param = null){

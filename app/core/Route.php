@@ -61,7 +61,7 @@ class Route
             'GET',
             $path,
             function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
-                $c = new $controller($request,$response);
+                $c = new $controller($request,$response,$service, $app);
                 $c->$action();
             }
         );
@@ -78,7 +78,7 @@ class Route
             'POST',
             $path,
             function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
-                $c = new $controller($request, $response);
+                $c = new $controller($request, $response, $service, $app);
                 $redirectTo = $c->$action();
                 if($redirectTo){
                     $response->redirect($redirectTo)->send();

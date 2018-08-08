@@ -149,48 +149,6 @@ class DashboardController extends BaseController
 
         $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
 
-//        switch ($this->userObject->position){
-//            case User::FI:
-//                $role = new FI($this->userObject);
-//                break;
-//            case User::FINANCE_CONTROLLER:
-//                $role = new FinanceController($this->userObject);
-//                break;
-//            case User::PARTS_MANAGER:
-//                $role = new PartsManager($this->userObject);
-//                break;
-//            case User::RETAIL_SALES_CONSULTANTS:
-//                $this->needRegionalRanking = true;
-//                $role = new RetailSalesConsultant($this->userObject);
-//                break;
-//            case User::FLEET_SALES_CONSULTANTS:
-//                $this->needRegionalRanking = true;
-//                $role = new FleetSalesConsultant($this->userObject);
-//                break;
-//            case User::FLEET_SALES_MANAGER:
-//                $this->needRegionalRanking = true;
-//                $role = new FleetSalesManager($this->userObject);
-//                break;
-//            case User::SALES_MANAGER:
-//                $this->needRegionalRanking = true;
-//                $role = new SalesManager($this->userObject);
-//                break;
-//            case User::STOCK_CONTROLLER:
-//                $role = new StockController($this->userObject);
-//                break;
-//            case User::PARTS_SALES_REP:
-//                $role = new PartsSalesRep($this->userObject);
-//                break;
-//            case User::SERVICE_MANAGER:
-//                $role = new ServiceManager($this->userObject);
-//                break;
-//            case User::SERVICE_ADVISERS:
-//                $role = new ServiceAdviser($this->userObject);
-//                break;
-//            default:
-//                break;
-//        }
-
         /**
          * Inject All necessary data to the view
          */

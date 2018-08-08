@@ -53,47 +53,7 @@ class AccountsController extends DashboardController
             $this->userObject->position,
             $this->userObject
         );
-
-//        switch ($this->userObject->position){
-//            case User::FI:
-//                $role = new FI($this->userObject);  // Refined
-//                break;
-//            case User::FINANCE_CONTROLLER:
-//                $role = new FinanceController($this->userObject); // Refined
-//                break;
-//            case User::PARTS_MANAGER:
-//                $role = new PartsManager($this->userObject);    // Refined
-//                break;
-//            case User::RETAIL_SALES_CONSULTANTS:
-//                $role = new RetailSalesConsultant($this->userObject);   // Refined
-//                break;
-//            case User::FLEET_SALES_CONSULTANTS:
-//                $role = new FleetSalesConsultant($this->userObject);
-//                break;
-//            case User::FLEET_SALES_MANAGER:
-//                $role = new FleetSalesManager($this->userObject);   // Refined
-//                break;
-//            case User::SALES_MANAGER:
-//                $role = new SalesManager($this->userObject);    // Refined
-//                break;
-//            case User::STOCK_CONTROLLER:
-//                $role = new StockController($this->userObject);// Refined
-//                break;
-//            case User::PARTS_SALES_REP:
-//                $role = new PartsSalesRep($this->userObject);// Refined
-//                break;
-//            case User::SERVICE_MANAGER:
-//                $role = new ServiceManager($this->userObject);  // Refined
-//                break;
-//            case User::SERVICE_ADVISERS:
-//                $role = new ServiceAdviser($this->userObject); // Refined
-//                break;
-//            default:
-//                break;
-//        }
-
         $this->_prepareForMetricsData($role);
-
         $this->dataForView['monthsArray'] = get_months_array();
         $this->render('dashboard/metrics/'.$role->getTemplateName());
         return;
