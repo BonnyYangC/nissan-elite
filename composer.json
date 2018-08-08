@@ -14,7 +14,8 @@
     "catfan/medoo": "^1.5",
     "zendframework/zend-json": "^3.1",
     "league/csv": "^8.0",
-    "gargron/fileupload": "~1.4.0"
+    "gargron/fileupload": "~1.4.0",
+    "delight-im/file-upload": "^1.2"
   },
   "autoload": {
     "psr-4": {

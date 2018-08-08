@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aab0c909634acc4189e18bb51b057429",
+    "content-hash": "e6fe942c09a8d0c9655e6e1759a7e570",
     "packages": [
         {
             "name": "aura/session",
@@ -163,6 +163,45 @@
                 "sqlite"
             ],
             "time": "2018-06-14T18:59:08+00:00"
+        },
+        {
+            "name": "delight-im/file-upload",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/delight-im/PHP-FileUpload.git",
+                "reference": "a793f4b9d6d2fc4ce57487c324a1547cce942cb6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/delight-im/PHP-FileUpload/zipball/a793f4b9d6d2fc4ce57487c324a1547cce942cb6",
+                "reference": "a793f4b9d6d2fc4ce57487c324a1547cce942cb6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Delight\\FileUpload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple and convenient file uploads — secure by default",
+            "homepage": "https://github.com/delight-im/PHP-FileUpload",
+            "keywords": [
+                "file",
+                "files",
+                "form",
+                "input",
+                "upload",
+                "validation"
+            ],
+            "time": "2018-03-13T18:36:56+00:00"
         },
         {
             "name": "gargron/fileupload",

@@ -53,7 +53,7 @@
                                         <div class="control">
                                             <div class="file has-name">
                                                 <label class="file-label">
-                                                    <input class="file-input" type="file" name="csv" required>
+                                                    <input id="csv-file-input" class="file-input" type="file" name="csv" required>
                                                     <span class="file-cta">
                                                           <span class="file-icon">
                                                             <i class="fas fa-upload"></i>
@@ -62,7 +62,7 @@
                                                             Choose a file…
                                                           </span>
                                                     </span>
-                                                    <span class="file-name">
+                                                    <span class="file-name" id="csv-file-input-text" style="min-width: 450px;">
                                                         Max file size: 2M
                                                     </span>
                                                 </label>
@@ -82,6 +82,10 @@
                                                 <i id="submit-btn-waiting" class="fas fa-database"></i>&nbsp;&nbsp;&nbsp;
                                                 <span id="submit-btn-txt">Submit</span>
                                             </button>
+                                            <a href="{{ url('/user/logout') }}" class="button is-link">
+                                                <i class="fas fa-sign-out-alt"></i>&nbsp;
+                                                Logout
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
