@@ -15,7 +15,6 @@ use App\models\BaseModel;
 use App\models\nissan\DataSource;
 use App\models\User;
 use App\models\utils\RoleFactory;
-use FileUpload\File;
 use Klein\Request;
 use Klein\Response;
 use App\models\utils\TableFieldMap as DbMap;
@@ -26,10 +25,16 @@ class AdminController extends BaseController
      * @var array
      */
     private $indexes = [];
-    public $resultArray = [];
-    public $notFoundArray = [];
+    private $resultArray = [];
+    private $notFoundArray = [];
 
-    public $allHtml = '';
+    /**
+     * Result table had td tags only
+     * @var string
+     */
+    private $resultTableHead = '';
+
+    private $allHtml = '';
 
     public function __construct(Request $request, Response $response)
     {
@@ -147,16 +152,13 @@ class AdminController extends BaseController
      */
     private function _printResultArray($tableName){
         $html = $tableName.'<table border="1"><tbody>';
-        $head = null;
         foreach ($this->resultArray as $key => $tr) {
-            if(is_null($head)){
+            if(empty($this->resultTableHead)){
                 $keys = array_keys($tr);
-                $head = '<tr>';
                 foreach ($keys as $theKey) {
-                    $head .= '<td>'.$theKey.'</td>';
+                    $this->resultTableHead .= '<td>'.$theKey.'</td>';
                 }
-                $head .= '</tr>';
-                $html .= $head;
+                $html .= '<tr>'.$this->resultTableHead.'</tr>';
             }
             $html .= '<tr>';
             foreach ($tr as $fieldName => $text) {
@@ -178,7 +180,7 @@ class AdminController extends BaseController
      * @return string
      */
     private function _getNotFoundTableHtml(){
-        $html = '<br><h2>CSV rows not matched</h2><table border="1"><tbody><tr><td>Line #</td><td>Content</td></tr>';
+        $html = '<br><h2>CSV rows not matched</h2><table border="1"><tbody><tr><td>Line #</td>'.$this->resultTableHead.'</tr>';
         foreach ($this->notFoundArray as $csvFileLineNumber=>$rowData) {
             $html .= '<tr><td>'.$csvFileLineNumber.'</td>';
             foreach ($rowData as $item) {
