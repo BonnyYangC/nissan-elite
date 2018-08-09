@@ -8,10 +8,11 @@
 
 namespace App\models;
 
-
+use App\core\contracts\support\Mailable;
 use App\models\nissan\DataSource;
+use SendGrid\Mail\Mail;
 
-class User extends BaseModel
+class User extends BaseModel implements Mailable
 {
     // Nissan user's position define
     const RETAIL_SALES_CONSULTANTS  = 'R';
@@ -48,6 +49,8 @@ class User extends BaseModel
      * @var null | array
      */
     private $positions = null;
+
+    private $_emailData = [];
 
 
     public function __construct($id = null)
@@ -211,5 +214,100 @@ class User extends BaseModel
      */
     public function getMemberId(){
         return $this->getEmployeeCode();
+    }
+
+    /**
+     * Set from field
+     * @param $email
+     * @param $fromName
+     * @return Mailable
+     */
+    public function setEmailFrom($email, $fromName)
+    {
+        $this->_emailData['from'] = [
+            'email'=>$email,
+            'name'=>$fromName,
+        ];
+        return $this;
+    }
+
+    /**
+     * Set email subject
+     * @param $subject
+     * @return Mailable
+     */
+    public function setEmailSubject($subject)
+    {
+        $this->_emailData['subject'] = $subject;
+        return $this;
+    }
+
+    /**
+     * Set to
+     * @param $email
+     * @param $toName
+     * @return Mailable
+     */
+    public function addEmailTo($email, $toName)
+    {
+        $this->_emailData['to'] = [
+            'email'=>$email,
+            'name'=>$toName,
+        ];
+        return $this;
+    }
+
+    /**
+     * Set cc
+     * @param $email
+     * @param $toName
+     * @return Mailable
+     */
+    public function addEmailCopyTo($email, $toName)
+    {
+        // TODO: Implement addEmailCopyTo() method.
+        $this->_emailData['cc'][] = [
+            'email'=>$email,
+            'name'=>$toName,
+        ];
+        return $this;
+    }
+
+    /**
+     * set email content
+     * @param string $contentType
+     * @param string $content
+     * @return Mailable
+     */
+    public function addEmailContent($contentType = Mailable::CONTENT_TYPE_PLAIN, $content)
+    {
+        // TODO: Implement addEmailContent() method.
+        $this->_emailData['content'] = [
+            'type'=>$contentType,
+            'content'=>$content,
+        ];
+        return $this;
+    }
+
+    /**
+     * Send email
+     * @return mixed
+     */
+    public function sendEmail()
+    {
+        // TODO: Implement sendEmail() method.
+        $email = new Mail();
+        $email->setFrom($this->_emailData['from']['email'],$this->_emailData['from']['name']);
+        $email->setSubject($this->_emailData['subject']);
+        $email->addTo($this->_emailData['to']['email'],$this->_emailData['to']['name']);
+        $email->addContent($this->_emailData['content']['type'],$this->_emailData['content']['content']);
+        $sendGrid = new \SendGrid(env('SENDGRID_API_KEY'));
+
+        try {
+            $response = $sendGrid->send($email);
+            return $response->statusCode() === Mailable::STATUS_OK;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

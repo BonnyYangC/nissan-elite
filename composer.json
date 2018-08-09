@@ -16,7 +16,8 @@
     "league/csv": "^8.0",
     "delight-im/file-upload": "^1.2",
     "jenssegers/agent": "^2.6",
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "sendgrid/sendgrid": "~7"
   },
   "autoload": {
     "psr-4": {
