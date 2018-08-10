@@ -17,7 +17,8 @@
     "delight-im/file-upload": "^1.2",
     "jenssegers/agent": "^2.6",
     "guzzlehttp/guzzle": "^6.3",
-    "sendgrid/sendgrid": "~7"
+    "sendgrid/sendgrid": "~7",
+    "monolog/monolog": "^1.23"
   },
   "autoload": {
     "psr-4": {

@@ -93,7 +93,6 @@
                             <div id="collapseThree" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <p>The Nissan Ambassador Club Service Centre can be contacted on:<br><br>
-
                                         Telephone:  	03 9544 9054<br>
                                         Facsimile:  	03 9544 9045<br>
                                         Email: 		info@nissanac.com.au
@@ -112,8 +111,8 @@
             <div class="row" id="forgotpassword">
                 <div class="col-md-6 col-md-offset-3 col-xs-12">
                     <div class="fgp-wrap {{ clientAgent.isPhone() ? 'mt-20' : 'pt-200' }}">
-                        <p class="txt-white">Forgot Password?</p>
-                        <p  class="txt-white">Please enter your registered email address.</p>
+                        <p class="txt-white" style="{{ clientAgent.isPhone() ? 'font-size: 32px;' : null }}">Forgot Password?</p>
+                        <p  class="txt-white" style="{{ clientAgent.isPhone() ? 'font-size: 32px;' : null }}">Please enter your registered email address.</p>
                         <input v-model="email" name="Email" id="Email" type="email" class="form-control" placeholder="Email Address">
                         <el-button v-on:click="onSubmit($event)" :loading="inProgress" class="btn btn-block bt-login fgp-submit-btn">Submit</el-button>
                         <p class="txt-white fs-14 mt-10">

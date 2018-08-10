@@ -55,7 +55,6 @@ class UsersController extends Controller
          * @var Mailable $user
          */
         $user = null;
-
         if($this->request->param('email') && filter_var($this->request->param('email'), FILTER_VALIDATE_EMAIL)){
             $user = new User();
             $result = $user->simpleQueryFirst([

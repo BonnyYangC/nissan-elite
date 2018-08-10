@@ -52,12 +52,25 @@ class HomepageTest extends TestCase
 //        console_log('Homepage is OK!');
     }
 
-    public function testAdminLogin(){
-
-        $this->http->post(
+    public function testAdminLoginUrlExist(){
+        $response = $this->http->post(
             url('/user/login'),
             ['email'=>env('ADMIN_USER'),'password'=>env('ADMIN_PASSWORD')]
         );
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function testAdminCheck(){
+        $request = new \Klein\Request(
+            ['email'=>env('ADMIN_USER'),'password'=>env('ADMIN_PASSWORD')]
+        );
+        $response = new \Klein\Response();
+
+        $controller = new \App\controller\UsersController($request, $response);
+
+        $controller->verify_user();
+
+        dump(session_get('admin_data_array'));
     }
 
     public function tearDown() {
