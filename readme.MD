@@ -11,6 +11,11 @@ This project is build on top of pure PHP, no existed PHP framework such as CI/La
 - Application environment file: app/helpers/.env file. In this file, all env variables for runtime are stored here, you can append as many as you want to. At anywhere in you application, simply call evn($key) to retrieve the env variable.
 - Cache: app/cache folder. For better performance, no need to modify. But this folder must be writable by PHP user.
 
+# For System Administrator
+- Login as administrator: default username is admin@admin.com, default password is 123456
+- Once login, admin can upload csv files to update the database or cross-check the csv file content with current database content
+- Instead of edit the app/helpers/.env file directly, Administrator can modify the system environment variables to control the behavior such as Running mode ...
+
 # Dependency management and PHP class autoload
 - Install all dependencies: composer install
 - Update dependencies: composer update
