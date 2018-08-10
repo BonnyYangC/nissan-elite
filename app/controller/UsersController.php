@@ -65,7 +65,7 @@ class UsersController extends Controller
             if($result && isset($result['user_id']) && !empty($result['user_id'])){
                 $content = 'Hi '.$result['firstname'].', your login password is '.$result['password'];
                 $emailSent = $user->setEmailFrom(env('SUPPORT_EMAIL_ADDRESS'),env('SUPPORT_EMAIL_NAME'))
-                    ->setEmailSubject('Your password recovered!')
+                    ->setEmailSubject('Your password recovered! (DO NOT REPLY)')
                     ->addEmailTo($result['email'],$result['firstname'])
                     ->addEmailContent(Mailable::CONTENT_TYPE_PLAIN, $content)
                     ->sendEmail();
