@@ -31,13 +31,10 @@
                     <div class="form-footer">
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-7">
-                                <!-- <i class="fa fa-lock"></i> -->
-                                <a style="color:#999999;" href="#forgotpassword" > Forgot password? </a>
+                                <a class="txt-grey9" href="#forgotpassword" > Forgot password? </a>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-5">
-                                <!-- <i class="fa fa-check"></i> -->
-
-                                <a style="color:#999999;"  href="#eligible">New to Nissan?</a>
+                                <a class="txt-grey9" href="#eligible">New to Nissan?</a>
                             </div>
                         </div>
                     </div>
@@ -110,14 +107,20 @@
             </div>
         </div>
     </section>
-    <section id="forgotpassword">
+    <section>
         <div class="container">
-            <div style="margin:0 auto; height: 600px; width:500px; padding-top:200px; text-align: center; font-size:50px; margin-bottom:100px;">
-                <p style="color:#FFFFFF;">Forgot Password?</p>
-                <p style="font-size:14px; color:#FFFFFF">Please enter your registered email address.</p>
-                <input name="Email" id="Email" type="password" class="form-control" placeholder="Email Address" style="margin:10px 0px">
-                <button style="background-color:#000000;" class="btn btn-block bt-login" type="submit">Submit</button>
-                <p style="color:#FFFFFF; font-size:14px; padding-top:10px;" ><strong>Note:</strong> Go back to <a href="#">login</a> </p>
+            <div class="row" id="forgotpassword">
+                <div class="col-md-6 col-md-offset-3 col-xs-12">
+                    <div class="fgp-wrap {{ clientAgent.isPhone() ? 'mt-20' : 'pt-200' }}">
+                        <p class="txt-white">Forgot Password?</p>
+                        <p  class="txt-white">Please enter your registered email address.</p>
+                        <input v-model="email" name="Email" id="Email" type="email" class="form-control" placeholder="Email Address">
+                        <el-button v-on:click="onSubmit($event)" :loading="inProgress" class="btn btn-block bt-login fgp-submit-btn">Submit</el-button>
+                        <p class="txt-white fs-14 mt-10">
+                            <strong>Note:</strong> Go back to <a href="#">login</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -90,6 +90,7 @@ class BaseController
          * Init the browser/client agent instance
          */
         $this->clientAgent = new Agent();
+        $this->dataForView['clientAgent'] = $this->clientAgent;
     }
 
     /**

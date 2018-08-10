@@ -294,6 +294,25 @@ class Model implements Jsonable
     }
 
     /**
+     * Do a simple database query for the first element only
+     * @param $whereConditions
+     * @param string $fields
+     * @return array|bool
+     */
+    public function simpleQueryFirst($whereConditions,$fields='*'){
+        $whereConditions['LIMIT'] = [0,1];
+        $result = self::DB()->select(
+            $this->tableName,
+            $fields,
+            $whereConditions
+        );
+        if($result && count($result)>0 && $result[0]){
+            return $result[0];
+        }
+        return false;
+    }
+
+    /**
      * Set to debug mode
      * @return Model
      */

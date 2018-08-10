@@ -1,5 +1,47 @@
 <script src="http://lib.gekkocreations.com.au/jquery/jquery.min.js"></script>
 <script src="http://lib.gekkocreations.com.au/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>#}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="{{ asset('/includes/jalert/dist/jAlert.min.js') }}"></script>
 <script src="{{ asset('/includes/jalert/dist/jAlert-functions.min.js') }}"></script>
 <script src="{{ asset('js/modernizr.custom.86080.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        var fgpApp = new Vue({
+            el: '#forgotpassword',
+            data:{
+                inProgress: false,
+                email: ''
+            },
+            created(){},
+            methods:{
+                onSubmit: function(e){
+                    e.preventDefault();
+                    if(this.email.trim().length === 0){
+                        this.$message.error('Please enter your email address!');
+                        return;
+                    }
+                    this.inProgress = true;
+                    var that = this;
+                    axios.get(
+                        '/user/reset-my-password?email=' + this.email
+                    ).then(function(res){
+                        if(res.data.error_no === 100){
+                            that.$message(
+                                {
+                                    message: 'Your password has been sent to your email address',
+                                    type: 'success'
+                                }
+                            );
+                        }else{
+                            that.$message.error('System is busy, please try again!');
+                        }
+                        that.inProgress = false;
+                    });
+                }
+            }
+        })
+    })
+</script>

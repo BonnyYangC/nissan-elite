@@ -28,6 +28,13 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->post('/user/login',\App\controller\UsersController::class, 'verify_user')
     ->name('user.login.post');
 
+/**
+ * Route: /user/login  -> Authentication
+ */
+\App\core\Route::Instance()
+    ->get('/user/reset-my-password',\App\controller\UsersController::class, 'reset_password')
+    ->name('user.reset.password');
+
 // Functional modules routes start
 /**
  * Route: /dashboard  -> Dashboard view

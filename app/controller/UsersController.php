@@ -8,6 +8,8 @@
 
 namespace App\controller;
 use App\core\BaseController as Controller;
+use App\core\contracts\support\Mailable;
+use App\core\JsonBuilder;
 use App\models\Session;
 use Carbon\Carbon;
 use Klein\Request;
@@ -43,6 +45,36 @@ class UsersController extends Controller
             $this->render('user/login');
         }
         return;
+    }
+
+    /**
+     * Find user's password and send to it's email address
+     */
+    public function reset_password(){
+        /**
+         * @var Mailable $user
+         */
+        $user = null;
+
+        if($this->request->param('email') && filter_var($this->request->param('email'), FILTER_VALIDATE_EMAIL)){
+            $user = new User();
+            $result = $user->simpleQueryFirst([
+                'email' => $this->request->param('email')
+            ]);
+
+            if($result && isset($result['user_id']) && !empty($result['user_id'])){
+                $content = 'Hi '.$result['firstname'].', your login password is '.$result['password'];
+                $emailSent = $user->setEmailFrom(env('SUPPORT_EMAIL_ADDRESS'),env('SUPPORT_EMAIL_NAME'))
+                    ->setEmailSubject('Your password recovered!')
+                    ->addEmailTo($result['email'],$result['firstname'])
+                    ->addEmailContent(Mailable::CONTENT_TYPE_PLAIN, $content)
+                    ->sendEmail();
+                if($emailSent){
+                    echo JsonBuilder::Success();
+                }
+            }
+        }
+        echo JsonBuilder::Error();
     }
 
     /**

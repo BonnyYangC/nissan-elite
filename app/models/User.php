@@ -301,7 +301,7 @@ class User extends BaseModel implements Mailable
         $email->setSubject($this->_emailData['subject']);
         $email->addTo($this->_emailData['to']['email'],$this->_emailData['to']['name']);
         $email->addContent($this->_emailData['content']['type'],$this->_emailData['content']['content']);
-        $sendGrid = new \SendGrid(env('SENDGRID_API_KEY'));
+        $sendGrid = new \SendGrid(env('MAIL_SENDGRID_API_KEY'));
 
         try {
             $response = $sendGrid->send($email);

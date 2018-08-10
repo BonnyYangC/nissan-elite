@@ -143,6 +143,23 @@ class Route
         return $this;
     }
 
+    public function all($path,$controller,$action){
+        $this->_pushToPool($path);
+
+        $this->_router->respond(
+            ['POST','GET','PUT','DELETE'],
+            $path,
+            function(Request $request, Response $response, ServiceProvider $service, App $app) use ($controller, $action){
+                $c = new $controller($request, $response, $service, $app);
+                $redirectTo = $c->$action();
+                if($redirectTo){
+                    $response->redirect($redirectTo)->send();
+                }
+            }
+        );
+        return $this;
+    }
+
     /**
      * the point of dispatch route
      */
