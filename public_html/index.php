@@ -73,6 +73,10 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->post('/admin/update-env', \App\controller\backend\AdminController::class,'update_env')
     ->name('admin.update.env');
+
+\App\core\Route::Instance()
+    ->get('/api/users-search', \App\controller\backend\ApiController::class,'users_search')
+    ->name('api.users.search');
 /**
  * This is a must do action: dispatch at last
  */

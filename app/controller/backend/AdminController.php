@@ -49,7 +49,6 @@ class AdminController extends BaseController
          * @var array $env
          */
         $env = $this->request->param('env');
-
         $content = 'APP_NAME="'.$env['APP_NAME'].'"'.PHP_EOL;
         $content .= 'DEV_MODE='.( $env['DEV_MODE']=='1' ? 'false' : 'true').PHP_EOL;
         $content .= 'SALT=L=kGL*y^Cv3YYs5Lq2k_wZQxtjS5_Y$LFaJJ%MdC+#NpbAZ#PaZtNJ2!HmffXTsc'.PHP_EOL;
