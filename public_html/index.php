@@ -67,7 +67,12 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 
 // Admin Only
 \App\core\Route::Instance()->get('/admin-panel', \App\controller\backend\AdminController::class,'index');
-\App\core\Route::Instance()->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer');
+\App\core\Route::Instance()
+    ->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer')
+    ->name('admin.upload.csv');
+\App\core\Route::Instance()
+    ->post('/admin/update-env', \App\controller\backend\AdminController::class,'update_env')
+    ->name('admin.update.env');
 /**
  * This is a must do action: dispatch at last
  */

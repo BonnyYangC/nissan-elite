@@ -42,6 +42,43 @@ class AdminController extends BaseController
     }
 
     /**
+     * Update system env file
+     */
+    public function update_env(){
+        /**
+         * @var array $env
+         */
+        $env = $this->request->param('env');
+
+        $content = 'DEV_MODE='.( $env['DEV_MODE']=='1' ? 'false' : 'true').PHP_EOL;
+        $content .= 'SALT=L=kGL*y^Cv3YYs5Lq2k_wZQxtjS5_Y$LFaJJ%MdC+#NpbAZ#PaZtNJ2!HmffXTsc'.PHP_EOL;
+        $content .= 'SITE_URL='.$env['SITE_URL'].PHP_EOL;
+        $content .= 'ROOT_PATH="'.$env['ROOT_PATH'].'"'.PHP_EOL;
+        $content .= 'APP_PATH="${ROOT_PATH}/app/"'.PHP_EOL;
+        $content .= 'VIEW_PATH="${ROOT_PATH}/app/views/"'.PHP_EOL;
+        $content .= 'PUBLIC_UPLOADS_PATH_ROOT="${APP_PATH}storage/public/uploads"'.PHP_EOL;
+        $content .= 'SESSION_SEGMENT=_nissanac'.PHP_EOL;
+        $content .= 'YEAR='.$env['YEAR'].PHP_EOL;
+        $content .= 'DEFAULT_TIMEZONE="Australia/Melbourne"'.PHP_EOL;
+        $content .= 'dealExcellenceOverviewUrl=http://nissan-events.com.au/excellence-fy17/ac/welcome.html'.PHP_EOL;
+        $content .= 'eventRegisterUrl="http://www.nissan-events.com.au/ac${YEAR}/reg"'.PHP_EOL;
+        $content .= 'DB_DRIVER=mysql'.PHP_EOL;
+        $content .= 'DB_USER='.$env['DB_USER'].PHP_EOL;
+        $content .= 'DB_PASSWORD='.$env['DB_PASSWORD'].PHP_EOL;
+        $content .= 'DB_NAME='.$env['DB_NAME'].PHP_EOL;
+        $content .= 'DB_HOST=localhost'.PHP_EOL;
+        $content .= 'ADMIN_USER='.$env['ADMIN_USER'].PHP_EOL;
+        $content .= 'ADMIN_PASSWORD='.$env['ADMIN_PASSWORD'].PHP_EOL;
+        $content .= 'MAIL_SENDGRID_API_KEY='.$env['MAIL_SENDGRID_API_KEY'].PHP_EOL;
+        $content .= 'SUPPORT_EMAIL_ADDRESS='.$env['SUPPORT_EMAIL_ADDRESS'].PHP_EOL;
+        $content .= 'SUPPORT_EMAIL_NAME="'.$env['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
+
+        file_put_contents(env('APP_PATH').'/helpers/.env',$content);
+
+        $this->response->redirect('/admin-panel');
+    }
+
+    /**
      * Load panel
      */
     public function index(){

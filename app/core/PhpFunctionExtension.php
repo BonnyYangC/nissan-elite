@@ -46,7 +46,8 @@ class PhpFunctionExtension extends \Twig_Extension
         'ordinal',              // Add suffix to number
         'env',                  // output any env setting
         'number_format',        // format number
-        'empty',                // format number
+        'empty',                // empty
+        'get_route',            // get url by give route name
     );
     public function __construct(array $functions = array())
     {

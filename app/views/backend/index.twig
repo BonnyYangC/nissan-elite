@@ -95,5 +95,193 @@
                 </div>
             </div>
         </div>
+
+        <div class="content">
+            <div class="card  mt-20">
+                <div class="card-content">
+                    <div class="content">
+                        <form action="{{ get_route('admin.update.env') }}" method="post" class="form">
+                            <h2 class="m-4">System Configuration</h2>
+                            <hr>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Running Mode</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="env[DEV_MODE]">
+                                                    <option value="1" {{ env('DEV_MODE',false) ? null :'selected' }}>Production Mode</option>
+                                                    <option value="0" {{ env('DEV_MODE',false) ? 'selected' : null }}>Test Mode</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Site URL</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[SITE_URL]" placeholder="Site URL: https://your_site.com" value="{{ env('SITE_URL','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">App root path</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[ROOT_PATH]" placeholder="APP root path" value="{{ env('ROOT_PATH','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Year</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[YEAR]" placeholder="Which year you want to display" value="{{ env('YEAR','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>Database</h5>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">DB user</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[DB_USER]" placeholder="Database user name" value="{{ env('DB_USER','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">DB password</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[DB_PASSWORD]" placeholder="Database password" value="{{ env('DB_PASSWORD','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Database name</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[DB_NAME]" placeholder="Database user name" value="{{ env('DB_NAME','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>Email Settings</h5>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Email KEY</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[MAIL_SENDGRID_API_KEY]" placeholder="SendGrid APP KEY" value="{{ env('MAIL_SENDGRID_API_KEY','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Support Email</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[SUPPORT_EMAIL_ADDRESS]" placeholder="Support email" value="{{ env('SUPPORT_EMAIL_ADDRESS','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Support name</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[SUPPORT_EMAIL_NAME]" placeholder="Support's name when sending email" value="{{ env('SUPPORT_EMAIL_NAME','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>System Login</h5>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Admin Username</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[ADMIN_USER]" placeholder="Admin username" value="{{ env('ADMIN_USER','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Admin Password</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[ADMIN_PASSWORD]" placeholder="Admin password" value="{{ env('ADMIN_PASSWORD','') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label">
+                                    <!-- Left empty for spacing -->
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary" type="submit">
+                                                <i id="submit-btn-waiting" class="fas fa-database"></i>&nbsp;&nbsp;&nbsp;
+                                                <span id="submit-btn-txt">Submit</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
