@@ -67,6 +67,7 @@ class AdminController extends BaseController
         $content .= 'DB_PASSWORD='.$env['DB_PASSWORD'].PHP_EOL;
         $content .= 'DB_NAME='.$env['DB_NAME'].PHP_EOL;
         $content .= 'DB_HOST=localhost'.PHP_EOL;
+        $content .= 'PAGE_SIZE='.$env['PAGE_SIZE'].PHP_EOL;
         $content .= 'ADMIN_USER='.$env['ADMIN_USER'].PHP_EOL;
         $content .= 'ADMIN_PASSWORD='.$env['ADMIN_PASSWORD'].PHP_EOL;
         $content .= 'MAIL_SENDGRID_API_KEY='.$env['MAIL_SENDGRID_API_KEY'].PHP_EOL;
@@ -85,6 +86,23 @@ class AdminController extends BaseController
         $this->dataForView['roles'] = DataSource::$_rolesMap;
         $this->render('backend/index');
         return;
+    }
+
+    public function fake_user(){
+        $userId = $this->request->param('uid');
+        $user = new User($userId);
+
+        $uuid = random_str(uniqid());
+        $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
+
+        session_set(env('SESSION_SEGMENT','_nissanac_fake'), $uuid);
+        session_set('user_data_array', [
+            'id'=>$user->getId(),
+            'name'=>$user->getName()
+        ]);
+
+        // redirect to this user's dashboard
+        return $this->response->redirect('/dashboard')->send();
     }
 
     /**

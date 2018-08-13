@@ -25,7 +25,12 @@
                         :fetch-suggestions="querySearchAsync"
                         placeholder="Find a user: Email / First Name"
                         @select="handleSelect"
+                        :hide-loading="true"
+                        :trigger-on-focus="false"
                 >
+                    <template slot-scope="{ item }">
+                        <p class="name">${ item.firstname } ${ item.lastname } - ${ item.company_name }(${ item.position })</p>
+                    </template>
                 </el-autocomplete>
             </div>
         </div>

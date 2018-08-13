@@ -8,6 +8,7 @@
 
 namespace App\controller\backend;
 use App\core\BaseController;
+use App\core\JsonBuilder;
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
@@ -20,15 +21,19 @@ class ApiController extends BaseController
     }
 
     public function users_search(){
-        $user = new User();
 
-        $usersData = $user->simpleQuery([
-            "OR" => [
-                "firstname[~]" => $this->request->param('q'),
-                "email[~]" => $this->request->param('q')
-            ]
-        ]);
+//        $usersData = $user->simpleQuery([
+//            "OR" => [
+//                "firstname[~]" => $this->request->param('q'),
+//                "email[~]" => $this->request->param('q')
+//            ]
+//        ]);
 
-        echo json_encode($usersData);
+        $usersData = User::SearchByEmailOrFirstName(trim($this->request->param('q')));
+        if($usersData && count($usersData) > 0){
+            echo JsonBuilder::Success($usersData);
+        }else{
+            echo JsonBuilder::Error();
+        }
     }
 }

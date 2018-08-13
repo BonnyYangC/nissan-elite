@@ -75,10 +75,11 @@ class DashboardController extends BaseController
     {
         parent::__construct($request, $response);
         $userData = session_get('user_data_array',true);
+//        dd($userData);
+
         if($userData && isset($userData['id'])){
             $this->currentUserId = $userData['id'];
             $this->userObject = new User($this->currentUserId);
-
             /**
              * 设置用户的角色: Set user roles
              */
@@ -148,6 +149,11 @@ class DashboardController extends BaseController
         $role = null;
 
         $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+
+        if(is_null($role)){
+            echo 'No matched role and view found';
+            return;
+        }
 
         /**
          * Inject All necessary data to the view

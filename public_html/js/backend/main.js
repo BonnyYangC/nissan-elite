@@ -21,35 +21,35 @@ Zepto(function($){
     if(navEl){
         var navApp = new Vue({
             el: '#nav-app-wrap',
+            delimiters: ['${', '}'],
             data:{
                 restaurants: [],
                 keyword: '',
                 select:'',
-                selectedDealer:null,
-                dealers:[]
+                selectedDealer:null
             },
             created(){
-                console.log(22222);
             },
             methods:{
                 querySearchAsync: function(queryString, cb){
                     if(queryString.length < 2){
                         return;
                     }
+                    var that = this;
                     axios.get(
                         '/api/users-search?q=' + queryString
                     ).then(function(res){
-                        if(res.status==200 && res.data.error_no == 100){
+                        if(res.status === 200 && res.data.error_no === 100){
                             // 表示找到了结果
-                            cb(res.data.data.result)
+                            cb(res.data.data)
+                        }else{
+                            cb([]);
+                            that.$message('No user is found');
                         }
                     });
                 },
-                handleSelect: function(){
-
-                },
-                getDealers: function(){
-
+                handleSelect: function(item){
+                    window.open('/admin/fake-user?uid=' + item.user_id, '_blank')
                 }
             }
         });

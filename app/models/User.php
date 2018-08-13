@@ -61,6 +61,39 @@ class User extends BaseModel implements Mailable
     }
 
     /**
+     * Search and get user brief data + company brief data
+     * @param $emailOrFirstName
+     * @param int $pageNumber
+     * @param null $limit
+     * @return array|bool
+     */
+    public static function SearchByEmailOrFirstName($emailOrFirstName, $pageNumber = 0, $limit = null){
+        if(is_null($limit)){
+            $limit = env('PAGE_SIZE');
+        }
+
+        $db = self::DB();
+        $result = $db->select('users',[
+            // The row company_id from table users is equal the row company_id from table company
+            "[>]company" => ["company_id" => "company_id"],
+        ],[
+            'users.email','users.firstname','users.lastname','users.company_id','users.user_id','users.position','users.active',
+            'company.company_name','company.company_state','company.make'
+        ],[
+            'AND'=>[
+                'users.active'=>1,
+                'company.make'=>null,
+                'OR'=>[
+                    "users.firstname[~]" => $emailOrFirstName,
+                    "users.email[~]" => $emailOrFirstName
+                ]
+            ],
+            'LIMIT'=>[$pageNumber,$limit]
+        ]);
+        return $result;
+    }
+
+    /**
      * Get the user's dollar reward range
      * @return array
      */
