@@ -114,6 +114,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="help has-text-danger is-size-6">Switch the system's running mode, be careful!</p>
                                 </div>
                             </div>
 
@@ -127,6 +128,7 @@
                                             <input class="input" type="text" name="env[APP_NAME]" placeholder="The name of this website" value="{{ env('APP_NAME','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-grey is-size-6">The website's name</p>
                                 </div>
                             </div>
 
@@ -140,6 +142,7 @@
                                             <input class="input" type="text" name="env[SITE_URL]" placeholder="Site URL: https://your_site.com" value="{{ env('SITE_URL','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-danger is-size-6">The URL you're using for this website, be careful!</p>
                                 </div>
                             </div>
 
@@ -153,6 +156,7 @@
                                             <input class="input" type="text" name="env[ROOT_PATH]" placeholder="APP root path" value="{{ env('ROOT_PATH','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-danger is-size-6">Please don't change</p>
                                 </div>
                             </div>
 
@@ -166,6 +170,7 @@
                                             <input class="input" type="text" name="env[YEAR]" placeholder="Which year you want to display" value="{{ env('YEAR','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-grey is-size-6">Which year's data the user will see</p>
                                 </div>
                             </div>
                             <hr>
@@ -180,6 +185,7 @@
                                             <input class="input" type="text" name="env[DB_USER]" placeholder="Database user name" value="{{ env('DB_USER','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-danger is-size-6">Please don't change</p>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
@@ -192,6 +198,7 @@
                                             <input class="input" type="text" name="env[DB_PASSWORD]" placeholder="Database password" value="{{ env('DB_PASSWORD','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-danger is-size-6">Please don't change</p>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
@@ -204,6 +211,7 @@
                                             <input class="input" type="text" name="env[DB_NAME]" placeholder="Database user name" value="{{ env('DB_NAME','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-danger is-size-6">Please don't change</p>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
@@ -216,6 +224,7 @@
                                             <input class="input" type="text" name="env[PAGE_SIZE]" placeholder="Rows/Page" value="{{ env('PAGE_SIZE','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-grey is-size-6">How many rows per page</p>
                                 </div>
                             </div>
                             <hr>
@@ -229,6 +238,7 @@
                                         <div class="control">
                                             <input class="input" type="text" name="env[MAIL_SENDGRID_API_KEY]" placeholder="SendGrid APP KEY" value="{{ env('MAIL_SENDGRID_API_KEY','') }}">
                                         </div>
+                                        <p class="help has-text-danger is-size-6">Please don't change</p>
                                     </div>
                                 </div>
                             </div>
@@ -241,6 +251,7 @@
                                         <div class="control">
                                             <input class="input" type="text" name="env[SUPPORT_EMAIL_ADDRESS]" placeholder="Support email" value="{{ env('SUPPORT_EMAIL_ADDRESS','') }}">
                                         </div>
+                                        <p class="help has-text-grey is-size-6">As the sender's email when user tries to recover the password</p>
                                     </div>
                                 </div>
                             </div>
@@ -253,6 +264,7 @@
                                         <div class="control">
                                             <input class="input" type="text" name="env[SUPPORT_EMAIL_NAME]" placeholder="Support's name when sending email" value="{{ env('SUPPORT_EMAIL_NAME','') }}">
                                         </div>
+                                        <p class="help has-text-grey is-size-6">As the sender's name when user tries to recover the password</p>
                                     </div>
                                 </div>
                             </div>
@@ -268,6 +280,7 @@
                                             <input class="input" type="text" name="env[ADMIN_USER]" placeholder="Admin username" value="{{ env('ADMIN_USER','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-grey is-size-6">As the administrator's login name</p>
                                 </div>
                             </div>
                             <div class="field is-horizontal">
@@ -280,6 +293,7 @@
                                             <input class="input" type="text" name="env[ADMIN_PASSWORD]" placeholder="Admin password" value="{{ env('ADMIN_PASSWORD','') }}">
                                         </div>
                                     </div>
+                                    <p class="help has-text-grey is-size-6">As the administrator's login password</p>
                                 </div>
                             </div>
                             <hr>
