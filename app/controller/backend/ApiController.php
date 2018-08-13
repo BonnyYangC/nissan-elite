@@ -20,15 +20,10 @@ class ApiController extends BaseController
         parent::__construct($request, $response);
     }
 
+    /**
+     * Search user by give query keyword
+     */
     public function users_search(){
-
-//        $usersData = $user->simpleQuery([
-//            "OR" => [
-//                "firstname[~]" => $this->request->param('q'),
-//                "email[~]" => $this->request->param('q')
-//            ]
-//        ]);
-
         $usersData = User::SearchByEmailOrFirstName(trim($this->request->param('q')));
         if($usersData && count($usersData) > 0){
             echo JsonBuilder::Success($usersData);
