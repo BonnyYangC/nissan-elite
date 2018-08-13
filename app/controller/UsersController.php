@@ -73,7 +73,7 @@ class UsersController extends Controller
                 }
             }
         }
-        echo JsonBuilder::Error();
+//        echo JsonBuilder::Error();
     }
 
     /**

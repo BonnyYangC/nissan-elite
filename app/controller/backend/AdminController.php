@@ -34,7 +34,13 @@ class AdminController extends BaseController
      */
     private $resultTableHead = '';
 
-    private $allHtml = '';
+    /**
+     * 最后一次保存的 Result set
+     * @var null
+     */
+    private $_lastFoundResultSet = null;
+
+    private $allHtml = '<a href="/admin-panel">Go Back</a><br>';
 
     public function __construct(Request $request, Response $response)
     {
@@ -106,6 +112,18 @@ class AdminController extends BaseController
     }
 
     /**
+     * @param $roleAbbr
+     * @param User $user
+     * @param $tableName
+     * @return BaseModel
+     */
+    private function _getANewModel($roleAbbr, User $user, $tableName){
+        $model = RoleFactory::GetModel($roleAbbr ,$user);
+        $model->setTableName($tableName);
+        return $model;
+    }
+
+    /**
      * Cross check or sync database with submitted csv file
      */
     public function csv_importer(){
@@ -123,9 +141,8 @@ class AdminController extends BaseController
             if (file_exists($filePath)) {
                 $user = new User();
                 $roleAbbr = $this->request->param('for');
-                $model = RoleFactory::GetModel($roleAbbr ,$user);
                 $tableName = DataSource::nissan_get_table_name_from_abbr($roleAbbr);
-                $model->setTableName($tableName);
+                $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 
                 // Call any method on an SplFileInfo instance
                 $reader = CsvTool::ReadFile($filePath);
@@ -150,8 +167,14 @@ class AdminController extends BaseController
                             ]
                         ]);
 
-                        if(count($resultSet) === 1){
-                            foreach ($resultSet[0] as $currentFieldName => $fieldValue) {
+                        $found = count($resultSet) === 1;
+
+                        if(!$found){
+                            $model = $this->_getANewModel($roleAbbr, $user, $tableName);
+                        }
+                        if($found){
+                            $this->_lastFoundResultSet = $resultSet[0];
+                            foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
                                 if(is_string($currentFieldName)){
                                     if($isSyncAction){
                                         // 数据同步的操作
@@ -164,7 +187,7 @@ class AdminController extends BaseController
                                         }elseif(isset($this->indexes[$currentFieldName])){
                                             $newValue =
                                                 empty($row[$this->indexes[$currentFieldName]]) ?
-                                                    $fieldValue :                   // If csv value is empty, then use the original
+                                                    0 :                                         // If csv value is empty, then use the 0
                                                     $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
                                             if(strtoupper($newValue) == 'YES'){
                                                 $newValue = 1;
@@ -188,18 +211,92 @@ class AdminController extends BaseController
                                     }
                                 }
                             }
-                            if($isSyncAction){
-                                $model->save();
-                                $syncedRowsCount++;
-                            }
                         }else{
-                            $this->notFoundArray[$index] = $row;
+                            // Trying to create a new record
+                            if($isSyncAction){
+                                foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
+                                    if(is_string($currentFieldName)){
+                                        if($currentFieldName == 'id'){
+                                            // 为了新增操作
+                                            $model->id = null;
+                                        }elseif($currentFieldName == 'period'){
+                                            $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
+                                            $model->period = $periodConverted;
+                                        }elseif(isset($this->indexes[$currentFieldName])){
+                                            $newValue =
+                                                empty($row[$this->indexes[$currentFieldName]]) ?
+                                                    0 :                                         // If csv value is empty, then use the 0
+                                                    $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
+                                            if(strtoupper($newValue) == 'YES'){
+                                                $newValue = 1;
+                                            }elseif (strtoupper($newValue) == 'NO'){
+                                                $newValue = 0;
+                                            }
+                                            $model->$currentFieldName = $newValue;
+                                        }
+                                    }
+                                }
+                            }else{
+                                $this->notFoundArray[$index] = $row;
+                            }
                         }
+
+                        if($isSyncAction){
+                            $model->save();
+                            $syncedRowsCount++;
+                        }
+
+//                        if(count($resultSet) === 1){
+//                            foreach ($resultSet[0] as $currentFieldName => $fieldValue) {
+//                                if(is_string($currentFieldName)){
+//                                    if($isSyncAction){
+//                                        // 数据同步的操作
+//                                        if($currentFieldName == 'id'){
+//                                            $model->id = $fieldValue;
+////                                            $model->find($fieldValue);
+//                                        }elseif($currentFieldName == 'period'){
+//                                            $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
+//                                            $model->period = $periodConverted;
+//                                        }elseif(isset($this->indexes[$currentFieldName])){
+//                                            $newValue =
+//                                                empty($row[$this->indexes[$currentFieldName]]) ?
+//                                                    0 :                                         // If csv value is empty, then use the 0
+//                                                    $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
+//                                            if(strtoupper($newValue) == 'YES'){
+//                                                $newValue = 1;
+//                                            }elseif (strtoupper($newValue) == 'NO'){
+//                                                $newValue = 0;
+//                                            }
+//                                            $model->$currentFieldName = $newValue;
+//                                        }
+//                                    }else{
+//                                        if($currentFieldName == 'id'){
+//                                            $this->resultArray[$index]['id'] = $fieldValue;
+//                                        }elseif($currentFieldName == 'period'){
+//                                            $tmp = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
+//                                            $equal = $fieldValue == $tmp;
+//                                            $this->resultArray[$index]['period'] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
+//                                        }elseif(isset($this->indexes[$currentFieldName])){
+//                                            // Not ID, need compare
+//                                            $equal = $row[$this->indexes[$currentFieldName]] == $fieldValue || empty($row[$this->indexes[$currentFieldName]]);
+//                                            $this->resultArray[$index][$currentFieldName] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            if($isSyncAction){
+//                                $model->save();
+//                                $syncedRowsCount++;
+//                            }
+//                        }else{
+//                            // Insert as a new row into the table
+//                            $this->notFoundArray[$index] = $row;
+//                        }
                     }
                 }
 
                 if($isSyncAction){
-                    echo "Synced: $syncedRowsCount rows.";
+                    echo $this->allHtml."Synced: $syncedRowsCount rows.";
                 }else{
                     $this->_printResultArray( '<h1>'.$tableName.'</h1>');
                 }
