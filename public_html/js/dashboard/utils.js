@@ -85,8 +85,8 @@ $(document).ready(function(){
                         yAxes: [{
                             stacked: true
                         }]
-                    }
-                }
+                    },
+                },
             });
         };
         if(document.getElementById('randomizeData')){

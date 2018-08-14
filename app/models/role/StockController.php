@@ -20,16 +20,16 @@ class StockController extends BaseRole implements IRole
      */
     public $StockCover = [
         'label'=>'Stock Cover',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     public $OWDataEntry = [
         'label'=>'OW Data Entry',
-        'backgroundColor' => IColor::DARK_GREY,
+        'backgroundColor' => IColor::LIGHT_GREY,
         'data'=>[]
     ];
     public $RetailMidMth = [
-        'label'=>'Retail % Mid Mth',
+        'label'=> '',
         'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
@@ -40,7 +40,7 @@ class StockController extends BaseRole implements IRole
     ];
     public $Davo = [
         'label'=>'Davo',
-        'backgroundColor' => IColor::LIGHT_GREY,
+        'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
     /* Views data */
@@ -132,8 +132,8 @@ class StockController extends BaseRole implements IRole
 
             if($item)
             {
-                $ytd=$item['ytd'];
-                $this->JS_credits[date("M", $period)] = $item['mtd'];
+                $ytd=$item['credit_ytd'];
+                $this->JS_credits[date("M", $period)] = $item['credit_mtd'] ? $item['credit_mtd'] : 0;
                 /**
                  * From Data results
                  */
@@ -166,6 +166,8 @@ class StockController extends BaseRole implements IRole
 
         // Status
         $status = new StockControllerStatus($ytd);
+
+        $this->RetailMidMth['label'] = env('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
 
         return [
             // For js array

@@ -9,19 +9,19 @@
         var CHART_DATA = [
             {
                 el: 'chart-recommend',
-                max: 700,
-                length: 7,
-                step: 100,
+                max: 640,
+                length: 8,
+                step: 80,
                 colors: ['#c40030'],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
             },
             {
                 el: 'chart-advice',
-                max: 700,
-                length: 7,
-                step: 100,
+                max: 640,
+                length: 8,
+                step: 80,
                 colors: ['#999999'],
-                dataSource: {{ json_encode(metrics.ADVICE)|raw }}
+                dataSource: {{ json_encode(metrics.VALUE_FOR_MONEY)|raw }}
             },
             {
                 el: 'chart-emw',
@@ -33,17 +33,17 @@
             },
             {
                 el: 'chart-follow-up',
-                max: 500,
-                length: 5,
-                step: 100,
+                max: 640,
+                length: 8,
+                step: 80,
                 colors: ['#999999'],
-                dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
+                dataSource: {{ json_encode(metrics.ADVICE)|raw }}
             },
             {
                 el: 'chart-cpr',
-                max: 1000,
-                length: 5,
-                step: 100,
+                max: 640,
+                length: 8,
+                step: 80,
                 colors: ['#555555'],
                 dataSource: {{ json_encode(metrics.CPR)|raw }}
             },
@@ -109,7 +109,7 @@
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.ADVICE_RESULTS } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.VALUE_FOR_MONEY_TABLE } %}
                                 </tr>
                             </table>
                         </div>
@@ -119,9 +119,9 @@
                         <table class="table small-table">
                             <tr class="table-top-row">
                                 <td>Service Advisor</td>
-                                <td align="center">77-84.6%</td>
-                                <td align="center">84.7-92.3%</td>
-                                <td align="center">≥92.4%</td>
+                                <td align="center">100-109.9%</td>
+                                <td align="center">110-119.9%</td>
+                                <td align="center">≥120%</td>
                             </tr>
                             <tr>
                                 <td>Category A, B, C</td>
@@ -141,7 +141,7 @@
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FOLLOW_UP_RESULTS } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.ADVICE_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -173,7 +173,7 @@
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CPR_RESULTS } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CPR_RESULT } %}
                                 </tr>
                             </table>
                         </div>

@@ -81,7 +81,7 @@ class FI extends BaseRole implements IRole
             if($item)
             {
                 $ytd=$item['credit_ytd'];
-                $this->JS_credits[$period] = $item['credit_mtd'];
+                $this->JS_credits[date("M", $period)] = $item['credit_mtd'];
                 /**
                  * From Data results
                  */
@@ -109,6 +109,8 @@ class FI extends BaseRole implements IRole
 
         // Status
         $status = new FiStatus($ytd);
+
+//        dd(convert_array_to_js_2_dimension_array($this->JS_credits));
 
         return [
             // For js array
@@ -182,15 +184,15 @@ class FI extends BaseRole implements IRole
 
 
                 // table
-                $nfsa_results[] = $this->_buildForTableElement($item['sales_nfsa']);
-                $emw_results[] = $this->_buildForTableElement($item['sales_emw']);
-                $mmu_results[] = $this->_buildForTableElement($item['sales_mmu']);
-                $mvi_results[] = $this->_buildForTableElement($item['sales_mvi']);
-                $vpi_results[] = $this->_buildForTableElement($item['sales_vpi']);
-                $pkg_results[] = $this->_buildForTableElement($item['sales_pkg']);
-                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 0 ) . '%';
-                $fu_results[] = $this->_buildForTableElement($item['score_fi']);
-                $sales_nfsa_retention[] = $this->_buildForTableElement($item['sales_nfsa_retention']);
+                $nfsa_results[] = $this->_buildForTableElement($item['sales_nfsa'],0);
+                $emw_results[] = $this->_buildForTableElement($item['sales_emw'],0);
+                $mmu_results[] = $this->_buildForTableElement($item['sales_mmu'],0);
+                $mvi_results[] = $this->_buildForTableElement($item['sales_mvi'],0);
+                $vpi_results[] = $this->_buildForTableElement($item['sales_vpi'],0);
+                $pkg_results[] = $this->_buildForTableElement($item['sales_pkg'],0);
+                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 1 ) . '%';
+                $fu_results[] = $this->_buildForTableElement($item['score_fi'],1).'%';
+                $sales_nfsa_retention[] = $this->_buildForTableElement($item['sales_nfsa_retention'],0);
             }
             else
             {
@@ -207,8 +209,8 @@ class FI extends BaseRole implements IRole
                 $mvi_results[] = $this->_buildForTableElement();
                 $vpi_results[] = $this->_buildForTableElement();
                 $pkg_results[] = $this->_buildForTableElement();
-                $penetration_results[] = $this->_buildForTableElement();
-                $fu_results[] = $this->_buildForTableElement();
+                $penetration_results[] = $this->_buildForTableElement().'%';
+                $fu_results[] = $this->_buildForTableElement(null).'%';
                 $sales_nfsa_retention[] = $this->_buildForTableElement();
             }
         }

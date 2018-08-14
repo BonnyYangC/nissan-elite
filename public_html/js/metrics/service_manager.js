@@ -47,6 +47,7 @@ function newDrawFunc(obj){
             }
             , ticks: new Array(obj.length).fill(obj.step).map((n, i) => n * (i + 1))
         },
+        isStacked: false,
         seriesType: obj.type
     };
     var chart = new google.visualization.ComboChart(document.getElementById(obj.el));

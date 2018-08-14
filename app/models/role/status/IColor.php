@@ -18,4 +18,5 @@ interface IColor
     const LOW_RED   = '#999999';
     const LIGHT_RED = '#E9EAE9';
     const GAINS_BORO = '#e8e9e8';
+    const RED = '#c40030';
 }

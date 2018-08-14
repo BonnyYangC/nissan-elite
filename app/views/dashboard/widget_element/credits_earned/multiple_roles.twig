@@ -1,13 +1,13 @@
 <div style="padding: 10px 0;">
     <strong>You have had multiple roles: </strong>
-    <select id="metricsRoleSelect">
+    <select id="metricsRoleSelect" title="Roles">
         {% for database_table_name,item in userPositions %}
         <option value="{{ item.abbr }}" {{ targetDatabaseTableName==database_table_name ? 'selected' : null }}>{{ item.text }}</option>
         {% endfor %}
     </select>
 </div>
 <script>
-    var metricsRoleSelect = document.getElementById('metricsRoleSelect');
+    let metricsRoleSelect = document.getElementById('metricsRoleSelect');
     if (metricsRoleSelect) {
         metricsRoleSelect.addEventListener('change', function (e) {
             window.location.href = '/dashboard?asRole=' + e.target.value;

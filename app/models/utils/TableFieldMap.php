@@ -24,10 +24,12 @@ class TableFieldMap{
 
             'recom_score'           =>'ce_score_OSAT',
             'recom_credit'          =>'credits_ce_OSAT',
-            'trust_score'           =>'ce_score_VFM',
-            'trust_credit'          =>'credits_ce_VFM',
-            'fu_score'              =>'ce_score_AYCT',
-            'fu_credit'             =>'credits_ce_AYCT',
+
+            'trust_score'           =>'ce_score_AYCT',
+            'trust_credit'          =>'credits_ce_AYCT',
+
+            'fu_score'              =>'ce_score_VFM',
+            'fu_credit'             =>'credits_ce_VFM',
             'emw_score'             =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',
 
@@ -46,6 +48,13 @@ class TableFieldMap{
 
         $newFieldsNeedToBeCreated = [];
         return $map;
+
+        /**
+        'trust_score'           =>'ce_score_VFM',
+        'trust_credit'          =>'credits_ce_VFM',
+        'fu_score'              =>'ce_score_AYCT',
+        'fu_credit'             =>'credits_ce_AYCT',
+         */
     }
 
     /**
@@ -215,6 +224,7 @@ class TableFieldMap{
             'training'              =>'credits_training_online',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
+            'classroom'             =>'credits_training_classroom',
             'incentive'             =>'credits_incentive',
             'adjustment'            =>'credits_adjustment',
             'excellence'            =>'credits_excellence',

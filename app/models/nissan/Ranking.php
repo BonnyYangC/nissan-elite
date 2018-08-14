@@ -238,6 +238,7 @@ class Ranking extends BaseModel
             $where
         );
 
+
         return $result;
     }
 

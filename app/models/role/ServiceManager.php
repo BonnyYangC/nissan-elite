@@ -124,11 +124,12 @@ class ServiceManager extends BaseRole implements IRole
                  */
                 $this->serviceRecommendation['data'][]  = intval($item['recommendation_credit']);
                 $this->VehicleCleanliness['data'][]     = intval($item['vclean_credit']);
-                $this->followUpPercentage['data'][]     = intval($item['followup_credit']);
+                $this->FFT['data'][]     = intval($item['followup_credit']);
                 $this->EMW['data'][]                    = intval($item['emw_credit']);
                 $this->training['data'][]               = $item['training']
                     + $item['pathway']
                     + $item['classroom'];
+                $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
             }
             else
             {
@@ -138,9 +139,10 @@ class ServiceManager extends BaseRole implements IRole
                  */
                 $this->serviceRecommendation['data'][] = 0;
                 $this->VehicleCleanliness['data'][]  = 0;
-                $this->followUpPercentage['data'][]  = 0;
+                $this->FFT['data'][]  = 0;
                 $this->EMW['data'][]  = 0;
                 $this->training['data'][]  = 0;
+                $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -160,7 +162,9 @@ class ServiceManager extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->serviceRecommendation,
                 $this->VehicleCleanliness,
-                $this->followUpPercentage,
+                $this->FFT,
+
+                $this->CUSTOMER_REPAIR_ORDER,
                 $this->EMW,
                 $this->training,
             ],

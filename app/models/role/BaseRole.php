@@ -49,8 +49,8 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
     public $salesRecommendationSaturation   = [
-        'label'=>'Sales Recommendation R6M',
-        'backgroundColor' => IColor::DARK_GREY, // dark grey
+        'label'=>'CE Satisfaction',
+        'backgroundColor' => IColor::RED, // dark grey
         'data'=>[]
     ];
     public $followUpSaturation             = [
@@ -74,20 +74,20 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
     public $DlrRec = [
-        'label'=>'Dlr Rec',
-        'backgroundColor' => IColor::LOW_RED,
+        'label'=>'CE Sat',
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     public $middleMonth = [
-        'label'=>'Mid Mth',
+        'label'=>'Forecast',
         'backgroundColor' => IColor::LIGHT_GREY,
         'data'=>[]
     ];
 
     // Service adviser: start
     public $serviceRecommendation = [
-        'label'=>'Service Recommendation',
-        'backgroundColor' => IColor::BLACK,
+        'label'=>'Service Satisfaction',
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     public $advice = [
@@ -96,13 +96,28 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
     public $VehicleCleanliness = [
-        'label'=>'Vehicle Cleanliness',
-        'backgroundColor' => IColor::MID_GREY,
+        'label'=>'Value for Money',
+        'backgroundColor' => IColor::GAINS_BORO,
         'data'=>[]
     ];
     public $EMW = [
         'label'=>'EMW',
         'backgroundColor' => IColor::LOW_RED,
+        'data'=>[]
+    ];
+    public $FFT = [
+        'label'=>'FFT',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
+    public $SERVICE_YOU_CAN_TRUST = [
+        'label'=>'AYCT',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
+    public $CUSTOMER_REPAIR_ORDER = [
+        'label'=>'CPR',
+        'backgroundColor' => IColor::GAINS_BORO,
         'data'=>[]
     ];
     // Service adviser: end
