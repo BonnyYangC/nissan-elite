@@ -180,7 +180,6 @@ class AdminController extends BaseController
                                         // 数据同步的操作
                                         if($currentFieldName == 'id'){
                                             $model->id = $fieldValue;
-//                                            $model->find($fieldValue);
                                         }elseif($currentFieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $model->period = $periodConverted;
@@ -245,53 +244,6 @@ class AdminController extends BaseController
                             $model->save();
                             $syncedRowsCount++;
                         }
-
-//                        if(count($resultSet) === 1){
-//                            foreach ($resultSet[0] as $currentFieldName => $fieldValue) {
-//                                if(is_string($currentFieldName)){
-//                                    if($isSyncAction){
-//                                        // 数据同步的操作
-//                                        if($currentFieldName == 'id'){
-//                                            $model->id = $fieldValue;
-////                                            $model->find($fieldValue);
-//                                        }elseif($currentFieldName == 'period'){
-//                                            $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
-//                                            $model->period = $periodConverted;
-//                                        }elseif(isset($this->indexes[$currentFieldName])){
-//                                            $newValue =
-//                                                empty($row[$this->indexes[$currentFieldName]]) ?
-//                                                    0 :                                         // If csv value is empty, then use the 0
-//                                                    $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
-//                                            if(strtoupper($newValue) == 'YES'){
-//                                                $newValue = 1;
-//                                            }elseif (strtoupper($newValue) == 'NO'){
-//                                                $newValue = 0;
-//                                            }
-//                                            $model->$currentFieldName = $newValue;
-//                                        }
-//                                    }else{
-//                                        if($currentFieldName == 'id'){
-//                                            $this->resultArray[$index]['id'] = $fieldValue;
-//                                        }elseif($currentFieldName == 'period'){
-//                                            $tmp = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
-//                                            $equal = $fieldValue == $tmp;
-//                                            $this->resultArray[$index]['period'] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
-//                                        }elseif(isset($this->indexes[$currentFieldName])){
-//                                            // Not ID, need compare
-//                                            $equal = $row[$this->indexes[$currentFieldName]] == $fieldValue || empty($row[$this->indexes[$currentFieldName]]);
-//                                            $this->resultArray[$index][$currentFieldName] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            if($isSyncAction){
-//                                $model->save();
-//                                $syncedRowsCount++;
-//                            }
-//                        }else{
-//                            // Insert as a new row into the table
-//                            $this->notFoundArray[$index] = $row;
-//                        }
                     }
                 }
 

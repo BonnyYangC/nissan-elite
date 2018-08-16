@@ -114,8 +114,10 @@ class BaseController
      * @param $filePath
      * @param array $hooksBefore
      * @param array $hooksAfter
+     * @param bool $returnHtmlOnly
+     * @return string
      */
-    public function render($filePath,$hooksBefore=[],$hooksAfter=[]){
+    public function render($filePath,$hooksBefore=[],$hooksAfter=[], $returnHtmlOnly = false){
         try{
             if(strpos($filePath, '/') === 0){
                 // if the give file path start with /, then remove it
@@ -140,7 +142,13 @@ class BaseController
             }
 
             // Hook function is a good place to inject some general data into view
-            echo $this->loadTemplateFile()->render($filePath, $this->dataForView);
+            $content = $this->loadTemplateFile()->render($filePath, $this->dataForView);
+
+            if($returnHtmlOnly){
+                return $content;
+            }else{
+                echo $content;
+            }
 
             /**
              * Execute controller after hooks function

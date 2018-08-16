@@ -62,18 +62,24 @@ class UsersController extends Controller
             ]);
 
             if($result && isset($result['user_id']) && !empty($result['user_id'])){
-                $content = 'Hi '.$result['firstname'].', your login password is '.$result['password'];
+                $this->dataForView['firstname'] = $result['firstname'];
+                $this->dataForView['password'] = $result['password'];
+                $content = $this->render('email_templates/users/forget_password_reminder',[],[], true);
+
                 $emailSent = $user->setEmailFrom(env('SUPPORT_EMAIL_ADDRESS'),env('SUPPORT_EMAIL_NAME'))
                     ->setEmailSubject('Your password recovered! (DO NOT REPLY)')
                     ->addEmailTo($result['email'],$result['firstname'])
-                    ->addEmailContent(Mailable::CONTENT_TYPE_PLAIN, $content)
+                    ->addEmailContent(Mailable::CONTENT_TYPE_HTML, $content)
                     ->sendEmail();
                 if($emailSent){
                     echo JsonBuilder::Success();
+                }else{
+                    echo JsonBuilder::Error();
                 }
+            }else{
+                echo JsonBuilder::Error();
             }
         }
-//        echo JsonBuilder::Error();
     }
 
     /**
