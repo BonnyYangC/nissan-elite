@@ -1,6 +1,9 @@
 .bg-white{
     background: #ffffff;
 }
+.bg-black{
+    background: #000000;
+}
 .txt-white, .tw{
     color: #ffffff !important;
     text-decoration:none;

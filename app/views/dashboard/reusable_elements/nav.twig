@@ -10,7 +10,9 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{{ currentUri=='dashboard' ? 'current' : null }}"> <a href="{{ url('/dashboard') }}">My dashboard</a> </li>
+                <li class="{{ currentUri=='dashboard' ? 'current' : null }}">
+                    <a href="{{ url('/dashboard') }}">My dashboard</a>
+                </li>
                 {% include 'dashboard/reusable_elements/nav_matrics_item.twig' %}
                 <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
                 <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>

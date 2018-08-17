@@ -9,12 +9,15 @@
             <p class="loggedin">
                 <span>{{ user.getName() }}</span>
                 <span class="color-dark-grey">{{ user.getCompany().company_name }}</span>
+                {% if not isPhone %}
                 <span>
                     <a href="{{ url('/') }}">HOME</a>
                 </span>
+                {% endif %}
                 <span>
                     <a href="{{ url('/user/logout') }}">LOGOUT</a>
                 </span>
+
             </p>
         </div>
     </div>

@@ -79,6 +79,7 @@ class AdminController extends BaseController
         $content .= 'MAIL_SENDGRID_API_KEY='.$env['MAIL_SENDGRID_API_KEY'].PHP_EOL;
         $content .= 'SUPPORT_EMAIL_ADDRESS='.$env['SUPPORT_EMAIL_ADDRESS'].PHP_EOL;
         $content .= 'SUPPORT_EMAIL_NAME="'.$env['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
+        $content .= 'MOBILE_VERSION="'.$env['MOBILE_VERSION'].'"'.PHP_EOL;
 
         file_put_contents(env('APP_PATH').'/helpers/.env',$content);
 

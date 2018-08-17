@@ -1,15 +1,17 @@
 {% extends 'layout/3brands.twig' %}
 {% block content %}
+<div class="{{ isPhone or isTablet ? 'bs-wrapper' : null }}">
     <div class="container" align="center">
         <div class="row" style="margin-top:50px;">
             {% for block in grid %}
-                <div class="col-md-4 portfolio-item">
-                    <a href="{{ block['url'] }}">
-                        <img class="img-responsive" src="{{ block['src'] }}" style="width:270px; margin-bottom:30px;" width="332"
-                             alt="">
-                    </a>
-                </div>
+            <div class="col-md-4 portfolio-item">
+                <a href="{{ block['url'] }}">
+                    <img class="img-responsive" src="{{ block['src'] }}" style="width:270px; margin-bottom:30px;" width="332"
+                         alt="">
+                </a>
+            </div>
             {% endfor %}
         </div>
     </div>
+</div>
 {% endblock %}

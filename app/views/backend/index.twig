@@ -227,6 +227,23 @@
                                     <p class="help has-text-grey is-size-6">How many rows per page</p>
                                 </div>
                             </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Mobile View</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="env[MOBILE_VERSION]">
+                                                    <option value="Website Version" {{ env('MOBILE_VERSION','Website Version')=='Website Version' ? 'selected' : null }}>Website Version</option>
+                                                    <option value="APP STYLE" {{ env('MOBILE_VERSION','Website Version')=='APP STYLE' ? 'selected' : null }}>Mobile App Style</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <hr>
                             <h5>Email Settings</h5>
                             <div class="field is-horizontal">

@@ -81,6 +81,10 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/admin/fake-user', \App\controller\backend\AdminController::class,'fake_user')
     ->name('admin.fake.user');
+
+\App\core\Route::Instance()
+    ->get('/api/get-menus', \App\controller\backend\ApiController::class,'get_menus')
+    ->name('api.get.menu');
 /**
  * This is a must do action: dispatch at last
  */

@@ -1,0 +1,9 @@
+{# 为了达到最好的效果, 通过vuejs 进行延时加载 #}
+<div class="container" id="menu">
+    <el-menu :default-active="activeIndex" class="el-menu-vertical-nissan" style="display: none;">
+        <el-menu-item v-for="(item, idx) in menus" :index="idx" :key="idx" v-on:click="handleClick(item)">
+            <span slot="title">${ item.t }</span>
+        </el-menu-item>
+    </el-menu>
+    <span id="currentUri" data-content="{{ currentUri }}"></span>
+</div>
