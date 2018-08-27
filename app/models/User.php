@@ -9,6 +9,8 @@
 namespace App\models;
 
 use App\core\contracts\support\Mailable;
+use App\models\management\ManagerDealer;
+use App\models\management\ManagerRegion;
 use App\models\nissan\DataSource;
 use App\core\contracts\support\MailTrait;
 
@@ -30,7 +32,7 @@ class User extends BaseModel implements Mailable
     const FI                        = 'I';
 
     // The following roles don't need a dashboard
-    const DISTRICT_SALES_MANAGER    = 'DMS';
+    const DISTRICT_SALES_MANAGER    = 'DSM';
     const SHOP_OWNER                = 'SHOP_OWNER';
     const NATIONAL_SALES_MANAGER    = 'NSM';
 
@@ -56,6 +58,18 @@ class User extends BaseModel implements Mailable
      * @var null | array
      */
     private $positions = null;
+
+    /**
+     * Regions which managed by Current user
+     * @var null|array
+     */
+    private $managedRegions = null;
+
+    /**
+     * Shops/Dealers owned by current user
+     * @var null | array
+     */
+    private $ownedDealers     = null;
 
     public function __construct($id = null)
     {
@@ -153,13 +167,53 @@ class User extends BaseModel implements Mailable
      * @return $this
      */
     public function init(){
-        // Load the user, then load the user's company at the same time
-        $this->setCompany();
-        // Get user's department name and position desc
-        $this->setDepartmentNameAndPositionDesc();
-        // Get user's Positions
-        $this->positions = DataSource::GetPositionList($this);
+        // Todo: check if the user is in management team
+        if($this->position === self::NATIONAL_SALES_MANAGER || $this->position === self::DISTRICT_SALES_MANAGER){
+            $this->managedRegions = ManagerRegion::LoadByManager($this);
+        }elseif ($this->position === self::SHOP_OWNER){
+            // A shop owner
+            $this->ownedDealers = ManagerDealer::LoadByManager($this);
+        }else{
+            // Load the user, then load the user's company at the same time
+            $this->setCompany();
+            // Get user's department name and position desc
+            $this->setDepartmentNameAndPositionDesc();
+            // Get user's Positions
+            $this->positions = DataSource::GetPositionList($this);
+        }
         return $this;
+    }
+
+    /**
+     * Getter for managedRegions
+     * @return array|null
+     */
+    public function getManagedRegions(){
+        return $this->managedRegions;
+    }
+
+    /**
+     * Is the current user is districts sales manager
+     * @return bool
+     */
+    public function isRegionsManager(){
+        return !is_null($this->managedRegions);
+    }
+
+    /**
+     * Getter for ownedDealers
+     * @return array|null
+     */
+    public function getOwnedDealers(){
+        return $this->ownedDealers;
+    }
+
+    /**
+     * Is the current user is dealers owner
+     * @return bool
+     */
+    public function isDealersOwner(){
+        return !is_null($this->ownedDealers);
     }
 
     /**

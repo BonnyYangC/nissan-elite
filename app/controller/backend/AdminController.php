@@ -12,6 +12,7 @@ use App\core\BaseController;
 use App\lib\utils\CsvTool;
 use App\lib\utils\FileUploader;
 use App\models\BaseModel;
+use App\models\management\RegionTerritoryReport;
 use App\models\nissan\DataSource;
 use App\models\User;
 use App\models\utils\RoleFactory;
@@ -152,21 +153,16 @@ class AdminController extends BaseController
                         $this->_matchDbFields($row, $tableName);
                     }
                 }
+
                 /**
                  * Get database connection
                  */
                 $db = BaseModel::DB();
 
-
                 foreach ($reader as $index=>$row) {
-                    if($index > 0 && !empty($row[$this->indexes[DbMap::MEMBER_ID]])){
-                        $resultSet = $db->select($tableName,'*',[
-                            'AND'=>[
-                                DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
-                                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
-                                DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
-                            ]
-                        ]);
+                    if($index > 0 && (!empty($row[$this->indexes[DbMap::MEMBER_ID]]) || !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]))){
+                        $whereCondition = $this->_getWhereCondition($tableName, $row);
+                        $resultSet = $db->select($tableName,'*',$whereCondition);
 
                         $found = count($resultSet) === 1;
 
@@ -214,26 +210,33 @@ class AdminController extends BaseController
                         }else{
                             // Trying to create a new record
                             if($isSyncAction){
-                                foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
-                                    if(is_string($currentFieldName)){
-                                        if($currentFieldName == 'id'){
-                                            // 为了新增操作
-                                            $model->id = null;
-                                        }elseif($currentFieldName == 'period'){
-                                            $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
-                                            $model->period = $periodConverted;
-                                        }elseif(isset($this->indexes[$currentFieldName])){
-                                            $newValue =
-                                                empty($row[$this->indexes[$currentFieldName]]) ?
-                                                    0 :                                         // If csv value is empty, then use the 0
-                                                    $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
-                                            if(strtoupper($newValue) == 'YES'){
-                                                $newValue = 1;
-                                            }elseif (strtoupper($newValue) == 'NO'){
-                                                $newValue = 0;
+
+                                if($this->_lastFoundResultSet){
+                                    foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
+                                        if(is_string($currentFieldName)){
+                                            if($currentFieldName == 'id'){
+                                                // 为了新增操作
+                                                $model->id = null;
+                                            }elseif($currentFieldName == 'period'){
+                                                $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
+                                                $model->period = $periodConverted;
+                                            }elseif(isset($this->indexes[$currentFieldName])){
+                                                $newValue =
+                                                    empty($row[$this->indexes[$currentFieldName]]) ?
+                                                        0 :                                         // If csv value is empty, then use the 0
+                                                        $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
+                                                if(strtoupper($newValue) == 'YES'){
+                                                    $newValue = 1;
+                                                }elseif (strtoupper($newValue) == 'NO'){
+                                                    $newValue = 0;
+                                                }
+                                                $model->$currentFieldName = $newValue;
                                             }
-                                            $model->$currentFieldName = $newValue;
                                         }
+                                    }
+                                }else{
+                                    foreach ($this->indexes as $fieldName=>$rowIndex) {
+                                        $model->$fieldName = $row[$rowIndex];
                                     }
                                 }
                             }else{
@@ -255,6 +258,34 @@ class AdminController extends BaseController
                 }
             }
         }
+    }
+
+    /**
+     * Get the right where conditions for different table
+     * @param $tableName
+     * @param $row
+     * @return array
+     */
+    private function _getWhereCondition($tableName, $row){
+        $where = [
+            'AND'=>[
+                DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
+                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
+                DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
+            ]
+        ];
+
+        if($tableName === RegionTerritoryReport::TABLE_NAME){
+            $where = [
+                'AND'=>[
+                    DbMap::EMPLOYEE_CODE=> $row[$this->indexes[DbMap::EMPLOYEE_CODE]],
+                    DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
+                    DbMap::PERIOD  => env('YEAR'),
+                ]
+            ];
+        }
+
+        return $where;
     }
 
     /**
@@ -349,6 +380,9 @@ class AdminController extends BaseController
                 break;
             case 'nissan_serviceadvisors':
                 $map = DbMap::ServiceAdvisorsTable();
+                break;
+            case RegionTerritoryReport::TABLE_NAME:
+                $map = DbMap::RegionTerritoryReportTable();
                 break;
             default:
                 $findMatch = false;

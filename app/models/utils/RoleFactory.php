@@ -8,6 +8,7 @@
 
 namespace App\models\utils;
 use App\models\BaseModel;
+use App\models\management\RegionTerritoryReport;
 use App\models\User;
 use App\models\role\FI;
 use App\models\role\FinanceController;
@@ -120,6 +121,9 @@ class RoleFactory
                 break;
             case User::SERVICE_ADVISERS:
                 $role = new ServiceAdviser($user); // Refined
+                break;
+            case User::DISTRICT_SALES_MANAGER:
+                $role = new RegionTerritoryReport($user); // Refined
                 break;
             default:
                 break;

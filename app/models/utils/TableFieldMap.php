@@ -10,6 +10,7 @@ class TableFieldMap{
     const MEMBER_ID     = 'member_id';
     const DEALER_CODE   = 'dealer_code';
     const PERIOD        = 'period';
+    const EMPLOYEE_CODE = 'employee_code';
 
     /**
      * Get the user's table map
@@ -365,6 +366,40 @@ class TableFieldMap{
         ];
 
         $newFieldsNeedToBeCreated = [];
+        return $map;
+    }
+
+    /**
+     * Get map for region territory reports table
+     * @return array
+     */
+    public static function RegionTerritoryReportTable(){
+        $map = [
+            'dsm_full_name'         =>'amba_deal~REGI_rcode::n_fullname',
+            'region_name'           =>'amba_deal~REGI_rcode::r_name',
+            'region_code'           =>'amba_deal~REGI_rcode::r_code',
+            'dealer_code'           =>'d_code',
+            'dealer_name'           =>'d_name',
+            'dealer_cat'            =>'d_cat',  // Dealer's category, metro or district ...
+            'sp_code'               =>'sp_code',
+            'employee_code'         =>'_amb_id',
+            'n_fullname'            =>'n_fullname',
+            'position'              =>'position',
+            'registered'            =>'registered',
+            'credits_monthly_04'    =>'amba_STAT_04_apr::CREDITS_MONTHLY',
+            'credits_monthly_05'    =>'amba_STAT_05_may::CREDITS_MONTHLY',
+            'credits_monthly_06'    =>'amba_STAT_06_jun::CREDITS_MONTHLY',
+            'credits_monthly_07'    =>'amba_STAT_07_jul::CREDITS_MONTHLY',
+            'credits_monthly_08'    =>'amba_STAT_08_aug::CREDITS_MONTHLY',
+            'credits_monthly_09'    =>'amba_STAT_09_sep::CREDITS_MONTHLY',
+            'credits_monthly_10'    =>'amba_STAT_10_oct::CREDITS_MONTHLY',
+            'credits_monthly_11'    =>'amba_STAT_11_nov::CREDITS_MONTHLY',
+            'credits_monthly_12'    =>'amba_STAT_12_dec::CREDITS_MONTHLY',
+            'credits_monthly_01'    =>'amba_STAT_01_jan::CREDITS_MONTHLY',
+            'credits_monthly_02'    =>'amba_STAT_02_feb::CREDITS_MONTHLY',
+            'credits_monthly_03'    =>'amba_STAT_03_mar::CREDITS_MONTHLY',
+            'cr_ytd'                =>'amba_STAT_ambid_gmthyr::CREDITS_YTD',
+        ];
         return $map;
     }
 }

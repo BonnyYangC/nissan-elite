@@ -144,24 +144,37 @@ class DashboardController extends BaseController
         }
         $this->dataForView['currentUri'] = 'dashboard';
 
-        /**
-         * @var IRole $role
-         */
-        $role = null;
+        $viewToRender = 'dashboard/my_dashboard';
 
-        $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+        // Todo: Check if user is a regular employee or not
+        if($this->userObject->isDealersOwner()){
+            // Load dealers' owner view
+            $viewToRender = 'dashboard/dealer_owner_dashboard';
+        }elseif ($this->userObject->isRegionsManager()){
+            // Load regions' sales manager view
+            $viewToRender = 'dashboard/region_sales_manger_dashboard';
+        }else{
+            // Load regular employee's view
+            /**
+             * @var IRole $role
+             */
+            $role = null;
 
-        if(is_null($role)){
-            echo 'No matched role and view found';
-            return;
+            $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+
+            if(is_null($role)){
+                echo 'No matched role and view found';
+                return;
+            }
+            /**
+             * Inject All necessary data to the view
+             */
+            $this->fetchDashboardData();
+            $this->_prepareDashboardData($role);
         }
 
-        /**
-         * Inject All necessary data to the view
-         */
-        $this->fetchDashboardData();
-        $this->_prepareDashboardData($role);
-        $this->render('dashboard/my_dashboard');
+        // Render the view
+        $this->render($viewToRender);
         return;
     }
 
@@ -181,7 +194,6 @@ class DashboardController extends BaseController
         $data = DataSource::Query($this->userObject);
         $results = $data['result']['Results'];
 
-        $ytd        = 0;
         $lifetime   = 0;
         $monthly    = [];
 
@@ -189,17 +201,14 @@ class DashboardController extends BaseController
         foreach (range(0,11) as $i) {
             $index = $carbon->addMonth()->format('M-Y');
             if(isset($results[$index])){
-                $ytd = $results[$index]['credit_ytd'];
                 $lifetime = (isset($results[$index]['lifetime']) ? $results[$index]['lifetime'] : $results[$index]['credit_mtd']);
                 $monthly[] = [$index, $results[$index]['credit_mtd']];
             }else{
                 $monthly[] = [$index, 0];
             }
         }
-//        $lifetime = 429200;
-        $lifetimeUtil = LifetimeUtil::GetInstance($lifetime);
 
-        $history = History::GetLifetime($this->userObject);
+        $lifetimeUtil = LifetimeUtil::GetInstance($lifetime);
 
         $this->dataForView['dashboard'] = [
             'lifeTime'=>$lifetime,
@@ -211,7 +220,7 @@ class DashboardController extends BaseController
             'gaga_data'=>$lifetimeUtil->getGagaData(),
             'max'=>500000,
             'monthly'=>$monthly,
-            'history'=>$history
+            'history'=>History::GetLifetime($this->userObject)
         ];
 
         $this->dataForView['extra_js'] = [

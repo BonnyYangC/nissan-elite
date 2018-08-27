@@ -24,7 +24,8 @@ class DataSource extends BaseModel
         'nissan_financialcontrollers'   => User::FINANCE_CONTROLLER,
         'nissan_partsmanager'           => User::PARTS_MANAGER,
         'nissan_partsrep'               => User::PARTS_SALES_REP,
-        'nissan_servicemanagers'        => User::SERVICE_MANAGER
+        'nissan_servicemanagers'        => User::SERVICE_MANAGER,
+        'nissan_region_territory_reports'=> User::DISTRICT_SALES_MANAGER,
     ];
 
     /**
@@ -42,7 +43,8 @@ class DataSource extends BaseModel
         User::FINANCE_CONTROLLER            => 'Financial Controller',
         User::PARTS_MANAGER                 => 'Parts Manager',
         User::PARTS_SALES_REP               => 'Parts & Sales Representative',
-        User::SERVICE_MANAGER               => 'Service Manager'
+        User::SERVICE_MANAGER               => 'Service Manager',
+        User::DISTRICT_SALES_MANAGER        => 'Region Territory Report',
     ];
 
     public static $_rolesMapOld = [
@@ -68,7 +70,8 @@ class DataSource extends BaseModel
         User::FINANCE_CONTROLLER            => 'nissan_financialcontrollers',
         User::PARTS_MANAGER                 => 'nissan_partsmanager',
         User::PARTS_SALES_REP               => 'nissan_partsrep',
-        User::SERVICE_MANAGER               => 'nissan_servicemanagers'
+        User::SERVICE_MANAGER               => 'nissan_servicemanagers',
+        User::DISTRICT_SALES_MANAGER        => 'nissan_region_territory_reports',
     ];
 
     /**
