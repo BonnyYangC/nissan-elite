@@ -27,6 +27,7 @@ use App\models\role\ServiceAdviser;
 use App\models\role\ServiceManager;
 use App\models\role\StockController;
 use App\models\User;
+use App\models\utils\LifetimeUtil;
 use App\models\utils\RoleFactory;
 use Carbon\Carbon;
 use Klein\Request;
@@ -161,6 +162,67 @@ class DashboardController extends BaseController
         $this->fetchDashboardData();
         $this->_prepareDashboardData($role);
         $this->render('dashboard/my_dashboard');
+        return;
+    }
+
+    /**
+     * Someone's lifetime revenue page
+     */
+    public function lifetime(){
+        if(empty($this->userObject)){
+            $user = new User($this->currentUserId);
+            $this->userObject = $user;
+        }
+        $this->dataForView['currentUri'] = 'dashboard';
+
+        /**
+         * Get Data
+         */
+        $data = DataSource::Query($this->userObject);
+        $results = $data['result']['Results'];
+
+        $ytd        = 0;
+        $lifetime   = 0;
+        $monthly    = [];
+
+        $carbon = Carbon::create(2017,3,1);
+        foreach (range(0,11) as $i) {
+            $index = $carbon->addMonth()->format('M-Y');
+            if(isset($results[$index])){
+                $ytd = $results[$index]['credit_ytd'];
+                $lifetime = (isset($results[$index]['lifetime']) ? $results[$index]['lifetime'] : $results[$index]['credit_mtd']);
+                $monthly[] = [$index, $results[$index]['credit_mtd']];
+            }else{
+                $monthly[] = [$index, 0];
+            }
+        }
+//        $lifetime = 429200;
+        $lifetimeUtil = LifetimeUtil::GetInstance($lifetime);
+
+        $history = History::GetLifetime($this->userObject);
+
+        $this->dataForView['dashboard'] = [
+            'lifeTime'=>$lifetime,
+            'lifetimeUtil'=>[
+                'level_color'=>$lifetimeUtil->color,
+                'next_level'=>$lifetimeUtil->next_level,
+                'lifetime_to_reach_credits'=>$lifetimeUtil->lifetime_to_reach_credits,
+            ],
+            'gaga_data'=>$lifetimeUtil->getGagaData(),
+            'max'=>500000,
+            'monthly'=>$monthly,
+            'history'=>$history
+        ];
+
+        $this->dataForView['extra_js'] = [
+            'https://www.gstatic.com/charts/loader.js',
+            'https://www.google.com/jsapi',
+            asset('js/justgage/raphael-2.1.4.min.js'),
+            asset('js/justgage/justgage.js'),
+            asset('js/dashboard/lifetime.js')
+        ];
+
+        $this->render('dashboard/lifetime');
         return;
     }
 

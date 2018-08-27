@@ -32,7 +32,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <!---- Sales Percentage---->
-                    <h3><a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">Credits earned per Month (View Individual Results)</a></h3>
+                    <h3>
+                        <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
+                            Credits earned per Month (View Individual Results)
+                        </a>
+                    </h3>
                     {% if userHasMultipleRoles %}
                         {% include 'dashboard/widget_element/credits_earned/multiple_roles.twig' %}
                     {% else %}

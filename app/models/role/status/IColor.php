@@ -19,4 +19,10 @@ interface IColor
     const LIGHT_RED = '#E9EAE9';
     const GAINS_BORO = '#e8e9e8';
     const RED = '#c40030';
+
+    const Platinum = '#545454';
+    const Gold = '#CD7F32';
+    const Silver = '#C0C0C0';
+    const Bronze = '#8C7853';
+    const BasicLifetime = '#ff0000';
 }

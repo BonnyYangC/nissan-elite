@@ -1,0 +1,22 @@
+<div class="table-responsive gage-wrap-section">
+    {# Gage chart: set up some variables for gage js #}
+    <script>
+        window.YEAR_TO_DATE = {{ dashboard.lifeTime }};
+        window.MIN = 0;
+        window.MAX = {{ dashboard.max }};
+        window.LEVEL_COLOR = '{{ dashboard.lifetimeUtil.level_color }}';
+        window.GAGE_DATA = {{ json_encode(dashboard.gaga_data)|raw }};
+    </script>
+    <div id="lifetime-gauge" class="gage-wrap"></div>
+    {# Gage chart: end #}
+
+    <p style="text-align: center; font-size: 20px;">
+        {% if dashboard.lifetimeUtil.lifetime_to_reach_credits<1 %}
+        You have reached Max Level
+        {% else %}
+        <span style="color: {{ dashboard.lifetimeUtil.level_color }};">
+            {{ dashboard.lifetimeUtil.lifetime_to_reach_credits }}
+        </span> credits to reach {{ dashboard.lifetimeUtil.next_level }} level.
+        {% endif %}
+    </p>
+</div>

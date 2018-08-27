@@ -35,6 +35,21 @@ class History extends BaseModel
         return self::_handle($rows);
     }
 
+    public static function GetLifetime(User $user){
+        $data = self::GetAll($user);
+        $result = [];
+
+        foreach (range(1992, env('YEAR')) as $yearInteger) {
+            $value = 0.0;
+            if(isset($data[$yearInteger])){
+                $value = $data[$yearInteger]['amount'];
+            }
+            $result[] = [$yearInteger.'',$value];
+        }
+
+        return array_reverse($result);
+    }
+
     /**
      * 在原来 db.php -> line 370
      * @param $rows
