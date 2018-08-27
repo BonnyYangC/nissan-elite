@@ -29,6 +29,11 @@ class User extends BaseModel implements Mailable
     const SERVICE_MANAGER           = 'SM';
     const FI                        = 'I';
 
+    // The following roles don't need a dashboard
+    const DISTRICT_SALES_MANAGER    = 'DMS';
+    const SHOP_OWNER                = 'SHOP_OWNER';
+    const NATIONAL_SALES_MANAGER    = 'NSM';
+
     /**
      * User's database table name
      * @var string

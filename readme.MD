@@ -95,9 +95,59 @@ OR
 - Sales manager: 2 not matched rows found in csv file: line 102 and 286
 - FI: 1 not matched row found: line 1051; 2 new fields need to be add in nissan_fi table: sales_nfsa_retention, credits_nfsa_retention
 
+Case (
+dept_code = "1"; "Sales";
+dept_code = "2"; "Service";
+dept_code = "3"; "Parts";
+dept_code = "4"; "Administration";
+dept_code = "5"; "VPC"
 
-
-
-
-
-
+Case (
+dept_sp_code = "1_1"; "Sales Manager";
+dept_sp_code = "1_2"; "Assistant Sales Manager";
+dept_sp_code = "1_3"; "Sales Consultant";
+dept_sp_code = "1_4"; "Fleet Manager";
+dept_sp_code = "1_5"; "Fleet Sales Consultant";
+dept_sp_code = "1_6"; "Used Vehicle Manager";
+dept_sp_code = "1_7"; "Used Vehicle Sales Consultant";
+dept_sp_code = "1_8"; "General Sales Manager";
+dept_sp_code = "1_9"; "Vehicle Delivery Manager";
+dept_sp_code = "2_1"; "Service Manager";
+dept_sp_code = "2_2"; "Assistant Service Manager";
+dept_sp_code = "2_3"; "Service Advisor";
+dept_sp_code = "2_4"; "Workshop controller";
+dept_sp_code = "2_5"; "Workshop foreman";
+dept_sp_code = "2_6"; "Vehicle Tester";
+dept_sp_code = "2_7"; "Warranty Clerk";
+dept_sp_code = "2_8"; "Senior Technician";
+dept_sp_code = "2_9"; "Technician";
+dept_sp_code = "2_10"; "Apprentice";
+dept_sp_code = "2_11"; "Apprentice - Nissmap";
+dept_sp_code = "2_12"; "";
+dept_sp_code = "2_13"; "";
+dept_sp_code = "2_14"; "Pre-delivery Manager";
+dept_sp_code = "2_15"; "Pre-delivery Technician";
+dept_sp_code = "2_16"; "Fixed Operations Manager";
+dept_sp_code = "2_17"; "NHPC Technician";
+dept_sp_code = "3_1"; "Parts Manager";
+dept_sp_code = "3_2"; "Assistant Parts Manager";
+dept_sp_code = "3_3"; "Parts Sales Representative";
+dept_sp_code = "3_4"; "Phone Sales Representative";
+dept_sp_code = "3_5"; "Retail Counter Sales Representative";
+dept_sp_code = "3_6"; "Warehouse Representative";
+dept_sp_code = "3_7"; "Delivery Driver";
+dept_sp_code = "3_8"; "Parts Interpreter";
+dept_sp_code = "4_1"; "Dealer Principal";
+dept_sp_code = "4_2"; "General Manager";
+dept_sp_code = "4_3"; "F and I Manager";
+dept_sp_code = "4_4"; "Vehicle Stock Controller";
+dept_sp_code = "4_5"; "Aftersales Consultant";
+dept_sp_code = "4_6"; "Business Manager";
+dept_sp_code = "4_7"; "Customer Relations Manager";
+dept_sp_code = "4_8"; "Financial Controller";
+dept_sp_code = "5_1"; "Manager/Supervisor";
+dept_sp_code = "5_2"; "Indentured Technician";
+dept_sp_code = "5_3"; "Accessory Fitter";
+dept_sp_code = "5_4"; "Vehicle Processor";
+dept_sp_code = "5_5"; "General Hand"
+)
