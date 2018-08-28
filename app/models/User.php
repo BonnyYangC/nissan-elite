@@ -63,7 +63,7 @@ class User extends BaseModel implements Mailable
      * Regions which managed by Current user
      * @var null|array
      */
-    private $managedRegions = null;
+    public $managedRegions = null;
 
     /**
      * Shops/Dealers owned by current user

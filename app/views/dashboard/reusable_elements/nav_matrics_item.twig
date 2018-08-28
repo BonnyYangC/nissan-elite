@@ -21,6 +21,6 @@
     {% endfor %}
     </ul>
 </li>
-{% else %}
+{% elseif not user.managedRegions %}
     <li class="{{ currentUri=='Metrics' ? 'current' : null }}"><a href="{{ asset('/dashboard/Metrics') }}">Metrics</a></li>
 {% endif %}

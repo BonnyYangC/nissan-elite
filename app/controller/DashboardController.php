@@ -76,7 +76,6 @@ class DashboardController extends BaseController
     {
         parent::__construct($request, $response);
         $userData = session_get('user_data_array',true);
-//        dd($userData);
 
         if($userData && isset($userData['id'])){
             $this->currentUserId = $userData['id'];

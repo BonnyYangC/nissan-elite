@@ -91,6 +91,7 @@ class BaseController
          */
         $this->clientAgent = new Agent();
         $this->dataForView['clientAgent'] = $this->clientAgent;
+        $this->dataForView['isPhone'] = $this->clientAgent->isPhone();
 
         /**
          * Inject the browser's type into view
