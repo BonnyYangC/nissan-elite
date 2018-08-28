@@ -71,7 +71,7 @@ class RegionTerritoryReport extends BaseModel
             $codes = $codes[0];
         }
         return $database->select(self::TABLE_NAME,[
-            'region_name(rn)','region_code(rc)','dealer_name(dn)','dealer_cat(dc)',
+            'region_code(rc)','dealer_name(dn)','dealer_cat(dc)',
             'sp_code(sc)','n_fullname(fn)','position(pos)','cr_ytd(cy)',
             'credits_monthly_04(c04)','credits_monthly_05(c05)','credits_monthly_06(c06)','credits_monthly_07(c07)',
             'credits_monthly_08(c08)','credits_monthly_09(c09)','credits_monthly_10(c10)','credits_monthly_11(c11)',
