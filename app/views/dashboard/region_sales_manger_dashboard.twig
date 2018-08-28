@@ -1,59 +1,143 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
-    <div class="container bg-white pl-25 pr-25">
-        <div class="ac-tooltip">1000</div>
+    <script>
+        var managerId = {{ user.user_id }};
+        var employeeCode = {{ user.employee_code }};
+        var regions = {{ json_encode(regions) | raw }};
+    </script>
+    <style>
+        .el-table .sort-caret.ascending{
+            border-bottom-color: #fff;
+        }
+        .el-table .sort-caret.descending{
+            border-top-color: #fff;
+        }
+    </style>
+    <div class="container bg-white pl-25 pr-25" id="dsm-app">
         <div class="row">
-            <div class="col-md-9">
-                <h1 class="page-header" >
-                    <span style="font-size:20px; padding-top:0;">Welcome {{ user.firstname }} - District Sales Manager</span>
+            <div class="col-md-4 col-xs-12">
+                <h1 class="pull-left" >
+                    <span style="font-size:20px; padding-top:0;">Territory Report {{ env('YEAR') }}</span>
                 </h1>
             </div>
-        </div>
-        <!-- Projects Row -->
-        <div class="row pb-20">
-            <div class="col-md-9">
-                <div class="table-responsive">
-                    {% set chartInitData = {'title': 'Monthly Credits','el_id':'bar-chart'} %}
-                    {% include 'dashboard/widget_element/bar-chart.twig' with chartInitData %}
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6 portfolio-item">
-                        <h3>LEADER BOARD</h3>
-                        {% include 'dashboard/widget_element/leader_board_table.twig' %}
-                    </div>
-
-                    <div class="col-md-6">
-                        <h3>Current STATUS LEVEL</h3>
-                        {% include 'dashboard/widget_element/current_status_level_chart.twig' %}
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <!---- Sales Percentage---->
-                        <h3>
-                            <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
-                                Credits earned per Month (View Individual Results)
-                            </a>
-                        </h3>
-                        {% if userHasMultipleRoles %}
-                            {% include 'dashboard/widget_element/credits_earned/multiple_roles.twig' %}
-                        {% else %}
-                            {% include 'dashboard/widget_element/credits_earned/single_role.twig' %}
-                        {% endif %}
-                    </div>
-                </div>
+            <div class="col-md-8 col-xs-12">
+                <p class="mt-20 text-right" style="padding-top:12px;">
+                    <a href="{{ url('/api/dsm/download-regional-data') }}?member={{ user.user_id }}" class="btn btn-default">
+                        <i class="fa fa-download"></i>&nbsp;Download Territory Report</a>&nbsp;
+                    <a href="{{ url('/api/dsm/download-active-member-list') }}?member={{ user.user_id }}" class="btn btn-default">
+                        <i class="fa fa-download"></i>&nbsp;Download Active Member List</a>
+                </p>
             </div>
-            <div class="col-md-3 pb-0">
-                <h3>RANKINGS &amp; CREDITS</h3>
-                {% include 'dashboard/widget_element/current_ranking_table.twig' %}
-                {% include 'dashboard/widget_element/year_to_date_table.twig' %}
-                {% include 'dashboard/widget_element/life_time_table.twig' %}
-                {% include 'dashboard/widget_element/are_you_registered_table.twig' %}
-                {% include 'dashboard/widget_element/traing_or_track_table.twig' %}
-                {% include 'dashboard/widget_element/dealer_excellence_table.twig' %}
-                {% include 'dashboard/widget_element/events_calendar.twig' %}
+        </div>
+        <hr>
+        <div class="row pb-20">
+            <div class="col-md-12">
+                <p>
+                    <el-input
+                            placeholder="Find a Dealer ..."
+                            v-model="keyword"
+                            clearable>
+                    </el-input>
+                </p>
+                <el-table
+                        :data="tableData"
+                        border
+                        height="1200"
+                        :row-class-name="showMe"
+                        style="width: 100%">
+                    <el-table-column prop="dn" fixed sortable label="Dealer" width="200">
+                        <template slot-scope="scope">
+                            ${ scope.row.dn }
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="dc" fixed sortable
+                            label="Cat" width="96">
+                        <template slot-scope="scope">
+                            <p class="text-center">
+                                <el-tag :type="scope.row.dc === 'A' ? 'primary' : (scope.row.dc === 'B' ? 'success' : 'warning')" disable-transitions>
+                                    ${ scope.row.dc }
+                                </el-tag>
+                            </p>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="rc" fixed sortable
+                            label="R_Code" width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="fn" fixed sortable
+                            label="Name" width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="sc" fixed
+                            label="Dept" sortable width="96">
+                        <template slot-scope="scope">
+                            ${ scope.row.sc === 'Administration' ? 'Admin' : scope.row.sc }
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="pos" fixed
+                            label="Position" sortable width="100">
+                        <template slot-scope="scope">
+                            <el-tag type="primary" disable-transitions>
+                                ${ scope.row.pos }
+                            </el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="cy" fixed
+                            label="YTD" sortable width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c04"
+                            label="Apr/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c05"
+                            label="May/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c06"
+                            label="Jun/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c07"
+                            label="Jul/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c08"
+                            label="Aug/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c09"
+                            label="Sep/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c10"
+                            label="Oct/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c11"
+                            label="Nov/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c12"
+                            label="Dec/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c01"
+                            label="Jan/{{ env('YEAR')+1-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c02"
+                            label="Feb/{{ env('YEAR')+1-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c03"
+                            label="Mar/{{ env('YEAR')+1-2000 }}" sortable width="96">
+                    </el-table-column>
+                </el-table>
             </div>
         </div>
     </div>

@@ -133,6 +133,21 @@ class DashboardController extends BaseController
         ];
     }
 
+    /**
+     * Retrieve data and pass to the view by Given role and year
+     * @param IRole $role
+     * @param null $ytd
+     */
+    private function _prepareDashboardDataForDSM(){
+        $this->dataForView['extra_css'] = [
+            'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
+        ];
+        $this->dataForView['extra_js'] = [
+            'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js',
+            'https://unpkg.com/element-ui/lib/index.js',
+            asset('js/dsm_utils.js')
+        ];
+    }
 
     /**
      * Dashboard request handler
@@ -153,6 +168,11 @@ class DashboardController extends BaseController
         }elseif ($this->userObject->isRegionsManager()){
             // Load regions' sales manager view
             $viewToRender = 'dashboard/region_sales_manger_dashboard';
+            $regions = $this->userObject->getManagedRegions();
+            $this->dataForView['regions'] = $regions;
+
+            //
+            $this->_prepareDashboardDataForDSM();
         }else{
             // Load regular employee's view
             /**

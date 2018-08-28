@@ -9,10 +9,12 @@
 namespace App\controller\backend;
 use App\core\BaseController;
 use App\core\JsonBuilder;
+use App\models\management\RegionTerritoryReport;
+use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
-use App\core\Route;
+use League\Csv\Writer;
 
 class ApiController extends BaseController
 {
@@ -33,6 +35,9 @@ class ApiController extends BaseController
         }
     }
 
+    /**
+     * Return menus for mobile version
+     */
     public function get_menus(){
         $current = $this->request->param('current');
         $menus = [
@@ -49,5 +54,107 @@ class ApiController extends BaseController
             ['t'=>'HOME','url'=>'/'],
         ];
         echo JsonBuilder::Success($menus);
+    }
+
+    /**
+     *
+     */
+    public function load_regional_data(){
+        $regions = explode(' ',$this->request->param('regions'));
+        $rows = $this->_retrieve_regional_data($regions);
+        $result = [];
+        foreach ($rows as $row) {
+            $result[] = [
+                'rn'=>$row['region_name']
+            ];
+        }
+        for($i = 0;$i<count($rows);$i++){
+            $rows[$i]['pos'] = RegionTerritoryReport::ShortenPositionString($rows[$i]['pos']);
+        }
+        echo JsonBuilder::Success($rows);
+    }
+
+    /**
+     * DSM download active member list
+     */
+    public function download_active_member_list(){
+        $member = $this->request->param('member');
+        $user = new User($member);
+        $regionCollection = $user->getManagedRegions();
+        $regions = [];
+        foreach ($regionCollection as $item) {
+            $regions[] = $item['region_code'];
+        }
+        $rows = RegionTerritoryReport::GetByEmployeeCodeRegionCodes($regions);
+
+        for ($i=0;$i<count($rows);$i++){
+            $find = $user->first(['employee_code'=>$rows[$i]['employee_code']],['email','mobile']);
+            if($find){
+                $rows[$i]['email'] = $find->email;
+                $rows[$i]['mobile'] = $find->mobile;
+            }
+        }
+
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'active_member_list_'.time().'.csv';
+        $fileStream = fopen($filePath,'w');
+
+        $writer = Writer::createFromStream($fileStream);
+
+        $csvHeader = [
+            'Region Code','Dealer','Employee Code','Name','Dept','Position','Registered','email','mobile'
+        ];
+        $writer->insertOne($csvHeader);
+        $writer->insertAll($rows);
+
+        fclose($fileStream);
+
+        $this->response->file($filePath);
+        die(0);
+    }
+
+    /**
+     * DMS download territory report
+     */
+    public function download_regional_data(){
+        $member = $this->request->param('member');
+        $user = new User($member);
+        $regionCollection = $user->getManagedRegions();
+        $regions = [];
+        foreach ($regionCollection as $item) {
+            $regions[] = $item['region_code'];
+        }
+        $rows = $this->_retrieve_regional_data($regions);
+
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'territory_report_'.time().'.csv';
+        $fileStream = fopen($filePath,'w');
+
+        $writer = Writer::createFromStream($fileStream);
+
+        $csvHeader = [
+            'Region','Region Code','Dealer','Category','Dept','Name','Position','YTD',
+            'APR '.env('YEAR'),
+            'MAY '.env('YEAR'),
+            'JUN '.env('YEAR'),
+            'JUL '.env('YEAR'),
+            'AUG '.env('YEAR'),
+            'SEP '.env('YEAR'),
+            'OCT '.env('YEAR'),
+            'NOV '.env('YEAR'),
+            'DEC '.env('YEAR'),
+            'JAN '.(env('YEAR')+1),
+            'FEB '.(env('YEAR')+1),
+            'MAR '.(env('YEAR')+1),
+        ];
+        $writer->insertOne($csvHeader);
+        $writer->insertAll($rows);
+
+        fclose($fileStream);
+
+        $this->response->file($filePath);
+        die(0);
+    }
+
+    private function _retrieve_regional_data($regions){
+        return RegionTerritoryReport::GetByRegionCodes($regions);
     }
 }

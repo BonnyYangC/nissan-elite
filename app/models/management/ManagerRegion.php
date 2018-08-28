@@ -29,9 +29,10 @@ class ManagerRegion extends BaseModel
     /**
      * Get all regions by given manager
      * @param User $manager
+     * @param bool $asArray
      * @return array|bool
      */
-    public static function LoadByManager(User $manager){
+    public static function LoadByManager(User $manager, $asArray = true){
         $result = [];
         if(is_null($manager)){
             return $result;
@@ -46,15 +47,18 @@ class ManagerRegion extends BaseModel
             ]
         );
 
-        foreach ($rows as $row) {
-            $keys = array_keys($row);
-            $mr = new ManagerRegion();
-            foreach ($keys as $fieldName) {
-                $mr->$fieldName = $row[$fieldName];
+        if(!$asArray){
+            foreach ($rows as $row) {
+                $keys = array_keys($row);
+                $mr = new ManagerRegion();
+                foreach ($keys as $fieldName) {
+                    $mr->$fieldName = $row[$fieldName];
+                }
+                $result[] = $mr;
             }
-            $result[] = $mr;
         }
 
-        return $result;
+
+        return $asArray ? $rows : $result;
     }
 }

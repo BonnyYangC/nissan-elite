@@ -11,6 +11,12 @@
 .txt-grey9{
     color: #999999 !important;
 }
+.pl-0{
+    padding-left: 0;
+}
+.pr-0{
+    padding-right: 0;
+}
 .mt-10{
     margin-top: 10px;
 }

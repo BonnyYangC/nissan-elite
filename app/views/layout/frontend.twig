@@ -7,11 +7,13 @@
         {% include 'dashboard/reusable_elements/nav_mobile.twig' %}
     {% else %}
         {# Load the top bar from the reuseable element of dashboard #}
+    <div class="container" id="banner">
         {% include 'dashboard/reusable_elements/top_bar.twig' %}
         {% include 'dashboard/reusable_elements/nav.twig' %}
+    </div>
     {% endif %}
 
-    <main id="panel" class="panel-mask" style="background-color:#000000;">
+    <main id="panel" class="panel-mask bg-black">
         {% if isPhone and env('MOBILE_VERSION','TW')=='APP STYLE' %}
             {# If mobile devices #}
             <button class="toggle-button">☰</button>

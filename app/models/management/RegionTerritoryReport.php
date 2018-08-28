@@ -59,4 +59,84 @@ class RegionTerritoryReport extends BaseModel
         ];
         return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
     }
+
+    /**
+     * Search territory report by region codes
+     * @param $codes
+     * @return array|bool
+     */
+    public static function GetByRegionCodes($codes){
+        $database = self::DB();
+        if(count($codes) === 1){
+            $codes = $codes[0];
+        }
+        return $database->select(self::TABLE_NAME,[
+            'region_name(rn)','region_code(rc)','dealer_name(dn)','dealer_cat(dc)',
+            'sp_code(sc)','n_fullname(fn)','position(pos)','cr_ytd(cy)',
+            'credits_monthly_04(c04)','credits_monthly_05(c05)','credits_monthly_06(c06)','credits_monthly_07(c07)',
+            'credits_monthly_08(c08)','credits_monthly_09(c09)','credits_monthly_10(c10)','credits_monthly_11(c11)',
+            'credits_monthly_12(c12)','credits_monthly_01(c01)','credits_monthly_02(c02)','credits_monthly_03(c03)',
+        ],[
+            'AND'=>[
+                'region_code'=>$codes,
+                'period'=>env('YEAR')
+            ]
+        ]);
+    }
+
+    /**
+     * Search territory report by region codes
+     * @param $codes
+     * @return array|bool
+     */
+    public static function GetByEmployeeCodeRegionCodes($codes){
+        $database = self::DB();
+        if(count($codes) === 1){
+            $codes = $codes[0];
+        }
+        return $database->select(self::TABLE_NAME,[
+            'region_code','dealer_name','employee_code','n_fullname','sp_code','position','registered'
+        ],[
+            'AND'=>[
+                'region_code'=>$codes,
+                'period'=>env('YEAR')
+            ]
+        ]);
+    }
+
+    public static function ShortenPositionString($pos){
+        $abbr = null;
+        switch ($pos){
+            case 'F & I Manager':
+                $abbr = User::FI;
+                break;
+            case 'Parts Manager':
+                $abbr = User::PARTS_MANAGER;
+                break;
+            case 'Parts Sales Representative':
+                $abbr = User::PARTS_SALES_REP;
+                break;
+            case 'Sales Manager':
+                $abbr = User::SALES_MANAGER;
+                break;
+            case 'Retail Sales Consultant':
+                $abbr = User::RETAIL_SALES_CONSULTANTS;
+                break;
+            case 'Service Advisor':
+                $abbr = User::SERVICE_ADVISERS;
+                break;
+            case 'Financial Controller':
+                $abbr = User::FINANCE_CONTROLLER;
+                break;
+            case 'Stock Controller':
+                $abbr = User::STOCK_CONTROLLER;
+                break;
+            case 'Service Manager':
+                $abbr = User::SERVICE_MANAGER;
+                break;
+            default:
+                break;
+        }
+        return $abbr;
+    }
 }

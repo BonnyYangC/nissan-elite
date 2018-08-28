@@ -80,6 +80,18 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('api.users.search');
 
 \App\core\Route::Instance()
+    ->get('/api/dsm/download-active-member-list', \App\controller\backend\ApiController::class,'download_active_member_list')
+    ->name('api.dsm.download.active.member.list');
+
+\App\core\Route::Instance()
+    ->get('/api/dsm/download-regional-data', \App\controller\backend\ApiController::class,'download_regional_data')
+    ->name('api.dsm.download.regional.data');
+
+\App\core\Route::Instance()
+    ->get('/api/dsm/load-regional-data', \App\controller\backend\ApiController::class,'load_regional_data')
+    ->name('api.dsm.load.regional.data');
+
+\App\core\Route::Instance()
     ->get('/admin/fake-user', \App\controller\backend\AdminController::class,'fake_user')
     ->name('admin.fake.user');
 

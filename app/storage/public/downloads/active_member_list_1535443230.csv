@@ -1,0 +1,196 @@
+"Region Code",Dealer,"Employee Code",Name,Dept,Position,Registered,email,mobile
+E01,"John Oxley Motors",29506,"Paul Williams",Administration,"F & I Manager",,finance@johnoxley.com.au,0408070658
+E01,"John Oxley Motors",29517,"Chris Alderton",Administration,"F & I Manager",,finance1@johnoxley.com.au,0412379982
+E01,"John Oxley Motors",36951,"Phil Porter",Administration,"F & I Manager",
+E01,"John Oxley Motors",22785,"Bryan Hanks",Parts,"Parts Manager",Registered,bryan.hanks@johnoxley.com.au,0466256373
+E01,"John Oxley Motors",22416,"Craig Knight",Parts,"Parts Sales Representative",Registered,CRAIG.KNIGHT@JOHNOXLEY.COM.AU,0439814400
+E01,"John Oxley Motors",35535,"Steven Byrne",Sales,"Sales Manager",,steven.byrne@johnoxley.com.au,0448512866
+E01,"John Oxley Motors",18495,"Mick Reynolds",Sales,"Retail Sales Consultant",,mick.reynolds@johnoxley.com.au,0411303480
+E01,"John Oxley Motors",31981,"Aaron Potts",Sales,"Retail Sales Consultant",,AARON.POTTS@JOHNOXLEY.COM.AU,0423682604
+E01,"John Oxley Motors",34963,"Jarad Kreidl",Sales,"Retail Sales Consultant",,JARAD.KREIDL@JOHNOXLEY.COM.AU,0450751500
+E01,"John Oxley Motors",35534,"Olivia Evans",Sales,"Retail Sales Consultant",,olivia.evans@johnoxley.com.au,0432643267
+E01,"John Oxley Motors",38002,"Daniel Underhill",Sales,"Retail Sales Consultant",
+E01,"John Oxley Motors",22786,"Cameron Ashton",Service,"Service Advisor",,service@johnoxley.com.au,0408660587
+E01,"John Oxley Motors",29604,"Christian Petersen",Service,"Service Advisor",,janempetersen@icloud.com,0438168174
+E01,"John Oxley Motors",20553,"Ben Kernahan",Service,"Service Manager",,ben.kernahan@johnoxley.com.au,0429647726
+E01,"Central Coast Nissan",33302,"Angela Dawson",Administration,"Financial Controller",,account@ccmg.com.au,0404858322
+E01,"Central Coast Nissan",29528,"Michelle Mullins",Administration,"F & I Manager",,michelle.mullins@ccmg.com.au,0412025595
+E01,"Central Coast Nissan",32657,"Troy Hodgess",Administration,"F & I Manager",,TROY.HODGESS@CCMG.COM.AU,0404090414
+E01,"Central Coast Nissan",36781,"Tracey Binnie",Administration,"F & I Manager",
+E01,"Central Coast Nissan",36783,"Samantha Russell",Administration,"F & I Manager",
+E01,"Central Coast Nissan",36845,"Isabelle Bond",Administration,"F & I Manager",
+E01,"Central Coast Nissan",36858,"Lana Fisher-Cove",Administration,"F & I Manager",
+E01,"Central Coast Nissan",36899,"Ellen Ellis",Administration,"F & I Manager",
+E01,"Central Coast Nissan",37333,"Diane Smith",Administration,"F & I Manager",
+E01,"Central Coast Nissan",37369,"Cath Williams",Administration,"F & I Manager",
+E01,"Central Coast Nissan",26713,"Michael Peake",Administration,"Stock Controller",,MICHAEL.PEAKE@CCMG.COM.AU,
+E01,"Central Coast Nissan",794,"Scott Eyers",Parts,"Parts Manager",,service2@ccmg.com.au,0408925868
+E01,"Central Coast Nissan",28250,"Ben Jones",Parts,"Parts Sales Representative",Registered,nissan.parts@ccmg.com.au,0410407073
+E01,"Central Coast Nissan",25246,"Paul Lane",Sales,"Fleet Sales Consultant",,corporate@ccmg.com.au,
+E01,"Central Coast Nissan",32445,"Michael Quinton",Sales,"Sales Manager",Registered,michael.quinton@ccmg.com.au,0425369655
+E01,"Central Coast Nissan",28137,"Jamie Shaw",Sales,"Retail Sales Consultant",Registered,jshaw@hornsbynissan.com.au,
+E01,"Central Coast Nissan",33245,"Michael Swinford",Sales,"Retail Sales Consultant",Registered,michael.swinford@ccmg.com.au,0403232775
+E01,"Central Coast Nissan",34980,"Whitney Evans",Sales,"Retail Sales Consultant",,whitney.evans@ccmg.com.au,0421230034
+E01,"Central Coast Nissan",35943,"Bernie Cash",Sales,"Retail Sales Consultant",Registered,bernie.cash@ccmg.com.au,0407665882
+E01,"Central Coast Nissan",20905,"Robert Donovan",Service,"Service Advisor",Registered,laurance.preston@ccmg.com.au,0416019042
+E01,"Central Coast Nissan",28839,"Cindy Hird",Service,"Service Advisor",Registered,nisserv@ccmg.com.au,0409619111
+E01,"Central Coast Nissan",28855,"Laurance Preston",Service,"Service Manager",Registered,laurance.preston@ccmg.com.au,0449778120
+E01,"Wyong Nissan",23488,"Jo-Dee Hatton",Administration,"F & I Manager",Registered,jo-dee.hatton@ccmg.com.au,0416471018
+E01,"Wyong Nissan",29422,"Alan Vartha",Parts,"Parts Manager",,alan.vartha@ccmg.com.au,0431969755
+E01,"Wyong Nissan",29452,"Brodie Palmer",Sales,"Sales Manager",Registered,brodie.palmer@ccmg.com.au,0431095861
+E01,"Wyong Nissan",29052,"Chris Breen",Sales,"Retail Sales Consultant",Registered,chris.breen@ccmg.com.au,0416936005
+E01,"Wyong Nissan",31065,"Tyson Hodge",Sales,"Retail Sales Consultant",,tyson.hodge@ccmg.com.au,0423372425
+E01,"Wyong Nissan",37946,"Mitchell Matthews",Service,"Service Advisor",
+E01,"Wyong Nissan",34990,"Warren Broom",Service,"Service Advisor",,warren.broom@ccmg.com.au,0410876198
+E01,"Wyong Nissan",32170,"Brent Mcewen",Service,"Service Manager",,brent.mcewen@ccmg.com.au,0421061691
+E01,"Great Lakes Nissan",34426,"Chris Bowland",Parts,"Parts Manager",Registered,parts@greatlakesnissan.com.au,
+E01,"Great Lakes Nissan",17147,"Wayne Bultitude",Sales,"Sales Manager",Registered,wayne@greatlakesnissan.com.au,
+E01,"Great Lakes Nissan",2410,"Richard Murphy",Service,"Service Manager",Registered,richard@greatlakesnissan.com.au,0431616092
+E01,"Clarence Coast Nissan",21556,"Kevin Gooding",Sales,"Retail Sales Consultant",,keving@clarencecoastmotors.com.au,0422725156
+E01,"Clarence Coast Nissan",34695,"Jared Bowden",Sales,"Retail Sales Consultant",,JAREDB@clarencecoastmotors.com.au,0403832663
+E01,"Clarence Coast Nissan",32911,"Debra Harden",Service,"Service Advisor",,michaelj@clarencecoastmotors.com.au,0419203706
+E01,"Clarence Coast Nissan",35386,"Michael Jackson",Service,"Service Manager",,michaelj@clarencecoastmotors.com.au,
+E01,"Castle Hill Nissan",33376,"David Anderson",Administration,"Financial Controller",,danderson@nsw.ahg.com.au,0409535952
+E01,"Castle Hill Nissan",26238,"Cuong Pham",Administration,"F & I Manager",Registered,CPHAM@LIVERPOOLNISSAN.COM.AU,
+E01,"Castle Hill Nissan",28163,"Armen Makaradi",Administration,"F & I Manager",,armen.makaradi@suttonschullora.com.au,0423500500
+E01,"Castle Hill Nissan",35038,"Todd Jones",Administration,"F & I Manager",,tojones@castlehillautos.com.au,0419663999
+E01,"Castle Hill Nissan",35603,"Kathleen Doherty",Administration,"F & I Manager",,kdoherty@castlehillautos.com.au,0417270489
+E01,"Castle Hill Nissan",36038,"Sevan Simonian",Administration,"F & I Manager",Registered,SSIMONIAN@CASTLEHILLAUTOS.COM.AU,0401426202
+E01,"Castle Hill Nissan",37057,"Cassie Pope",Administration,"F & I Manager",
+E01,"Castle Hill Nissan",37813,"Sarah Ye",Administration,"F & I Manager",
+E01,"Castle Hill Nissan",37814,"Shivam Chauhan",Administration,"F & I Manager",
+E01,"Castle Hill Nissan",37815,"Jackie Samoley",Administration,"F & I Manager",
+E01,"Castle Hill Nissan",37901,"Ikan Chamlagain",Administration,"F & I Manager",
+E01,"Castle Hill Nissan",37999,"Mina Gindi",Administration,"F & I Manager",Registered
+E01,"Castle Hill Nissan",36177,"Hannah Raabe",Administration,"Stock Controller",Registered
+E01,"Castle Hill Nissan",28962,"Jonathan Mcpherson",Parts,"Parts Manager",
+E01,"Castle Hill Nissan",27811,"Brad Ford",Sales,"Sales Manager",Registered,bford@castlehillnissan.com.au,0432891524
+E01,"Castle Hill Nissan",29500,"Lester Tan",Sales,"Retail Sales Consultant",Registered,lstan@castlehillnissan.com.au,0413939174
+E01,"Castle Hill Nissan",32689,"Aaron Xu",Sales,"Retail Sales Consultant",Registered,axu@castlehillnissan.com.au,0450908078
+E01,"Castle Hill Nissan",36176,"Ryan Espinosa",Sales,"Retail Sales Consultant",Registered
+E01,"Castle Hill Nissan",21876,"Nik Wilker",Sales,"Retail Sales Consultant",Registered
+E01,"Castle Hill Nissan",19345,"Trent Broomfield",Service,"Service Advisor",,tbroomfield@castlehillnissan.com.au,0414687317
+E01,"Castle Hill Nissan",28707,"Beau Levy",Service,"Service Advisor",,blevy@castlehillnissan.com.au,0430222765
+E01,"Castle Hill Nissan",27422,"David Petrone",Service,"Service Manager",,dpetrone@castlehillnissan.com.au,0408656020
+E01,"Kempstar Nissan",29188,"Kevin Rockliff",Administration,"F & I Manager",,finance@kempstarnissan.com.au,
+E01,"Kempstar Nissan",30998,"Taryne Donnelly",Administration,"F & I Manager",,taryned@kempseymacleaymotors.com.au,0438278665
+E01,"Kempstar Nissan",34343,"Thomas Todd",Sales,"Sales Manager",,tomt@kempseymacleaymotors.com.au,0458647726
+E01,"Kempstar Nissan",34299,"Darren Appleyard",Service,"Service Manager",,darrena@kempseymacleaymotors.com.au,0427072245
+E01,"Taree Nissan",36861,"Paul Mcelhone",Administration,"F & I Manager",
+E01,"Taree Nissan",37296,"Fay Brooks",Administration,"F & I Manager",
+E01,"Taree Nissan",33477,"Vanessa Dargan",Administration,"F & I Manager",Registered
+E01,"Taree Nissan",37596,"Frank Godwin",Parts,"Parts Manager",Registered
+E01,"Taree Nissan",34711,"Adam Brown",Parts,"Parts Sales Representative",Registered,adam.brown@midcoastautomotive.com.au,0414219844
+E01,"Taree Nissan",22190,"Joel Spychala",Sales,"Sales Manager",,tarniss@bigpond.com.au,0408523151
+E01,"Taree Nissan",24476,"Michael Whitlam",Sales,"Retail Sales Consultant",,tarniss@bigpond.com.au,"0427 721 058"
+E01,"Taree Nissan",35165,"Jake Seiger",Sales,"Retail Sales Consultant",,jake.seiger@midcoastautomotive.com.au,0466873251
+E01,"Taree Nissan",35827,"Ethan Dillon",Sales,"Retail Sales Consultant",,ethandillon251@hotmail.com,0413205442
+E01,"Taree Nissan",35026,"Dillon Robertson",Service,"Service Advisor",,dillon.r@midcoastautomotive.com.au,0421021743
+E01,"Taree Nissan",36159,"Graham Moy",Service,"Service Manager",,graham.moy@midcoastautomotive.com.au,0488222813
+E01,"Bellbowrie Motors",34790,"Fiona Harris",Administration,"F & I Manager",,fionah@bellbowriemotors.com.au,0418397601
+E01,"Bellbowrie Motors",35382,"Daniel Stewart",Administration,"F & I Manager",,dstewart@bellbowriemotors.com.au,0423915617
+E01,"Bellbowrie Motors",30236,"Drew Antees",Parts,"Parts Sales Representative",,drew@bellbowriemotors.com.au,
+E01,"Bellbowrie Motors",18503,"Ross Nicholas",Sales,"Sales Manager",
+E01,"Bellbowrie Motors",23701,"Andrew Parker",Sales,"Retail Sales Consultant",,michaeln@bellbowriemotors.com.au,0438523666
+E01,"Bellbowrie Motors",37980,"Huey Desic",Sales,"Retail Sales Consultant",
+E01,"Bellbowrie Motors",37510,"Peter Jenkinson",Service,"Service Advisor",
+E01,"Bellbowrie Motors",37511,"Nathan Johnson",Service,"Service Advisor",
+E01,"Bellbowrie Motors",35903,"Daniel Brodbeck",Service,"Service Manager",,dbrodbeck@bellbowriemotors.com.au,0432609974
+E02,"Ross Granata Motors",14840,"Bernard Cowper",Administration,"F & I Manager",,berniec@granata.com.au,
+E02,"Ross Granata Motors",35474,"Andrew Smart",Parts,"Parts Manager",Registered,parts@granata.com.au,
+E02,"Ross Granata Motors",26748,"James Sheppard",Sales,"Sales Manager",Registered,jamesS@granata.com.au,0438210285
+E02,"Ross Granata Motors",22417,"Adrian Lewis",Sales,"Retail Sales Consultant",,adrianl@granata.com.au,0410735752
+E02,"Ross Granata Motors",27969,"Michelle Meyers",Sales,"Retail Sales Consultant",,michellem@granata.com.au,
+E02,"Ross Granata Motors",29145,"Nathan White",Service,"Service Advisor",,nathanw@granata.com.au,0419610508
+E02,"Ross Granata Motors",23727,"Matt Dighton",Service,"Service Manager",,mattd@granata.com.au,0417282943
+E02,"Frank Spice Auto Repairs",27294,"David Todd",Administration,"Financial Controller",,dtodd@frankspice.com.au,0419010093
+E02,"Frank Spice Auto Repairs",35051,"Josh Bayley",Parts,"Parts Sales Representative",,jbayley@frankspice.com.au,0417934112
+E02,"Frank Spice Auto Repairs",6310,"Michael Spice",Sales,"Sales Manager",Registered,mspice@frankspice.com.au,0407019985
+E02,"Frank Spice Auto Repairs",37825,"Hannah Plunkett",Sales,"Retail Sales Consultant",Registered
+E02,"Frank Spice Auto Repairs",34479,"Dylan Bray",Service,"Service Advisor",Registered,dbray@frankspice.com.au,0406698072
+E02,"Tony Leahey Nissan",28321,"James Dean",Administration,"F & I Manager",,james.dean@tonyleahey.com.au,0418635801
+E02,"Tony Leahey Nissan",36571,"Lucy Dawson",Administration,"F & I Manager",
+E02,"Tony Leahey Nissan",23265,"David Fieldus",Parts,"Parts Manager",,david.fieldus@tonyleahey.com.au,0438610837
+E02,"Tony Leahey Nissan",15495,"Michael Radnedge",Sales,"Sales Manager",,michael.radnedge@tonyleahey.com.au,0148639911
+E02,"Tony Leahey Nissan",21986,"Murray Gorham",Sales,"Retail Sales Consultant",,murray.gorham@tonyleahey.com.au,0414261343
+E02,"Tony Leahey Nissan",38253,"Matthew Mcclure",Sales,"Retail Sales Consultant",
+E02,"Tony Leahey Nissan",38248,"Tamara Meehan",Service,"Service Advisor",
+E02,"Tony Leahey Nissan",31317,"John White",Service,"Service Manager",Registered,john.white@tonyleahey.com.au,0409157270
+E02,"Lander Nissan",33081,"Nick Gao",Administration,"Financial Controller",Registered,NGAO@LANDER.COM.AU,0403156685
+E02,"Lander Nissan",24240,"Daniel Welsh",Administration,"F & I Manager",,dwelsh@lander.com.au,
+E02,"Lander Nissan",25569,"Adam Baxter",Administration,"F & I Manager",Registered,abaxter@lander.com.au,0414623756
+E02,"Lander Nissan",28929,"Kayci Hill",Administration,"F & I Manager",,khill@lander.com.au,0411347934
+E02,"Lander Nissan",36723,"Caroline Young",Administration,"F & I Manager",
+E02,"Lander Nissan",36760,"Monica Wu",Administration,"F & I Manager",
+E02,"Lander Nissan",36786,"Christine Le Jeune",Administration,"F & I Manager",
+E02,"Lander Nissan",36890,"Amanda-Sanja Stanimirovic",Administration,"F & I Manager",
+E02,"Lander Nissan",36954,"Janette Wynbergen",Administration,"F & I Manager",
+E02,"Lander Nissan",37173,"Stojan Orozovic",Administration,"F & I Manager",
+E02,"Lander Nissan",37274,"Irene Putri",Administration,"F & I Manager",
+E02,"Lander Nissan",34726,"Melissa Marsh",Administration,"Stock Controller",Registered,MMARSH@LANDER.COM.AU,0450817847
+E02,"Lander Nissan",27420,"Les Jachowski",Parts,"Parts Manager",,ljachowski@lander.com.au,0404266308
+E02,"Lander Nissan",21218,"Ben Fiorini",Sales,"Sales Manager",Registered,bfiorini@lander.com.au,0409602065
+E02,"Lander Nissan",27223,"Eric Hou",Sales,"Retail Sales Consultant",,EHOU@LIVERPOOLNISSAN.COM.AU,
+E02,"Lander Nissan",27568,"Aydrien Skupien",Sales,"Retail Sales Consultant",,askupien@lander.com.au,0424072577
+E02,"Lander Nissan",36021,"Vitalii Zhuravlov",Sales,"Retail Sales Consultant",Registered,vzhuravlov@lander.com.au,0422264552
+E02,"Lander Nissan",19652,"Steve Sanday",Service,"Service Advisor",,ssanday@lander.com.au,0400817221
+E02,"Lander Nissan",35808,"Jack Thompson",Service,"Service Advisor",,jacthompson@lander.com.au,0421718977
+E02,"Lander Nissan",35830,"Glenn Burrows",Service,"Service Advisor",,gburrows@lander.com.au,0408491633
+E02,"Lander Nissan",23059,"Darren Smith",Service,"Service Manager",,service@landernissan.com.au,0437501926
+E02,"Rockdale Nissan",33230,"Adiel Allie",Administration,"Financial Controller",,aallie@dominelli.com.au,0419217773
+E02,"Rockdale Nissan",20752,"Goran Georgievski",Administration,"F & I Manager",,goran@rockdalemazda.com.au,0405322433
+E02,"Rockdale Nissan",27665,"Tanja Ferraro",Administration,"F & I Manager",,Tferraro@DOMINELLI.COM.AU,0402695391
+E02,"Rockdale Nissan",33380,"Sharon Wilkerson",Administration,"F & I Manager",,sharongw65@gmail.com,0415445156
+E02,"Rockdale Nissan",36256,"Michael Payne",Administration,"F & I Manager",
+E02,"Rockdale Nissan",36510,"Jody Van Jour",Administration,"F & I Manager",
+E02,"Rockdale Nissan",36654,"Lynne Rush",Administration,"F & I Manager",
+E02,"Rockdale Nissan",36823,"Peter Kostovski",Administration,"F & I Manager",
+E02,"Rockdale Nissan",37043,"Arna Nocita",Administration,"F & I Manager",
+E02,"Rockdale Nissan",37143,"Harindrinie Abayasekara",Administration,"F & I Manager",
+E02,"Rockdale Nissan",37155,"Radmila Ilieva",Administration,"F & I Manager",
+E02,"Rockdale Nissan",32255,"Ainsley Cusack",Administration,"F & I Manager",,CUSACKAINSLEY@GMAIL.COM,0477168385
+E02,"Rockdale Nissan",26460,"Lisette Sfeir",Administration,"Stock Controller",Registered,LSFEIR@ROCKDALENISSAN.COM.AU,0410558162
+E02,"Rockdale Nissan",31805,"Vasko Ilioski",Parts,"Parts Manager",Registered,vilioski@dominelli.com.au,0410263976
+E02,"Rockdale Nissan",17566,"Wessam Gebara",Sales,"Sales Manager",Registered
+E02,"Rockdale Nissan",34384,"Joel Harp",Sales,"Retail Sales Consultant",,JHARP@ROCKDALENISSAN.COM.AU,0412352196
+E02,"Rockdale Nissan",34896,"Dennis Prasad",Sales,"Retail Sales Consultant",Registered,DPRASAD@ROCKDALENISSAN.COM.AU,0415479110
+E02,"Rockdale Nissan",35031,"Benny Wong",Sales,"Retail Sales Consultant",Registered,BWONG@ROCKDALENISSAN.COM.AU,0421079631
+E02,"Rockdale Nissan",20386,"Tom Mcmullen",Service,"Service Advisor",Registered,tmcmullen@rockdalenissan.com.au,0415621285
+E02,"Rockdale Nissan",32056,"Christopher Moore",Service,"Service Advisor",Registered,cmoore@rockdalenissan.com.au,0449010199
+E02,"Rockdale Nissan",26190,"Brad Lawry",Service,"Service Manager",Registered,blawry@dominelli.com.au,0408869174
+E02,"Sydney City Nissan",34859,"Andrew Wilding",Administration,"Financial Controller",Registered,andrew.wilding@brianhilton.com.au,0408630554
+E02,"Sydney City Nissan",33337,"Michol Eamiguel",Administration,"F & I Manager",,MEAMIGUEL@GMAIL.COM,0400520771
+E02,"Sydney City Nissan",35545,"Jimmy Wu",Administration,"F & I Manager",,jimmyw@sydneymotorgroup.com.au,0439815120
+E02,"Sydney City Nissan",37132,"Jen Chan",Administration,"F & I Manager",
+E02,"Sydney City Nissan",16883,"Matthew Howells",Administration,"Stock Controller",Registered,matthewh@sydneymotorgroup.com.au,0412388721
+E02,"Sydney City Nissan",28017,"Mark Murray",Parts,"Parts Manager",Registered,parts@sydneymotorgroup.com.au,
+E02,"Sydney City Nissan",30147,"Darcy Pengelly-Shea",Sales,"Sales Manager",,DARCYPS@SYDNEYMOTORGROUP.COM.AU,0404110881
+E02,"Sydney City Nissan",33565,"Terence Green",Sales,"Retail Sales Consultant",,terenceg@sydneymotorgroup.com.au,0438400813
+E02,"Sydney City Nissan",37974,"Kevin Na",Sales,"Retail Sales Consultant",
+E02,"Sydney City Nissan",37981,"Daniel Lee",Sales,"Retail Sales Consultant",
+E02,"Sydney City Nissan",34442,"Peter Papas",Service,"Service Advisor",,PETERPA@SYDNEYMOTORGROUP.COM.AU,
+E02,"Sydney City Nissan",37473,"Steven Cilia",Service,"Service Advisor",Registered
+E02,"Sydney City Nissan",34545,"Anthony Doldo",Service,"Service Manager",Registered,anthonyd@sydneymotorgroup.com.au,"0403 938 009"
+E02,"Bathurst Nissan",32310,"Sheree Renshaw",Administration,"Financial Controller",,shereed@bathurstautomotivegroup.com.au,0402477385
+E02,"Bathurst Nissan",36813,"Shree Renshaw",Administration,"F & I Manager",
+E02,"Bathurst Nissan",36821,"Helen Sloane",Administration,"F & I Manager",
+E02,"Bathurst Nissan",33835,"Jenna Neal",Administration,"Stock Controller",Registered,jennan@bathurstautomotivegroup.com.au,0499367799
+E02,"Bathurst Nissan",20716,"Tim Smith",Sales,"Sales Manager",Registered,tims@bathurstautomotivegroup.com.au,0401759847
+E02,"Bathurst Nissan",21482,"Andrew Cox",Sales,"Retail Sales Consultant",Registered,andrewc@bathurstnissan.com.au,0417235389
+E02,"Bathurst Nissan",34322,"Johnathan Vavasour",Sales,"Retail Sales Consultant",,johnathanv@bathurstautomotivegroup.com.au,0412283524
+E02,"Bathurst Nissan",32356,"Jarrod Legge",Service,"Service Advisor",,jarrod_legge@live.com,0400242435
+E02,"Bathurst Nissan",35112,"Kimberley Shaw",Service,"Service Advisor",,kimcoll@live.com.au,0401834740
+E02,"Bathurst Nissan",37585,"Brooke Boardman",Service,"Service Advisor",
+E02,"Western Plains Nissan",37170,"Tony Chan",Administration,"Financial Controller",
+E02,"Western Plains Nissan",34773,"Matthew Button",Administration,"F & I Manager",,mbutton@wpa.net.au,0402275558
+E02,"Western Plains Nissan",35128,"Darryl Lidgard",Administration,"F & I Manager",,dlidgard@wpa.net.au,0409382842
+E02,"Western Plains Nissan",36701,"Rebecca Brimble",Administration,"F & I Manager",
+E02,"Western Plains Nissan",36979,"Hannah Spencer",Administration,"F & I Manager",
+E02,"Western Plains Nissan",36997,"Donna Hartin",Administration,"F & I Manager",
+E02,"Western Plains Nissan",24120,"Ken Marshall",Parts,"Parts Manager",,ken@wpa.net.au,0439588080
+E02,"Western Plains Nissan",24697,"Garry Cronin",Sales,"Fleet Sales Manager",
+E02,"Western Plains Nissan",10506,"Colin Wallace",Sales,"Sales Manager",Registered,cwallace@wpa.net.au,"0409 324 336"
+E02,"Western Plains Nissan",35403,"Aidan Shields",Sales,"Retail Sales Consultant",Registered,ASHIELDS@WPA.NET.AU,0447884218
+E02,"Western Plains Nissan",34953,"Melissa Spencer",Service,"Service Advisor",,mspencer@wpa.net.au,0401664513
+E02,"Western Plains Nissan",35780,"Brooke Burrell",Service,"Service Advisor",,service@wpa.net.au,0478163123
+E02,"Western Plains Nissan",31256,"Shai Copelin",Service,"Service Manager",Registered,scopelin@wpa.net.au,0456184709
