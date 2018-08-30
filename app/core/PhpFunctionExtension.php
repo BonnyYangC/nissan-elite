@@ -48,6 +48,7 @@ class PhpFunctionExtension extends \Twig_Extension
         'number_format',        // format number
         'empty',                // empty
         'get_route',            // get url by give route name
+        'good_date',            // get url by give route name
     );
     public function __construct(array $functions = array())
     {

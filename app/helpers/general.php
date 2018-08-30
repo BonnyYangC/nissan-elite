@@ -265,9 +265,9 @@ if(!function_exists('url')){
     }
 }
 
-if(!function_exists('console_log')){
-    function console_log($str){
-        echo ' - ' . $str . PHP_EOL;
+if(!function_exists('good_date')){
+    function good_date($str){
+        return \Carbon\Carbon::createFromFormat('Y-m-d',$str)->format('d-M-Y');
     }
 }
 

@@ -29,7 +29,9 @@ class Incentives extends BaseModel
         $now = Carbon::now();
 
         $left = 'finish';
-        $right = '';
+        if(empty($status)){
+            $status = self::CURRENT;
+        }
 
         if($status == self::CURRENT){
             $left .= '[>=]';
@@ -52,7 +54,7 @@ class Incentives extends BaseModel
                     $left => $right,
                     'image[!]'=>null
                 ],
-                'ORDER'=>['start']
+                'ORDER'=>['start'=>'DESC']
             ]
         );
         return $result;

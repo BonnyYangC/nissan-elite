@@ -8,15 +8,35 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                <h3>CURRENT</h3>
+                <h3>{{ status }}</h3>
                 <div class="row">
-                    <div class="fotorama foto-slider-wrap" data-click="true" data-autoplay="true" data-width="100%" data-ratio="840/598" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-allowfullscreen="true">
-                        {% for slide in incentivesPast %}
-                        <div data-img="{{ asset('images/incentives/images/') }}{{ slide.image }}">
-                            <a href="{{ asset('images/incentives/images/pdf/') }}{{ slide.pdf }}" target="_blank"></a>
+                    <div class="col-md-12" id="slider">
+                        <div class="col-md-12" id="carousel-bounding-box">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                                <!-- main slider carousel items -->
+                                <div class="carousel-inner">
+                                    {{ current|raw }}
+                                </div>
+                                <a class="carousel-control left" href="#myCarousel"
+                                                                              data-slide="prev">‹</a>
+
+                                <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+                            </div>
                         </div>
-                        {% endfor %}
+
                     </div>
+                </div>
+                <!--/main slider carousel-->
+                <br>
+
+                <!-- thumb navigation carousel -->
+                <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+
+                    <!-- thumb navigation carousel items -->
+                    <ul class="list-inline">
+                        {{ thumb|raw }}
+                    </ul>
+
                 </div>
             </div>
 
@@ -39,7 +59,7 @@
                         <tr class="nissangray-light-back">
                             <td>
                                 <span class="rank">
-                                    <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the AC{{ env('YEAR') }} Program">
+                                    <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the AC2017 Program">
                                         {% if registered %}
                                             &#10004
                                         {% else %}
@@ -48,7 +68,7 @@
                                     </a>
                                 </span>
                                 {% if registered == false %}
-                                <a href="http://www.nissan-events.com.au/ac{{ env('YEAR') }}/reg" target="_blank">
+                                <a href="http://www.nissan-events.com.au/ac2017/reg" target="_blank">
                                     <button style="background-color:#c40030; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
                                 </a>
                                 {% endif %}
@@ -60,39 +80,21 @@
         </div>
         {# Finished #}
         <div class="row pb-20">
-            <div class="col-md-3"></div>
+            <div class="col-md-3" style="padding-bottom:0px;"></div>
             <div class="row" id="Finished"></div>
             <hr>
             <h3 class="pl-25">Just Finished</h3>
             <br>
-            <div class="col-md-11">
-                {% for item in incentivesFinished %}
-                <div class="col-md-4 col-xs-12">
-                    <a href="{{ asset('images/incentives/images/pdf/') }}{{ item.pdf }}" target="_blank">
-                        <img class="img-responsive" src="{{ asset('images/incentives/images/') }}{{ item.image }}" alt="{{ item.title }}">
-                    </a>
-                    <p>{{ good_date(item.start) }} to {{ good_date(item.finish) }}<br>{{ item.title }}<br></p><br>
-                </div>
-                {% endfor %}
-            </div>
+            <div class="col-md-11"> {{ finished|raw }}</div>
         </div>
         {# Past #}
         <div class="row pb-20">
-            <div class="col-md-3"></div>
+            <div class="col-md-3" style="padding-bottom:0px;"></div>
             <div class="row" id="Past"></div>
             <hr>
             <h3 class="pl-25">Past</h3>
             <br>
-            <div class="col-md-11">
-                {% for item in incentivesPast %}
-                    <div class="col-md-4 col-xs-12">
-                        <a href="{{ asset('images/incentives/images/pdf/') }}{{ item.pdf }}" target="_blank">
-                            <img class="img-responsive" src="{{ asset('images/incentives/images/') }}{{ item.image }}" alt="{{ item.title }}">
-                        </a>
-                        <p>{{ good_date(item.start) }} to {{ good_date(item.finish) }}<br>{{ item.title }}<br></p><br>
-                    </div>
-                {% endfor %}
-            </div>
+            <div class="col-md-11"> {{ past|raw }}</div>
         </div>
     </div>
 {% endblock %}

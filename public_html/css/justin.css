@@ -192,3 +192,21 @@
     padding-bottom:15px;
     /*height: 220px;*/
 }
+.foto-slider-wrap{
+    width: 90%;
+    margin: 5% auto;
+}
+.fotorama__html div,
+.fotorama__html a {
+    display: block;
+    height: 100%;
+    /* Transparent links are not clickable in IE,
+       but non-existent background fixes this.
+      (Put an empty 1×1 image here to avoid
+       errors in console.) */
+    background: url(_.gif);
+}
+.incentive-img{
+    width: 90%;
+    margin: 5% auto;
+}

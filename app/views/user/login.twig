@@ -44,7 +44,7 @@
     </section>
     <section id="eligible" >
         <div class="container">
-            <div style="margin:0 auto; height: 600px; padding-top:200px; text-align: center; font-size:16px; margin-bottom:200px;">
+            <div style="margin:0 auto; height: 600px; padding-top:200px; text-align: center; font-size:16px; margin-bottom:200px;z-index: 9999;">
                 <span style="font-size:50px; color:#FFFFFF;">New to Nissan? </span> <br><br>
                 <div class="bs-example">
                     <div class="panel-group" id="accordion">
@@ -79,7 +79,7 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <p>Go to <a href="http://nissan-events.com.au/ac2017/reg" target="_blank">www.nissanevents.com.au/ac2017/reg</a> and successfully complete the 2017 Nissan Ambassador Club registration form including a requirement to accept the program terms and conditions as directed.
+                                    <p>Go to <a href="http://nissan-events.com.au/ac{{ env('YEAR') }}/reg" target="_blank">www.nissanevents.com.au/ac{{ env('YEAR') }}/reg</a> and successfully complete the {{ env('YEAR') }} Nissan Ambassador Club registration form including a requirement to accept the program terms and conditions as directed.
                                         On completion, you will receive a confirmation e-Mail for your Nissan Ambassador Club registration. </p>
                                 </div>
                             </div>

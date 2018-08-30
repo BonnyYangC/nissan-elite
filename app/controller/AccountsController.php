@@ -217,66 +217,27 @@ class AccountsController extends DashboardController
 
         $current=$thumb=$finished=$past='';
         $incentives = Incentives::Load($status);
-
-        $count=0;
-        foreach ($incentives as $tmp) {
-            $count++;
-            $current.='<div class="' . ($count==1 ? 'active ' : '') . 'item" data-slide-number="' . ($count-1) . '">
-								' . (empty($tmp['pdf']) ? '' : '<a href="http://www.nissanac.com.au/images/incentives/images/pdf/' . $tmp['pdf'] . '" target="_blank">') . '
-								<img src="http://www.nissanac.com.au/images/incentives/images/' . $tmp['image'] . '" class="img-responsive">
-								' . (empty($tmp['pdf']) ? '' : '</a>') . '</div>';
-            $thumb.='<li> <a id="carousel-selector-' . $count . '" ' . ($count==1 ? 'class="selected"' : '') . ' >
-									<img src="http://www.nissanac.com.au/images/incentives/images/' . $tmp['image'] . '" width="120" class="img-responsive">
-								</a> </li>';
-        }
-
-        if ($current=='')
-        {
-            $current.='<div class="active item" data-slide-number="0">
-								<img src="http://www.nissanac.com.au/images/incentives/images/comingsoon.png" class="img-responsive"></div>';
-            $thumb.='<li> <a id="carousel-selector-1" class="selected" >
-									<img src="http://www.nissanac.com.au/images/incentives/images/comingsoon.png" width="120" class="img-responsive"> </a> </li>';
-        }
-
         $incentivesFinished = Incentives::Load(Incentives::FINISHED);
-
-        if($incentivesFinished){
-            $count=0;
-            foreach ($incentivesFinished as $tmp) {
-                $count++;
-                $finished.='<div class="col-md-4">
-									' . (empty($tmp['pdf']) ? '' : '<a href="http://www.nissanac.com.au/images/incentives/images/pdf/' . $tmp['pdf'] . '" target="_blank">') . '
-									<img  class="img-responsive" src="http://www.nissanac.com.au/images/incentives/images/' . $tmp['image'] . '"  alt=""/>
-									' . (empty($tmp['pdf']) ? '' : '</a>') . '
-									<p>' . $tmp['title'] . '<br>
-									' . date("d-M-Y", strtotime($tmp['start'])) . ' to ' . date("d-M-Y", strtotime($tmp['finish'])) . '</p><br>
-								</div>' . ($count % 3 ? '' : '<div class="row"></div>');
-            }
-        }
-
         $incentivesPast = Incentives::Load(Incentives::PAST);
-        if ($incentivesPast)
-        {
-            $count=0;
-            foreach($incentivesPast as $tmp)
-            {
-                $count++;
-                $past.='<div class="col-md-4">
-									' . (empty($tmp['pdf']) ? '' : '<a href="http://www.nissanac.com.au/images/incentives/images/pdf/' . $tmp['pdf'] . '" target="_blank">') . '
-									<img  class="img-responsive" src="http://www.nissanac.com.au/images/incentives/images/' . $tmp['image'] . '"  alt=""/>
-									' . (empty($tmp['pdf']) ? '' : '</a>') . '
-									<p>' . $tmp['title'] . '<br>
-									' . date("d-M-Y", strtotime($tmp['start'])) . ' to ' . date("d-M-Y", strtotime($tmp['finish'])) . '</p><br>
-								</div>' . ($count % 3 ? '' : '<div class="row"></div>');
-            }
-        }
 
-        $this->dataForView['status'] = $status;
-        $this->dataForView['current'] = $current;
-        $this->dataForView['thumb'] = $thumb;
-        $this->dataForView['finished'] = $finished;
-        $this->dataForView['past'] = $past;
-        $this->dataForView['registered'] = $this->userObject->registered === 'YES';
+        $this->dataForView['status']        = $status;
+        $this->dataForView['current']       = $current;
+        $this->dataForView['thumb']         = $thumb;
+        $this->dataForView['finished']      = $finished;
+        $this->dataForView['past']          = $past;
+
+        $this->dataForView['registered']            = $this->userObject->registered === 'YES';
+        $this->dataForView['incentives']            = $incentives;
+        $this->dataForView['incentivesFinished']    = $incentivesFinished;
+        $this->dataForView['incentivesPast']        = $incentivesPast;
+
+
+        $this->dataForView['extra_css'] = [
+            asset('css/fotorama.css')
+        ];
+        $this->dataForView['extra_js'] = [
+            asset('js/fotorama.js')
+        ];
 
         $this->render('dashboard/incentives');
     }
