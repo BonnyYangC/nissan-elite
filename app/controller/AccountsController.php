@@ -228,8 +228,8 @@ class AccountsController extends DashboardController
 
         $this->dataForView['registered']            = $this->userObject->registered === 'YES';
         $this->dataForView['incentives']            = $incentives;
-        $this->dataForView['incentivesFinished']    = $incentivesFinished;
-        $this->dataForView['incentivesPast']        = $incentivesPast;
+        $this->dataForView['incentivesFinished']    = array_chunk($incentivesFinished,3);
+        $this->dataForView['incentivesPast']        = array_chunk($incentivesPast,3);
 
 
         $this->dataForView['extra_css'] = [
