@@ -112,6 +112,7 @@ class AdminController extends BaseController
             'id'=>$user->getId(),
             'name'=>$user->getName()
         ]);
+        session_set('selected_role',null);
 
         // redirect to this user's dashboard
         return $this->response->redirect('/dashboard')->send();

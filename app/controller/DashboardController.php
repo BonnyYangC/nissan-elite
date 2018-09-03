@@ -382,9 +382,6 @@ class DashboardController extends BaseController
             $this->userObject->position = $this->asRole;
         }
 
-//        dump($_SESSION);
-//        dump($this->asRole);
-
         /**
          * 从现在起, user的 position 就是和提交的 role 请求一样了
          */
