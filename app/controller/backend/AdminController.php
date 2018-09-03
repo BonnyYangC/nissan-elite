@@ -13,6 +13,7 @@ use App\lib\utils\CsvTool;
 use App\lib\utils\FileUploader;
 use App\models\BaseModel;
 use App\models\management\RegionTerritoryReport;
+use App\models\nissan\Credit;
 use App\models\nissan\DataSource;
 use App\models\User;
 use App\models\utils\RoleFactory;
@@ -92,6 +93,9 @@ class AdminController extends BaseController
      */
     public function index(){
         $this->dataForView['roles'] = DataSource::$_rolesMap;
+        $this->dataForView['summary'] = [
+            Credit::TABLE_NAME=>'Nissan Credits'
+        ];
         $this->render('backend/index');
         return;
     }
@@ -145,6 +149,11 @@ class AdminController extends BaseController
                 $roleAbbr = $this->request->param('for');
                 $tableName = DataSource::nissan_get_table_name_from_abbr($roleAbbr);
                 $model = $this->_getANewModel($roleAbbr, $user, $tableName);
+
+//                dump($roleAbbr);
+//                dump($user);
+//                dump($tableName);
+//                dd($model);
 
                 // Call any method on an SplFileInfo instance
                 $reader = CsvTool::ReadFile($filePath);
@@ -210,7 +219,6 @@ class AdminController extends BaseController
                         }else{
                             // Trying to create a new record
                             if($isSyncAction){
-
                                 if($this->_lastFoundResultSet){
                                     foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
                                         if(is_string($currentFieldName)){
@@ -236,7 +244,21 @@ class AdminController extends BaseController
                                     }
                                 }else{
                                     foreach ($this->indexes as $fieldName=>$rowIndex) {
-                                        $model->$fieldName = $row[$rowIndex];
+                                        if($fieldName == 'period'){
+                                            $periodConverted  = CsvTool::ConvertDateToYmd($row[$rowIndex]);
+                                            $model->period = $periodConverted;
+                                        }else{
+                                            $newValue =
+                                                empty($row[$rowIndex]) ?
+                                                    0 :                                         // If csv value is empty, then use the 0
+                                                    $row[$rowIndex];    // If csv value is not empty, save it
+                                            if(strtoupper($newValue) == 'YES'){
+                                                $newValue = 1;
+                                            }elseif (strtoupper($newValue) == 'NO'){
+                                                $newValue = 0;
+                                            }
+                                            $model->$fieldName = $newValue;
+                                        }
                                     }
                                 }
                             }else{

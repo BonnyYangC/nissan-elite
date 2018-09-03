@@ -402,4 +402,18 @@ class TableFieldMap{
         ];
         return $map;
     }
+
+    /**
+     * Get map for nissan credits table
+     * @return array
+     */
+    public static function NissanCreditsTable(){
+        $map = [
+            'period'        =>'mth_yr',
+            'member_id'     =>'_amb_id',
+            'mtd'           =>'CREDITS_MONTHLY',
+            'ytd'           =>'CREDITS_ytd_lifetime',
+        ];
+        return $map;
+    }
 }

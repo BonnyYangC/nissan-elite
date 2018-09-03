@@ -31,6 +31,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
         // TODO: Implement getDashboardViewData() method.
         $ytd = 0;
         $dataResults = $data['Results'];
+//        dd($dataResults);
         for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);

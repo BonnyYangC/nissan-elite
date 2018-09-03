@@ -35,10 +35,16 @@
                                             <div class="select is-fullwidth">
                                                 <select name="for" required>
                                                     <option value="">Please choose position ...</option>
+                                                    <optgroup label="By Role">
                                                     {% for role,label in roles %}
                                                         <option value="{{ role }}">{{ label }}</option>
                                                     {% endfor %}
-
+                                                    </optgroup>
+                                                    <optgroup label="Summary">
+                                                        {% for tableName,label in summary %}
+                                                            <option value="{{ tableName }}">{{ label }}</option>
+                                                        {% endfor %}
+                                                    </optgroup>
                                                 </select>
                                             </div>
                                         </div>

@@ -229,6 +229,8 @@ class DashboardController extends BaseController
 
         $lifetimeUtil = LifetimeUtil::GetInstance($lifetime);
 
+        $history = History::GetLifetime($this->userObject);
+
         $this->dataForView['dashboard'] = [
             'lifeTime'=>$lifetime,
             'lifetimeUtil'=>[
@@ -236,10 +238,10 @@ class DashboardController extends BaseController
                 'next_level'=>$lifetimeUtil->next_level,
                 'lifetime_to_reach_credits'=>$lifetimeUtil->lifetime_to_reach_credits,
             ],
-            'gaga_data'=>$lifetimeUtil->getGagaData(),
-            'max'=>500000,
-            'monthly'=>$monthly,
-            'history'=>History::GetLifetime($this->userObject)
+            'gaga_data' =>$lifetimeUtil->getGagaData(),
+            'max'       =>LifetimeUtil::Platinum,
+            'monthly'   =>$monthly,
+            'history'   =>$history
         ];
 
         $this->dataForView['extra_js'] = [

@@ -9,6 +9,7 @@
 namespace App\models\utils;
 use App\models\BaseModel;
 use App\models\management\RegionTerritoryReport;
+use App\models\nissan\Credit;
 use App\models\User;
 use App\models\role\FI;
 use App\models\role\FinanceController;
@@ -69,6 +70,10 @@ class RoleFactory
             case User::SERVICE_ADVISERS:
                 $role = new ServiceAdviser($user); // Refined
                 break;
+            case Credit::TABLE_NAME:
+                $role = new Credit(); // Refined
+                break;
+
             default:
                 break;
         }

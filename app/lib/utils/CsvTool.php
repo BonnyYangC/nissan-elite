@@ -9,6 +9,8 @@
 namespace App\lib\utils;
 
 use League\Csv\Reader;
+use Carbon\Carbon;
+
 class CsvTool
 {
     /**
@@ -33,6 +35,10 @@ class CsvTool
      * @return string
      */
     public static function ConvertDateToYmd($dateString, $format='d/m/yy'){
+        $carbon = Carbon::createFromFormat($format,$dateString);
+        if($carbon){
+            return $carbon->format('Y-m-d');
+        }
         $result = date_parse_from_format($format,$dateString);
         if($result){
             $monthString = $result['month']<10 ? '0'.$result['month'] : $result['month'];

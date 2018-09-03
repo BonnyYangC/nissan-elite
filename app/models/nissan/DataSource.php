@@ -72,6 +72,7 @@ class DataSource extends BaseModel
         User::PARTS_SALES_REP               => 'nissan_partsrep',
         User::SERVICE_MANAGER               => 'nissan_servicemanagers',
         User::DISTRICT_SALES_MANAGER        => 'nissan_region_territory_reports',
+        Credit::TABLE_NAME                  => Credit::TABLE_NAME ,
     ];
 
     /**
