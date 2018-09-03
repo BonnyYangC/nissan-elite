@@ -133,9 +133,7 @@ class DashboardController extends BaseController
     }
 
     /**
-     * Retrieve data and pass to the view by Given role and year
-     * @param IRole $role
-     * @param null $ytd
+     * For DSM dashboard
      */
     private function _prepareDashboardDataForDSM(){
         $this->dataForView['extra_css'] = [
@@ -370,9 +368,22 @@ class DashboardController extends BaseController
          * @var string $asRole : Must be the position's abbr
          */
         $this->asRole = $this->request->param('asRole');
-        if(!empty($this->asRole)){
+        if(empty($this->asRole)){
+            $selectedRole = session_get('selected_role');
+            if($selectedRole){
+                // 用户以前选定的角色, 应该持续使用
+                $this->asRole = $selectedRole;
+            }
+        }else{
+            session_set('selected_role',$this->asRole);
+        }
+
+        if($this->asRole){
             $this->userObject->position = $this->asRole;
         }
+
+//        dump($_SESSION);
+//        dump($this->asRole);
 
         /**
          * 从现在起, user的 position 就是和提交的 role 请求一样了
@@ -394,10 +405,6 @@ class DashboardController extends BaseController
         $this->dataForView['targetDatabaseTableName'] = $this->targetTableName;
         $this->dataForView['userPositions'] = $this->userPositions;
 
-//        dd($this->userPositions);
-//        foreach ($this->userPositions as $databaseTableName) {
-//            $this->dataForView['userPositions'][$databaseTableName] = DataSource::getRoleNameByDatabaseTableName($databaseTableName);
-//        }
 
         /**
          *  userPositions array is in the below structure
