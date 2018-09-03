@@ -32,27 +32,27 @@ class FI extends BaseRole implements IRole
 
     public $NFSA_Contracts = [
         'label'=>'NFSA Contracts',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::LIGHT_GREY,
         'data'=>[]
     ];
     public $Insurance = [
         'label'=>'Insurance',
-        'backgroundColor' => IColor::DARK_GREY,
+        'backgroundColor' => IColor::BLACK,
         'data'=>[]
     ];
     public $EMW_Genuine_Extended = [
         'label'=>'EMW Genuine/Extended',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_GREY,
         'data'=>[]
     ];
     public $SalesPenetration = [
         'label'=>'Sales Penetration',
-        'backgroundColor' => IColor::LOW_RED,
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     public $FollowUp = [
         'label'=>'Follow Up',
-        'backgroundColor' => IColor::LOW_RED,
+        'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
 
@@ -86,7 +86,7 @@ class FI extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->NFSA_Contracts['data'][] = intval($item['credit_actual_sales']);
-                $this->Insurance['data'][] = intval($item['credits_mvi']);
+                $this->Insurance['data'][] = intval($item['credits_mvi']) + intval($item['credits_vpi']) + intval($item['credits_pkg']);
                 $this->EMW_Genuine_Extended['data'][]  = intval($item['credits_emw']);
                 $this->SalesPenetration['data'][]  = intval($item['credits_penetration']);
                 $this->FollowUp['data'][]  = intval($item['credits_fi']);
