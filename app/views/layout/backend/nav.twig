@@ -23,10 +23,11 @@
                         v-model="keyword"
                         style="width: 400px;"
                         :fetch-suggestions="querySearchAsync"
-                        placeholder="Find a user: Email / First Name"
+                        placeholder="Find a User By: Firstname Surname"
                         @select="handleSelect"
                         :hide-loading="true"
                         :trigger-on-focus="false"
+                        :select-when-unmatched="true"
                 >
                     <template slot-scope="{ item }">
                         <p class="name">${ item.firstname } ${ item.lastname } - ${ item.company_name }(${ item.position })</p>

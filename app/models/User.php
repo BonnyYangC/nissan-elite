@@ -91,6 +91,56 @@ class User extends BaseModel implements Mailable
             $limit = env('PAGE_SIZE');
         }
 
+        $temp = explode(' ',$emailOrFirstName,2);
+        $lastName = null;
+        if(count($temp) > 1){
+            $emailOrFirstName = $temp[0];
+            $lastName = trim($temp[1]);
+        }
+        if($lastName){
+            $where = [
+                'users.active'=>1,
+                'company.parent_id'=>8,
+                "users.firstname[~]" => $emailOrFirstName,
+                "users.lastname[~]" => $lastName,
+                'users.position'=>[
+                    self::RETAIL_SALES_CONSULTANTS,
+                    self::FLEET_SALES_CONSULTANTS,
+                    self::FLEET_SALES_MANAGER,
+                    self::SALES_MANAGER,
+                    self::SERVICE_ADVISERS,
+                    self::STOCK_CONTROLLER,
+                    self::FINANCE_CONTROLLER,
+                    self::PARTS_MANAGER,
+                    self::PARTS_SALES_REP,
+                    self::SERVICE_MANAGER,
+                    self::FI,
+                ]
+            ];
+        }else{
+            $where = [
+                'users.active'=>1,
+                'company.parent_id'=>8,
+                'OR'=>[
+                    "users.firstname[~]" => $emailOrFirstName,
+                    "users.lastname[~]" => $emailOrFirstName
+                ],
+                'users.position'=>[
+                    self::RETAIL_SALES_CONSULTANTS,
+                    self::FLEET_SALES_CONSULTANTS,
+                    self::FLEET_SALES_MANAGER,
+                    self::SALES_MANAGER,
+                    self::SERVICE_ADVISERS,
+                    self::STOCK_CONTROLLER,
+                    self::FINANCE_CONTROLLER,
+                    self::PARTS_MANAGER,
+                    self::PARTS_SALES_REP,
+                    self::SERVICE_MANAGER,
+                    self::FI,
+                ]
+            ];
+        }
+
         $db = self::DB();
         $result = $db->select('users',[
             // The row company_id from table users is equal the row company_id from table company
@@ -99,16 +149,10 @@ class User extends BaseModel implements Mailable
             'users.email','users.firstname','users.lastname','users.company_id','users.user_id','users.position','users.active',
             'company.company_name','company.company_state','company.make'
         ],[
-            'AND'=>[
-                'users.active'=>1,
-                'company.make'=>null,
-                'OR'=>[
-                    "users.firstname[~]" => $emailOrFirstName,
-                    "users.email[~]" => $emailOrFirstName
-                ]
-            ],
+            'AND'=>$where,
             'LIMIT'=>[$pageNumber,$limit]
         ]);
+
         return $result;
     }
 

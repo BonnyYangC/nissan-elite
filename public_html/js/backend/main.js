@@ -23,7 +23,7 @@ Zepto(function($){
             el: '#nav-app-wrap',
             delimiters: ['${', '}'],
             data:{
-                restaurants: [],
+                users: [],
                 keyword: '',
                 select:'',
                 selectedDealer:null
@@ -41,6 +41,7 @@ Zepto(function($){
                     ).then(function(res){
                         if(res.status === 200 && res.data.error_no === 100){
                             // 表示找到了结果
+                            that.users = res.data.data;
                             cb(res.data.data)
                         }else{
                             cb([]);
@@ -49,7 +50,11 @@ Zepto(function($){
                     });
                 },
                 handleSelect: function(item){
-                    window.open('/admin/fake-user?uid=' + item.user_id, '_blank')
+                    if(item.user_id === undefined){
+                        console.log(1111);
+                        item = this.users[0];
+                    }
+                    window.open('/admin/fake-user?uid=' + item.user_id, '_blank');
                 }
             }
         });
