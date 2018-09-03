@@ -14,7 +14,7 @@
 }
 
 body {
-  padding-top: 0px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  padding-top: 0;
   font-family: "nissan_brandlight";
 }
 
@@ -61,20 +61,15 @@ h4{
 
 .small-table {
 	font-size: 12px;
-	line-heigh: 13px;
-	}
+	line-height: 13px;
+}
 
 .graph-back {
-	/*background: #FFFFFF; *//* For browsers that do not support gradients */
-    /*background: -webkit-linear-gradient(#FFFFFF 50%, #FFFFFF 25%, #f4f4f4 25%);  For Safari 5.1 to 6.0 */
-    /* background: -o-linear-gradient(#FFFFFF 50%, #FFFFFF 25%, #f4f4f4 25%); For Opera 11.1 to 12.0 */
-    /*background: -moz-linear-gradient(#FFFFFF 50%, #FFFFFF 25%, #f4f4f4 25%);  For Firefox 3.6 to 15 */
-    /* background: linear-gradient(#FFFFFF 50%, #FFFFFF 25%, #f4f4f4 25%); Standard syntax */
 	padding-bottom:10px; 
 	padding-top:10px; 
 	border-bottom:30px solid #f4f4f4;
 	border-top:10px solid #d4d4d4;
-	}
+}
 	
 .graph-back-top {
 	padding-bottom:10px; 
@@ -98,7 +93,7 @@ h4{
 	padding-left:15px;
 	padding-top:20px;	
 	margin-top:-10px;
-	}
+}
 
 
 .portfolio-item {
@@ -106,7 +101,7 @@ h4{
 }
 
 .sidebar {
-    margin: 20px 0px 50px 0px;
+    margin: 20px 0 50px 0;
 }
 
 .sidebar a {
@@ -192,7 +187,7 @@ footer ul.nav li a:hover {
 	background-color:#f7f7f7; 
 	padding-top:20px; 
 	padding-bottom:15px; 
-	background-image: url(../images/thermo-lifetime.png); 
+	/*background-image: url(/images/thermo-lifetime.png);*/
 	background-position:center; 
 	background-size:700px; 
 	background-repeat:no-repeat;	
@@ -240,16 +235,7 @@ footer ul.nav li a:hover {
 .panel-square{
 	font-size:12px; 
 	background-color:#111111;
-	}	
-	
-	
-	
-/*------------------/RANKINGS BUTTONS--------------------*/		
-	
-	
-	
-
-/*-------------Carousel---------------*/
+	}
 	
 	
 	 .carousel-control {  padding-top:30%;  width:5%;}
@@ -261,11 +247,6 @@ footer ul.nav li a:hover {
 		 .carousel-control.right {
 		 background-color:#c40030;
 		 }
-
-	
-	
-
-/*-------------Colors----------------*/
 
 .btn {
 	font-family: 'nissan_brandbold', sans-serif;
@@ -282,8 +263,7 @@ footer ul.nav li a:hover {
 	color:#FFFFFF;
 	text-decoration:none;
 	background:#555555;
-	color:#FFFFFF;
-	}	
+}
 	
 .btn-primary a{	
 	text-decoration:none;
@@ -319,8 +299,8 @@ footer ul.nav li a:hover {
 	
 .alt {
 	color:#555555;
-	}	
-	/
+}
+
 .back{
 	background:#c40030;
 	color:#FFFFFF;
@@ -373,7 +353,7 @@ footer ul.nav li a:hover {
 }
 
 #banner {
-	 padding:0px 0px 5px 0px;   
+	 padding:0 0 5px 0;
 }
 
 
@@ -521,7 +501,7 @@ footer ul.nav li a:hover {
 	background-color: #f7f7f7;
 	padding: 2px;
 	position: absolute;
-	left: 60%;
+	left: 29%;
 	z-index: 10;
 	cursor: default;
 }
@@ -548,34 +528,12 @@ footer ul.nav li a:hover {
 	left: 40%;
 }
 
-
-/*-------------MODAL-----------------*/
-
-
-
-.modal-dialog {
-	/*--width:75%;
-	margin-top:5%;--*/
-
-	}
-	
-
-
-/*-------------/MODAL-------------*/
-
 @media only screen and (min-width: 1200px) {
-
-.container {
-	min-width:1200px;
-	}	
-
+.container {min-width:1200px;}
 }
 
 
 @media only screen and (min-width: 600px) {
-	
-
-	
   .canvas .graph-container .graph {
     margin: 0 30px;
     padding: 0;
@@ -590,73 +548,41 @@ footer ul.nav li a:hover {
 
 
 @media screen and (max-width: 767px) {
-	
-.logo-right{
-	float:right; 
-	margin-top:0px;
-	}	
-	
-.lastdata {
-	padding: 10px 5px 0px 0px; 
-	font-size:9px;
+	.logo-right {
+		float: right;
+		margin-top: 0;
 	}
 
-	/*display:none;*/
-	}	
-	
-	
+	.lastdata {
+		padding: 10px 5px 0 0;
+		font-size: 9px;
+	}
 }
-
 
 @media (min-width: 320px) and (max-width: 350px) {
 	
 .logo-right{
 	float:right; 
-	margin-top:0px;
-	}
+	margin-top:0;
+}
 	
-.print-icon {
-	 display:none;
-	 }	
-	
-	}
-	
+.print-icon {display:none;}
+}
 	
 
 @media (min-width: 350px) and (max-width: 500px) {
 	#g1 {
 		width: 100%;
 	}
-	
 	.print-icon {
-	 display:none;
-	 }
-	
-	.logo-right{
-	float:right; 
-	margin-top:0px;
+		display: none;
 	}
-	
-	
+	.logo-right {
+		float: right;
+		margin-top: 0;
+	}
 	.loggedin {
-	text-align: center; 
-	padding:10px 0px 0px 0px;	
+		text-align: center;
+		padding: 10px 0 0 0;
 	}
-		
-	
-	
-	}
-
-
-
-
-
-
-
-/*--
-
- background-color:#111;
-.container{
-	background-color: #FFF;
-	}
---*/
+}

@@ -72,6 +72,10 @@ class Credit extends BaseModel implements IRole
         return $credits;
     }
 
+    /**
+     * Save only, no auto update
+     * @return \App\core\Model|bool
+     */
     public function save()
     {
         if(empty($this->getId())){
