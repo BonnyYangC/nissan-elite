@@ -150,11 +150,6 @@ class AdminController extends BaseController
                 $tableName = DataSource::nissan_get_table_name_from_abbr($roleAbbr);
                 $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 
-//                dump($roleAbbr);
-//                dump($user);
-//                dump($tableName);
-//                dd($model);
-
                 // Call any method on an SplFileInfo instance
                 $reader = CsvTool::ReadFile($filePath);
                 foreach ($reader as $index=>$row) {
@@ -172,7 +167,6 @@ class AdminController extends BaseController
                     if($index > 0 && (!empty($row[$this->indexes[DbMap::MEMBER_ID]]) || !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]))){
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
                         $resultSet = $db->select($tableName,'*',$whereCondition);
-
                         $found = count($resultSet) === 1;
 
                         if(!$found){
@@ -216,7 +210,8 @@ class AdminController extends BaseController
                                     }
                                 }
                             }
-                        }else{
+                        }
+                        else{
                             // Trying to create a new record
                             if($isSyncAction){
                                 if($this->_lastFoundResultSet){
@@ -292,7 +287,7 @@ class AdminController extends BaseController
         $where = [
             'AND'=>[
                 DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
-                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
+//                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
                 DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
             ]
         ];
@@ -301,10 +296,14 @@ class AdminController extends BaseController
             $where = [
                 'AND'=>[
                     DbMap::EMPLOYEE_CODE=> $row[$this->indexes[DbMap::EMPLOYEE_CODE]],
-                    DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
+//                    DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
                     DbMap::PERIOD  => env('YEAR'),
                 ]
             ];
+        }
+
+        if(!is_null($row[$this->indexes[DbMap::DEALER_CODE]])){
+            $where['AND'][DbMap::DEALER_CODE] = $row[$this->indexes[DbMap::DEALER_CODE]];
         }
 
         return $where;
@@ -405,6 +404,9 @@ class AdminController extends BaseController
                 break;
             case RegionTerritoryReport::TABLE_NAME:
                 $map = DbMap::RegionTerritoryReportTable();
+                break;
+            case Credit::TABLE_NAME:
+                $map = DbMap::NissanCreditsTable();
                 break;
             default:
                 $findMatch = false;

@@ -35,15 +35,24 @@ class CsvTool
      * @return string
      */
     public static function ConvertDateToYmd($dateString, $format='d/m/yy'){
-        $carbon = Carbon::createFromFormat($format,$dateString);
-        if($carbon){
-            return $carbon->format('Y-m-d');
+        try{
+            $carbon = Carbon::createFromFormat($format,$dateString);
+            if($carbon){
+                return $carbon->format('Y-m-d');
+            }
+        }catch (\Exception $exception){
+            // Check the data string, if only 3 digits, means myy
+            if(strlen($dateString) === 3){
+                $carbon = Carbon::create('20'.substr($dateString,1),substr($dateString,0,1),1);
+                return $carbon->format('Y-m-d');
+            }
         }
-        $result = date_parse_from_format($format,$dateString);
-        if($result){
-            $monthString = $result['month']<10 ? '0'.$result['month'] : $result['month'];
-            $dayString = $result['day']<10 ? '0'.$result['day'] : $result['day'];
-            return $result['year'].'-'.$monthString.'-'.$dayString;
-        }
+
+//        $result = date_parse_from_format($format,$dateString);
+//        if($result){
+//            $monthString = $result['month']<10 ? '0'.$result['month'] : $result['month'];
+//            $dayString = $result['day']<10 ? '0'.$result['day'] : $result['day'];
+//            return $result['year'].'-'.$monthString.'-'.$dayString;
+//        }
     }
 }

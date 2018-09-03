@@ -74,6 +74,32 @@ class History extends BaseModel
     }
 
     /**
+     * Get someone's history by member id and period
+     * @param $period
+     * @param $memberId
+     * @return History
+     */
+    public static function GetByPeriodAndMemberId($period, $memberId){
+        $database = self::DB();
+        $result = $database->select(self::TABLE_NAME,'*',[
+            'AND'=>[
+                'period'=>$period,
+                'member_id'=>$memberId,
+            ]
+        ]);
+        $history = new History();
+        $history->period = $period;
+        $history->member_id = $memberId;
+
+        if($result){
+            $row = $result[0];
+            $history->id = $row['id'];
+            $history->amount = $row['amount'];
+        }
+        return $history;
+    }
+
+    /**
      * 在原来 db.php -> line 370
      * @param $rows
      * @return array

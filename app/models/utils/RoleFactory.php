@@ -73,7 +73,6 @@ class RoleFactory
             case Credit::TABLE_NAME:
                 $role = new Credit(); // Refined
                 break;
-
             default:
                 break;
         }
@@ -129,6 +128,9 @@ class RoleFactory
                 break;
             case User::DISTRICT_SALES_MANAGER:
                 $role = new RegionTerritoryReport($user); // Refined
+                break;
+            case Credit::TABLE_NAME:
+                $role = new Credit(); // Refined
                 break;
             default:
                 break;
