@@ -187,7 +187,7 @@ class AdminController extends BaseController
                                         }elseif(isset($this->indexes[$currentFieldName])){
                                             $newValue =
                                                 empty($row[$this->indexes[$currentFieldName]]) ?
-                                                    0 :                                         // If csv value is empty, then use the 0
+                                                    null :                                         // If csv value is empty, then use the 0
                                                     $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
                                             if(strtoupper($newValue) == 'YES'){
                                                 $newValue = 1;

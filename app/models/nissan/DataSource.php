@@ -102,9 +102,7 @@ class DataSource extends BaseModel
                     '*',
                     [
                         'member_id'=>$user->getEmployeeCode(),
-                        'ORDER'=>[
-                            'period'=>'DESC'
-                        ]
+                        'ORDER'=>'period'
                     ]
                 );
 
