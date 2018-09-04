@@ -258,6 +258,7 @@ class AccountsController extends DashboardController
     public function calendar(){
         $this->dataForView['currentUri'] = 'Calendar';
         $nissanEvents = Events::Load();
+
         $eventsJsObjectString = '';
         if($nissanEvents){
             foreach ($nissanEvents as $evt) {
@@ -271,6 +272,7 @@ class AccountsController extends DashboardController
         }
         $this->dataForView['eventsJsObjectString'] = '['.$eventsJsObjectString.']';
         $this->dataForView['extra_css'] = [
+//            asset('/css/bulma/bulma-calendar.min.css'),
             asset('/includes/calendar/bootstrap-year-calendar.min.css'),
             asset('/includes/calendar/bootstrap-theme.min.css'),
         ];
