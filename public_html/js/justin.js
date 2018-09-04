@@ -111,7 +111,6 @@ $(document).ready(function(){
                             + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
                             + '</div>';
                     }
-
                     $(e.element).popover({
                         trigger: 'manual',
                         container: 'body',

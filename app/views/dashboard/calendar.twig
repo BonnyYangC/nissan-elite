@@ -37,7 +37,17 @@
         }
     </style>
     <script>
-        var calendarEvents = {{ eventsJsObjectString|raw }};
+        {#var calendarEvents = {{ eventsJsObjectString|raw }};#}
+        var calendarEvents = [
+            {% for event in nissanEvents %}
+            {
+                id:{{ event.id }},
+                name: "{{ event.title }}",
+                startDate: new Date("{{ event.datestamp }}"),
+                endDate: new Date("{{ event.dateend }}")
+            },
+            {% endfor %}
+        ];
     </script>
     <div class="container bg-white">
         <div class="row">
