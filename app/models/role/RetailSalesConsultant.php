@@ -50,9 +50,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
-                $this->training['data'][]  = $item['training']
-                    + $item['pathway']
-                    + $item['classroom'];
+                $this->training['data'][]  = $item['training'] + $item['pathway'];
             }
             else
             {

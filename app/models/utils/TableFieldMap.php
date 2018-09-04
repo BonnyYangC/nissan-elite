@@ -161,7 +161,7 @@ class TableFieldMap{
      */
     public static function FinanceControllerTable(){
         $map = [
-            'period'                =>'d_statement',
+            'period'                =>'mth_yr',
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
@@ -199,7 +199,7 @@ class TableFieldMap{
      */
     public static function FiAdministrationTable(){
         $map = [
-            'period'                =>'d_statement',
+            'period'                =>'mth_yr',
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',

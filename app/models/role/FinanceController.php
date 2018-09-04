@@ -24,7 +24,7 @@ class FinanceController extends BaseRole implements IRole
     ];
     public $Ontime = [
         'label'=>'Ontime',
-        'backgroundColor' => IColor::DARK_GREY,
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     public $Balance = [
@@ -39,7 +39,7 @@ class FinanceController extends BaseRole implements IRole
     ];
     public $Checklist = [
         'label'=>'Checklist',
-        'backgroundColor' => IColor::LIGHT_GREY,
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     public $Meetings = [
@@ -75,8 +75,13 @@ class FinanceController extends BaseRole implements IRole
                 $ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
                 $balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
 
-                $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
-                $submission_results[]   = $sub->format('d/M');
+                try{
+                    $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
+                    $submission_results[]   = $sub->format('d/M');
+                }catch (\Exception $exception){
+                    $submission_results[]   = $item['quality'];
+                }
+
 
                 $checklist_results[]    = $this->_buildForTableElement($item['checklist'],0);
                 $meeting_results[]      = $this->_buildForTableElement($item['meeting'],0);

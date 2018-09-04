@@ -46,6 +46,10 @@ class CsvTool
                 $carbon = Carbon::create('20'.substr($dateString,1),substr($dateString,0,1),1);
                 return $carbon->format('Y-m-d');
             }
+            if(strlen($dateString) === 4){
+                $carbon = Carbon::create('20'.substr($dateString,2),substr($dateString,0,2),1);
+                return $carbon->format('Y-m-d');
+            }
         }
 
 //        $result = date_parse_from_format($format,$dateString);
