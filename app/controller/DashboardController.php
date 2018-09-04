@@ -205,6 +205,7 @@ class DashboardController extends BaseController
         }
         $this->dataForView['currentUri'] = 'dashboard';
 
+//        dd($this->userObject);
         /**
          * Get Data
          */
@@ -227,7 +228,16 @@ class DashboardController extends BaseController
 
         $lifetimeUtil = LifetimeUtil::GetInstance($lifetime);
 
-        $history = History::GetLifetime($this->userObject);
+        $historyRows = History::GetLifetime($this->userObject);
+        $history = [];
+        foreach ($historyRows as $historyRow) {
+            if(floatval($historyRow[1]) > 0){
+                $history[] = [
+                    $historyRow[0],
+                    intval($historyRow[1])
+                ] ;
+            }
+        }
 
         $this->dataForView['dashboard'] = [
             'lifeTime'=>$lifetime,

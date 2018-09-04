@@ -56,19 +56,36 @@ class History extends BaseModel
      */
     public static function GetLifetime(User $user, $before2017Only = false){
         $data = self::GetAll($user, $before2017Only);
+        $r2017 = Credit::QueryByUserAndYearPeriod($user,2017);
+        $credits2017 = 0;
+        foreach ($r2017 as $item) {
+            $credits2017 += floatval($item['mtd']);
+        }
         $result = [];
 
         foreach (range(1992, env('YEAR')) as $yearInteger) {
             $value = 0.0;
+
             if(isset($data[$yearInteger])){
-                $value = $data[$yearInteger]['amount'];
+                if($yearInteger === 2017){
+                    $value = $credits2017;
+                }else{
+                    $value = $data[$yearInteger]['amount'];
+                    if(isset($data[$yearInteger]['FF'])){
+                        $value = $value + $data[$yearInteger]['FF']['amount'];
+                    }
+                }
             }
-            $result[] = [$yearInteger.'',$value];
+            $result[] = [$yearInteger.'',floatval($value)];
         }
 
         if($before2017Only){
             // 表示只查找2017年以前的记录, 2017年开始的销售总额要从 nissan_credits 表格中提取并单独计算
         }
+
+
+//        dump($result);
+//        dd($r2017);
 
         return array_reverse($result);
     }
@@ -109,11 +126,12 @@ class History extends BaseModel
         foreach ($rows as $row) {
             $key = date("Y", strtotime($row['period']) );
             if(isset($history[$key])){
-                $history[$key]['FF'] = $row;
+                $history[$key]['FF'] = $row; // Fast Finish data for 2015 only
             }else{
                 $history[$key] = $row;
             }
         }
+//        dd($history);
         return $history;
     }
 }

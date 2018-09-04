@@ -412,7 +412,8 @@ class TableFieldMap{
             'period'        =>'mth_yr',
             'member_id'     =>'_amb_id',
             'mtd'           =>'CREDITS_MONTHLY',
-            'ytd'           =>'CREDITS_ytd_lifetime',
+            'ytd'           =>'CREDITS_YTD',
+//            'ytd'           =>'CREDITS_ytd_lifetime',
         ];
         return $map;
     }

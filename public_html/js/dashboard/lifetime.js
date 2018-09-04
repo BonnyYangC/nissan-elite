@@ -27,26 +27,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 });
 // History Chart
-google.charts.load('current', {'packages':['bar']});
+google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-    var arrayToData = [['Year', 'Credits']];
+    var arrayToData = [['Year', 'Credits', { role: 'style' }, { role: 'annotation' } ]];
     for (let i = 0; i < HISTORY.length ; i++) {
-        arrayToData.push(HISTORY[i]);
+        var item = [
+            HISTORY[i][0],
+            HISTORY[i][1],
+            '#c40030',
+            'Credits: ' + HISTORY[i][1]
+        ];
+        arrayToData.push(item);
     }
+
     var data = google.visualization.arrayToDataTable(arrayToData);
+    var view = new google.visualization.DataView(data);
 
     var options = {
-        colors: ['#c40030','#999999'],
-        chart: {
-            title: '',
-            subtitle: '',
-        },
-        bars: 'horizontal' // Required for Material Bar Charts.
+        legend: { position: "none" },
     };
 
-    var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+    var chart = new google.visualization.BarChart(document.getElementById('barchart_material'));
 
-    chart.draw(data, google.charts.Bar.convertOptions(options));
+    chart.draw(view,options);
 }
