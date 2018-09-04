@@ -181,7 +181,7 @@
 }
 
 .gage-wrap-section{
-    padding: 50px 50px 15px 50px;
+    padding: 40px 40px 15px 40px;
     overflow: hidden;
 }
 .gage-wrap-section .gage-wrap{
@@ -190,8 +190,22 @@
     background-size: 60%;
     padding-top:10px;
     padding-bottom:15px;
-    /*height: 220px;*/
+    height: 229px;
+    width: 100%;
+    min-width: 400px;
 }
+
+@media (min-width: 320px) and (max-width: 400px) {
+    .gage-wrap-section{
+        padding: 0;
+        overflow: hidden;
+    }
+    .gage-wrap-section .gage-wrap{
+        min-width: 320px;
+        background-size: 100%;
+    }
+}
+
 .foto-slider-wrap{
     width: 90%;
     margin: 5% auto;
