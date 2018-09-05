@@ -49,11 +49,11 @@ class ServiceManager extends BaseRole implements IRole
                 $emw[]                  = $this->_buildForJs($item['emw_credit']);
                 $training[]             = $this->_buildForJs([$item['training'],$item['classroom']]);
 
-                $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'] * 100,0) .'%';
-                $recommendation_results[]       = $this->_buildForTableElement($item['recommendation']);
-                $clean_results[]                = $this->_buildForTableElement($item['vclean']);
-                $fu_results[]                   = $this->_buildForTableElement($item['followup']);
-                $emw_results[]                  = $this->_buildForTableElement($item['emw'],0);
+                $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'] * 100,1) .'%';
+                $recommendation_results[]       = $this->_buildForTableElement($item['recommendation'],1).'%';
+                $clean_results[]                = $this->_buildForTableElement($item['vclean'],1).'%';
+                $fu_results[]                   = $this->_buildForTableElement($item['followup'],1).'%';
+                $emw_results[]                  = $this->_buildForTableElement($item['emw'],1).'%';
             }
             else
             {

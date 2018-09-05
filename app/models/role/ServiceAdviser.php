@@ -120,40 +120,10 @@ class ServiceAdviser extends BaseRole implements IRole
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 
-//            if($item)
-//            {
-//                $ytd=$item['credit_ytd'];
-//                $this->JS_credits[date("M", $period)] = $item['credit_mtd'];
-//                /**
-//                 * From Data results
-//                 */
-//                $this->matchedOW['data'][]          = intval($item['order_write_credit']);
-//                $this->newVehicleSales['data'][]    = intval($item['actual_sales']);
-//                $this->followUpPercentage['data'][] = intval($item['follow_up_ce']);
-//                $this->DlrRec['data'][]             = intval($item['ce_recomendation']);
-//                $this->middleMonth['data'][]        = intval($item['retail_midmth']);
-//                $this->training['data'][]           = $item['training']
-//                    + $item['pathway']
-//                    + $item['classroom'];
-//            }
-//            else
-//            {
-//                $this->JS_credits[date("M", $period)]  = 0;
-//                /**
-//                 * From Data results
-//                 */
-//                $this->matchedOW['data'][] = 0;
-//                $this->newVehicleSales['data'][]  = 0;
-//                $this->followUpPercentage['data'][]  = 0;
-//                $this->DlrRec['data'][]  = 0;
-//                $this->middleMonth['data'][]  = 0;
-//                $this->training['data'][]  = 0;
-//            }
-
             if($item)
             {
                 $ytd=$item['credit_ytd'];
-                $this->JS_credits[date("M", $period)] = $item['credit_mtd'];
+                $this->JS_credits[date("M", $period)] = $item['credit_mtd']?$item['credit_mtd']:0;
                 /**
                  * From Data results
                  */

@@ -168,11 +168,13 @@ class AdminController extends BaseController
                     if($index > 0 && (!empty($row[$this->indexes[DbMap::MEMBER_ID]]) || !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]))){
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
                         $resultSet = $db->select($tableName,'*',$whereCondition);
+
                         $found = count($resultSet) === 1;
 
                         if(!$found){
                             $model = $this->_getANewModel($roleAbbr, $user, $tableName);
                         }
+
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
@@ -239,6 +241,7 @@ class AdminController extends BaseController
                                         }
                                     }
                                 }else{
+                                    dump($this->indexes);
                                     foreach ($this->indexes as $fieldName=>$rowIndex) {
                                         if($fieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$rowIndex]);
@@ -266,6 +269,7 @@ class AdminController extends BaseController
                             $model->save();
                             $syncedRowsCount++;
                         }
+
                     }
                 }
 
@@ -288,7 +292,7 @@ class AdminController extends BaseController
         $where = [
             'AND'=>[
                 DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
-//                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
+                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
                 DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
             ]
         ];

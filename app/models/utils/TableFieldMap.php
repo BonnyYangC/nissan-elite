@@ -46,6 +46,7 @@ class TableFieldMap{
     public static function ServiceAdvisorsTable(){
         $map = [
             'period'                =>'mth_yr',
+//            'period'                =>'d_statement',
             'member_id'             =>'_amb_id',
 
             'dealer_code'           =>'dcode',
