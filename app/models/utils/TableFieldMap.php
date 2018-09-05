@@ -26,12 +26,10 @@ class TableFieldMap{
             'dob'=>'date_of_birth', // Format Ymd
             'mobile'=>'ph_mobile',
             'email'=>'addr_email',
-            ''=>'date_created', // need a created_at field
+//            ''=>'date_created', // need a created_at field
             'company_code'=>'d_code',
             'position'=>'sp',   // position
-//            'dept'=>'sp_code',
             'dept'=>'amba~LMSd_ambidAmthyr::dept_code',
-//            ''=>'amba~LMSd_ambidAmthyr::position_code', // Position code for position
             'active'=>'status',
             'registered'=>'registered',
             'member'=>'ac_mbr',
@@ -49,6 +47,7 @@ class TableFieldMap{
         $map = [
             'period'                =>'mth_yr',
             'member_id'             =>'_amb_id',
+
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
 
@@ -76,7 +75,7 @@ class TableFieldMap{
             'cpr_credit'            =>'credits_CPR_order',
         ];
 
-        $newFieldsNeedToBeCreated = [];
+//        $newFieldsNeedToBeCreated = [];
         return $map;
 
         /**

@@ -52,11 +52,11 @@ class CsvTool
             }
         }
 
-//        $result = date_parse_from_format($format,$dateString);
-//        if($result){
-//            $monthString = $result['month']<10 ? '0'.$result['month'] : $result['month'];
-//            $dayString = $result['day']<10 ? '0'.$result['day'] : $result['day'];
-//            return $result['year'].'-'.$monthString.'-'.$dayString;
-//        }
+        $result = date_parse_from_format($format,$dateString);
+        if($result){
+            $monthString = $result['month']<10 ? '0'.$result['month'] : $result['month'];
+            $dayString = $result['day']<10 ? '0'.$result['day'] : $result['day'];
+            return $result['year'].'-'.$monthString.'-'.$dayString;
+        }
     }
 }
