@@ -15,6 +15,7 @@ use App\models\BaseModel;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
 use App\models\nissan\DataSource;
+use App\models\nissan\Ranking;
 use App\models\User;
 use App\models\utils\RoleFactory;
 use Klein\Request;
@@ -94,12 +95,17 @@ class AdminController extends BaseController
     public function index(){
         $this->dataForView['roles'] = DataSource::$_rolesMap;
         $this->dataForView['summary'] = [
-            Credit::TABLE_NAME=>'Nissan Credits'
+            Credit::TABLE_NAME=>'Nissan Credits',
+            Ranking::TABLE_NAME=>'Nissan Rankings',
         ];
         $this->render('backend/index');
         return;
     }
 
+    /**
+     * Fake a user to show the his dashboard and metrics
+     * @return \Klein\AbstractResponse
+     */
     public function fake_user(){
         $userId = $this->request->param('uid');
         $user = new User($userId);
@@ -241,7 +247,6 @@ class AdminController extends BaseController
                                         }
                                     }
                                 }else{
-                                    dump($this->indexes);
                                     foreach ($this->indexes as $fieldName=>$rowIndex) {
                                         if($fieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$rowIndex]);
@@ -412,6 +417,9 @@ class AdminController extends BaseController
                 break;
             case Credit::TABLE_NAME:
                 $map = DbMap::NissanCreditsTable();
+                break;
+            case Ranking::TABLE_NAME:
+                $map = DbMap::NissanRankingsTable();
                 break;
             default:
                 $findMatch = false;

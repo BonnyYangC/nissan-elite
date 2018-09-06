@@ -10,10 +10,11 @@ namespace App\models\nissan;
 
 
 use App\models\BaseModel;
+use App\models\role\IRole;
 use App\models\User;
 use Carbon\Carbon;
 
-class Ranking extends BaseModel
+class Ranking extends BaseModel implements IRole
 {
     const NOT_REGISTERED    = 'NO';
     const REGISTERED        = 'YES';
@@ -23,6 +24,15 @@ class Ranking extends BaseModel
     const REGIONAL          = 'Regional';
     const NATIONAL          = 'National';
 
+    const STATUS_ACTIVE = true;
+    const STATUS_ACTIVE_TEXT = 'active';
+    const STATUS_INACTIVE = false;
+    const STATUS_INACTIVE_TEXT = 'inactive';
+
+    const DLR_CALC_YES  = 'YES';
+    const DLR_CALC_NO   = 'NO';
+    const DLR_CALC      = true;
+    const DLR_CALC_NOT  = false;
 
     const TABLE_NAME        = 'nissan_rankings';
     protected $tableName    = 'nissan_rankings';
@@ -293,4 +303,22 @@ class Ranking extends BaseModel
         return null;
     }
 
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        // TODO: Implement getTemplateName() method.
+    }
+
+    public function getMetrics($data)
+    {
+        // TODO: Implement getMetrics() method.
+    }
+
+    public function getDashboardViewData($data, $ytdParam)
+    {
+        // TODO: Implement getDashboardViewData() method.
+    }
 }

@@ -143,7 +143,7 @@ class RankingsController extends DashboardController
             'd' =>  $item['company_name'], // Dealership
             's' =>  $item['company_state'], // state
             'c' =>  number_format($item['total']), // credits
-            're'=>  $item['registered'] // registered
+            're'=>  $item['registered'] == '0' ? '' : $item['registered'] // registered
         ];
     }
 

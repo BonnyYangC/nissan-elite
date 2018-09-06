@@ -78,12 +78,15 @@ class Credit extends BaseModel implements IRole
      */
     public function save()
     {
-        $history = History::GetByPeriodAndMemberId($this->period, $this->member_id);
-        if($history->amount != $this->ytd){
-            $history->amount = $this->ytd;
-            $history->save();
+        if(!empty($this->period)){
+            $year = substr($this->period, 0,4);
+            $period = $year.'-01-01';
+            $history = History::GetByPeriodAndMemberId($period, $this->member_id);
+            if($history->amount != $this->ytd){
+                $history->amount = $this->ytd;
+                $history->save();
+            }
         }
-
         if(!$this->getId()){
             return parent::save();
         }

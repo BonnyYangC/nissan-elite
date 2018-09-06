@@ -406,4 +406,47 @@ class Model implements Jsonable
         }
         return json_encode($_buffer);
     }
+
+    /**
+     * Add a new field in table
+     * @param $fieldName
+     * @param array $options
+     * @return bool|\PDOStatement
+     */
+    public function addField($fieldName, $options=[]){
+        $database = self::DB();
+        /**
+         *  ALTER TABLE `test` ADD `name` VARCHAR(255)  NULL  DEFAULT NULL  AFTER `id`;
+         * ALTER TABLE `test` ADD `total` INT  UNSIGNED  NOT NULL  DEFAULT '0'  AFTER `name`;
+         */
+        $stmt = 'ALTER TABLE "'.$this->tableName.'" ADD "'.$fieldName.'" ';
+        if(empty($options)){
+            $options = [
+                'type'=>'VARCHAR',
+                'length'=>255,
+                'nullable'=>true,
+                'after'=>'id',
+                'default'=>'NULL'
+            ];
+        }
+        if(strtoupper($options['type']) == 'VARCHAR'){
+            $stmt .= $options['type'].'('.$options['length'].') ';
+        }else{
+            $stmt .= strtoupper($options['type']).' ';
+        }
+
+        if(!isset($options['nullable'])){
+            $options['nullable'] = true;
+        }
+
+        $stmt .= $options['nullable'] ? 'NULL ' : 'NOT NULL ';
+        $stmt .= $options['default'] ? 'DEFAULT '.$options['default'].' ' : 'DEFAULT NULL ';
+
+        if(!isset($options['after'])){
+            $options['after'] = 'id';
+        }
+        $stmt .= 'AFTER "'.$options['after'].'";';
+
+        return $database->query($stmt);
+    }
 }

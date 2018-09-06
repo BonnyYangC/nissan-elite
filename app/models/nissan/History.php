@@ -64,19 +64,29 @@ class History extends BaseModel
         $result = [];
 
         foreach (range(1992, env('YEAR')) as $yearInteger) {
-            $value = 0.0;
-
+            $value = 0;
+            $hasFF = false;
+            $ffValue = 0;
+            $normalValue = 0;
             if(isset($data[$yearInteger])){
                 if($yearInteger === 2017){
                     $value = $credits2017;
                 }else{
-                    $value = $data[$yearInteger]['amount'];
+                    $value = floatval($data[$yearInteger]['amount']);
                     if(isset($data[$yearInteger]['FF'])){
-                        $value = $value + $data[$yearInteger]['FF']['amount'];
+                        $hasFF = true;
+                        $ffValue = floatval($data[$yearInteger]['FF']['amount']);
+                        $normalValue = $value;
+                        $value = $value + $ffValue;
                     }
                 }
             }
-            $result[] = [$yearInteger.'',floatval($value)];
+            $result[] = [
+                $yearInteger.'',
+                floatval($value),
+                $hasFF ? $normalValue : $value,
+                $hasFF ? $ffValue : 0
+            ];
         }
 
         if($before2017Only){
@@ -84,7 +94,7 @@ class History extends BaseModel
         }
 
 
-//        dump($result);
+//        dd($result);
 //        dd($r2017);
 
         return array_reverse($result);

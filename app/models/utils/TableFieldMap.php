@@ -48,7 +48,6 @@ class TableFieldMap{
             'period'                =>'mth_yr',
 //            'period'                =>'d_statement',
             'member_id'             =>'_amb_id',
-
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
 
@@ -75,8 +74,6 @@ class TableFieldMap{
             'cpr'                   =>'percentage_CPR_',
             'cpr_credit'            =>'credits_CPR_order',
         ];
-
-//        $newFieldsNeedToBeCreated = [];
         return $map;
 
         /**
@@ -416,5 +413,29 @@ class TableFieldMap{
 //            'ytd'           =>'CREDITS_ytd_lifetime',
         ];
         return $map;
+    }
+
+    /**
+     * Get map for nissan ranking table
+     * @return array
+     */
+    public static function NissanRankingsTable(){
+        $map = [
+            'period'        =>'amba_STAT_ambid_gmthyr::mth_yr',
+            'member_id'     =>'_amb_id',
+            'dealer_code'   =>'d_code',
+            'registered'    =>'registered',
+            'category'      =>'d_cat',
+            'ranking'       =>'ranking',
+            'total'         =>'yr_2018',
+            'role'          =>'sp',
+        ];
+        $newFieldsAddByJustin = [
+            'region_code'           =>'r_code',
+            'status'                =>'status',
+            'dlr_excellence_bonus'  =>'dlr_excellence_bonus',
+            'calc_dlr_exc'          =>'calc_dlr_exc',
+        ];
+        return array_merge($map, $newFieldsAddByJustin);
     }
 }

@@ -10,6 +10,7 @@ namespace App\models\utils;
 use App\models\BaseModel;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
+use App\models\nissan\Ranking;
 use App\models\User;
 use App\models\role\FI;
 use App\models\role\FinanceController;
@@ -131,6 +132,9 @@ class RoleFactory
                 break;
             case Credit::TABLE_NAME:
                 $role = new Credit(); // Refined
+                break;
+            case Ranking::TABLE_NAME:
+                $role = new Ranking();
                 break;
             default:
                 break;
