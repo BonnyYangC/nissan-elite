@@ -12,6 +12,8 @@ use App\core\BaseController;
 use App\lib\utils\CsvTool;
 use App\lib\utils\FileUploader;
 use App\models\BaseModel;
+use App\models\Company;
+use App\models\management\ManagerRegion;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
 use App\models\nissan\DataSource;
@@ -28,6 +30,7 @@ class AdminController extends BaseController
      * @var array
      */
     private $indexes = [];
+    private $csvFileIndexes = null; // The first row of the csv file, as the index
     private $resultArray = [];
     private $notFoundArray = [];
 
@@ -97,6 +100,7 @@ class AdminController extends BaseController
         $this->dataForView['summary'] = [
             Credit::TABLE_NAME=>'Nissan Credits',
             Ranking::TABLE_NAME=>'Nissan Rankings',
+            Company::TABLE_NAME=>'Nissan Dealers',
         ];
         $this->render('backend/index');
         return;
@@ -161,7 +165,9 @@ class AdminController extends BaseController
                 $reader = CsvTool::ReadFile($filePath);
                 foreach ($reader as $index=>$row) {
                     if($index === 0){
+                        $this->csvFileIndexes = $row;
                         $this->_matchDbFields($row, $tableName);
+                        break;
                     }
                 }
 
@@ -171,11 +177,17 @@ class AdminController extends BaseController
                 $db = BaseModel::DB();
 
                 foreach ($reader as $index=>$row) {
-                    if($index > 0 && (!empty($row[$this->indexes[DbMap::MEMBER_ID]]) || !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]))){
+                    if(
+                        $index > 0 &&
+                        (
+                            !empty($row[$this->indexes[DbMap::MEMBER_ID]]) ||
+                            !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]) ||
+                            !empty($row[$this->indexes[DbMap::COMPANY_CODE]])   // This condition is for company table only
+                        )
+                    ){
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
                         $resultSet = $db->select($tableName,'*',$whereCondition);
-
-                        $found = count($resultSet) === 1;
+                        $found = count($resultSet) > 0;
 
                         if(!$found){
                             $model = $this->_getANewModel($roleAbbr, $user, $tableName);
@@ -187,8 +199,9 @@ class AdminController extends BaseController
                                 if(is_string($currentFieldName)){
                                     if($isSyncAction){
                                         // 数据同步的操作
-                                        if($currentFieldName == 'id'){
-                                            $model->id = $fieldValue;
+                                        if($currentFieldName == $model->getIdFieldName()){
+                                            $idField = $model->getIdFieldName();
+                                            $model->$idField = $fieldValue;
                                         }elseif($currentFieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $model->period = $periodConverted;
@@ -202,18 +215,18 @@ class AdminController extends BaseController
                                             }elseif (strtoupper($newValue) == 'NO'){
                                                 $newValue = 0;
                                             }
-                                            $model->$currentFieldName = $newValue;
+                                            $model->$currentFieldName = trim($newValue);
                                         }
                                     }else{
-                                        if($currentFieldName == 'id'){
-                                            $this->resultArray[$index]['id'] = $fieldValue;
+                                        if($currentFieldName == $model->getIdFieldName()){
+                                            $this->resultArray[$index][$model->getIdFieldName()] = $fieldValue;
                                         }elseif($currentFieldName == 'period'){
                                             $tmp = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $equal = $fieldValue == $tmp;
                                             $this->resultArray[$index]['period'] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
                                         }elseif(isset($this->indexes[$currentFieldName])){
                                             // Not ID, need compare
-                                            $equal = $row[$this->indexes[$currentFieldName]] == $fieldValue || empty($row[$this->indexes[$currentFieldName]]);
+                                            $equal = trim($row[$this->indexes[$currentFieldName]]) == $fieldValue || empty($row[$this->indexes[$currentFieldName]]);
                                             $this->resultArray[$index][$currentFieldName] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
                                         }
                                     }
@@ -226,9 +239,10 @@ class AdminController extends BaseController
                                 if($this->_lastFoundResultSet){
                                     foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
                                         if(is_string($currentFieldName)){
-                                            if($currentFieldName == 'id'){
+                                            if($currentFieldName == $model->getIdFieldName()){
                                                 // 为了新增操作
-                                                $model->id = null;
+                                                $idField = $model->getIdFieldName();
+                                                $model->$idField = null;
                                             }elseif($currentFieldName == 'period'){
                                                 $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                                 $model->period = $periodConverted;
@@ -242,7 +256,7 @@ class AdminController extends BaseController
                                                 }elseif (strtoupper($newValue) == 'NO'){
                                                     $newValue = 0;
                                                 }
-                                                $model->$currentFieldName = $newValue;
+                                                $model->$currentFieldName = trim($newValue);
                                             }
                                         }
                                     }
@@ -261,7 +275,7 @@ class AdminController extends BaseController
                                             }elseif (strtoupper($newValue) == 'NO'){
                                                 $newValue = 0;
                                             }
-                                            $model->$fieldName = $newValue;
+                                            $model->$fieldName = trim($newValue);
                                         }
                                     }
                                 }
@@ -274,7 +288,6 @@ class AdminController extends BaseController
                             $model->save();
                             $syncedRowsCount++;
                         }
-
                     }
                 }
 
@@ -306,7 +319,6 @@ class AdminController extends BaseController
             $where = [
                 'AND'=>[
                     DbMap::EMPLOYEE_CODE=> $row[$this->indexes[DbMap::EMPLOYEE_CODE]],
-//                    DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
                     DbMap::PERIOD  => env('YEAR'),
                 ]
             ];
@@ -316,6 +328,14 @@ class AdminController extends BaseController
             $where['AND'][DbMap::DEALER_CODE] = $row[$this->indexes[DbMap::DEALER_CODE]];
         }
 
+        /**
+         * This is for the company table ONLY
+         */
+        if($tableName === Company::TABLE_NAME){
+            $where = [
+                DbMap::COMPANY_CODE=>$row[$this->indexes[DbMap::COMPANY_CODE]]
+            ];
+        }
         return $where;
     }
 
@@ -420,6 +440,9 @@ class AdminController extends BaseController
                 break;
             case Ranking::TABLE_NAME:
                 $map = DbMap::NissanRankingsTable();
+                break;
+            case Company::TABLE_NAME:
+                $map = DbMap::NissanDealersTable();
                 break;
             default:
                 $findMatch = false;

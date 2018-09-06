@@ -39,7 +39,7 @@ class SalesManager extends BaseRole implements IRole
                 $followup[] = $this->_buildForJs($item['follow_up_ce']);
                 $retail[] = $this->_buildForJs($item['retail_midmth']);
 
-                $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0).'%';
+                $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0);
                 $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';
                 $recommendation_results[] = $this->_buildForTableElement($item['score_recommendation'],1).'%';
                 $fu_results[]       = $this->_buildForTableElement($item['follow_up_score'],1).'%';

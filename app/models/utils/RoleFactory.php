@@ -8,6 +8,7 @@
 
 namespace App\models\utils;
 use App\models\BaseModel;
+use App\models\Company;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
 use App\models\nissan\Ranking;
@@ -135,6 +136,9 @@ class RoleFactory
                 break;
             case Ranking::TABLE_NAME:
                 $role = new Ranking();
+                break;
+            case Company::TABLE_NAME:
+                $role = new Company();
                 break;
             default:
                 break;

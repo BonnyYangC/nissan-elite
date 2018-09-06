@@ -11,6 +11,7 @@ class TableFieldMap{
     const DEALER_CODE   = 'dealer_code';
     const PERIOD        = 'period';
     const EMPLOYEE_CODE = 'employee_code';
+    const COMPANY_CODE  = 'company_code';   // This is for the company table ONLY
 
     /**
      * Get the user's table map
@@ -436,6 +437,29 @@ class TableFieldMap{
             'dlr_excellence_bonus'  =>'dlr_excellence_bonus',
             'calc_dlr_exc'          =>'calc_dlr_exc',
         ];
+        return array_merge($map, $newFieldsAddByJustin);
+    }
+
+    /**
+     * Get map for nissan ranking table
+     * @return array
+     */
+    public static function NissanDealersTable(){
+        $map = [
+            'company_name'          =>'d_name',
+            'company_code'          =>'d_code',
+            'company_address'       =>'addr_street',
+            'company_suburb'        =>'addr_city',
+            'company_postcode'      =>'addr_pcode',
+            'company_state'         =>'addr_state',
+            'company_phone'         =>'ph_tel',
+            'company_fax'           =>'ph_fax',
+            'category'              =>'d_cat',
+            'category_code'         =>'d_cat_#',
+            'region'                =>'r_name',
+            'region_code'           =>'r_code',
+        ];
+        $newFieldsAddByJustin = [];
         return array_merge($map, $newFieldsAddByJustin);
     }
 }

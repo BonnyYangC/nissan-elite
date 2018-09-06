@@ -7,6 +7,7 @@
 namespace App\models\nissan;
 
 use App\models\BaseModel;
+use App\models\Company;
 use App\models\User;
 
 class DataSource extends BaseModel
@@ -74,6 +75,7 @@ class DataSource extends BaseModel
         User::DISTRICT_SALES_MANAGER        => 'nissan_region_territory_reports',
         Credit::TABLE_NAME                  => Credit::TABLE_NAME ,
         Ranking::TABLE_NAME                 => Ranking::TABLE_NAME ,
+        Company::TABLE_NAME                 => Company::TABLE_NAME ,
     ];
 
     /**

@@ -189,8 +189,8 @@ class DashboardController extends BaseController
             $this->fetchDashboardData();
             $this->_prepareDashboardData($role);
         }
-
         // Render the view
+//        dd($this->userObject);
         $this->render($viewToRender);
         return;
     }

@@ -130,6 +130,14 @@ class Model implements Jsonable
     }
 
     /**
+     * Return id field name
+     * @return string
+     */
+    public function getIdFieldName(){
+        return $this->idFieldName;
+    }
+
+    /**
      * Get database table name
      * @return mixed
      */

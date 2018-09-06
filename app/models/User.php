@@ -80,6 +80,23 @@ class User extends BaseModel implements Mailable
     }
 
     /**
+     * @param $firstName
+     * @param $lastName
+     * @return array|bool
+     */
+    public static function SearchByFirstNameAndLastName($firstName, $lastName){
+        $db = self::DB();
+        $result = $db->select('users','*',[
+            'AND'=>[
+                'firstname'=>$firstName,
+                'lastname'=>$lastName,
+                'active'=>1,
+            ]
+        ]);
+        return $result;
+    }
+
+    /**
      * Search and get user brief data + company brief data
      * @param $emailOrFirstName
      * @param int $pageNumber

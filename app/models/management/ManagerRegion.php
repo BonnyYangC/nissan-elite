@@ -10,7 +10,9 @@ namespace App\models\management;
 
 
 use App\models\BaseModel;
+use App\models\Company;
 use App\models\User;
+use App\models\utils\TableFieldMap;
 
 class ManagerRegion extends BaseModel
 {
@@ -57,8 +59,6 @@ class ManagerRegion extends BaseModel
                 $result[] = $mr;
             }
         }
-
-
         return $asArray ? $rows : $result;
     }
 }

@@ -9,7 +9,9 @@
 namespace App\models;
 
 
-class Company extends BaseModel
+use App\models\role\IRole;
+
+class Company extends BaseModel implements IRole
 {
     const NISSAN_COMPANY_ID = 8;
     const REGION_EASTERN_SHORT = 'E';
@@ -20,6 +22,7 @@ class Company extends BaseModel
     const REGION_NORTHERN = 'Northern';
     const REGION_SOUTHERN_SHORT = 'E';
     const REGION_SOUTHERN = 'Southern';
+    const TABLE_NAME = 'company';
 
     protected $tableName = 'company';
     protected $idFieldName = 'company_id';
@@ -45,6 +48,36 @@ class Company extends BaseModel
                 break;
         }
         return $region;
+    }
+
+    /**
+     * Get region name by give short code
+     * @param $regionName
+     * @return string
+     */
+    public static function GetRegionCode($regionName){
+        /**
+         * Just in case of region name is code, then return itself directly
+         */
+        if(strlen($regionName) === 1){
+            return $regionName;
+        }
+
+        $regionCode = self::REGION_SOUTHERN_SHORT;
+        switch ($regionName){
+            case self::REGION_EASTERN:
+                $regionCode = self::REGION_EASTERN_SHORT;
+                break;
+            case self::REGION_WESTERN:
+                $regionCode = self::REGION_WESTERN_SHORT;
+                break;
+            case self::REGION_NORTHERN:
+                $regionCode = self::REGION_NORTHERN_SHORT;
+                break;
+            default:
+                break;
+        }
+        return $regionCode;
     }
 
     public function load(User $user, Lookup $lookup){
@@ -83,5 +116,35 @@ class Company extends BaseModel
         );
 
         return $result;
+    }
+
+    /**
+     * @return \App\core\Model|bool
+     */
+    public function save()
+    {
+        $this->company_fax = str_replace('-','',$this->company_fax);
+        $this->company_name = str_replace('?','',$this->company_name);
+        $this->region = self::GetRegionCode(trim($this->region));
+        return parent::save();
+    }
+
+    /**
+     * Get the template's name for the role
+     * @return string
+     */
+    public function getTemplateName()
+    {
+        // TODO: Implement getTemplateName() method.
+    }
+
+    public function getMetrics($data)
+    {
+        // TODO: Implement getMetrics() method.
+    }
+
+    public function getDashboardViewData($data, $ytdParam)
+    {
+        // TODO: Implement getDashboardViewData() method.
     }
 }

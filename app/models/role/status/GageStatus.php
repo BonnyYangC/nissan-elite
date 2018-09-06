@@ -16,7 +16,7 @@ class GageStatus
     const PREMIER_COLOR       = '#B47C37';
     const AMBASSADOR_COLOR    = '#546E22';
     const DIPLOMAT_COLOR      = '#BC2628';
-    const CONSUL_COLOR        = '#cccccc';
+    const CONSUL_COLOR        = '#525357';
     const DEFAULT_COLOR       = '#000000';
 
     const PREMIER_CLASS_STRING       = 'T-P';
