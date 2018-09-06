@@ -223,7 +223,7 @@ $(document).ready(function(){
                     blocks:[],
                     modalTitle:'',
                     dialogTableVisible:false,
-                    tableTitle:'Some title'
+                    tableTitle:''
                 };
             },
             created(){
@@ -239,6 +239,7 @@ $(document).ready(function(){
                             that.blocks = res.data.data.blocks;
                             that.modalTitle = res.data.data.modalTitle;
                             that.dialogTableVisible = true;
+                            that.tableTitle = that._getRoleNameText(role) + ': ' + action;
                         }else{
                             that.$notify.error({
                                 title: 'Notes',
@@ -246,6 +247,44 @@ $(document).ready(function(){
                             });
                         }
                     });
+                },
+                _getRoleNameText: function(abbr){
+                    var name = '';
+                    switch (abbr){
+                        case 'PS':
+                            name = 'PARTS SALES REPRESENTATIVE';
+                            break;
+                        case 'PM':
+                            name = 'PARTS MANAGER';
+                            break;
+                        case 'SM':
+                            name = 'SERVICE MANAGER';
+                            break;
+                        case 'SA':
+                            name = 'SERVICE ADVISOR';
+                            break;
+                        case 'I':
+                            name = 'F&I MANAGER';
+                            break;
+                        case 'C':
+                            name = 'FINANCIAL CONTROLLER';
+                            break;
+                        case 'M':
+                            name = 'SALES MANAGER';
+                            break;
+                        case 'R':
+                            name = 'RETAIL SALES CONSULTANT';
+                            break;
+                        case 'SC':
+                            name = 'STOCK CONTROLLER';
+                            break;
+                        case 'FM+F':
+                            name = 'FLEET MANAGER/SALES CONSULTANT';
+                            break;
+                        default:
+                            break;
+                    }
+                    return name;
                 },
                 printThis: function(){
                     window.print();

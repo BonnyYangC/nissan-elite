@@ -136,6 +136,13 @@ class RankingsController extends DashboardController
      * @return array
      */
     private function _convertRankingRowForFrontendJson($item, $role, $rank = null){
+        $re = null;
+        if($item['registered'] == '0' || $item['registered'] == 'NO' || empty($item['registered'])){
+            $re = 'NO';
+        }
+        if($item['registered'] == 'YES' || $item['registered'] == 'Registered'){
+            $re = 'YES';
+        }
         return [
             'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
             'r' =>  $rank ? $rank : $item['ranking'], // rank
@@ -143,7 +150,7 @@ class RankingsController extends DashboardController
             'd' =>  $item['company_name'], // Dealership
             's' =>  $item['company_state'], // state
             'c' =>  number_format($item['total']), // credits
-            're'=>  $item['registered'] == '0' ? '' : $item['registered'] // registered
+            're'=>  $re // registered
         ];
     }
 
