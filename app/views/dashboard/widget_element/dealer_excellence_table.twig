@@ -5,15 +5,15 @@
         </tr>
         <tr class="nissangray-light-back">
             <td>
-                            <span class="rank tw">
-                                {% if dashboard.excellence %}
-                                    &#10004;
-                                {% else %}
-                                    X
-                                {% endif %}
-                            </span>
-                {% if dashboard.excellence %}
-                    <p class="tw">2,000 Credits Applied</p>
+                <span class="rank tw {{ user.excellence ? 'txt-red' : null }}">
+                    {% if user.excellence %}
+                        &#10004;
+                    {% else %}
+                        X
+                    {% endif %}
+                </span>
+                {% if user.excellence %}
+                    <p class="tw">{{ number_format(user.excellence) }} Credits Applied</p>
                 {% else %}
                     <p class="tw">
                         refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') }}">Dealer Excellence overview</a>

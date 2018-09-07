@@ -154,6 +154,7 @@ class DashboardController extends BaseController
             $user = new User($this->currentUserId);
             $this->userObject = $user;
         }
+
         $this->dataForView['currentUri'] = 'dashboard';
 
         $viewToRender = 'dashboard/my_dashboard';
@@ -190,7 +191,7 @@ class DashboardController extends BaseController
             $this->_prepareDashboardData($role);
         }
         // Render the view
-//        dd($this->userObject);
+
         $this->render($viewToRender);
         return;
     }
@@ -205,7 +206,6 @@ class DashboardController extends BaseController
         }
         $this->dataForView['currentUri'] = 'dashboard';
 
-//        dd($this->userObject);
         /**
          * Get Data
          */
@@ -270,7 +270,7 @@ class DashboardController extends BaseController
     protected function fetchUserMetricsData(){
         $data = DataSource::Query($this->userObject);
         $this->metricsData = $data['result']['Results'];
-        $this->excellence = $data['result']['Excellence'];
+//        $this->excellence = $data['result']['Excellence'];
     }
 
     /**
@@ -284,7 +284,7 @@ class DashboardController extends BaseController
 
         $result = DataSource::Query($this->userObject);
         $this->dataForView['Results'] = $result['result']['Results'];
-        $this->dataForView['Excellence'] = $result['result']['Excellence'];
+//        $this->dataForView['Excellence'] = $result['result']['Excellence'];
 
         /**
          * 获取所有的排名, 自己的排名
@@ -347,7 +347,6 @@ class DashboardController extends BaseController
         $nationalRanking = '';
         foreach ($rankings as $ranking) {
             if($ranking['member_id'] == $this->userObject->getEmployeeCode()){
-                $this->userObject->registered = $ranking['registered'] === Ranking::REGISTERED;
                 $nationalRanking = $ranking['ranking'];
                 break;
             }

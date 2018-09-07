@@ -304,6 +304,17 @@ class Ranking extends BaseModel implements IRole
     }
 
     /**
+     * Get last record by User
+     * @param User $user
+     * @return Ranking
+     */
+    public function getLastRankingByUser(User $user){
+        return $this->last([
+            'member_id'=>$user->getEmployeeCode()
+        ]);
+    }
+
+    /**
      * Get the template's name for the role
      * @return string
      */

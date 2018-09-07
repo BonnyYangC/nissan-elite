@@ -13,6 +13,7 @@ use App\models\management\ManagerDealer;
 use App\models\management\ManagerRegion;
 use App\models\nissan\DataSource;
 use App\core\contracts\support\MailTrait;
+use App\models\nissan\Ranking;
 
 class User extends BaseModel implements Mailable
 {
@@ -241,8 +242,24 @@ class User extends BaseModel implements Mailable
             $this->setDepartmentNameAndPositionDesc();
             // Get user's Positions
             $this->positions = DataSource::GetPositionList($this);
+            $this->setIsUserRegisteredAndExcellent();
         }
+
+//        dd($this);
         return $this;
+    }
+
+    /**
+     * Get is user registered from rankings table
+     */
+    public function setIsUserRegisteredAndExcellent(){
+        $ranking = new Ranking();
+        $result = $ranking->getLastRankingByUser($this);
+//        dd($result);
+        if($result){
+            $this->registered = $result->registered===Ranking::REGISTERED || $result->registered==='Registered';
+            $this->excellence = $result->calc_dlr_exc ? $result->dlr_excellence_bonus : 0;
+        }
     }
 
     /**

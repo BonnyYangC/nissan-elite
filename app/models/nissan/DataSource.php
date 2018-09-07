@@ -216,7 +216,7 @@ class DataSource extends BaseModel
         $result = [];
         foreach ($rows as $row) {
             $result['Results'][date('M-Y', strtotime($row['period']))] = $row;
-            $result['Excellence'] = $row['excellence'];
+//            $result['Excellence'] = $row['excellence'];
         }
         return $result;
     }
