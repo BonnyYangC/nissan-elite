@@ -70,14 +70,27 @@ Zepto(function($){
                 keyword: '',
                 select:'',
                 selectedDealer:null,
-                form:{},
-                advanceMode: false
+                dealers:[],
+                form:{
+                    positions:[]
+                },
+                advanceMode: false,
+
             },
             created(){
+                this._LoadNissanDealers();
             },
             methods:{
                 onSubmit: function(){
 
+                },
+                _LoadNissanDealers: function(){
+                    var that = this;
+                    axios.get('/api/admin/load-nissan-dealers').then(function (res) {
+                        if(res.data.error_no === 100){
+                            that.dealers = res.data.data;
+                        }
+                    })
                 },
                 switchOnAdvance: function(){
                     this.advanceMode = !this.advanceMode;

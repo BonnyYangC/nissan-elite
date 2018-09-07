@@ -85,6 +85,10 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('api.users.search');
 
 \App\core\Route::Instance()
+    ->get('/api/admin/load-nissan-dealers', \App\controller\backend\ApiController::class,'load_nissan_dealers')
+    ->name('api.dealers.load');
+
+\App\core\Route::Instance()
     ->get('/api/dsm/download-active-member-list', \App\controller\backend\ApiController::class,'download_active_member_list')
     ->name('api.dsm.download.active.member.list');
 

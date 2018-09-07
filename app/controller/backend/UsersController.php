@@ -14,6 +14,7 @@ use Klein\App;
 use Klein\Request;
 use Klein\Response;
 use Klein\ServiceProvider;
+use App\models\nissan\DataSource;
 
 class UsersController extends BaseController
 {
@@ -28,6 +29,7 @@ class UsersController extends BaseController
             'users.active'=>1,
             'users.parent_id'=>8,
         ];
+        $this->dataForView['roles'] = DataSource::$_rolesMap;
         $this->dataForView['users'] = User::Listing([],$currentPageNumber);
         $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
 

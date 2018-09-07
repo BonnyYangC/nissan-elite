@@ -1,5 +1,4 @@
 <div class="content" id="user-locator-app">
-
     <el-form ref="form" :model="form" class="mt-20" label-width="120px">
         <span class="is-size-3 is-pulled-left">User Locator</span>
         <span class="is-size-3 is-link is-pulled-right">
@@ -9,31 +8,25 @@
         </span>
         <div class="is-clearfix"></div>
         <el-form-item label="Name">
-            <el-input v-model="form.name"></el-input>
+            <el-input v-model="form.name" placeholder="The user's name ..."></el-input>
         </el-form-item>
-        <el-form-item label="活动区域" v-show="advanceMode">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+        <el-form-item label="Dealerships" v-show="advanceMode">
+            <el-select v-model="selectedDealer" filterable placeholder="Type or choose from the list" style="width: 500px;">
+                <el-option
+                        v-for="(item, idx) in dealers"
+                        :key="idx"
+                        :label="item.company_name"
+                        :value="item.company_id">
+                </el-option>
             </el-select>
         </el-form-item>
 
-        <el-form-item label="即时配送"  v-show="advanceMode">
-            <el-switch v-model="form.delivery"></el-switch>
-        </el-form-item>
-        <el-form-item label="活动性质" v-show="advanceMode">
-            <el-checkbox-group v-model="form.type">
-                <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-                <el-checkbox label="地推活动" name="type"></el-checkbox>
-                <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-                <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+        <el-form-item label="Position" v-show="advanceMode">
+            <el-checkbox-group v-model="form.positions">
+                {% for role,label in roles %}
+                <el-checkbox label="{{ label }}" name="type[]"></el-checkbox>
+                {% endfor %}
             </el-checkbox-group>
-        </el-form-item>
-        <el-form-item label="特殊资源" v-show="advanceMode">
-            <el-radio-group v-model="form.resource">
-                <el-radio label="线上品牌商赞助"></el-radio>
-                <el-radio label="线下场地免费"></el-radio>
-            </el-radio-group>
         </el-form-item>
 
         <el-form-item v-show="advanceMode">

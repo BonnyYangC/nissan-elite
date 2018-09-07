@@ -9,6 +9,7 @@
 namespace App\controller\backend;
 use App\core\BaseController;
 use App\core\JsonBuilder;
+use App\models\Company;
 use App\models\management\RegionTerritoryReport;
 use App\models\utils\RoleFactory;
 use Klein\Request;
@@ -33,6 +34,13 @@ class ApiController extends BaseController
         }else{
             echo JsonBuilder::Error();
         }
+    }
+
+    public function load_nissan_dealers(){
+        $company = new Company();
+        $dealers = $company->simpleQuery(['parent_id'=>8],['company_id','company_name']);
+
+        echo JsonBuilder::Success($dealers);
     }
 
     /**
