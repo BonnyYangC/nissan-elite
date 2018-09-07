@@ -59,4 +59,30 @@ Zepto(function($){
             }
         });
     }
+
+    var userLocatorEl = document.getElementById('user-locator-app');
+    if(userLocatorEl){
+        var userLocatorApp = new Vue({
+            el:'#user-locator-app',
+            delimiters: ['${', '}'],
+            data:{
+                users: [],
+                keyword: '',
+                select:'',
+                selectedDealer:null,
+                form:{},
+                advanceMode: false
+            },
+            created(){
+            },
+            methods:{
+                onSubmit: function(){
+
+                },
+                switchOnAdvance: function(){
+                    this.advanceMode = !this.advanceMode;
+                }
+            }
+        });
+    }
 });

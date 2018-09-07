@@ -1,0 +1,45 @@
+{% extends 'layout/backend.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="content">
+            <div class="card  mt-20">
+                <div class="card-content">
+                {% include 'backend/elements/user_locator.twig' %}
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            {% include 'backend/elements/pagination.twig' with {'path':'/admin/users-manage'} %}
+        </div>
+        <div class="content">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Dealer</th>
+                    <th>State</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Position</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                <tr>
+                    <th>{{ user.company_name }}</th>
+                    <td>{{ user.company_state }}</td>
+                    <td>{{ user.firstname }} {{ user.lastname }}</td>
+                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.position }}</td>
+                    <td>
+                        <a class="button is-small is-link">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -19,22 +19,18 @@ class TableFieldMap{
      */
     public static function UserTable(){
         $map = [
-            ''=>'mthyr_G', // format 418 means 2018-04-18. Need a new field: update_at
             'employee_code'=>'_amb_id',
             'salutation'=>'n_title',
             'firstname'=>'n_fname_trim',
             'lastname'=>'n_sname_trim',
-            'dob'=>'date_of_birth', // Format Ymd
             'mobile'=>'ph_mobile',
             'email'=>'addr_email',
-//            ''=>'date_created', // need a created_at field
             'company_code'=>'d_code',
             'position'=>'sp',   // position
             'dept'=>'amba~LMSd_ambidAmthyr::dept_code',
             'active'=>'status',
             'registered'=>'registered',
             'member'=>'ac_mbr',
-//            ''=>'sp_code_sp',
         ];
 
         return $map;

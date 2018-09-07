@@ -21,12 +21,12 @@
                     <form id="login-form" method="post" action="{{ url('user/login') }}" class="form-signin" role="form" >
                         <input type="hidden" name="action" value="login">
                         <div align="center"><img src="{{ asset('images/nissanac-logo-footer.png') }}" width="240px" style="padding-bottom:20px"></div>
-                        <input name="email" id="email" type="email" class="form-control"placeholder="Email" autofocus />
+                        <input name="email" id="email" type="email" class="form-control" placeholder="Email" autofocus />
                         <input name="password" id="password" type="password" class="form-control" placeholder="Password" />
                         {% if errorMsg %}
                             <p style="text-align: center;color: red;margin-top: -17px;font-size: 15px;font-weight: bold;">{{ errorMsg }}</p>
                         {% endif %}
-                        <input class="btn btn-block bt-login" type="submit" />
+                        <button class="btn btn-block bt-login">Submit</button>
                     </form>
                     <div class="form-footer">
                         <div class="row">

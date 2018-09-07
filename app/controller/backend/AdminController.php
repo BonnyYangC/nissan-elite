@@ -102,6 +102,9 @@ class AdminController extends BaseController
             Ranking::TABLE_NAME=>'Nissan Rankings',
             Company::TABLE_NAME=>'Nissan Dealers',
         ];
+        $this->dataForView['users_menu'] = [
+            User::TABLE_NAME    =>'Dealership Users',
+        ];
         $this->render('backend/index');
         return;
     }
@@ -336,6 +339,15 @@ class AdminController extends BaseController
                 DbMap::COMPANY_CODE=>$row[$this->indexes[DbMap::COMPANY_CODE]]
             ];
         }
+
+        /**
+         * This is for the users table ONLY
+         */
+        if($tableName === User::TABLE_NAME){
+            $where = [
+                DbMap::EMPLOYEE_CODE=>$row[$this->indexes[DbMap::EMPLOYEE_CODE]]
+            ];
+        }
         return $where;
     }
 
@@ -443,6 +455,9 @@ class AdminController extends BaseController
                 break;
             case Company::TABLE_NAME:
                 $map = DbMap::NissanDealersTable();
+                break;
+            case User::TABLE_NAME:
+                $map = DbMap::UserTable();
                 break;
             default:
                 $findMatch = false;

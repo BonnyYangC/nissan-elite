@@ -140,6 +140,9 @@ class RoleFactory
             case Company::TABLE_NAME:
                 $role = new Company();
                 break;
+            case User::TABLE_NAME:
+                $role = new User();
+                break;
             default:
                 break;
         }

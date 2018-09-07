@@ -1,0 +1,45 @@
+<hr>
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+    {% set prev = {'pn':pagination.current-1} %}
+    {% set next = {'pn':pagination.current+1} %}
+    {% set last = {'pn':pagination.pages-1} %}
+    {% set first = {'pn':0} %}
+
+    {% if pagination.current > 0 %}
+        <a class="pagination-previous" href="{{ url(path,prev) }}">Previous</a>
+    {% else %}
+        <a class="pagination-previous">Previous</a>
+    {% endif %}
+
+    {% if pagination.current == pagination.pages-1 %}
+        <a class="pagination-next">Next page</a>
+    {% else %}
+        <a class="pagination-next" href="{{ url(path,next) }}">Next page</a>
+    {% endif %}
+
+    {% set currentPageNumber = pagination.current+1 %}
+
+    <ul class="pagination-list" style="list-style: none;margin-top: 0;">
+        {% if currentPageNumber > 6 %}
+            <li><a class="pagination-link" href="{{ url(path,{ 'pn':0 }) }}" aria-label="Page 1" aria-current="page">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+        {% endif %}
+
+        {% for i in currentPageNumber-5..currentPageNumber-1 %}
+            {% if i > 0 %}
+            <li><a class="pagination-link" href="{{ url(path,{ 'pn':i-1 }) }}" aria-label="Goto page {{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <li><a class="pagination-link is-current" aria-label="Page {{ currentPageNumber }}" aria-current="page">{{ currentPageNumber }}</a></li>
+        {% for i in currentPageNumber+1..currentPageNumber+6 %}
+            {% if i > 0 %}
+                <li><a class="pagination-link" href="{{ url(path,{ 'pn':i-1 }) }}" aria-label="Goto page {{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link" href="{{ url(path,last) }}" aria-label="Goto page {{ pagination.pages }}">{{ pagination.pages }}</a></li>
+    </ul>
+</nav>
+<hr>

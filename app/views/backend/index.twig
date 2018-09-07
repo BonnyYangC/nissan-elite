@@ -45,6 +45,11 @@
                                                             <option value="{{ tableName }}">{{ label }}</option>
                                                         {% endfor %}
                                                     </optgroup>
+                                                    <optgroup label="Users">
+                                                        {% for tableName,label in users_menu %}
+                                                            <option value="{{ tableName }}">{{ label }}</option>
+                                                        {% endfor %}
+                                                    </optgroup>
                                                 </select>
                                             </div>
                                         </div>
