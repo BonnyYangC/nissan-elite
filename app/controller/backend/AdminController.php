@@ -288,6 +288,19 @@ class AdminController extends BaseController
                         }
 
                         if($isSyncAction){
+                            // If users' data is uploading
+                            if($tableName === User::TABLE_NAME){
+                                // Handle the password field
+                                if($found){
+                                    // Todo: keep the old password if it's existed; General one if it's not existed yet
+                                    if(empty($found['password'])){
+                                        $model->password = strtoupper($this->_lastFoundResultSet['lastname']).'1';
+                                    }
+                                }else{
+                                    // Not found, means a new user account
+                                    $model->password = strtoupper($row['lastname']).'1';
+                                }
+                            }
                             $model->save();
                             $syncedRowsCount++;
                         }

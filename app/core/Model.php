@@ -41,7 +41,7 @@ class Model implements Jsonable
      * Fields list that should not be output for toJson
      * @var array
      */
-    protected $protectedFields = ['password'];
+    protected $protectedFields = [];
 
     /**
      * Is in the debug mode
