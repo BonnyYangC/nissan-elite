@@ -11,6 +11,7 @@ class TableFieldMap{
     const DEALER_CODE   = 'dealer_code';
     const PERIOD        = 'period';
     const EMPLOYEE_CODE = 'employee_code';
+    const EMAIL         = 'email';  // for users table
     const COMPANY_CODE  = 'company_code';   // This is for the company table ONLY
 
     /**
@@ -31,6 +32,23 @@ class TableFieldMap{
             'active'=>'status',
             'registered'=>'registered',
             'member'=>'ac_mbr',
+        ];
+
+        return $map;
+    }
+
+    /**
+     * Get the user's table map
+     * @return array
+     */
+    public static function RegionStaffTable(){
+        $map = [
+            'alt_position'=>'Region',
+            'firstname'=>'fname',
+            'lastname'=>'sname',
+            'email'=>'email',
+            'mobile'=>'mobile',
+            'position'=>'Position',
         ];
 
         return $map;

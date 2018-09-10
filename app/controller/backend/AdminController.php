@@ -103,7 +103,8 @@ class AdminController extends BaseController
         ];
         $this->dataForView['users_menu'] = [
             User::TABLE_NAME    =>'User Data',
-            Company::TABLE_NAME=>'Dealer Data',
+            Company::TABLE_NAME =>'Dealer Data',
+            User::REGION_STAFF  =>'Region Staff',
         ];
         $this->render('backend/index');
         return;
@@ -151,7 +152,6 @@ class AdminController extends BaseController
 
         $uploader = new FileUploader($this->request);
         $filePath = $uploader->store('csv');
-
         $syncedRowsCount = 0;
 
         if($filePath){
@@ -166,10 +166,11 @@ class AdminController extends BaseController
 
                 // Call any method on an SplFileInfo instance
                 $reader = CsvTool::ReadFile($filePath);
+
                 foreach ($reader as $index=>$row) {
                     if($index === 0){
                         $this->csvFileIndexes = $row;
-                        $this->_matchDbFields($row, $tableName);
+                        $this->_matchDbFields($row, $tableName, $roleAbbr);
                         break;
                     }
                 }
@@ -185,10 +186,12 @@ class AdminController extends BaseController
                         (
                             !empty($row[$this->indexes[DbMap::MEMBER_ID]]) ||
                             !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]) ||
+                            !empty($row[$this->indexes[DbMap::EMAIL]]) ||
                             !empty($row[$this->indexes[DbMap::COMPANY_CODE]])   // This condition is for company table only
                         )
                     ){
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
+
                         $resultSet = $db->select($tableName,'*',$whereCondition);
                         $found = count($resultSet) > 0;
 
@@ -298,8 +301,13 @@ class AdminController extends BaseController
                                     }
                                 }else{
                                     // Not found, means a new user account
-                                    $model->password = strtoupper($row['lastname']).'1';
+                                    $model->password = strtoupper($row[$this->indexes['lastname']]).'1';
                                 }
+                            }
+
+                            // if region staff
+                            if($roleAbbr === User::REGION_STAFF){
+                                $model->company_id = 8;
                             }
                             $model->save();
                             $syncedRowsCount++;
@@ -357,9 +365,16 @@ class AdminController extends BaseController
          * This is for the users table ONLY
          */
         if($tableName === User::TABLE_NAME){
-            $where = [
-                DbMap::EMPLOYEE_CODE=>$row[$this->indexes[DbMap::EMPLOYEE_CODE]]
-            ];
+            if(isset($row[$this->indexes[DbMap::EMAIL]]) && !empty($row[$this->indexes[DbMap::EMAIL]])){
+                $where = [
+                    DbMap::EMAIL=>$row[$this->indexes[DbMap::EMAIL]]
+                ];
+            }else{
+                $where = [
+                    DbMap::EMPLOYEE_CODE=>$row[$this->indexes[DbMap::EMPLOYEE_CODE]]
+                ];
+            }
+
         }
         return $where;
     }
@@ -426,7 +441,7 @@ class AdminController extends BaseController
      * @param $tableName
      * @return bool
      */
-    private function _matchDbFields($csvRowArray, $tableName){
+    private function _matchDbFields($csvRowArray, $tableName, $roleAbbr){
         $findMatch = true;
 
         switch ($tableName){
@@ -475,6 +490,10 @@ class AdminController extends BaseController
             default:
                 $findMatch = false;
                 break;
+        }
+
+        if($roleAbbr === User::REGION_STAFF){
+            $map = DbMap::RegionStaffTable();
         }
 
         $map = array_flip($map);

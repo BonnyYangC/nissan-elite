@@ -23,6 +23,9 @@ class UsersController extends BaseController
         parent::__construct($request, $response, $serviceProvider, $app);
     }
 
+    /**
+     * List dealer users
+     */
     public function index(){
         $currentPageNumber = $this->request->param('pn') ? $this->request->param('pn') : 0;
         $whereCondition = [
@@ -36,4 +39,25 @@ class UsersController extends BaseController
         $this->render('backend/users');
         return;
     }
+
+    /**
+     * List region staff
+     */
+    public function region_staff(){
+        $currentPageNumber = $this->request->param('pn') ? $this->request->param('pn') : 0;
+        $whereCondition = [
+            'users.active'=>1,
+            'users.parent_id'=>8,
+            'users.position'=>[
+                User::DISTRICT_SALES_MANAGER,
+                User::NATIONAL_SALES_MANAGER,
+            ]
+        ];
+        $this->dataForView['roles'] = DataSource::$_rolesMap;
+        $this->dataForView['users'] = User::GetRegionStaff([],$currentPageNumber);
+        $this->render('backend/region_staff');
+        return;
+    }
+
+
 }

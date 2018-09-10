@@ -81,6 +81,14 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('admin.users.manage');
 
 \App\core\Route::Instance()
+    ->get('/admin/region-staff', \App\controller\backend\UsersController::class,'region_staff')
+    ->name('admin.region.staff');
+
+\App\core\Route::Instance()
+    ->get('/admin/region-staff-edit', \App\controller\backend\UsersController::class,'region_staff_edit')
+    ->name('admin.region.staff.edit');
+
+\App\core\Route::Instance()
     ->get('/api/users-search', \App\controller\backend\ApiController::class,'users_search')
     ->name('api.users.search');
 

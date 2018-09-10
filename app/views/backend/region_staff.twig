@@ -1,0 +1,44 @@
+{% extends 'layout/backend.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="content mt-20">
+            <div class="columns">
+                <div class="column">
+                    <h1>Region Staff Management</h1>
+                </div>
+                <div class="column">
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Password</th>
+                    <th>Position</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th>{{ user.alt_position }}</th>
+                        <td>{{ user.firstname }} {{ user.lastname }}</td>
+                        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                        <td>{{ user.mobile }}</td>
+                        <td>{{ user.password }}</td>
+                        <td>{{ user.position }}</td>
+                        <td>
+                            {% set param = {'id':user.user_id} %}
+                            <a href="{{ url('/admin/region-staff-edit',param) }}"
+                               class="button is-small is-link">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

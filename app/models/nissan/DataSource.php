@@ -77,6 +77,7 @@ class DataSource extends BaseModel
         Ranking::TABLE_NAME                 => Ranking::TABLE_NAME ,
         Company::TABLE_NAME                 => Company::TABLE_NAME ,
         User::TABLE_NAME                    => User::TABLE_NAME ,
+        User::REGION_STAFF                  => User::TABLE_NAME ,
     ];
 
     /**

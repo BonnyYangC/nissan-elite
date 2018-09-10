@@ -143,6 +143,9 @@ class RoleFactory
             case User::TABLE_NAME:
                 $role = new User();
                 break;
+            case User::REGION_STAFF:
+                $role = new User();
+                break;
             default:
                 break;
         }
