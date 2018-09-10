@@ -20,7 +20,7 @@ class Company extends BaseModel implements IRole
     const REGION_WESTERN = 'Western';
     const REGION_NORTHERN_SHORT = 'N';
     const REGION_NORTHERN = 'Northern';
-    const REGION_SOUTHERN_SHORT = 'E';
+    const REGION_SOUTHERN_SHORT = 'S';
     const REGION_SOUTHERN = 'Southern';
     const TABLE_NAME = 'company';
 
@@ -63,15 +63,24 @@ class Company extends BaseModel implements IRole
             return $regionName;
         }
 
-        $regionCode = self::REGION_SOUTHERN_SHORT;
+        $regionCode = self::REGION_WESTERN_SHORT;
         switch ($regionName){
             case self::REGION_EASTERN:
                 $regionCode = self::REGION_EASTERN_SHORT;
                 break;
-            case self::REGION_WESTERN:
-                $regionCode = self::REGION_WESTERN_SHORT;
+            case self::REGION_EASTERN.' Region':
+                $regionCode = self::REGION_EASTERN_SHORT;
+                break;
+            case self::REGION_SOUTHERN:
+                $regionCode = self::REGION_SOUTHERN_SHORT;
+                break;
+            case self::REGION_SOUTHERN.' Region':
+                $regionCode = self::REGION_SOUTHERN_SHORT;
                 break;
             case self::REGION_NORTHERN:
+                $regionCode = self::REGION_NORTHERN_SHORT;
+                break;
+            case self::REGION_NORTHERN.' Region':
                 $regionCode = self::REGION_NORTHERN_SHORT;
                 break;
             default:
@@ -119,12 +128,32 @@ class Company extends BaseModel implements IRole
     }
 
     /**
+     * Get Company data by given company code
+     * @param $companyCode
+     * @return null
+     */
+    public static function GetByCompanyCode($companyCode){
+        $database = self::DB();
+
+        $result = $database->select(self::TABLE_NAME,'*',[
+            'company_code'=>$companyCode
+        ]);
+
+        if($result && count($result)>0){
+            return $result[0];
+        }
+        else{
+            return null;
+        }
+    }
+
+    /**
      * @return \App\core\Model|bool
      */
     public function save()
     {
         $this->company_fax = str_replace('-','',$this->company_fax);
-        $this->company_name = str_replace('?','',$this->company_name);
+//        $this->company_name = str_replace('?','',$this->company_name);
         $this->region = self::GetRegionCode(trim($this->region));
         return parent::save();
     }

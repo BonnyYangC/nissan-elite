@@ -13,11 +13,40 @@
     <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" href="{{ get_route('admin.home') }}">
-                Home
+                Dashboard
             </a>
-            <a class="navbar-item" href="{{ get_route('admin.users.manage') }}">
-                Dealership Users
-            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Users Manager
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="{{ get_route('admin.users.manage') }}">
+                        Dealer's Users
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="{{ get_route('admin.users.region') }}">
+                        Region Users
+                    </a>
+                    <a class="navbar-item" href="{{ get_route('admin.users.general') }}">
+                        Admin Users
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Content Manager
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="{{ get_route('admin.content.calendar') }}">
+                        Calendar
+                    </a>
+                    <a class="navbar-item" href="{{ get_route('admin.content.incentives') }}">
+                        Incentives
+                    </a>
+                </div>
+            </div>
 
             <div class="navbar-item">
                 <el-autocomplete

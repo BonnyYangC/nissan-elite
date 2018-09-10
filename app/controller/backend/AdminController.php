@@ -100,10 +100,10 @@ class AdminController extends BaseController
         $this->dataForView['summary'] = [
             Credit::TABLE_NAME=>'Nissan Credits',
             Ranking::TABLE_NAME=>'Nissan Rankings',
-            Company::TABLE_NAME=>'Nissan Dealers',
         ];
         $this->dataForView['users_menu'] = [
-            User::TABLE_NAME    =>'Dealership Users',
+            User::TABLE_NAME    =>'User Data',
+            Company::TABLE_NAME=>'Dealer Data',
         ];
         $this->render('backend/index');
         return;
