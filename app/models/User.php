@@ -376,8 +376,8 @@ class User extends BaseModel implements Mailable, IRole
      */
     public function init(){
         // Todo: check if the user is in management team
-        if($this->position === self::NATIONAL_SALES_MANAGER || $this->position === self::DISTRICT_SALES_MANAGER){
-            $this->managedRegions = ManagerRegion::LoadByManager($this);
+        if(in_array($this->position, $this->_getRegionStaffRoles())){
+            $this->managedRegions = [$this->alt_position];
         }elseif ($this->position === self::SHOP_OWNER){
             // A shop owner
             $this->ownedDealers = ManagerDealer::LoadByManager($this);
@@ -391,6 +391,29 @@ class User extends BaseModel implements Mailable, IRole
             $this->setIsUserRegisteredAndExcellent();
         }
         return $this;
+    }
+
+    /**
+     * Return region staff position abbr array
+     * @return array
+     */
+    private function _getRegionStaffRoles(){
+        return [
+            self::NATIONAL_SALES_MANAGER,
+            self::DISTRICT_SALES_MANAGER,
+            self::RSM,
+            self::FOM,
+            self::FDM,
+            self::RAM,
+            self::DTS,
+            self::ROA,
+            self::RSC,
+            self::RSM_NFSA,
+            self::DAM_NFSA,
+            self::RM_NFSA,
+            self::RGM,
+            self::ADMIN
+        ];
     }
 
     /**

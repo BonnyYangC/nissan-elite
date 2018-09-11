@@ -8,6 +8,7 @@ if(dsmEl){
             employeeCode: null,
             regions:[],
             regionCodes:'',
+            regionName:'',
             tableData:[],
             keyword:''
         },
@@ -16,7 +17,7 @@ if(dsmEl){
             this.employeeCode = employeeCode;
             this.regions = regions;
             for (var i = 0; i < this.regions.length; i++) {
-                this.regionCodes += this.regions[i].region_code + ' ';
+                this.regionName += this.regions[i] + ' ';
             }
             this._loadArrayData();
         },
@@ -49,12 +50,15 @@ if(dsmEl){
             _loadArrayData: function(){
                 var that = this;
                 axios.get(
-                    '/api/dsm/load-regional-data?manager='+this.managerId + '&regions=' + this.regionCodes.trim()
+                    '/api/dsm/load-regional-data?manager='+this.managerId + '&regions=' + this.regionName.trim()
                 ).then(function(res){
                     if(res.data.error_no === 100){
                         that.tableData = res.data.data;
                     }
                 });
+            },
+            getMockUserUrl: function(employeeCode){
+                return '/admin/fake-user?uc='+employeeCode;
             }
         }
     });

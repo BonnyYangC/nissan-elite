@@ -31,9 +31,9 @@
                         <td>{{ user.password }}</td>
                         <td>{{ user.position }}</td>
                         <td>
-                            {% set param = {'id':user.user_id} %}
-                            <a href="{{ url('/admin/region-staff-edit',param) }}"
-                               class="button is-small is-link">Edit</a>
+                            {% set param = {'uid':user.user_id} %}
+                            <a href="{{ url('/admin/fake-region-staff',param) }}" target="_blank"
+                               class="button is-small is-link">Mock</a>
                         </td>
                     </tr>
                 {% endfor %}

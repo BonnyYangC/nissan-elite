@@ -116,7 +116,19 @@ class AdminController extends BaseController
      */
     public function fake_user(){
         $userId = $this->request->param('uid');
-        $user = new User($userId);
+        $employeeCode = $this->request->param('uc');
+        if($employeeCode){
+            $database = User::DB();
+            $result = $database->select(User::TABLE_NAME,'*',[
+                'employee_code'=>$employeeCode
+            ]);
+            if($result && count($result)>0){
+                $row = $result[0];
+                $user = new User($row['user_id']);
+            }
+        }else{
+            $user = new User($userId);
+        }
 
         $uuid = random_str(uniqid());
         $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
@@ -128,6 +140,25 @@ class AdminController extends BaseController
         ]);
         session_set('selected_role',null);
 
+        // redirect to this user's dashboard
+        return $this->response->redirect('/dashboard')->send();
+    }
+
+    public function fake_region_staff(){
+        session_set('user_data_array', null);
+        session_set('selected_role',null);
+
+        $userId = $this->request->param('uid');
+        $user = new User($userId);
+        // Must be a region staff
+        $uuid = random_str(uniqid());
+        $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
+
+        session_set(env('SESSION_SEGMENT','_nissanac_fake'), $uuid);
+        session_set('region_staff_data_array', [
+            'id'=>$user->getId(),
+            'name'=>$user->getName()
+        ]);
         // redirect to this user's dashboard
         return $this->response->redirect('/dashboard')->send();
     }

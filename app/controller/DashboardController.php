@@ -77,6 +77,10 @@ class DashboardController extends BaseController
         parent::__construct($request, $response);
         $userData = session_get('user_data_array',true);
 
+        if(!$userData){
+            $userData = session_get('region_staff_data_array',true);
+        }
+
         if($userData && isset($userData['id'])){
             $this->currentUserId = $userData['id'];
             $this->userObject = new User($this->currentUserId);
@@ -168,7 +172,6 @@ class DashboardController extends BaseController
             $viewToRender = 'dashboard/region_sales_manger_dashboard';
             $regions = $this->userObject->getManagedRegions();
             $this->dataForView['regions'] = $regions;
-
             //
             $this->_prepareDashboardDataForDSM();
         }else{

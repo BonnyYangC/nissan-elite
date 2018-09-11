@@ -113,6 +113,10 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('admin.fake.user');
 
 \App\core\Route::Instance()
+    ->get('/admin/fake-region-staff', \App\controller\backend\AdminController::class,'fake_region_staff')
+    ->name('admin.fake.region.staff');
+
+\App\core\Route::Instance()
     ->get('/api/get-menus', \App\controller\backend\ApiController::class,'get_menus')
     ->name('api.get.menu');
 /**

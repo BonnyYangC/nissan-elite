@@ -209,10 +209,18 @@ class UsersController extends Controller
         $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
 
         session_set(env('SESSION_SEGMENT','_nissanac'), $uuid);
-        session_set('user_data_array', [
-            'id'=>$user->getId(),
-            'name'=>$user->getName()
-        ]);
+
+        if($user->isRegionsManager()){
+            session_set('region_staff_data_array', [
+                'id'=>$user->getId(),
+                'name'=>$user->getName()
+            ]);
+        }else{
+            session_set('user_data_array', [
+                'id'=>$user->getId(),
+                'name'=>$user->getName()
+            ]);
+        }
     }
 
     /**
