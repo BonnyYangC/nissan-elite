@@ -4,6 +4,7 @@
 <body>
 {% include 'layout/backend/header.twig' %}
 {{ include('layout/backend/nav.twig') }}
+{{ include('layout/backend/flash_message.twig') }}
 {% block content %}{% endblock %}
 {{ include('layout/backend/js.twig') }}
 </body>

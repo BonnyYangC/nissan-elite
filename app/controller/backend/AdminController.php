@@ -13,7 +13,6 @@ use App\lib\utils\CsvTool;
 use App\lib\utils\FileUploader;
 use App\models\BaseModel;
 use App\models\Company;
-use App\models\management\ManagerRegion;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
 use App\models\nissan\DataSource;

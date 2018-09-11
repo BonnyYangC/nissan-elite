@@ -351,6 +351,7 @@ class User extends BaseModel implements Mailable, IRole
     public function save()
     {
         $this->active = strtolower($this->active) == 'inactive' || empty($this->active) ? 0 : 1;
+
         $this->registered = strtolower($this->registered) == 'registered' ? 1 : 0;
         $this->member = strtolower($this->member) == 'y' || strtolower($this->member) == 'yes' ? 1 : 0;
         // Make sure the company ID field is correct
@@ -486,6 +487,12 @@ class User extends BaseModel implements Mailable, IRole
                 ]
             ]
         );
+
+        // Check if the company is suspended
+        $company = Company::GetByCompanyCode($record->company_code);
+        if(strtoupper($company['company_name']) === 'SUSPENSION FILE'){
+            return null;
+        }
         return $record ? $this : $record;
     }
 

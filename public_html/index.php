@@ -80,6 +80,22 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/users-manage', \App\controller\backend\UsersController::class,'index')
     ->name('admin.users.manage');
 
+/**
+ * Routes for manage calendars
+ */
+\App\core\Route::Instance()
+    ->get('/admin/calendars-index', \App\controller\backend\CalendarsController::class,'calendars_index')
+    ->name('admin.calendars.index');
+\App\core\Route::Instance()
+    ->get('/admin/calendars-edit', \App\controller\backend\CalendarsController::class,'calendars_edit')
+    ->name('admin.calendars.edit');
+\App\core\Route::Instance()
+    ->post('/admin/calendars-save', \App\controller\backend\CalendarsController::class,'calendars_save')
+    ->name('admin.calendars.save');
+/**
+ * End: Routes for manage calendars
+ */
+
 \App\core\Route::Instance()
     ->get('/admin/region-staff', \App\controller\backend\UsersController::class,'region_staff')
     ->name('admin.region.staff');

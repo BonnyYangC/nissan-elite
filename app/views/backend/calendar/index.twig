@@ -1,0 +1,40 @@
+{% extends 'layout/backend.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="content mt-20">
+            <div class="columns">
+                <div class="column">
+                    <h1>Calendar Management</h1>
+                </div>
+                <div class="column">
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr>
+                        <th>{{ event.title }}</th>
+                        <td>{{ event.datestamp }}</td>
+                        <td>{{ event.dateend }}</td>
+                        <td>{{ event.description }}</td>
+                        <td>
+                            {% set param = {'eid':event.id} %}
+                            <a href="{{ url('/admin/calendars-edit',param) }}"
+                               class="button is-small is-link">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
