@@ -20,6 +20,9 @@ class CalendarsController extends BaseController
         parent::__construct($request, $response);
     }
 
+    /**
+     * Load calendars
+     */
     public function calendars_index(){
         $events = Events::Load();
         $this->dataForView['events'] = array_reverse($events);
@@ -27,6 +30,9 @@ class CalendarsController extends BaseController
         return;
     }
 
+    /**
+     * Load calendar edit view
+     */
     public function calendars_edit(){
         $event = new Events($this->request->param('eid'));
         $this->dataForView['event'] = $event;
@@ -34,6 +40,9 @@ class CalendarsController extends BaseController
         return;
     }
 
+    /**
+     * Save calendar
+     */
     public function calendars_save(){
         $eventData = $this->request->paramsPost()->get('event');
         $event = new Events($eventData['id']);

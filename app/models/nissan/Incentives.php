@@ -59,4 +59,16 @@ class Incentives extends BaseModel
         );
         return $result;
     }
+
+    public static function LoadAll(){
+        $database = self::DB();
+        $result = $database->select(
+            self::TABLE_NAME,
+            '*',
+            [
+                'ORDER'=>['start'=>'DESC']
+            ]
+        );
+        return $result;
+    }
 }

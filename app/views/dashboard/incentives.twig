@@ -12,8 +12,8 @@
                 <div class="row">
                     <div class="fotorama foto-slider-wrap" data-click="true" data-autoplay="true" data-width="100%" data-ratio="840/598" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-allowfullscreen="true">
                         {% for slide in incentives %}
-                        <div data-img="http://nissanac.com.au/images/incentives/images/{{ slide.image }}">
-                            <a href="http://nissanac.com.au/images/incentives/images/pdf/{{ slide.pdf }}" target="_blank"></a>
+                        <div data-img="{{ asset('/images/incentives/images/') }}{{ slide.image }}">
+                            <a href="{{ asset('/images/incentives/images/pdf/') }}{{ slide.pdf }}" target="_blank"></a>
                         </div>
                         {% endfor %}
                     </div>
@@ -69,8 +69,8 @@
                 <div class="col-md-12">
                     {% for item in row %}
                         <div class="col-md-4 col-xs-12">
-                            <a href="http://nissanac.com.au/images/incentives/images/pdf/{{ item.pdf }}" target="_blank">
-                                <img class="img-responsive" src="http://nissanac.com.au/images/incentives/images/{{ item.image }}" alt="{{ item.title }}">
+                            <a href="{{ asset('/images/incentives/images/pdf/') }}{{ item.pdf }}" target="_blank">
+                                <img class="img-responsive" src="{{ asset('/images/incentives/images/') }}{{ item.image }}" alt="{{ item.title }}">
                             </a>
                             <p>{{ good_date(item.start) }} to {{ good_date(item.finish) }}<br>{{ item.title }}<br></p><br>
                         </div>
@@ -90,8 +90,8 @@
             <div class="col-md-12">
                     {% for item in row %}
                     <div class="col-md-4 col-xs-12">
-                        <a href="http://nissanac.com.au/images/incentives/images/pdf/{{ item.pdf }}" target="_blank">
-                            <img class="img-responsive" src="http://nissanac.com.au/images/incentives/images/{{ item.image }}" alt="{{ item.title }}">
+                        <a href="{{ asset('/images/incentives/images/pdf/') }}{{ item.pdf }}" target="_blank">
+                            <img class="img-responsive" src="{{ asset('/images/incentives/images/') }}{{ item.image }}" alt="{{ item.title }}">
                         </a>
                         <p>{{ good_date(item.start) }} to {{ good_date(item.finish) }}<br>{{ item.title }}<br></p><br>
                     </div>

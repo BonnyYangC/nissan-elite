@@ -96,6 +96,22 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
  * End: Routes for manage calendars
  */
 
+/**
+ * Routes for manage calendars
+ */
+\App\core\Route::Instance()
+    ->get('/admin/incentives-index', \App\controller\backend\IncentivesController::class,'incentives_index')
+    ->name('admin.incentives.index');
+\App\core\Route::Instance()
+    ->get('/admin/incentive-edit', \App\controller\backend\IncentivesController::class,'incentive_edit')
+    ->name('admin.incentive.edit');
+\App\core\Route::Instance()
+    ->post('/admin/incentive-save', \App\controller\backend\IncentivesController::class,'incentive_save')
+    ->name('admin.incentive.save');
+/**
+ * End: Routes for manage calendars
+ */
+
 \App\core\Route::Instance()
     ->get('/admin/region-staff', \App\controller\backend\UsersController::class,'region_staff')
     ->name('admin.region.staff');
