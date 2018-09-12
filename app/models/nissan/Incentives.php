@@ -19,6 +19,9 @@ class Incentives extends BaseModel
     const FINISHED = 'FINISHED';
     const PAST = 'PAST';
 
+    const IMAGE_FILE_PATH = '/images/incentives/images/';
+    const PDF_FILE_PATH = '/images/incentives/images/pdf/';
+
     /**
      * Load Nissan Incentives
      * @param string $status
@@ -60,6 +63,10 @@ class Incentives extends BaseModel
         return $result;
     }
 
+    /**
+     * Load all incentives for backend
+     * @return array|bool
+     */
     public static function LoadAll(){
         $database = self::DB();
         $result = $database->select(
@@ -71,4 +78,21 @@ class Incentives extends BaseModel
         );
         return $result;
     }
+
+    /**
+     * get Image url
+     * @return string
+     */
+    public function getImageUrl(){
+        return asset(self::IMAGE_FILE_PATH).$this->image;
+    }
+
+    /**
+     * Get pdf file url
+     * @return string
+     */
+    public function getPdfUrl(){
+        return asset(self::PDF_FILE_PATH).$this->pdf;
+    }
+
 }

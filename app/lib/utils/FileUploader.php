@@ -34,7 +34,6 @@ class FileUploader
 
         try{
             $upload = new FileUpload();
-            $upload->withMaximumSizeInMegabytes(4);
             $upload->withTargetDirectory($folderPath);
             $upload->from($fileInputName);
 
@@ -56,7 +55,6 @@ class FileUploader
             // upload cancelled
         }
         catch (\Exception $exception){
-
         }
         return false;
     }

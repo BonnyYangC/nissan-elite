@@ -16,6 +16,16 @@ Zepto(function($){
         fileInputOnChange(csvFile, 'csv-file-input-text');
     }
 
+    var imageFile = document.getElementById("image-file-input");
+    if(imageFile){
+        fileInputOnChange(imageFile, 'image-file-input-text');
+    }
+
+    var pdfFile = document.getElementById("pdf-file-input");
+    if(pdfFile){
+        fileInputOnChange(pdfFile, 'pdf-file-input-text');
+    }
+
     // search bar
     var navEl = document.getElementById('nav-app-wrap');
     if(navEl){

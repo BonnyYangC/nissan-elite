@@ -97,7 +97,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
  */
 
 /**
- * Routes for manage calendars
+ * Routes for manage incentives
  */
 \App\core\Route::Instance()
     ->get('/admin/incentives-index', \App\controller\backend\IncentivesController::class,'incentives_index')
@@ -106,10 +106,13 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/incentive-edit', \App\controller\backend\IncentivesController::class,'incentive_edit')
     ->name('admin.incentive.edit');
 \App\core\Route::Instance()
+    ->get('/admin/incentive-new', \App\controller\backend\IncentivesController::class,'incentive_new')
+    ->name('admin.incentive.new');
+\App\core\Route::Instance()
     ->post('/admin/incentive-save', \App\controller\backend\IncentivesController::class,'incentive_save')
     ->name('admin.incentive.save');
 /**
- * End: Routes for manage calendars
+ * End: Routes for manage incentives
  */
 
 \App\core\Route::Instance()

@@ -7,6 +7,7 @@
                     <h1>Incentives Management</h1>
                 </div>
                 <div class="column">
+                    <a href="{{ url('/admin/incentive-new') }}" class="button is-pulled-right"><i class="fa fa-plus"></i>&nbsp;New Incentive</a>
                 </div>
             </div>
             <table class="table">
@@ -28,8 +29,14 @@
                         <td>{{ incentive.start }}</td>
                         <td>{{ incentive.finish }}</td>
                         <td>{{ incentive.caption }}</td>
-                        <td>{{ incentive.image }}</td>
-                        <td>{{ incentive.pdf }}</td>
+                        <td>
+                            <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
+                        </td>
+                        <td>
+                            {% if incentive.pdf %}
+                            <a href="{{ asset('/images/incentives/images/pdf/') }}{{ incentive.pdf }}" target="_blank">View PDF</a>
+                            {% endif %}
+                        </td>
                         <td>
                             {% set param = {'eid':incentive.id} %}
                             <a href="{{ url('/admin/incentive-edit',param) }}"
