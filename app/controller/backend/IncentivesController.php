@@ -69,7 +69,11 @@ class IncentivesController extends BaseController
             $incentive->$fieldName = $value;
         }
 
-        $incentive->save();
+        if($incentive->save()){
+            session_flash('msg',['content'=>$incentive->title.' has been updated successfully!','status'=>'success']);
+        }else{
+            session_flash('msg',['content'=>'System busy, please try again or contact IT person!','status'=>'danger']);
+        }
         $this->response->redirect('/admin/incentives-index');
         return;
     }

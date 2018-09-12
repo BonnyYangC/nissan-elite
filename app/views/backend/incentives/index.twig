@@ -30,7 +30,9 @@
                         <td>{{ incentive.finish }}</td>
                         <td>{{ incentive.caption }}</td>
                         <td>
+                            {% if incentive.image %}
                             <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
+                            {% endif %}
                         </td>
                         <td>
                             {% if incentive.pdf %}

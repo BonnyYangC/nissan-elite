@@ -90,6 +90,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/calendars-edit', \App\controller\backend\CalendarsController::class,'calendars_edit')
     ->name('admin.calendars.edit');
 \App\core\Route::Instance()
+    ->get('/admin/calendar-new', \App\controller\backend\CalendarsController::class,'calendar_new')
+    ->name('admin.calendar.new');
+\App\core\Route::Instance()
     ->post('/admin/calendars-save', \App\controller\backend\CalendarsController::class,'calendars_save')
     ->name('admin.calendars.save');
 /**

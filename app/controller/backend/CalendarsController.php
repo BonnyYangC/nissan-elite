@@ -40,6 +40,13 @@ class CalendarsController extends BaseController
         return;
     }
 
+    public function calendar_new(){
+        $event = new Events();
+        $this->dataForView['event'] = $event;
+        $this->render('backend/calendar/edit');
+        return;
+    }
+
     /**
      * Save calendar
      */
