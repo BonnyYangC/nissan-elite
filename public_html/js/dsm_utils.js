@@ -10,7 +10,30 @@ if(dsmEl){
             regionCodes:'',
             regionName:'',
             tableData:[],
-            keyword:''
+            keyword:'',
+            dept:'All',
+            departments:[
+                {
+                    label:'All Departments',
+                    value:'All'
+                },
+                {
+                    label:'Administration',
+                    value:'Administration'
+                },
+                {
+                    label:'Sales',
+                    value:'Sales'
+                },
+                {
+                    label:'Parts',
+                    value:'Parts'
+                },
+                {
+                    label:'Service',
+                    value:'Service'
+                },
+            ]
         },
         created: function(){
             this.managerId = managerId;
@@ -31,21 +54,38 @@ if(dsmEl){
                     }
                 }
             },
+            showOnly: function(dept){
+                for (var rowIndex=0;rowIndex<this.tableData.length;rowIndex++){
+                    this.showMe({row:this.tableData[rowIndex]},rowIndex);
+                }
+            },
             showMe:function(row, rowIndex){
-                if(this.keyword.trim().length === 0){
+                if(this.keyword.trim().length === 0 && this.dept === 'All'){
                     return null;
                 }else{
                     if(row.row.dn.toLowerCase().indexOf(this.keyword.toLowerCase()) === -1){
                         // not found
                         return 'hidden';
                     }else{
-                        return null;
+                        if(this.dept !== 'all'){
+                            if(this.dept === row.row.sc){
+                                return null;
+                            }else{
+                                return 'hidden';
+                            }
+                        }else{
+                            return null;
+                        }
                     }
                 }
             },
             filterHandler: function(value, row, column) {
                 const property = column['property'];
-                return row[property] === value;
+                if(this.dept){
+                    return row[property] === value && this.dept === row.sc;
+                }else {
+                    return row[property] === value;
+                }
             },
             _loadArrayData: function(){
                 var that = this;

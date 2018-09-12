@@ -32,17 +32,33 @@
         <hr>
         <div class="row pb-20">
             <div class="col-md-12">
-                <p>
-                    <el-input
-                        placeholder="Find a Dealer ..."
-                        v-model="keyword"
-                        clearable>
-                    </el-input>
-                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <el-input
+                                    placeholder="Find a Dealer ..."
+                                    v-model="keyword"
+                                    clearable>
+                            </el-input>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <el-select v-model="dept" placeholder="Department" v-on:change="showOnly">
+                                <el-option
+                                        v-for="(item, idx) in departments"
+                                        :key="idx"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </p>
+                    </div>
+                </div>
                 <el-table
                         :data="tableData"
                         border
-                        height="2000"
+                        height="800"
                         empty-text="Loading data ..."
                         :row-class-name="showMe"
                         style="width: 100%">
