@@ -21,6 +21,7 @@
                     <th>Email</th>
                     <th>Password</th>
                     <th>Position</th>
+                    <th>Active</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -30,11 +31,13 @@
                     <th>{{ user.company_name }}</th>
                     <td>{{ user.company_state }}</td>
                     <td>{{ user.firstname }} {{ user.lastname }}</td>
-                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                    <td>{{ user.email }}</td>
                     <td>{{ user.password }}</td>
                     <td>{{ user.position }}</td>
+                    <td>{{ user.active ? 'Yes':'NO' }}</td>
                     <td>
-                        <a class="button is-small is-link">Edit</a>
+                        {% set param = { 'uid':user.user_id } %}
+                        <a class="button is-small is-link" href="{{ url('/admin/users-edit',param) }}">Edit</a>
                     </td>
                 </tr>
                 {% endfor %}

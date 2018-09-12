@@ -79,6 +79,13 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/admin/users-manage', \App\controller\backend\UsersController::class,'index')
     ->name('admin.users.manage');
+\App\core\Route::Instance()
+    ->get('/admin/users-edit', \App\controller\backend\UsersController::class,'user_edit')
+    ->name('admin.users.edit');
+
+\App\core\Route::Instance()
+    ->post('/admin/users-save', \App\controller\backend\UsersController::class,'user_save')
+    ->name('admin.users.save');
 
 /**
  * Routes for manage calendars

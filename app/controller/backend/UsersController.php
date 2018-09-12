@@ -59,5 +59,33 @@ class UsersController extends BaseController
         return;
     }
 
+    /**
+     * Load user edit view
+     */
+    public function user_edit(){
+        $user = new User($this->request->param('uid'));
+        $this->dataForView['user'] = $user;
+        $this->render('backend/users/edit');
+        return;
+    }
 
+    /**
+     * Save users
+     */
+    public function user_save(){
+        $data = $this->request->paramsPost()->get('user');
+        $user = new User();
+
+        foreach ($data as $fieldName=>$value) {
+            $user->$fieldName = $value;
+        }
+
+        if($user->save()){
+            session_flash('msg',['content'=>$user->firstname.' has been updated successfully!','status'=>'success']);
+        }else{
+            session_flash('msg',['content'=>'System busy, please try again or contact IT person!','status'=>'danger']);
+        }
+        $this->response->redirect('/admin/users-manage');
+        return;
+    }
 }
