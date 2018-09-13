@@ -16,6 +16,7 @@ use App\models\Company;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
 use App\models\nissan\DataSource;
+use App\models\nissan\History;
 use App\models\nissan\Ranking;
 use App\models\User;
 use App\models\utils\RoleFactory;
@@ -175,6 +176,76 @@ class AdminController extends BaseController
     }
 
     /**
+     * Fix all possible missing data in history table
+     */
+    public function fix_historical_data_for_credits(){
+        $reader = CsvTool::ReadFile(__DIR__.'/history.csv');
+        $yearsIndex = [
+            '2016-01-01',
+            '2015-01-01',
+            '2015-01-02',
+            '2014-01-01',
+            '2013-01-01',
+            '2012-01-01',
+            '2011-01-01',
+            '2010-01-01',
+            '2009-01-01',
+            '2008-01-01',
+            '2007-01-01',
+            '2006-01-01',
+            '2005-01-01',
+            '2004-01-01',
+            '2003-01-01',
+            '2002-01-01',
+            '2001-01-01',
+            '2000-01-01',
+            '1999-01-01',
+            '1998-01-01',
+            '1997-01-01',
+            '1996-01-01',
+            '1995-01-01',
+            '1994-01-01',
+            '1993-01-01',
+            '1992-01-01',
+        ];
+        $database = BaseModel::DB();
+        $count = 0;
+        foreach ($reader as $index=>$row) {
+            if($index>=800){
+                $employeeId = $row[0];
+                foreach (range(1,26) as $idx) {
+                    if(!empty($row[$idx])){
+                        $where = [
+                            'AND'=>[
+                                'period'=>$yearsIndex[$idx-1],
+                                'member_id'=>$employeeId
+                            ],
+                            'LIMIT'=>1
+                        ];
+                        $histories = $database->select('nissan_history','*',$where);
+                        $history = new History();
+                        if(isset($histories[0])){
+//                            $history->id = $histories[0]['id'];
+//                            $history->amount = $row[$idx];
+//                            $history->save();
+//                            $updatedCount++;
+                        }else{
+                            // Missing data, insert it
+                            $history->period = $yearsIndex[$idx-1];
+                            $history->member_id = $employeeId;
+                            $history->amount = $row[$idx];
+                            $history->save();
+                            $count++;
+                        }
+                        $history = null;
+                    }
+                }
+            }
+        }
+        dump($count);
+    }
+
+    /**
      * Cross check or sync database with submitted csv file
      */
     public function csv_importer(){
@@ -183,6 +254,7 @@ class AdminController extends BaseController
         $uploader = new FileUploader($this->request);
         $filePath = $uploader->store('csv');
         $syncedRowsCount = 0;
+
 
         if($filePath){
             /**
@@ -221,7 +293,6 @@ class AdminController extends BaseController
                         )
                     ){
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
-
                         $resultSet = $db->select($tableName,'*',$whereCondition);
                         $found = count($resultSet) > 0;
 
@@ -362,13 +433,28 @@ class AdminController extends BaseController
      */
     private function _getWhereCondition($tableName, $row){
         $where = [
-            'AND'=>[
-                DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
-                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
-                DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
-            ]
+            'AND'=>[]
         ];
+        if(in_array(DbMap::DEALER_CODE, $this->indexes) && !is_null($row[$this->indexes[DbMap::DEALER_CODE]])){
+            $where['AND'][DbMap::DEALER_CODE] = $row[$this->indexes[DbMap::DEALER_CODE]];
+        }
+        if(in_array(DbMap::MEMBER_ID, $this->indexes) && !is_null($row[$this->indexes[DbMap::MEMBER_ID]])){
+            $where['AND'][DbMap::MEMBER_ID] = $row[$this->indexes[DbMap::MEMBER_ID]];
+        }
+        if(in_array(DbMap::PERIOD, $this->indexes) && !is_null($row[$this->indexes[DbMap::PERIOD]])){
+            $where['AND'][DbMap::PERIOD] = CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]);
+        }
+//        $where = [
+//            'AND'=>[
+//                DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
+////                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
+//                DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
+//            ]
+//        ];
 
+        /**
+         * Handle special tables
+         */
         if($tableName === RegionTerritoryReport::TABLE_NAME){
             $where = [
                 'AND'=>[
@@ -376,10 +462,6 @@ class AdminController extends BaseController
                     DbMap::PERIOD  => env('YEAR'),
                 ]
             ];
-        }
-
-        if(!is_null($row[$this->indexes[DbMap::DEALER_CODE]])){
-            $where['AND'][DbMap::DEALER_CODE] = $row[$this->indexes[DbMap::DEALER_CODE]];
         }
 
         /**

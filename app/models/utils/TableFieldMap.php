@@ -425,7 +425,6 @@ class TableFieldMap{
             'member_id'     =>'_amb_id',
             'mtd'           =>'CREDITS_MONTHLY',
             'ytd'           =>'CREDITS_YTD',
-//            'ytd'           =>'CREDITS_ytd_lifetime',
         ];
         return $map;
     }

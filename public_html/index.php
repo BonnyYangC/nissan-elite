@@ -69,6 +69,8 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 // Admin Only
 \App\core\Route::Instance()->get('/admin-panel', \App\controller\backend\AdminController::class,'index')
     ->name('admin.home');
+\App\core\Route::Instance()->get('/admin-fix-historical', \App\controller\backend\AdminController::class,'fix_historical_data_for_credits')
+    ->name('admin.fix.historical');
 \App\core\Route::Instance()
     ->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer')
     ->name('admin.upload.csv');
