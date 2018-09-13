@@ -143,7 +143,7 @@ class UsersController extends Controller
                 'src'=>asset($imageAssetPrefix.'tile-ce.jpg'),
             ],
             [
-                'url'=>'http://nissan-events.com.au/excellence-fy17/ac/welcome.html',
+                'url'=>'http://nissan-events.com.au/excellence-fy18/ac/',
                 'src'=>asset($imageAssetPrefix.'nissan-doty.jpg'),
             ],
             [
