@@ -1,7 +1,7 @@
 <div class="table-responsive">
     {# Gage chart: set up some variables for gage js #}
     <script>
-        window.YEAR_TO_DATE = {{ dashboard.ytd }};
+        window.YEAR_TO_DATE = "{{ dashboard.ytd }}";
         window.MIN = {{ dashboard.statusChart.min }};
         window.MAX = {{ dashboard.statusChart.max }};
         window.LEVEL_COLOR = '{{ dashboard.statusChart.color }}';

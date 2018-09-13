@@ -135,6 +135,12 @@ class RegionTerritoryReport extends BaseModel
             case 'Service Manager':
                 $abbr = User::SERVICE_MANAGER;
                 break;
+            case 'Fleet Sales Consultant':
+                $abbr = User::FLEET_SALES_CONSULTANTS;
+                break;
+            case 'Fleet Sales Manager':
+                $abbr = User::FLEET_SALES_MANAGER;
+                break;
             default:
                 break;
         }

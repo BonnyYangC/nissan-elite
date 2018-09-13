@@ -261,15 +261,17 @@ class Model implements Jsonable
         }
         $escaped = [];
         foreach ($params as $key=>$param) {
-            if(is_object($param)){
-                if (get_class($param) === Carbon::class){
-                    $param = $param->toDateTimeString();
+            if($key != $this->idFieldName){
+                if(is_object($param)){
+                    if (get_class($param) === Carbon::class){
+                        $param = $param->toDateTimeString();
+                    }
                 }
+                $escaped[$key] = $param;
             }
-            $escaped[$key] = $param;
         }
         self::DB()->insert($this->tableName, $escaped);
-        $this->id = self::DB()->id();
+        $this->idFieldName = self::DB()->id();
         return $this;
     }
 

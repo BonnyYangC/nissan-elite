@@ -125,6 +125,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
  * End: Routes for manage incentives
  */
 
+// DSM users
 \App\core\Route::Instance()
     ->get('/admin/region-staff', \App\controller\backend\UsersController::class,'region_staff')
     ->name('admin.region.staff');
@@ -136,6 +137,22 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/api/users-search', \App\controller\backend\ApiController::class,'users_search')
     ->name('api.users.search');
+// DSM users end
+
+// Super user for Su and Val
+\App\core\Route::Instance()
+    ->get('/admin/users-super', \App\controller\backend\UsersController::class,'super_users')
+    ->name('admin.users.super');
+\App\core\Route::Instance()
+    ->get('/admin/users-super-new', \App\controller\backend\UsersController::class,'super_user_new')
+    ->name('admin.users.super.new');
+\App\core\Route::Instance()
+    ->get('/admin/users-super-edit', \App\controller\backend\UsersController::class,'super_user_edit')
+    ->name('admin.users.super.edit');
+\App\core\Route::Instance()
+    ->post('/admin/users-super-save', \App\controller\backend\UsersController::class,'super_user_save')
+    ->name('admin.users.super.save');
+// Super user for Su and Val: End
 
 \App\core\Route::Instance()
     ->get('/api/admin/load-nissan-dealers', \App\controller\backend\ApiController::class,'load_nissan_dealers')

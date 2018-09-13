@@ -67,7 +67,7 @@ if(dsmEl){
                         // not found
                         return 'hidden';
                     }else{
-                        if(this.dept !== 'all'){
+                        if(this.dept !== 'All'){
                             if(this.dept === row.row.sc){
                                 return null;
                             }else{

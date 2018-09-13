@@ -70,12 +70,7 @@ class ApiController extends BaseController
     public function load_regional_data(){
         $regions = explode(' ',$this->request->param('regions'));
         $rows = $this->_retrieve_regional_data($regions);
-        $result = [];
-        foreach ($rows as $row) {
-            $result[] = [
-                'rn'=>$row['region_name']
-            ];
-        }
+
         for($i = 0;$i<count($rows);$i++){
             $rows[$i]['pos'] = RegionTerritoryReport::ShortenPositionString($rows[$i]['pos']);
         }

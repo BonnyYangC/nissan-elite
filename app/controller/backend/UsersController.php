@@ -60,6 +60,55 @@ class UsersController extends BaseController
     }
 
     /**
+     * Get Nissan super users
+     */
+    public function super_users(){
+        $this->dataForView['users'] = User::GetNissanSuperUsers();
+        $this->render('backend/users/super_users');
+        return;
+    }
+
+    /**
+     * Load super user new view
+     */
+    public function super_user_new(){
+        $user = new User($this->request->param('uid'));
+        $this->dataForView['user'] = $user;
+        $this->render('backend/users/edit_super');
+        return;
+    }
+
+    /**
+     * Load super user edit view
+     */
+    public function super_user_edit(){
+        $user = new User($this->request->param('uid'));
+        $this->dataForView['user'] = $user;
+        $this->render('backend/users/edit_super');
+        return;
+    }
+
+    /**
+     * Save super user then redirect
+     */
+    public function super_user_save(){
+        $data = $this->request->paramsPost()->get('user');
+        if(empty($data['employee_code'])){
+            $data['employee_code'] = random_str(uniqid());
+        }
+        $data['company_id'] = 8;
+
+        $user = new User();
+        foreach ($data as $fieldName => $value) {
+            $user->$fieldName = $value;
+        }
+
+        $user->save();
+        $this->response->redirect('/admin/users-super');
+        return;
+    }
+
+    /**
      * Load user edit view
      */
     public function user_edit(){

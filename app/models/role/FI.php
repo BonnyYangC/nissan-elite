@@ -81,7 +81,7 @@ class FI extends BaseRole implements IRole
             if($item)
             {
                 $ytd=$item['credit_ytd'];
-                $this->JS_credits[date("M", $period)] = $item['credit_mtd'];
+                $this->JS_credits[date("M", $period)] = empty($item['credit_mtd']) ? 0 : $item['credit_mtd'];
                 /**
                  * From Data results
                  */

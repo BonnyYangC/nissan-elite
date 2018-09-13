@@ -53,8 +53,9 @@ class User extends BaseModel implements Mailable, IRole
     const RM_NFSA = 'RM NFSA';
     const RGM = 'RGM';
     const ADMIN = 'ADMIN';
+    const NISSAN_SUPER = 'NISSAN_SUPER';
 
-    const SHOP_OWNER                = 'SHOP_OWNER';
+    const SHOP_OWNER = 'SHOP_OWNER';
 
     const TABLE_NAME = 'users';
 
@@ -115,6 +116,25 @@ class User extends BaseModel implements Mailable, IRole
                 'active'=>1,
             ]
         ]);
+        return $result;
+    }
+
+    /**
+     * Get nissan super users
+     * @return array|bool
+     */
+    public static function GetNissanSuperUsers(){
+        $where = [
+            'users.parent_id'=>8,
+            'users.company_id'=>8,
+            'users.position'=>self::NISSAN_SUPER,
+        ];
+
+        $db = self::DB();
+        $result = $db->select('users','*',[
+            'AND'=>$where
+        ]);
+
         return $result;
     }
 
