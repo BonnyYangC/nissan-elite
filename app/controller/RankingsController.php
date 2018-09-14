@@ -83,17 +83,32 @@ class RankingsController extends DashboardController
                  * In this case, not category title required
                  * 在这种情况下, 不需要分 category, 所以 categoryName 为0
                  */
-                $result[0] = [];
-                $result[0]['category'] = null;
-                $result[0]['rows'] = [];
+//                $result[0] = [];
+//                $result[0]['category'] = null;
+//                $result[0]['rows'] = [];
+                $currentRegion = null;
+                $currentRegionName = null;
 
                 foreach ($resultSet as $key => $item) {
                     $item['total'] = floatval($item['total']);
+
+
+                    if($currentRegion !== $item['region']){
+                        $currentRegion = $item['region'];
+                        $currentRegionName = Company::GetRegionName($currentRegion);
+                    }
+
+                    if(!$result[$currentRegionName]){
+                        $result[$currentRegionName] = [];
+                        $result[$currentRegionName]['rows'] = [];
+                    }
+
                     $rankingIndexNumber = $region === Ranking::REGIONAL ?
-                        count($result[0]['rows'])+1 // Regional
+                        count($result[$currentRegionName]['rows'])+1 // Regional
                         : null; // National
 
-                    $result[0]['rows'][] = $this->_convertRankingRowForFrontendJson(
+                    $result[$currentRegionName]['category'] = $currentRegionName.' Region';
+                    $result[$currentRegionName]['rows'][] = $this->_convertRankingRowForFrontendJson(
                         $item,
                         $role,
                         $rankingIndexNumber

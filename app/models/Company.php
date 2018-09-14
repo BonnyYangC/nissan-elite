@@ -17,7 +17,7 @@ class Company extends BaseModel implements IRole
     const REGION_EASTERN_SHORT = 'E';
     const REGION_EASTERN = 'Eastern';
     const REGION_WESTERN_SHORT = 'W';
-    const REGION_WESTERN = 'Western';
+    const REGION_WESTERN = 'Western & Central';
     const REGION_NORTHERN_SHORT = 'N';
     const REGION_NORTHERN = 'Northern';
     const REGION_SOUTHERN_SHORT = 'S';
