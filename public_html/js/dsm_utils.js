@@ -33,16 +33,26 @@ if(dsmEl){
                     label:'Service',
                     value:'Service'
                 },
-            ]
+            ],
+            isLoadingRemoteData: false
+        },
+        watch:{
+            'regionName': function(newValue, oldValue){
+                if(newValue !== oldValue){
+                    this.tableData = [];
+                    this.dept = 'All';
+                    this.keyword = '';
+                    this._loadArrayData();
+                }
+            }
         },
         created: function(){
             this.managerId = managerId;
             this.employeeCode = employeeCode;
             this.regions = regions;
-            for (var i = 0; i < this.regions.length; i++) {
-                this.regionName += this.regions[i] + ' ';
+            if(this.regions.length === 1){
+                this.regionName = this.regions[0];
             }
-            this._loadArrayData();
         },
         methods:{
             arraySpanMethod: function(row, column, rowIndex, columnIndex) {
@@ -88,6 +98,11 @@ if(dsmEl){
                 }
             },
             _loadArrayData: function(){
+                if(this.regionName.trim().length === 0){
+                    this.tableData = [];
+                    return;
+                }
+                this.isLoadingRemoteData = true;
                 var that = this;
                 axios.get(
                     '/api/dsm/load-regional-data?manager='+this.managerId + '&regions=' + this.regionName.trim()
@@ -95,6 +110,7 @@ if(dsmEl){
                     if(res.data.error_no === 100){
                         that.tableData = res.data.data;
                     }
+                    that.isLoadingRemoteData = false;
                 });
             },
             getMockUserUrl: function(employeeCode){

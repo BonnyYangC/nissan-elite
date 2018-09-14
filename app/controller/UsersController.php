@@ -32,12 +32,13 @@ class UsersController extends Controller
         $userData = session_get('user_data_array',true);
         if($userData && isset($userData['id']) && !empty($userData['id'])){
             // Refresh the session data
-            $user = new User();
-            $user->find($userData['id']);
+            $user = new User($userData['id']);
+//            $user->find();
             $uuid = random_str(uniqid());
             $this->_setUserSessionData($uuid, $user);
 
             $this->dataForView['grid'] = $this->_get3BrandsGridData();
+            $this->dataForView['user'] = $user;
             // Render dashboard view
             $this->render('user/entry_point');
         }else{

@@ -60,6 +60,16 @@ class RegionTerritoryReport extends BaseModel
         return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
     }
 
+    public static function GetRegionCodeWithShortName($name){
+        $map = [
+            'Southern'           =>self::REGION_SOUTHERN,
+            'Western'  =>self::REGION_WESTERN_AND_CENTRAL,
+            'Eastern'            =>self::REGION_EASTERN,
+            'Northern'           =>self::REGION_NORTHERN,
+        ];
+        return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
+    }
+
     /**
      * Search territory report by region codes
      * @param $codes
@@ -79,7 +89,7 @@ class RegionTerritoryReport extends BaseModel
             'credits_monthly_12(c12)','credits_monthly_01(c01)','credits_monthly_02(c02)','credits_monthly_03(c03)',
         ],[
             'AND'=>[
-                'region_name'=>$codes.' Region',
+                'region_id'=>self::GetRegionCodeWithShortName($codes),
                 'period'=>env('YEAR')
             ]
         ]);

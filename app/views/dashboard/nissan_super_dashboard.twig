@@ -1,0 +1,183 @@
+{% extends 'layout/frontend.twig' %}
+{% block content %}
+    <script>
+        var managerId = {{ user.user_id }};
+        var employeeCode = "{{ user.employee_code }}";
+        var regions = {{ json_encode(regions) | raw }};
+    </script>
+    <style>
+        .el-table .sort-caret.ascending{
+            border-bottom-color: #fff;
+        }
+        .el-table .sort-caret.descending{
+            border-top-color: #fff;
+        }
+    </style>
+    <div class="container bg-white {{ isPhone?null:'pl-25 pr-25' }}" id="dsm-app">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <h1 class="{{ isPhone?'text-center':'pull-left' }}" >
+                    <span style="font-size:20px; padding-top:0;">Territory Report {{ env('YEAR') }}</span>
+                </h1>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <p class="mt-20 {{ isPhone?'text-center':'text-right' }}" style="padding-top:12px;">
+                    <a href="{{ url('/api/dsm/download-regional-data') }}?member={{ user.user_id }}" class="btn btn-default">
+                        <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Territory Report</a>&nbsp;
+                    <a href="{{ url('/api/dsm/download-active-member-list') }}?member={{ user.user_id }}" class="btn btn-default">
+                        <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Active Member List</a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row pb-20">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>
+                            <el-select v-model="regionName" placeholder="Select Region .." class="full-width">
+                                {% for idx,region in regions %}
+                                <el-option
+                                        key="{{ idx }}"
+                                        label="{{ region=='Western' ? 'Western & Central' : region }} Region"
+                                        value="{{ region }}">
+                                </el-option>
+                                {% endfor %}
+                            </el-select>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <el-input
+                                    placeholder="Find a Dealer ..."
+                                    v-model="keyword"
+                                    clearable>
+                            </el-input>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>
+                            <el-select v-model="dept" placeholder="Department" v-on:change="showOnly" class="full-width">
+                                <el-option
+                                        v-for="(item, idx) in departments"
+                                        :key="idx"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mt-20 mb-20" v-show="isLoadingRemoteData">
+                    <div class="col-md-12">
+                        <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom txt-red"></i>&nbsp;<span class="txt-red">Loading Data ... Please wait for a moment!</span>
+                    </div>
+                </div>
+
+                <el-table
+                        v-show="tableData.length>0"
+                        :data="tableData"
+                        border
+                        height="800"
+                        empty-text="Loading data ..."
+                        :row-class-name="showMe"
+                        style="width: 100%">
+                    <el-table-column prop="dn" fixed sortable label="Dealer" width="150">
+                        <template slot-scope="scope">
+                            ${ scope.row.dn }
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="dc" {{ isPhone?null:'fixed' }} sortable
+                            label="Cat" width="96">
+                        <template slot-scope="scope">
+                            <p class="text-center">
+                                <el-tag :type="scope.row.dc === 'A' ? 'primary' : (scope.row.dc === 'B' ? 'success' : 'warning')" disable-transitions>
+                                    ${ scope.row.dc }
+                                </el-tag>
+                            </p>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="fn" {{ isPhone?null:'fixed' }} sortable
+                            label="Name" width="180">
+                        <template slot-scope="scope">
+                            <p class="text-center">
+                                <a :href="getMockUserUrl(scope.row.e)" target="_blank">${ scope.row.fn }</a>
+                            </p>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="sc" {{ isPhone?null:'fixed' }}
+                            label="Dept" sortable width="96">
+                        <template slot-scope="scope">
+                            ${ scope.row.sc === 'Administration' ? 'Admin' : scope.row.sc }
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="pos" {{ isPhone?null:'fixed' }}
+                            label="Position" sortable width="100">
+                        <template slot-scope="scope">
+                            <el-tag type="primary" disable-transitions>
+                                ${ scope.row.pos }
+                            </el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="cy" {{ isPhone?null:'fixed' }}
+                            label="YTD" sortable width="100">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c04"
+                            label="Apr/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c05"
+                            label="May/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c06"
+                            label="Jun/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c07"
+                            label="Jul/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c08"
+                            label="Aug/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c09"
+                            label="Sep/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c10"
+                            label="Oct/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c11"
+                            label="Nov/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c12"
+                            label="Dec/{{ env('YEAR')-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c01"
+                            label="Jan/{{ env('YEAR')+1-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c02"
+                            label="Feb/{{ env('YEAR')+1-2000 }}" sortable width="96">
+                    </el-table-column>
+                    <el-table-column
+                            prop="c03"
+                            label="Mar/{{ env('YEAR')+1-2000 }}" sortable width="96">
+                    </el-table-column>
+                </el-table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

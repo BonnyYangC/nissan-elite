@@ -151,6 +151,20 @@ class DashboardController extends BaseController
     }
 
     /**
+     * For DSM dashboard
+     */
+    private function _prepareDashboardDataForNissanSuper(){
+        $this->dataForView['extra_css'] = [
+            'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
+        ];
+        $this->dataForView['extra_js'] = [
+            'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js',
+            'https://unpkg.com/element-ui/lib/index.js',
+            asset('js/dsm_utils.js')
+        ];
+    }
+
+    /**
      * Dashboard request handler
      */
     public function dashboard(){
@@ -163,8 +177,15 @@ class DashboardController extends BaseController
 
         $viewToRender = 'dashboard/my_dashboard';
 
+
         // Todo: Check if user is a regular employee or not
-        if($this->userObject->isDealersOwner()){
+        if($this->userObject->position === User::NISSAN_SUPER){
+            // Nissan admin user login
+            $viewToRender = 'dashboard/nissan_super_dashboard';
+            $regions = $this->userObject->getManagedRegions();
+            $this->dataForView['regions'] = $regions;
+            $this->_prepareDashboardDataForNissanSuper();
+        }elseif($this->userObject->isDealersOwner()){
             // Load dealers' owner view
             $viewToRender = 'dashboard/dealer_owner_dashboard';
         }elseif ($this->userObject->isRegionsManager()){

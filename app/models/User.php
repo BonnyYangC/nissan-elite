@@ -405,7 +405,14 @@ class User extends BaseModel implements Mailable, IRole
      */
     public function init(){
         // Todo: check if the user is in management team
-        if(in_array($this->position, $this->_getRegionStaffRoles())){
+        if($this->position === self::NISSAN_SUPER){
+            $this->managedRegions = [
+                Company::REGION_EASTERN,
+                Company::REGION_SOUTHERN,
+                Company::REGION_WESTERN,
+                Company::REGION_NORTHERN,
+            ];
+        }elseif(in_array($this->position, $this->_getRegionStaffRoles())){
             $this->managedRegions = [$this->alt_position];
         }elseif ($this->position === self::SHOP_OWNER){
             // A shop owner
@@ -451,7 +458,6 @@ class User extends BaseModel implements Mailable, IRole
     public function setIsUserRegisteredAndExcellent(){
         $ranking = new Ranking();
         $result = $ranking->getLastRankingByUser($this);
-//        dd($result);
         if($result){
             $this->registered = $result->registered===Ranking::REGISTERED || $result->registered==='Registered';
             $this->excellence = $result->calc_dlr_exc ? $result->dlr_excellence_bonus : 0;

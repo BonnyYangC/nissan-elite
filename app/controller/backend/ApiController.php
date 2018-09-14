@@ -36,6 +36,9 @@ class ApiController extends BaseController
         }
     }
 
+    /**
+     * Load Nissan dealers
+     */
     public function load_nissan_dealers(){
         $company = new Company();
         $dealers = $company->simpleQuery(['parent_id'=>8],['company_id','company_name']);
