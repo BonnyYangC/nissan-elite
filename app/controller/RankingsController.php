@@ -23,6 +23,7 @@ use Klein\Request;
 use Klein\Response;
 use App\models\User;
 use App\models\nissan\Ranking;
+use League\Csv\Writer;
 
 class RankingsController extends DashboardController
 {
@@ -33,9 +34,17 @@ class RankingsController extends DashboardController
     }
 
     /**
-     * Get rankings data in Json format According to the request
+     * Print rankings
      */
-    public function get_rankings(){
+    public function print_rankings(){
+        $this->get_rankings(true);
+    }
+
+    /**
+     * Get rankings data in Json format According to the request
+     * @param bool $isPrintAction
+     */
+    public function get_rankings($isPrintAction = false){
         $result = [];
         $modalTitle = 'YTD ';
 
@@ -57,6 +66,7 @@ class RankingsController extends DashboardController
                 // 表示从查询到的 $thisPeriod 的上个月1号开始计算
                 $thisPeriod->subMonth(1);
             }
+
             $modalTitle .= $thisPeriod->format('F Y');
 
             // Retrieve result set from database
@@ -65,6 +75,7 @@ class RankingsController extends DashboardController
                 $thisPeriod,
                 $region
             );
+
             // Loop result set to convert array to new structure for frontend json
 
             if($isFleetSalesOrFleetSalesManager){
@@ -88,7 +99,8 @@ class RankingsController extends DashboardController
                         $rankingIndexNumber
                     );
                 }
-            }else{
+            }
+            else{
                 /**
                  * category title required
                  * 在这种情况下, 需要分 category 以及 region, 所以 categoryName 要分别的生成
@@ -117,14 +129,52 @@ class RankingsController extends DashboardController
                     );
                 }
             }
-            echo JsonBuilder::Success([
-                'blocks'=>array_values($result),
-                'modalTitle'=>$modalTitle
-            ]);
+            if($isPrintAction){
+                // Print as csv file
+                $this->_printRankingsInCsv($result);
+            }else{
+                // Not print
+                echo JsonBuilder::Success([
+                    'blocks'=>array_values($result),
+                    'modalTitle'=>$modalTitle
+                ]);
+            }
         }
         else{
             echo JsonBuilder::Error();
         }
+    }
+
+    private function _printRankingsInCsv($result){
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'rankings'.time().'.csv';
+        $fileStream = fopen($filePath,'w');
+
+        $writer = Writer::createFromStream($fileStream);
+
+        $csvHeader = [
+            'Category','Ranking','Name','Dealer','State','Credits','Registered'
+        ];
+        $writer->insertOne($csvHeader);
+        foreach ($result as $categoryName=>$rows){
+            $cName = str_replace('Category ','',$categoryName);
+            foreach ($rows['rows'] as $row) {
+                $record = [
+                    $cName,
+                    $row['r'],
+                    $row['n'],
+                    $row['d'],
+                    $row['s'],
+                    str_replace(',','',$row['c']),
+                    $row['re'],
+                ];
+                $writer->insertOne(implode(',',$record));
+            }
+        }
+
+        fclose($fileStream);
+
+        $this->response->file($filePath);
+        die(0);
     }
 
     /**

@@ -223,7 +223,9 @@ $(document).ready(function(){
                     blocks:[],
                     modalTitle:'',
                     dialogTableVisible:false,
-                    tableTitle:''
+                    tableTitle:'',
+                    lastSelectedRole:null,
+                    lastSelectedAction: null
                 };
             },
             created(){
@@ -232,6 +234,8 @@ $(document).ready(function(){
             methods: {
                 handleClick: function(role, action){
                     var that = this;
+                    this.lastSelectedRole = role;
+                    this.lastSelectedAction = action;
                     axios.get(
                         '/dashboard/get-rankings?role='+role+'&action='+action
                     ).then(function(res){
@@ -287,7 +291,9 @@ $(document).ready(function(){
                     return name;
                 },
                 printThis: function(){
-                    window.print();
+                    if(this.lastSelectedAction && this.lastSelectedRole){
+                        window.open('/dashboard/print-rankings?role='+this.lastSelectedRole+'&action='+this.lastSelectedAction);
+                    }
                     return false;
                 },
                 tableRowClassName: function({row, rowIndex}) {

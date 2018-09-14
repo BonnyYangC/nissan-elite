@@ -11,7 +11,6 @@ use App\core\BaseController;
 use App\core\JsonBuilder;
 use App\models\Company;
 use App\models\management\RegionTerritoryReport;
-use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
