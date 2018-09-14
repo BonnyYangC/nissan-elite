@@ -293,8 +293,9 @@ $(document).ready(function(){
                 printThis: function(){
                     if(this.lastSelectedAction && this.lastSelectedRole){
                         window.open('/dashboard/print-rankings?role='+this.lastSelectedRole+'&action='+this.lastSelectedAction);
+                    }else{
+                        return false;
                     }
-                    return false;
                 },
                 tableRowClassName: function({row, rowIndex}) {
                     if (row.re === 'NO') {

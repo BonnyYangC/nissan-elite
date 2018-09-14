@@ -113,7 +113,7 @@ class ApiController extends BaseController
 
         fclose($fileStream);
 
-        $this->response->file($filePath);
+        $this->response->file($filePath,null,'csv');
         die(0);
     }
 
@@ -155,7 +155,7 @@ class ApiController extends BaseController
 
         fclose($fileStream);
 
-        $this->response->file($filePath);
+        $this->response->file($filePath,null,'csv');
         die(0);
     }
 

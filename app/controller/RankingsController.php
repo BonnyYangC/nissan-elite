@@ -37,7 +37,7 @@ class RankingsController extends DashboardController
      * Print rankings
      */
     public function print_rankings(){
-        $this->get_rankings(true);
+        return $this->get_rankings(true);
     }
 
     /**
@@ -131,7 +131,7 @@ class RankingsController extends DashboardController
             }
             if($isPrintAction){
                 // Print as csv file
-                $this->_printRankingsInCsv($result);
+                return $this->_printRankingsInCsv($result);
             }else{
                 // Not print
                 echo JsonBuilder::Success([
@@ -173,8 +173,8 @@ class RankingsController extends DashboardController
 
         fclose($fileStream);
 
-        $this->response->file($filePath);
-        die(0);
+        $this->response->file($filePath,null,'csv');
+        return;
     }
 
     /**
