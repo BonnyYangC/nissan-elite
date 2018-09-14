@@ -73,12 +73,12 @@ if(dsmEl){
                 if(this.keyword.trim().length === 0 && this.dept === 'All'){
                     return null;
                 }else{
-                    if(row.row.dn.toLowerCase().indexOf(this.keyword.toLowerCase()) === -1){
+                    if(row.row.d.toLowerCase().indexOf(this.keyword.toLowerCase()) === -1){
                         // not found
                         return 'hidden';
                     }else{
                         if(this.dept !== 'All'){
-                            if(this.dept === row.row.sc){
+                            if(this.dept === row.row.s){
                                 return null;
                             }else{
                                 return 'hidden';

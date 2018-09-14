@@ -74,7 +74,7 @@ class ApiController extends BaseController
         $rows = $this->_retrieve_regional_data($regions);
 
         for($i = 0;$i<count($rows);$i++){
-            $rows[$i]['pos'] = RegionTerritoryReport::ShortenPositionString($rows[$i]['pos']);
+            $rows[$i]['p'] = RegionTerritoryReport::ShortenPositionString($rows[$i]['p']);
         }
         echo JsonBuilder::Success($rows);
     }

@@ -158,6 +158,19 @@ class Company extends BaseModel implements IRole
         return parent::save();
     }
 
+    public static function GetNameList(){
+        $database = self::DB();
+        $result = $database->select(self::TABLE_NAME,[
+            'company_code(c)','company_name(n)'
+        ],[
+            'AND'=>[
+                'parent_id'=>8,
+                'company_name[!]'=>'SUSPENSION FILE'
+            ]
+        ]);
+        return $result;
+    }
+
     /**
      * Get the template's name for the role
      * @return string

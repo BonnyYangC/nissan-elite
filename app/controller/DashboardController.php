@@ -9,6 +9,7 @@
 namespace App\controller;
 
 use App\core\BaseController;
+use App\models\Company;
 use App\models\nissan\Credit;
 use App\models\nissan\DataSource;
 use App\models\nissan\Events;

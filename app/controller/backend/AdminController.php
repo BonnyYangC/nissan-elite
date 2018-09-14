@@ -179,7 +179,14 @@ class AdminController extends BaseController
      * Fix all possible missing data in history table
      */
     public function fix_historical_data_for_credits(){
-        $reader = CsvTool::ReadFile(__DIR__.'/history.csv');
+        $is2017Only = true;
+
+        if($is2017Only){
+            $reader = CsvTool::ReadFile(__DIR__.'/history2017.csv');
+        }else{
+            $reader = CsvTool::ReadFile(__DIR__.'/history.csv');
+        }
+
         $yearsIndex = [
             '2016-01-01',
             '2015-01-01',
@@ -211,33 +218,60 @@ class AdminController extends BaseController
         $database = BaseModel::DB();
         $count = 0;
         foreach ($reader as $index=>$row) {
-            if($index>=800){
+            if($index>0){
                 $employeeId = $row[0];
-                foreach (range(1,26) as $idx) {
-                    if(!empty($row[$idx])){
-                        $where = [
-                            'AND'=>[
-                                'period'=>$yearsIndex[$idx-1],
-                                'member_id'=>$employeeId
-                            ],
-                            'LIMIT'=>1
-                        ];
-                        $histories = $database->select('nissan_history','*',$where);
-                        $history = new History();
-                        if(isset($histories[0])){
+                if($is2017Only){
+                    $period = '2017-01-01';
+                    $where = [
+                        'AND'=>[
+                            'period'    =>$period,
+                            'member_id' =>$employeeId
+                        ],
+                        'LIMIT'=>1
+                    ];
+                    $histories = $database->select('nissan_history','*',$where);
+                    $history = new History();
+                    if(isset($histories[0])){
+                            $history->id = $histories[0]['id'];
+                            $history->amount = $row[1];
+                            $history->save();
+                    }else{
+                        // Missing data, insert it
+                        $history->period    = $period;
+                        $history->member_id = $employeeId;
+                        $history->amount    = $row[1];
+                        $history->save();
+                        $count++;
+                    }
+                    $history = null;
+                }
+                else{
+                    foreach (range(1,26) as $idx) {
+                        if(!empty($row[$idx])){
+                            $where = [
+                                'AND'=>[
+                                    'period'=>$yearsIndex[$idx-1],
+                                    'member_id'=>$employeeId
+                                ],
+                                'LIMIT'=>1
+                            ];
+                            $histories = $database->select('nissan_history','*',$where);
+                            $history = new History();
+                            if(isset($histories[0])){
 //                            $history->id = $histories[0]['id'];
 //                            $history->amount = $row[$idx];
 //                            $history->save();
 //                            $updatedCount++;
-                        }else{
-                            // Missing data, insert it
-                            $history->period = $yearsIndex[$idx-1];
-                            $history->member_id = $employeeId;
-                            $history->amount = $row[$idx];
-                            $history->save();
-                            $count++;
+                            }else{
+                                // Missing data, insert it
+                                $history->period = $yearsIndex[$idx-1];
+                                $history->member_id = $employeeId;
+                                $history->amount = $row[$idx];
+                                $history->save();
+                                $count++;
+                            }
+                            $history = null;
                         }
-                        $history = null;
                     }
                 }
             }

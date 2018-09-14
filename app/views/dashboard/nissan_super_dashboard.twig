@@ -77,49 +77,49 @@
                         empty-text="Loading data ..."
                         :row-class-name="showMe"
                         style="width: 100%">
-                    <el-table-column prop="dn" fixed sortable label="Dealer" width="150">
+                    <el-table-column prop="d" fixed sortable label="Dealer" width="150">
                         <template slot-scope="scope">
-                            ${ scope.row.dn }
+                            ${ scope.row.d }
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="dc" {{ isPhone?null:'fixed' }} sortable
+                            prop="c" {{ isPhone?null:'fixed' }} sortable
                             label="Cat" width="96">
                         <template slot-scope="scope">
                             <p class="text-center">
-                                <el-tag :type="scope.row.dc === 'A' ? 'primary' : (scope.row.dc === 'B' ? 'success' : 'warning')" disable-transitions>
-                                    ${ scope.row.dc }
+                                <el-tag :type="scope.row.c === 'A' ? 'primary' : (scope.row.c === 'B' ? 'success' : 'warning')" disable-transitions>
+                                    ${ scope.row.c }
                                 </el-tag>
                             </p>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="fn" {{ isPhone?null:'fixed' }} sortable
+                            prop="f" {{ isPhone?null:'fixed' }} sortable
                             label="Name" width="180">
                         <template slot-scope="scope">
                             <p class="text-center">
-                                <a :href="getMockUserUrl(scope.row.e)" target="_blank">${ scope.row.fn }</a>
+                                <a :href="getMockUserUrl(scope.row.e)" target="_blank">${ scope.row.f }</a>
                             </p>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="sc" {{ isPhone?null:'fixed' }}
+                            prop="s" {{ isPhone?null:'fixed' }}
                             label="Dept" sortable width="96">
                         <template slot-scope="scope">
-                            ${ scope.row.sc === 'Administration' ? 'Admin' : scope.row.sc }
+                            ${ scope.row.s === 'Administration' ? 'Admin' : scope.row.s }
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="pos" {{ isPhone?null:'fixed' }}
+                            prop="p" {{ isPhone?null:'fixed' }}
                             label="Position" sortable width="100">
                         <template slot-scope="scope">
                             <el-tag type="primary" disable-transitions>
-                                ${ scope.row.pos }
+                                ${ scope.row.p }
                             </el-tag>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="cy" {{ isPhone?null:'fixed' }}
+                            prop="y" {{ isPhone?null:'fixed' }}
                             label="YTD" sortable width="100">
                     </el-table-column>
                     <el-table-column

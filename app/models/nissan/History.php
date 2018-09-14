@@ -55,49 +55,79 @@ class History extends BaseModel
      * @return array
      */
     public static function GetLifetime(User $user, $before2017Only = false){
-        $data = self::GetAll($user, $before2017Only);
-        $r2017 = Credit::QueryByUserAndYearPeriod($user,2017);
-        $credits2017 = 0;
-        foreach ($r2017 as $item) {
-            $credits2017 += floatval($item['mtd']);
-        }
-        $result = [];
-
-        foreach (range(1992, env('YEAR')) as $yearInteger) {
-            $value = 0;
-            $hasFF = false;
-            $ffValue = 0;
-            $normalValue = 0;
-            if(isset($data[$yearInteger])){
-                if($yearInteger === 2017){
-                    $value = $credits2017;
-                }else{
-                    $value = floatval($data[$yearInteger]['amount']);
-                    if(isset($data[$yearInteger]['FF'])){
-                        $hasFF = true;
-                        $ffValue = floatval($data[$yearInteger]['FF']['amount']);
-                        $normalValue = $value;
-                        $value = $value + $ffValue;
-                    }
-                }
-            }
-            $result[] = [
-                $yearInteger.'',
-                floatval($value),
-                $hasFF ? $normalValue : $value,
-                $hasFF ? $ffValue : 0
-            ];
-        }
-
-        if($before2017Only){
-            // 表示只查找2017年以前的记录, 2017年开始的销售总额要从 nissan_credits 表格中提取并单独计算
-        }
+//        $data = self::GetAll($user, $before2017Only);
+//        $r2017 = Credit::QueryByUserAndYearPeriod($user,2017);
+//        $credits2017 = 0;
+//        foreach ($r2017 as $item) {
+//            $credits2017 += floatval($item['mtd']);
+//        }
+//        $result = [];
+//
+//        foreach (range(1992, env('YEAR')) as $yearInteger) {
+//            $value = 0;
+//            $hasFF = false;
+//            $ffValue = 0;
+//            $normalValue = 0;
+//            if(isset($data[$yearInteger])){
+//                if($yearInteger === 2017){
+//                    $value = $credits2017;
+//                }else{
+//                    $value = floatval($data[$yearInteger]['amount']);
+//                    if(isset($data[$yearInteger]['FF'])){
+//                        $hasFF = true;
+//                        $ffValue = floatval($data[$yearInteger]['FF']['amount']);
+//                        $normalValue = $value;
+//                        $value = $value + $ffValue;
+//                    }
+//                }
+//            }
+//            $result[] = [
+//                $yearInteger.'',
+//                floatval($value),
+//                $hasFF ? $normalValue : $value,
+//                $hasFF ? $ffValue : 0
+//            ];
+//        }
+//
+//        if($before2017Only){
+//            // 表示只查找2017年以前的记录, 2017年开始的销售总额要从 nissan_credits 表格中提取并单独计算
+//        }
 
 
 //        dd($result);
 //        dd($r2017);
 
-        return array_reverse($result);
+        $rows = self::DB()->select(self::TABLE_NAME,'*',[
+            'member_id'=>$user->getEmployeeCode(),
+            'ORDER'=>[
+                'period'=>'DESC'
+            ]
+        ]);
+
+        $buffer = [];
+        $result = [];
+        foreach ($rows as $row) {
+            $year = substr($row['period'],0,4);
+            if(isset($buffer[$year])){
+                $buffer[$year][1] = floatval($row['amount']);
+            }else{
+                $buffer[$year][0] = floatval($row['amount']);
+            }
+        }
+
+        foreach ($buffer as $year=>$values) {
+            $subTotal = $values[0];
+            $result[] = [
+                $year.'',
+                $subTotal,
+                isset($values[1]) ? $subTotal+$values[1] : $subTotal,
+                isset($values[1]) ? $values[1] : 0
+            ];
+        }
+
+//        dd($result);
+
+        return $result;
     }
 
     /**
