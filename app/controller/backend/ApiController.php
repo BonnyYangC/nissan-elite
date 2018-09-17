@@ -67,7 +67,7 @@ class ApiController extends BaseController
     }
 
     /**
-     *
+     * DSM or Admin user load the regional report data
      */
     public function load_regional_data(){
         $regions = explode(' ',$this->request->param('regions'));

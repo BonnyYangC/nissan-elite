@@ -27,6 +27,11 @@ class RegionTerritoryReport extends BaseModel
     const REGION_WESTERN_AND_CENTRAL = 4;
     const REGION_UNKNOWN             = 0;
 
+    // Active values
+    const ACTIVE        = 1;
+    const INACTIVE      = 2;
+    const INELIGIBLE    = 3;
+
     protected $tableName    = 'nissan_region_territory_reports';
 
     public function __construct(User $user = null)
@@ -61,9 +66,13 @@ class RegionTerritoryReport extends BaseModel
     }
 
     public static function GetRegionCodeWithShortName($name){
+        if(is_array($name)){
+            $name = $name[0];
+        }
         $map = [
             'Southern'           =>self::REGION_SOUTHERN,
-            'Western'  =>self::REGION_WESTERN_AND_CENTRAL,
+            'Western'            =>self::REGION_WESTERN_AND_CENTRAL,
+            'Western & Central'  =>self::REGION_WESTERN_AND_CENTRAL,
             'Eastern'            =>self::REGION_EASTERN,
             'Northern'           =>self::REGION_NORTHERN,
         ];
@@ -71,7 +80,7 @@ class RegionTerritoryReport extends BaseModel
     }
 
     /**
-     * Search territory report by region codes
+     * Search territory report by region codes. Only active records will be return
      * @param $codes
      * @return array|bool
      */
@@ -82,8 +91,6 @@ class RegionTerritoryReport extends BaseModel
         }
 
         return $database->select(self::TABLE_NAME,[
-//            'dealer_name(dn)','dealer_cat(dc)',
-//            'sp_code(sc)','n_fullname(fn)','employee_code(e)','position(pos)','cr_ytd(cy)',
             'dealer_name(d)','dealer_cat(c)',
             'sp_code(s)','n_fullname(f)','employee_code(e)','position(p)','cr_ytd(y)',
             'credits_monthly_04(c04)','credits_monthly_05(c05)','credits_monthly_06(c06)','credits_monthly_07(c07)',
@@ -92,7 +99,8 @@ class RegionTerritoryReport extends BaseModel
         ],[
             'AND'=>[
                 'region_id'=>self::GetRegionCodeWithShortName($codes),
-                'period'=>env('YEAR')
+                'period'=>env('YEAR'),
+                'active'=>self::ACTIVE
             ]
         ]);
     }
@@ -117,6 +125,46 @@ class RegionTerritoryReport extends BaseModel
         ]);
     }
 
+    /**
+     * Active by employee code
+     * @param $code
+     * @return array|bool
+     */
+    public static function ActiveIt($code){
+        $database = self::DB();
+
+        return $database->update(self::TABLE_NAME,
+            ['active'=>self::ACTIVE],
+            ['employee_code'=>$code]
+        );
+    }
+
+    /**
+     * Inactive by employee code
+     * @param string $code
+     * @param string $status
+     * @return array|bool
+     */
+    public static function InactiveIt($code,$status){
+        $database = self::DB();
+
+        if(strtolower($status) === 'inactive'){
+            $status = self::INACTIVE;
+        }else{
+            $status = self::INELIGIBLE;
+        }
+
+        return $database->update(self::TABLE_NAME,
+            ['active'=>$status],
+            ['employee_code'=>$code]
+        );
+    }
+
+    /**
+     * Make user's position string shorter as abbr. For better performance when sending to the client through internet
+     * @param $pos
+     * @return null|string
+     */
     public static function ShortenPositionString($pos){
         $abbr = null;
         switch ($pos){

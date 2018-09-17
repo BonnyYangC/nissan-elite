@@ -161,7 +161,7 @@ class DashboardController extends BaseController
         $this->dataForView['extra_js'] = [
             'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js',
             'https://unpkg.com/element-ui/lib/index.js',
-            asset('js/dsm_utils.js')
+            asset('js/dsm_utils.js?version=1')
         ];
     }
 

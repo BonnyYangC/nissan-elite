@@ -176,6 +176,42 @@ class AdminController extends BaseController
     }
 
     /**
+     * Update the regional report active
+     */
+    public function sync_regional_report_user_status(){
+        $readerActive = CsvTool::ReadFile(__DIR__.'/files/active_member_17sep18_region_report.csv');
+        $countActiveSuccess = 0;
+        $countActiveFailed = 0;
+        foreach ($readerActive as $index=>$row) {
+            if($index > 0){
+                if(RegionTerritoryReport::ActiveIt($row[0])){
+                    $countActiveSuccess++;
+                }else{
+                    $countActiveFailed++;
+                }
+            }
+        }
+
+        $readerInactive = CsvTool::ReadFile(__DIR__.'/files/inactive_member_17sep18_region_report.csv');
+        $countInactiveSuccess = 0;
+        $countInactiveFailed = 0;
+        foreach ($readerInactive as $index=>$row) {
+            if($index > 0){
+                if(RegionTerritoryReport::InactiveIt($row[0],$row[2])){
+                    $countInactiveSuccess++;
+                }else{
+                    $countInactiveFailed++;
+                }
+            }
+        }
+
+        dump('Active: '.$countActiveSuccess);
+        dump('Active failed: '.$countActiveFailed);
+        dump('Inactive: '.$countInactiveSuccess);
+        dump('Inactive failed: '.$countInactiveFailed);
+    }
+
+    /**
      * Fix all possible missing data in history table
      */
     public function fix_historical_data_for_credits(){
@@ -327,6 +363,7 @@ class AdminController extends BaseController
                         )
                     ){
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
+
                         $resultSet = $db->select($tableName,'*',$whereCondition);
                         $found = count($resultSet) > 0;
 
@@ -511,13 +548,14 @@ class AdminController extends BaseController
          * This is for the users table ONLY
          */
         if($tableName === User::TABLE_NAME){
-            if(isset($row[$this->indexes[DbMap::EMAIL]]) && !empty($row[$this->indexes[DbMap::EMAIL]])){
+            if(isset($row[$this->indexes[DbMap::EMPLOYEE_CODE]]) && !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]])){
+
                 $where = [
-                    DbMap::EMAIL=>$row[$this->indexes[DbMap::EMAIL]]
+                    DbMap::EMPLOYEE_CODE=>$row[$this->indexes[DbMap::EMPLOYEE_CODE]]
                 ];
             }else{
                 $where = [
-                    DbMap::EMPLOYEE_CODE=>$row[$this->indexes[DbMap::EMPLOYEE_CODE]]
+                    DbMap::EMAIL=>$row[$this->indexes[DbMap::EMAIL]]
                 ];
             }
 
