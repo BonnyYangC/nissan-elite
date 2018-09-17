@@ -18,6 +18,7 @@
                     <th>Mobile</th>
                     <th>Password</th>
                     <th>Position</th>
+                    <th>Active</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -30,10 +31,13 @@
                         <td>{{ user.mobile }}</td>
                         <td>{{ user.password }}</td>
                         <td>{{ user.position }}</td>
+                        <td>{{ user.active == 1 ? "Y" : "N" }}</td>
                         <td>
                             {% set param = {'uid':user.user_id} %}
-                            <a href="{{ url('/admin/fake-region-staff',param) }}" target="_blank"
-                               class="button is-small is-link">Mock</a>
+                            <a href="{{ url('/admin/fake-region-staff',param) }}" target="_blank" title="Mock as this user"
+                               class="button is-small is-link">M</a>
+                            <a href="{{ url('/admin/region-staff-edit',param) }}" title="Edit" class="button is-small is-link">E</a>
+                            <a href="{{ url('/admin/users-region-delete',param) }}" title="Delete this user" class="button is-small is-danger btn-need-confirm">D</a>
                         </td>
                     </tr>
                 {% endfor %}

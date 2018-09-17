@@ -49,6 +49,7 @@ class PhpFunctionExtension extends \Twig_Extension
         'empty',                // empty
         'get_route',            // get url by give route name
         'good_date',            // get url by give route name
+        'str_contains',            // string contains sub string
     );
     public function __construct(array $functions = array())
     {

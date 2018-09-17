@@ -8,6 +8,7 @@
 
 namespace App\controller\backend;
 use App\core\BaseController;
+use App\models\management\RegionTerritoryReport;
 use App\models\User;
 use App\models\utils\Pagination;
 use Klein\App;
@@ -89,7 +90,19 @@ class UsersController extends BaseController
     }
 
     /**
-     * Load super user edit view
+     * Load region staff edit view
+     */
+    public function region_staff_edit(){
+        $user = new User($this->request->param('uid'));
+        $this->dataForView['user'] = $user;
+        $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
+        $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
+        $this->render('backend/users/edit_region_staff');
+        return;
+    }
+
+    /**
+     * Delete admin use
      */
     public function super_user_delete(){
         User::DB()->delete(User::TABLE_NAME,['user_id'=>$this->request->param('uid')]);

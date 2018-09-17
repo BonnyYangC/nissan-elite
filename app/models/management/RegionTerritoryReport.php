@@ -34,6 +34,15 @@ class RegionTerritoryReport extends BaseModel
 
     protected $tableName    = 'nissan_region_territory_reports';
 
+    public static $REGIONS = [
+        'Southern Region'           =>self::REGION_SOUTHERN,
+        'Western & Central Region'  =>self::REGION_WESTERN_AND_CENTRAL,
+        'Eastern Region'            =>self::REGION_EASTERN,
+        'Northern Region'           =>self::REGION_NORTHERN,
+        'Eastern-NFSA Region'       =>self::REGION_EASTERN,
+        'Western & Central-NFSA Region' =>self::REGION_WESTERN_AND_CENTRAL,
+    ];
+
     public function __construct(User $user = null)
     {
         parent::__construct($user);
@@ -55,14 +64,13 @@ class RegionTerritoryReport extends BaseModel
         }
     }
 
+    /**
+     * Get Region Code
+     * @param $name
+     * @return int|mixed
+     */
     public static function GetRegionCode($name){
-        $map = [
-            'Southern Region'           =>self::REGION_SOUTHERN,
-            'Western & Central Region'  =>self::REGION_WESTERN_AND_CENTRAL,
-            'Eastern Region'            =>self::REGION_EASTERN,
-            'Northern Region'           =>self::REGION_NORTHERN,
-        ];
-        return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
+        return isset(self::$REGIONS[$name]) ? self::$REGIONS[$name] : self::REGION_UNKNOWN;
     }
 
     public static function GetRegionCodeWithShortName($name){

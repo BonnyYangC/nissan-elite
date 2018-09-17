@@ -61,6 +61,17 @@ if(!function_exists('get_route')){
     }
 }
 
+if(!function_exists('str_contains')){
+    /**
+     * @param $str
+     * @param $findMe
+     * @return bool
+     */
+    function str_contains($str, $findMe){
+        return strpos($str, $findMe) !== false;
+    }
+}
+
 if(!function_exists('uploaded_file_path')){
     /**
      * 创建 uploads 目录中文件的快捷方法. 如果给定的参数为 null, 则仅返回到 uploads 目录的绝对路径

@@ -59,6 +59,22 @@ class User extends BaseModel implements Mailable, IRole
 
     const TABLE_NAME = 'users';
 
+    public static $REGION_STAFF_POSITIONS = [
+        self::RSM,
+        self::FOM,
+        self::ROM,
+        self::FDM,
+        self::RAM,
+        self::DTS,
+        self::ROA,
+        self::RSC,
+        self::RSM_NFSA,
+        self::DAM_NFSA,
+        self::RM_NFSA,
+        self::RGM,
+        self::ADMIN
+    ];
+
     /**
      * User's database table name
      * @var string
