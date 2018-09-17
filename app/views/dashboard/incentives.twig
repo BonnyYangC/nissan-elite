@@ -41,13 +41,15 @@
                                 <span class="rank">
                                     <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the AC{{ env('YEAR') }} Program">
                                         {% if user.registered %}
-                                            &#10004
+                                            <span class="tw txt-red">&#10004</span>
                                         {% else %}
                                             X
                                         {% endif %}
                                     </a>
                                 </span>
-                                {% if registered == false %}
+                                {% if user.registered %}
+                                    <p class="tw">250 Credits Applied</p>
+                                {% else %}
                                 <a href="http://www.nissan-events.com.au/ac{{ env('YEAR') }}/reg" target="_blank">
                                     <button style="background-color:#c40030; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
                                 </a>
