@@ -179,36 +179,65 @@ class AdminController extends BaseController
      * Update the regional report active
      */
     public function sync_regional_report_user_status(){
-        $readerActive = CsvTool::ReadFile(__DIR__.'/files/active_member_17sep18_region_report.csv');
-        $countActiveSuccess = 0;
-        $countActiveFailed = 0;
-        foreach ($readerActive as $index=>$row) {
-            if($index > 0){
-                if(RegionTerritoryReport::ActiveIt($row[0])){
-                    $countActiveSuccess++;
-                }else{
-                    $countActiveFailed++;
-                }
-            }
-        }
+//        $readerActive = CsvTool::ReadFile(__DIR__.'/files/active_member_17sep18_region_report.csv');
+//        $countActiveSuccess = 0;
+//        $countActiveFailed = 0;
+//        foreach ($readerActive as $index=>$row) {
+//            if($index > 0){
+//                if(RegionTerritoryReport::ActiveIt($row[0])){
+//                    $countActiveSuccess++;
+//                }else{
+//                    $countActiveFailed++;
+//                }
+//            }
+//        }
+//
+//        $readerInactive = CsvTool::ReadFile(__DIR__.'/files/inactive_member_17sep18_region_report.csv');
+//        $countInactiveSuccess = 0;
+//        $countInactiveFailed = 0;
+//        foreach ($readerInactive as $index=>$row) {
+//            if($index > 0){
+//                if(RegionTerritoryReport::InactiveIt($row[0],$row[2])){
+//                    $countInactiveSuccess++;
+//                }else{
+//                    $countInactiveFailed++;
+//                }
+//            }
+//        }
 
-        $readerInactive = CsvTool::ReadFile(__DIR__.'/files/inactive_member_17sep18_region_report.csv');
-        $countInactiveSuccess = 0;
-        $countInactiveFailed = 0;
+        $readerInactive = CsvTool::ReadFile(__DIR__.'/files/historical_sep17.csv');
         foreach ($readerInactive as $index=>$row) {
             if($index > 0){
-                if(RegionTerritoryReport::InactiveIt($row[0],$row[2])){
-                    $countInactiveSuccess++;
+                $records = History::DB()->select(History::TABLE_NAME,['id','amount'],[
+                    'AND'=>[
+                        'member_id'=>$row[0],
+                        'period'=>'2017-01-01'
+                    ],
+                    'LIMIT'=>1
+                ]);
+                if(count($records)>0){
+                    $bean = $records[0];
+                    if(floatval($row[1]) != $bean['amount']){
+                        History::DB()->update(
+                            History::TABLE_NAME,
+                            ['amount'=>$row[1]],
+                            ['id'=>$bean['id']]
+                        );
+                    }
                 }else{
-                    $countInactiveFailed++;
+                    $history = new History();
+                    $history->period    = '2017-01-01';
+                    $history->member_id = $row[0];
+                    $history->amount    = $row[1];
+                    $history->save();
                 }
             }
         }
 
-        dump('Active: '.$countActiveSuccess);
-        dump('Active failed: '.$countActiveFailed);
-        dump('Inactive: '.$countInactiveSuccess);
-        dump('Inactive failed: '.$countInactiveFailed);
+//        dump('Active: '.$countActiveSuccess);
+//        dump('Active failed: '.$countActiveFailed);
+//        dump('Inactive: '.$countInactiveSuccess);
+//        dump('Inactive failed: '.$countInactiveFailed);
     }
 
     /**
