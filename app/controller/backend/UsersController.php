@@ -102,11 +102,26 @@ class UsersController extends BaseController
     }
 
     /**
+     * Delete region staff
+     */
+    public function region_staff_delete(){
+        $user = new User($this->request->param('uid'));
+        $userName = $user->getName();
+        if(User::DB()->delete(User::TABLE_NAME,['user_id'=>$this->request->param('uid')])){
+            session_flash('msg',['content'=>$userName.' has been removed successfully!','status'=>'success']);
+        }else{
+            session_flash('msg',['content'=>'System busy, please try again or contact IT person!','status'=>'danger']);
+        }
+        $this->response->redirect('/admin/region-staff');
+        return;
+    }
+
+    /**
      * Delete admin use
      */
     public function super_user_delete(){
         User::DB()->delete(User::TABLE_NAME,['user_id'=>$this->request->param('uid')]);
-        $this->render('backend/users/super_users');
+        $this->response->redirect('/admin/users-super');
         return;
     }
 

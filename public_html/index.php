@@ -139,6 +139,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/region-staff-edit', \App\controller\backend\UsersController::class,'region_staff_edit')
     ->name('admin.region.staff.edit');
 \App\core\Route::Instance()
+    ->get('/admin/region-staff-delete', \App\controller\backend\UsersController::class,'region_staff_delete')
+    ->name('admin.region.staff.delete');
+\App\core\Route::Instance()
     ->post('/admin/region-staff-save', \App\controller\backend\UsersController::class,'region_staff_save')
     ->name('admin.region.staff.save');
 
