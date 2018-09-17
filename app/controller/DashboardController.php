@@ -239,8 +239,7 @@ class DashboardController extends BaseController
 
         $lifetime   = 0;
         $monthly    = [];
-
-        $carbon = Carbon::create(2017,3,1);
+        $carbon = Carbon::create(env('YEAR'),3,1);
         foreach (range(0,11) as $i) {
             $index = $carbon->addMonth()->format('M-Y');
             if(isset($results[$index])){
@@ -250,7 +249,6 @@ class DashboardController extends BaseController
                 $monthly[] = [$index, 0];
             }
         }
-
         $lifetimeUtil = LifetimeUtil::GetInstance($lifetime);
 
         $historyRows = History::GetLifetime($this->userObject);
