@@ -541,6 +541,8 @@ class User extends BaseModel implements Mailable, IRole
             ]
         );
 
+
+
         // Check if the company is suspended
         $company = Company::GetByCompanyCode($record->company_code);
         if(strtoupper($company['company_name']) === 'SUSPENSION FILE'){
