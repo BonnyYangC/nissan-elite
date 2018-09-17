@@ -138,6 +138,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/admin/region-staff-edit', \App\controller\backend\UsersController::class,'region_staff_edit')
     ->name('admin.region.staff.edit');
+\App\core\Route::Instance()
+    ->post('/admin/region-staff-save', \App\controller\backend\UsersController::class,'region_staff_save')
+    ->name('admin.region.staff.save');
 
 \App\core\Route::Instance()
     ->get('/api/users-search', \App\controller\backend\ApiController::class,'users_search')

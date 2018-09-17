@@ -131,6 +131,21 @@ class UsersController extends BaseController
     }
 
     /**
+     * Save region staff user then redirect
+     */
+    public function region_staff_save(){
+        $data = $this->request->paramsPost()->get('user');
+        $user = new User();
+        foreach ($data as $fieldName => $value) {
+            $user->$fieldName = $value;
+        }
+
+        $user->save();
+        $this->response->redirect('/admin/region-staff');
+        return;
+    }
+
+    /**
      * Load user edit view
      */
     public function user_edit(){

@@ -31,7 +31,13 @@
                         <td>{{ user.mobile }}</td>
                         <td>{{ user.password }}</td>
                         <td>{{ user.position }}</td>
-                        <td>{{ user.active == 1 ? "Y" : "N" }}</td>
+                        <td>
+                        {% if user.active == 1 %}
+                            <span class="has-text-success">Y</span>
+                        {% else %}
+                            <span class="has-text-danger">N</span>
+                        {% endif %}
+                        </td>
                         <td>
                             {% set param = {'uid':user.user_id} %}
                             <a href="{{ url('/admin/fake-region-staff',param) }}" target="_blank" title="Mock as this user"
