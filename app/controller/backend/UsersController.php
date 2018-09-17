@@ -89,6 +89,15 @@ class UsersController extends BaseController
     }
 
     /**
+     * Load super user edit view
+     */
+    public function super_user_delete(){
+        User::DB()->delete(User::TABLE_NAME,['user_id'=>$this->request->param('uid')]);
+        $this->render('backend/users/super_users');
+        return;
+    }
+
+    /**
      * Save super user then redirect
      */
     public function super_user_save(){

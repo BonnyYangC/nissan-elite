@@ -155,6 +155,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/users-super-edit', \App\controller\backend\UsersController::class,'super_user_edit')
     ->name('admin.users.super.edit');
 \App\core\Route::Instance()
+    ->get('/admin/users-super-delete', \App\controller\backend\UsersController::class,'super_user_delete')
+    ->name('admin.users.super.delete');
+\App\core\Route::Instance()
     ->post('/admin/users-super-save', \App\controller\backend\UsersController::class,'super_user_save')
     ->name('admin.users.super.save');
 // Super user for Su and Val: End

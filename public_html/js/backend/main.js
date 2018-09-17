@@ -11,6 +11,16 @@ Zepto(function($){
         $('#submit-btn-txt').text('Please wait ...')
     });
 
+    /**
+     * Double check when user trying to remove anything
+     */
+    $('.btn-need-confirm').on('click',function(e){
+        e.preventDefault();
+        if(confirm('Are you sure to remove this record?')){
+            window.location.href = $(this).attr('href');
+        }
+    });
+
     var csvFile = document.getElementById("csv-file-input");
     if(csvFile){
         fileInputOnChange(csvFile, 'csv-file-input-text');
