@@ -153,7 +153,12 @@ class DataSource extends BaseModel
                 $num_rows = $database->count(
                     $table,
                     '*',
-                    ['member_id'=>$user->getEmployeeCode()]
+                    [
+                        'AND'=>[
+                            'member_id'=>$user->getEmployeeCode(),
+                            'period[>]'=>env('YEAR').'-02-01',
+                        ]
+                    ]
                 );
                 if ($num_rows > 0) {
                     $abbr = $positionAbbr;
@@ -161,8 +166,8 @@ class DataSource extends BaseModel
                         $theRoleName = self::getRoleNameByAbbr($positionAbbr);
                     }else{
                         // Position abbr is an array now, so have to use user's current position
-                        $theRoleName = self::getRoleNameByAbbr($user->position);
-                        $abbr = $user->position;
+                        $theRoleName = 'Sales Consultant';
+                        $abbr = User::RETAIL_SALES_CONSULTANTS ;
                     }
                     self::$_positionList[$table] = [
                         'abbr'=>$abbr,
