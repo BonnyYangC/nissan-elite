@@ -103,6 +103,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/calendars-edit', \App\controller\backend\CalendarsController::class,'calendars_edit')
     ->name('admin.calendars.edit');
 \App\core\Route::Instance()
+    ->get('/admin/calendars-delete', \App\controller\backend\CalendarsController::class,'calendars_delete')
+    ->name('admin.calendars.delete');
+\App\core\Route::Instance()
     ->get('/admin/calendar-new', \App\controller\backend\CalendarsController::class,'calendar_new')
     ->name('admin.calendar.new');
 \App\core\Route::Instance()

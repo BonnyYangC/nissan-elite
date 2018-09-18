@@ -40,6 +40,16 @@ class CalendarsController extends BaseController
         return;
     }
 
+    public function calendars_delete(){
+        $event = new Events($this->request->param('eid'));
+        if($event){
+            Events::DB()->delete(Events::TABLE_NAME,['id'=>$this->request->param('eid')]);
+        }
+        session_flash('msg',['content'=>$event->title.' has been delete successfully!','status'=>'success']);
+        $this->response->redirect('/admin/calendars-index');
+        return;
+    }
+
     public function calendar_new(){
         $event = new Events();
         $this->dataForView['event'] = $event;
