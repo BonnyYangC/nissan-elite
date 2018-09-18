@@ -44,6 +44,13 @@ class IncentivesController extends BaseController
         return;
     }
 
+    public function incentive_delete(){
+        Incentives::DB()->delete(Incentives::TABLE_NAME,['id'=>$this->request->param('eid')]);
+        session_flash('msg',['content'=>'An incentive has been deleted successfully!','status'=>'success']);
+        $this->response->redirect('/admin/incentives-index');
+        return;
+    }
+
     public function incentive_save(){
         $data = $this->request->paramsPost()->get('incentive');
 

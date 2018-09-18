@@ -122,6 +122,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/admin/incentive-edit', \App\controller\backend\IncentivesController::class,'incentive_edit')
     ->name('admin.incentive.edit');
 \App\core\Route::Instance()
+    ->get('/admin/incentive-delete', \App\controller\backend\IncentivesController::class,'incentive_delete')
+    ->name('admin.incentive.delete');
+\App\core\Route::Instance()
     ->get('/admin/incentive-new', \App\controller\backend\IncentivesController::class,'incentive_new')
     ->name('admin.incentive.new');
 \App\core\Route::Instance()

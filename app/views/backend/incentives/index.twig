@@ -16,7 +16,6 @@
                     <th>Title</th>
                     <th>From</th>
                     <th>To</th>
-                    <th>Caption</th>
                     <th>Image</th>
                     <th>Attachment</th>
                     <th></th>
@@ -25,10 +24,16 @@
                 <tbody>
                 {% for incentive in incentives %}
                     <tr>
-                        <th>{{ incentive.title }}</th>
+                        <td>
+                            <p>
+                                <b>{{ incentive.title }}</b>
+                            </p>
+                            <p>
+                                {{ incentive.caption }}
+                            </p>
+                        </td>
                         <td>{{ incentive.start }}</td>
                         <td>{{ incentive.finish }}</td>
-                        <td>{{ incentive.caption }}</td>
                         <td>
                             {% if incentive.image %}
                             <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
@@ -42,7 +47,13 @@
                         <td>
                             {% set param = {'eid':incentive.id} %}
                             <a href="{{ url('/admin/incentive-edit',param) }}"
-                               class="button is-small is-link">Edit</a>
+                               class="button is-small is-link">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="{{ url('/admin/incentive-delete',param) }}"
+                               class="button is-small is-danger btn-need-confirm">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
