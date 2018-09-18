@@ -27,14 +27,7 @@ class UsersController extends Controller
      * Entry page
      */
     public function login(){
-//        $browser = $this->clientAgent->browser();
-//        $version = $this->clientAgent->version($browser);
-//
-//        $this->render('user/update_browser');
-//        return;
-
-//        if($browser === 'IE' && floatval($version) <= 11){
-        if(true){
+        if($this->dataForView['isInternetExplore']){
             // The browser is not supported
             $this->render('user/update_browser');
         }else{

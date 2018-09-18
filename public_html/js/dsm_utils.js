@@ -104,14 +104,24 @@ if(dsmEl){
                 }
                 this.isLoadingRemoteData = true;
                 var that = this;
-                axios.get(
-                    '/api/dsm/load-regional-data?manager='+this.managerId + '&regions=' + this.regionName.trim()
-                ).then(function(res){
-                    if(res.data.error_no === 100){
-                        that.tableData = res.data.data;
-                    }
-                    that.isLoadingRemoteData = false;
-                });
+                // axios.get(
+                //     '/api/dsm/load-regional-data?manager='+this.managerId + '&regions=' + this.regionName.trim()
+                // ).then(function(res){
+                //     if(res.data.error_no === 100){
+                //         that.tableData = res.data.data;
+                //     }
+                //     that.isLoadingRemoteData = false;
+                // });
+                $.get(
+                    '/api/dsm/load-regional-data?manager='+this.managerId + '&regions=' + this.regionName.trim(),
+                    function(res){
+                        if(res.error_no === 100){
+                            that.tableData = res.data;
+                        }
+                        that.isLoadingRemoteData = false;
+                    },
+                    'json'
+                );
             },
             getMockUserUrl: function(employeeCode){
                 return '/admin/fake-user?uc='+employeeCode;

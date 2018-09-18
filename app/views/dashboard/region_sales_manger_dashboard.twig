@@ -55,6 +55,13 @@
                         </p>
                     </div>
                 </div>
+
+                <div class="row mt-20 mb-20" v-show="isLoadingRemoteData">
+                    <div class="col-md-12">
+                        <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom txt-red"></i>&nbsp;<span class="txt-red">Loading Data ... Please wait for a moment!</span>
+                    </div>
+                </div>
+
                 <el-table
                         v-show="tableData.length>0"
                         :data="tableData"
