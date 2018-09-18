@@ -24,8 +24,10 @@ class IncentivesController extends BaseController
      * Load calendars
      */
     public function incentives_index(){
-        $incentives = Incentives::LoadAll();
-        $this->dataForView['incentives'] = $incentives;
+        $this->dataForView['upcoming']      = Incentives::GetUpComing();
+        $this->dataForView['current']       = Incentives::GetCurrent();
+        $this->dataForView['justFinished']  = Incentives::GetJustFinished();
+        $this->dataForView['past']          = Incentives::GetPast();
         $this->render('backend/incentives/index');
         return;
     }

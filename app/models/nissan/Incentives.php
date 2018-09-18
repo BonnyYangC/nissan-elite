@@ -95,4 +95,62 @@ class Incentives extends BaseModel
         return asset(self::PDF_FILE_PATH).$this->pdf;
     }
 
+    /**
+     * Get upcoming incentives
+     * @return array|bool
+     */
+    public static function GetUpComing(){
+        $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+        $database = self::DB();
+        $result = $database->select(self::TABLE_NAME,'*',[
+            'start[>]'=>$today->format('Y-m-d'),
+        ]);
+        return $result;
+    }
+
+    /**
+     * Get current incentives
+     * @return array|bool
+     */
+    public static function GetCurrent(){
+        $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+        $database = self::DB();
+        $result = $database->select(self::TABLE_NAME,'*',[
+            'AND'=>[
+                'start[<=]'=>$today->format('Y-m-d'),
+                'finish[>=]'=>$today->format('Y-m-d')
+            ]
+        ]);
+        return $result;
+    }
+
+    /**
+     * Get just finished incentives: in past three months
+     * @return array|bool
+     */
+    public static function GetJustFinished(){
+        $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+        $threeMonthsBefore = Carbon::now()->subMonths(3);
+        $database = self::DB();
+        $result = $database->select(self::TABLE_NAME,'*',[
+            'finish[<>]'=>[
+                $threeMonthsBefore->format('Y-m-d'),
+                $today->format('Y-m-d')
+            ]
+        ]);
+        return $result;
+    }
+
+    /**
+     * Get past incentives:
+     * @return array|bool
+     */
+    public static function GetPast(){
+        $threeMonthsBefore = Carbon::now()->subMonths(3);
+        $database = self::DB();
+        $result = $database->select(self::TABLE_NAME,'*',[
+            'finish[<]'=>$threeMonthsBefore->format('Y-m-d')
+        ]);
+        return $result;
+    }
 }
