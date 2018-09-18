@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link href="{{ asset('/css/justin.css') }}" rel="stylesheet">
 
-    {% if isPhone and env('MOBILE_VERSION','TW')=='APP STYLE' %}
+    {% if isMobile and env('MOBILE_VERSION','TW')=='APP STYLE' %}
         <link href="{{ asset('/js/utils/slideout.css') }}" rel="stylesheet">
     {% endif %}
 

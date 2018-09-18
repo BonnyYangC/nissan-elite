@@ -48,7 +48,7 @@ Zepto(function($){
                 select:'',
                 selectedDealer:null
             },
-            created(){
+            created:function(){
             },
             methods:{
                 querySearchAsync: function(queryString, cb){
@@ -97,7 +97,7 @@ Zepto(function($){
                 advanceMode: false,
 
             },
-            created(){
+            created: function(){
                 this._LoadNissanDealers();
             },
             methods:{

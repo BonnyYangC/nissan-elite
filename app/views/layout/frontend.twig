@@ -3,7 +3,7 @@
 {{ include('layout/reusable_elements/head.twig') }}
 <body class="bg-black">
     {# Load the navigator from the reuseable element of dashboard #}
-    {% if isPhone and env('MOBILE_VERSION','TW')=='APP STYLE' %}
+    {% if isMobile and env('MOBILE_VERSION','TW')=='APP STYLE' %}
         {% include 'dashboard/reusable_elements/nav_mobile.twig' %}
     {% else %}
         {# Load the top bar from the reuseable element of dashboard #}
@@ -14,7 +14,7 @@
     {% endif %}
 
     <main id="panel" class="panel-mask bg-black">
-        {% if isPhone and env('MOBILE_VERSION','TW')=='APP STYLE' %}
+        {% if isMobile and env('MOBILE_VERSION','TW')=='APP STYLE' %}
             {# If mobile devices #}
             <button class="toggle-button">☰</button>
             {# Load the top bar from the reuseable element of dashboard #}

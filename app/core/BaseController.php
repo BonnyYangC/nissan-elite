@@ -91,13 +91,16 @@ class BaseController
          */
         $this->clientAgent = new Agent();
         $this->dataForView['clientAgent'] = $this->clientAgent;
-        $this->dataForView['isPhone'] = $this->clientAgent->isPhone();
+        $isPhone = $this->clientAgent->isPhone();
+        $isTablet = $this->clientAgent->isTablet();
+        $this->dataForView['isPhone'] = $isPhone;
+        $this->dataForView['isTablet'] = $isTablet;
+        $this->dataForView['isMobile'] = $isTablet || $isPhone;
 
-        /**
-         * Inject the browser's type into view
-         */
-        $this->dataForView['isPhone'] = $this->clientAgent->isPhone();
-        $this->dataForView['isTablet'] = $this->clientAgent->isTablet();
+        // Check if IE browser
+        $browser = $this->clientAgent->browser();
+        $version = $this->clientAgent->version($browser);
+        $this->dataForView['isInternetExplore'] = $browser === 'IE' && floatval($version) <= 11;
     }
 
     /**

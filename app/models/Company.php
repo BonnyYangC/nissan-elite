@@ -155,6 +155,7 @@ class Company extends BaseModel implements IRole
         $this->company_fax = str_replace('-','',$this->company_fax);
         $this->company_name = str_replace('?','\'',$this->company_name);
         $this->region = self::GetRegionCode(trim($this->region));
+        $this->parent_id = 8;
         return parent::save();
     }
 

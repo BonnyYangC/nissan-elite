@@ -443,6 +443,8 @@ class User extends BaseModel implements Mailable, IRole
             $this->setDepartmentNameAndPositionDesc();
             // Get user's Positions
             $this->positions = DataSource::GetPositionList($this);
+//            dump($this->getEmployeeCode());
+//            dd($this->positions);
             $this->setIsUserRegisteredAndExcellent();
         }
         return $this;

@@ -1,0 +1,54 @@
+{% extends 'layout/login.twig' %}
+{% block content %}
+    <section>
+        <ul class="cb-slideshow">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+        </ul>
+        <div class="container-loop">
+            <div class="codrops-top">
+                <a href="#"></a>
+                <span class="right">
+                    </span>
+                <div class="clr"></div>
+            </div>
+            <header>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="panel pl-25 pr-25">
+                            <h1 class="txt-red">Dear AC Member,</h1>
+                            <p class="lead">
+                                The browser you are using is not compatible with this website.
+                            </p>
+                            <p class="lead">
+                                The recommended browser to use is Microsoft Edge or Chrome. (note Microsoft Edge automatically available with Windows 10) If using an older version of Windows such as Version 7 or 8, please click on the link to install Chrome, or Firefox if preferred.
+                            </p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-center">
+                                        <a href="https://www.google.com/chrome/">
+                                            <img src="{{ asset('images/chrome.png') }}" width="140" alt="Go chrome install page">
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-center">
+                                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                            <img src="{{ asset('images/firefox.png') }}" width="140" alt="Go Firefox install page">
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+        </div>
+    </section>
+{% endblock %}

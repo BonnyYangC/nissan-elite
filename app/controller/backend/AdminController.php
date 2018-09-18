@@ -179,6 +179,9 @@ class AdminController extends BaseController
      * Update the regional report active
      */
     public function sync_regional_report_user_status(){
+        /**
+         * 下面的代码会根据 csv 文档, 扫描 region_report, activate or inactives
+         */
 //        $readerActive = CsvTool::ReadFile(__DIR__.'/files/active_member_17sep18_region_report.csv');
 //        $countActiveSuccess = 0;
 //        $countActiveFailed = 0;
@@ -205,6 +208,9 @@ class AdminController extends BaseController
 //            }
 //        }
 
+        /**
+         * 下面的代码会根据 csv 文档, 扫描 nissan_history 表格, 然后更新所有的 2017 的总 credits
+         */
         $readerInactive = CsvTool::ReadFile(__DIR__.'/files/historical_sep17.csv');
         foreach ($readerInactive as $index=>$row) {
             if($index > 0){

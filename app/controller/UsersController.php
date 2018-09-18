@@ -27,23 +27,34 @@ class UsersController extends Controller
      * Entry page
      */
     public function login(){
-        $this->dataForView['errorMsg'] = session_flash('error_msg');
-        // check if session still available
-        $userData = session_get('user_data_array',true);
-        if($userData && isset($userData['id']) && !empty($userData['id'])){
-            // Refresh the session data
-            $user = new User($userData['id']);
-//            $user->find();
-            $uuid = random_str(uniqid());
-            $this->_setUserSessionData($uuid, $user);
+//        $browser = $this->clientAgent->browser();
+//        $version = $this->clientAgent->version($browser);
+//
+//        $this->render('user/update_browser');
+//        return;
 
-            $this->dataForView['grid'] = $this->_get3BrandsGridData();
-            $this->dataForView['user'] = $user;
-            // Render dashboard view
-            $this->render('user/entry_point');
+//        if($browser === 'IE' && floatval($version) <= 11){
+        if(true){
+            // The browser is not supported
+            $this->render('user/update_browser');
         }else{
-            // Render login view
-            $this->render('user/login');
+            $this->dataForView['errorMsg'] = session_flash('error_msg');
+            // check if session still available
+            $userData = session_get('user_data_array',true);
+            if($userData && isset($userData['id']) && !empty($userData['id'])){
+                // Refresh the session data
+                $user = new User($userData['id']);
+                $uuid = random_str(uniqid());
+                $this->_setUserSessionData($uuid, $user);
+
+                $this->dataForView['grid'] = $this->_get3BrandsGridData();
+                $this->dataForView['user'] = $user;
+                // Render dashboard view
+                $this->render('user/entry_point');
+            }else{
+                // Render login view
+                $this->render('user/login');
+            }
         }
         return;
     }

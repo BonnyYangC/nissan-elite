@@ -218,7 +218,7 @@ $(document).ready(function(){
         var MemberRankingsApp = new Vue({
             el: '#member-ranking-app',
             delimiters: ['${', '}'],
-            data(){
+            data: function(){
                 return {
                     blocks:[],
                     modalTitle:'',
@@ -228,7 +228,7 @@ $(document).ready(function(){
                     lastSelectedAction: null
                 };
             },
-            created(){
+            created: function(){
 
             },
             methods: {
@@ -297,11 +297,11 @@ $(document).ready(function(){
                         return false;
                     }
                 },
-                tableRowClassName: function({row, rowIndex}) {
-                    if (row.re === 'NO') {
-                        return row.cn + ' warning-row';
+                tableRowClassName: function(param) {
+                    if (param.row.re === 'NO') {
+                        return param.row.cn + ' warning-row';
                     }
-                    return row.cn ;
+                    return param.row.cn ;
                 }
             }
         });
