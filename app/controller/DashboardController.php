@@ -142,11 +142,8 @@ class DashboardController extends BaseController
      */
     private function _prepareDashboardDataForDSM(){
         $this->dataForView['extra_css'] = [
-            'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
         ];
         $this->dataForView['extra_js'] = [
-            'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js',
-            'https://unpkg.com/element-ui/lib/index.js',
             asset('js/dsm_utils.js')
         ];
     }
@@ -156,11 +153,8 @@ class DashboardController extends BaseController
      */
     private function _prepareDashboardDataForNissanSuper(){
         $this->dataForView['extra_css'] = [
-            'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
         ];
         $this->dataForView['extra_js'] = [
-            'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js',
-            'https://unpkg.com/element-ui/lib/index.js',
             asset('js/dsm_utils.js?version=1')
         ];
     }
@@ -253,13 +247,22 @@ class DashboardController extends BaseController
 
         $historyRows = History::GetLifetime($this->userObject);
         $history = [];
+        /**
+         * Need to handle the Fast Finish credits
+         */
         foreach ($historyRows as $historyRow) {
-            if(floatval($historyRow[1]) > 0){
+            $subTotal = floatval($historyRow[1]);
+            if($historyRow[3] > 0){
+                // Has FF
+                $subTotal += $historyRow[3];
+            }
+            if($subTotal > 0){
                 $history[] = [
                     $historyRow[0],
-                    intval($historyRow[1])
+                    $subTotal
                 ] ;
             }
+
         }
 
         $this->dataForView['dashboard'] = [

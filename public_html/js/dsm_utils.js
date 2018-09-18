@@ -70,8 +70,9 @@ if(dsmEl){
                 }
             },
             showMe:function(row, rowIndex){
+                var defaultClass = 'txt-black-tr';
                 if(this.keyword.trim().length === 0 && this.dept === 'All'){
-                    return null;
+                    return defaultClass;
                 }else{
                     if(row.row.d.toLowerCase().indexOf(this.keyword.toLowerCase()) === -1){
                         // not found
@@ -79,12 +80,12 @@ if(dsmEl){
                     }else{
                         if(this.dept !== 'All'){
                             if(this.dept === row.row.s){
-                                return null;
+                                return defaultClass;
                             }else{
                                 return 'hidden';
                             }
                         }else{
-                            return null;
+                            return defaultClass;
                         }
                     }
                 }
@@ -125,6 +126,47 @@ if(dsmEl){
             },
             getMockUserUrl: function(employeeCode){
                 return '/admin/fake-user?uc='+employeeCode;
+            },
+            getFullPositionNameByCode: function(abbr){
+                var fullName = null;
+                switch (abbr){
+                    case 'I':
+                        fullName = 'F&I Controller';
+                        break;
+                    case 'R':
+                        fullName = 'Retail Sales Consultant';
+                        break;
+                    case 'F':
+                        fullName = 'Fleet Sales Consultant';
+                        break;
+                    case 'FM':
+                        fullName = 'Fleet Sales Manager';
+                        break;
+                    case 'M':
+                        fullName = 'Sales Manager';
+                        break;
+                    case 'SA':
+                        fullName = 'Service Advisor';
+                        break;
+                    case 'SC':
+                        fullName = 'Stock Controller';
+                        break;
+                    case 'C':
+                        fullName = 'Finance Controller';
+                        break;
+                    case 'PM':
+                        fullName = 'Parts Manager';
+                        break;
+                    case 'PS':
+                        fullName = 'Parts Sales';
+                        break;
+                    case 'SM':
+                        fullName = 'Service Manager';
+                        break;
+                    default:
+                        break;
+                }
+                return fullName;
             }
         }
     });
