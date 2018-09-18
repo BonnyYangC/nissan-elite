@@ -53,7 +53,7 @@ class ServiceManager extends BaseRole implements IRole
                 $recommendation_results[]       = $this->_buildForTableElement($item['recommendation'],1).'%';
                 $clean_results[]                = $this->_buildForTableElement($item['vclean'],1).'%';
                 $fu_results[]                   = $this->_buildForTableElement($item['followup'],1).'%';
-                $emw_results[]                  = $this->_buildForTableElement($item['emw'],1).'%';
+                $emw_results[]                  = $this->_buildForTableElement($item['emw'],0);
             }
             else
             {

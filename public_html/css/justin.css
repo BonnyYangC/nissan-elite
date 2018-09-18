@@ -247,6 +247,13 @@
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: black;
 }
-.el-table .sort-caret{
-    border: 11px solid transparent;
+.dsm-table-header .sort-caret{
+    border: 8px solid transparent;
+}
+.dsm-table-header .sort-caret.ascending{
+    top: 11px;
+}
+.dsm-table-header .caret-wrapper{
+    height: 31px;
+    top: -3px;
 }
