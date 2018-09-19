@@ -1,6 +1,6 @@
 {% extends 'layout/3brands.twig' %}
 {% block content %}
-<div class="{{ isPhone or isTablet ? 'bs-wrapper' : null }}">
+<div class="{{ isPhone or isTablet ? '' : null }}">
     <div class="container" align="center">
         <div class="row" style="margin-top:50px;">
             {% for block in grid %}

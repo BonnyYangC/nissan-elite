@@ -57,7 +57,7 @@ class FI extends BaseRole implements IRole
     ];
 
     public $NFSA_Credits = [
-        'label'=>'LOYALTY & RETENTION',
+        'label'=>'Loyalty & Retention',
         'backgroundColor' => IColor::BLACK,
         'data'=>[]
     ];
