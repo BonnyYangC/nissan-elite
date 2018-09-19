@@ -73,7 +73,7 @@ class StockController extends BaseRole implements IRole
 
                 $stock_results[] = $this->_buildForTableElement($item['stock'],0);
                 $ow_results[] = $this->_buildForTableElement($item['ow'],0);
-                $retail_results[] = $this->_buildForTableElement($item['retail']*100,0);
+                $retail_results[] = $item['retail'] == 1 ? 'YES' : 'NO';
                 $matched_results[] = $this->_buildForTableElement($item['matched'],0);
                 $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
             }
