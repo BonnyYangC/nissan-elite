@@ -191,7 +191,6 @@ class TableFieldMap{
             'meeting_credit'        =>'credits_bmo_meetings',
 
             'training'              =>'credits_training_online',
-            'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',
             'adjustment'            =>'credits_adjustment',

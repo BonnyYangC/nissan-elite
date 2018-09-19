@@ -156,9 +156,7 @@ class FinanceController extends BaseRole implements IRole
                 $this->Quality['data'][]  = intval($item['quality_credit']);
                 $this->Checklist['data'][]  = intval($item['checklist_credit']);
                 $this->Meetings['data'][]  = intval($item['meeting_credit']);
-                $this->training['data'][]  = $item['training']
-                    + $item['pathway']
-                    + $item['classroom'];
+                $this->training['data'][]  = $item['training'] ? $item['training'] : 0;
             }
             else
             {
