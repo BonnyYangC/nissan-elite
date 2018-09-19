@@ -224,7 +224,7 @@
        but non-existent background fixes this.
       (Put an empty 1×1 image here to avoid
        errors in console.) */
-    background: url(_.gif);
+    background: url("../images/_.png");
 }
 .incentive-img{
     width: 90%;
