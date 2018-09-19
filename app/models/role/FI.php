@@ -56,6 +56,12 @@ class FI extends BaseRole implements IRole
         'data'=>[]
     ];
 
+    public $NFSA_Credits = [
+        'label'=>'LOYALTY & RETENTION',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
+
     public function __construct(User $user = null)
     {
         parent::__construct($user);
@@ -90,6 +96,7 @@ class FI extends BaseRole implements IRole
                 $this->EMW_Genuine_Extended['data'][]  = intval($item['credits_emw']);
                 $this->SalesPenetration['data'][]  = intval($item['credits_penetration']);
                 $this->FollowUp['data'][]  = intval($item['credits_fi']);
+                $this->NFSA_Credits['data'][] = intval($item['credits_nfsa_retention']);
             }
             else
             {
@@ -102,6 +109,7 @@ class FI extends BaseRole implements IRole
                 $this->EMW_Genuine_Extended['data'][]  = 0;
                 $this->SalesPenetration['data'][]  = 0;
                 $this->FollowUp['data'][]  = 0;
+                $this->NFSA_Credits['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -109,9 +117,6 @@ class FI extends BaseRole implements IRole
 
         // Status
         $status = new FiStatus($ytd);
-
-//        dd(convert_array_to_js_2_dimension_array($this->JS_credits));
-
         return [
             // For js array
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
@@ -126,6 +131,7 @@ class FI extends BaseRole implements IRole
                 $this->EMW_Genuine_Extended,
                 $this->SalesPenetration,
                 $this->FollowUp,
+                $this->NFSA_Credits,
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
@@ -214,23 +220,24 @@ class FI extends BaseRole implements IRole
                 $sales_nfsa_retention[] = $this->_buildForTableElement();
             }
         }
+
         return  [
-            "NFSA" => $nfsa,
-            "NFSA_RESULTS" => $nfsa_results,
-            "EMW" => $emw,
-            "EMW_RESULTS" => $emw_results,
-            "MMU_RESULTS" => $mmu_results,
-            "INSURANCE" => $ins,
+            "NFSA"                  => $nfsa,
+            "NFSA_RESULTS"          => $nfsa_results,
+            "EMW"                   => $emw,
+            "EMW_RESULTS"           => $emw_results,
+            "MMU_RESULTS"           => $mmu_results,
+            "INSURANCE"             => $ins,
             "INSURANCE_MVI_RESULTS" => $mvi_results,
             "INSURANCE_VPI_RESULTS" => $vpi_results,
             "INSURANCE_PKG_RESULTS" => $pkg_results,
-            "PENETRATION" => $penetration,
-            "PENETRATION_RESULT" => $penetration_results,
-            "FOLLOW_UP" => $fu,
-            "FOLLOW_UP_RESULTS" => $fu_results,
+            "PENETRATION"           => $penetration,
+            "PENETRATION_RESULT"    => $penetration_results,
+            "FOLLOW_UP"             => $fu,
+            "FOLLOW_UP_RESULTS"     => $fu_results,
             // Retention
-            "RETENTION_RESULTS" => $sales_nfsa_retention,
-            "RETENTION"         => $credits_nfsa_retention,
+            "RETENTION_RESULTS"     => $sales_nfsa_retention,
+            "RETENTION"             => $credits_nfsa_retention,
         ];
     }
 }

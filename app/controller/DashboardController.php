@@ -296,7 +296,6 @@ class DashboardController extends BaseController
     protected function fetchUserMetricsData(){
         $data = DataSource::Query($this->userObject);
         $this->metricsData = $data['result']['Results'];
-//        $this->excellence = $data['result']['Excellence'];
     }
 
     /**
