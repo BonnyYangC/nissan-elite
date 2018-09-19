@@ -11,11 +11,17 @@
                 <h3>CURRENT</h3>
                 <div class="row">
                     <div class="fotorama foto-slider-wrap" data-click="true" data-autoplay="true" data-width="100%" data-ratio="840/598" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-allowfullscreen="true">
-                        {% for slide in incentives %}
-                        <div data-img="{{ asset('/images/incentives/images/') }}{{ slide.image }}">
-                            <a href="{{ asset('/images/incentives/images/pdf/') }}{{ slide.pdf }}" target="_blank"></a>
-                        </div>
-                        {% endfor %}
+                        {% if count(current)>0 %}
+                            {% for slide in current %}
+                                <div data-img="{{ asset('/images/incentives/images/') }}{{ slide.image }}">
+                                    <a href="{{ asset('/images/incentives/images/pdf/') }}{{ slide.pdf }}" target="_blank"></a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div data-img="{{ asset('/images/holding_slide_incentives.jpg') }}">
+                                <a href="#"></a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -67,7 +73,7 @@
             <hr>
             <h3 class="pl-25">Just Finished</h3>
             <br>
-            {% for row in incentivesFinished %}
+            {% for row in finished %}
                 <div class="col-md-12">
                     {% for item in row %}
                         <div class="col-md-4 col-xs-12">
@@ -88,7 +94,7 @@
             <h3 class="pl-25">Past</h3>
             <br>
 
-            {% for row in incentivesPast %}
+            {% for row in past %}
             <div class="col-md-12">
                     {% for item in row %}
                     <div class="col-md-4 col-xs-12">
