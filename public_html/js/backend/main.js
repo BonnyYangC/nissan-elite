@@ -5,6 +5,30 @@ function fileInputOnChange(file,fileNameElementId){
         }
     };
 }
+// Slide out for backend start
+var slideout = new Slideout({
+    'panel': document.getElementById('panel'),
+    'menu': document.getElementById('menu'),
+    'padding': 256,
+    'tolerance': 70
+});
+document.getElementById('toggle-side-menu').addEventListener('click', function(e) {
+    slideout.toggle();
+});
+function slideOutClose(eve) {
+    eve.preventDefault();
+    slideout.close();
+}
+slideout.on('beforeopen', function() {
+    this.panel.classList.add('panel-mask-open');
+}).on('open', function() {
+    this.panel.addEventListener('click', slideOutClose);
+}).on('beforeclose', function() {
+    this.panel.classList.remove('panel-mask-open');
+    this.panel.removeEventListener('click', slideOutClose);
+});
+// Slide out for backend end
+
 Zepto(function($){
     $('#submit-import-btn').on('click',function(e){
         $('#submit-btn-waiting').addClass('fa-spin');

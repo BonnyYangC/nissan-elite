@@ -1,16 +1,85 @@
-<nav class="navbar is-dark" id="nav-app-wrap">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-            <img src="http://destination.com.au/img/DESTINATION_REV_LOGO.png" alt="Destination Events" width="112" height="32">
-        </a>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-            <span></span>
-            <span></span>
-            <span></span>
+<div id="nav-app-wrap">
+    <nav class="navbar is-dark">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="http://destination.com.au/img/DESTINATION_REV_LOGO.png" alt="Nissan AC" width="112" height="32">
+            </a>
         </div>
-    </div>
+        {% if not isMobile %}
+        <div id="menu" class="navbar-menu slideout-menu" >
+            <div class="navbar-start">
+                <a class="navbar-item" href="{{ get_route('admin.home') }}">
+                    Dashboard
+                </a>
 
-    <div id="navbarExampleTransparentExample" class="navbar-menu">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Users Manager
+                    </a>
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item" href="{{ get_route('admin.users.manage') }}">
+                            Dealer's Users
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{{ get_route('admin.region.staff') }}">
+                            Region Staff
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{{ get_route('admin.users.super') }}">
+                            Admin Users
+                        </a>
+                    </div>
+                </div>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Content Manager
+                    </a>
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item" href="{{ get_route('admin.calendars.index') }}">
+                            Calendar
+                        </a>
+                        <a class="navbar-item" href="{{ get_route('admin.incentives.index') }}">
+                            Incentives
+                        </a>
+                    </div>
+                </div>
+
+                <div class="navbar-item">
+                    <el-autocomplete
+                            v-model="keyword"
+                            style="width: 400px;"
+                            :fetch-suggestions="querySearchAsync"
+                            placeholder="Find a User By: Firstname Surname"
+                            @select="handleSelect"
+                            :hide-loading="true"
+                            :trigger-on-focus="false"
+                            :select-when-unmatched="true"
+                    >
+                        <template slot-scope="{ item }">
+                            <p class="name">${ item.firstname } ${ item.lastname } - ${ item.company_name }(${ item.position })</p>
+                        </template>
+                    </el-autocomplete>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a href="{{ url('/user/logout') }}" class="button is-link">
+                                <i class="fas fa-sign-out-alt"></i>&nbsp;
+                                Logout
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </nav>
+{% if isMobile %}
+    <div id="menu" class="" style="background: #fff; padding-top: 66px;">
         <div class="navbar-start">
             <a class="navbar-item" href="{{ get_route('admin.home') }}">
                 Dashboard
@@ -52,7 +121,7 @@
             <div class="navbar-item">
                 <el-autocomplete
                         v-model="keyword"
-                        style="width: 400px;"
+                        style="width: 400px;margin-left: -20px;"
                         :fetch-suggestions="querySearchAsync"
                         placeholder="Find a User By: Firstname Surname"
                         @select="handleSelect"
@@ -80,4 +149,5 @@
             </div>
         </div>
     </div>
-</nav>
+{% endif %}
+</div>

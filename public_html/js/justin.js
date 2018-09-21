@@ -306,24 +306,4 @@ $(document).ready(function(){
             }
         });
     }
-
-    // incentives
-    // var sliderEl = document.getElementById('incentives-slider');
-    // if(sliderEl){
-    //     $('#incentives-slider').slick({
-    //         slidesToShow: 1,
-    //         slidesToScroll: 1,
-    //         arrows: false,
-    //         fade: true,
-    //         asNavFor: '#incentives-slider-thumbnails'
-    //     });
-    //     $('#incentives-slider-thumbnails').slick({
-    //         slidesToShow: 3,
-    //         slidesToScroll: 1,
-    //         asNavFor: '#incentives-slider',
-    //         dots: true,
-    //         centerMode: true,
-    //         focusOnSelect: true
-    //     });
-    // }
 });

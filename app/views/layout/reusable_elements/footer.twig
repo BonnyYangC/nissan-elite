@@ -17,15 +17,13 @@
         $('[data-toggle="popover"]').popover()
     })
 </script>
-
 {% if isMobile %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
 <script src="https://unpkg.com/better-scroll/dist/bscroll.min.js"></script>
 <script src="{{ asset('js/utils/slideout.js') }}"></script>
 <script src="{{ asset('js/utils/b_scroll_util.js') }}"></script>
 {% endif %}
-
 {% for js in extra_js %}
-<script src="{{ js }}?version=2" type="application/javascript"></script>
+<script src="{{ js }}" type="application/javascript"></script>
 {% endfor %}
 <script src="{{ asset('/js/justin.js') }}"></script>

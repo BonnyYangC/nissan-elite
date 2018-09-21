@@ -2,7 +2,8 @@ var slideout = new Slideout({
     'panel': document.getElementById('panel'),
     'menu': document.getElementById('menu'),
     'padding': 256,
-    'tolerance': 70
+    'tolerance': 70,
+    'easing': 'cubic-bezier(.32,2,.55,.27)'
 });
 
 // Toggle button
@@ -70,7 +71,6 @@ if(menuEl){
                     if(res.status === 200){
                         that.menus = res.data.data;
                         for (var i = 0; i < that.menus.length ; i++) {
-                            console.log(that.menus[i].a);
                             if(that.menus[i].a){
                                 that.activeIndex = i;
                             }

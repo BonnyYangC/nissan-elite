@@ -3,39 +3,6 @@
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawCharts);
 function drawCharts() {
-  
-  // BEGIN BAR CHART
-  /*
-  // create zero data so the bars will 'grow'
-  var barZeroData = google.visualization.arrayToDataTable([
-    ['Day', 'Page Views', 'Unique Views'],
-    ['Sun',  0,      0],
-    ['Mon',  0,      0],
-    ['Tue',  0,      0],
-    ['Wed',  0,      0],
-    ['Thu',  0,      0],
-    ['Fri',  0,      0],
-    ['Sat',  0,      0]
-  ]);
-	*/
-  // actual bar chart data
-	/*
-  var barData = google.visualization.arrayToDataTable([
-    ['Month',  '2017'],
-    ['April', 46000],
-    ['May', 56000],
-    ['June',  52505],
-    ['July',   52505],
-    ['August',   22505],
-    ['September',   12505],
-	['October',   32505],
-	['November',   22505],
-	['December',   62505],
-	['January',   22505],
-	['February',   31505],
-	['March',  82505]
-  ]);
-  */
   // set bar chart options
   var barOptions = {
     focusTarget: 'category',
