@@ -49,10 +49,7 @@ class UsersController extends BaseController
         $whereCondition = [
             'users.active'=>1,
             'users.parent_id'=>8,
-            'users.position'=>[
-                User::DISTRICT_SALES_MANAGER,
-                User::NATIONAL_SALES_MANAGER,
-            ]
+            'users.position'=>User::$REGION_STAFF_POSITIONS
         ];
         $this->dataForView['roles'] = DataSource::$_rolesMap;
         $this->dataForView['users'] = User::GetRegionStaff([],$currentPageNumber);

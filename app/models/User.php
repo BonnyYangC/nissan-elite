@@ -165,7 +165,8 @@ class User extends BaseModel implements Mailable, IRole
         if(count($options)>0){
             $where = [
                 'users.parent_id'=>8,
-                'users.company_id'=>8
+                'users.company_id'=>8,
+                'users.position'=>User::$REGION_STAFF_POSITIONS
             ];
             foreach ($options as $fieldName=>$value){
                 $where[$fieldName] = $value;
@@ -173,13 +174,18 @@ class User extends BaseModel implements Mailable, IRole
         }else{
             $where = [
                 'users.parent_id'=>8,
-                'users.company_id'=>8
+                'users.company_id'=>8,
+                'users.position'=>User::$REGION_STAFF_POSITIONS
             ];
         }
 
         $db = self::DB();
         $result = $db->select('users','*',[
-            'AND'=>$where
+            'AND'=>$where,
+            'ORDER'=>[
+                'alt_position'=>'ASC',
+                'firstname'=>'ASC',
+            ]
         ]);
 
         return $result;

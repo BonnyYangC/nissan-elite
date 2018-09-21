@@ -61,16 +61,7 @@ class HomepageTest extends TestCase
     }
 
     public function testAdminCheck(){
-        $request = new \Klein\Request(
-            ['email'=>env('ADMIN_USER'),'password'=>env('ADMIN_PASSWORD')]
-        );
-        $response = new \Klein\Response();
 
-        $controller = new \App\controller\UsersController($request, $response);
-
-        $controller->verify_user();
-
-        dump(session_get('admin_data_array'));
     }
 
     public function tearDown() {
