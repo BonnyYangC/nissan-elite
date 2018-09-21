@@ -6,7 +6,7 @@
             </td>
         </tr>
         <tr class="light-back">
-            <td><span class="rank">{{ empty(dashboard.lifeTime) ? null : number_format(dashboard.lifeTime,0) }}</span><br></td>
+            <td><span class="rank"><a href="{{ url('/dashboard/Lifetime') }}" class="tw">{{ empty(dashboard.lifeTime) ? null : number_format(dashboard.lifeTime,0) }}</a></span><br></td>
         </tr>
     </table>
 </div>

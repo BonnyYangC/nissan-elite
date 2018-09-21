@@ -12,9 +12,12 @@ var slideout = new Slideout({
     'padding': 256,
     'tolerance': 70
 });
-document.getElementById('toggle-side-menu').addEventListener('click', function(e) {
-    slideout.toggle();
-});
+if(document.getElementById('toggle-side-menu')){
+    document.getElementById('toggle-side-menu').addEventListener('click', function(e) {
+        slideout.toggle();
+    });
+}
+
 function slideOutClose(eve) {
     eve.preventDefault();
     slideout.close();
