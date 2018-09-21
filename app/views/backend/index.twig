@@ -185,6 +185,19 @@
                                     <p class="help has-text-grey is-size-6">Which year's data the user will see</p>
                                 </div>
                             </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Challenge Winner</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[PRODUCT_CHALLENGE_WINNER]" placeholder="Which year you want to display" value="{{ env('PRODUCT_CHALLENGE_WINNER','Parry NQ Nissan') }}">
+                                        </div>
+                                    </div>
+                                    <p class="help has-text-grey is-size-6">Product Challenge Winner this year</p>
+                                </div>
+                            </div>
                             <hr>
                             <h5>Database</h5>
                             <div class="field is-horizontal">

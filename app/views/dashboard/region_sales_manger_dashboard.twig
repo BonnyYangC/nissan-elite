@@ -71,28 +71,24 @@
                         empty-text="Loading data ..."
                         :row-class-name="showMe"
                         style="width: 100%">
-                    <el-table-column prop="d" fixed sortable label="Dealer" width="150">
+                    <el-table-column prop="d" fixed sortable label="Dealer" width="160">
                         <template slot-scope="scope">
                             ${ scope.row.d }
-                        </template>
-                    </el-table-column>
-                    <el-table-column
-                            prop="c" {{ isPhone?null:'fixed' }} sortable
-                            label="Cat" width="96">
-                        <template slot-scope="scope">
-                            <p class="text-center">
-                                <el-tag :type="scope.row.c === 'A' ? 'primary' : (scope.row.c === 'B' ? 'success' : 'warning')" disable-transitions>
-                                    ${ scope.row.c }
-                                </el-tag>
-                            </p>
                         </template>
                     </el-table-column>
                     <el-table-column
                             prop="f" {{ isPhone?null:'fixed' }} sortable
                             label="Name" width="180">
                         <template slot-scope="scope">
-                            <p class="text-center">
-                                <a :href="getMockUserUrl(scope.row.e)" target="_blank">${ scope.row.f }</a>
+                            <a class="txt-black" :href="getMockUserUrl(scope.row.e)" target="_blank">${ scope.row.f }</a>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="c" {{ isPhone?null:'fixed' }} sortable
+                            label="Registered" width="140">
+                        <template slot-scope="scope">
+                            <p class="text-center" :class="{'txt-gr':scope.row.c=='YES','txt-red':scope.row.c=='NO'}">
+                                ${ scope.row.c }
                             </p>
                         </template>
                     </el-table-column>
@@ -116,51 +112,51 @@
                     </el-table-column>
                     <el-table-column
                             prop="c04"
-                            label="Apr" sortable width="96">
+                            label="Apr" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c05"
-                            label="May" sortable width="96">
+                            label="May" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c06"
-                            label="Jun" sortable width="96">
+                            label="Jun" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c07"
-                            label="Jul" sortable width="96">
+                            label="Jul" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c08"
-                            label="Aug" sortable width="96">
+                            label="Aug" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c09"
-                            label="Sep" sortable width="96">
+                            label="Sep" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c10"
-                            label="Oct" sortable width="96">
+                            label="Oct" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c11"
-                            label="Nov" sortable width="96">
+                            label="Nov" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c12"
-                            label="Dec" sortable width="96">
+                            label="Dec" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c01"
-                            label="Jan" sortable width="96">
+                            label="Jan" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c02"
-                            label="Feb" sortable width="96">
+                            label="Feb" sortable width="86">
                     </el-table-column>
                     <el-table-column
                             prop="c03"
-                            label="Mar" sortable width="96">
+                            label="Mar" sortable width="86">
                     </el-table-column>
                 </el-table>
             </div>

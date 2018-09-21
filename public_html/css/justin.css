@@ -13,6 +13,15 @@
 }
 .txt-red{
     color: #c40030 !important;
+    font-weight: bold;
+}
+.txt-gr{
+    color: #1aaf54 !important;
+    font-weight: bold;
+}
+.txt-black{
+    color: #111111 !important;
+    font-weight: bold;
 }
 .full-width{
     width: 100%;

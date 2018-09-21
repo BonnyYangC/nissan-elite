@@ -72,7 +72,7 @@ class AdminController extends BaseController
         $content .= 'SESSION_SEGMENT=_nissanac'.PHP_EOL;
         $content .= 'YEAR='.$env['YEAR'].PHP_EOL;
         $content .= 'DEFAULT_TIMEZONE="Australia/Melbourne"'.PHP_EOL;
-        $content .= 'dealExcellenceOverviewUrl=http://nissan-events.com.au/excellence-fy17/ac/welcome.html'.PHP_EOL;
+        $content .= 'dealExcellenceOverviewUrl=http://nissan-events.com.au/excellence-fy18/ac/welcome.html'.PHP_EOL;
         $content .= 'eventRegisterUrl="http://www.nissan-events.com.au/ac${YEAR}/reg"'.PHP_EOL;
         $content .= 'DB_DRIVER=mysql'.PHP_EOL;
         $content .= 'DB_USER='.$env['DB_USER'].PHP_EOL;
@@ -86,6 +86,7 @@ class AdminController extends BaseController
         $content .= 'SUPPORT_EMAIL_ADDRESS='.$env['SUPPORT_EMAIL_ADDRESS'].PHP_EOL;
         $content .= 'SUPPORT_EMAIL_NAME="'.$env['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
         $content .= 'MOBILE_VERSION="'.$env['MOBILE_VERSION'].'"'.PHP_EOL;
+        $content .= 'PRODUCT_CHALLENGE_WINNER="'.$env['PRODUCT_CHALLENGE_WINNER'].'"'.PHP_EOL;
 
         file_put_contents(env('APP_PATH').'/helpers/.env',$content);
 

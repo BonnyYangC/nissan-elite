@@ -75,6 +75,7 @@ class ApiController extends BaseController
 
         for($i = 0;$i<count($rows);$i++){
             $rows[$i]['p'] = RegionTerritoryReport::ShortenPositionString($rows[$i]['p']);
+            $rows[$i]['c'] = $rows[$i]['c']=='Registered'? 'YES':'NO';
         }
         echo JsonBuilder::Success($rows);
     }

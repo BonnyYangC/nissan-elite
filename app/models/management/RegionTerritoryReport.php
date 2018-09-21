@@ -99,7 +99,7 @@ class RegionTerritoryReport extends BaseModel
         }
 
         return $database->select(self::TABLE_NAME,[
-            'dealer_name(d)','dealer_cat(c)',
+            'dealer_name(d)','registered(c)',
             'sp_code(s)','n_fullname(f)','employee_code(e)','position(p)','cr_ytd(y)',
             'credits_monthly_04(c04)','credits_monthly_05(c05)','credits_monthly_06(c06)','credits_monthly_07(c07)',
             'credits_monthly_08(c08)','credits_monthly_09(c09)','credits_monthly_10(c10)','credits_monthly_11(c11)',

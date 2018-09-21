@@ -14,12 +14,11 @@
     <link href="{{ asset('/css/bar-graph/bar-style.css') }}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link href="{{ asset('/css/justin.css') }}?version=2" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.1/jquery.fancybox.min.css" />
+    <link href="{{ asset('/css/justin.css') }}?version=3" rel="stylesheet">
     {% if isMobile and env('MOBILE_VERSION','TW')=='APP STYLE' %}
         <link href="{{ asset('/js/utils/slideout.css') }}" rel="stylesheet">
     {% endif %}
-
     <link rel="shortcut icon" type="image/png" href="{{ asset('/images/favicon.png') }}" />
     {% for css in extra_css %}
         <link href="{{ css }}" rel="stylesheet">
