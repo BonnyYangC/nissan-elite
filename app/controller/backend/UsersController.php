@@ -90,6 +90,17 @@ class UsersController extends BaseController
     }
 
     /**
+     * Load region staff edit view to create a new account
+     */
+    public function region_staff_new(){
+        $this->dataForView['user'] = new User();
+        $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
+        $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
+        $this->render('backend/users/edit_region_staff');
+        return;
+    }
+
+    /**
      * Load region staff edit view
      */
     public function region_staff_edit(){
@@ -155,7 +166,11 @@ class UsersController extends BaseController
             $user->$fieldName = $value;
         }
 
-        $user->save();
+        if($user->save()){
+            session_flash('msg',['content'=>$data['firstname'].' '.$data['lastname'].' has been created successfully!','status'=>'success']);
+        }else{
+            session_flash('msg',['content'=>'System busy, please try again or contact IT person!','status'=>'danger']);
+        }
         $this->response->redirect('/admin/region-staff');
         return;
     }

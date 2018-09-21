@@ -141,7 +141,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/admin/region-staff', \App\controller\backend\UsersController::class,'region_staff')
     ->name('admin.region.staff');
-
+\App\core\Route::Instance()
+    ->get('/admin/region-staff-new', \App\controller\backend\UsersController::class,'region_staff_new')
+    ->name('admin.region.staff.new');
 \App\core\Route::Instance()
     ->get('/admin/region-staff-edit', \App\controller\backend\UsersController::class,'region_staff_edit')
     ->name('admin.region.staff.edit');
