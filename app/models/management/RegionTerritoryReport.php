@@ -73,16 +73,25 @@ class RegionTerritoryReport extends BaseModel
         return isset(self::$REGIONS[$name]) ? self::$REGIONS[$name] : self::REGION_UNKNOWN;
     }
 
+    /**
+     * Get region code by Given name
+     * @param $name
+     * @return int|mixed
+     */
     public static function GetRegionCodeWithShortName($name){
         if(is_array($name)){
             $name = $name[0];
         }
         $map = [
             'Southern'           =>self::REGION_SOUTHERN,
+            'S'           =>self::REGION_SOUTHERN,
             'Western'            =>self::REGION_WESTERN_AND_CENTRAL,
+            'W'            =>self::REGION_WESTERN_AND_CENTRAL,
             'Western & Central'  =>self::REGION_WESTERN_AND_CENTRAL,
             'Eastern'            =>self::REGION_EASTERN,
+            'E'            =>self::REGION_EASTERN,
             'Northern'           =>self::REGION_NORTHERN,
+            'N'           =>self::REGION_NORTHERN,
         ];
         return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
     }

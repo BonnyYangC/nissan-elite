@@ -11,6 +11,7 @@ use App\core\BaseController;
 use App\core\JsonBuilder;
 use App\models\Company;
 use App\models\management\RegionTerritoryReport;
+use Carbon\Carbon;
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
@@ -126,18 +127,37 @@ class ApiController extends BaseController
         $user = new User($member);
         $regionCollection = $user->getManagedRegions();
         $regions = [];
+        $regionsName = '';
         foreach ($regionCollection as $item) {
             $regions[] = $item['region_code'];
+            switch (strtoupper($item['region_code'])){
+                case 'E':
+                    $regionsName .= 'Eastern';
+                    break;
+                case 'N':
+                    $regionsName .= 'Northern';
+                    break;
+                case 'W':
+                    $regionsName .= 'Western_Central';
+                    break;
+                case 'S':
+                    $regionsName .= 'Southern';
+                    break;
+                default:
+                    break;
+            }
         }
+
         $rows = $this->_retrieve_regional_data($regions);
 
-        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'territory_report_'.time().'.csv';
+        $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'territory_report_'.$today->format('d_M_Y').'.csv';
         $fileStream = fopen($filePath,'w');
 
         $writer = Writer::createFromStream($fileStream);
 
         $csvHeader = [
-            'Region Code','Dealer','Category','Dept','Name','Position','YTD',
+            'Dealer','Registered','Dept','Name','Member No.','Position','YTD',
             'APR '.env('YEAR'),
             'MAY '.env('YEAR'),
             'JUN '.env('YEAR'),
