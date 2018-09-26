@@ -130,13 +130,13 @@ class RegionTerritoryReport extends BaseModel
     public static function GetByEmployeeCodeRegionCodes($codes){
         $database = self::DB();
         if(count($codes) === 1){
-            $codes = $codes[0];
+            $codes = self::GetRegionCodeWithShortName($codes[0]);
         }
         return $database->select(self::TABLE_NAME,[
             'region_code','dealer_name','employee_code','n_fullname','sp_code','position','registered'
         ],[
             'AND'=>[
-                'region_code'=>$codes,
+                'region_id'=>$codes,
                 'period'=>env('YEAR')
             ]
         ]);

@@ -102,13 +102,15 @@ class ApiController extends BaseController
             }
         }
 
-        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'active_member_list_'.time().'.csv';
+        $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'active_member_list_'.$today->format('d_M_Y').'.csv';
         $fileStream = fopen($filePath,'w');
 
         $writer = Writer::createFromStream($fileStream);
 
         $csvHeader = [
-            'Region Code','Dealer','Employee Code','Name','Dept','Position','Registered','email','mobile'
+            'Region Code','Dealer','Member No.','Name','Dept','Position','Registered','email','mobile'
         ];
         $writer->insertOne($csvHeader);
         $writer->insertAll($rows);
@@ -127,25 +129,25 @@ class ApiController extends BaseController
         $user = new User($member);
         $regionCollection = $user->getManagedRegions();
         $regions = [];
-        $regionsName = '';
+        $regionsName = ''; // Used to concat the download file name
         foreach ($regionCollection as $item) {
             $regions[] = $item['region_code'];
-            switch (strtoupper($item['region_code'])){
-                case 'E':
-                    $regionsName .= 'Eastern';
-                    break;
-                case 'N':
-                    $regionsName .= 'Northern';
-                    break;
-                case 'W':
-                    $regionsName .= 'Western_Central';
-                    break;
-                case 'S':
-                    $regionsName .= 'Southern';
-                    break;
-                default:
-                    break;
-            }
+//            switch (strtoupper($item['region_code'])){
+//                case 'E':
+//                    $regionsName .= 'Eastern';
+//                    break;
+//                case 'N':
+//                    $regionsName .= 'Northern';
+//                    break;
+//                case 'W':
+//                    $regionsName .= 'Western_Central';
+//                    break;
+//                case 'S':
+//                    $regionsName .= 'Southern';
+//                    break;
+//                default:
+//                    break;
+//            }
         }
 
         $rows = $this->_retrieve_regional_data($regions);
