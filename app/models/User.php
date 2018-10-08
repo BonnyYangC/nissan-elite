@@ -438,9 +438,9 @@ class User extends BaseModel implements Mailable, IRole
         if($this->position === self::NISSAN_SUPER){
             $this->managedRegions = [
                 Company::REGION_EASTERN,
+                Company::REGION_NORTHERN,
                 Company::REGION_SOUTHERN,
                 Company::REGION_WESTERN,
-                Company::REGION_NORTHERN,
             ];
         }elseif(in_array($this->position, $this->_getRegionStaffRoles())){
             $this->managedRegions = [$this->alt_position];
@@ -454,8 +454,6 @@ class User extends BaseModel implements Mailable, IRole
             $this->setDepartmentNameAndPositionDesc();
             // Get user's Positions
             $this->positions = DataSource::GetPositionList($this);
-//            dump($this->getEmployeeCode());
-//            dd($this->positions);
             $this->setIsUserRegisteredAndExcellent();
         }
         return $this;
