@@ -361,7 +361,6 @@ class AdminController extends BaseController
         $filePath = $uploader->store('csv');
         $syncedRowsCount = 0;
 
-
         if($filePath){
             /**
              * @var File $file
@@ -398,6 +397,15 @@ class AdminController extends BaseController
                             !empty($row[$this->indexes[DbMap::COMPANY_CODE]])   // This condition is for company table only
                         )
                     ){
+                        // 对于 Regional territory report 来讲, 有一些特殊处理: 55开头的 dealer code 都是无效的; dealer code 141 是无效的
+                        if($tableName == RegionTerritoryReport::TABLE_NAME
+                            && (
+                                strpos($row[$this->indexes['dealer_code']],RegionTerritoryReport::PREFIX_OF_USELESS_DEALER_CODE)===0 ||
+                                $row[$this->indexes['dealer_code']] === RegionTerritoryReport::USELESS_DEALER_CODE
+                            )){
+                            continue;
+                        }
+
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
 
                         $resultSet = $db->select($tableName,'*',$whereCondition);

@@ -32,6 +32,10 @@ class RegionTerritoryReport extends BaseModel
     const INACTIVE      = 2;
     const INELIGIBLE    = 3;
 
+    // Special case
+    const PREFIX_OF_USELESS_DEALER_CODE = '5500'; // 任何55开始的 dealer code 都是可以忽略的
+    const USELESS_DEALER_CODE           = '141';// 这个 dealer code 是测试用的
+
     protected $tableName    = 'nissan_region_territory_reports';
 
     public static $REGIONS = [
