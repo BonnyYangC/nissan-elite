@@ -28,7 +28,7 @@ class ServiceAdviser extends BaseRole implements IRole
     public function getMetrics($data){
         $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training=$cpr=$cpr_result=[];
 
-        $valueForMoney = $valueForMoneyTable = '';
+        $valueForMoney = $valueForMoneyTable = [];
 
         for($i=0; $i<12; $i++)
         {
