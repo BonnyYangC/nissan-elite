@@ -59,7 +59,7 @@ class FinanceController extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $financial=$frequency_results=$ontime_results=$quality=$balance_results=$submission_results=$management=$checklist_results=$meeting_results=$training='';
+        $financial=$frequency_results=$ontime_results=$quality=$balance_results=$submission_results=$management=$checklist_results=$meeting_results=$training=[];
         for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
