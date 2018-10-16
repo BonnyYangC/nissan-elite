@@ -356,7 +356,6 @@ class AdminController extends BaseController
      */
     public function csv_importer(){
         $isSyncAction = $this->request->param('action_type') == 'sync';
-
         $uploader = new FileUploader($this->request);
         $filePath = $uploader->store('csv');
         $syncedRowsCount = 0;
