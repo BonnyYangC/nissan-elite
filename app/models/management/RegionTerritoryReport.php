@@ -34,17 +34,19 @@ class RegionTerritoryReport extends BaseModel
 
     // Special case
     const PREFIX_OF_USELESS_DEALER_CODE = '5500'; // 任何55开始的 dealer code 都是可以忽略的
-    const USELESS_DEALER_CODE           = '141';// 这个 dealer code 是测试用的
+    const USELESS_DEALER_CODE           = '141';  // 这个 dealer code 是测试用的
 
     protected $tableName    = 'nissan_region_territory_reports';
 
     public static $REGIONS = [
-        'Southern Region'           =>self::REGION_SOUTHERN,
-        'Western & Central Region'  =>self::REGION_WESTERN_AND_CENTRAL,
-        'Eastern Region'            =>self::REGION_EASTERN,
-        'Northern Region'           =>self::REGION_NORTHERN,
-        'Eastern-NFSA Region'       =>self::REGION_EASTERN,
+        'Southern Region'               =>self::REGION_SOUTHERN,
+        'Western & Central Region'      =>self::REGION_WESTERN_AND_CENTRAL,
+        'Eastern Region'                =>self::REGION_EASTERN,
+        'Northern Region'               =>self::REGION_NORTHERN,
+        'Eastern-NFSA Region'           =>self::REGION_EASTERN,
         'Western & Central-NFSA Region' =>self::REGION_WESTERN_AND_CENTRAL,
+        'Eastern-NFSA'                  =>self::REGION_EASTERN,
+        'Southern-NFSA'                 =>self::REGION_SOUTHERN,
     ];
 
     public function __construct(User $user = null)
@@ -89,14 +91,16 @@ class RegionTerritoryReport extends BaseModel
         }
         $map = [
             'Southern'           =>self::REGION_SOUTHERN,
-            'S'           =>self::REGION_SOUTHERN,
+            'S'                 =>self::REGION_SOUTHERN,
             'Western'            =>self::REGION_WESTERN_AND_CENTRAL,
-            'W'            =>self::REGION_WESTERN_AND_CENTRAL,
+            'W'                 =>self::REGION_WESTERN_AND_CENTRAL,
             'Western & Central'  =>self::REGION_WESTERN_AND_CENTRAL,
             'Eastern'            =>self::REGION_EASTERN,
-            'E'            =>self::REGION_EASTERN,
+            'E'                 =>self::REGION_EASTERN,
             'Northern'           =>self::REGION_NORTHERN,
-            'N'           =>self::REGION_NORTHERN,
+            'N'                 =>self::REGION_NORTHERN,
+            'Eastern-NFSA'      =>self::REGION_EASTERN,
+            'Southern-NFSA'     =>self::REGION_SOUTHERN,
         ];
         return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
     }
