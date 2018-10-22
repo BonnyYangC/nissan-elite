@@ -101,6 +101,7 @@ class RegionTerritoryReport extends BaseModel
             'N'                 =>self::REGION_NORTHERN,
             'Eastern-NFSA'      =>self::REGION_EASTERN,
             'Southern-NFSA'     =>self::REGION_SOUTHERN,
+            'Northern - NSFA'     =>self::REGION_NORTHERN,
         ];
         return isset($map[$name]) ? $map[$name] : self::REGION_UNKNOWN;
     }
