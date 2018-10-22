@@ -104,6 +104,7 @@ class Incentives extends BaseModel
         $database = self::DB();
         $result = $database->select(self::TABLE_NAME,'*',[
             'start[>]'=>$today->format('Y-m-d'),
+            'ORDER'=>['start'=>'DESC']
         ]);
         return $result;
     }
@@ -136,7 +137,8 @@ class Incentives extends BaseModel
             'finish[<>]'=>[
                 $threeMonthsBefore->format('Y-m-d'),
                 $today->format('Y-m-d')
-            ]
+            ],
+            'ORDER'=>['start'=>'DESC']
         ]);
         return $result;
     }
@@ -149,7 +151,8 @@ class Incentives extends BaseModel
         $threeMonthsBefore = Carbon::now()->subMonths(3);
         $database = self::DB();
         $result = $database->select(self::TABLE_NAME,'*',[
-            'finish[<]'=>$threeMonthsBefore->format('Y-m-d')
+            'finish[<]'=>$threeMonthsBefore->format('Y-m-d'),
+            'ORDER'=>['start'=>'DESC']
         ]);
         return $result;
     }
