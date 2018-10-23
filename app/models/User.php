@@ -52,6 +52,7 @@ class User extends BaseModel implements Mailable, IRole
     const DAM_NFSA = 'DAM NFSA';
     const RM_NFSA = 'RM NFSA';
     const RGM = 'RGM';
+    const DSM = 'DSM';
     const ADMIN = 'ADMIN';
     const NISSAN_SUPER = 'NISSAN_SUPER';
 
@@ -66,6 +67,7 @@ class User extends BaseModel implements Mailable, IRole
         self::FDM,
         self::RAM,
         self::DTS,
+        self::DSM,
         self::ROA,
         self::RSC,
         self::RSM_NFSA,

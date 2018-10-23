@@ -8,6 +8,7 @@
 
 namespace App\controller\backend;
 use App\core\BaseController;
+use App\lib\utils\CsvTool;
 use App\models\management\RegionTerritoryReport;
 use App\models\User;
 use App\models\utils\Pagination;
@@ -70,6 +71,7 @@ class UsersController extends BaseController
      * Load super user new view
      */
     public function super_user_new(){
+        $this->import_super_users();
         $user = new User($this->request->param('uid'));
         $this->dataForView['user'] = $user;
         $this->render('backend/users/edit_super');
@@ -151,6 +153,29 @@ class UsersController extends BaseController
         $user->save();
         $this->response->redirect('/admin/users-super');
         return;
+    }
+
+    private function import_super_users(){
+        $reader = CsvTool::ReadFile(__DIR__.DIRECTORY_SEPARATOR.'needs_web_access_super_user.csv');
+        foreach ($reader as $row) {
+            $lastName = trim(str_replace($row[0],'',$row[1]));
+            $data = [
+                'company_id'=>8,
+                'parent_id'=>8,
+                'employee_code'=>random_str(uniqid()),
+                'email'=>$row[1],
+                'firstname'=>$row[0],
+                'lastname'=>$lastName,
+                'password'=>ucfirst($lastName).'1',
+                'position'=>'NISSAN_SUPER',
+                'active'=>1,
+            ];
+            $user = new User();
+            foreach ($data as $fieldName => $value) {
+                $user->$fieldName = $value;
+            }
+            $user->save();
+        }
     }
 
     /**
