@@ -158,7 +158,7 @@ class UsersController extends BaseController
     private function import_super_users(){
         $reader = CsvTool::ReadFile(__DIR__.DIRECTORY_SEPARATOR.'needs_web_access_super_user.csv');
         foreach ($reader as $row) {
-            $lastName = trim(str_replace($row[0],'',$row[1]));
+            $lastName = trim(str_replace($row[0],'',$row[2]));
             $data = [
                 'company_id'=>8,
                 'parent_id'=>8,
