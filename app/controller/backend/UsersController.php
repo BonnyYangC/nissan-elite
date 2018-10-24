@@ -71,7 +71,7 @@ class UsersController extends BaseController
      * Load super user new view
      */
     public function super_user_new(){
-       $this->import_super_users();
+       // $this->import_super_users();
         $user = new User($this->request->param('uid'));
         $this->dataForView['user'] = $user;
         $this->render('backend/users/edit_super');
