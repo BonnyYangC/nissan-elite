@@ -166,7 +166,7 @@ class UsersController extends BaseController
                 'email'=>$row[1],
                 'firstname'=>$row[0],
                 'lastname'=>$lastName,
-                'password'=>ucfirst($lastName).'1',
+                'password'=>strtoupper(str_replace(' ','-',$lastName)).'1',
                 'position'=>'NISSAN_SUPER',
                 'active'=>1,
             ];
