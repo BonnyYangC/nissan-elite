@@ -73,10 +73,30 @@ class DashboardController extends BaseController
     protected $metricsData = null;
     protected $excellence = null;
 
+    protected $_clearUserDataSessionWhenDone = false;
+
     public function __construct(Request $request, Response $response)
     {
         parent::__construct($request, $response);
+
         $userData = session_get('user_data_array',true);
+        if($userData){
+            $managerData = session_get('manager_data_array',true);
+            if($managerData){
+                // Means manager is login and mock him
+                $this->_clearUserDataSessionWhenDone = true;
+            }
+
+            $regionStaffData = session_get('region_staff_data_array',true);
+            if($regionStaffData){
+                // Means manager is login and mock him
+                $this->_clearUserDataSessionWhenDone = true;
+            }
+        }
+
+        if(!$userData){
+            $userData = session_get('manager_data_array',true);
+        }
 
         if(!$userData){
             $userData = session_get('region_staff_data_array',true);
@@ -109,6 +129,23 @@ class DashboardController extends BaseController
         if($this->userObject){
             $this->dataForView['user'] = $this->userObject;
         }
+
+        // 表示发现现在是 manager 在 mock 他的组员
+        if($this->_clearUserDataSessionWhenDone){
+            $this->dataForView['dashboardMenuOnly'] = true;
+        }
+    }
+
+    /**
+     * @param null $param
+     */
+    public function afterRender($param = null)
+    {
+        parent::afterRender($param);
+        // 表示发现现在是 manager 在 mock 他的组员, 在数据渲染完毕之后把储存普通用户的 session 清空
+        if($this->_clearUserDataSessionWhenDone){
+            session_set('user_data_array', []);
+        }
     }
 
     /**
@@ -121,6 +158,7 @@ class DashboardController extends BaseController
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
+        $this->dataForView['team_members'] = $this->userObject->getTeamMembers();
 
         $this->dataForView['extra_css'] = [
             asset('/includes/fullcalendar/fullcalendar.min.css')

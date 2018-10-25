@@ -198,6 +198,13 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('admin.fake.user');
 
 \App\core\Route::Instance()
+    ->get('/manager/fake-user/dashboard', \App\controller\backend\AdminController::class,'fake_user')
+    ->name('manager.fake.user.dashboard');
+\App\core\Route::Instance()
+    ->get('/manager/fake-user/matrics', \App\controller\backend\AdminController::class,'fake_user_matrics')
+    ->name('manager.fake.user.matrics');
+
+\App\core\Route::Instance()
     ->get('/admin/fake-region-staff', \App\controller\backend\AdminController::class,'fake_region_staff')
     ->name('admin.fake.region.staff');
 

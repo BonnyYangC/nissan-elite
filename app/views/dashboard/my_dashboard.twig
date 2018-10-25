@@ -45,6 +45,14 @@
                     {% endif %}
                 </div>
             </div>
+            {% if count(team_members) > 0 %}
+                <div class="col-md-12">
+                <h3>
+                    My Team Member{{ count(team_members)>1 ? 's':null }}
+                </h3>
+                {% include 'dashboard/widget_element/users_table.twig' %}
+            </div>
+            {% endif %}
         </div>
         <div class="col-md-3 pb-0">
             <h3>RANKINGS &amp; CREDITS</h3>

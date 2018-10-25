@@ -145,6 +145,39 @@ class AdminController extends BaseController
         return $this->response->redirect('/dashboard')->send();
     }
 
+    /**
+     * @return \Klein\AbstractResponse
+     */
+    public function fake_user_matrics(){
+        $userId = $this->request->param('uid');
+        $employeeCode = $this->request->param('uc');
+        if($employeeCode){
+            $database = User::DB();
+            $result = $database->select(User::TABLE_NAME,'*',[
+                'employee_code'=>$employeeCode
+            ]);
+            if($result && count($result)>0){
+                $row = $result[0];
+                $user = new User($row['user_id']);
+            }
+        }else{
+            $user = new User($userId);
+        }
+
+        $uuid = random_str(uniqid());
+        $this->response->cookie('uuid',$uuid,time() + 3600,'/',url());
+
+        session_set(env('SESSION_SEGMENT','_nissanac_fake'), $uuid);
+        session_set('user_data_array', [
+            'id'=>$user->getId(),
+            'name'=>$user->getName()
+        ]);
+        session_set('selected_role',null);
+
+        // redirect to this user's dashboard
+        return $this->response->redirect('/dashboard/Metrics')->send();
+    }
+
     public function fake_region_staff(){
         session_set('user_data_array', null);
         session_set('selected_role',null);

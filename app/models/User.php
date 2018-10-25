@@ -112,6 +112,12 @@ class User extends BaseModel implements Mailable, IRole
      */
     private $ownedDealers     = null;
 
+    /**
+     * Holder for a manager role's members
+     * @var array
+     */
+    private $teamMembers = [];
+
     public function __construct($id = null)
     {
         parent::__construct($id);
@@ -432,6 +438,86 @@ class User extends BaseModel implements Mailable, IRole
     }
 
     /**
+     * Is the user is a manager
+     * @return bool
+     */
+    public function isManagerRole(){
+        $result = false;
+        switch ($this->position){
+            case self::PARTS_MANAGER:
+                $result = true;
+                break;
+            case self::SERVICE_MANAGER:
+                $result = true;
+                break;
+            case self::SALES_MANAGER:
+                $result = true;
+                break;
+            default:
+                break;
+        }
+        return $result;
+    }
+
+    /**
+     * Get member roles by given position
+     * @param  string $position
+     * @return array
+     */
+    public function getMemberRoles($position = null){
+        $result = [];
+        if(is_null($position)){
+            $position = $this->position;
+        }
+        switch ($position){
+            case self::PARTS_MANAGER:
+                $result = [self::PARTS_SALES_REP];
+                break;
+            case self::SERVICE_MANAGER:
+                $result = [self::SERVICE_ADVISERS];
+                break;
+            case self::SALES_MANAGER:
+                $result = [self::RETAIL_SALES_CONSULTANTS,self::FLEET_SALES_CONSULTANTS,self::FLEET_SALES_MANAGER];
+                break;
+            default:
+                break;
+        }
+        return $result;
+    }
+
+    /**
+     * Getter of team members array
+     * @return array
+     */
+    public function getTeamMembers(){
+        return $this->teamMembers;
+    }
+
+    /**
+     * Get users array by given roles
+     * @param array $roles
+     * @return array|bool
+     */
+    public function getUsersByRoles($roles = [])
+    {
+        if(empty($roles)){
+            return [];
+        }else{
+            $database = self::DB();
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'company_code'=>$this->company_code,
+                'active'=>1,
+                'position'=>$roles,
+                'ORDER'=>[
+                    'firstname'=>'ASC'
+                ]
+            ]);
+            return $result;
+        }
+    }
+
+
+    /**
      * Init user's basic info about company and position ...
      * @return $this
      */
@@ -457,6 +543,10 @@ class User extends BaseModel implements Mailable, IRole
             // Get user's Positions
             $this->positions = DataSource::GetPositionList($this);
             $this->setIsUserRegisteredAndExcellent();
+
+            if($this->isManagerRole()){
+                $this->teamMembers = $this->getUsersByRoles($this->getMemberRoles());
+            }
         }
         return $this;
     }
@@ -553,8 +643,6 @@ class User extends BaseModel implements Mailable, IRole
                 ]
             ]
         );
-
-
 
         // Check if the company is suspended
         $company = Company::GetByCompanyCode($record->company_code);

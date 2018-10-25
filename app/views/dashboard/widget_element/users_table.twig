@@ -1,0 +1,23 @@
+<div class="table-responsive">
+    <table class="table leader-board">
+        <tr class="table-top-row">
+            <td></td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td></td>
+        </tr>
+        {% for idx,user in team_members %}
+            <tr>
+                <td>{{ idx+1 }}</td>
+                <td>
+                    {{ user.firstname }}
+                </td>
+                <td>{{ user.lastname }}</td>
+                <td>
+                    <a href="{{ url('/manager/fake-user/dashboard?uid=') }}{{ user.user_id }}" target="_blank">Dashboard</a>&nbsp;&nbsp;/&nbsp;
+                    <a href="{{ url('/manager/fake-user/matrics?uid=') }}{{ user.user_id }}" target="_blank">Matrics</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -33,7 +33,10 @@ class UsersController extends Controller
         }else{
             $this->dataForView['errorMsg'] = session_flash('error_msg');
             // check if session still available
-            $userData = session_get('user_data_array',true);
+            $userData = session_get('manager_data_array',true); // Check manager data first
+            if(is_null($userData)){
+                $userData = session_get('user_data_array',true);
+            }
             if($userData && isset($userData['id']) && !empty($userData['id'])){
                 // Refresh the session data
                 $user = new User($userData['id']);
@@ -217,6 +220,11 @@ class UsersController extends Controller
 
         if($user->isRegionsManager()){
             session_set('region_staff_data_array', [
+                'id'=>$user->getId(),
+                'name'=>$user->getName()
+            ]);
+        }elseif ($user->isManagerRole()){
+            session_set('manager_data_array', [
                 'id'=>$user->getId(),
                 'name'=>$user->getName()
             ]);
