@@ -14,11 +14,10 @@
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Image</th>
+                    <th>Period</th>
+                    <th>Feature Image</th>
                     <th>Attachment</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,8 +35,9 @@
                                 {{ incentive.caption }}
                             </p>
                         </td>
-                        <td>{{ incentive.start }}</td>
-                        <td>{{ incentive.finish }}</td>
+
+                        <td>{{ incentive.start }}/{{ incentive.finish }}</td>
+
                         <td>
                             {% if incentive.image %}
                             <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
@@ -75,8 +75,7 @@
                                 {{ incentive.caption }}
                             </p>
                         </td>
-                        <td>{{ incentive.start }}</td>
-                        <td>{{ incentive.finish }}</td>
+                        <td>{{ incentive.start }}/{{ incentive.finish }}</td>
                         <td>
                             {% if incentive.image %}
                                 <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
@@ -113,8 +112,7 @@
                                 {{ incentive.caption }}
                             </p>
                         </td>
-                        <td>{{ incentive.start }}</td>
-                        <td>{{ incentive.finish }}</td>
+                        <td>{{ incentive.start }}/{{ incentive.finish }}</td>
                         <td>
                             {% if incentive.image %}
                                 <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
@@ -151,8 +149,7 @@
                                 {{ incentive.caption }}
                             </p>
                         </td>
-                        <td>{{ incentive.start }}</td>
-                        <td>{{ incentive.finish }}</td>
+                        <td>{{ incentive.start }}/{{ incentive.finish }}</td>
                         <td>
                             {% if incentive.image %}
                                 <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/') }}{{ incentive.image }}" alt="">
