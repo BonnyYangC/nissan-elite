@@ -92,7 +92,11 @@ class ApiController extends BaseController
         foreach ($regionCollection as $item) {
             $regions[] = $item['region_code'];
         }
-        $rows = RegionTerritoryReport::GetByEmployeeCodeRegionCodes($regions);
+        $rows = RegionTerritoryReport::GetByEmployeeCodeRegionCodes(
+            $regions,
+            $this->request->param('dept'),
+            $this->request->param('dealer')
+        );
 
         for ($i=0;$i<count($rows);$i++){
             $find = $user->first(['employee_code'=>$rows[$i]['employee_code']],['email','mobile']);
@@ -150,7 +154,11 @@ class ApiController extends BaseController
 //            }
         }
 
-        $rows = $this->_retrieve_regional_data($regions);
+        $rows = $this->_retrieve_regional_data(
+            $regions,
+            $this->request->param('dept'),
+            $this->request->param('dealer')
+        );
 
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'territory_report_'.$today->format('d_M_Y').'.csv';
@@ -182,7 +190,13 @@ class ApiController extends BaseController
         die(0);
     }
 
-    private function _retrieve_regional_data($regions){
-        return RegionTerritoryReport::GetByRegionCodes($regions);
+    /**
+     * @param $regions
+     * @param string $dept
+     * @param null $dealerNameKeyword
+     * @return array|bool
+     */
+    private function _retrieve_regional_data($regions,$dept = 'All', $dealerNameKeyword = null){
+        return RegionTerritoryReport::GetByRegionCodes($regions,$dept,$dealerNameKeyword);
     }
 }

@@ -109,12 +109,28 @@ class RegionTerritoryReport extends BaseModel
     /**
      * Search territory report by region codes. Only active records will be return
      * @param $codes
+     * @param $dept
+     * @param $dealerNameKeyword
      * @return array|bool
      */
-    public static function GetByRegionCodes($codes){
+    public static function GetByRegionCodes($codes,$dept = 'All', $dealerNameKeyword = null){
         $database = self::DB();
         if(count($codes) === 1){
             $codes = $codes[0];
+        }
+
+        $whereCondition = [
+            'region_id'=>self::GetRegionCodeWithShortName($codes),
+            'period'=>env('YEAR'),
+            'active'=>self::ACTIVE
+        ];
+
+        if($dept !== 'All'){
+            $whereCondition['sp_code'] = $dept;
+        }
+
+        if($dealerNameKeyword){
+            $whereCondition['dealer_name[~]'] = $dealerNameKeyword;
         }
 
         return $database->select(self::TABLE_NAME,[
@@ -124,31 +140,41 @@ class RegionTerritoryReport extends BaseModel
             'credits_monthly_08(c08)','credits_monthly_09(c09)','credits_monthly_10(c10)','credits_monthly_11(c11)',
             'credits_monthly_12(c12)','credits_monthly_01(c01)','credits_monthly_02(c02)','credits_monthly_03(c03)',
         ],[
-            'AND'=>[
-                'region_id'=>self::GetRegionCodeWithShortName($codes),
-                'period'=>env('YEAR'),
-                'active'=>self::ACTIVE
-            ]
+            'AND'=>$whereCondition
         ]);
     }
 
     /**
      * Search territory report by region codes
      * @param $codes
+     * @param $dept
+     * @param $dealerNameKeyword
      * @return array|bool
      */
-    public static function GetByEmployeeCodeRegionCodes($codes){
+    public static function GetByEmployeeCodeRegionCodes($codes,$dept = 'All', $dealerNameKeyword = null){
         $database = self::DB();
         if(count($codes) === 1){
             $codes = self::GetRegionCodeWithShortName($codes[0]);
         }
+
+        $whereCondition = [
+            'region_id'=>$codes,
+            'period'=>env('YEAR'),
+            'active'=>self::ACTIVE
+        ];
+
+        if($dept !== 'All'){
+            $whereCondition['sp_code'] = $dept;
+        }
+
+        if($dealerNameKeyword){
+            $whereCondition['dealer_name[~]'] = $dealerNameKeyword;
+        }
+
         return $database->select(self::TABLE_NAME,[
             'region_code','dealer_name','employee_code','n_fullname','sp_code','position','registered'
         ],[
-            'AND'=>[
-                'region_id'=>$codes,
-                'period'=>env('YEAR')
-            ]
+            'AND'=>$whereCondition
         ]);
     }
 

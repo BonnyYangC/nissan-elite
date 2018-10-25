@@ -22,9 +22,9 @@
             </div>
             <div class="col-md-8 col-xs-12">
                 <p class="mt-20 {{ isPhone?'text-center':'text-right' }}" style="padding-top:12px;">
-                    <a href="{{ url('/api/dsm/download-regional-data') }}?member={{ user.user_id }}" class="btn btn-default">
+                    <a href="#" v-on:click="handlerTerritoryReport($event,{{ user.user_id }})" class="btn btn-default">
                         <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Territory Report</a>&nbsp;
-                    <a href="{{ url('/api/dsm/download-active-member-list') }}?member={{ user.user_id }}" class="btn btn-default">
+                    <a href="#" v-on:click="handlerActiveMemberList($event,{{ user.user_id }})" class="btn btn-default">
                         <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Active Member List</a>
                 </p>
             </div>

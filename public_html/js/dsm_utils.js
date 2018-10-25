@@ -10,8 +10,8 @@ if(dsmEl){
             regionCodes:'',
             regionName:'',
             tableData:[],
-            keyword:'',
-            dept:'All',
+            keyword:'', // for filtering dealer
+            dept:'All', // for filtering department
             departments:[
                 {
                     label:'All Departments',
@@ -55,6 +55,22 @@ if(dsmEl){
             }
         },
         methods:{
+            handlerTerritoryReport: function(event, userId){
+                event.preventDefault();
+                var url = '/api/dsm/download-regional-data?member='+userId + '&dept=' + this.dept;
+                if(this.keyword !== ''){
+                    url += '&dealer=' + this.keyword;
+                }
+                window.location.href = url;
+            },
+            handlerActiveMemberList: function(event, userId){
+                event.preventDefault();
+                var url = '/api/dsm/download-active-member-list?member='+userId + '&dept=' + this.dept;
+                if(this.keyword !== ''){
+                    url += '&dealer=' + this.keyword;
+                }
+                window.location.href = url;
+            },
             arraySpanMethod: function(row, column, rowIndex, columnIndex) {
                 if (rowIndex % 2 === 0) {
                     if (columnIndex === 0) {
