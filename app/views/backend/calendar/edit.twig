@@ -61,6 +61,47 @@
 
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
+                                    <label class="label">Region</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="event[region]">
+                                                    <option value="All" {{ event.region=='All'?'selected':null }}>All</option>
+                                                    <option value="Eastern" {{ event.region=='Eastern'?'selected':null }}>Eastern</option>
+                                                    <option value="Northern" {{ event.region=='Northern'?'selected':null }}>Northern</option>
+                                                    <option value="Southern" {{ event.region=='Southern'?'selected':null }}>Southern</option>
+                                                    <option value="Western" {{ event.region=='Western'?'selected':null }}>Western</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Incentive</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="event[incentive_id]">
+                                                    <option value="">NO NEED</option>
+                                                    {% for incentive in incentives %}
+                                                    <option value="{{ incentive.id }}" {{ event.incentive_id==incentive.id?'selected':null }}>{{ incentive.title }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
                                     <label class="label">Description</label>
                                 </div>
                                 <div class="field-body">

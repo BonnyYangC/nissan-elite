@@ -14,9 +14,9 @@
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Description</th>
+                    <th>Period</th>
+                    <th>Region</th>
+                    <th>Incentive/Description</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -24,9 +24,12 @@
                 {% for event in events %}
                     <tr>
                         <th>{{ event.title }}</th>
-                        <td>{{ event.datestamp }}</td>
-                        <td>{{ event.dateend }}</td>
-                        <td>{{ event.description }}</td>
+                        <td>{{ event.datestamp }}/{{ event.dateend }}</td>
+                        <td>{{ event.region }}</td>
+                        <td>
+                            <p>{{ event.incentive_name }}</p>
+                            <p>{{ event.description }}</p>
+                        </td>
                         <td>
                             {% set param = {'eid':event.id} %}
                             <a href="{{ url('/admin/calendars-edit',param) }}"

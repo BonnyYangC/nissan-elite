@@ -8,6 +8,7 @@
 
 namespace App\controller\backend;
 
+use App\models\nissan\Incentives;
 use Klein\Request;
 use Klein\Response;
 use App\core\BaseController;
@@ -36,6 +37,7 @@ class CalendarsController extends BaseController
     public function calendars_edit(){
         $event = new Events($this->request->param('eid'));
         $this->dataForView['event'] = $event;
+        $this->dataForView['incentives'] = Incentives::LoadAll();
         $this->render('backend/calendar/edit');
         return;
     }
@@ -53,6 +55,7 @@ class CalendarsController extends BaseController
     public function calendar_new(){
         $event = new Events();
         $this->dataForView['event'] = $event;
+        $this->dataForView['incentives'] = Incentives::LoadAll();
         $this->render('backend/calendar/edit');
         return;
     }
@@ -66,6 +69,14 @@ class CalendarsController extends BaseController
         foreach ($eventData as $fieldName => $value) {
             $event->$fieldName = $value;
         }
+
+        if(empty($eventData['incentive_id'])){
+            $event->incentive_name = null;
+        }else{
+            $incentive = new Incentives($eventData['incentive_id']);
+            $event->incentive_name = $incentive->title;
+        }
+
         if($event->save()){
             session_flash('msg',['content'=>$event->title.' has been updated successfully!','status'=>'success']);
         }else{
