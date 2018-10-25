@@ -7,6 +7,7 @@
  */
 
 namespace App\controller;
+use App\models\management\RegionTerritoryReport;
 use App\models\nissan\DataSource;
 use App\models\nissan\Events;
 use App\models\nissan\Incentives;
@@ -114,7 +115,25 @@ class AccountsController extends DashboardController
      */
     public function calendar(){
         $this->dataForView['currentUri'] = 'Calendar';
-        $nissanEvents = Events::Load();
+
+        $region = 'All';
+        switch ($this->userObject->region){
+            case 'N':
+                $region = 'Northern';
+                break;
+            case 'S':
+                $region = 'Southern';
+                break;
+            case 'W':
+                $region = 'Western';
+                break;
+            case 'E':
+                $region = 'Eastern';
+                break;
+        }
+
+        $nissanEvents = Events::LoadByRegion($region);
+
         $this->dataForView['nissanEvents'] = $nissanEvents;
         $this->dataForView['extra_css'] = [
 //            asset('/css/bulma/bulma-calendar.min.css'),

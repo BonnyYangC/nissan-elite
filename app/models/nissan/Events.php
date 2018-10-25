@@ -33,6 +33,25 @@ class Events extends BaseModel
 
     /**
      * Load Nissan events
+     * @param string $region
+     * @return array|bool
+     */
+    public static function LoadByRegion($region){
+        $database = self::DB();
+        return $database->select(
+            self::TABLE_NAME,
+            '*',
+            [
+                'OR'=>[
+                    'region'=>[$region,'All']
+                ],
+                'ORDER'=>['datestamp']
+            ]
+        );
+    }
+
+    /**
+     * Load Nissan events
      * @param string $orderBy
      * @return array|bool
      */
