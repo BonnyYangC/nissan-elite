@@ -7,22 +7,9 @@
  */
 
 namespace App\controller;
-use App\models\management\RegionTerritoryReport;
-use App\models\nissan\DataSource;
 use App\models\nissan\Events;
 use App\models\nissan\Incentives;
-use App\models\role\FI;
-use App\models\role\FinanceController;
-use App\models\role\FleetSalesConsultant;
-use App\models\role\FleetSalesManager;
 use App\models\role\IRole;
-use App\models\role\PartsManager;
-use App\models\role\PartsSalesRep;
-use App\models\role\RetailSalesConsultant;
-use App\models\role\SalesManager;
-use App\models\role\ServiceAdviser;
-use App\models\role\ServiceManager;
-use App\models\role\StockController;
 use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;
@@ -162,6 +149,12 @@ class AccountsController extends DashboardController
         ];
 
         $this->render('dashboard/calendar');
+        return;
+    }
+
+    public function my_team(){
+        $this->dataForView['currentUri'] = 'my-team';
+        $this->render('dashboard/my_team');
         return;
     }
 }

@@ -179,6 +179,18 @@ class RegionTerritoryReport extends BaseModel
     }
 
     /**
+     * @param $employeeCode
+     * @return array|bool
+     */
+    public static function GetByEmployeeCode($employeeCode){
+        $rows = self::DB()->select(self::TABLE_NAME,'*',[
+            'employee_code'=>$employeeCode
+        ]);
+
+        return count($rows)>0 ? $rows[0] : null;
+    }
+
+    /**
      * Active by employee code
      * @param $code
      * @return array|bool

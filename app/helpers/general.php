@@ -331,3 +331,32 @@ if(!function_exists('_transformWhereCondition')){
         return $where;
     }
 }
+
+if(!function_exists('get_position_name_by_abbr')){
+    /**
+     * Get position full name by abbr
+     * @param $abbr
+     * @return mixed
+     */
+    function get_position_name_by_abbr($abbr){
+        return \App\models\nissan\DataSource::getRoleNameByAbbr($abbr);
+    }
+}
+
+if(!function_exists('more_details_for_member')){
+    /**
+     * Get position full name by abbr
+     * @param $members
+     * @return mixed
+     */
+    function more_details_for_member($members){
+        $result = [];
+        foreach ($members as $member) {
+            $report = \App\models\management\RegionTerritoryReport::GetByEmployeeCode($member['employee_code']);
+            $member['ytd'] = $report ? $report['cr_ytd'] : 'N.A';
+            $member['position'] = get_position_name_by_abbr($member['position']);
+            $result[] = $member;
+        }
+        return $result;
+    }
+}

@@ -2,20 +2,31 @@
     <table class="table leader-board">
         <tr class="table-top-row">
             <td></td>
-            <td>First Name</td>
-            <td>Last Name</td>
+            <td>Name</td>
+            <td>Position</td>
+            <td>Credits</td>
+            <td>Dashboard</td>
+            <td>Metrics</td>
             <td></td>
         </tr>
-        {% for idx,user in team_members %}
+        {% set members = more_details_for_member(user.teamMembers) %}
+        {% for idx,user in members %}
             <tr>
                 <td>{{ idx+1 }}</td>
                 <td>
-                    {{ user.firstname }}
+                    {{ user.firstname }} {{ user.lastname }}
                 </td>
-                <td>{{ user.lastname }}</td>
                 <td>
-                    <a href="{{ url('/manager/fake-user/dashboard?uid=') }}{{ user.user_id }}" target="_blank">Dashboard</a>&nbsp;&nbsp;/&nbsp;
-                    <a href="{{ url('/manager/fake-user/matrics?uid=') }}{{ user.user_id }}" target="_blank">Matrics</a>
+                    {{ user.position }}
+                </td>
+                <td>
+                    {{ number_format(user.ytd,0) }}
+                </td>
+                <td>
+                    <a href="{{ url('/manager/fake-user/dashboard?uid=') }}{{ user.user_id }}" target="_blank">View Details</a>
+                </td>
+                <td>
+                    <a href="{{ url('/manager/fake-user/matrics?uid=') }}{{ user.user_id }}" target="_blank">View Details</a>
                 </td>
             </tr>
         {% endfor %}

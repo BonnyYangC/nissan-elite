@@ -116,7 +116,7 @@ class User extends BaseModel implements Mailable, IRole
      * Holder for a manager role's members
      * @var array
      */
-    private $teamMembers = [];
+    public $teamMembers = [];
 
     public function __construct($id = null)
     {

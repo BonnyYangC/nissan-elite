@@ -62,6 +62,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard/Calendar',\App\controller\AccountsController::class, 'calendar');
 \App\core\Route::Instance()->get('/dashboard/Incentives',\App\controller\AccountsController::class, 'incentives');
 \App\core\Route::Instance()->get('/dashboard/Metrics',\App\controller\AccountsController::class, 'metrics');
+\App\core\Route::Instance()->get('/my-team',\App\controller\AccountsController::class, 'my_team');
 
 // Ajax calls: For get rankings
 \App\core\Route::Instance()->get('/dashboard/Leaderboards',\App\controller\RankingsController::class, 'leader_boards');
