@@ -111,15 +111,17 @@ class Incentives extends BaseModel
 
     /**
      * Get current incentives
+     * @param  string $region
      * @return array|bool
      */
-    public static function GetCurrent(){
+    public static function GetCurrent($region='All'){
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $database = self::DB();
         $result = $database->select(self::TABLE_NAME,'*',[
             'AND'=>[
                 'start[<=]'=>$today->format('Y-m-d'),
-                'finish[>=]'=>$today->format('Y-m-d')
+                'finish[>=]'=>$today->format('Y-m-d'),
+                'region'=> ($region=='All') ? $region : [$region,'All']
             ]
         ]);
         return $result;
@@ -127,16 +129,20 @@ class Incentives extends BaseModel
 
     /**
      * Get just finished incentives: in past three months
+     * @param  string $region
      * @return array|bool
      */
-    public static function GetJustFinished(){
+    public static function GetJustFinished($region='All'){
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $threeMonthsBefore = Carbon::now()->subMonths(3);
         $database = self::DB();
         $result = $database->select(self::TABLE_NAME,'*',[
-            'finish[<>]'=>[
-                $threeMonthsBefore->format('Y-m-d'),
-                $today->format('Y-m-d')
+            'AND'=>[
+                'finish[<>]'=>[
+                    $threeMonthsBefore->format('Y-m-d'),
+                    $today->format('Y-m-d')
+                ],
+                'region'=> ($region=='All') ? $region : [$region,'All']
             ],
             'ORDER'=>['start'=>'DESC']
         ]);
@@ -145,13 +151,17 @@ class Incentives extends BaseModel
 
     /**
      * Get past incentives:
+     * @param  string $region
      * @return array|bool
      */
-    public static function GetPast(){
+    public static function GetPast($region='All'){
         $threeMonthsBefore = Carbon::now()->subMonths(3);
         $database = self::DB();
         $result = $database->select(self::TABLE_NAME,'*',[
-            'finish[<]'=>$threeMonthsBefore->format('Y-m-d'),
+            'AND'=>[
+                'finish[<]'=>$threeMonthsBefore->format('Y-m-d'),
+                'region'=> ($region=='All') ? $region : [$region,'All']
+            ],
             'ORDER'=>['start'=>'DESC']
         ]);
         return $result;

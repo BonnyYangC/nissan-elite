@@ -86,9 +86,27 @@ class AccountsController extends DashboardController
         $this->dataForView['currentUri'] = 'Incentives';
         $status = strtoupper($this->request->param('status'));
         $this->dataForView['status']        = $status;
-        $this->dataForView['current']       = Incentives::GetCurrent();
-        $this->dataForView['finished']      = array_chunk(Incentives::GetJustFinished(),3);
-        $this->dataForView['past']          = array_chunk(Incentives::GetPast(),3);
+
+        $region = 'All';
+        switch ($this->userObject->region){
+            case 'N':
+                $region = 'Northern';
+                break;
+            case 'S':
+                $region = 'Southern';
+                break;
+            case 'W':
+                $region = 'Western';
+                break;
+            case 'E':
+                $region = 'Eastern';
+                break;
+        }
+
+        $this->dataForView['current']       = Incentives::GetCurrent($region);
+        $this->dataForView['finished']      = array_chunk(Incentives::GetJustFinished($region),3);
+        $this->dataForView['past']          = array_chunk(Incentives::GetPast($region),3);
+
         $this->dataForView['registered']            = $this->userObject->registered === 'YES';
         $this->dataForView['extra_css'] = [
             asset('css/fotorama.css')

@@ -42,9 +42,7 @@ class Events extends BaseModel
             self::TABLE_NAME,
             '*',
             [
-                'OR'=>[
-                    'region'=>[$region,'All']
-                ],
+                'region'=>[$region,'All'],
                 'ORDER'=>['datestamp']
             ]
         );
