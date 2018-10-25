@@ -13,6 +13,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Region</th>
                     <th>Title</th>
                     <th>Period</th>
                     <th>Feature Image</th>
@@ -27,6 +28,9 @@
                 </tr>
                 {% for incentive in upcoming %}
                     <tr>
+                        <td>
+                            {{ incentive.region }}
+                        </td>
                         <td>
                             <p>
                                 <b>{{ incentive.title }}</b>
@@ -68,6 +72,9 @@
                 {% for incentive in current %}
                     <tr>
                         <td>
+                            {{ incentive.region }}
+                        </td>
+                        <td>
                             <p>
                                 <b>{{ incentive.title }}</b>
                             </p>
@@ -105,6 +112,9 @@
                 {% for incentive in justFinished %}
                     <tr>
                         <td>
+                            {{ incentive.region }}
+                        </td>
+                        <td>
                             <p>
                                 <b>{{ incentive.title }}</b>
                             </p>
@@ -141,6 +151,9 @@
                 </tr>
                 {% for incentive in past %}
                     <tr>
+                        <td>
+                            {{ incentive.region }}
+                        </td>
                         <td>
                             <p>
                                 <b>{{ incentive.title }}</b>

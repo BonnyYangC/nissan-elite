@@ -35,6 +35,27 @@
 
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
+                                    <label class="label">Region</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select name="event[region]">
+                                                    <option value="All" {{ incentive.region=='All'?'selected':null }}>All</option>
+                                                    <option value="Eastern" {{ incentive.region=='Eastern'?'selected':null }}>Eastern</option>
+                                                    <option value="Northern" {{ incentive.region=='Northern'?'selected':null }}>Northern</option>
+                                                    <option value="Southern" {{ incentive.region=='Southern'?'selected':null }}>Southern</option>
+                                                    <option value="Western" {{ incentive.region=='Western'?'selected':null }}>Western</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
                                     <label class="label">Start At</label>
                                 </div>
                                 <div class="field-body">
@@ -132,7 +153,9 @@
                                     </div>
                                     <p>
                                         {% if incentive.pdf %}
-                                            <a href="{{ incentive.getPdfUrl() }}" target="_blank">{{ incentive.pdf }}</a>
+                                            <a class="button is-link" href="{{ incentive.getPdfUrl() }}" target="_blank">
+                                                View PDF
+                                            </a>
                                         {% endif %}
                                     </p>
                                 </div>
