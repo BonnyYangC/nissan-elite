@@ -42,7 +42,7 @@ class FI extends BaseRole implements IRole
     ];
     public $EMW_Genuine_Extended = [
         'label'=>'EMW Genuine/Extended',
-        'backgroundColor' => IColor::LIGHT_GREY,
+        'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
     public $SalesPenetration = [
@@ -52,7 +52,7 @@ class FI extends BaseRole implements IRole
     ];
     public $FollowUp = [
         'label'=>'Follow Up',
-        'backgroundColor' => IColor::DARK_GREY,
+        'backgroundColor' => IColor::LIGHT_RED,
         'data'=>[]
     ];
 
