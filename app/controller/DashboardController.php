@@ -131,7 +131,7 @@ class DashboardController extends BaseController
         }
 
         // 表示发现现在是 manager 在 mock 他的组员
-        if($this->_clearUserDataSessionWhenDone){
+        if($this->_clearUserDataSessionWhenDone && !$this->userObject->isSuperUser() && !$this->userObject->isRegionsManager()){
             $this->dataForView['dashboardMenuOnly'] = true;
         }
     }

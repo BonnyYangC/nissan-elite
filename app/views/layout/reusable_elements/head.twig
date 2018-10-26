@@ -23,4 +23,13 @@
     {% for css in extra_css %}
         <link href="{{ css }}" rel="stylesheet">
     {% endfor %}
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128181529-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-128181529-1');
+    </script>
 </head>

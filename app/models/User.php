@@ -603,6 +603,14 @@ class User extends BaseModel implements Mailable, IRole
     }
 
     /**
+     * Is the current user is super user
+     * @return bool
+     */
+    public function isSuperUser(){
+        return $this->position === self::NISSAN_SUPER;
+    }
+
+    /**
      * Getter for ownedDealers
      * @return array|null
      */
