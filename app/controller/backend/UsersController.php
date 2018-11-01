@@ -17,6 +17,8 @@ use Klein\Request;
 use Klein\Response;
 use Klein\ServiceProvider;
 use App\models\nissan\DataSource;
+use Carbon\Carbon;
+use League\Csv\Writer;
 
 class UsersController extends BaseController
 {
@@ -225,5 +227,76 @@ class UsersController extends BaseController
         }
         $this->response->redirect('/admin/users-manage');
         return;
+    }
+
+    /**
+     *
+     */
+    public function users_export(){
+        if($this->request->param('type') === 'admin'){
+            $users = User::GetNissanSuperUsers();
+            $rows = [];
+            foreach ($users as $user) {
+                $rows[] = [
+                    'All Regions',
+                    $user['firstname'].' '.$user['lastname'],
+                    $user['email'],
+                    $user['phone'],
+                    $user['password'],
+                ];
+            }
+
+            // Export admin users
+            $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+
+            $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'nissan_admin_'.$today->format('d_M_Y').'.csv';
+            $fileStream = fopen($filePath,'w');
+
+            $writer = Writer::createFromStream($fileStream);
+
+            $csvHeader = [
+                'Region','Name','Email','Mobile','Password'
+            ];
+            $writer->insertOne($csvHeader);
+            $writer->insertAll($rows);
+
+            fclose($fileStream);
+
+            $this->response->file($filePath,null,'csv');
+
+        }elseif ($this->request->param('type') === 'region'){
+            $users = User::GetRegionStaff([]);
+            $rows = [];
+            foreach ($users as $user) {
+                $rows[] = [
+                    $user['alt_position'],
+                    $user['firstname'].' '.$user['lastname'],
+                    $user['email'],
+                    $user['phone'],
+                    $user['password'],
+                    $user['position'],
+                    $user['active']==='1' ? 'YES':'NO'
+                ];
+            }
+
+            // Export admin users
+            $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+
+            $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'nissan_region_staff_'.$today->format('d_M_Y').'.csv';
+            $fileStream = fopen($filePath,'w');
+
+            $writer = Writer::createFromStream($fileStream);
+
+            $csvHeader = [
+                'Region','Name','Email','Mobile','Password','Position','Active'
+            ];
+            $writer->insertOne($csvHeader);
+            $writer->insertAll($rows);
+
+            fclose($fileStream);
+
+            $this->response->file($filePath,null,'csv');
+        }
+        die(0);
     }
 }

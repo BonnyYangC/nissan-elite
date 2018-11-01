@@ -7,7 +7,10 @@
                     <h1>Nissan Admin Users Management</h1>
                 </div>
                 <div class="column">
-                    <a href="{{ get_route('admin.users.super.new') }}" class="button is-success is-pulled-right"><i class="fa fa-plus"></i>&nbsp;New Admin</a>
+                    <a href="{{ get_route('admin.users.super.new') }}" class="button is-success is-pulled-right">
+                        <i class="fa fa-plus"></i>&nbsp;New Admin
+                    </a>
+                    <a href="{{ get_route('admin.users.export') }}?type=admin" class="button is-pulled-right" style="margin-right: 10px;"><i class="fa fa-download"></i>&nbsp;Export All</a>
                 </div>
             </div>
             <table class="table">

@@ -1,0 +1,70 @@
+Region,Name,Email,Mobile,Password,Position,Active
+Eastern,"Brendan Wollin",brendan_wollis@nissan.com.au,,WOLLIN1,FOM,YES
+Eastern,"Charlotte Nehme",charlotte_nehme@nissan.com.au,,NEHME1,RSC,YES
+Eastern,"Christian Balnchette",chistian_blanchette@nissan.com.au,,BALNCHETTE1,DSM,YES
+Eastern,"Christopher Coghlan",christopher_coghlan@nissan.com.au,,COGHLAN1,FOM,YES
+Eastern,"Craig Brown",craig_brown@nissan.com.au,,BROWN1,FDM,YES
+Eastern,"David Vaughan",david_vaughan@nissan.com.au,,VAUGHAN1,DSM,YES
+Eastern,"George Jahshan",george_jahshan@nissan.com.au,,JAHSHAN1,DTS,YES
+Eastern,"John Wijesinghe",john_wijesinghe@nissan.com.au,,WIJESINGHE1,ROA,YES
+Eastern,"Justin Jean-Baptiste",justin_jean-baptiste@nissan.com.au,,JEAN-BAPTISTE1,RAM,YES
+Eastern,"Murray Davies",murray_davies@nissan.com.au,,DAVIES1,FOM,YES
+Eastern,"Paul Teasdale",paul_teasdale@nissan.com.au,,TEASDALE1,RSM,YES
+Eastern,"Paul Crowley",paul_crowley@nissan.com.au,,CROWLEY1,DSM,YES
+Eastern,"Yvette Hill-Willis",yvette_hill-willis@nissan.com.au,,HILL-WILLIS1,DSM,YES
+Eastern-NFSA,"Caine Szymkow",caine_szymkow@nissan.com.au,,SZYMKOW1,"DAM NFSA",YES
+Eastern-NFSA,"Dean Stevanovski",dean_stevanovski@nissan.com.au,,STEVANOVSKI1,"DAM NFSA",YES
+Eastern-NFSA,"Mark Guptill",mark_guptill@nissan.com.au,,GUPTILL1,"DAM NFSA",YES
+Eastern-NFSA,"Paul Arthur",paul_arthur@nissan.com.au,,ARTHUR1,"RSM NFSA",YES
+Eastern-NFSA,"Vinday Chandra",vinday_chandra@nissan.com.au,,CHANDRA1,"DAM NFSA",YES
+Northern,"Alex Vidales",alex_vidales@nissan.com.au,,VIDALES1,DSM,YES
+Northern,"Austin Thomson",austin_thomson@nissan.com.au,,THOMSON1,DSM,YES
+Northern,"Craig Gates",craig_gates@nissan.com.au,,GATES1,RAM,YES
+Northern,"Dale Robbins",dale_robbins@nissan.com.au,,ROBBINS1,RGM,YES
+Northern,"Dan Scott",daniel_scott@nissan.com.au,,SCOTT1,RSM,YES
+Northern,"Glenda Coe",glenda_coe@nissan.com.au,,COE1,ADMIN,YES
+Northern,"Ian Meyers",ian_meyers@nissan.com.au,,MEYERS1,ADMIN,YES
+Northern,"John Hooper",john_hooper@nissan.com.au,,HOOPER1,FOM,YES
+Northern,"Kirsty Overby",kirsty_overby@nissan.com.au,,OVERBY1,DSM,YES
+Northern,"Linda Beach",linda_beach@nissan.com.au,,BEACH1,DSM,YES
+Northern,"Michelle Blake",michelle_blake@nissan.com.au,,BLAKE1,ADMIN,YES
+Northern,"Paul Meoni",paul_meoni@nissan.com.au,,MEONI1,FOM,YES
+Northern,"Peter Amundsen",peter_amundsen@nissan.com.au,,AMUNDSEN1,FOM,YES
+Northern,"Steven Harvey",steven_harvey@nissan.com.au,,HARVEY1,DTS,YES
+"Northern - NSFA","Craig Mottram",craig_mottram@nissan.com.au,,MOTTRAM1,"RSM NFSA",YES
+"Northern - NSFA","David Palmer",david_palmer@nissan.com.au,,PALMER1,"DAM NFSA",YES
+"Northern - NSFA","Michael Blair",michael_blair@nissan.com.au,,BLAIR1,"DAM NFSA",YES
+"Northern - NSFA","Nick Contoudios",nick_contoudios@nissan.com.au,,CONTOUDIOS1,"DAM NFSA",YES
+"Northern - NSFA","Paul Dyson",paul_dyson@nissan.com.au,,DYSON1,"DAM NFSA",YES
+Southern,"Adrian Sciacca",adrian_sciacca@nissan.com.au,,SCIACCA1,DSM,YES
+Southern,"Aidan Zanotto",aidan_zanotto@nissan.com.au,,ZANOTTO1,FOM,YES
+Southern,"Chris Hollow",chris_hollow@nissan.com.au,,HOLLOW1,FOM,YES
+Southern,"Frank Iannelli",frank_iannelli@nissan.com.au,,IANNELLI1,DSM,YES
+Southern,"Glenn Boyd",glenn_boyd@nissan.com.au,,BOYD1,RAM,YES
+Southern,"Greg Blanch",greg_blanch@nissan.com.au,,BLANCH1,ADMIN,YES
+Southern,"Jake Walsh",jake_walsh@nissan.com.au,,WALSH1,FOM,YES
+Southern,"Marguerita Tedford",marguerita_tedford@nissan.com.au,,TEDFORD1,DSM,YES
+Southern,"Mark Rogala",mark_rogala@nissan.com.au,,ROGALA1,DSM,YES
+Southern,"Mishelle Oberscheider",mishelle_oberscheider@nissan.com.au,,OBERSCHEIDER1,DSM,YES
+Southern,"Renee Clarke",renee_clarke@nissan.com.au,,CLARKE1,ADMIN,YES
+Southern,"Tom Ivanovic",tom_ivanovic@nissan.com.au,,IVANOVIC1,RSM,YES
+Southern,"Wade Harriman",wade_harriman@nissan.com.au,,HARRIMAN1,DSM,YES
+Southern,"Xavier Barry-Murphy",Xavier_Barry-Murphy@nissan.com.au,,BARRY-MURPHY1,ADMIN,YES
+Southern-NFSA,"Kaneisha Gunton",kaneisha_gunton@nissan.com.au,,GUNTON1,"DAM NFSA",YES
+Southern-NFSA,"Liam Marshall",liam_marshall@nissan.com.au,,MARSHALL1,"DAM NFSA",YES
+Southern-NFSA,"Shane Marshall",shane_marshall@nissan.com.au,,MARSHALL1,"RSM NFSA",YES
+"Western & Central","Ben Lister",ben_lister@nissan.com.au,,LISTER1,DSM,YES
+"Western & Central","Brendan Murray",brendan_murray@nissan.com.au,,MURRAY1,RSM,YES
+"Western & Central","Colin Shaw",colin_shaw@nissan.com.au,,SHAW1,DSM,YES
+"Western & Central","Dino Romeo",dino_romeo@nissan.com.au,,ROMEO1,RAM,YES
+"Western & Central","Elisa Millar",elisa_millar@nissan.com.au,,MILLAR1,ADMIN,YES
+"Western & Central","Hendrik Van der Merwe",hendrik_vandermerwe@nissan.com.au,,"VAN DER MERWE1",FOM,YES
+"Western & Central","JohnPaul Falvo",johnpaul_falvo@nissan.com.au,,FALVO1,FDM,YES
+"Western & Central","Mark Shepherd",mark_shepherd@nissan.com.au,,SHEPHERD1,DSM,YES
+"Western & Central","Pep Giorgio",pep_giorgio@nissan.com.au,,GIORGIO1,DSM,YES
+"Western & Central","Raymond Peterson",raymond_peterson@nissan.com.au,,PETERSON1,ROM,YES
+"Western & Central","Richard Versteeg",richard_versteeg@nissan.com.au,,VERSTEEG1,FOM,YES
+"Western & Central","Scott Lewis",scott_lewis@nissan.com.au,,LEWIS1,FOM,YES
+"Western & Central","Zacka Chan",zacka_chan@nissan.com.au,,CHAN1,DTS,YES
+"Western & Central-NFSA","Darren Bergersen",darren_bergersen@nissan.com.au,,BERGERSEN1,"DAM NFSA",YES
+"Western & Central-NFSA","Jason Maiolo",jason_maiolo@nissan.com.au,,MAIOLO1,"RM NFSA",YES
