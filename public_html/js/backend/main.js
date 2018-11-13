@@ -145,4 +145,16 @@ Zepto(function($){
             }
         });
     }
+
+    if($('.wysiwyg-editor').length > 0){
+        $R('.wysiwyg-editor',{
+            plugins:[
+                'alignment',
+                'table',
+                'fontcolor',
+                'fontsize',
+                'fontcolor'
+            ]
+        });
+    }
 });

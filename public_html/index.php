@@ -138,6 +138,28 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
  * End: Routes for manage incentives
  */
 
+/**
+ * Routes for manage FAQ
+ */
+\App\core\Route::Instance()
+    ->get('/admin/faq-index', \App\controller\backend\FaqController::class,'faq_index')
+    ->name('admin.faq.index');
+\App\core\Route::Instance()
+    ->get('/admin/faq-edit', \App\controller\backend\FaqController::class,'faq_edit')
+    ->name('admin.faq.edit');
+\App\core\Route::Instance()
+    ->get('/admin/faq-delete', \App\controller\backend\FaqController::class,'faq_delete')
+    ->name('admin.faq.delete');
+\App\core\Route::Instance()
+    ->get('/admin/faq-new', \App\controller\backend\FaqController::class,'faq_new')
+    ->name('admin.faq.new');
+\App\core\Route::Instance()
+    ->post('/admin/faq-save', \App\controller\backend\FaqController::class,'faq_save')
+    ->name('admin.faq.save');
+/**
+ * End: Routes for manage incentives
+ */
+
 // DSM users
 \App\core\Route::Instance()
     ->get('/admin/region-staff', \App\controller\backend\UsersController::class,'region_staff')
