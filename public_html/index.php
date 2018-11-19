@@ -76,6 +76,8 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('admin.fix.historical');
 \App\core\Route::Instance()->get('/admin-fix-regional-report', \App\controller\backend\AdminController::class,'sync_regional_report_user_status')
     ->name('admin.fix.regional.report');
+\App\core\Route::Instance()->get('/admin-fix-users-password', \App\controller\backend\AdminController::class,'fix_users_password')
+    ->name('admin.fix.users.password');
 \App\core\Route::Instance()
     ->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer')
     ->name('admin.upload.csv');

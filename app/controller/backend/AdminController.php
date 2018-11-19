@@ -766,4 +766,24 @@ class AdminController extends BaseController
 
         return $findMatch;
     }
+
+    public function fix_users_password(){
+        // Get all Nissan dealer's users
+        $db = User::DB();
+        $users = $db->select('users',['employee_code','parent_id'],[
+            'AND'=>[
+                'parent_id'=>8,
+                'employee_code[!]'=>null
+            ]
+        ]);
+        $count = 0;
+        foreach ($users as $user) {
+            $ou = $db->select('users_copy',['password','employee_code'],['employee_code'=>$user['employee_code']]);
+            if($ou && count($ou) > 0){
+                $db->update('users',['password'=>$ou[0]['password']],['employee_code'=>$user['employee_code']]);
+                $count++;
+            }
+        }
+        dump($count);
+    }
 }

@@ -248,7 +248,6 @@ class Ranking extends BaseModel implements IRole
             $where
         );
 
-
         return $result;
     }
 
