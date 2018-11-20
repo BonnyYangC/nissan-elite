@@ -273,7 +273,8 @@ class Ranking extends BaseModel implements IRole
 
         $where = [
             'AND'=>[
-                'role'=>$position
+                'role'=>$position,
+                'dealer_code[!]'=>80172
             ]
         ];
 
