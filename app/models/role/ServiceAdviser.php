@@ -135,6 +135,7 @@ class ServiceAdviser extends BaseRole implements IRole
                     + $item['pathway']
                     + $item['classroom'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
+                $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
             {
@@ -148,6 +149,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->EMW['data'][]  = 0;
                 $this->training['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
+                $this->incentivesForDashboard['data'] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -171,6 +173,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->CUSTOMER_REPAIR_ORDER,
                 $this->EMW,
                 $this->training,
+                $this->incentivesForDashboard
             ],
 //             'metricsCurrentStatus'   =>[
 //                $this->matchedOW,

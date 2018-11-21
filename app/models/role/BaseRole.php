@@ -84,6 +84,16 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
 
+    /**
+     * Add incentives for all roles
+     * @var array
+     */
+    public $incentivesForDashboard = [
+        'label'=>'Incentive',
+        'backgroundColor' => IColor::LIGHT_GREEN,
+        'data'=>[]
+    ];
+
     // Service adviser: start
     public $serviceRecommendation = [
         'label'=>'Service Satisfaction',

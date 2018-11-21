@@ -97,6 +97,7 @@ class FI extends BaseRole implements IRole
                 $this->SalesPenetration['data'][]  = intval($item['credits_penetration']);
                 $this->FollowUp['data'][]  = intval($item['credits_fi']);
                 $this->NFSA_Credits['data'][] = intval($item['credits_nfsa_retention']);
+                $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
             {
@@ -110,6 +111,7 @@ class FI extends BaseRole implements IRole
                 $this->SalesPenetration['data'][]  = 0;
                 $this->FollowUp['data'][]  = 0;
                 $this->NFSA_Credits['data'][] = 0;
+                $this->incentivesForDashboard['data'] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -132,6 +134,7 @@ class FI extends BaseRole implements IRole
                 $this->SalesPenetration,
                 $this->FollowUp,
                 $this->NFSA_Credits,
+                $this->incentivesForDashboard
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),

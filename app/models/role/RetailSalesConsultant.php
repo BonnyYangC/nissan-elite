@@ -51,6 +51,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
                 $this->training['data'][]  = $item['training'] + $item['pathway'];
+                $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
             }
             else
             {
@@ -63,6 +64,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
                 $this->training['data'][]  = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -71,7 +73,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
         // Status
         $status = new RetailSalesConsultantStatus($ytd);
 
-        return [
+        $result = [
             // For js array
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
             // For PHP array
@@ -84,6 +86,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->salesRecommendationSaturation,
                 $this->followUpSaturation,
                 $this->training,
+                $this->incentivesForDashboard
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
@@ -96,6 +99,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
 //            'rankingNationally'=> $rankingNationally,
 //            'rankingRegionally'=> $myRegionallyRanking,
         ];
+//        dd($result);
+        return $result;
     }
 
     /**

@@ -93,6 +93,7 @@ class PartsSalesRep extends BaseRole implements IRole
                 $this->training['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['classroom'];
+                $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
             {
@@ -102,6 +103,7 @@ class PartsSalesRep extends BaseRole implements IRole
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
                 $this->training['data'][]  = 0;
+                $this->incentivesForDashboard['data'] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -121,6 +123,7 @@ class PartsSalesRep extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->GENUINE_REPLACEMENT_PARTS,
                 $this->training,
+                $this->incentivesForDashboard,
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),

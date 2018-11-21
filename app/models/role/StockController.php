@@ -145,6 +145,7 @@ class StockController extends BaseRole implements IRole
                 $this->training['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['classroom'];
+                $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
             {
@@ -158,6 +159,7 @@ class StockController extends BaseRole implements IRole
                 $this->OWCompliance['data'][]  = 0;
                 $this->Davo['data'][]  = 0;
                 $this->training['data'][]  = 0;
+                $this->incentivesForDashboard['data'][]  = 0;
             }
 
             // User parent method to handle lifeTime and excellence
@@ -184,6 +186,7 @@ class StockController extends BaseRole implements IRole
                 $this->OWCompliance,
                 $this->Davo,
                 $this->training,
+                $this->incentivesForDashboard
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
