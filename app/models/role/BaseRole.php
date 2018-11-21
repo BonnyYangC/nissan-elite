@@ -90,7 +90,7 @@ class BaseRole extends BaseModel
      */
     public $incentivesForDashboard = [
         'label'=>'Incentive',
-        'backgroundColor' => IColor::LIGHT_GREEN,
+        'backgroundColor' => IColor::DARK_GREEN,
         'data'=>[]
     ];
 

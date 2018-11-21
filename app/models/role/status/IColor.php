@@ -20,6 +20,7 @@ interface IColor
     const GAINS_BORO = '#e8e9e8';
     const RED = '#c40030';
     const LIGHT_GREEN = '#90EE90';
+    const DARK_GREEN = '#008000';
 
     const Platinum = '#545454';
     const Gold = '#CD7F32';
