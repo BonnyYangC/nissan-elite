@@ -134,7 +134,7 @@ class SalesManager extends BaseRole implements IRole
                 $this->DlrRec['data'][]  = 0;
                 $this->middleMonth['data'][]  = 0;
                 $this->training['data'][]  = 0;
-                $this->incentivesForDashboard['data'] = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);

@@ -172,7 +172,7 @@ class FinanceController extends BaseRole implements IRole
                 $this->Checklist['data'][]  = 0;
                 $this->Meetings['data'][]  = 0;
                 $this->training['data'][]  = 0;
-                $this->incentivesForDashboard['data'] = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);

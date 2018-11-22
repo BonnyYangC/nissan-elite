@@ -144,7 +144,7 @@ class ServiceManager extends BaseRole implements IRole
                 $this->EMW['data'][]  = 0;
                 $this->training['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
-                $this->incentivesForDashboard['data'] = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
@@ -153,7 +153,7 @@ class ServiceManager extends BaseRole implements IRole
         // Status
         $status = new ServiceManagerStatus($ytd);
 
-        return [
+        $result = [
             // For js array
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
             // For PHP array
@@ -179,6 +179,7 @@ class ServiceManager extends BaseRole implements IRole
                 'max'=>$status->getMax(),
             ],
         ];
+        return $result;
     }
 
 }

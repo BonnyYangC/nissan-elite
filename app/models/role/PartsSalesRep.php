@@ -103,7 +103,7 @@ class PartsSalesRep extends BaseRole implements IRole
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
                 $this->training['data'][]  = 0;
-                $this->incentivesForDashboard['data'] = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);

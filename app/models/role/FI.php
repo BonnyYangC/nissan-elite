@@ -111,7 +111,7 @@ class FI extends BaseRole implements IRole
                 $this->SalesPenetration['data'][]  = 0;
                 $this->FollowUp['data'][]  = 0;
                 $this->NFSA_Credits['data'][] = 0;
-                $this->incentivesForDashboard['data'] = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);

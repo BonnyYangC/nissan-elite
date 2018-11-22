@@ -149,7 +149,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->EMW['data'][]  = 0;
                 $this->training['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
-                $this->incentivesForDashboard['data'] = 0;
+                $this->incentivesForDashboard['data'][] = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($data,$period);
