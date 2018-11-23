@@ -208,7 +208,8 @@ class Ranking extends BaseModel implements IRole
         $where = [
             'AND'=>[
                 'role'=>$position,
-                'period'=>$period->format('Y-m').'-01'
+                'period'=>$period->format('Y-m').'-01',
+                'users.company_code[!]'=>80172
             ],
             "ORDER" => $order
         ];
