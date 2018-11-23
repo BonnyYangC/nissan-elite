@@ -261,9 +261,10 @@ class Ranking extends BaseModel implements IRole
            WHERE `nissan_rankings`.`role` = 'I'
      *
      * @param User $user
+     * @param string $role
      * @return Carbon | null
      */
-    public static function QueryThisPeriod(User $user){
+    public static function QueryThisPeriod(User $user, $role = null){
         $database = self::DB();
         $position = $user->position;
         if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
@@ -273,7 +274,7 @@ class Ranking extends BaseModel implements IRole
 
         $where = [
             'AND'=>[
-                'role'=>$position,
+                'role'=>$role ?  $role : $position,
                 'dealer_code[!]'=>80172
             ]
         ];

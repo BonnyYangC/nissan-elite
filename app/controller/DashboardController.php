@@ -491,13 +491,14 @@ class DashboardController extends BaseController
     /**
      * Generate the "this period" data
      * @param User $user
+     * @param string $role
      * @return Carbon|null|string
      */
-    protected function _getThisPeriod(User $user){
+    protected function _getThisPeriod(User $user, $role = null){
         $thisPeriod = date('Y-m').'-01';
         $thisPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
 
-        if($period = Ranking::QueryThisPeriod($user)){
+        if($period = Ranking::QueryThisPeriod($user, $role)){
             $thisPeriod = $period;
         }
         return $thisPeriod;

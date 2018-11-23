@@ -60,7 +60,7 @@ class RankingsController extends DashboardController
 
             list($period, $region) = explode(' ',$this->request->param('action'));
 
-            $thisPeriod = $this->_getThisPeriod($this->userObject);
+            $thisPeriod = $this->_getThisPeriod($this->userObject, $role);
 
             if($period == Ranking::PREVIOUS){
                 // 表示从查询到的 $thisPeriod 的上个月1号开始计算

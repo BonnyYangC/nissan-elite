@@ -441,12 +441,14 @@ class AdminController extends BaseController
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
 
                         $resultSet = $db->select($tableName,'*',$whereCondition);
+//                        dump($whereCondition);
+//                        dd($resultSet);
                         $found = count($resultSet) > 0;
 
                         if(!$found){
                             $model = $this->_getANewModel($roleAbbr, $user, $tableName);
                         }
-
+//                        dump($found);
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
@@ -557,6 +559,7 @@ class AdminController extends BaseController
                             if($roleAbbr === User::REGION_STAFF){
                                 $model->company_id = 8;
                             }
+//dd($model);
                             $model->save();
                             $syncedRowsCount++;
                         }
@@ -582,15 +585,16 @@ class AdminController extends BaseController
         $where = [
             'AND'=>[]
         ];
-        if(in_array(DbMap::DEALER_CODE, $this->indexes) && !is_null($row[$this->indexes[DbMap::DEALER_CODE]])){
+        if(in_array(DbMap::DEALER_CODE, array_keys($this->indexes)) && !is_null($row[$this->indexes[DbMap::DEALER_CODE]])){
             $where['AND'][DbMap::DEALER_CODE] = $row[$this->indexes[DbMap::DEALER_CODE]];
         }
-        if(in_array(DbMap::MEMBER_ID, $this->indexes) && !is_null($row[$this->indexes[DbMap::MEMBER_ID]])){
+        if(in_array(DbMap::MEMBER_ID, array_keys($this->indexes)) && !is_null($row[$this->indexes[DbMap::MEMBER_ID]])){
             $where['AND'][DbMap::MEMBER_ID] = $row[$this->indexes[DbMap::MEMBER_ID]];
         }
-        if(in_array(DbMap::PERIOD, $this->indexes) && !is_null($row[$this->indexes[DbMap::PERIOD]])){
+        if(in_array(DbMap::PERIOD, array_keys($this->indexes)) && !is_null($row[$this->indexes[DbMap::PERIOD]])){
             $where['AND'][DbMap::PERIOD] = CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]);
         }
+
 //        $where = [
 //            'AND'=>[
 //                DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
