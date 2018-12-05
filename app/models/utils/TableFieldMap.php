@@ -409,7 +409,8 @@ class TableFieldMap{
             'credits_monthly_01'    =>'amba_STAT_01_jan::CREDITS_MONTHLY',
             'credits_monthly_02'    =>'amba_STAT_02_feb::CREDITS_MONTHLY',
             'credits_monthly_03'    =>'amba_STAT_03_mar::CREDITS_MONTHLY',
-            'cr_ytd'                =>'cr_ytd',
+            'cr_ytd'                =>'amba_STAT_ambid_gmthyr::CREDITS_YTD',
+//            'cr_ytd'                =>'cr_ytd',
         ];
         return $map;
     }
