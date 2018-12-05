@@ -74,7 +74,8 @@ class User extends BaseModel implements Mailable, IRole
         self::DAM_NFSA,
         self::RM_NFSA,
         self::RGM,
-        self::ADMIN
+        self::ADMIN,
+        self::NISSAN_SUPER
     ];
 
     /**
@@ -279,6 +280,21 @@ class User extends BaseModel implements Mailable, IRole
             $limit = env('PAGE_SIZE');
         }
 
+        $positions = [
+            self::RETAIL_SALES_CONSULTANTS,
+            self::FLEET_SALES_CONSULTANTS,
+            self::FLEET_SALES_MANAGER,
+            self::SALES_MANAGER,
+            self::SERVICE_ADVISERS,
+            self::STOCK_CONTROLLER,
+            self::FINANCE_CONTROLLER,
+            self::PARTS_MANAGER,
+            self::PARTS_SALES_REP,
+            self::SERVICE_MANAGER,
+            self::FI,
+        ];
+        $positions = array_merge($positions,self::$REGION_STAFF_POSITIONS);
+
         $temp = explode(' ',$emailOrFirstName,2);
         $lastName = null;
         if(count($temp) > 1){
@@ -288,44 +304,20 @@ class User extends BaseModel implements Mailable, IRole
         if($lastName){
             $where = [
                 'users.active'=>1,
-                'company.parent_id'=>8,
+                'company.parent_id'=>[8,0],
                 "users.firstname[~]" => $emailOrFirstName,
                 "users.lastname[~]" => $lastName,
-                'users.position'=>[
-                    self::RETAIL_SALES_CONSULTANTS,
-                    self::FLEET_SALES_CONSULTANTS,
-                    self::FLEET_SALES_MANAGER,
-                    self::SALES_MANAGER,
-                    self::SERVICE_ADVISERS,
-                    self::STOCK_CONTROLLER,
-                    self::FINANCE_CONTROLLER,
-                    self::PARTS_MANAGER,
-                    self::PARTS_SALES_REP,
-                    self::SERVICE_MANAGER,
-                    self::FI,
-                ]
+                'users.position'=>$positions
             ];
         }else{
             $where = [
                 'users.active'=>1,
-                'company.parent_id'=>8,
+                'company.parent_id'=>[8,0],
                 'OR'=>[
                     "users.firstname[~]" => $emailOrFirstName,
                     "users.lastname[~]" => $emailOrFirstName
                 ],
-                'users.position'=>[
-                    self::RETAIL_SALES_CONSULTANTS,
-                    self::FLEET_SALES_CONSULTANTS,
-                    self::FLEET_SALES_MANAGER,
-                    self::SALES_MANAGER,
-                    self::SERVICE_ADVISERS,
-                    self::STOCK_CONTROLLER,
-                    self::FINANCE_CONTROLLER,
-                    self::PARTS_MANAGER,
-                    self::PARTS_SALES_REP,
-                    self::SERVICE_MANAGER,
-                    self::FI,
-                ]
+                'users.position'=>$positions
             ];
         }
 
@@ -340,6 +332,10 @@ class User extends BaseModel implements Mailable, IRole
             'AND'=>$where,
             'LIMIT'=>[$pageNumber,$limit]
         ]);
+
+//        foreach ($db->log() as $item) {
+//           echo $item;
+//        }
 
         return $result;
     }

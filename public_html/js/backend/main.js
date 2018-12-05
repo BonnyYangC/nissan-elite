@@ -107,7 +107,12 @@ Zepto(function($){
                 },
                 mockHandler: function(){
                     this.dialogVisible = false;
-                    window.open('/admin/fake-user?uid=' + this.currentItem.user_id, '_blank');
+                    if(this.currentItem.company_id === '8'){
+                        // nissan staff
+                        window.open('/admin/fake-region-staff?uid=' + this.currentItem.user_id, '_blank');
+                    }else{
+                        window.open('/admin/fake-user?uid=' + this.currentItem.user_id, '_blank');
+                    }
                 },
                 editHandler: function(){
                     this.dialogVisible = false;
