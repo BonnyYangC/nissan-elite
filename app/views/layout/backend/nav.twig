@@ -153,4 +153,14 @@
         </div>
     </div>
 {% endif %}
+    <el-dialog
+            title="Question"
+            :visible.sync="dialogVisible"
+            width="30%" style="z-index: 9999;">
+          <span slot="footer" class="dialog-footer">
+              <el-button icon="el-icon-share" type="success" @click="mockHandler">Mock</el-button>
+              <el-button icon="el-icon-edit-outline" type="primary" @click="editHandler">Edit</el-button>
+              <el-button icon="el-icon-close" @click="dialogVisible = false">Cancel</el-button>
+          </span>
+    </el-dialog>
 </div>

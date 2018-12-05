@@ -73,7 +73,9 @@ Zepto(function($){
                 users: [],
                 keyword: '',
                 select:'',
-                selectedDealer:null
+                selectedDealer:null,
+                dialogVisible: false,
+                currentItem: null
             },
             created:function(){
             },
@@ -98,11 +100,20 @@ Zepto(function($){
                 },
                 handleSelect: function(item){
                     if(item.user_id === undefined){
-                        console.log(1111);
                         item = this.users[0];
                     }
-                    window.open('/admin/fake-user?uid=' + item.user_id, '_blank');
+                    this.dialogVisible = true;
+                    this.currentItem = item;
+                },
+                mockHandler: function(){
+                    this.dialogVisible = false;
+                    window.open('/admin/fake-user?uid=' + this.currentItem.user_id, '_blank');
+                },
+                editHandler: function(){
+                    this.dialogVisible = false;
+                    window.location.href = '/admin/users-edit?uid=' + this.currentItem.user_id;
                 }
+
             }
         });
     }
@@ -119,17 +130,16 @@ Zepto(function($){
                 selectedDealer:null,
                 dealers:[],
                 form:{
-                    positions:[]
+                    positions:[],
+                    name:''
                 },
                 advanceMode: false,
-
             },
             created: function(){
                 this._LoadNissanDealers();
             },
             methods:{
                 onSubmit: function(){
-
                 },
                 _LoadNissanDealers: function(){
                     var that = this;
