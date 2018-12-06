@@ -50,7 +50,6 @@ class TableFieldMap{
             'mobile'=>'mobile',
             'position'=>'Position',
         ];
-
         return $map;
     }
 
@@ -61,22 +60,17 @@ class TableFieldMap{
     public static function ServiceAdvisorsTable(){
         $map = [
             'period'                =>'mth_yr',
-//            'period'                =>'d_statement',
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
-
             'recom_score'           =>'ce_score_OSAT',
             'recom_credit'          =>'credits_ce_OSAT',
-
             'trust_score'           =>'ce_score_AYCT',
             'trust_credit'          =>'credits_ce_AYCT',
-
             'fu_score'              =>'ce_score_VFM',
             'fu_credit'             =>'credits_ce_VFM',
             'emw_score'             =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',
-
             'training'              =>'credits_training_online',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
@@ -90,13 +84,6 @@ class TableFieldMap{
             'cpr_credit'            =>'credits_CPR_order',
         ];
         return $map;
-
-        /**
-        'trust_score'           =>'ce_score_VFM',
-        'trust_credit'          =>'credits_ce_VFM',
-        'fu_score'              =>'ce_score_AYCT',
-        'fu_credit'             =>'credits_ce_AYCT',
-         */
     }
 
     /**
@@ -109,7 +96,6 @@ class TableFieldMap{
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
-
             'stock'                 =>'days_stock',
             'stock_credit'          =>'credits_stock',
             'ow'                    =>'ow_data',
@@ -120,7 +106,6 @@ class TableFieldMap{
             'matched_credit'        =>'credits_ow_match',
             'davo'                  =>'percentage_davo',
             'davo_credit'           =>'credits_davo',
-
             'training'              =>'credits_training_online',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
@@ -131,8 +116,6 @@ class TableFieldMap{
             'credit_ytd'            =>'CREDITS_YTD',
             'lifetime'              =>'CREDITS_ytd_lifetime',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
@@ -146,12 +129,10 @@ class TableFieldMap{
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
-
             'grp'                   =>'percentage_grp',
             'grp_credit'            =>'credits_GRP',
             'gas'                   =>'percentage_gas',
             'gas_credit'            =>'credits_GAS',
-
             'training'              =>'credits_training_online',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
@@ -162,8 +143,6 @@ class TableFieldMap{
             'credit_ytd'            =>'CREDITS_YTD',
             'lifetime'              =>'CREDITS_ytd_lifetime',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
@@ -189,7 +168,6 @@ class TableFieldMap{
             'checklist_credit'      =>'credits_bmo_checklist',
             'meeting'               =>'bmo_meeting',
             'meeting_credit'        =>'credits_bmo_meetings',
-
             'training'              =>'credits_training_online',
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',
@@ -199,8 +177,6 @@ class TableFieldMap{
             'credit_ytd'            =>'CREDITS_YTD',
             'lifetime'              =>'CREDITS_ytd_lifetime',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
@@ -214,7 +190,6 @@ class TableFieldMap{
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'credits_carried_forward',
-
             'sales_nfsa'            =>'sales_nfsa_nissan',
             'credit_actual_sales'   =>'credits_actual_sales',
             'sales_mvi'             =>'sales_ins_MVI',
@@ -241,8 +216,6 @@ class TableFieldMap{
             'sales_nfsa_retention'    =>'sales_nfsa_retention',
             'credits_nfsa_retention'  =>'credits_nfsa_retention',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
@@ -273,8 +246,6 @@ class TableFieldMap{
             'credit_ytd'            =>'CREDITS_YTD',
             'lifetime'              =>'CREDITS_ytd_lifetime',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
@@ -341,13 +312,7 @@ class TableFieldMap{
             'retail_midmth'         =>'credits_retail_forecast',
             'order_write_credit'    =>'credits_ow_match',
             'order_write_variation' =>'ow_match',
-//            'de_bonus'              =>'CREDITS_ytd_lifetime',
-//            'additional'              =>'CREDITS_ytd_lifetime',
-//            'retail_percentage'            =>'credits_ce_FU',
-//            'retail_midmth'            =>'credits_ce_FU',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
@@ -360,13 +325,11 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'_amb_id',
             'dealer_code'           =>'dcode',
-
             'credit_bf'             =>'credits_carried_forward',
             'grp'                   =>'percentage_grp',
             'grp_credit'            =>'credits_GRP',
             'training'              =>'credits_training_online',
             'pathway'               =>'credits_training_pathway',
-//            'classroom'             =>'ignore',   // Just ignore this
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',
             'adjustment'            =>'credits_adjustment',
@@ -375,8 +338,6 @@ class TableFieldMap{
             'credit_ytd'            =>'CREDITS_YTD',
             'lifetime'              =>'CREDITS_ytd_lifetime',
         ];
-
-        $newFieldsNeedToBeCreated = [];
         return $map;
     }
 
