@@ -441,8 +441,8 @@ class AdminController extends BaseController
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
 
                         $resultSet = $db->select($tableName,'*',$whereCondition);
-                        dump($whereCondition);
-                        dd($resultSet);
+//                        dump($whereCondition);
+//                        dd($resultSet);
                         $found = count($resultSet) > 0;
 
                         if(!$found){
