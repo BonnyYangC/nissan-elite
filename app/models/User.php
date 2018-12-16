@@ -78,6 +78,23 @@ class User extends BaseModel implements Mailable, IRole
         self::NISSAN_SUPER
     ];
 
+    public static $REGION_STAFF_POSITIONS_WITHOUT_SUPER = [
+        self::RSM,
+        self::FOM,
+        self::ROM,
+        self::FDM,
+        self::RAM,
+        self::DTS,
+        self::DSM,
+        self::ROA,
+        self::RSC,
+        self::RSM_NFSA,
+        self::DAM_NFSA,
+        self::RM_NFSA,
+        self::RGM,
+        self::ADMIN
+    ];
+
     /**
      * User's database table name
      * @var string
@@ -175,7 +192,7 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.parent_id'=>8,
                 'users.company_id'=>8,
-                'users.position'=>User::$REGION_STAFF_POSITIONS
+                'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
             ];
             foreach ($options as $fieldName=>$value){
                 $where[$fieldName] = $value;
@@ -184,7 +201,7 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.parent_id'=>8,
                 'users.company_id'=>8,
-                'users.position'=>User::$REGION_STAFF_POSITIONS
+                'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
             ];
         }
 
