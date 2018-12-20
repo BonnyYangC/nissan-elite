@@ -15,6 +15,14 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/',\App\controller\UsersController::class, 'login')
     ->name('homepage');
+
+/**
+ * Route: /  -> It's the entry point of the application, will render login and 3brands grid view
+ */
+\App\core\Route::Instance()
+    ->get('/videos',\App\controller\UsersController::class, 'nissan_videos')
+    ->name('videos_nissan');
+
 /**
  * Route: /user/logout  -> Log the current user out safely
  */

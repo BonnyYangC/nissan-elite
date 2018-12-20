@@ -55,6 +55,49 @@ class UsersController extends Controller
         return;
     }
 
+    public function nissan_videos(){
+        $video = $this->request->param('event');
+        $videoId = null;
+        $videoTitle = null;
+        $videoFile = null;
+        if($video == 'nissan-fleet'){
+            $videoId = '307202201';
+            $videoTitle = 'Nissan Fleet Rocks Vegas';
+            $videoFile = env('SITE_URL').'files/nissan_fleet.mp4';
+        }elseif ($video == 'nissan-sales'){
+            $videoId = '307198872';
+            $videoTitle = 'Navara Rocks Vegas';
+            $videoFile = env('SITE_URL').'files/nissan_sales.mp4';
+        }
+        if($videoId){
+            if($this->clientAgent->isPhone()){
+                $videoFile = 'https://player.vimeo.com/video/'.$videoId.'?autoplay=1&title=0&byline=0&portrait=0';
+            }
+            ?>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <title><?php echo $videoTitle; ?></title>
+            </head>
+
+            <body style="background-color: black;overflow: hidden;">
+            <div id="player-wrap" style="position:relative;">
+                <iframe src="<?php echo $videoFile; ?>" style="position:absolute;top:0;left:0;width:100vw;height:100vh;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+            <script>
+                setTimeout(function () {
+                    document.getElementById('player-wrap').style.display = 'block';
+                },400);
+            </script>
+            </body>
+            </html>
+            <?php
+        }else{
+            $this->render('user/login');
+        }
+    }
+
     /**
      * Find user's password and send to it's email address
      */
