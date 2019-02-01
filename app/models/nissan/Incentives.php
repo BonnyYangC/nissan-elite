@@ -114,16 +114,37 @@ class Incentives extends BaseModel
      * @param  string $region
      * @return array|bool
      */
-    public static function GetCurrent($region='All'){
+    public static function GetCurrent($region = null){
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $database = self::DB();
-        $result = $database->select(self::TABLE_NAME,'*',[
-            'AND'=>[
-                'start[<=]'=>$today->format('Y-m-d'),
-                'finish[>=]'=>$today->format('Y-m-d'),
-                'region'=> ($region=='All') ? $region : [$region,'All']
-            ]
-        ]);
+
+        if($region){
+            if(is_array($region)){
+                $result = $database->select(self::TABLE_NAME,'*',[
+                    'AND'=>[
+                        'start[<=]'=>$today->format('Y-m-d'),
+                        'finish[>=]'=>$today->format('Y-m-d'),
+                        'region'=> array_merge($region,['All'])
+                    ]
+                ]);
+            }else{
+                $result = $database->select(self::TABLE_NAME,'*',[
+                    'AND'=>[
+                        'start[<=]'=>$today->format('Y-m-d'),
+                        'finish[>=]'=>$today->format('Y-m-d'),
+                        'region'=> [$region,'All']
+                    ]
+                ]);
+            }
+
+        }else{
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'AND'=>[
+                    'start[<=]'=>$today->format('Y-m-d'),
+                    'finish[>=]'=>$today->format('Y-m-d'),
+                ]
+            ]);
+        }
         return $result;
     }
 

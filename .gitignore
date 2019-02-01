@@ -6,3 +6,4 @@
 /app/cache
 /app/storage/public/uploads
 /app/helpers/.env
+/public_html/images/incentives/images/pdf
