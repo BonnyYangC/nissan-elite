@@ -153,20 +153,34 @@ class Incentives extends BaseModel
      * @param  string $region
      * @return array|bool
      */
-    public static function GetJustFinished($region='All'){
+    public static function GetJustFinished($region = null){
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $threeMonthsBefore = Carbon::now()->subMonths(3);
         $database = self::DB();
-        $result = $database->select(self::TABLE_NAME,'*',[
-            'AND'=>[
-                'finish[<>]'=>[
-                    $threeMonthsBefore->format('Y-m-d'),
-                    $today->format('Y-m-d')
+
+        if($region){
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'AND'=>[
+                    'finish[<>]'=>[
+                        $threeMonthsBefore->format('Y-m-d'),
+                        $today->format('Y-m-d')
+                    ],
+                    'region'=> is_array($region) ? array_merge($region,['All']) : [$region,'All']
                 ],
-                'region'=> ($region=='All') ? $region : [$region,'All']
-            ],
-            'ORDER'=>['start'=>'DESC']
-        ]);
+                'ORDER'=>['start'=>'DESC']
+            ]);
+        }else{
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'AND'=>[
+                    'finish[<>]'=>[
+                        $threeMonthsBefore->format('Y-m-d'),
+                        $today->format('Y-m-d')
+                    ],
+                    'region'=>'All'
+                ],
+                'ORDER'=>['start'=>'DESC']
+            ]);
+        }
         return $result;
     }
 
@@ -175,16 +189,28 @@ class Incentives extends BaseModel
      * @param  string $region
      * @return array|bool
      */
-    public static function GetPast($region='All'){
+    public static function GetPast($region=null){
         $threeMonthsBefore = Carbon::now()->subMonths(3);
         $database = self::DB();
-        $result = $database->select(self::TABLE_NAME,'*',[
-            'AND'=>[
-                'finish[<]'=>$threeMonthsBefore->format('Y-m-d'),
-                'region'=> ($region=='All') ? $region : [$region,'All']
-            ],
-            'ORDER'=>['start'=>'DESC']
-        ]);
+        if($region){
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'AND'=>[
+                    'finish[<]'=>$threeMonthsBefore->format('Y-m-d'),
+                    'region'=> is_array($region) ? array_merge($region,['All']) : [$region,'All']
+                ],
+                'ORDER'=>['start'=>'DESC']
+            ]);
+        }else{
+            // No region passed in, then show all with region===All
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'AND'=>[
+                    'finish[<]'=>$threeMonthsBefore->format('Y-m-d'),
+                    'region'=>'All'
+                ],
+                'ORDER'=>['start'=>'DESC']
+            ]);
+        }
+
         return $result;
     }
 }
