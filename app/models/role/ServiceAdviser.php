@@ -49,7 +49,13 @@ class ServiceAdviser extends BaseRole implements IRole
                 $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
 
                 $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
-                $training[] = $this->_buildForJs([$item['training']?$item['training']:0,$item['classroom']?$item['classroom']:0]);
+                $training[] = $this->_buildForJs(
+                    [
+                        $item['training']?$item['training']:0,
+                        $item['classroom']?$item['classroom']:0,
+                        $item['training_competency']?$item['training_competency']:0,
+                    ]
+                );
 
 
                 $emw_results[] = $this->_buildForTableElement($item['emw_score'],0);
@@ -66,7 +72,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $advice[]           = $this->_buildForJs(0);
                 $fu[]               = $this->_buildForJs(0);
                 $cpr[]               = $this->_buildForJs(0);
-                $training[]   = $this->_buildForJs([0,0]);
+                $training[]   = $this->_buildForJs([0,0,0]);
 
                 $advice_results[]           = null;
                 $emw_results[]              = null;
@@ -129,11 +135,12 @@ class ServiceAdviser extends BaseRole implements IRole
                  */
                 $this->serviceRecommendation['data'][]  = intval($item['recom_credit']);
                 $this->VehicleCleanliness['data'][]     = intval($item['fu_credit']);
-                $this->SERVICE_YOU_CAN_TRUST['data'][]     = intval($item['trust_credit']);
+                $this->SERVICE_YOU_CAN_TRUST['data'][]  = intval($item['trust_credit']);
                 $this->EMW['data'][]                    = intval($item['emw_credit']);
-                $this->training['data'][]               = $item['training']
-                    + $item['pathway']
-                    + $item['classroom'];
+                $this->training['data'][]               = $item['training'] // Training Online
+                                                        + $item['pathway']  // credits_training_pathway
+                                                        + $item['training_competency']  // competency
+                                                        + $item['classroom'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }

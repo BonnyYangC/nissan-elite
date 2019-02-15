@@ -445,14 +445,12 @@ class AdminController extends BaseController
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
 
                         $resultSet = $db->select($tableName,'*',$whereCondition);
-//                        dump($whereCondition);
-//                        dd($resultSet);
                         $found = count($resultSet) > 0;
 
                         if(!$found){
                             $model = $this->_getANewModel($roleAbbr, $user, $tableName);
                         }
-//                        dump($found);
+
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
@@ -520,7 +518,8 @@ class AdminController extends BaseController
                                             }
                                         }
                                     }
-                                }else{
+                                }
+                                else{
                                     foreach ($this->indexes as $fieldName=>$rowIndex) {
                                         if($fieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$rowIndex]);
@@ -543,7 +542,6 @@ class AdminController extends BaseController
                                 $this->notFoundArray[$index] = $row;
                             }
                         }
-
                         if($isSyncAction){
                             // If users' data is uploading
                             if($tableName === User::TABLE_NAME){
@@ -563,10 +561,13 @@ class AdminController extends BaseController
                             if($roleAbbr === User::REGION_STAFF){
                                 $model->company_id = 8;
                             }
-//dd($model);
+
                             $model->save();
                             $syncedRowsCount++;
                         }
+                    }
+                    else{
+
                     }
                 }
 
