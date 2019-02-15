@@ -135,6 +135,7 @@ class TableFieldMap{
             'gas'                   =>'percentage_gas',
             'gas_credit'            =>'credits_GAS',
             'training'              =>'credits_training_online',
+            'training_competency'   =>'credits_training_competency',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',
