@@ -42,13 +42,13 @@ class PartsSalesRep extends BaseRole implements IRole
             if($item)
             {
                 $grp[] = $this->_buildForJs($item['grp_credit']);
-                $training[] = $this->_buildForJs($item['classroom']);
+                $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
                 $grp_results[] = $this->_buildForTableElement($item['grp'] * 100, 0).'%';
             }
             else
             {
                 $grp[] = $this->_buildForJs(0);
-                $training[] = $this->_buildForJs(0);
+                $training[] = $this->_buildForJs([0,0,0]);
                 $grp_results[] = null;
             }
 
@@ -92,7 +92,7 @@ class PartsSalesRep extends BaseRole implements IRole
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = intval($item['grp_credit']);
                 $this->training['data'][]  = $item['training']
                     + $item['pathway']
-                    + $item['classroom'];
+                    + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
