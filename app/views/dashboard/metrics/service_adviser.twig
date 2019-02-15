@@ -51,8 +51,8 @@
                 el: 'chart-training',
                 pilot: ['Month', 'Online', 'Classroom','Competency'],
                 max: 3000,
-                length: 5,
-                step: 200,
+                length: 12,
+                step: 250,
                 colors: ['#111111','#c40030','#3273dc'],
                 isStacked: true,
                 dataSource: {{ json_encode(metrics.TRAINING)|raw }}
