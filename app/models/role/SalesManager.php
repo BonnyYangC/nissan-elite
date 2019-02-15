@@ -118,7 +118,7 @@ class SalesManager extends BaseRole implements IRole
                 $this->followUpPercentage['data'][] = intval($item['follow_up_ce']);
                 $this->DlrRec['data'][]             = intval($item['ce_recomendation']);
                 $this->middleMonth['data'][]        = intval($item['retail_midmth']);
-                $this->training['data'][]           = $item['training']
+                $this->trainingData['data'][]           = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
@@ -134,7 +134,7 @@ class SalesManager extends BaseRole implements IRole
                 $this->followUpPercentage['data'][]  = 0;
                 $this->DlrRec['data'][]  = 0;
                 $this->middleMonth['data'][]  = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
@@ -158,7 +158,7 @@ class SalesManager extends BaseRole implements IRole
                 $this->DlrRec,
                 $this->followUpPercentage,
                 $this->middleMonth,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard
             ],
             'statusChart'=>[

@@ -156,7 +156,7 @@ class FinanceController extends BaseRole implements IRole
                 $this->Quality['data'][]  = intval($item['quality_credit']);
                 $this->Checklist['data'][]  = intval($item['checklist_credit']);
                 $this->Meetings['data'][]  = intval($item['meeting_credit']);
-                $this->training['data'][]  = $item['training'] ? $item['training'] : 0;
+                $this->trainingData['data'][]  = $item['training'] ? $item['training'] : 0;
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
@@ -171,7 +171,7 @@ class FinanceController extends BaseRole implements IRole
                 $this->Quality['data'][]  = 0;
                 $this->Checklist['data'][]  = 0;
                 $this->Meetings['data'][]  = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
@@ -196,7 +196,7 @@ class FinanceController extends BaseRole implements IRole
                 $this->Quality,
                 $this->Checklist,
                 $this->Meetings,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard
             ],
             'statusChart'=>[

@@ -244,7 +244,7 @@ class TableFieldMap{
             'training_competency'   =>'credits_training_competency',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
-            'classroom'             =>'credits_training_classroom',
+//            'classroom'             =>'credits_training_classroom',
             'incentive'             =>'credits_incentive',
             'adjustment'            =>'credits_adjustment',
             'excellence'            =>'credits_excellence',

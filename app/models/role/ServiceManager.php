@@ -126,7 +126,7 @@ class ServiceManager extends BaseRole implements IRole
                 $this->VehicleCleanliness['data'][]     = intval($item['vclean_credit']);
                 $this->FFT['data'][]     = intval($item['followup_credit']);
                 $this->EMW['data'][]                    = intval($item['emw_credit']);
-                $this->training['data'][]               = $item['training']
+                $this->trainingData['data'][]               = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
@@ -142,7 +142,7 @@ class ServiceManager extends BaseRole implements IRole
                 $this->VehicleCleanliness['data'][]  = 0;
                 $this->FFT['data'][]  = 0;
                 $this->EMW['data'][]  = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -167,7 +167,7 @@ class ServiceManager extends BaseRole implements IRole
                 $this->FFT,
                 $this->CUSTOMER_REPAIR_ORDER,
                 $this->EMW,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard
             ],
             'statusChart'=>[

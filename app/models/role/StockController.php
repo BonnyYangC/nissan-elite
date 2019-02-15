@@ -142,7 +142,7 @@ class StockController extends BaseRole implements IRole
                 $this->RetailMidMth['data'][]  = intval($item['retail_credit']);
                 $this->OWCompliance['data'][]  = intval($item['matched_credit']);
                 $this->Davo['data'][]  = intval($item['davo_credit']);
-                $this->training['data'][]  = $item['training']
+                $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
@@ -158,7 +158,7 @@ class StockController extends BaseRole implements IRole
                 $this->RetailMidMth['data'][]  = 0;
                 $this->OWCompliance['data'][]  = 0;
                 $this->Davo['data'][]  = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][]  = 0;
             }
 
@@ -185,7 +185,7 @@ class StockController extends BaseRole implements IRole
                 $this->RetailMidMth,
                 $this->OWCompliance,
                 $this->Davo,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard
             ],
             'statusChart'=>[

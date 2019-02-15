@@ -58,11 +58,12 @@ class BaseRole extends BaseModel
         'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
-    public $training = [
+    public $trainingData = [
         'label'=>'Training',
         'backgroundColor' => IColor::LIGHT_RED,
         'data'=>[]
     ];
+
     public $followUpPercentage= [
         'label'=>'Follow Up %',
         'backgroundColor' => IColor::MID_GREY,

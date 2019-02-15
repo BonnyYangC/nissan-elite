@@ -90,7 +90,7 @@ class PartsSalesRep extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = intval($item['grp_credit']);
-                $this->training['data'][]  = $item['training']
+                $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
@@ -102,7 +102,7 @@ class PartsSalesRep extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
@@ -122,7 +122,7 @@ class PartsSalesRep extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->GENUINE_REPLACEMENT_PARTS,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard,
             ],
             'statusChart'=>[

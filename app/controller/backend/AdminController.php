@@ -454,6 +454,7 @@ class AdminController extends BaseController
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
+
                                 if(is_string($currentFieldName)){
                                     if($isSyncAction){
                                         // 数据同步的操作

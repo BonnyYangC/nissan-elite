@@ -137,7 +137,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->VehicleCleanliness['data'][]     = intval($item['fu_credit']);
                 $this->SERVICE_YOU_CAN_TRUST['data'][]  = intval($item['trust_credit']);
                 $this->EMW['data'][]                    = intval($item['emw_credit']);
-                $this->training['data'][]               = $item['training'] // Training Online
+                $this->trainingData['data'][]               = $item['training'] // Training Online
                                                         + $item['pathway']  // credits_training_pathway
                                                         + $item['training_competency']  // competency
                                                         + $item['classroom'];
@@ -154,7 +154,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->VehicleCleanliness['data'][]  = 0;
                 $this->SERVICE_YOU_CAN_TRUST['data'][]  = 0;
                 $this->EMW['data'][]  = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -179,7 +179,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->SERVICE_YOU_CAN_TRUST,
                 $this->CUSTOMER_REPAIR_ORDER,
                 $this->EMW,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard
             ],
 //             'metricsCurrentStatus'   =>[
@@ -188,7 +188,7 @@ class ServiceAdviser extends BaseRole implements IRole
 //                $this->DlrRec,
 //                $this->followUpPercentage,
 //                $this->middleMonth,
-//                $this->training,
+//                $this->trainingData,
 //            ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
@@ -215,7 +215,7 @@ class ServiceAdviser extends BaseRole implements IRole
 //
 //                $this->CUSTOMER_REPAIR_ORDER,
 //                $this->EMW,
-//                $this->training,
+//                $this->trainingData,
 //            ],
 //            'statusChart'=>[
 //                'gageArray'=>$status->getGageIndicators(),
