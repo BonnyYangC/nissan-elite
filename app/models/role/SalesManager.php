@@ -33,17 +33,18 @@ class SalesManager extends BaseRole implements IRole
 
             if($item)
             {
-                $matched[] = $this->_buildForJs($item['order_write_credit']);
-                $new[] = $this->_buildForJs($item['actual_sales']);
-                $recommendations[] = $this->_buildForJs($item['ce_recomendation']);
-                $followup[] = $this->_buildForJs($item['follow_up_ce']);
-                $retail[] = $this->_buildForJs($item['retail_midmth']);
+                $matched[] = $this->_buildForJs($item['order_write_credit']);//
+                $new[] = $this->_buildForJs($item['actual_sales']);//
+                $recommendations[] = $this->_buildForJs($item['ce_recomendation']);//
+                $followup[] = $this->_buildForJs($item['follow_up_ce']);//
+                $retail[] = $this->_buildForJs($item['retail_midmth']);//
 
-                $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0);
-                $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';
-                $recommendation_results[] = $this->_buildForTableElement($item['score_recommendation'],1).'%';
-                $fu_results[]       = $this->_buildForTableElement($item['follow_up_score'],1).'%';
-                $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');
+                $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0);//
+                $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';//
+                $recommendation_results[] = $this->_buildForTableElement($item['score_recommendation'],1).'%';//
+                $fu_results[]       = $this->_buildForTableElement($item['follow_up_score'],1).'%';//
+                $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');//
+                $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
             }
             else
             {
@@ -52,7 +53,7 @@ class SalesManager extends BaseRole implements IRole
                 $recommendations[] = $this->_buildForJs(0);
                 $followup[] = $this->_buildForJs(0);
                 $retail[] = $this->_buildForJs(0);
-                $training[]         = $this->_buildForJs([0,0]);
+                $training[]         = $this->_buildForJs([0,0,0]);
 
                 $matched_results[] = null;
                 $sales_results[] = null;
@@ -119,7 +120,7 @@ class SalesManager extends BaseRole implements IRole
                 $this->middleMonth['data'][]        = intval($item['retail_midmth']);
                 $this->training['data'][]           = $item['training']
                     + $item['pathway']
-                    + $item['classroom'];
+                    + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else

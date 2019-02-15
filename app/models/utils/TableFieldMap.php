@@ -305,6 +305,7 @@ class TableFieldMap{
             'follow_up_score'       =>'ce_score_FU',
             'follow_up_ce'          =>'credits_ce_FU',
             'training'              =>'credits_training_online',
+            'training_competency'   =>'credits_training_competency',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',
