@@ -69,7 +69,7 @@ class FinanceController extends BaseRole implements IRole
                 $financial[]    = $this->_buildForJs( [$item['frequency_credits'], $item['ontime_credits']] );
                 $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
                 $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
-                $financial[]    = $this->_buildForJs( [$item['training'], $item['classroom']] );
+                $training[]     = $this->_buildForJs( [$item['training'], $item['pathway'], $item['training_competency']] );
 
                 $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
                 $ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
@@ -91,7 +91,7 @@ class FinanceController extends BaseRole implements IRole
                 $financial[]    = $this->_buildForJs( [0,0] );
                 $quality[]      = $this->_buildForJs( [0,0] );
                 $management[]   = $this->_buildForJs( [0,0] );
-                $training[]     = $this->_buildForJs( [0,0] );
+                $training[]     = $this->_buildForJs( [0,0,0] );
 
                 $frequency_results[]    = null;
                 $ontime_results[]       = null;

@@ -50,7 +50,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
-                $this->training['data'][]  = $item['training'] + $item['pathway'];
+                $this->training['data'][]  = $item['training'] + $item['pathway'] + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
             }
             else
@@ -120,7 +120,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $new[]              = $this->_buildForJs($item['credit_actual_sales']);
                 $recommendation[]   = $this->_buildForJs($item['ce_recommendation']);
                 $FU[]               = $this->_buildForJs($item['follow_up_credit']);
-                $training[]         = $this->_buildForJs([$item['pathway'],$item['training']]);
+                $training[]         = $this->_buildForJs([$item['pathway'],$item['training'],$item['training_competency']]);
 
                 $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
                 $recommendation_results[]   = $this->_buildForTableElement($item['score_recommendation']).'%';
@@ -131,7 +131,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $new[]              = $this->_buildForJs(0);
                 $recommendation[]   = $this->_buildForJs(0);
                 $FU[]               = $this->_buildForJs(0);
-                $training[]         = $this->_buildForJs([0,0]);
+                $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
                 $recommendation_results[]   = null;
