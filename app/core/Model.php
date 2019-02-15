@@ -231,6 +231,7 @@ class Model implements Jsonable
     /**
      * Do update, if no params given, then update all fields with current value
      * @param array $params
+     * @param array $whereConditions
      * @param boolean $isMerge  // if need to merge params with existed rowData. By default, no merge, simply replace
      * @return boolean
      */
@@ -238,15 +239,15 @@ class Model implements Jsonable
         if(empty($params)){
             $params = $this->rowData;
         }
+
         // merge params and rowData, so they all will be updated
         if($isMerge){
             $params = array_merge($params, $this->rowData);
         }
-
         return self::DB()->update(
             $this->tableName,
             $params,
-            $whereConditions? $whereConditions : [$this->idFieldName=>$this->rowData[$this->idFieldName]]
+            !empty($whereConditions)? $whereConditions : [$this->idFieldName=>$this->rowData[$this->idFieldName]]
         );
     }
 

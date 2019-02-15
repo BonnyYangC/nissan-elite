@@ -443,10 +443,8 @@ class AdminController extends BaseController
                         }
 
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
-
                         $resultSet = $db->select($tableName,'*',$whereCondition);
                         $found = count($resultSet) > 0;
-
                         if(!$found){
                             $model = $this->_getANewModel($roleAbbr, $user, $tableName);
                         }
@@ -454,7 +452,6 @@ class AdminController extends BaseController
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
-
                                 if(is_string($currentFieldName)){
                                     if($isSyncAction){
                                         // 数据同步的操作
@@ -562,7 +559,7 @@ class AdminController extends BaseController
                             if($roleAbbr === User::REGION_STAFF){
                                 $model->company_id = 8;
                             }
-
+//                            dd($model);
                             $model->save();
                             $syncedRowsCount++;
                         }
