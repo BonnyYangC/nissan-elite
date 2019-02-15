@@ -69,7 +69,7 @@ class StockController extends BaseRole implements IRole
                 $retail[] = $this->_buildForJs($item['retail_credit']);
                 $matched[] = $this->_buildForJs($item['matched_credit']);
                 $davo[] = $this->_buildForJs($item['davo_credit']);
-                $training[] = $this->_buildForJs($item['training']);
+                $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
                 $stock_results[] = $this->_buildForTableElement($item['stock'],0);
                 $ow_results[] = $this->_buildForTableElement($item['ow'],0);
@@ -84,7 +84,7 @@ class StockController extends BaseRole implements IRole
                 $retail[] = $this->_buildForJs(0);
                 $matched[] = $this->_buildForJs(0);
                 $davo[] = $this->_buildForJs(0);
-                $training[] = $this->_buildForJs(0);
+                $training[] = $this->_buildForJs([0,0,0]);
 
                 $stock_results[] = null;
                 $ow_results[] = null;
@@ -144,7 +144,7 @@ class StockController extends BaseRole implements IRole
                 $this->Davo['data'][]  = intval($item['davo_credit']);
                 $this->training['data'][]  = $item['training']
                     + $item['pathway']
-                    + $item['classroom'];
+                    + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else

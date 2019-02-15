@@ -108,6 +108,7 @@ class TableFieldMap{
             'davo'                  =>'percentage_davo',
             'davo_credit'           =>'credits_davo',
             'training'              =>'credits_training_online',
+            'training_competency'   =>'credits_training_competency',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',
