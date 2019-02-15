@@ -273,6 +273,7 @@ class TableFieldMap{
             'emw'                   =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',
             'training'              =>'credits_training_online',
+            'training_competency'   =>'credits_training_competency',
             'pathway'               =>'credits_training_pathway',
             'registration'          =>'credits_registration',
             'incentive'             =>'credits_incentive',

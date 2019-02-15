@@ -47,7 +47,7 @@ class ServiceManager extends BaseRole implements IRole
                 $clean[]                = $this->_buildForJs($item['vclean_credit']);
                 $fu[]                   = $this->_buildForJs($item['followup_credit']);
                 $emw[]                  = $this->_buildForJs($item['emw_credit']);
-                $training[]             = $this->_buildForJs([$item['training'],$item['classroom']]);
+                $training[]             = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'] * 100,1) .'%';
                 $recommendation_results[]       = $this->_buildForTableElement($item['recommendation'],1).'%';
@@ -62,7 +62,7 @@ class ServiceManager extends BaseRole implements IRole
                 $clean[]                = $this->_buildForJs(0);
                 $fu[]                   = $this->_buildForJs(0);
                 $emw[]                  = $this->_buildForJs(0);
-                $training[]             = $this->_buildForJs([0,0]);
+                $training[]             = $this->_buildForJs([0,0,0]);
 
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement();
                 $recommendation_results[]       = $this->_buildForTableElement();
@@ -128,7 +128,7 @@ class ServiceManager extends BaseRole implements IRole
                 $this->EMW['data'][]                    = intval($item['emw_credit']);
                 $this->training['data'][]               = $item['training']
                     + $item['pathway']
-                    + $item['classroom'];
+                    + $item['training_competency'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
