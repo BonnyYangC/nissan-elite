@@ -50,7 +50,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
-                $this->training['data'][]  = $item['training'] // Online
+                $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
             }
@@ -64,7 +64,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
-                $this->training['data'][]  = 0;
+                $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
@@ -86,7 +86,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
                 $this->followUpSaturation,
-                $this->training,
+                $this->trainingData,
                 $this->incentivesForDashboard
             ],
             'statusChart'=>[
