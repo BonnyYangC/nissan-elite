@@ -35,7 +35,8 @@
                                 }
                             );
                         }else{
-                            that.$message.error('System is busy, please try again!');
+                            that.$message.error('Check your email!');
+                            window.location.href = '/#eligible';
                         }
                         that.inProgress = false;
                     });

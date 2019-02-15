@@ -147,7 +147,7 @@ if(dsmEl){
                 var fullName = null;
                 switch (abbr){
                     case 'I':
-                        fullName = 'F&I Controller';
+                        fullName = 'F&I Manager';
                         break;
                     case 'R':
                         fullName = 'Retail Sales Consultant';
@@ -168,7 +168,7 @@ if(dsmEl){
                         fullName = 'Stock Controller';
                         break;
                     case 'C':
-                        fullName = 'Finance Controller';
+                        fullName = 'Financial Controller';
                         break;
                     case 'PM':
                         fullName = 'Parts Manager';

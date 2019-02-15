@@ -97,10 +97,14 @@ class AdminController extends BaseController
      * Load panel
      */
     public function index(){
+        // Move 'Region Territory Report' under Summary as last item
         $this->dataForView['roles'] = DataSource::$_rolesMap;
+        unset($this->dataForView['roles'][User::DISTRICT_SALES_MANAGER]);
+
         $this->dataForView['summary'] = [
             Credit::TABLE_NAME=>'Nissan Credits',
             Ranking::TABLE_NAME=>'Nissan Rankings',
+            User::DISTRICT_SALES_MANAGER=>'Region Territory Report'
         ];
         $this->dataForView['users_menu'] = [
             User::TABLE_NAME    =>'User Data',
