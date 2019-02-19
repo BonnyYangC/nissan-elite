@@ -79,9 +79,13 @@ class RankingsController extends DashboardController
             // Loop result set to convert array to new structure for frontend json
 
             if($isFleetSalesOrFleetSalesManager){
+//                echo json_encode($resultSet);
+//                die();
+                $splittedIntoRegionRequired = false;
                 /**
                  * In this case, not category title required
                  * 在这种情况下, 不需要分 category, 所以 categoryName 为0
+                 * No region required too
                  */
 //                $result[0] = [];
 //                $result[0]['category'] = null;
@@ -89,31 +93,42 @@ class RankingsController extends DashboardController
                 $currentRegion = null;
                 $currentRegionName = null;
 
-                foreach ($resultSet as $key => $item) {
-                    $item['total'] = floatval($item['total']);
+                if($splittedIntoRegionRequired){
+                    foreach ($resultSet as $key => $item) {
+                        $item['total'] = floatval($item['total']);
+                        if($currentRegion !== $item['region']){
+                            $currentRegion = $item['region'];
+                            $currentRegionName = Company::GetRegionName($currentRegion);
+                        }
 
+                        if(!$result[$currentRegionName]){
+                            $result[$currentRegionName] = [];
+                            $result[$currentRegionName]['rows'] = [];
+                        }
 
-                    if($currentRegion !== $item['region']){
-                        $currentRegion = $item['region'];
-                        $currentRegionName = Company::GetRegionName($currentRegion);
+                        $rankingIndexNumber = $region === Ranking::REGIONAL ?
+                            count($result[$currentRegionName]['rows'])+1 // Regional
+                            : null; // National
+
+                        $result[$currentRegionName]['category'] = $currentRegionName.' Region';
+                        $result[$currentRegionName]['rows'][] = $this->_convertRankingRowForFrontendJson(
+                            $item,
+                            $role,
+                            $rankingIndexNumber
+                        );
                     }
-
-                    if(!$result[$currentRegionName]){
-                        $result[$currentRegionName] = [];
-                        $result[$currentRegionName]['rows'] = [];
+                }else{
+                    foreach ($resultSet as $key => $item) {
+                        $item['total'] = floatval($item['total']);
+                        $result[0]['category'] = null;
+                        $result[0]['rows'][] = $this->_convertRankingRowForFrontendJson(
+                            $item,
+                            $role,
+                            $key + 1
+                        );
                     }
-
-                    $rankingIndexNumber = $region === Ranking::REGIONAL ?
-                        count($result[$currentRegionName]['rows'])+1 // Regional
-                        : null; // National
-
-                    $result[$currentRegionName]['category'] = $currentRegionName.' Region';
-                    $result[$currentRegionName]['rows'][] = $this->_convertRankingRowForFrontendJson(
-                        $item,
-                        $role,
-                        $rankingIndexNumber
-                    );
                 }
+
             }
             else{
                 /**

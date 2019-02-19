@@ -57,7 +57,7 @@ class ServiceAdviser extends BaseRole implements IRole
                         $item['training_competency']?$item['training_competency']:0,
                     ]
                 );
-                
+
                 $emw_results[] = $this->_buildForTableElement($item['emw_score'],0);
                 $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
             }
