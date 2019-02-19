@@ -244,10 +244,12 @@ class Model implements Jsonable
         if($isMerge){
             $params = array_merge($params, $this->rowData);
         }
+
+
         return self::DB()->update(
             $this->tableName,
             $params,
-            !empty($whereConditions)? $whereConditions : [$this->idFieldName=>$this->rowData[$this->idFieldName]]
+            !empty($whereConditions)? $whereConditions : [$this->idFieldName=>intval($this->rowData[$this->idFieldName])]
         );
     }
 

@@ -445,12 +445,14 @@ class AdminController extends BaseController
                         $whereCondition = $this->_getWhereCondition($tableName, $row);
                         $resultSet = $db->select($tableName,'*',$whereCondition);
                         $found = count($resultSet) > 0;
+
                         if(!$found){
                             $model = $this->_getANewModel($roleAbbr, $user, $tableName);
                         }
 
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
+
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
                                 if(is_string($currentFieldName)){
                                     if($isSyncAction){
@@ -559,7 +561,11 @@ class AdminController extends BaseController
                             if($roleAbbr === User::REGION_STAFF){
                                 $model->company_id = 8;
                             }
-//                            dd($model);
+
+//                            if ($whereCondition['employee_code'] == '26446'){
+//                                dd($model);
+//                            }
+
                             $model->save();
                             $syncedRowsCount++;
                         }

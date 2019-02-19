@@ -27,14 +27,12 @@ class ServiceAdviser extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training=$cpr=$cpr_result=[];
-
         $valueForMoney = $valueForMoneyTable = [];
 
         for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
-
             if($item)
             {
                 $recommendation[] = $this->_buildForJs($item['recom_credit']?$item['recom_credit']:0);
@@ -49,18 +47,18 @@ class ServiceAdviser extends BaseRole implements IRole
                 $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
 
                 $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
+
+                // get classroom point from both fields: pathway and classroom
+                $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
                 $training[] = $this->_buildForJs(
                     [
                         $item['training']?$item['training']:0,
-                        $item['classroom']?$item['classroom']:0,
+                        $classroomTrainingPoints,
                         $item['training_competency']?$item['training_competency']:0,
                     ]
                 );
-
-
+                
                 $emw_results[] = $this->_buildForTableElement($item['emw_score'],0);
-
-
                 $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
             }
             else
@@ -182,14 +180,6 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
-//             'metricsCurrentStatus'   =>[
-//                $this->matchedOW,
-//                $this->newVehicleSales,
-//                $this->DlrRec,
-//                $this->followUpPercentage,
-//                $this->middleMonth,
-//                $this->trainingData,
-//            ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
                 'color'=>$status->getColor(),
@@ -199,32 +189,5 @@ class ServiceAdviser extends BaseRole implements IRole
                 'max'=>$status->getMax(),
             ],
         ];
-
-//        return [
-//            // For js array
-//            "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),
-//            // For PHP array
-//            "lifeTime"      =>$this->lifeTime,
-//            "excellence"    =>$this->excellenceResult,
-//            "ytd"           =>$ytd,
-//            'rewardsDollars'=>$this->user->getDollarRewardsRange(),
-//            'metricsCurrentStatus'   =>[
-//                $this->serviceRecommendation,
-//                $this->VehicleCleanliness,
-//                $this->FFT,
-//
-//                $this->CUSTOMER_REPAIR_ORDER,
-//                $this->EMW,
-//                $this->trainingData,
-//            ],
-//            'statusChart'=>[
-//                'gageArray'=>$status->getGageIndicators(),
-//                'color'=>$status->getColor(),
-//                'colorText'=>$status->getColorText(),
-//                'toReach'=>$status->getToReach(),
-//                'min'=>$status->getMin(),
-//                'max'=>$status->getMax(),
-//            ],
-//        ];
     }
 }
