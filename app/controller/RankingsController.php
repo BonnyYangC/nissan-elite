@@ -79,21 +79,16 @@ class RankingsController extends DashboardController
             // Loop result set to convert array to new structure for frontend json
 
             if($isFleetSalesOrFleetSalesManager){
-//                echo json_encode($resultSet);
-//                die();
-                $splittedIntoRegionRequired = false;
+                $splitIntoRegionRequired = strpos($this->request->param('action'),'Regional');
                 /**
                  * In this case, not category title required
                  * 在这种情况下, 不需要分 category, 所以 categoryName 为0
                  * No region required too
                  */
-//                $result[0] = [];
-//                $result[0]['category'] = null;
-//                $result[0]['rows'] = [];
                 $currentRegion = null;
                 $currentRegionName = null;
 
-                if($splittedIntoRegionRequired){
+                if($splitIntoRegionRequired){
                     foreach ($resultSet as $key => $item) {
                         $item['total'] = floatval($item['total']);
                         if($currentRegion !== $item['region']){
