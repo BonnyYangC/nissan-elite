@@ -221,7 +221,7 @@ class UsersController extends BaseController
         }
 
         if($user->save()){
-            session_flash('msg',['content'=>$user->firstname.' has been updated successfully!','status'=>'success']);
+            session_flash('msg',['content'=>$user->firstname.' '.$user->lastname.'\'s profile has been updated successfully!','status'=>'success']);
         }else{
             session_flash('msg',['content'=>'System busy, please try again or contact IT person!','status'=>'danger']);
         }
