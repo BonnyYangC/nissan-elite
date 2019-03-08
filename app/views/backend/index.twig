@@ -202,6 +202,19 @@
                             <h5>Database</h5>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
+                                    <label class="label">DB Host</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="env[DB_HOST]" placeholder="Database Host" value="{{ env('DB_HOST','') }}">
+                                        </div>
+                                    </div>
+                                    <p class="help has-text-danger is-size-6">Please don't change</p>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
                                     <label class="label">DB user</label>
                                 </div>
                                 <div class="field-body">
