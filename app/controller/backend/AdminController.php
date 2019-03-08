@@ -78,7 +78,7 @@ class AdminController extends BaseController
         $content .= 'DB_USER='.$env['DB_USER'].PHP_EOL;
         $content .= 'DB_PASSWORD='.$env['DB_PASSWORD'].PHP_EOL;
         $content .= 'DB_NAME='.$env['DB_NAME'].PHP_EOL;
-        $content .= 'DB_HOST=localhost'.PHP_EOL;
+        $content .= 'DB_HOST='.$env['DB_HOST'].PHP_EOL;
         $content .= 'PAGE_SIZE='.$env['PAGE_SIZE'].PHP_EOL;
         $content .= 'ADMIN_USER='.$env['ADMIN_USER'].PHP_EOL;
         $content .= 'ADMIN_PASSWORD='.$env['ADMIN_PASSWORD'].PHP_EOL;
