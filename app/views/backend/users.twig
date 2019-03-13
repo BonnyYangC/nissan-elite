@@ -2,7 +2,7 @@
 {% block content %}
     <div class="container">
         <div class="content">
-            {% include 'backend/elements/pagination.twig' with {'path':'/admin/users-manage'} %}
+            {% include 'backend/elements/pagination.twig' with {'path':'/admin/users-manage','total':usersCount} %}
         </div>
         <div class="content">
             <table class="table">

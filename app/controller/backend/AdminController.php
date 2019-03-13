@@ -405,7 +405,7 @@ class AdminController extends BaseController
                 $user = new User();
                 $roleAbbr = $this->request->param('for');
                 $tableName = DataSource::nissan_get_table_name_from_abbr($roleAbbr);
-                $model = $this->_getANewModel($roleAbbr, $user, $tableName);
+//                $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 
                 // Call any method on an SplFileInfo instance
                 $reader = CsvTool::ReadFile($filePath);
@@ -446,9 +446,10 @@ class AdminController extends BaseController
                         $resultSet = $db->select($tableName,'*',$whereCondition);
                         $found = count($resultSet) > 0;
 
-                        if(!$found){
-                            $model = $this->_getANewModel($roleAbbr, $user, $tableName);
-                        }
+//                        if(!$found){
+//                            $model = $this->_getANewModel($roleAbbr, $user, $tableName);
+//                        }
+                        $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 
                         if($found){
                             $this->_lastFoundResultSet = $resultSet[0];
@@ -458,8 +459,8 @@ class AdminController extends BaseController
                                     if($isSyncAction){
                                         // 数据同步的操作
                                         if($currentFieldName == $model->getIdFieldName()){
-                                            $idField = $model->getIdFieldName();
-                                            $model->$idField = $fieldValue;
+//                                            $idField = $model->getIdFieldName();
+                                            $model->$currentFieldName = $fieldValue;
                                         }elseif($currentFieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $model->period = $periodConverted;
@@ -475,7 +476,8 @@ class AdminController extends BaseController
                                             }
                                             $model->$currentFieldName = trim($newValue);
                                         }
-                                    }else{
+                                    }
+                                    else{
                                         if($currentFieldName == $model->getIdFieldName()){
                                             $this->resultArray[$index][$model->getIdFieldName()] = $fieldValue;
                                         }elseif($currentFieldName == 'period'){
@@ -562,10 +564,6 @@ class AdminController extends BaseController
                                 $model->company_id = 8;
                             }
 
-//                            if ($whereCondition['employee_code'] == '26446'){
-//                                dd($model);
-//                            }
-
                             $model->save();
                             $syncedRowsCount++;
                         }
@@ -604,14 +602,6 @@ class AdminController extends BaseController
             $where['AND'][DbMap::PERIOD] = CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]);
         }
 
-//        $where = [
-//            'AND'=>[
-//                DbMap::MEMBER_ID    => $row[$this->indexes[DbMap::MEMBER_ID]],
-////                DbMap::DEALER_CODE  => $row[$this->indexes[DbMap::DEALER_CODE]],
-//                DbMap::PERIOD       => CsvTool::ConvertDateToYmd($row[$this->indexes[DbMap::PERIOD]]),
-//            ]
-//        ];
-
         /**
          * Handle special tables
          */
@@ -638,7 +628,6 @@ class AdminController extends BaseController
          */
         if($tableName === User::TABLE_NAME){
             if(isset($row[$this->indexes[DbMap::EMPLOYEE_CODE]]) && !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]])){
-
                 $where = [
                     DbMap::EMPLOYEE_CODE=>$row[$this->indexes[DbMap::EMPLOYEE_CODE]]
                 ];
@@ -647,7 +636,6 @@ class AdminController extends BaseController
                     DbMap::EMAIL=>$row[$this->indexes[DbMap::EMAIL]]
                 ];
             }
-
         }
         return $where;
     }

@@ -145,6 +145,26 @@ class User extends BaseModel implements Mailable, IRole
     }
 
     /**
+     * Get Nissan Users positions
+     * @return array
+     */
+    public static function GetNissanUsersPosition(){
+        return [
+            self::RETAIL_SALES_CONSULTANTS,
+            self::FLEET_SALES_CONSULTANTS,
+            self::FLEET_SALES_MANAGER,
+            self::SALES_MANAGER,
+            self::SERVICE_ADVISERS,
+            self::STOCK_CONTROLLER,
+            self::FINANCE_CONTROLLER,
+            self::PARTS_MANAGER,
+            self::PARTS_SALES_REP,
+            self::SERVICE_MANAGER,
+            self::FI,
+        ];
+    }
+
+    /**
      * @param $firstName
      * @param $lastName
      * @return array|bool
@@ -250,7 +270,8 @@ class User extends BaseModel implements Mailable, IRole
             foreach ($options as $fieldName=>$value){
                 $where[$fieldName] = $value;
             }
-        }else{
+        }
+        else{
             $where = [
                 'users.active'=>1,
                 'company.parent_id'=>8,
@@ -283,6 +304,34 @@ class User extends BaseModel implements Mailable, IRole
         ]);
 
         return $result;
+    }
+
+    /**
+     * Count Nissan Users
+     * @param array $options
+     * @return bool|int|mixed|string
+     */
+    public static function Count($options=[]){
+        if(count($options)>0){
+            $where = [
+                'users.active'=>1,
+                'users.parent_id'=>8,
+                'users.position'=>self::GetNissanUsersPosition()
+            ];
+            foreach ($options as $fieldName=>$value){
+                $where[$fieldName] = $value;
+            }
+        }
+        else{
+            $where = [
+                'users.active'=>1,
+                'users.parent_id'=>8,
+                'users.position'=>self::GetNissanUsersPosition()
+            ];
+        }
+
+        $db = self::DB();
+        return $db->count('users',$where);
     }
 
     /**

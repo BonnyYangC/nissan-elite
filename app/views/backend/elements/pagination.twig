@@ -5,16 +5,20 @@
     {% set last = {'pn':pagination.pages-1} %}
     {% set first = {'pn':0} %}
 
+    {% if total %}
+    <span style="margin-right: 20px;">Total: {{ total }}</span>
+    {% endif %}
+
     {% if pagination.current > 0 %}
-        <a class="pagination-previous" href="{{ url(path,prev) }}">Previous</a>
+        <a class="pagination-previous" href="{{ url(path,prev) }}">&lt;&nbsp;Previous</a>
     {% else %}
-        <a class="pagination-previous">Previous</a>
+        <a class="pagination-previous">&lt;&nbsp;Previous</a>
     {% endif %}
 
     {% if pagination.current == pagination.pages-1 %}
-        <a class="pagination-next">Next page</a>
+        <a class="pagination-next">Next&nbsp;&gt;</a>
     {% else %}
-        <a class="pagination-next" href="{{ url(path,next) }}">Next page</a>
+        <a class="pagination-next" href="{{ url(path,next) }}">Next&nbsp;&gt;</a>
     {% endif %}
 
     {% set currentPageNumber = pagination.current+1 %}

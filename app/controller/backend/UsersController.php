@@ -38,6 +38,7 @@ class UsersController extends BaseController
         ];
         $this->dataForView['roles'] = DataSource::$_rolesMap;
         $this->dataForView['users'] = User::Listing([],$currentPageNumber);
+        $this->dataForView['usersCount'] = User::Count();
         $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
 
         $this->render('backend/users');
