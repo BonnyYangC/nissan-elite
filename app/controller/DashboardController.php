@@ -285,6 +285,14 @@ class DashboardController extends BaseController
 
         $historyRows = History::GetLifetime($this->userObject);
         $history = [];
+
+        $now = Carbon::now();
+        if($now->month <= 3){
+            $currentYearData = array_shift($historyRows);
+            $historyRows[0] = $currentYearData;
+            $historyRows[0][0] = ($now->year -1).'' ;
+        }
+
         /**
          * Need to handle the Fast Finish credits
          */
@@ -300,6 +308,7 @@ class DashboardController extends BaseController
                     $subTotal
                 ] ;
             }
+
 
         }
 
