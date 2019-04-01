@@ -1,5 +1,5 @@
 {
-  "name": "2018 Nissan AC",
+  "name": "gekkocreations/nissanac",
   "description": "2018 Nissan AC",
   "require": {
     "vlucas/phpdotenv": "^2.5",
@@ -18,7 +18,8 @@
     "jenssegers/agent": "^2.6",
     "guzzlehttp/guzzle": "^6.3",
     "sendgrid/sendgrid": "~7",
-    "monolog/monolog": "^1.23"
+    "monolog/monolog": "^1.23",
+    "yue/yeararound": "^0.0.4"
   },
   "autoload": {
     "psr-4": {
