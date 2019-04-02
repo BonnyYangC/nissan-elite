@@ -287,7 +287,7 @@ class DashboardController extends BaseController
         $history = [];
 
         $now = Carbon::now();
-        if($now->month <= 3){
+        if( $now->month <= 3 || env('YEAR')== date('Y')-1 ){
             $currentYearData = array_shift($historyRows);
             $historyRows[0] = $currentYearData;
             $historyRows[0][0] = ($now->year -1).'' ;
