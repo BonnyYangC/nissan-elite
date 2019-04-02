@@ -14,7 +14,7 @@
         <b><span style="color:#ff0000;margin-top:20px;">{{ dashboard.statusChart.toReach }}</span> {{ dashboard.statusChart.colorText }}</b>
     </p>
 
-    <h3>Dollar Rewards</h3>
+    <h3>Dollar Rewards and Credits</h3>
     <div class="table-responsive" >
         <table class="table" >
             <tr class="nissangray-back">
@@ -23,10 +23,16 @@
                 <td align="center">Ambassador</td>
                 <td align="center">Premier</td>
             </tr>
-            <tr class="active">
-                {% set dollorDataRanges = dashboard.rewardsDollars %}
+            <tr>
+                {% set dollorDataRanges = dashboard.rewardsDollars[0] %}
                 {% for val in dollorDataRanges %}
                     <td align="center">${{ val }}</td>
+                {% endfor %}
+            </tr>
+            <tr class="active">
+                {% set dollorDataRanges = dashboard.rewardsDollars[1] %}
+                {% for val in dollorDataRanges %}
+                    <td align="center">{{ val }}</td>
                 {% endfor %}
             </tr>
         </table>

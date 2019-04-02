@@ -9,9 +9,10 @@
 namespace App\models\role;
 
 use App\models\User;
-class FleetSalesManager extends RetailSalesConsultant
+
+class FleetSalesExecutive extends RetailSalesConsultant
 {
-    public $name='fleet_sales_manager';
+    public $name='fleet_sales_executive';
     public function __construct(User $user = null)
     {
         parent::__construct($user);

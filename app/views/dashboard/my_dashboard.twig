@@ -15,16 +15,17 @@
             <div class="table-responsive">
                 {% set chartInitData = {'title': 'Monthly Credits','el_id':'bar-chart'} %}
                 {% include 'dashboard/widget_element/bar-chart.twig' with chartInitData %}  
-                 <p align="center">Registration and Dealer Excellence credits are included in the above graphs.</p> 
+                 <p align="center">Registration credits are included in the above graphs.</p> 
             </div>
             <hr>
             <div class="row">
-                <div class="col-md-6 portfolio-item">
+                <div class="col-md-12 portfolio-item">
                     <h3>LEADER BOARD</h3>
                     {% include 'dashboard/widget_element/leader_board_table.twig' %}
                 </div>
-
-                <div class="col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <h3>Current STATUS LEVEL</h3>
                     {% include 'dashboard/widget_element/current_status_level_chart.twig' %}
                 </div>
@@ -52,8 +53,7 @@
             {% include 'dashboard/widget_element/year_to_date_table.twig' %}
             {% include 'dashboard/widget_element/life_time_table.twig' %}
             {% include 'dashboard/widget_element/are_you_registered_table.twig' %}
-            {% include 'dashboard/widget_element/traing_or_track_table.twig' %}
-            {% include 'dashboard/widget_element/dealer_excellence_table.twig' %}
+            {% include 'dashboard/widget_element/traing_or_track_table.twig' %}            
             {% include 'dashboard/widget_element/events_calendar.twig' %}
         </div>
     </div>

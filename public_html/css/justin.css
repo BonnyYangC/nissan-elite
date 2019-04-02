@@ -89,7 +89,7 @@
 }
 
 .g1{
-    background-size:400px;
+    background-size:800px;
     background: #f7f7f7 center no-repeat;
     height: 220px;
 }
@@ -200,14 +200,14 @@
     overflow: hidden;
 }
 .gage-wrap-section .gage-wrap{
-    background: #ffffff no-repeat url("/images/lifetime.gif");
+    /* background: #ffffff no-repeat url("/images/lifetime.gif"); 
     background-position: center;
     background-size: 60%;
     padding-top:10px;
     padding-bottom:15px;
     height: 229px;
     width: 100%;
-    min-width: 600px;
+    min-width: 600px; */
 }
 
 @media (min-width: 320px) and (max-width: 400px) {

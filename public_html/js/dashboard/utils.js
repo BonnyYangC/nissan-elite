@@ -18,6 +18,7 @@ function generateGageIndicator (gageId, percent, color, text) {
     indicator.appendChild(indicatorText);
 
     var gage = document.getElementById(gageId);
+    console.log(indicator)
     gage.appendChild(indicator);
 }
 
