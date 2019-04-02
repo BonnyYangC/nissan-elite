@@ -6,7 +6,9 @@
  * Time: 2:07 PM
  */
 
-class DashboardPageTest extends Test
+use PHPUnit\Framework\TestCase;
+
+class DashboardPageTest extends TestCase
 {
 
 }
