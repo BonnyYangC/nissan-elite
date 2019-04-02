@@ -19,6 +19,7 @@ use App\models\role\PartsManager;
 use App\models\role\RetailSalesConsultant;
 use App\models\role\FleetSalesManager;
 use App\models\role\FleetSalesConsultant;
+use App\models\role\FleetSalesExecutive;
 use App\models\role\SalesManager;
 use App\models\role\StockController;
 use App\models\role\PartsSalesRep;
@@ -56,6 +57,9 @@ class RoleFactory
                 break;
             case User::FLEET_SALES_MANAGER:
                 $role = new FleetSalesManager($user);   // Refined
+                break;
+            case User::FLEET_SALES_EXECUTIVE:
+                $role = new FleetSalesExective($user);   // Refined
                 break;
             case User::SALES_MANAGER:
                 $role = new SalesManager($user);    // Refined

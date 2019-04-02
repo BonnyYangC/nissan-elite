@@ -23,6 +23,7 @@ class User extends BaseModel implements Mailable, IRole
     // Nissan user's position define
     const RETAIL_SALES_CONSULTANTS  = 'R';
     const FLEET_SALES_CONSULTANTS   = 'F';
+    const FLEET_SALES_EXECUTIVES    = 'F';
     const FLEET_SALES_MANAGER       = 'FM';
     const SALES_MANAGER             = 'M';
     const SERVICE_ADVISERS          = 'SA';
@@ -414,37 +415,34 @@ class User extends BaseModel implements Mailable, IRole
         $result = [];
         switch ($this->position){
             case self::FI:
-                $result=[300,600,1000,1500];
+                $result=[[300,600,1000,1500],[11000,20000,27000,36000]];
                 break;
-            case self::FLEET_SALES_MANAGER:
-                $result=[500,1000,1500,2000];
+            case self::FLEET_SALES_EXECUTIVES:
+                $result=[[500,1000,1500,2000],[12000,22000,27000,38000]];
                 break;
             case self::RETAIL_SALES_CONSULTANTS:
-                $result=[500,1000,1500,2000];
-                break;
-            case self::FLEET_SALES_CONSULTANTS:
-                $result=[500,1000,1500,2000];
+                $result=[[500,1000,1500,2000],[12000,22000,27000,38000]];
                 break;
             case self::SALES_MANAGER:
-                $result=[500,1000,1500,2000];
+                $result=[[500,1000,1500,2000],[12000,22000,27000,38000]];
                 break;
             case self::SERVICE_ADVISERS:
-                $result=[150,400,1000,1500];
+                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
                 break;
             case self::STOCK_CONTROLLER:
-                $result=[150,400,1000,1500];
+                $result=[[150,400,1000,1500],[9000,12000,16000,20000]];
                 break;
             case self::FINANCE_CONTROLLER:
-                $result=[300,600,1000,1500];
+                $result=[[300,600,1000,1500],[9000,12000,16000,20000]];
                 break;
             case self::PARTS_MANAGER:
-                $result=[150,400,1000,1500];
+                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
                 break;
             case self::PARTS_SALES_REP:
-                $result=[150,400,1000,1500];
+                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
                 break;
             case self::SERVICE_MANAGER:
-                $result=[150,400,1000,1500];
+                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
                 break;
             default:
                 break;

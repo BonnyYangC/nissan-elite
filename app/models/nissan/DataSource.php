@@ -35,8 +35,9 @@ class DataSource extends BaseModel
      */
     public static $_rolesMap = [
         User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
-        User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
-        User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
+        // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
+        // User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
+        User::FLEET_SALES_EXECUTIVES        => 'Fleet Sales Exective',
         User::SALES_MANAGER                 => 'Sales Manager',
         User::SERVICE_ADVISERS              => 'Service Advisor',
         User::FI                            => 'Finance & Insurance Manager',
@@ -64,6 +65,7 @@ class DataSource extends BaseModel
         User::RETAIL_SALES_CONSULTANTS      => 'nissan_salesconsultants',
         User::FLEET_SALES_MANAGER           => 'nissan_salesconsultants',
         User::FLEET_SALES_CONSULTANTS       => 'nissan_salesconsultants',
+        User::FLEET_SALES_EXECUTIVES        => 'nissan_salesconsultants',
         User::SALES_MANAGER                 => 'nissan_salesmanagers',
         User::SERVICE_ADVISERS              => 'nissan_serviceadvisors',
         User::FI                            => 'nissan_fi',
