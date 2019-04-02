@@ -1,5 +1,5 @@
 {
-  "name": "2018 Nissan AC",
+  "name": "gekkocreations/nissanac",
   "description": "2018 Nissan AC",
   "require": {
     "vlucas/phpdotenv": "^2.5",
