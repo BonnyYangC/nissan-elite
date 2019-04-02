@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e75478a5f22811bfefa45ecf583467b1",
+    "content-hash": "967c2b64fd580ca7f82cf7a1dff36942",
     "packages": [
         {
             "name": "aura/session",
@@ -1655,48 +1655,6 @@
                 "environment"
             ],
             "time": "2019-01-29T11:11:52+00:00"
-        },
-        {
-            "name": "yue/yeararound",
-            "version": "0.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/HiYue/YearAround.git",
-                "reference": "523f6c1ea5c690eff2e8c0245df5c95eda1027d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/HiYue/YearAround/zipball/523f6c1ea5c690eff2e8c0245df5c95eda1027d5",
-                "reference": "523f6c1ea5c690eff2e8c0245df5c95eda1027d5",
-                "shasum": ""
-            },
-            "require": {
-                "nesbot/carbon": "^1.36.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "Yue\\YearAround\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Yue Wang",
-                    "email": "hi@yue.dev"
-                }
-            ],
-            "description": "Parse any month in any language then get season name",
-            "time": "2019-04-01T04:06:37+00:00"
         },
         {
             "name": "zendframework/zend-json",

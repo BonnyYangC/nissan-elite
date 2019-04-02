@@ -18,8 +18,7 @@
     "jenssegers/agent": "^2.6",
     "guzzlehttp/guzzle": "^6.3",
     "sendgrid/sendgrid": "~7",
-    "monolog/monolog": "^1.23",
-    "yue/yeararound": "^0.0.4"
+    "monolog/monolog": "^1.23"
   },
   "autoload": {
     "psr-4": {
