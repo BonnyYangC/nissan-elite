@@ -28,7 +28,7 @@
             length: 6,
             step: 100,
             colors: ['#999999', '#555555' ,'#c40030'],
-            pilot: ['Month','Checklist', 'Meeting'],
+            pilot: ['Month','Checklist', 'Attendance'],
             dataSource: {{ json_encode(metrics.MANAGEMENT)|raw }}
         },
         {
@@ -81,7 +81,7 @@
                                 <td align="center">Ontime<br>
                                     Monthly</td>
                             </tr>
-                            <tr>
+                            <tr class="active">
                                 <td>Category A, B, C</td>
                                 <td align="center">200</td>
                                 <td align="center">200</td>
@@ -105,22 +105,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5">
-                        <h3>Quality of Data GUIDE - Balancing Item</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Financial Controller</td>
-                                <td align="center">Success</td>
-                                <td align="center">Failure</td>
-                            </tr>
-                            <tr>
-                                <td>Category A, B, C</td>
-                                <td align="center">550</td>
-                                <td align="center">0</td>
-                            </tr>
-                        </table>
+                    <div class="col-md-5">                       
                         <h3>Quality of Data GUIDE - Date of Submission</h3>
-                        <table class="table small-table quality-of-data-guide">
+                        <table class="table small-table table-condensed">
                             <tr class="table-top-row">
                                 <td>Financial Controller</td>
                                 <td align="center">&lt;10</td>
@@ -136,7 +123,7 @@
                                 <td align="center">19</td>
                                 <td align="center">20</td>
                             </tr>
-                            <tr>
+                            <tr class="active">
                                 <td>Category A, B, C</td>
                                 <td align="center">1025</td>
                                 <td align="center">1000</td>
@@ -166,32 +153,29 @@
                                     {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CHECKLIST_RESULTS } %}
                                 </tr>
                                 <tr>
-                                    <td class="nissangray-light-back">MEETING</td>
+                                    <td class="nissangray-light-back">ATTENDANCE</td>
                                     {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MEETING_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <h3>NIssan Business Management GUIDE</h3>
+                        <h3>Nissan Business Management GUIDE</h3>
                         <table class="table small-table">
                             <tr class="table-top-row">
                                 <td>Financial Controller</td>
                                 <td align="center">
-                                    Accounting
-                                    Checklist<br>
+                                    Data Accuracy Monthly checklist<br>
                                     Monthly (max)
                                 </td>
                                 <td align="center">
-                                    Accountant
-                                    Meetings<br>
-                                    Each
+                                    BDG Attendance Each<br>                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>Category A, B, C</td>
-                                <td align="center">100</td>
-                                <td align="center">600</td>
+                                <td align="center">550</td>
+                                <td align="center">700</td>
                             </tr>
                         </table>
                     </div>
@@ -217,7 +201,7 @@
                             </tr>
                         </table>
                         <p>
-                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC18 Member Guide</a> for full details.</em>
+                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC19 Member Guide</a> for full details.</em>
                         </p>
                     </div>
                 </div>

@@ -303,45 +303,10 @@ class RankingsController extends DashboardController
 
         $this->dataForView['userGroups1'] = $this->_getUsersGroupsArray1();
         $this->dataForView['userGroups2'] = $this->_getUsersGroupsArray2();
+        $this->dataForView['userGroups3'] = $this->_getUsersGroupsArray3();
 
         $this->render('dashboard/static/leader_boards');
         return;
-    }
-
-    /**
-     * Generate data array for column 2
-     * @return array
-     */
-    private function _getUsersGroupsArray2(){
-        return [
-            [
-                'name'=>'Parts',
-                'forAll' => false,
-                'style'  => '',
-                'className'  => 'button-parts',
-                'members'=>[
-                    [
-                        'name'=>'Parts Manager','role'=>User::PARTS_MANAGER
-                    ],[
-                        'name'=>'Parts Sales Representative','role'=>User::PARTS_SALES_REP
-                    ]
-                ]
-            ],[
-                'name'=>'Admin',
-                'forAll' => false,
-                'style'  => '',
-                'className'  => 'button-admin',
-                'members'=>[
-                    [
-                        'name'=>'F&I Manager','role'=>User::FI
-                    ],[
-                        'name'=>'Financial Controller','role'=>User::FINANCE_CONTROLLER
-                    ],[
-                        'name'=>'Stock Controller','role'=>User::STOCK_CONTROLLER
-                    ]
-                ]
-            ]
-        ];
     }
 
     /**
@@ -360,24 +325,86 @@ class RankingsController extends DashboardController
                         'name'=>'Sales Manager','role'=>User::SALES_MANAGER
                     ],[
                         'name'=>'Retail Sales Consultant','role'=>User::RETAIL_SALES_CONSULTANTS
-                    ],[
-                        'name'=>'Fleet Manager/Sales Consultant','role'=>User::FLEET_SALES_MANAGER.'+'.User::FLEET_SALES_CONSULTANTS
                     ]
                 ]
             ],
             [
-                'name'=>'Service',
+                'name'=>'Fleet',
                 'forAll' => false,
                 'style'  => 'font-family: \'nissan_brandbold\', Helvetica, Arial, sans-serif;',
+                'className'  => 'button-fleet',
+                'members'=>[
+                    [
+                        'name'=>'Fleet Sales Executive','role'=>User::FLEET_SALES_EXECUTIVES
+                    ]                ]
+            ]
+        ];
+    }
+
+    /**
+     * Generate data array for column 2
+     * @return array
+     */
+    private function _getUsersGroupsArray2(){
+        return [
+            [
+                'name'=>'Service',
+                'forAll' => false,
+                'style'  => '',
                 'className'  => 'button-service',
                 'members'=>[
                     [
                         'name'=>'Service Manager','role'=>User::SERVICE_MANAGER
                     ],[
                         'name'=>'Service Advisor','role'=>User::SERVICE_ADVISERS
+
+                    //     'name'=>'F&I Manager','role'=>User::FI
+                    // ],[
+                    //     'name'=>'Financial Controller','role'=>User::FINANCE_CONTROLLER
+                    // ],[
+                    //     'name'=>'Stock Controller','role'=>User::STOCK_CONTROLLER
+                    ]
+                ]
+            ],            
+            [
+                'name'=>'Parts',
+                'forAll' => false,
+                'style'  => '',
+                'className'  => 'button-parts',
+                'members'=>[
+                    [
+                        'name'=>'Parts Manager','role'=>User::PARTS_MANAGER
+                    ],[
+                        'name'=>'Parts Sales Representative','role'=>User::PARTS_SALES_REP
                     ]
                 ]
             ]
         ];
     }
+
+
+    /**
+     * Generate data array for bottom
+     * @return array
+     */
+    private function _getUsersGroupsArray3(){
+        return [
+[
+                'name'=>'Admin',
+                'forAll' => false,
+                'style'  => '',
+                'className'  => 'button-admin',
+                'members'=>[
+                    [
+                        'name'=>'F&I Manager','role'=>User::FI
+                    ],[
+                        'name'=>'Financial Controller','role'=>User::FINANCE_CONTROLLER
+                    ],[
+                        'name'=>'Stock Controller','role'=>User::STOCK_CONTROLLER
+                    ]
+                ]
+            ]
+        ];
+    }
+
 }

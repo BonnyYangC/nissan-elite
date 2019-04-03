@@ -73,7 +73,7 @@ class FinanceController extends BaseRole implements IRole
 
                 $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
                 $ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
-                $balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
+                //$balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
 
                 try{
                     $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
@@ -192,9 +192,7 @@ class FinanceController extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->Frequency,
                 $this->Ontime,
-                $this->Balance,
                 $this->Quality,
-                $this->Checklist,
                 $this->Meetings,
                 $this->trainingData,
                 $this->incentivesForDashboard

@@ -211,19 +211,27 @@ footer ul.nav li a:hover {
 .button-sales{
 	background-image:url(../images/lb-1.jpg);
 	}
+
+.button-fleet{
+	background-image:url(../images/lb-4.jpg);
+	}
 	
 .button-service{
 	background-image:url(../images/lb-2.jpg);
 	}
 	
 .button-parts{
-	background-image:url(../images/lb-4.jpg);
+	background-image:url(../images/lb-3.jpg);
 	}	
 
 .button-admin{
-	background-image:url(../images/lb-3.jpg);
+	background-image:url(../images/lb-5.jpg);
 	}	
 	
+.admin-full-wide {
+	margin-top:5px
+}
+
 .squarebutton a:hover, .squarebutton a {
 	outline: none;
 	text-transform:none;

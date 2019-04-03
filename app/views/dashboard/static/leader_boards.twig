@@ -100,6 +100,38 @@
                     </div>
                 </div>
 
+                {% for group in userGroups3 %}
+                    <div class="panel panel-default admin-full-wide" >
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ group.name }}" style="{{ group.style }}">
+                            <div class="panel-heading squarebutton {{ group.className }}">{{ group.name }}</div>
+                        </a>
+                        <div id="collapse{{ group.name }}" class="panel-collapse collapse">
+                            <div class="panel-body panel-square" >
+                                {% for member in group.members %}
+                                <div class="col-md-{{ 12/count(group.members) }}">
+                                    <h4 class="white">{{ member.name }}</h4>
+                                    <table class="table">
+                                    {% if group.forAll %}
+                                        {% for action in rankingForAll %}
+                                        <tr>
+                                            <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for action in rankingForNationalOnly %}
+                                            <tr>
+                                                <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                    </table>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
                 <div class="">
                     <el-dialog title="" :visible.sync="dialogTableVisible" width="70%">
                         <div class="rankings-modal-title-wrap">
