@@ -266,3 +266,7 @@
     height: 31px;
     top: -3px;
 }
+
+.quality-of-data-guide td {
+    padding:4px !important
+}
