@@ -76,7 +76,6 @@ class SalesManager extends BaseRole implements IRole
             "RETAIL_RESULTS" => $retail_results,
             "TRAINING" => $training
         ];
-
         return $result;
     }
 

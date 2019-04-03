@@ -9,6 +9,7 @@
 namespace App\models\role;
 
 use App\models\User;
+
 class FleetSalesManager extends RetailSalesConsultant
 {
     public $name='fleet_sales_manager';

@@ -54,10 +54,17 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
     public $followUpSaturation             = [
-        'label'=>'Follow Up R6M',
+        'label'=>'Kept Informed',
         'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
+
+                            public $newThing             = [
+                                'label'=>'New thing',
+                                'backgroundColor' => IColor::Platinum,
+                                'data'=>[]
+                            ];
+
     public $trainingData = [
         'label'=>'Training',
         'backgroundColor' => IColor::LIGHT_RED,
