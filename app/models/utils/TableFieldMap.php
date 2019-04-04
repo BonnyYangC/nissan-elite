@@ -32,6 +32,8 @@ class TableFieldMap{
             'active'=>'status',
             'registered'=>'registered',
             'member'=>'ac_mbr',
+            'dob'=>'date_of_birth',
+            'date_created'=>'date_created'
         ];
 
         return $map;

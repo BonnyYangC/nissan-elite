@@ -34,7 +34,11 @@
                         </tr>
                         <tr class="active">
                             <td><strong>Date of Birth</strong></td>
-                            <td>{{ user.dob }}</td>
+                            <td>{{ user.dob|split('-')|reverse()|join('-') }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td><strong>Date Created</strong></td>
+                            <td>{{ user.date_created|split('-')|reverse()|join('-') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Mobile</strong></td>
