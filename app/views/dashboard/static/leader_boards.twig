@@ -43,7 +43,26 @@
                                             <div class="col-md-{{ 12/count(group.members) }}">
                                                 <h4 class="white">{{ member.name }}</h4>
                                                 <table class="table">
-                                                {% if group.forAll %}
+                                                {% if group.statusAndHighAchiever %}
+                                                    <tr>
+                                                        <td><a href="#myPopup" v-on:click.prevent='$(".{{ member.class_name }}_status").toggle()'>STATUS AWARD</a></td>
+                                                    </tr>
+                                                    {% for action in rankingForAll %}
+                                                    <tr class="d-none {{ member.class_name }}_status">
+                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                    </tr>
+                                                    {% endfor %}
+
+                                                    <tr>
+                                                        <td><a href="#myPopup" v-on:click.prevent='$(".{{ member.class_name }}_higher").toggle()'>HIGH ACHIEVER AWARD</a></td>
+                                                    </tr>
+
+                                                    {% for action in rankingForAll %}
+                                                    <tr class="d-none {{ member.class_name }}_higher">
+                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                {% elseif group.forAll %}
                                                     {% for action in rankingForAll %}
                                                     <tr>
                                                         <td><a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>

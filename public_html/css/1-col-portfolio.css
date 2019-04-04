@@ -229,7 +229,7 @@ footer ul.nav li a:hover {
 	}	
 	
 .admin-full-wide {
-	margin-top:5px
+	margin:5px 0
 }
 
 .squarebutton a:hover, .squarebutton a {
@@ -603,4 +603,8 @@ footer ul.nav li a:hover {
 		text-align: center;
 		padding: 10px 0 0 0;
 	}
+}
+
+.d-none {
+	display: none
 }

@@ -317,19 +317,23 @@ class RankingsController extends DashboardController
         return [
             [
                 'name'   =>'Sales',
+                'statusAndHighAchiever' => true,
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-sales',
                 'members'=>[
                     [
-                        'name'=>'Sales Manager','role'=>User::SALES_MANAGER
+                        'name'=>'Sales Manager','role'=>User::SALES_MANAGER, 
+                        'class_name' => 'sales-manager'
                     ],[
-                        'name'=>'Retail Sales Consultant','role'=>User::RETAIL_SALES_CONSULTANTS
+                        'name'=>'Retail Sales Consultant','role'=>User::RETAIL_SALES_CONSULTANTS,
+                        'class_name' => 'retail-sales-consultant'
                     ]
                 ]
             ],
             [
                 'name'=>'Fleet',
+                'statusAndHighAchiever' => true,
                 'forAll' => false,
                 'style'  => 'font-family: \'nissan_brandbold\', Helvetica, Arial, sans-serif;',
                 'className'  => 'button-fleet',
@@ -349,6 +353,7 @@ class RankingsController extends DashboardController
         return [
             [
                 'name'=>'Service',
+                'statusAndHighAchiever' => false,
                 'forAll' => false,
                 'style'  => '',
                 'className'  => 'button-service',
@@ -357,17 +362,12 @@ class RankingsController extends DashboardController
                         'name'=>'Service Manager','role'=>User::SERVICE_MANAGER
                     ],[
                         'name'=>'Service Advisor','role'=>User::SERVICE_ADVISERS
-
-                    //     'name'=>'F&I Manager','role'=>User::FI
-                    // ],[
-                    //     'name'=>'Financial Controller','role'=>User::FINANCE_CONTROLLER
-                    // ],[
-                    //     'name'=>'Stock Controller','role'=>User::STOCK_CONTROLLER
                     ]
                 ]
             ],            
             [
                 'name'=>'Parts',
+                'statusAndHighAchiever' => false,
                 'forAll' => false,
                 'style'  => '',
                 'className'  => 'button-parts',
@@ -391,6 +391,7 @@ class RankingsController extends DashboardController
         return [
 [
                 'name'=>'Admin',
+                'statusAndHighAchiever' => false,
                 'forAll' => false,
                 'style'  => '',
                 'className'  => 'button-admin',
