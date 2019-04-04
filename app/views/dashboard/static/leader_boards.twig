@@ -49,7 +49,7 @@
                                                     </tr>
                                                     {% for action in rankingForAll %}
                                                     <tr class="d-none {{ member.class_name }}_status">
-                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}","status")'>{{ action }}</a></td>
                                                     </tr>
                                                     {% endfor %}
 
@@ -59,7 +59,7 @@
 
                                                     {% for action in rankingForAll %}
                                                     <tr class="d-none {{ member.class_name }}_higher">
-                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}")'>{{ action }}</a></td>
+                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myPopup" v-on:click.prevent='handleClick("{{ member.role }}","{{ action }}","higher")'>{{ action }}</a></td>
                                                     </tr>
                                                     {% endfor %}
                                                 {% elseif group.forAll %}

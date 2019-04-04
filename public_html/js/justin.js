@@ -232,12 +232,14 @@ $(document).ready(function(){
 
             },
             methods: {
-                handleClick: function(role, action){
+                handleClick: function(role, action, type){
+                    console.log('type = '+type)
                     var that = this;
                     this.lastSelectedRole = role;
                     this.lastSelectedAction = action;
+                    this.lastSelectedType = type;
                     axios.get(
-                        '/dashboard/get-rankings?role='+role+'&action='+action
+                        '/dashboard/get-rankings?role='+role+'&action='+action+'&type='+type
                     ).then(function(res){
                         if(res.data.error_no === 100){
                             that.blocks = res.data.data.blocks;
@@ -284,6 +286,9 @@ $(document).ready(function(){
                             break;
                         case 'FM+F':
                             name = 'FLEET MANAGER/SALES CONSULTANT';
+                            break;
+                        case 'F':
+                            name = 'FLEET SALES EXECUTIVE';
                             break;
                         default:
                             break;
