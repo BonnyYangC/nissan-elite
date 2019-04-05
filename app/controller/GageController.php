@@ -77,6 +77,7 @@ class GageController extends BaseController
 
         $complete        = $this->request->param('complete');
         $completePercent = round($this->request->param('complete') / 50000 * 100);
+        $completePercent = min(100, $completePercent);
 
         if ($complete) {
             $this->_completionArc($completePercent, $black);
