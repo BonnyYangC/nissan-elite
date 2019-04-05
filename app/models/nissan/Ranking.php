@@ -52,10 +52,10 @@ class Ranking extends BaseModel implements IRole
      */
     public static function countRegionalRankingLessThan(User $user, Carbon $carbon, $rankingToCompare){
         $position = $user->position;
-        if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
-            // Use 'IN' condition
-            $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
-        }
+        // if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
+        //     // Use 'IN' condition
+        //     $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
+        // }
 
         $where = [
             'AND'=>[
@@ -102,10 +102,10 @@ class Ranking extends BaseModel implements IRole
      */
     public static function Query(User $user, Carbon $carbon, $forGivenUserOnly=false){
         $position = $user->position;
-        if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
-            // Use 'IN' condition
-            $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
-        }
+        // if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
+        //     // Use 'IN' condition
+        //     $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
+        // }
 
         $where = [
             'AND'=>[
@@ -178,9 +178,11 @@ class Ranking extends BaseModel implements IRole
     public static function GetByRole($position, Carbon $period, $region){
         $companyJoin = ['users.company_id'=>'company_id'];
 
+
         if($region === self::NATIONAL){
             $order = [
-                'nissan_rankings.category','nissan_rankings.ranking'
+                'nissan_rankings.category',
+                'nissan_rankings.ranking'
             ];
         }else{
             $order = [
@@ -190,9 +192,8 @@ class Ranking extends BaseModel implements IRole
             ];
         }
 
-        if($position === User::FLEET_SALES_CONSULTANTS || $position === User::FLEET_SALES_MANAGER){
+        if($position === User::FLEET_SALES_EXECUTIVES){
             // Use 'IN' condition
-            $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
             $companyJoin['nissan_rankings.category'] = 'category';
 
             if($region === self::NATIONAL){
@@ -268,10 +269,6 @@ class Ranking extends BaseModel implements IRole
     public static function QueryThisPeriod(User $user, $role = null){
         $database = self::DB();
         $position = $user->position;
-        if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
-            // Use 'IN' condition
-            $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
-        }
 
         $where = [
             'AND'=>[
