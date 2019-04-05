@@ -55,8 +55,8 @@ class RankingsController extends DashboardController
              * If the role is Fleet sales or fleet sales manager, means no category needed
              */
             $roles = explode(' ',$role);
-            $isFleetSalesOrFleetSalesManager = count($roles) > 1;
-            $role = $isFleetSalesOrFleetSalesManager ? $role[0] : $role;
+            // $isFleetSalesOrFleetSalesManager = count($roles) > 1;
+            // $role = $isFleetSalesOrFleetSalesManager ? $role[0] : $role;
 
             list($period, $region) = explode(' ',$this->request->param('action'));
 
@@ -78,7 +78,8 @@ class RankingsController extends DashboardController
 
             // Loop result set to convert array to new structure for frontend json
 
-            if($isFleetSalesOrFleetSalesManager){
+            if($role == 'F'){
+
                 $splitIntoRegionRequired = strpos($this->request->param('action'),'Regional');
                 /**
                  * In this case, not category title required
@@ -255,11 +256,15 @@ class RankingsController extends DashboardController
                 $this->needRegionalRanking = true;
                 $status = new RetailSalesConsultantStatus($credits);
                 break;
-            case User::FLEET_SALES_CONSULTANTS:
-                $this->needRegionalRanking = true;
-                $status = new RetailSalesConsultantStatus($credits);
-                break;
-            case User::FLEET_SALES_MANAGER:
+            // case User::FLEET_SALES_CONSULTANTS:
+            //     $this->needRegionalRanking = true;
+            //     $status = new RetailSalesConsultantStatus($credits);
+            //     break;
+            // case User::FLEET_SALES_MANAGER:
+            //     $this->needRegionalRanking = true;
+            //     $status = new RetailSalesConsultantStatus($credits);
+            //     break;
+            case User::FLEET_SALES_EXECUTIVES:
                 $this->needRegionalRanking = true;
                 $status = new RetailSalesConsultantStatus($credits);
                 break;
