@@ -1,0 +1,141 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: justinwang
+ * Date: 1/8/18
+ * Time: 1:07 PM
+ */
+
+namespace App\controller;
+
+use App\core\BaseController;
+use App\core\JsonBuilder;
+use App\models\Company;
+use App\models\role\status\FinanceControllerStatus;
+use App\models\role\status\FiStatus;
+use App\models\role\status\GageStatus;
+use App\models\role\status\PartsSalesRepStatus;
+use App\models\role\status\RetailSalesConsultantStatus;
+use App\models\role\status\SalesManagerStatus;
+use App\models\role\status\ServiceAdviserStatus;
+use App\models\role\status\ServiceManagerStatus;
+use App\models\role\status\StockControllerStatus;
+use Klein\Request;
+use Klein\Response;
+use App\models\User;
+use App\models\nissan\Ranking;
+use League\Csv\Writer;
+
+class GageController extends BaseController
+{
+
+    var $xSize = 700;
+    var $ySize = 300;
+    var $xCenter = 350;
+    var $yCenter = 250;
+    var $gageThick = 40;
+    var $gageDia = 400; 
+    var $image;
+
+    public function __construct(Request $request, Response $response)
+    {
+        parent::__construct($request, $response);
+    }
+
+    public function current_status_level()
+    {
+
+        // Create an image with the specified dimensions
+        $this->image = imageCreate($this->xSize, $this->ySize);
+
+        $white          = imageColorAllocate($this->image, 255,255,255);
+        $lightgrey      = imageColorAllocate($this->image, 0xED, 0xEB, 0xEB);
+        $semilightgrey  = imageColorAllocate($this->image, 192, 192, 192);
+        $grey           = imageColorAllocate($this->image, 127,127,127);
+        $black          = imageColorAllocate($this->image, 0,0,0);
+
+        $ConsulColor =      imageColorAllocate($this->image, 0x52, 0x53, 0x57);
+        $DiplomatColor =    imageColorAllocate($this->image, 0xBC, 0x26, 0x28);
+        $AmbassadorColor =  imageColorAllocate($this->image, 0x54, 0x6E, 0x22);
+        $PremierColor =     imageColorAllocate($this->image, 0xB4, 0x7C, 0x37);
+
+        imageFilledRectangle($this->image, 0, 0, 800, 800, $white);
+
+        imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia,                  $height=$this->gageDia,                  $start=180, $end=0, $lightgrey); 
+        imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia+$this->gageThick, $height=$this->gageDia+$this->gageThick, $start=180, $end=0, $lightgrey); 
+
+        imageline ( $this->image, $x1 = 130 , $y1 = $this->yCenter , $x2 = 150 , $y2 = $this->yCenter , $lightgrey );
+        imageline ( $this->image, $x1 = 570 , $y1 = $this->yCenter , $x2 = 550 , $y2 = $this->yCenter , $lightgrey );
+
+        //imageFill( $this->image, $x = $this->xCenter - ($this->gageDia /2) + 2 , $this->yCenter -1, $grey);
+        imageFill( $this->image, $x = 135 , 247, $lightgrey);
+
+        $this->_radial ($percent = (12000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
+        $this->_radial ($percent = (22000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
+        $this->_radial ($percent = (27000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
+        $this->_radial ($percent = (38000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
+
+        $complete = round($this->request->param('complete') / 50000);
+
+        if ($complete) {
+            $this->_completionArc($complete, $black);
+        }
+
+        $this->_needle($complete, $grey);
+
+        //putenv('GDFONTPATH=' . realpath('./css/fonts/'));
+        //print realpath('./css/fonts/').'\nissanag-bold-webfont.ttf';exit;          
+        putenv('GDFONTPATH=' . realpath('./css/fonts/'));
+        imagefttext ( $this->image , $size=12, $angle=0, $x=130 , $y=90 , $ConsulColor ,        'arialbd.ttf' , 'CONSUL');
+        imagefttext ( $this->image , $size=12, $angle=0, $x=250 , $y=30 , $DiplomatColor ,      'arialbd.ttf' , 'DIPLOMAT');
+        imagefttext ( $this->image , $size=12, $angle=0, $x=370 , $y=30 , $AmbassadorColor ,    'arialbd.ttf' , 'AMBASSADOR');
+        imagefttext ( $this->image , $size=12, $angle=0, $x=505 , $y=90 , $PremierColor ,       'arialbd.ttf' , 'PREMIER');
+
+        // Set type of image and send the output
+        header("Content-type: image/png");
+        imageJpeg($this->image);
+
+        imageDestroy($this->image);
+    }
+
+    private function _radial($percent, $startLength, $endLength, $color) {
+        $angle = 180 + ($percent * 1.8);
+
+        $x1 = $this->xCenter + cos($angle * 3.1416 / 180) * $startLength;
+        $y1 = $this->yCenter + sin($angle * 3.1416 / 180) * $startLength;
+
+        $x2 = $this->xCenter + cos($angle * 3.1416 / 180) * $endLength;
+        $y2 = $this->yCenter + sin($angle * 3.1416 / 180) * $endLength;
+
+        imageline ( $this->image, $x1, $y1, $x2, $y2, $color);
+    }
+
+    private function _completionArc ($percent, $color) {
+        $start = 180;
+        $end = 180 + (($percent+.5) * 1.8);
+
+        imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia,                  $height=$this->gageDia,                  $start=180, $end, $color); 
+        imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia+$this->gageThick, $height=$this->gageDia+$this->gageThick, $start=180, $end, $color); 
+
+        $this->_radial( $percent,     $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);
+        $this->_radial( $percent+.05, $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);  // to stop the fill leaking
+
+        //imagefilledellipse ( $this->image , 143 , 248 , 5 ,5 , $color ) ;
+        imageFill( $this->image, $x = 143, 249, $color);
+    }
+
+    private function _needle ($percent, $color) {
+        $angle = 180 + ($percent * 1.8);
+        $x1 = $this->xCenter + cos($angle * 3.1416 / 180) * ($this->gageDia/2) ;
+        $y1 = $this->yCenter + sin($angle * 3.1416 / 180) * ($this->gageDia/2) ;
+
+        $x2 = $this->xCenter + cos(($angle-4) * 3.1416 / 180) * (($this->gageDia -40)/2) ;
+        $y2 = $this->yCenter + sin(($angle-4) * 3.1416 / 180) * (($this->gageDia -40)/2) ;
+
+        $x3 = $this->xCenter + cos(($angle+4) * 3.1416 / 180) * (($this->gageDia -40)/2) ;
+        $y3 = $this->yCenter + sin(($angle+4) * 3.1416 / 180) * (($this->gageDia -40)/2) ;
+
+        imagefilledpolygon ( $this->image , [$x1,$y1, $x2,$y2, $x3,$y3] , 3 , $color );
+    }
+
+}
