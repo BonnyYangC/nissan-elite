@@ -329,10 +329,10 @@ class RankingsController extends DashboardController
                 'members'=>[
                     [
                         'name'=>'Sales Manager','role'=>User::SALES_MANAGER, 
-                        'class_name' => 'sales-manager'
+                        'className' => 'sales_manager'
                     ],[
                         'name'=>'Retail Sales Consultant','role'=>User::RETAIL_SALES_CONSULTANTS,
-                        'class_name' => 'retail-sales-consultant'
+                        'className' => 'retail_sales_consultant'
                     ]
                 ]
             ],
@@ -344,7 +344,8 @@ class RankingsController extends DashboardController
                 'className'  => 'button-fleet',
                 'members'=>[
                     [
-                        'name'=>'Fleet Sales Executive','role'=>User::FLEET_SALES_EXECUTIVES
+                        'name'=>'Fleet Sales Executive','role'=>User::FLEET_SALES_EXECUTIVES,
+                        'className' => 'fleet_sales_executive'
                     ]                ]
             ]
         ];
