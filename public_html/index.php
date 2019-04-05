@@ -6,7 +6,7 @@
  * Time: 11:34 AM
  */
 require_once __DIR__ . '/../vendor/autoload.php';
-error_reporting(env('DEV_MODE',false) ? E_ERROR : 0);
+error_reporting(env('DEV_MODE',true) ? E_ERROR : 0);
 ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 
 /**
@@ -60,6 +60,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard/MDguild-events',\App\controller\StaticPagesController::class, 'md_guide_events');
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-past',\App\controller\StaticPagesController::class, 'md_guide_events_past');
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
+
+\App\core\Route::Instance()->get('/dashboard/current-status-level',\App\controller\GageController::class, 'current_status_level');
+
 // static pages end
 // dynamic pages
 \App\core\Route::Instance()->get('/dashboard/ProductChallenge',\App\controller\StaticPagesController::class, 'product_challenge');
