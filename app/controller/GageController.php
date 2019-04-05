@@ -20,6 +20,8 @@ use App\models\role\status\SalesManagerStatus;
 use App\models\role\status\ServiceAdviserStatus;
 use App\models\role\status\ServiceManagerStatus;
 use App\models\role\status\StockControllerStatus;
+use App\models\utils\RoleFactory;
+
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
@@ -44,6 +46,8 @@ class GageController extends BaseController
 
     public function current_status_level()
     {
+
+        $role = RoleFactory::GetRole($this->request->param('position'), new User($this->request->param('id')));
 
         // Create an image with the specified dimensions
         $this->image = imageCreate($this->xSize, $this->ySize);
@@ -129,7 +133,9 @@ class GageController extends BaseController
         imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia+$this->gageThick, $height=$this->gageDia+$this->gageThick, $start=180, $end, $color); 
 
         $this->_radial( $percent,     $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);
+        $this->_radial( $percent+.02, $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);  // to stop the fill leaking
         $this->_radial( $percent+.05, $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);  // to stop the fill leaking
+        $this->_radial( $percent+.07, $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);  // to stop the fill leaking
 
         //imagefilledellipse ( $this->image , 143 , 248 , 5 ,5 , $color ) ;
         imageFill( $this->image, $x = 143, 249, $color);
@@ -137,8 +143,8 @@ class GageController extends BaseController
 
     private function _needle ($percent, $color) {
         $angle = 180 + ($percent * 1.8);
-        $x1 = $this->xCenter + cos($angle * 3.1416 / 180) * ($this->gageDia/2) ;
-        $y1 = $this->yCenter + sin($angle * 3.1416 / 180) * ($this->gageDia/2) ;
+        $x1 = $this->xCenter + cos($angle * 3.1416 / 180) * (($this->gageDia -5) /2) ;  // -5 slightly not touching looks better
+        $y1 = $this->yCenter + sin($angle * 3.1416 / 180) * (($this->gageDia -5) /2) ;
 
         $x2 = $this->xCenter + cos(($angle-4) * 3.1416 / 180) * (($this->gageDia -40)/2) ;
         $y2 = $this->yCenter + sin(($angle-4) * 3.1416 / 180) * (($this->gageDia -40)/2) ;
