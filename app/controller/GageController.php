@@ -75,13 +75,18 @@ class GageController extends BaseController
         $this->_radial ($percent = (27000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
         $this->_radial ($percent = (38000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
 
-        $complete = round($this->request->param('complete') / 50000);
+        $complete        = $this->request->param('complete');
+        $completePercent = round($this->request->param('complete') / 50000 * 100);
 
         if ($complete) {
-            $this->_completionArc($complete, $black);
+            $this->_completionArc($completePercent, $black);
+            imagefttext ( $this->image , $size=24, $angle=0, $x=300 , $y=230 , $black ,      'arialbd.ttf' , number_format($complete,0,'.',','));
+
+        } else {
+            imagefttext ( $this->image , $size=24, $angle=0, $x=343 , $y=230 , $black ,      'arialbd.ttf' , number_format($complete,0,'.',','));
         }
 
-        $this->_needle($complete, $grey);
+        $this->_needle($completePercent, $grey);
 
         //putenv('GDFONTPATH=' . realpath('./css/fonts/'));
         //print realpath('./css/fonts/').'\nissanag-bold-webfont.ttf';exit;          
@@ -90,6 +95,7 @@ class GageController extends BaseController
         imagefttext ( $this->image , $size=12, $angle=0, $x=250 , $y=30 , $DiplomatColor ,      'arialbd.ttf' , 'DIPLOMAT');
         imagefttext ( $this->image , $size=12, $angle=0, $x=370 , $y=30 , $AmbassadorColor ,    'arialbd.ttf' , 'AMBASSADOR');
         imagefttext ( $this->image , $size=12, $angle=0, $x=505 , $y=90 , $PremierColor ,       'arialbd.ttf' , 'PREMIER');
+
 
         // Set type of image and send the output
         header("Content-type: image/png");
