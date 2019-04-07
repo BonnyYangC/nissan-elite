@@ -225,7 +225,13 @@ $(document).ready(function(){
                     dialogTableVisible:false,
                     tableTitle:'',
                     lastSelectedRole:null,
-                    lastSelectedAction: null
+                    lastSelectedAction: null,
+                    sales_manager_status: false,
+                    sales_manager_high: false,
+                    retail_sales_consultant_status: false,
+                    retail_sales_consultant_high: false,
+                    fleet_sales_executive_status: false,
+                    fleet_sales_executive_high: false,
                 };
             },
             created: function(){
