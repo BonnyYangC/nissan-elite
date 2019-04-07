@@ -310,6 +310,8 @@ class RankingsController extends DashboardController
         $this->dataForView['userGroups2'] = $this->_getUsersGroupsArray2();
         $this->dataForView['userGroups3'] = $this->_getUsersGroupsArray3();
 
+        $this->dataForView['statusHigher'] = ['status', 'high'];
+
         $this->render('dashboard/static/leader_boards');
         return;
     }
