@@ -31,12 +31,12 @@ use League\Csv\Writer;
 class GageController extends BaseController
 {
 
-    var $xSize = 700;
-    var $ySize = 300;
-    var $xCenter = 350;
-    var $yCenter = 250;
-    var $gageThick = 40;
-    var $gageDia = 400; 
+    var $xSize = 1400;
+    var $ySize = 600;
+    var $xCenter = 700;
+    var $yCenter = 500;
+    var $gageThick = 80;
+    var $gageDia = 800; 
     var $image;
 
     public function __construct(Request $request, Response $response)
@@ -68,16 +68,18 @@ class GageController extends BaseController
         imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia,                  $height=$this->gageDia,                  $start=180, $end=0, $lightgrey); 
         imagearc($this->image, $this->xCenter, $this->yCenter, $this->gageDia+$this->gageThick, $height=$this->gageDia+$this->gageThick, $start=180, $end=0, $lightgrey); 
 
-        imageline ( $this->image, $x1 = 130 , $y1 = $this->yCenter , $x2 = 150 , $y2 = $this->yCenter , $lightgrey );
-        imageline ( $this->image, $x1 = 570 , $y1 = $this->yCenter , $x2 = 550 , $y2 = $this->yCenter , $lightgrey );
+        imageline ( $this->image, $x1 = 260 , $y1 = $this->yCenter , $x2 = 300 , $y2 = $this->yCenter , $lightgrey );
+
+        imageline ( $this->image, $x1 = $this->xCenter + 400 , $y1 = $this->yCenter , $x2 = $this->xCenter + 440 , $y2 = $this->yCenter , $lightgrey );
+
 
         //imageFill( $this->image, $x = $this->xCenter - ($this->gageDia /2) + 2 , $this->yCenter -1, $grey);
-        imageFill( $this->image, $x = 135 , 247, $lightgrey);
+        imageFill( $this->image, $x = 270 , 498, $lightgrey);
 
-        $this->_radial ($percent = (12000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
-        $this->_radial ($percent = (22000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
-        $this->_radial ($percent = (27000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
-        $this->_radial ($percent = (38000 / 50000) * 100, $startLength = 0, $endLength = 200, $semilightgrey);
+        $this->_radial ($percent = (12000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
+        $this->_radial ($percent = (22000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
+        $this->_radial ($percent = (27000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
+        $this->_radial ($percent = (38000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
 
         $complete        = $this->request->param('complete');
         $completePercent = round($this->request->param('complete') / 50000 * 100);
@@ -92,23 +94,23 @@ class GageController extends BaseController
         putenv('GDFONTPATH=' . realpath('.'));
         if ($complete) {
             $this->_completionArc($completePercent, $completeColor);
-            imagefttext ( $this->image , $size=24, $angle=0, $x=300 , $y=230 , $black ,      'arialbd.ttf' , number_format($complete,0,'.',','));
+            imagefttext ( $this->image , $size=48, $angle=0, $x=600 , $y=460 , $black ,      'arialbd.ttf' , number_format($complete,0,'.',','));
 
         } else {
-            imagefttext ( $this->image , $size=24, $angle=0, $x=343 , $y=230 , $black ,      'arialbd.ttf' , number_format($complete,0,'.',','));
+            imagefttext ( $this->image , $size=48, $angle=0, $x=686 , $y=460 , $black ,      'arialbd.ttf' , number_format($complete,0,'.',','));
         }
 
         $this->_needle($completePercent, $grey);
 
-        imagefttext ( $this->image , $size=12, $angle=0, $x=130 , $y=90 , $ConsulColor ,        'arialbd.ttf' , 'CONSUL');
-        imagefttext ( $this->image , $size=12, $angle=0, $x=250 , $y=30 , $DiplomatColor ,      'arialbd.ttf' , 'DIPLOMAT');
-        imagefttext ( $this->image , $size=12, $angle=0, $x=370 , $y=30 , $AmbassadorColor ,    'arialbd.ttf' , 'AMBASSADOR');
-        imagefttext ( $this->image , $size=12, $angle=0, $x=505 , $y=90 , $PremierColor ,       'arialbd.ttf' , 'PREMIER');
+        imagefttext ( $this->image , $size=24, $angle=0, $x=260 , $y=180 , $ConsulColor ,        'arialbd.ttf' , 'CONSUL');
+        imagefttext ( $this->image , $size=24, $angle=0, $x=500 , $y=60 , $DiplomatColor ,      'arialbd.ttf' , 'DIPLOMAT');
+        imagefttext ( $this->image , $size=24, $angle=0, $x=760 , $y=60 , $AmbassadorColor ,    'arialbd.ttf' , 'AMBASSADOR');
+        imagefttext ( $this->image , $size=24, $angle=0, $x=1050 , $y=180 , $PremierColor ,       'arialbd.ttf' , 'PREMIER');
 
 
         // Set type of image and send the output
         header("Content-type: image/png");
-        imageJpeg($this->image);
+        imagePng($this->image);
 
         imageDestroy($this->image);
     }
@@ -137,8 +139,8 @@ class GageController extends BaseController
         $this->_radial( $percent+.05, $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);  // to stop the fill leaking
         $this->_radial( $percent+.07, $this->gageDia/2, ($this->gageDia+$this->gageThick) /2, $color);  // to stop the fill leaking
 
-        //imagefilledellipse ( $this->image , 143 , 248 , 5 ,5 , $color ) ;
-        imageFill( $this->image, $x = 143, 249, $color);
+        //imagefilledellipse ( $this->image , 286 , 496 , 5 ,5 , $color ) ;
+        imageFill( $this->image, $x = 286, 496, $color);
     }
 
     private function _needle ($percent, $color) {
