@@ -76,10 +76,10 @@ class GageController extends BaseController
         //imageFill( $this->image, $x = $this->xCenter - ($this->gageDia /2) + 2 , $this->yCenter -1, $grey);
         imageFill( $this->image, $x = 270 , 498, $lightgrey);
 
-        $this->_radial ($percent = (12000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
-        $this->_radial ($percent = (22000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
-        $this->_radial ($percent = (27000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
-        $this->_radial ($percent = (38000 / 50000) * 100, $startLength = 0, $endLength = 400, $lightgrey);
+        $this->_radial ($percent = (12000 / 50000) * 100, $startLength = 0, $endLength = 400, $semilightgrey);
+        $this->_radial ($percent = (22000 / 50000) * 100, $startLength = 0, $endLength = 400, $semilightgrey);
+        $this->_radial ($percent = (27000 / 50000) * 100, $startLength = 0, $endLength = 400, $semilightgrey);
+        $this->_radial ($percent = (38000 / 50000) * 100, $startLength = 0, $endLength = 400, $semilightgrey);
 
         $complete        = $this->request->param('complete');
         $completePercent = round($this->request->param('complete') / 50000 * 100);
