@@ -22,9 +22,9 @@ function generateGageIndicator (gageId, percent, color, text) {
     gage.appendChild(indicator);
 }
 
-for (var i = 0; i < GAGE_DATA.length; i++){
+//for (var i = 0; i < GAGE_DATA.length; i++){
     //generateGageIndicator('g1',GAGE_DATA[i][0],GAGE_DATA[i][1],GAGE_DATA[i][2]);
-}
+//}
 document.addEventListener("DOMContentLoaded", function(event) {
     var g1 = new JustGage({
         id: 'g1',
