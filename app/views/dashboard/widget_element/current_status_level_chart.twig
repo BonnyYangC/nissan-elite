@@ -11,7 +11,7 @@
     <h3>Dollar Rewards and Credits</h3>
     <div class="table-responsive" >
         <table class="table" >
-            <tr class="nissangray-back">
+            <tr class="table-top-row">
                 <td align="center">Consul</td>
                 <td align="center">Diplomat</td>
                 <td align="center">Ambassador</td>
@@ -26,7 +26,7 @@
             <tr class="active">
                 {% set dollorDataRanges = dashboard.rewardsDollars[1] %}
                 {% for val in dollorDataRanges %}
-                    <td align="center">{{ val }}</td>
+                    <td align="center" class="rewardsLevels">{{ val }}</td>
                 {% endfor %}
             </tr>
         </table>
