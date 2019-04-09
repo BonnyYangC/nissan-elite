@@ -47,10 +47,12 @@ class GageController extends BaseController
     public function current_status_level()
     {
 
+         ini_set ('display_errors', 1);
+
         $role = RoleFactory::GetRole($this->request->param('position'), new User($this->request->param('id')));
 
         // Create an image with the specified dimensions
-        $this->image = imageCreate($this->xSize, $this->ySize);
+        $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
 
         $white          = imageColorAllocate($this->image, 255,255,255);
         $lightgrey      = imageColorAllocate($this->image, 0xED, 0xEB, 0xEB);
@@ -63,7 +65,8 @@ class GageController extends BaseController
         $AmbassadorColor =  imageColorAllocate($this->image, 0x54, 0x6E, 0x22);
         $PremierColor =     imageColorAllocate($this->image, 0xB4, 0x7C, 0x37);
 
-        imageFilledRectangle($this->image, 0, 0, 800, 800, $white);
+        //background to white
+        imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
 
         $percent1 = round(12000 / 50000 * 100);
         $percent2 = round(22000 / 50000 * 100);
@@ -86,6 +89,8 @@ class GageController extends BaseController
         $this->_completionArc($percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
         $this->_completionArc($percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
 
+        $this->_completionArc(0,         $percent1-2, $grey,         $this->gageDia * .55,  $this->gageDia *.56); 
+
         $this->_whiteDivider($percent1, $white); 
         $this->_whiteDivider($percent2, $white); 
         $this->_whiteDivider($percent3, $white); 
@@ -96,16 +101,25 @@ class GageController extends BaseController
 
         putenv('GDFONTPATH=' . realpath('.'));
 
-        $textX = $this->xCenter-100;
-        if (!$complete) {            
-            $textX = $this->xCenter-15;
-        }
-        imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
-
         $angle1 = 90-(($percent1 + $percent2) /2 * 1.8);
         $angle2 = 90-(($percent2 + $percent3) /2 * 1.8);
         $angle3 = 90-(($percent3 + $percent4) /2 * 1.8);
         $angle4 = 90-(($percent4 + 100) /2 * 1.8);
+
+        $fo = fopen('tempfile.png', 'w');
+        imagePng($this->image, 'tempfile.png');
+        imageDestroy($this->image);
+        fclose($fo);
+
+        if (class_exists('Imagick')) {
+            $file = fopen('tempfile.png', 'r');
+            $im = Imagick::readImageFile($file);
+            $im->blurImage(3,3);        
+            $im->writeImage('tempfile.png');
+            $im->writeImage('tempfile2.png');
+        }
+        
+        $this->image = imagecreatefrompng('tempfile.png');
 
         // grey outer
         imagefttext ( $this->image, $size=18, $angle1, $x=$this->xCenter -280, $y= $this->yCenter -393, $grey,  'arialbd.ttf', 'CONSUL');
@@ -113,13 +127,19 @@ class GageController extends BaseController
         imagefttext ( $this->image, $size=18, $angle3, $x=$this->xCenter +140, $y= $this->yCenter -465, $grey, 'arialbd.ttf', 'AMBASSADOR');
         imagefttext ( $this->image, $size=18, $angle4, $x=$this->xCenter +420, $y= $this->yCenter -230, $grey, 'arialbd.ttf', 'PREMIER');
 
-        // Legend text
+        $textX = $this->xCenter-100;
+        if (!$complete) {            
+            $textX = $this->xCenter-15;
+        }
+        imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
+
+        // // Legend text
         imagefttext ( $this->image, $size=24, $angle=0, $x=80, $y=80, $black,  'arialbd.ttf', 'CONSUL');
         imagefttext ( $this->image, $size=24, $angle=0, $x, $y+40, $black,  'arialbd.ttf', 'DIPLOMAT');
         imagefttext ( $this->image, $size=24, $angle=0, $x, $y+80, $black, 'arialbd.ttf', 'AMBASSADOR');
         imagefttext ( $this->image, $size=24, $angle=0, $x, $y+120, $black, 'arialbd.ttf', 'PREMIER');
 
-        //Legend colors
+        // //Legend colors
         imagefilledpolygon ( $this->image, [$x1 = 40,$y1 = 60,       $x2 = 60,$y2 = $y1,    $x4 = 60,$y4 = $y2+20, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
         imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+40,   $x2,     $y2 = $y2+40, $x4,     $y4 = $y4+40, $x3,       $y3=$y4],   $no_of_points = 4, $DiplomatColor);
         imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+40,   $x2,     $y2 = $y2+40, $x4,     $y4 = $y4+40, $x3,       $y3=$y4],   $no_of_points = 4, $AmbassadorColor);
@@ -127,9 +147,8 @@ class GageController extends BaseController
 
         // Set type of image and send the output
         header("Content-type: image/png");
+        imageantialias($image, true);
         imagePng($this->image);
-
-        imageDestroy($this->image);
     }
 
     private function _radial($percent, $startLength, $endLength, $color) {
@@ -205,7 +224,7 @@ class GageController extends BaseController
     private function _whiteDivider ($percent, $color) {
         $angle = 180 + ($percent * 1.8);
         $lineThickness = 10;
-        $lineLength = $this->gageDia;
+        $lineLength = $this->gageDia /1.666;
 
 
         $x1 = $this->xCenter + cos( deg2rad($angle-90) ) * $lineThickness /2 ;
