@@ -49,7 +49,14 @@ class GageController extends BaseController
 
          ini_set ('display_errors', 1);
 
-        $role = RoleFactory::GetRole($this->request->param('position'), new User($this->request->param('id')));
+        $role = RoleFactory::GetRole($pos = $this->request->param('position'), new User($this->request->param('id')));
+
+        $ytd = env('YEAR',2018);
+        $dataForView = $role->getDashboardViewData($this->dataForView,$ytd);
+
+        $max = $dataForView['statusChart']['max'];
+
+//print_r($dataForView);exit;        
 
         // Create an image with the specified dimensions
         $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
@@ -60,21 +67,32 @@ class GageController extends BaseController
         $grey           = imageColorAllocate($this->image, 127,127,127);
         $black          = imageColorAllocate($this->image, 0,0,0);
 
-        $ConsulColor =      imageColorAllocate($this->image, 0x52, 0x53, 0x57);
-        $DiplomatColor =    imageColorAllocate($this->image, 0xBC, 0x26, 0x28);
-        $AmbassadorColor =  imageColorAllocate($this->image, 0x54, 0x6E, 0x22);
-        $PremierColor =     imageColorAllocate($this->image, 0xB4, 0x7C, 0x37);
+        $cc = $dataForView['statusChart']['gageArray'][0][1];
+        $dc = $dataForView['statusChart']['gageArray'][1][1];
+        $ac = $dataForView['statusChart']['gageArray'][2][1];
+        $pc = $dataForView['statusChart']['gageArray'][3][1];
+
+        $ConsulColor =      imageColorAllocate($this->image, hexdec(substr($cc,1,2)), hexdec(substr($cc,3,2)), hexdec(substr($cc,5,2)));
+        $DiplomatColor =    imageColorAllocate($this->image, hexdec(substr($dc,1,2)), hexdec(substr($dc,3,2)), hexdec(substr($dc,5,2)));
+        $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac,1,2)), hexdec(substr($ac,3,2)), hexdec(substr($ac,5,2)));
+        $PremierColor =     imageColorAllocate($this->image, hexdec(substr($pc,1,2)), hexdec(substr($pc,3,2)), hexdec(substr($pc,5,2)));
 
         //background to white
         imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
 
-        $percent1 = round(12000 / 50000 * 100);
-        $percent2 = round(22000 / 50000 * 100);
-        $percent3 = round(27000 / 50000 * 100);
-        $percent4 = round(38000 / 50000 * 100);
+        // $percent1 = round(12000 / $max * 100);
+        // $percent2 = round(22000 / $max * 100);
+        // $percent3 = round(27000 / $max * 100);
+        // $percent4 = round(38000 / $max * 100);
+
+        $percent1 = round($dataForView['statusChart']['gageArray'][0][0]);
+        $percent2 = round($dataForView['statusChart']['gageArray'][1][0]);
+        $percent3 = round($dataForView['statusChart']['gageArray'][2][0]);
+        $percent4 = round($dataForView['statusChart']['gageArray'][3][0]);
+
 
         $complete        = $this->request->param('complete');
-        $completePercent = round($this->request->param('complete') / 50000 * 100);
+        $completePercent = round($this->request->param('complete') / $max * 100);
         $completePercent = min(100, $completePercent);
 
         $this->_completionArc(0,         $percent1, $lightgrey,         $this->gageDia /4,  $this->gageDia /2); 
@@ -143,10 +161,44 @@ class GageController extends BaseController
         $this->image = imagecreatefrompng('tempfile.png');
 
         // grey outer
-        imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -560, $y= $this->yCenter -786, $grey,  'arialbd.ttf', 'CONSUL');
-        imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -150, $y= $this->yCenter -950, $grey,  'arialbd.ttf', 'DIPLOMAT');
-        imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +280, $y= $this->yCenter -930, $grey, 'arialbd.ttf', 'AMBASSADOR');
-        imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +840, $y= $this->yCenter -460, $grey, 'arialbd.ttf', 'PREMIER');
+
+        switch($pos) {
+            case 'F':
+            case 'R':
+            case 'M':
+                imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -560, $y= $this->yCenter -766, $grey, 'arialbd.ttf', 'CONSUL');
+                imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -150, $y= $this->yCenter -930, $grey, 'arialbd.ttf', 'DIPLOMAT');
+                imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +280, $y= $this->yCenter -910, $grey, 'arialbd.ttf', 'AMBASSADOR');
+                imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +840, $y= $this->yCenter -450, $grey, 'arialbd.ttf', 'PREMIER');
+                break;            
+            case 'SA':    
+            case 'PM':    
+            case 'PS':    
+            case 'SM':    
+                imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -740, $y= $this->yCenter -586, $grey, 'arialbd.ttf', 'CONSUL');
+                imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -290, $y= $this->yCenter -900, $grey, 'arialbd.ttf', 'DIPLOMAT');
+                imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +370, $y= $this->yCenter -880, $grey, 'arialbd.ttf', 'AMBASSADOR');
+                imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +870, $y= $this->yCenter -360, $grey, 'arialbd.ttf', 'PREMIER');
+                break;
+            case 'SC':    
+            case 'C':    
+                imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -510, $y= $this->yCenter -786, $grey, 'arialbd.ttf', 'CONSUL');
+                imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -210, $y= $this->yCenter -920, $grey, 'arialbd.ttf', 'DIPLOMAT');
+                imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +210, $y= $this->yCenter -930, $grey, 'arialbd.ttf', 'AMBASSADOR');
+                imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +835, $y= $this->yCenter -460, $grey, 'arialbd.ttf', 'PREMIER');
+                break;
+            case 'I':    
+                imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -620, $y= $this->yCenter -700, $grey, 'arialbd.ttf', 'CONSUL');
+                imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -230, $y= $this->yCenter -910, $grey, 'arialbd.ttf', 'DIPLOMAT');
+                imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +230, $y= $this->yCenter -910, $grey, 'arialbd.ttf', 'AMBASSADOR');
+                imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +820, $y= $this->yCenter -450, $grey, 'arialbd.ttf', 'PREMIER');
+                break;
+        }
+
+
+    // const PARTS_MANAGER             = 'PM';
+    // const PARTS_SALES_REP           = 'PS';
+
 
         $textX = $this->xCenter-100;
         if (!$complete) {            
@@ -242,7 +294,7 @@ class GageController extends BaseController
 
     // white line to leave a little clearance between colored backgrounds
     private function _whiteDivider ($percent, $color) {
-        $angle = 180 + ($percent * 1.8);
+        $angle = round(180 + ($percent * 1.8));
         $lineThickness = 10;
         $lineLength = $this->gageDia /1.666;
 
