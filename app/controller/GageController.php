@@ -47,7 +47,7 @@ class GageController extends BaseController
     public function current_status_level()
     {
 
-         ini_set ('display_errors', 1);
+        ini_set ('display_errors', 1);
 
         $role = RoleFactory::GetRole($pos = $this->request->param('position'), new User($this->request->param('id')));
 
@@ -55,8 +55,6 @@ class GageController extends BaseController
         $dataForView = $role->getDashboardViewData($this->dataForView,$ytd);
 
         $max = $dataForView['statusChart']['max'];
-
-//print_r($dataForView);exit;        
 
         // Create an image with the specified dimensions
         $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
@@ -72,6 +70,7 @@ class GageController extends BaseController
         $ac = $dataForView['statusChart']['gageArray'][2][1];
         $pc = $dataForView['statusChart']['gageArray'][3][1];
 
+        // create the colors from hex triplets
         $ConsulColor =      imageColorAllocate($this->image, hexdec(substr($cc,1,2)), hexdec(substr($cc,3,2)), hexdec(substr($cc,5,2)));
         $DiplomatColor =    imageColorAllocate($this->image, hexdec(substr($dc,1,2)), hexdec(substr($dc,3,2)), hexdec(substr($dc,5,2)));
         $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac,1,2)), hexdec(substr($ac,3,2)), hexdec(substr($ac,5,2)));
@@ -80,16 +79,10 @@ class GageController extends BaseController
         //background to white
         imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
 
-        // $percent1 = round(12000 / $max * 100);
-        // $percent2 = round(22000 / $max * 100);
-        // $percent3 = round(27000 / $max * 100);
-        // $percent4 = round(38000 / $max * 100);
-
         $percent1 = round($dataForView['statusChart']['gageArray'][0][0]);
         $percent2 = round($dataForView['statusChart']['gageArray'][1][0]);
         $percent3 = round($dataForView['statusChart']['gageArray'][2][0]);
         $percent4 = round($dataForView['statusChart']['gageArray'][3][0]);
-
 
         $complete        = $this->request->param('complete');
         $completePercent = round($this->request->param('complete') / $max * 100);
@@ -127,8 +120,6 @@ class GageController extends BaseController
         $x1 = $this->xCenter + cos(deg2rad($angle)) * $this->gageDia * 0.555;
         $y1 = $this->yCenter - sin(deg2rad($angle)) * $this->gageDia * 0.555;
 
-//print "$x1, $y1";exit;
-
         $arrowAngle = 145;
 
         $x2 = $x1 + cos( deg2rad($angle -90 + $arrowAngle )) * 70 ;
@@ -139,7 +130,7 @@ class GageController extends BaseController
 
         putenv('GDFONTPATH=' . realpath('.'));
 
-        $angle1 = 90-(($percent1 + $percent2) /2 * 1.8);
+        $angle1 = 90-(($percent1 + $percent2) /2 * 1.8);  // find the middle of ranges (average) to work out the angle to rotate the text
         $angle2 = 90-(($percent2 + $percent3) /2 * 1.8);
         $angle3 = 90-(($percent3 + $percent4) /2 * 1.8);
         $angle4 = 90-(($percent4 + 100) /2 * 1.8);
@@ -149,6 +140,7 @@ class GageController extends BaseController
         imageDestroy($this->image);
         fclose($fo);
 
+        // save image, open in Imagick, blur the image - to removed the jagged edges on the diagonal lines
         if (class_exists('Imagick')) {
             $file = fopen('tempfile.png', 'r');
             $im = new \Imagick();
@@ -160,9 +152,8 @@ class GageController extends BaseController
         
         $this->image = imagecreatefrompng('tempfile.png');
 
-        // grey outer
-
-        switch($pos) {
+        // grey outer with text labels
+        switch($pos) {  // I had to tweak these to position the text, depending on what percentage was the middle of these ranges
             case 'F':
             case 'R':
             case 'M':
@@ -195,15 +186,11 @@ class GageController extends BaseController
                 break;
         }
 
-
-    // const PARTS_MANAGER             = 'PM';
-    // const PARTS_SALES_REP           = 'PS';
-
-
         $textX = $this->xCenter-100;
         if (!$complete) {            
             $textX = $this->xCenter-15;
         }
+        // number to go with the needle
         imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
 
         // // Legend text
@@ -289,7 +276,6 @@ class GageController extends BaseController
 
         imagefilledarc( $this->image, $this->xCenter, $this->yCenter, $needleThickness,   $needleThickness,   0, 360, $color, IMG_ARC_EDGED);
         imagefilledarc( $this->image, $this->xCenter, $this->yCenter, $needleThickness/2.5, $needleThickness/2.5, 0, 360, $colorSpindle, IMG_ARC_EDGED);
-
     }
 
     // white line to leave a little clearance between colored backgrounds
