@@ -31,12 +31,12 @@ use League\Csv\Writer;
 class GageController extends BaseController
 {
 
-    var $xSize = 1400;
-    var $ySize = 600;
-    var $xCenter = 800;
-    var $yCenter = 550;
+    var $xSize = 2800;
+    var $ySize = 1200;
+    var $xCenter = 1600;
+    var $yCenter = 1100;
     var $gageThick = 80;
-    var $gageDia = 900; 
+    var $gageDia = 1800; 
     var $image;
 
     public function __construct(Request $request, Response $response)
@@ -89,15 +89,35 @@ class GageController extends BaseController
         $this->_completionArc($percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
         $this->_completionArc($percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
 
-        $this->_completionArc(0,         $percent1-2, $grey,         $this->gageDia * .55,  $this->gageDia *.56); 
-
         $this->_whiteDivider($percent1, $white); 
         $this->_whiteDivider($percent2, $white); 
         $this->_whiteDivider($percent3, $white); 
         $this->_whiteDivider($percent4, $white); 
         $this->_whiteDivider(101,       $white); 
 
+        // the needle
         $this->_needle($completePercent, $grey, $white);
+
+        // Jo's grey arrow for first sector below consul
+        $this->_completionArc(0, $percent1-2, $grey,         $this->gageDia * .55,  $this->gageDia *.56); 
+        
+        // arrowhead
+        $arrowThickness = 20;
+        $angle = 180-(($percent1 -0.5) * 1.8);
+
+        // arrow point
+        $x1 = $this->xCenter + cos(deg2rad($angle)) * $this->gageDia * 0.555;
+        $y1 = $this->yCenter - sin(deg2rad($angle)) * $this->gageDia * 0.555;
+
+//print "$x1, $y1";exit;
+
+        $arrowAngle = 145;
+
+        $x2 = $x1 + cos( deg2rad($angle -90 + $arrowAngle )) * 70 ;
+        $y2 = $y1 - sin( deg2rad($angle -90 + $arrowAngle )) * 70 ;
+        $x3 = $x1 + cos( deg2rad($angle -90 - $arrowAngle )) * 70 ;
+        $y3 = $y1 - sin( deg2rad($angle -90 - $arrowAngle )) * 70 ;
+        imagefilledpolygon ( $this->image, [$x1,$y1, $x2,$y2, $x3,$y3], $no_of_points = 3, $grey );
 
         putenv('GDFONTPATH=' . realpath('.'));
 
@@ -113,7 +133,8 @@ class GageController extends BaseController
 
         if (class_exists('Imagick')) {
             $file = fopen('tempfile.png', 'r');
-            $im = Imagick::readImageFile($file);
+            $im = new \Imagick();
+            $im->readImageFile($file);
             $im->blurImage(3,3);        
             $im->writeImage('tempfile.png');
             $im->writeImage('tempfile2.png');
@@ -122,10 +143,10 @@ class GageController extends BaseController
         $this->image = imagecreatefrompng('tempfile.png');
 
         // grey outer
-        imagefttext ( $this->image, $size=18, $angle1, $x=$this->xCenter -280, $y= $this->yCenter -393, $grey,  'arialbd.ttf', 'CONSUL');
-        imagefttext ( $this->image, $size=18, $angle2, $x=$this->xCenter -75, $y= $this->yCenter -475, $grey,  'arialbd.ttf', 'DIPLOMAT');
-        imagefttext ( $this->image, $size=18, $angle3, $x=$this->xCenter +140, $y= $this->yCenter -465, $grey, 'arialbd.ttf', 'AMBASSADOR');
-        imagefttext ( $this->image, $size=18, $angle4, $x=$this->xCenter +420, $y= $this->yCenter -230, $grey, 'arialbd.ttf', 'PREMIER');
+        imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -560, $y= $this->yCenter -786, $grey,  'arialbd.ttf', 'CONSUL');
+        imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -150, $y= $this->yCenter -950, $grey,  'arialbd.ttf', 'DIPLOMAT');
+        imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +280, $y= $this->yCenter -930, $grey, 'arialbd.ttf', 'AMBASSADOR');
+        imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +840, $y= $this->yCenter -460, $grey, 'arialbd.ttf', 'PREMIER');
 
         $textX = $this->xCenter-100;
         if (!$complete) {            
@@ -134,20 +155,19 @@ class GageController extends BaseController
         imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
 
         // // Legend text
-        imagefttext ( $this->image, $size=24, $angle=0, $x=80, $y=80, $black,  'arialbd.ttf', 'CONSUL');
-        imagefttext ( $this->image, $size=24, $angle=0, $x, $y+40, $black,  'arialbd.ttf', 'DIPLOMAT');
-        imagefttext ( $this->image, $size=24, $angle=0, $x, $y+80, $black, 'arialbd.ttf', 'AMBASSADOR');
-        imagefttext ( $this->image, $size=24, $angle=0, $x, $y+120, $black, 'arialbd.ttf', 'PREMIER');
+        imagefttext ( $this->image, $size=48, $angle=0, $x=160, $y=160, $black,  'arialbd.ttf', 'CONSUL');
+        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+80, $black,  'arialbd.ttf', 'DIPLOMAT');
+        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+160, $black, 'arialbd.ttf', 'AMBASSADOR');
+        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+240, $black, 'arialbd.ttf', 'PREMIER');
 
         // //Legend colors
-        imagefilledpolygon ( $this->image, [$x1 = 40,$y1 = 60,       $x2 = 60,$y2 = $y1,    $x4 = 60,$y4 = $y2+20, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
-        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+40,   $x2,     $y2 = $y2+40, $x4,     $y4 = $y4+40, $x3,       $y3=$y4],   $no_of_points = 4, $DiplomatColor);
-        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+40,   $x2,     $y2 = $y2+40, $x4,     $y4 = $y4+40, $x3,       $y3=$y4],   $no_of_points = 4, $AmbassadorColor);
-        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+40,   $x2,     $y2 = $y2+40, $x4,     $y4 = $y4+40, $x3,       $y3=$y4],   $no_of_points = 4, $PremierColor);
+        imagefilledpolygon ( $this->image, [$x1 = 80,$y1 = 120,      $x2 = 120,$y2 = $y1,    $x4 = 120,$y4 = $y2+40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
+        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $DiplomatColor);
+        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $AmbassadorColor);
+        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $PremierColor);
 
         // Set type of image and send the output
         header("Content-type: image/png");
-        imageantialias($image, true);
         imagePng($this->image);
     }
 

@@ -200,6 +200,7 @@ class GageStatus
      */
     public function getToReach()
     {
+        if (!$this->toReach) return '';
         return number_format($this->toReach,0);
     }
 
