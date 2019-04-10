@@ -13,6 +13,6 @@ class FiStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(11000, 25000, 30000, 50000, $yearToDate, 60000);
+        parent::__construct(11000, 20000, 27000, 36000, $yearToDate, 50000);
     }
 }
