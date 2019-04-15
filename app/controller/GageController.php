@@ -94,64 +94,16 @@ class GageController extends BaseController
         $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac,1,2)), hexdec(substr($ac,3,2)), hexdec(substr($ac,5,2)));
         $PremierColor =     imageColorAllocate($this->image, hexdec(substr($pc,1,2)), hexdec(substr($pc,3,2)), hexdec(substr($pc,5,2)));
 
-        //background to white
-        //imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
-
-        // $percent1 = round($dataForView['statusChart']['gageArray'][0][0]);
-        // $percent2 = round($dataForView['statusChart']['gageArray'][1][0]);
-        // $percent3 = round($dataForView['statusChart']['gageArray'][2][0]);
-        // $percent4 = round($dataForView['statusChart']['gageArray'][3][0]);
-
         $complete        = $this->request->param('complete');
         $completePercent = round($this->request->param('complete') / $max * 100);
         $completePercent = min(100, $completePercent);
 
-        // $this->_completionArc(0,         $percent1, $lightgrey,         $this->gageDia /4,  $this->gageDia /2); 
-        // $this->_completionArc($percent1, $percent2, $ConsulColor,       $this->gageDia /4,  $this->gageDia /2); 
-        // $this->_completionArc($percent2, $percent3, $DiplomatColor,     $this->gageDia /4,  $this->gageDia /2); 
-        // $this->_completionArc($percent3, $percent4, $AmbassadorColor,   $this->gageDia /4,  $this->gageDia /2); 
-        // $this->_completionArc($percent4, 101,       $PremierColor,      $this->gageDia /4,  $this->gageDia /2); 
-
-        // $this->_completionArc(0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        // $this->_completionArc($percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        // $this->_completionArc($percent2, $percent3, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        // $this->_completionArc($percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        // $this->_completionArc($percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-
-        // $this->_whiteDivider($percent1, $white); 
-        // $this->_whiteDivider($percent2, $white); 
-        // $this->_whiteDivider($percent3, $white); 
-        // $this->_whiteDivider($percent4, $white); 
-        // $this->_whiteDivider(101,       $white); 
-
         // the needle
         $this->_needle($completePercent, $grey, $white);
 
-        // // Jo's grey arrow for first sector below consul   //start at 5% and finish 7% before consul, with 2% for arrowhead
-        //$this->_completionArc(3, $percent1-4, $grey,         $this->gageDia * .55,  $this->gageDia *.56); 
-        
-        // // arrowhead
-        $arrowThickness = 20;
         $angle = 180-(($percent1 -0.5 -3) * 1.8);
 
-        // // arrow point
-        // $x1 = $this->xCenter + cos(deg2rad($angle)) * $this->gageDia * 0.555;
-        // $y1 = $this->yCenter - sin(deg2rad($angle)) * $this->gageDia * 0.555;
-
-        // $arrowAngle = 145;
-
-        // $x2 = $x1 + cos( deg2rad($angle -90 + $arrowAngle )) * 70 ;
-        // $y2 = $y1 - sin( deg2rad($angle -90 + $arrowAngle )) * 70 ;
-        // $x3 = $x1 + cos( deg2rad($angle -90 - $arrowAngle )) * 70 ;
-        // $y3 = $y1 - sin( deg2rad($angle -90 - $arrowAngle )) * 70 ;
-        // imagefilledpolygon ( $this->image, [$x1,$y1, $x2,$y2, $x3,$y3], $no_of_points = 3, $grey );
-
         putenv('GDFONTPATH=' . realpath('.'));
-
-        // $angle1 = 90-(($percent1 + $percent2) /2 * 1.8);  // find the middle of ranges (average) to work out the angle to rotate the text
-        // $angle2 = 90-(($percent2 + $percent3) /2 * 1.8);
-        // $angle3 = 90-(($percent3 + $percent4) /2 * 1.8);
-        // $angle4 = 90-(($percent4 + 100) /2 * 1.8);
 
         $fo = fopen('tempfile.png', 'w');
         imagePng($this->image, 'tempfile.png');
@@ -171,58 +123,12 @@ class GageController extends BaseController
         
         $this->image = imagecreatefrompng('tempfile.png');
 
-        // // grey outer with text labels
-        // switch($pos) {  // I had to tweak these to position the text, depending on what percentage was the middle of these ranges
-        //     case 'F':
-        //     case 'R':
-        //     case 'M':
-        //         imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -560, $y= $this->yCenter -766, $grey, 'arialbd.ttf', 'CONSUL');
-        //         imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -150, $y= $this->yCenter -930, $grey, 'arialbd.ttf', 'DIPLOMAT');
-        //         imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +280, $y= $this->yCenter -910, $grey, 'arialbd.ttf', 'AMBASSADOR');
-        //         imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +840, $y= $this->yCenter -450, $grey, 'arialbd.ttf', 'PREMIER');
-        //         break;            
-        //     case 'SA':    
-        //     case 'PM':    
-        //     case 'PS':    
-        //     case 'SM':    
-        //         imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -740, $y= $this->yCenter -586, $grey, 'arialbd.ttf', 'CONSUL');
-        //         imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -290, $y= $this->yCenter -900, $grey, 'arialbd.ttf', 'DIPLOMAT');
-        //         imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +370, $y= $this->yCenter -880, $grey, 'arialbd.ttf', 'AMBASSADOR');
-        //         imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +870, $y= $this->yCenter -360, $grey, 'arialbd.ttf', 'PREMIER');
-        //         break;
-        //     case 'SC':    
-        //     case 'C':    
-        //         imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -510, $y= $this->yCenter -786, $grey, 'arialbd.ttf', 'CONSUL');
-        //         imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -210, $y= $this->yCenter -920, $grey, 'arialbd.ttf', 'DIPLOMAT');
-        //         imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +210, $y= $this->yCenter -930, $grey, 'arialbd.ttf', 'AMBASSADOR');
-        //         imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +835, $y= $this->yCenter -460, $grey, 'arialbd.ttf', 'PREMIER');
-        //         break;
-        //     case 'I':    
-        //         imagefttext ( $this->image, $size=36, $angle1, $x=$this->xCenter -620, $y= $this->yCenter -700, $grey, 'arialbd.ttf', 'CONSUL');
-        //         imagefttext ( $this->image, $size=36, $angle2, $x=$this->xCenter -230, $y= $this->yCenter -910, $grey, 'arialbd.ttf', 'DIPLOMAT');
-        //         imagefttext ( $this->image, $size=36, $angle3, $x=$this->xCenter +230, $y= $this->yCenter -910, $grey, 'arialbd.ttf', 'AMBASSADOR');
-        //         imagefttext ( $this->image, $size=36, $angle4, $x=$this->xCenter +820, $y= $this->yCenter -450, $grey, 'arialbd.ttf', 'PREMIER');
-        //         break;
-        // }
-
         $textX = $this->xCenter-100;
         if (!$complete) {            
             $textX = $this->xCenter-15;
         }
         // number to go with the needle
         imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
-
-        // // // Legend text
-        // imagefttext ( $this->image, $size=48, $angle=0, $x=160, $y=160, $black,  'arialbd.ttf', 'CONSUL');
-        // imagefttext ( $this->image, $size=48, $angle=0, $x, $y+80, $black,  'arialbd.ttf', 'DIPLOMAT');
-        // imagefttext ( $this->image, $size=48, $angle=0, $x, $y+160, $black, 'arialbd.ttf', 'AMBASSADOR');
-        // imagefttext ( $this->image, $size=48, $angle=0, $x, $y+240, $black, 'arialbd.ttf', 'PREMIER');
-
-        // // //Legend colors
-        // imagefilledpolygon ( $this->image, [$x1 = 80,$y1 = 120,      $x2 = 120,$y2 = $y1,    $x4 = 120,$y4 = $y2+40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
-        // imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $DiplomatColor);
-        // imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $AmbassadorColor);
-        // imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $PremierColor);
 
         // Set type of image and send the output
         header("Content-type: image/png");
