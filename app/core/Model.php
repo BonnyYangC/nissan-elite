@@ -165,6 +165,10 @@ class Model implements Jsonable
         }
     }
 
+    public function getDbInstance(){
+        return self::DB();
+    }
+
     /**
      * Get row by given primary key value
      * If the record is exist, it will assign to rowData
@@ -236,6 +240,7 @@ class Model implements Jsonable
      * @return boolean
      */
     public function update($params=[], $whereConditions=[], $isMerge = false){
+
         if(empty($params)){
             $params = $this->rowData;
         }
@@ -244,7 +249,6 @@ class Model implements Jsonable
         if($isMerge){
             $params = array_merge($params, $this->rowData);
         }
-
 
         return self::DB()->update(
             $this->tableName,
