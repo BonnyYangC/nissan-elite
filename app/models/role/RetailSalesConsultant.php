@@ -41,6 +41,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
 
             if($item)
             {
+
                 $ytd=$item['credit_ytd'];
                 $this->JS_credits[date("M", $period)] = $item['credit_mtd'].'';
 
@@ -50,6 +51,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
+                $this->follow_up_credit_sat['data'][]  = intval($item['follow_up_credit_sat']);
                 $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
@@ -64,6 +66,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
+                $this->follow_up_credit_sat['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -86,6 +89,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
                 $this->followUpSaturation,
+                $this->follow_up_credit_sat,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
@@ -101,6 +105,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
 //            'rankingRegionally'=> $myRegionallyRanking,
         ];
 //        dd($result);
+
         return $result;
     }
 
@@ -110,19 +115,20 @@ class RetailSalesConsultant extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $new=$recommendation=$FU=$training=$sales_results=$recommendation_results=$fu_results=[];
+        $new=$recommendation=$FU=$FUcredSAT=$training=$sales_results=$recommendation_results=$fu_results=[];
         for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
-
             if($item)
             {
                 $new[]              = $this->_buildForJs($item['credit_actual_sales']);
                 $recommendation[]   = $this->_buildForJs($item['ce_recommendation']);
                 $FU[]               = $this->_buildForJs($item['follow_up_credit']);
+                $FUcredSAT[]        = $this->_buildForJs($item['follow_up_credit_sat']);
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
+                $followUpScoreSAT[]        = $this->_buildForTableElement($item['follow_up_score_sat'],0).'%';
                 $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
                 $recommendation_results[]   = $this->_buildForTableElement($item['score_recommendation']).'%';
                 $fu_results[]               = $this->_buildForTableElement($item['follow_up_score']).'%';
@@ -132,6 +138,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $new[]              = $this->_buildForJs(0);
                 $recommendation[]   = $this->_buildForJs(0);
                 $FU[]               = $this->_buildForJs(0);
+                $FUcredSAT[]        = $this->_buildForJs(0);
+                $followUpCreditSAT[]= $this->_buildForJs(0);
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
@@ -145,9 +153,12 @@ class RetailSalesConsultant extends BaseRole implements IRole
             "JS_newVehicleSales"    =>$new,
             "JS_reCommendation"     =>$recommendation,
             "JS_followUpCredits"    =>$FU,
+            "JS_followUpCredSat"    =>$FUcredSAT,
             "JS_training"           =>$training,
             // For PHP array
+            "followUpScoreSAT"     => $followUpScoreSAT,
             "salesResult"               =>$sales_results,
+            "followUpCredit"             =>$kept_informed,
             "salesRecommendationResult" =>$recommendation_results,
             "followUpCredits"           =>$fu_results,
         ];
