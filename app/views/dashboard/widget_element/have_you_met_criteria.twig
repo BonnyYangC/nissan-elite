@@ -1,0 +1,20 @@
+<div class="table-responsive">
+    <table class="table centre-text">
+        <tr class="nissangray-back">
+            <td colspan="2">Have you met criteria?</td>
+        </tr>
+        <tr class="nissangray-light-back">
+            <td>
+                <span class="rank">
+                    {% if user.met_criteria %}
+                        <a href="#">&#10004;</a>
+                    {% else %}
+                        X
+                    {% endif %}
+                    </a>
+                </span>
+                <br>
+            </td>
+        </tr>
+    </table>
+</div>
