@@ -33,11 +33,13 @@ class TableFieldMap{
             'registered'=>'registered',
             'member'=>'ac_mbr',
             'dob'=>'date_of_birth',
-            'date_created'=>'date_created'
+            'date_created'=>'date_created',
+            'met_criteria' => 'amba_STAT_ambid_gmthyr::eligible_EOY'
         ];
 
         return $map;
     }
+
 
     /**
      * Get the user's table map
@@ -240,8 +242,10 @@ class TableFieldMap{
             'credit_actual_sales'   =>'credits_actual_sales',
             'score_recommendation'  =>'ce_score_OSAT',
             'ce_recommendation'     =>'credits_ce_OSAT',
-            'follow_up_score'       =>'ce_score_FU',
-            'follow_up_credit'      =>'credits_ce_FU',
+            'follow_up_score'       =>'ce_score_FU%',
+            'follow_up_credit'      =>'credits_ce_FU%',
+            'follow_up_score_sat'   =>'ce_score_FUSAT',
+            'follow_up_credit_sat'  =>'credits_ce_FUSAT',
             'training'              =>'credits_training_online',
             'training_competency'   =>'credits_training_competency',
             'pathway'               =>'credits_training_pathway',

@@ -15,7 +15,7 @@
             <div class="table-responsive">
                 {% set chartInitData = {'title': 'Monthly Credits','el_id':'bar-chart'} %}
                 {% include 'dashboard/widget_element/bar-chart.twig' with chartInitData %}  
-                 <p align="center">Registration credits are included in the above graphs.</p> 
+                 <p align="center">Registration credits are <strong>not</strong> included in the above graphs.</p> 
             </div>
             <hr>
             <div class="row">
@@ -34,7 +34,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <!---- Sales Percentage---->
+                    <!---- Sales Percentage ---->
                     <h3>
                         <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
                             Credits earned per Month (View Individual Results)
@@ -54,6 +54,7 @@
             {% include 'dashboard/widget_element/year_to_date_table.twig' %}
             {% include 'dashboard/widget_element/life_time_table.twig' %}
             {% include 'dashboard/widget_element/are_you_registered_table.twig' %}
+            {% include 'dashboard/widget_element/have_you_met_criteria.twig' %}
             {% include 'dashboard/widget_element/traing_or_track_table.twig' %}            
             {% include 'dashboard/widget_element/events_calendar.twig' %}
         </div>

@@ -51,7 +51,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
-                $this->follow_up_credit_sat['data'][]  = intval($item['follow_up_credit_sat']);
+                $this->followUpCreditSat['data'][]  = intval($item['follow_up_credit_sat']);
                 $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
@@ -66,7 +66,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
-                $this->follow_up_credit_sat['data'][]  = 0;
+                $this->followUpCreditSat['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -89,7 +89,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
                 $this->followUpSaturation,
-                $this->follow_up_credit_sat,
+                $this->followUpCreditSat,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
@@ -104,7 +104,6 @@ class RetailSalesConsultant extends BaseRole implements IRole
 //            'rankingNationally'=> $rankingNationally,
 //            'rankingRegionally'=> $myRegionallyRanking,
         ];
-//        dd($result);
 
         return $result;
     }
@@ -128,7 +127,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $FUcredSAT[]        = $this->_buildForJs($item['follow_up_credit_sat']);
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
-                $followUpScoreSAT[]        = $this->_buildForTableElement($item['follow_up_score_sat'],0).'%';
+                $followUpScoreSAT[]        = $this->_buildForTableElement($item['follow_up_score_sat'],0);
                 $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
                 $recommendation_results[]   = $this->_buildForTableElement($item['score_recommendation']).'%';
                 $fu_results[]               = $this->_buildForTableElement($item['follow_up_score']).'%';
@@ -146,8 +145,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $recommendation_results[]   = null;
                 $fu_results[]               = null;
             }
-
         }
+
         return [
             // For js array
             "JS_newVehicleSales"    =>$new,
