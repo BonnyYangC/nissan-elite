@@ -51,7 +51,7 @@ class FI extends BaseRole implements IRole
         'data'=>[]
     ];
     public $FollowUp = [
-        'label'=>'Follow Up',
+        'label'=>'F&I Satisfaction',
         'backgroundColor' => IColor::LIGHT_RED,
         'data'=>[]
     ];
