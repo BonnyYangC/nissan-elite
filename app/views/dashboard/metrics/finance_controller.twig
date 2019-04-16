@@ -6,11 +6,11 @@
     var CHART_DATA = [
         {
             el: 'chart-financial',
-            max: 375,
-            length: 3,
-            step: 125,
+            max: 200,
+            length: 5,
+            step: 40,
             colors: ['#999999','#555555','#c40030'],
-            pilot: ['Month', 'Frequency', 'Ontime'],
+            pilot: ['Month', 'Frequency'],
             dataSource: {{ json_encode(metrics.FINANCIAL)|raw }}
         },
         {
@@ -63,11 +63,7 @@
                                     <td class="nissangray-light-back">FREQUENCY</td>
                                     {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FREQUENCY_RESULTS } %}
                                 </tr>
-                                <tr>
-                                    <td class="nissangray-light-back">ONTIME</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.ONTIME_RESULTS } %}
-                                </tr>
-                            </table>
+                           </table>
                         </div>
                     </div>
 
@@ -78,12 +74,9 @@
                                 <td>Financial Controller</td>
                                 <td align="center">Submitted<br>
                                     Frequency</td>
-                                <td align="center">Ontime<br>
-                                    Monthly</td>
                             </tr>
                             <tr class="active">
                                 <td>Category A, B, C</td>
-                                <td align="center">200</td>
                                 <td align="center">200</td>
                             </tr>
                         </table>
@@ -122,6 +115,7 @@
                                 <td align="center">18</td>
                                 <td align="center">19</td>
                                 <td align="center">20</td>
+                                <td align="center">21</td>
                             </tr>
                             <tr class="active">
                                 <td>Category A, B, C</td>
@@ -137,6 +131,7 @@
                                 <td align="center">400</td>
                                 <td align="center">300</td>
                                 <td align="center">250</td>
+                                <td align="center">200</td>
                             </tr>
                         </table>
                     </div>

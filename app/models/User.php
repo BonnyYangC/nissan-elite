@@ -431,10 +431,10 @@ class User extends BaseModel implements Mailable, IRole
                 $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
                 break;
             case self::STOCK_CONTROLLER:
-                $result=[[150,400,1000,1500],[9000,12000,16000,20000]];
+                $result=[[150,400,1000,1500],[9000,12000,16000,22000]];
                 break;
             case self::FINANCE_CONTROLLER:
-                $result=[[300,600,1000,1500],[9000,12000,16000,20000]];
+                $result=[[300,600,1000,1500],[9000,12000,16000,22000]];
                 break;
             case self::PARTS_MANAGER:
                 $result=[[150,400,1000,1500],[7000,13000,22000,33000]];

@@ -134,7 +134,6 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->serviceRecommendation['data'][]  = intval($item['recom_credit']);
                 $this->VehicleCleanliness['data'][]     = intval($item['fu_credit']);
                 $this->SERVICE_YOU_CAN_TRUST['data'][]  = intval($item['trust_credit']);
-                $this->EMW['data'][]                    = intval($item['emw_credit']);
                 $this->trainingData['data'][]               = $item['training'] // Training Online
                                                         + $item['pathway']  // credits_training_pathway
                                                         + $item['training_competency']  // competency
@@ -151,7 +150,6 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->serviceRecommendation['data'][] = 0;
                 $this->VehicleCleanliness['data'][]  = 0;
                 $this->SERVICE_YOU_CAN_TRUST['data'][]  = 0;
-                $this->EMW['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
@@ -176,7 +174,6 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->VehicleCleanliness,
                 $this->SERVICE_YOU_CAN_TRUST,
                 $this->CUSTOMER_REPAIR_ORDER,
-                $this->EMW,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],

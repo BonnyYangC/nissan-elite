@@ -41,7 +41,7 @@ class FI extends BaseRole implements IRole
         'data'=>[]
     ];
     public $EMW_Genuine_Extended = [
-        'label'=>'EMW Genuine/Extended',
+        'label'=>'EMW Genuine',
         'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
@@ -117,6 +117,8 @@ class FI extends BaseRole implements IRole
             $this->_setupLifeTimeAndExcellence($data,$period);
         }
 
+
+//dd($this->EMW_Genuine_Extended);
         // Status
         $status = new FiStatus($ytd);
         return [
@@ -176,14 +178,12 @@ class FI extends BaseRole implements IRole
                 $nfsa[] = $this->_buildForJs($item['credit_actual_sales']);
                 $emw[] = $this->_buildForJs(
                     [
-                        $item['credits_emw'],
-                        $item['credits_mmu']
+                        $item['credits_emw']
                     ]
                 );
                 $ins[] = $this->_buildForJs(
                     [
                         $item['credits_mvi'],
-                        $item['credits_vpi'],
                         $item['credits_pkg']
                     ]
                 );
@@ -206,8 +206,8 @@ class FI extends BaseRole implements IRole
             else
             {
                 $nfsa[] = $this->_buildForJs(0);
-                $emw[] = $this->_buildForJs([0,0]);
-                $ins[] = $this->_buildForJs([0,0,0]);
+                $emw[] = $this->_buildForJs([0]);
+                $ins[] = $this->_buildForJs([0,0]);
                 $penetration[] = $this->_buildForJs(0);
                 $fu[] = $this->_buildForJs(0);
                 $credits_nfsa_retention[] = $this->_buildForJs(0);

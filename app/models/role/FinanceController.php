@@ -38,7 +38,7 @@ class FinanceController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $Checklist = [
-        'label'=>'Checklist',
+        'label'=>'Accuracy',
         'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
@@ -66,7 +66,7 @@ class FinanceController extends BaseRole implements IRole
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
-                $financial[]    = $this->_buildForJs( [$item['frequency_credits'], $item['ontime_credits']] );
+                $financial[]    = $this->_buildForJs( [$item['frequency_credits']] );
                 $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
                 $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
                 $training[]     = $this->_buildForJs( [$item['training'], $item['pathway'], $item['training_competency']] );
@@ -88,7 +88,7 @@ class FinanceController extends BaseRole implements IRole
             }
             else
             {
-                $financial[]    = $this->_buildForJs( [0,0] );
+                $financial[]    = $this->_buildForJs( [0] );
                 $quality[]      = $this->_buildForJs( [0,0] );
                 $management[]   = $this->_buildForJs( [0,0] );
                 $training[]     = $this->_buildForJs( [0,0,0] );
@@ -191,8 +191,9 @@ class FinanceController extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->Frequency,
-                $this->Ontime,
+                //$this->Ontime,
                 $this->Quality,
+                $this->Checklist,
                 $this->Meetings,
                 $this->trainingData,
                 $this->incentivesForDashboard

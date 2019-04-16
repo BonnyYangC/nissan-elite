@@ -15,8 +15,8 @@
                 max: 800,
                 length: 8,
                 step: 100,
-                colors: ['#999999', '#555555' ,'#c40030' ,'#111111'],
-                pilot: ['Month', 'MVI', 'VPI', 'Package'],
+                colors: ['#999999', '#555555' ,'#111111'],
+                pilot: ['Month', 'MVI', 'Package'],
                 dataSource: {{ json_encode(metrics.INSURANCE)|raw }}
             },
             {
@@ -24,8 +24,8 @@
                 max: 2000,
                 length: 8,
                 step: 250,
-                colors: ['#555555','#c40030' ,'#111111'],
-                pilot: ['Month','Genuine', 'Extended'],
+                colors: ['#555555','#c40030'],
+                pilot: ['Month','Genuine'],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
             },
             {
@@ -92,7 +92,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row graph-back">
                     <div class="col-md-7">
                         <h3>2. Loyalty & Retention Bonus</h3>
                         <div class="table-responsive">
@@ -122,9 +122,9 @@
 
                 </div>
 
-                <div class="row">
+                <div class="row graph-back">
                     <div class="col-md-7">
-                        <h3>3. Insurance – MVI/VPI/MVI &amp; VPI pkg</h3>
+                        <h3>3. Insurance – MVI &amp; MVI/NFSA pkg</h3>
                         <div class="table-responsive">
                             <div id="chart-mvi-vpi-pkg" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
@@ -132,10 +132,6 @@
                                 <tr>
                                     <td class="nissangray-light-back">MVI</td>
                                     {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.INSURANCE_MVI_RESULTS } %}
-                                </tr>
-                                <tr>
-                                    <td class="nissangray-light-back">VPI</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.INSURANCE_VPI_RESULTS } %}
                                 </tr>
                                 <tr>
                                     <td class="nissangray-light-back">Package</td>
@@ -152,21 +148,19 @@
                             <tr class="table-top-row">
                                 <td nowrap>F&amp;I Manager </td>
                                 <td align="center">MVI Motor Vehicle Insurance</td>
-                                <td align="center">VPI Motor Equity Insurance</td>
-                                <td align="center">MVI &amp; VPI Package^</td>
+                                <td align="center">MVI &amp; Insurance</td>
                             </tr>
                             <tr>
                                 <td nowrap>Category A, B, C</td>
-                                <td align="center">20</td>
-                                <td align="center">20</td>
-                                <td align="center">5</td>
+                                <td align="center">40</td>
+                                <td align="center">10</td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="row graph-back">
                     <div class="col-md-7">
-                        <h3>4. EMW Genuine/Extended</h3>
+                        <h3>4. EMW Genuine</h3>
                         <div class="table-responsive">
                             <div id="chart-emw" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
@@ -175,25 +169,19 @@
                                     <td class="nissangray-light-back">Genuine</td>
                                     {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.EMW_RESULTS } %}
                                 </tr>
-                                <tr>
-                                    <td class="nissangray-light-back">Extended</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MMU_RESULTS } %}
-                                </tr>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <h3>EMW Genuine/Extended Guide</h3>
+                        <h3>EMW Genuine Guide</h3>
                         <table class="table small-table">
                             <tr class="table-top-row">
                                 <td nowrap>F&amp;I Manager</td>
                                 <td align="center">EMW Sale Genuine (NAPS)</td>
-                                <td align="center">EMW Extended<br>(Used/non- Nissan)</td>
                             </tr>
                             <tr>
                                 <td>Category A, B, C</td>
                                 <td align="center">40</td>
-                                <td align="center">5</td>
                             </tr>
                         </table>
                     </div>
