@@ -25,28 +25,28 @@ function generateGageIndicator (gageId, percent, color, text) {
 //for (var i = 0; i < GAGE_DATA.length; i++){
     //generateGageIndicator('g1',GAGE_DATA[i][0],GAGE_DATA[i][1],GAGE_DATA[i][2]);
 //}
-document.addEventListener("DOMContentLoaded", function(event) {
-    var g1 = new JustGage({
-        id: 'g1',
-        value: YEAR_TO_DATE,
-        min: MIN,
-        max: MAX,
-        pointer: true,
-        levelColorsGradient: false,
-        levelColors: [LEVEL_COLOR],
-        formatNumber: true,
-        pointerOptions: {
-            toplength: -15,
-            bottomlength: 10,
-            bottomwidth: 12,
-            color: '#8e8e93',
-            stroke: '#ffffff',
-            stroke_width: 3,
-            stroke_linecap: 'round'
-        },
-        gaugeWidthScale: 0.35
-    });
-});
+// document.addEventListener("DOMContentLoaded", function(event) {
+//     var g1 = new JustGage({
+//         id: 'g1',
+//         value: YEAR_TO_DATE,
+//         min: MIN,
+//         max: MAX,
+//         pointer: true,
+//         levelColorsGradient: false,
+//         levelColors: [LEVEL_COLOR],
+//         formatNumber: true,
+//         pointerOptions: {
+//             toplength: -15,
+//             bottomlength: 10,
+//             bottomwidth: 12,
+//             color: '#8e8e93',
+//             stroke: '#ffffff',
+//             stroke_width: 3,
+//             stroke_linecap: 'round'
+//         },
+//         gaugeWidthScale: 0.35
+//     });
+// });
 // End of gage
 
 // MONTHLY CREDITS
