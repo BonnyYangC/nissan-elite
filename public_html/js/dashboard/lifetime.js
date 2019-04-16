@@ -47,6 +47,9 @@ function drawChart() {
 
     var options = {
         legend: { position: "none" },
+        hAxis: {
+            ticks: []   
+        }
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('barchart_material'));
