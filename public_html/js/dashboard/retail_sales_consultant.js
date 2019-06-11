@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 // End of gage
 
-// MONTHLY CREDITS
+// MONTHLY POINTS
 var monthlyCreditTableArray = [
-    ['Month',  'Credits'],
+    ['Month',  'Points'],
 ];
 for (var i=0;i<JS_credits.length;i++){
     monthlyCreditTableArray.push(JS_credits[i]);

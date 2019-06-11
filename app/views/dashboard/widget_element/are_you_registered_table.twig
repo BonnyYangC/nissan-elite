@@ -6,7 +6,7 @@
         <tr class="nissangray-light-back">
             <td>
                 <span class="rank">
-                    <a href="#" class="tw {{ user.registered ? 'txt-red' : null }}" title="You are eligible for the AC{{ env('YEAR') }} Program">
+                    <a href="#" class="tw {{ user.registered ? 'txt-red' : null }}" title="You are eligible for the ELITE{{ env('YEAR') }} Program">
                         {% if user.registered %}
                             &#10004;
                         {% else %}
@@ -16,7 +16,7 @@
                 </span>
                 <br>
                 {% if user.registered %}
-                    <p class="tw">250 Credits Applied</p>
+                    <p class="tw">250 Points Applied</p>
                 {% else %}
                     <a href="{{ env('eventRegisterUrl') }}" target="_blank">
                         <button style="background-color:#c40030; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
