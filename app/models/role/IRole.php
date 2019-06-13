@@ -11,10 +11,10 @@ namespace App\models\role;
 
 interface IRole
 {
-    const PREMIER_STR       = 'Premier';
-    const AMBASSADOR_STR    = 'Ambassador';
-    const DIPLOMAT_STR      = 'Diplomat';
-    const CONSUL_STR        = 'Consul';
+    const PREMIER_STR       = 'Gold';
+    const AMBASSADOR_STR    = 'Silver';
+    const DIPLOMAT_STR      = 'Bronze';
+    const CONSUL_STR        = 'Commendation ';
     const DEFAULT_STR       = 'Default';
 
     /**

@@ -13,6 +13,6 @@ class ServiceAdviserStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(7000, 13000, 22000, 33000, $yearToDate, 40000);
+        parent::__construct(9000, 13000, 22000, 33000, $yearToDate, 40000);
     }
 }
