@@ -60,7 +60,7 @@ class ApiController extends BaseController
             ['t'=>'Members Guide','url'=>'/dashboard/MembersGuide','a'=>$current=='MembersGuide'],
             ['t'=>'Account','url'=>'/dashboard/Account','a'=>$current=='Account'],
             ['t'=>'Product Challenge','url'=>'/dashboard/ProductChallenge','a'=>$current=='ProductChallenge'],
-            ['t'=>'MD Guild','url'=>'/dashboard/MDguild','a'=>$current=='MDguild'],
+            //['t'=>'Guild','url'=>'/dashboard/MDguild','a'=>$current=='MDguild'],
             ['t'=>'FAQs','url'=>'/dashboard/FAQ','a'=>$current=='FAQ'],
             ['t'=>'HOME','url'=>'/'],
         ];
