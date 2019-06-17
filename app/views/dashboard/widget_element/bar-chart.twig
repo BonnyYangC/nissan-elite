@@ -1,3 +1,4 @@
-<script>var JS_credits = {{ dashboard.JS_credits|raw }};</script>
+<script>var JS_credits = {{ dashboard.JS_credits|raw }};
+var award_unit = "{{ env('PROGRAM_AWARD_UNIT')|raw }}"; </script>
 <h3>{{ title }}</h3>
 <div id="{{ el_id }}"></div>

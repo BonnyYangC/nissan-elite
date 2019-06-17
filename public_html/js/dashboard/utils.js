@@ -51,7 +51,7 @@ function generateGageIndicator (gageId, percent, color, text) {
 
 // MONTHLY POINTS
 var monthlyCreditTableArray = [
-    ['Month',  'Points'],
+    ['Month',  award_unit],
 ];
 for (var i=0;i<JS_credits.length;i++){
     monthlyCreditTableArray.push(JS_credits[i]);
