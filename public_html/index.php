@@ -10,7 +10,7 @@ error_reporting(env('DEV_MODE',true) ? E_ERROR : 0);
 ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 
 /**
- * Route: /  -> It's the entry point of the application, will render login and 3brands grid view
+ * Route: /  -> It's the entry point of the application
  */
 \App\core\Route::Instance()
     ->get('/',\App\controller\ApplicationController::class, 'index')
