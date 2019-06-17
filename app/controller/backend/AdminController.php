@@ -87,6 +87,7 @@ class AdminController extends BaseController
         $content .= 'SUPPORT_EMAIL_NAME="'.$env['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
         $content .= 'MOBILE_VERSION="'.$env['MOBILE_VERSION'].'"'.PHP_EOL;
         $content .= 'PRODUCT_CHALLENGE_WINNER="'.$env['PRODUCT_CHALLENGE_WINNER'].'"'.PHP_EOL;
+        $content .= 'PROGRAM_AWARD_UNIT="'.$env['PROGRAM_AWARD_UNIT'].'"'.PHP_EOL;
 
         file_put_contents(env('APP_PATH').'/helpers/.env',$content);
 
