@@ -44,7 +44,7 @@
                             <div class="panel-heading"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"> <strong>Am I eligible in {{env('PROGRAM_NAME')}} if I am enrolled on the Nissan Dealer User Management portal?</strong> </a> </div>
                             <div id="collapseFour" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <p>If you are enrolled on the Nissan Dealer User Management portal in an eligible ELITE role you are a member of ELITE but NOT an eligible member until you have registered in the current program period. Every member must register once in every {{env('PROGRAM_NAME')}} period (current program 1 May – 31 March) to be eligible.</p>
+                                    <p>If you are enrolled on the Nissan Dealer User Management portal in an eligible {{ constant('ProgramShortName') }} role you are a member of {{ constant('ProgramShortName') }} but NOT an eligible member until you have registered in the current program period. Every member must register once in every {{env('PROGRAM_NAME')}} period (current program 1 May – 31 March) to be eligible.</p>
                                 </div>
                             </div>
                         </div>
