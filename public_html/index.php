@@ -13,8 +13,15 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
  * Route: /  -> It's the entry point of the application, will render login and 3brands grid view
  */
 \App\core\Route::Instance()
-    ->get('/',\App\controller\UsersController::class, 'login')
+    ->get('/',\App\controller\ApplicationController::class, 'index')
     ->name('homepage');
+
+/**
+ * Route: /  -> It's the entry point of the Nissan Elite Individual, will render login and 3brands grid view
+ */
+\App\core\Route::Instance()
+    ->get('/elite_individual',\App\controller\UsersController::class, 'login')
+    ->name('elite_individual_homepage');
 
 /**
  * Route: /  -> It's the entry point of the application, will render login and 3brands grid view

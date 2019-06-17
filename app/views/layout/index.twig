@@ -1,0 +1,21 @@
+{% extends 'layout/3brands.twig' %}
+{% block content %}
+<div class="{{ isPhone or isTablet ? '' : null }}">
+    <div class="container" align="center">
+        <div class="row" style="margin: 20% auto;">
+            {#entry point for Nissan Elite Individual #}
+            <div class="col-md-6 portfolio-item">
+                <a href="{{ url('/elite_individual') }}">
+                    <img class="img-responsive" src="{{ asset('images/tiles/images/tile-nissanac.jpg') }}" style="width:270px; margin-bottom:30px;" width="332">
+                </a>
+            </div>
+            {#entry point for Nissan Elite Dealership #}
+            <div class="col-md-6 portfolio-item">
+                    <a href="http://dealership.nessanelite.com.au">
+                        <img class="img-responsive" src="{{ asset('images/tiles/images/tile-my-dashboard.jpg') }}" style="width:270px; margin-bottom:30px;" width="332">
+                    </a>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

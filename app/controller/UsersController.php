@@ -148,7 +148,7 @@ class UsersController extends Controller
      */
     public function logout(){
         get_session_instance()->destroy();
-        $this->response->redirect('/')->send();
+        $this->response->redirect('/elite_individual')->send();
     }
 
     /**
@@ -248,7 +248,7 @@ class UsersController extends Controller
             // Login failed
             session_flash('error_msg','These credentials do not match our records.');
         }
-        return '/';
+        return '/elite_individual';
     }
 
     /**
