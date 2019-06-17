@@ -78,8 +78,7 @@
     font-size: 14px;
 }
 .table-responsive {
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: auto;
 }
 .leader-board tr td a.matched{
     font-family: 'nissan_brandregular';
