@@ -1,6 +1,7 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
+        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-grp',
@@ -8,6 +9,7 @@
                 length: 10,
                 step: 230,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GRP)|raw }}
             },
             {
@@ -16,6 +18,7 @@
                 length: 5,
                 step: 220,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GAS)|raw }}
             },
             {

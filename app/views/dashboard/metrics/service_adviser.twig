@@ -6,6 +6,7 @@
         {#var RECOMMENDATION = [{{ metrics.RECOMMENDATION|raw }}];#}
         {#var FOLLOW_UP = [{{ metrics.FOLLOW_UP|raw }}];#}
         {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
+        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-recommend',
@@ -13,6 +14,7 @@
                 length: 8,
                 step: 80,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
             },
             {
@@ -21,6 +23,7 @@
                 length: 8,
                 step: 80,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.VALUE_FOR_MONEY)|raw }}
             },
             {
@@ -29,6 +32,7 @@
                 length: 4,
                 step: 100,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
             },
             {
@@ -37,6 +41,7 @@
                 length: 8,
                 step: 80,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.ADVICE)|raw }}
             },
             {
@@ -45,6 +50,7 @@
                 length: 8,
                 step: 80,
                 colors: ['#555555'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CPR)|raw }}
             },
             {

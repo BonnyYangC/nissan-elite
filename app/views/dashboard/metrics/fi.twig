@@ -1,6 +1,7 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
+        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-nfsa',
@@ -8,6 +9,7 @@
                 length: 8,
                 step: 250,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.NFSA)|raw }}
             },
             {
@@ -52,6 +54,7 @@
                 length: 10,
                 step: 20,
                 colors: ['#111111'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RETENTION)|raw }}
             },
         ];

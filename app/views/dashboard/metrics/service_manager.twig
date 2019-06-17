@@ -1,6 +1,7 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
+        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-recommendation',
@@ -8,6 +9,7 @@
                 length: 5,
                 step: 146,
                 colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
             },
             {
@@ -16,6 +18,7 @@
                 length: 5,
                 step: 146,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CLEAN)|raw }}
             },
             {
@@ -24,6 +27,7 @@
                 length: 5,
                 step: 146,
                 colors: ['#555555'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.FOLLOWUP)|raw }}
             },
             {
@@ -32,6 +36,7 @@
                 length: 4,
                 step: 100,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
             },
             {
@@ -40,6 +45,7 @@
                 length: 5,
                 step: 146,
                 colors: ['#555555'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }}
             },
             {

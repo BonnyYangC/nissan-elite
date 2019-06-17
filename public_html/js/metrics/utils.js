@@ -12,7 +12,7 @@ function adjustLegendMargin () {
 }
 function newDrawFunc(obj){
     if(!obj.pilot){
-        obj.pilot = ['Month', 'Credits'];
+        obj.pilot = ['Month', 'Points'];
     }
     if(!obj.duration){
         obj.duration = 1600;

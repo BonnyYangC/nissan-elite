@@ -1,6 +1,7 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <script>
+        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-followup',
@@ -8,6 +9,7 @@
                 length: 6,
                 step: 10,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_followUpCredits)|raw }}
             },
             {
@@ -16,6 +18,7 @@
                 length: 10,
                 step: 500,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_newVehicleSales)|raw }}
             },
             {
@@ -24,6 +27,7 @@
                 length: 10,
                 step: 500,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_reCommendation)|raw }}
             },
             {
