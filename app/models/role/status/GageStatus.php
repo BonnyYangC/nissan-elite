@@ -76,19 +76,19 @@ class GageStatus
             $this->color = self::PREMIER_COLOR;
         }elseif($this->_inBetween($this->ambassador, $this->premier)){
             $this->color = self::AMBASSADOR_COLOR;
-            $this->colorText = 'points to reach '.ucfirst(IRole::PREMIER_STR).' level';
+            $this->colorText = strtolower(env('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(IRole::PREMIER_STR).' level';
             $this->toReach = $this->premier - $this->yearToDate;
         }elseif($this->_inBetween($this->diplomat, $this->ambassador)){
             $this->color = self::DIPLOMAT_COLOR;
-            $this->colorText = 'points to reach '.ucfirst(IRole::AMBASSADOR_STR).' level';
+            $this->colorText = strtolower(env('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(IRole::AMBASSADOR_STR).' level';
             $this->toReach = $this->ambassador - $this->yearToDate;
         }elseif($this->_inBetween($this->consul, $this->diplomat)){
             $this->color = self::CONSUL_COLOR;
-            $this->colorText = 'points to reach '.ucfirst(IRole::DIPLOMAT_STR).' level';
+            $this->colorText = strtolower(env('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(IRole::DIPLOMAT_STR).' level';
             $this->toReach = $this->diplomat - $this->yearToDate;
         }else{
             $this->color = self::DEFAULT_COLOR;
-            $this->colorText = 'points to reach '.ucfirst(IRole::CONSUL_STR).' level';
+            $this->colorText = strtolower(env('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(IRole::CONSUL_STR).' level';
             $this->toReach = $this->consul - $this->yearToDate;
         }
     }

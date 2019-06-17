@@ -13,9 +13,10 @@
     <div class="row pb-20">
         <div class="col-md-9">
             <div class="table-responsive">
-                {% set chartInitData = {'title': 'Monthly Points','el_id':'bar-chart'} %}
+                {% set awart_unit = env('PROGRAM_AWARD_UNIT') %}
+                {% set chartInitData = {'title': 'Monthly '~awart_unit,'el_id':'bar-chart'} %}
                 {% include 'dashboard/widget_element/bar-chart.twig' with chartInitData %}  
-                 <p align="center">Registration points are included in the above graphs.</p> 
+                 <p align="center">Registration {{ env('PROGRAM_AWARD_UNIT')|lower }} are included in the above graphs.</p> 
             </div>
             <hr>
             <div class="row">
@@ -37,7 +38,7 @@
                     <!---- Sales Percentage ---->
                     <h3>
                         <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
-                            Points earned per Month (View Individual Results)
+                            {{ env('PROGRAM_AWARD_UNIT')|lower }} earned per Month (View Individual Results)
                         </a>
                     </h3>
                     {% if userHasMultipleRoles %}
@@ -49,7 +50,7 @@
             </div>
         </div>
         <div class="col-md-3 pb-0">
-            <h3>RANKINGS &amp; POINTS</h3>
+            <h3>RANKINGS &amp; {{ env('PROGRAM_AWARD_UNIT')|raw }}</h3>
             {% include 'dashboard/widget_element/current_ranking_table.twig' %}
             {% include 'dashboard/widget_element/year_to_date_table.twig' %}
             {% include 'dashboard/widget_element/life_time_table.twig' %}

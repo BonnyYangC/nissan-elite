@@ -16,7 +16,7 @@
         {% else %}
         <span style="color: {{ dashboard.lifetimeUtil.level_color }};">
             {{ dashboard.lifetimeUtil.lifetime_to_reach_credits }}
-        </span> points to reach {{ dashboard.lifetimeUtil.next_level }} level.
+        </span> {{ env('PROGRAM_AWARD_UNIT')|lower }} to reach {{ dashboard.lifetimeUtil.next_level }} level.
         {% endif %}
     </p>
 </div>
