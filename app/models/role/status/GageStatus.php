@@ -53,7 +53,7 @@ class GageStatus
         $this->yearToDate = $yearToDate;
         $this->setGageIndicators([
             [
-                ($this->consul/$this->max) * 100, self::CONSUL_COLOR, 'Commendaton'
+                ($this->consul/$this->max) * 100, self::CONSUL_COLOR, 'Commendation'
             ],
             [
                 ($this->diplomat/$this->max) * 100, self::DIPLOMAT_COLOR, 'Bronze'
