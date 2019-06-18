@@ -23,7 +23,7 @@ class GageController extends BaseController
     var $xCenter = 1600;
     var $yCenter = 1100;
     var $gageThick = 80;
-    var $gageDia = 1800; 
+    var $gageDia = 1800;
     var $image;
 
     public function __construct(Request $request, Response $response)
@@ -34,23 +34,23 @@ class GageController extends BaseController
     public function current_status_level()
     {
 
-        ini_set ('display_errors', 1);
+        ini_set('display_errors', 1);
 
         $role = RoleFactory::GetRole($pos = $this->request->param('position'), new User($this->request->param('id')));
 
-        $ytd = env('YEAR',2018);
-        $dataForView = $role->getDashboardViewData($this->dataForView,$ytd);
+        $ytd = env('YEAR', 2018);
+        $dataForView = $role->getDashboardViewData($this->dataForView, $ytd);
 
         $max = $dataForView['statusChart']['max'];
 
         // Create an image with the specified dimensions
         $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
 
-        $white          = imageColorAllocate($this->image, 255,255,255);
+        $white          = imageColorAllocate($this->image, 255, 255, 255);
         $lightgrey      = imageColorAllocate($this->image, 0xED, 0xEB, 0xEB);
         $semilightgrey  = imageColorAllocate($this->image, 192, 192, 192);
-        $grey           = imageColorAllocate($this->image, 127,127,127);
-        $black          = imageColorAllocate($this->image, 0,0,0);
+        $grey           = imageColorAllocate($this->image, 127, 127, 127);
+        $black          = imageColorAllocate($this->image, 0, 0, 0);
 
         $cc = $dataForView['statusChart']['gageArray'][0][1];
         $dc = $dataForView['statusChart']['gageArray'][1][1];
@@ -58,10 +58,10 @@ class GageController extends BaseController
         $pc = $dataForView['statusChart']['gageArray'][3][1];
 
         // create the colors from hex triplets
-        $ConsulColor =      imageColorAllocate($this->image, hexdec(substr($cc,1,2)), hexdec(substr($cc,3,2)), hexdec(substr($cc,5,2)));
-        $DiplomatColor =    imageColorAllocate($this->image, hexdec(substr($dc,1,2)), hexdec(substr($dc,3,2)), hexdec(substr($dc,5,2)));
-        $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac,1,2)), hexdec(substr($ac,3,2)), hexdec(substr($ac,5,2)));
-        $PremierColor =     imageColorAllocate($this->image, hexdec(substr($pc,1,2)), hexdec(substr($pc,3,2)), hexdec(substr($pc,5,2)));
+        $ConsulColor =      imageColorAllocate($this->image, hexdec(substr($cc, 1, 2)), hexdec(substr($cc, 3, 2)), hexdec(substr($cc, 5, 2)));
+        $DiplomatColor =    imageColorAllocate($this->image, hexdec(substr($dc, 1, 2)), hexdec(substr($dc, 3, 2)), hexdec(substr($dc, 5, 2)));
+        $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac, 1, 2)), hexdec(substr($ac, 3, 2)), hexdec(substr($ac, 5, 2)));
+        $PremierColor =     imageColorAllocate($this->image, hexdec(substr($pc, 1, 2)), hexdec(substr($pc, 3, 2)), hexdec(substr($pc, 5, 2)));
 
         //background to white
         imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
@@ -75,33 +75,33 @@ class GageController extends BaseController
         $completePercent = round($this->request->param('complete') / $max * 100);
         $completePercent = min(100, $completePercent);
 
-        drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia /4,  $this->gageDia /2); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $ConsulColor,       $this->gageDia /4,  $this->gageDia /2); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $DiplomatColor,     $this->gageDia /4,  $this->gageDia /2); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $AmbassadorColor,   $this->gageDia /4,  $this->gageDia /2); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $PremierColor,      $this->gageDia /4,  $this->gageDia /2); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $ConsulColor,       $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $DiplomatColor,     $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $AmbassadorColor,   $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $PremierColor,      $this->gageDia / 4,  $this->gageDia / 2);
 
-        drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
 
-        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent1, $white); 
-        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent2, $white); 
-        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent3, $white); 
-        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent4, $white); 
-        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, 101,       $white); 
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent1, $white);
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent2, $white);
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent3, $white);
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent4, $white);
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, 101,       $white);
 
         // the needle
         needleOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $completePercent, $grey, $white);
 
         // // Jo's grey arrow for first sector below consul   //start at 5% and finish 7% before consul, with 2% for arrowhead
-        drawArc($this->image, $this->xCenter, $this->yCenter, 3, $percent1-4, $grey,         $this->gageDia * .55,  $this->gageDia *.56); 
-        
+        drawArc($this->image, $this->xCenter, $this->yCenter, 3, $percent1 - 4, $grey,         $this->gageDia * .55,  $this->gageDia * .56);
+
         // // arrowhead
         $arrowThickness = 20;
-        $angle = 180-(($percent1 -0.5 -3) * 1.8);
+        $angle = 180 - (($percent1 - 0.5 - 3) * 1.8);
 
         // // arrow point
         $x1 = $this->xCenter + cos(deg2rad($angle)) * $this->gageDia * 0.555;
@@ -109,11 +109,11 @@ class GageController extends BaseController
 
         $arrowAngle = 145;
 
-        $x2 = $x1 + cos( deg2rad($angle -90 + $arrowAngle )) * 70 ;
-        $y2 = $y1 - sin( deg2rad($angle -90 + $arrowAngle )) * 70 ;
-        $x3 = $x1 + cos( deg2rad($angle -90 - $arrowAngle )) * 70 ;
-        $y3 = $y1 - sin( deg2rad($angle -90 - $arrowAngle )) * 70 ;
-        imagefilledpolygon ( $this->image, [$x1,$y1, $x2,$y2, $x3,$y3], $no_of_points = 3, $grey );
+        $x2 = $x1 + cos(deg2rad($angle - 90 + $arrowAngle)) * 70;
+        $y2 = $y1 - sin(deg2rad($angle - 90 + $arrowAngle)) * 70;
+        $x3 = $x1 + cos(deg2rad($angle - 90 - $arrowAngle)) * 70;
+        $y3 = $y1 - sin(deg2rad($angle - 90 - $arrowAngle)) * 70;
+        imagefilledpolygon($this->image, [$x1, $y1, $x2, $y2, $x3, $y3], $no_of_points = 3, $grey);
 
         putenv('GDFONTPATH=' . realpath('.'));
 
@@ -127,77 +127,48 @@ class GageController extends BaseController
             $file = fopen('tempfile.png', 'r');
             $im = new \Imagick();
             $im->readImageFile($file);
-            $im->blurImage(3,3);        
+            $im->blurImage(3, 3);
             $im->writeImage('tempfile.png');
             $im->writeImage('tempfile2.png');
         }
-        
+
         $this->image = imagecreatefrompng('tempfile.png');
 
         // grey outer with text labels
-        switch($pos) {  // I had to tweak these to position the text, depending on what percentage was the middle of these ranges
-            case 'F':
-            case 'R':
-            case 'M':
-            $s = 1000;
-            $e = 925;
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+46, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+107, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+190, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
-                break;            
-            case 'SA':    
-            case 'PM':    
-            case 'PS':    
-            case 'SM':    
-            $s = 978;
-            $e = 922;
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+55, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+150, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+230, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
-                break;
-            case 'SC':    
-            case 'C':    
-            $s = 998;
-            $e = 922;
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+46, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+97, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+180, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
-                break;
-            case 'I':    
-            $s = 1000;
-            $e = 922;
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+46, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+107, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
-                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+190, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
-                break;
-        }
+        $s1 = round(180 + $percent1 * 1.8);
+        $s2 = round(180 + $percent2 * 1.8);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, 'Commendaton', 'arialbd.ttf', $size = 36, $pad = 0);
 
-        $textX = $this->xCenter-100;
-        if (!$complete) {            
-            $textX = $this->xCenter-15;
+        $s3 = round(180 + $percent3 * 1.8);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, 'Bronze', 'arialbd.ttf', $size = 36, $pad = 0);
+
+        $s4 = round(180 + $percent4 * 1.8);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, 'Silver', 'arialbd.ttf', $size = 36, $pad = 0);
+
+        $s5 = round(180 + 100 * 1.8);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, 'Gold', 'arialbd.ttf', $size = 36, $pad = 0);
+
+        $textX = $this->xCenter - 100;
+        if (!$complete) {
+            $textX = $this->xCenter - 15;
         }
         // number to go with the needle
-        imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
+        imagefttext($this->image, $size = 48, $angle = 0, $x = $textX, $y = $this->yCenter - 45, $black,      'arialbd.ttf', number_format($complete, 0, '.', ','));
 
         // // Legend text
-        imagefttext ( $this->image, $size=48, $angle=0, $x=160, $y=160, $black,  'arialbd.ttf', 'Commendaton');
-        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+80, $black,  'arialbd.ttf', 'Bronze');
-        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+160, $black, 'arialbd.ttf', 'Silver');
-        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+240, $black, 'arialbd.ttf', 'Gold');
+        imagefttext($this->image, $size = 48, $angle = 0, $x = 160, $y = 160, $black,  'arialbd.ttf', 'Commendaton');
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 80, $black,  'arialbd.ttf', 'Bronze');
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 160, $black, 'arialbd.ttf', 'Silver');
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 240, $black, 'arialbd.ttf', 'Gold');
 
         // //Legend colors
-        imagefilledpolygon ( $this->image, [$x1 = 80,$y1 = 120,      $x2 = 120,$y2 = $y1,    $x4 = 120,$y4 = $y2+40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
-        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $DiplomatColor);
-        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $AmbassadorColor);
-        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $PremierColor);
+        imagefilledpolygon($this->image, [$x1 = 80, $y1 = 120,      $x2 = 120, $y2 = $y1,    $x4 = 120, $y4 = $y2 + 40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
+        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $DiplomatColor);
+        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $AmbassadorColor);
+        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $PremierColor);
 
         // Set type of image and send the output
         header("Content-type: image/png");
         imagePng($this->image);
     }
-
 }

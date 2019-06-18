@@ -27,8 +27,8 @@ if (!function_exists('textOnArc')) {
      * @param int $xCenter   x of center point
      * @param int $yCenter   y of center point
      * @param int $radian radian number
-     * @param int $s
-     * @param int $e
+     * @param int $startAngle start angle of text
+     * @param int $endAngle end angle of text
      * @param int $textColor color of text
      * @param int $text  text need to drew
      * @param string $fontFile  The path to the TrueType font you wish to use.
@@ -36,22 +36,22 @@ if (!function_exists('textOnArc')) {
      * @param int $pad extra characters spacing for text 
      * @return string
      */
-    function textOnArc($image, $xCenter, $yCenter, $radian, $s, $e, $textColor, $text, $fontFile, $fontSize, $pad = 0)
+    function textOnArc($image, $xCenter, $yCenter, $radian, $startAngle, $endAngle, $textColor, $text, $fontFile, $fontSize, $pad = 0)
     {
 
         $textLength = strlen($text);  //length of text
 
-        $arcCentre = ($e + $s) / 2;  //arc centre
+        $textCentreAngle = ($endAngle + $startAngle) / 2;  // centre angle of text
 
         $totalTextWidth = textWidth($text, $fontFile, $fontSize) - ($textLength - 1) * $pad;
 
         $textAngle = rad2deg($totalTextWidth / $radian);  //Converts the radian number to the equivalent number in degrees
 
-        $s = $arcCentre - $textAngle / 2;
+        $startAngle = $textCentreAngle - $textAngle / 2;
 
-        $e = $arcCentre + $textAngle / 2;
+        $endAngle = $textCentreAngle + $textAngle / 2;
 
-        for ($i = 0, $theta = deg2rad($s); $i < $textLength; $i++) {
+        for ($i = 0, $theta = deg2rad($startAngle); $i < $textLength; $i++) {
 
             $character = $text{
                 $i};
