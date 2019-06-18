@@ -9,24 +9,11 @@
 namespace App\controller;
 
 use App\core\BaseController;
-use App\core\JsonBuilder;
-use App\models\Company;
-use App\models\role\status\FinanceControllerStatus;
-use App\models\role\status\FiStatus;
-use App\models\role\status\GageStatus;
-use App\models\role\status\PartsSalesRepStatus;
-use App\models\role\status\RetailSalesConsultantStatus;
-use App\models\role\status\SalesManagerStatus;
-use App\models\role\status\ServiceAdviserStatus;
-use App\models\role\status\ServiceManagerStatus;
-use App\models\role\status\StockControllerStatus;
 use App\models\utils\RoleFactory;
 
 use Klein\Request;
 use Klein\Response;
 use App\models\User;
-use App\models\nissan\Ranking;
-use League\Csv\Writer;
 
 class GageController extends BaseController
 {
@@ -56,26 +43,8 @@ class GageController extends BaseController
 
         $max = $dataForView['statusChart']['max'];
 
-        switch($pos) {  // I had to tweak these to position the text, depending on what percentage was the middle of these ranges
-            case 'F':
-            case 'R':
-            case 'M':
-                $this->image = imagecreatefrompng('./graph-back_frm.png');
-                break;            
-            case 'SA':    
-            case 'PM':    
-            case 'PS':    
-            case 'SM':    
-                $this->image = imagecreatefrompng('graph-back_sa_pm_ps_sm.png');
-                break;
-            case 'SC':    
-            case 'C':    
-                $this->image = imagecreatefrompng('graph-back_sc_c.png');
-                break;
-            case 'I':    
-                $this->image = imagecreatefrompng('graph-back_i.png');
-                break;
-        }
+        // Create an image with the specified dimensions
+        $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
 
         $white          = imageColorAllocate($this->image, 255,255,255);
         $lightgrey      = imageColorAllocate($this->image, 0xED, 0xEB, 0xEB);
@@ -94,14 +63,57 @@ class GageController extends BaseController
         $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac,1,2)), hexdec(substr($ac,3,2)), hexdec(substr($ac,5,2)));
         $PremierColor =     imageColorAllocate($this->image, hexdec(substr($pc,1,2)), hexdec(substr($pc,3,2)), hexdec(substr($pc,5,2)));
 
+        //background to white
+        imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
+
+        $percent1 = round($dataForView['statusChart']['gageArray'][0][0]);
+        $percent2 = round($dataForView['statusChart']['gageArray'][1][0]);
+        $percent3 = round($dataForView['statusChart']['gageArray'][2][0]);
+        $percent4 = round($dataForView['statusChart']['gageArray'][3][0]);
+
         $complete        = $this->request->param('complete');
         $completePercent = round($this->request->param('complete') / $max * 100);
         $completePercent = min(100, $completePercent);
 
-        // the needle
-        $this->_needle($completePercent, $grey, $white);
+        drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia /4,  $this->gageDia /2); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $ConsulColor,       $this->gageDia /4,  $this->gageDia /2); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $DiplomatColor,     $this->gageDia /4,  $this->gageDia /2); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $AmbassadorColor,   $this->gageDia /4,  $this->gageDia /2); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $PremierColor,      $this->gageDia /4,  $this->gageDia /2); 
 
+        drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia *.6); 
+
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent1, $white); 
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent2, $white); 
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent3, $white); 
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent4, $white); 
+        whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, 101,       $white); 
+
+        // the needle
+        needleOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $completePercent, $grey, $white);
+
+        // // Jo's grey arrow for first sector below consul   //start at 5% and finish 7% before consul, with 2% for arrowhead
+        drawArc($this->image, $this->xCenter, $this->yCenter, 3, $percent1-4, $grey,         $this->gageDia * .55,  $this->gageDia *.56); 
+        
+        // // arrowhead
+        $arrowThickness = 20;
         $angle = 180-(($percent1 -0.5 -3) * 1.8);
+
+        // // arrow point
+        $x1 = $this->xCenter + cos(deg2rad($angle)) * $this->gageDia * 0.555;
+        $y1 = $this->yCenter - sin(deg2rad($angle)) * $this->gageDia * 0.555;
+
+        $arrowAngle = 145;
+
+        $x2 = $x1 + cos( deg2rad($angle -90 + $arrowAngle )) * 70 ;
+        $y2 = $y1 - sin( deg2rad($angle -90 + $arrowAngle )) * 70 ;
+        $x3 = $x1 + cos( deg2rad($angle -90 - $arrowAngle )) * 70 ;
+        $y3 = $y1 - sin( deg2rad($angle -90 - $arrowAngle )) * 70 ;
+        imagefilledpolygon ( $this->image, [$x1,$y1, $x2,$y2, $x3,$y3], $no_of_points = 3, $grey );
 
         putenv('GDFONTPATH=' . realpath('.'));
 
@@ -109,7 +121,6 @@ class GageController extends BaseController
         imagePng($this->image, 'tempfile.png');
         imageDestroy($this->image);
         fclose($fo);
-
 
         // save image, open in Imagick, blur the image - to removed the jagged edges on the diagonal lines
         if (class_exists('Imagick')) {
@@ -123,6 +134,48 @@ class GageController extends BaseController
         
         $this->image = imagecreatefrompng('tempfile.png');
 
+        // grey outer with text labels
+        switch($pos) {  // I had to tweak these to position the text, depending on what percentage was the middle of these ranges
+            case 'F':
+            case 'R':
+            case 'M':
+            $s = 1000;
+            $e = 925;
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+46, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+107, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+190, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
+                break;            
+            case 'SA':    
+            case 'PM':    
+            case 'PS':    
+            case 'SM':    
+            $s = 978;
+            $e = 922;
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+55, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+150, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+230, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
+                break;
+            case 'SC':    
+            case 'C':    
+            $s = 998;
+            $e = 922;
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+46, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+97, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+180, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
+                break;
+            case 'I':    
+            $s = 1000;
+            $e = 922;
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e, $grey, 'Commendaton', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+46, $grey, 'Bronze', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+107, $grey, 'Silver', 'arialbd.ttf', $size=36, $pad=0);
+                textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia/1.85, $s, $e+190, $grey, 'Gold', 'arialbd.ttf', $size=36, $pad=0);
+                break;
+        }
+
         $textX = $this->xCenter-100;
         if (!$complete) {            
             $textX = $this->xCenter-15;
@@ -130,101 +183,21 @@ class GageController extends BaseController
         // number to go with the needle
         imagefttext ( $this->image, $size=48, $angle=0, $x=$textX, $y=$this->yCenter-45, $black,      'arialbd.ttf', number_format($complete,0,'.',','));
 
+        // // Legend text
+        imagefttext ( $this->image, $size=48, $angle=0, $x=160, $y=160, $black,  'arialbd.ttf', 'Commendaton');
+        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+80, $black,  'arialbd.ttf', 'Bronze');
+        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+160, $black, 'arialbd.ttf', 'Silver');
+        imagefttext ( $this->image, $size=48, $angle=0, $x, $y+240, $black, 'arialbd.ttf', 'Gold');
+
+        // //Legend colors
+        imagefilledpolygon ( $this->image, [$x1 = 80,$y1 = 120,      $x2 = 120,$y2 = $y1,    $x4 = 120,$y4 = $y2+40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
+        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $DiplomatColor);
+        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $AmbassadorColor);
+        imagefilledpolygon ( $this->image, [$x1,     $y1 = $y1+80,   $x2,     $y2 = $y2+80, $x4,     $y4 = $y4+80, $x3,       $y3=$y4],   $no_of_points = 4, $PremierColor);
+
         // Set type of image and send the output
         header("Content-type: image/png");
-
         imagePng($this->image);
-
-
     }
 
-    private function _radial($percent, $startLength, $endLength, $color) {
-        $angle = 180 + ($percent * 1.8);
-
-        $x1 = $this->xCenter + cos(deg2rad($angle)) * -$startLength;
-        $y1 = $this->yCenter + sin(deg2rad($angle)) * $startLength;
-
-        $x2 = $this->xCenter + cos(deg2rad($angle)) * -$endLength;
-        $y2 = $this->yCenter + sin(deg2rad($angle)) * $endLength;
-
-        imageline ( $this->image, $x1, $y1, $x2, $y2, $color);
-    }
-
-    private function _completionArc ($startPercent, $endPercent, $color, $innerRad, $outerRad) {
-        $startAngle = round (180 - $startPercent * 1.8);
-        $endAngle   = round (180 - $endPercent * 1.8);
-
-        $x1 = $this->xCenter + cos(deg2rad($startAngle)) * $outerRad;
-        $y1 = $this->yCenter - sin(deg2rad($startAngle)) * $outerRad;
-
-        $x2 = $this->xCenter + cos(deg2rad($startAngle)) * $innerRad; 
-        $y2 = $this->yCenter - sin(deg2rad($startAngle)) * $innerRad;
-
-        $polys = [$x1, $y1];
-
-        // back array is the inner arc, and reversed below
-        $back = [$y2, $x2]; // reverse order, because we are going to reverse this
-
-        for ($i = 1; $i <= ($startAngle - $endAngle); $i++) {
-            $angle = $startAngle - $i;
-
-            $x3 = $this->xCenter + cos(deg2rad($angle)) * $outerRad ;
-            $y3 = $this->yCenter - sin(deg2rad($angle)) * $outerRad ;
-
-            $polys[] = $x3;
-            $polys[] = $y3;
-
-
-            $x4 = $this->xCenter + cos(deg2rad($angle)) * $innerRad;
-            $y4 = $this->yCenter - sin(deg2rad($angle)) * $innerRad;
-
-            $back[] = $y4;
-            $back[] = $x4;
-        }
-
-        $polys = array_merge($polys, array_reverse($back));
-
-        imagefilledpolygon ( $this->image, $polys, count($polys) /2, $color );
-    }
-
-    private function _needle ($percent, $color, $colorSpindle) {
-        $angle = 180 + ($percent * 1.8);
-        $x1 = $this->xCenter + cos(deg2rad($angle)) * $this->gageDia /2 * 0.55 ; 
-        $y1 = $this->yCenter + sin(deg2rad($angle)) * $this->gageDia /2 * 0.55 ;
-
-        $needleThickness = 80;
-
-        $x2 = $this->xCenter + cos( deg2rad($angle-90)) * $needleThickness /2 ;
-        $y2 = $this->yCenter + sin( deg2rad($angle-90)) * $needleThickness /2 ;
-
-        $x3 = $this->xCenter + cos( deg2rad($angle+90)) * $needleThickness /2 ;
-        $y3 = $this->yCenter + sin( deg2rad($angle+90)) * $needleThickness /2 ;
-
-        imagefilledpolygon ( $this->image, [$x1,$y1, $x2,$y2, $x3,$y3], $no_of_points = 3, $color );
-
-        imagefilledarc( $this->image, $this->xCenter, $this->yCenter, $needleThickness,   $needleThickness,   0, 360, $color, IMG_ARC_EDGED);
-        imagefilledarc( $this->image, $this->xCenter, $this->yCenter, $needleThickness/2.5, $needleThickness/2.5, 0, 360, $colorSpindle, IMG_ARC_EDGED);
-    }
-
-    // white line to leave a little clearance between colored backgrounds
-    private function _whiteDivider ($percent, $color) {
-        $angle = round(180 + ($percent * 1.8));
-        $lineThickness = 10;
-        $lineLength = $this->gageDia /1.666;
-
-
-        $x1 = $this->xCenter + cos( deg2rad($angle-90) ) * $lineThickness /2 ;
-        $y1 = $this->yCenter + sin( deg2rad($angle-90) ) * $lineThickness /2 ;
-
-        $x2 = $this->xCenter + cos( deg2rad($angle+90) ) * $lineThickness /2 ;
-        $y2 = $this->yCenter + sin( deg2rad($angle+90) ) * $lineThickness /2 ;
-
-        $x3 = $x1 + cos( deg2rad($angle)) * $lineLength ;
-        $y3 = $y1 + sin( deg2rad($angle)) * $lineLength ;
-
-        $x4 = $x2 + cos( deg2rad($angle)) * $lineLength ;
-        $y4 = $y2 + sin( deg2rad($angle)) * $lineLength ;
-
-        imagefilledpolygon ( $this->image, [$x2,$y2, $x1,$y1, $x3,$y3, $x4,$y4], $no_of_points = 4, $color );
-    }
 }

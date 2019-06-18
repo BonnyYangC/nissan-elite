@@ -13,9 +13,9 @@ use App\models\role\IRole;
 
 class GageStatus
 {
-    const PREMIER_COLOR       = '#B47C37';
-    const AMBASSADOR_COLOR    = '#546E22';
-    const DIPLOMAT_COLOR      = '#BC2628';
+    const PREMIER_COLOR       = '#FFD700'; //gold
+    const AMBASSADOR_COLOR    = '#C0C0C0'; //silver
+    const DIPLOMAT_COLOR      = '#8B4513'; //SaddleBrown
     const CONSUL_COLOR        = '#525357';
     const DEFAULT_COLOR       = '#000000';
 
