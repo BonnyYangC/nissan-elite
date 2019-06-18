@@ -12,10 +12,10 @@
     <div class="table-responsive" >
         <table class="table" >
             <tr class="table-top-row">
-                <td align="center">COMMENDATION</td>
-                <td align="center">BRONZE</td>
-                <td align="center">SILVER</td>
-                <td align="center">GOLD</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[0][2]|upper }}</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[1][2]|upper }}</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[2][2]|upper }}</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[3][2]|upper }}</td>
             </tr>
             <tr>
                 {% set dollorDataRanges = dashboard.rewardsDollars[0] %}

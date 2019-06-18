@@ -11,11 +11,6 @@ namespace App\models\role;
 
 interface IRole
 {
-    const PREMIER_STR       = 'Gold';
-    const AMBASSADOR_STR    = 'Silver';
-    const DIPLOMAT_STR      = 'Bronze';
-    const CONSUL_STR        = 'Commendation ';
-    const DEFAULT_STR       = 'Default';
 
     /**
      * Get the template's name for the role

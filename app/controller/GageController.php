@@ -40,7 +40,8 @@ class GageController extends BaseController
 
         $ytd = env('YEAR', 2018);
         $dataForView = $role->getDashboardViewData($this->dataForView, $ytd);
-
+        $fontFile = 'arialbd.ttf';
+        
         $max = $dataForView['statusChart']['max'];
 
         // Create an image with the specified dimensions
@@ -135,31 +136,36 @@ class GageController extends BaseController
         $this->image = imagecreatefrompng('tempfile.png');
 
         // grey outer with text labels
+        $statusLevel1Text = $dataForView['statusChart']['gageArray'][0][2];
+        $statusLevel2Text = $dataForView['statusChart']['gageArray'][1][2];
+        $statusLevel3Text = $dataForView['statusChart']['gageArray'][2][2];
+        $statusLevel4Text = $dataForView['statusChart']['gageArray'][3][2];
+
         $s1 = round(180 + $percent1 * 1.8);
         $s2 = round(180 + $percent2 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, 'Commendaton', 'arialbd.ttf', $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, $statusLevel1Text, $fontFile, $size = 36, $pad = 0);
 
         $s3 = round(180 + $percent3 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, 'Bronze', 'arialbd.ttf', $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, $statusLevel2Text, $fontFile, $size = 36, $pad = 0);
 
         $s4 = round(180 + $percent4 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, 'Silver', 'arialbd.ttf', $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, $statusLevel3Text, $fontFile, $size = 36, $pad = 0);
 
         $s5 = round(180 + 100 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, 'Gold', 'arialbd.ttf', $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, $statusLevel4Text, $fontFile, $size = 36, $pad = 0);
 
         $textX = $this->xCenter - 100;
         if (!$complete) {
             $textX = $this->xCenter - 15;
         }
         // number to go with the needle
-        imagefttext($this->image, $size = 48, $angle = 0, $x = $textX, $y = $this->yCenter - 45, $black,      'arialbd.ttf', number_format($complete, 0, '.', ','));
+        imagefttext($this->image, $size = 48, $angle = 0, $x = $textX, $y = $this->yCenter - 45, $black,      $fontFile, number_format($complete, 0, '.', ','));
 
         // // Legend text
-        imagefttext($this->image, $size = 48, $angle = 0, $x = 160, $y = 160, $black,  'arialbd.ttf', 'Commendaton');
-        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 80, $black,  'arialbd.ttf', 'Bronze');
-        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 160, $black, 'arialbd.ttf', 'Silver');
-        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 240, $black, 'arialbd.ttf', 'Gold');
+        imagefttext($this->image, $size = 48, $angle = 0, $x = 160, $y = 160, $black,  $fontFile, $statusLevel1Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 80, $black,  $fontFile, $statusLevel2Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 160, $black, $fontFile, $statusLevel3Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 240, $black, $fontFile, $statusLevel4Text);
 
         // //Legend colors
         imagefilledpolygon($this->image, [$x1 = 80, $y1 = 120,      $x2 = 120, $y2 = $y1,    $x4 = 120, $y4 = $y2 + 40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
