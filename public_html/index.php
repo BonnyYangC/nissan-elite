@@ -58,6 +58,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard');
 \App\core\Route::Instance()->get('/Dashboard',\App\controller\DashboardController::class, 'dashboard');
 \App\core\Route::Instance()->get('/dashboard/MembersGuide',\App\controller\StaticPagesController::class, 'members_guide');
+\App\core\Route::Instance()->get('/dashboard/AboutProgram',\App\controller\StaticPagesController::class, 'about_program');
 \App\core\Route::Instance()->get('/dashboard/Lifetime',\App\controller\StaticPagesController::class, 'lifetime');
 \App\core\Route::Instance()->get('/dashboard/FAQ',\App\controller\StaticPagesController::class, 'faq');
 \App\core\Route::Instance()->get('/dashboard/MDguild',\App\controller\StaticPagesController::class, 'md_guide');

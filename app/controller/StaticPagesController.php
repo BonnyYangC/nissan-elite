@@ -29,6 +29,17 @@ class StaticPagesController extends DashboardController
     }
 
     /**
+     * Load About the Program view
+     *
+     * @return void
+     */
+    public function about_program(){
+        $this->dataForView['currentUri'] = 'AboutProgram';
+        $this->render('dashboard/static/about_program');
+        return;
+    }
+    
+    /**
      * Load members guide view
      */
     public function members_guide(){

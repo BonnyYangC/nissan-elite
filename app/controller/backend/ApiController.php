@@ -57,6 +57,7 @@ class ApiController extends BaseController
             ['t'=>'Rankings','url'=>'/dashboard/Leaderboards','a'=>$current=='LeaderBoards'],
             ['t'=>'Incentives','url'=>'/dashboard/Incentives','a'=>$current=='Incentives'],
             ['t'=>'Calendar','url'=>'/dashboard/Calendar','a'=>$current=='Calendar'],
+            ['t'=>'About the Program','url'=>'/dashboard/AboutProgram','a'=>$current=='AboutProgram'],
             ['t'=>'Members Guide','url'=>'/dashboard/MembersGuide','a'=>$current=='MembersGuide'],
             ['t'=>'Account','url'=>'/dashboard/Account','a'=>$current=='Account'],
             ['t'=>'Product Challenge','url'=>'/dashboard/ProductChallenge','a'=>$current=='ProductChallenge'],
