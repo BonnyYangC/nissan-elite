@@ -1,60 +1,44 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <div class="container">
-        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%">
+        <table class="table" width="100%">
             <tbody>
                 <tr>
                     <td
                         align="center" id="templateHeader" style="background:#000000 none no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #000000;background-image: none;background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 0px;padding-bottom: 9px;" valign="top">
                         <!--[if (gte mso 9)|(IE)]>
-                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
-                                                    <tr>
-                                                    <td align="center" valign="top" width="600" style="width:600px;">
-                                                    <![endif]-->
-                        <table align="center" border="0" cellpadding="0" cellspacing="0" class="templateContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;max-width: 600px !important;" width="100%">
+                                                                            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+                                                                            <tr>
+                                                                            <td align="center" valign="top" width="600" style="width:600px;">
+                                                                            <![endif]-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer" style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%">
                             <tbody>
                                 <tr>
-                                    <td class="headerContainer" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
-                                        <table border="0" cellpadding="0" cellspacing="0" class="mcnImageBlock" style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%">
-                                            <tbody class="mcnImageBlockOuter">
-                                                <tr>
-                                                    <td class="mcnImageBlockInner" style="padding: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
-                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer" style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="mcnImageContent" style="padding-right: 0px;padding-left: 0px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
+                                    <td class="mcnImageContent" style="padding-right: 0px;padding-left: 0px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
 
 
-                                                                        <img align="middle" alt="" class="mcnImage" src="{{ asset('images/nissan_elite_gif.gif') }}" style="max-width: 600px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="600">
+                                        <img align="middle" alt="" class="mcnImage" src="{{ asset('images/nissan_elite_gif.gif') }}" style="max-width: 600px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="600">
 
 
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <!--[if (gte mso 9)|(IE)]>
-                                                    </td>
-                                                    </tr>
-                                                    </table>
-                                                    <![endif]-->
+                                                                            </td>
+                                                                            </tr>
+                                                                            </table>
+                                                                            <![endif]-->
                     </td>
                 </tr>
                 <tr>
                     <td
-                        align="center" id="templateBody" style="background:#450018 url(&quot;https://gallery.mailchimp.com/b638801141c7c48ffb9b0915a/images/98bbe869-e066-4158-bab0-b6737b219630.png&quot;) no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #450018;background-image: url(https://gallery.mailchimp.com/b638801141c7c48ffb9b0915a/images/98bbe869-e066-4158-bab0-b6737b219630.png);background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 0px;padding-bottom: 9px;" valign="top">
+                        align="center" id="templateBody" style="background:#450018 {{ asset('images/about_program_bg.png') }} no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #450018;background-image: url(https://gallery.mailchimp.com/b638801141c7c48ffb9b0915a/images/98bbe869-e066-4158-bab0-b6737b219630.png);background-repeat: no-repeat;background-position: center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 0px;padding-bottom: 9px;" valign="top">
                         <!--[if (gte mso 9)|(IE)]>
-                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
-                                                    <tr>
-                                                    <td align="center" valign="top" width="600" style="width:600px;">
-                                                    <![endif]-->
+                                                                            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+                                                                            <tr>
+                                                                            <td align="center" valign="top" width="600" style="width:600px;">
+                                                                            <![endif]-->
                         <table align="center" border="0" cellpadding="0" cellspacing="0" class="templateContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;max-width: 600px !important;" width="100%">
                             <tbody>
                                 <tr>
@@ -64,13 +48,13 @@
                                                 <tr>
                                                     <td class="mcnTextBlockInner" style="padding-top: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
                                                         <!--[if mso]>
-                                                                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-                                                                <tr>
-                                                                <![endif]-->
+                                                                                                                        <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                                                                                                                        <tr>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                <td valign="top" width="600" style="width:600px;">
-                                                                <![endif]-->
+                                                                                                                        <td valign="top" width="600" style="width:600px;">
+                                                                                                                        <![endif]-->
                                                             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnTextContentContainer" style="max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%"> <tbody>
                                                                 <tr>
 
@@ -101,13 +85,13 @@
                                                             </tbody>
                                                         </table>
                                                         <!--[if mso]>
-                                                                </td>
-                                                                <![endif]-->
+                                                                                                                        </td>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                </tr>
-                                                                </table>
-                                                                <![endif]-->
+                                                                                                                        </tr>
+                                                                                                                        </table>
+                                                                                                                        <![endif]-->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -117,13 +101,13 @@
                                                 <tr>
                                                     <td class="mcnTextBlockInner" style="padding-top: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
                                                         <!--[if mso]>
-                                                                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-                                                                <tr>
-                                                                <![endif]-->
+                                                                                                                        <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                                                                                                                        <tr>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                <td valign="top" width="600" style="width:600px;">
-                                                                <![endif]-->
+                                                                                                                        <td valign="top" width="600" style="width:600px;">
+                                                                                                                        <![endif]-->
                                                             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnTextContentContainer" style="max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%"> <tbody>
                                                                 <tr>
 
@@ -151,13 +135,13 @@
                                                             </tbody>
                                                         </table>
                                                         <!--[if mso]>
-                                                                </td>
-                                                                <![endif]-->
+                                                                                                                        </td>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                </tr>
-                                                                </table>
-                                                                <![endif]-->
+                                                                                                                        </tr>
+                                                                                                                        </table>
+                                                                                                                        <![endif]-->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -167,13 +151,13 @@
                                                 <tr>
                                                     <td class="mcnTextBlockInner" style="padding-top: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
                                                         <!--[if mso]>
-                                                                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-                                                                <tr>
-                                                                <![endif]-->
+                                                                                                                        <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                                                                                                                        <tr>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                <td valign="top" width="600" style="width:600px;">
-                                                                <![endif]-->
+                                                                                                                        <td valign="top" width="600" style="width:600px;">
+                                                                                                                        <![endif]-->
                                                             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnTextContentContainer" style="max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%"> <tbody>
                                                                 <tr>
 
@@ -262,13 +246,13 @@
                                                             </tbody>
                                                         </table>
                                                         <!--[if mso]>
-                                                                </td>
-                                                                <![endif]-->
+                                                                                                                        </td>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                </tr>
-                                                                </table>
-                                                                <![endif]-->
+                                                                                                                        </tr>
+                                                                                                                        </table>
+                                                                                                                        <![endif]-->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -278,13 +262,13 @@
                                                 <tr>
                                                     <td class="mcnTextBlockInner" style="padding-top: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign="top">
                                                         <!--[if mso]>
-                                                                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-                                                                <tr>
-                                                                <![endif]-->
+                                                                                                                        <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                                                                                                                        <tr>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                <td valign="top" width="600" style="width:600px;">
-                                                                <![endif]-->
+                                                                                                                        <td valign="top" width="600" style="width:600px;">
+                                                                                                                        <![endif]-->
                                                             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnTextContentContainer" style="max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%"> <tbody>
                                                                 <tr>
 
@@ -310,13 +294,13 @@
                                                             </tbody>
                                                         </table>
                                                         <!--[if mso]>
-                                                                </td>
-                                                                <![endif]-->
+                                                                                                                        </td>
+                                                                                                                        <![endif]-->
 
                                                         <!--[if mso]>
-                                                                </tr>
-                                                                </table>
-                                                                <![endif]-->
+                                                                                                                        </tr>
+                                                                                                                        </table>
+                                                                                                                        <![endif]-->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -326,10 +310,10 @@
                             </tbody>
                         </table>
                         <!--[if (gte mso 9)|(IE)]>
-                                                    </td>
-                                                    </tr>
-                                                    </table>
-                                                    <![endif]-->
+                                                                            </td>
+                                                                            </tr>
+                                                                            </table>
+                                                                            <![endif]-->
                     </td>
                 </tr>
 
