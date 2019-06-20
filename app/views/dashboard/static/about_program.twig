@@ -1,8 +1,9 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
-    <div class="container bg-image">
+    <div
+        class="container bg-image">
         <!--1-->
-        <div class="row" >
+        <div class="row">
             <div class="col-lg-12">
                 <img class="img-responsive center-block program_ele" alt="" src="{{ asset('images/nissan_elite_gif.gif') }}">
             </div>
@@ -60,9 +61,9 @@
                 </div>
                 &nbsp;
                 <div class="program_ele_border">
-                    
+
                     <div style="float:left;">
-                    <img src="{{ asset('images/elite_individual.png') }}" class="img-responsive center-block">
+                        <img src="{{ asset('images/elite_individual.png') }}" class="img-responsive center-block">
                         <p class="text-center"><br>
                             Dealer Principal<br>
                             Sales Manager<br>
@@ -110,30 +111,68 @@
         </div>
     </div>
 
-        <!--5-->
-        <div class="row">
-                <div class="col-lg-12">
-                    <div class=" center-block program_ele program_ele_4">
-                            <h3 class="text-center text-capitalize">Recognition in front of your peers:</h3>
+    <!--5-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class=" center-block program_ele program_ele_4">
+                <h3 class="text-center text-capitalize">Recognition in front of your peers:</h3>
 
-                            <p class="text-center" style="font-size: 16px;">Whole Team, Dealer Principals and High Achieving Individuals</p>
-                            <img src="{{ asset('images/nissan_elite_small.png') }}" class="img-responsive center-block" width="80%">
-                            <p class="text-center">All ELITE individual status recognition awards including the ELITE Dealership and Nissan Global Awards will be presented at your state Product Challenge event.</p>
+                <p class="text-center" style="font-size: 16px;">Whole Team, Dealer Principals and High Achieving Individuals</p>
+                <img src="{{ asset('images/nissan_elite_small.png') }}" class="img-responsive center-block" width="80%">
+                <p class="text-center">All ELITE individual status recognition awards including the ELITE Dealership and Nissan Global Awards will be presented at your state Product Challenge event.</p>
 
-                </div>
             </div>
         </div>
+    </div>
 </div>
 <style>
     .bg-image {
         background-image: url('/images/about_program_bg.png');
-	    background-size: 100% 100%;
+        background-size: 100% 100%;
     }
+
     .program_ele {
         width: 55%;
         margin-top: 10px;
         margin-bottom: 15px;
+        float:none;
     }
+    @media only screen and (max-width: 480px){
+        .program_ele {
+            width: 95%;
+        }
+    }
+    /* Small devices (landscape phones, 375px and up)*/
+    @media(min-width: 375px) {
+        .program_ele {
+            width: 95%;
+        }
+    }
+    /* Small devices (landscape phones, 576px and up)*/
+    @media(min-width: 576px) {
+        .program_ele {
+            width: 95%;
+        }
+    }
+    /* Medium devices (tablets, 768px and up)*/
+    @media(min-width: 768px) {
+        .program_ele {
+            width: 600px;
+        }
+    }
+    /* Large devices (desktops, 992px and up)*/
+    @media(min-width: 992px) {
+        .program_ele {
+            width: 600px;
+        }
+    }
+    /* Extra large devices (large desktops, 1200px and up)*/
+    @media(min-width: 1200px) {
+        .program_ele {
+            width: 600px;
+        }
+    }
+
     .program_ele_1 {
         background: linear-gradient(to bottom right, #8c0022, #c40030, #8c0022, #c40030, #8c0022);
         background-color: #c40030;
@@ -218,9 +257,9 @@
         font-size: 14px;
         line-height: 150%;
     }
-    .program_ele_border ul{
-        padding-left: 20px; 
-        text-align:left;
+    .program_ele_border ul {
+        padding-left: 20px;
+        text-align: left;
         color: #ffffff;
     }
 
@@ -229,22 +268,22 @@
         background-color: #353535;
         padding: 30px;
     }
-    .program_ele_4 p{
+    .program_ele_4 p {
         color: #FFFFFF;
         margin: 10px 0;
         padding: 0;
         font-size: 14px;
         line-height: 150%;
     }
-    .program_ele_4 h3{
+    .program_ele_4 h3 {
         color: #ffffff;
         letter-spacing: 1px;
         display: block;
-        margin: 0;padding: 0;
+        margin: 0;
+        padding: 0;
         font-size: 20px;
         font-style: normal;
         font-weight: normal;
-        line-height: 150%;        
-}
-</style>
-{% endblock %}
+        line-height: 150%;
+    }
+</style>{% endblock %}
