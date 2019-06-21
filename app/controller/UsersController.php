@@ -163,7 +163,7 @@ class UsersController extends Controller
             ],
             [
                 'url'=>url('/dashboard/MembersGuide'),
-                'src'=>asset($imageAssetPrefix.'tile-nissanac.jpg'),
+                'src'=>asset($imageAssetPrefix.'tile-nissanelite.png'),
             ],
             [
                 'url'=>url('/dashboard/Leaderboards'),
@@ -171,11 +171,11 @@ class UsersController extends Controller
             ],
             [
                 'url'=>url('/dashboard/ProductChallenge'),
-                'src'=>asset($imageAssetPrefix.'nissan-productchallenge.jpg'),
+                'src'=>asset($imageAssetPrefix.'tile-product-challenge.png'),
             ],
             [
                 'url'=>url('/dashboard/MDguild'),
-                'src'=>asset($imageAssetPrefix.'md-guild.jpg'),
+                'src'=>asset($imageAssetPrefix.'tile-md-guild.png'),
             ],
             [
                 'url'=>url('/dashboard/Incentives'),
@@ -195,7 +195,7 @@ class UsersController extends Controller
             ],
             [
                 'url'=>env('dealExcellenceOverviewUrl'),
-                'src'=>asset($imageAssetPrefix.'nissan-doty.jpg'),
+                'src'=>asset($imageAssetPrefix.'tile-dealership.png'),
             ],
             [
                 'url'=>'#',
@@ -203,7 +203,7 @@ class UsersController extends Controller
             ],
             [
                 'url'=>url('/dashboard/Calendar'),
-                'src'=>asset($imageAssetPrefix.'tile-calendar.jpg'),
+                'src'=>asset($imageAssetPrefix.'tile-calendar.png'),
             ],
         ];
     }
