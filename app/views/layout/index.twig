@@ -1,22 +1,34 @@
 {% extends 'layout/3brands.twig' %}
 {% block content %}
 <div class="{{ isPhone or isTablet ? '' : null }}">
-    <div class="container" align="center">
+    <div class="container bg_img" align="center">
         <div class="row" style="margin: 20% auto;">
             {#entry point for Nissan Elite Individual #}
             <div class="col-md-6 portfolio-item">
                 <a href="{{ url('/elite_individual') }}">
-                    <img class="img-responsive" src="{{ asset('images/tiles/images/tile-nissanac.jpg') }}" style="width:270px; margin-bottom:30px;" width="332">
+                    <img class="img-responsive" src="{{ asset('images/loader/ELITE-individual-white.png') }}" style="width:270px; margin-bottom:30px;" width="332">
                 </a>
             </div>
             {#entry point for Nissan Elite Dealership #}
             <div class="col-md-6 portfolio-item">
                     <!--<a href="http://dealership.nessanelite.com.au">-->
                         <a href="http://nissan-events.com.au/excellence-fy18/">
-                        <img class="img-responsive" src="{{ asset('images/slider-mobile-red-370z.jpg') }}" style="width:270px; margin-bottom:30px;" width="332">
+                        <img class="img-responsive" src="{{ asset('images/loader/ELITE-dealership-white.png') }}" style="width:270px; margin-bottom:30px;" width="332">
                     </a>
                 </div>
         </div>
     </div>
 </div>
+<style>
+    .bg_img {
+        background-image: url('/images/loader/Nissan_Elite_banner_bg.png');
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 25px;
+    }
+</style>
 {% endblock %}

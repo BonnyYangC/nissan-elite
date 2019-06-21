@@ -8,7 +8,7 @@
     }
 
     .bgimg {
-        background-image: url('/images/Nissan_Elite_coming_soon_bg.png');
+        background-image: url('/images/loader/Nissan_Elite_banner_bg.png');
         height: 100%;
         background-position: center;
         background-size: cover;
