@@ -273,13 +273,13 @@ class TableFieldMap{
             'training'              =>'points_train_online',//'credits_training_online', //training
             'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
-            'registration'          =>'credits_registration',
-            'incentive'             =>'credits_incentive',
-            'adjustment'            =>'credits_adjustment',
-            'excellence'            =>'credits_excellence',
-            'credit_mtd'            =>'CREDITS_MONTHLY',
-            'credit_ytd'            =>'CREDITS_YTD',
-            'lifetime'              =>'CREDITS_ytd_lifetime',
+            'registration'          =>'points_registration',//'credits_registration',
+            'incentive'             =>'points_incentive',//'credits_incentive',
+            'adjustment'            =>'points_adjust',//'credits_adjustment',
+            'excellence'            =>'points_excellence',//'credits_excellence',
+            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
@@ -305,13 +305,13 @@ class TableFieldMap{
             'training'              =>'points_train_online',//'credits_training_online', //training
             'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
-            'registration'          =>'credits_registration',
-            'incentive'             =>'credits_incentive',
-            'adjustment'            =>'credits_adjustment',
-            'excellence'            =>'credits_excellence',
-            'credit_mtd'            =>'CREDITS_MONTHLY',
-            'credit_ytd'            =>'CREDITS_YTD',
-            'lifetime'              =>'CREDITS_ytd_lifetime',
+            'registration'          =>'points_registration',//'credits_registration',
+            'incentive'             =>'points_incentive',//'credits_incentive',
+            'adjustment'            =>'points_adjust',//'credits_adjustment',
+            'excellence'            =>'points_excellence',//'credits_excellence',
+            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
