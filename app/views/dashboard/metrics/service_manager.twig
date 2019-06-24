@@ -3,7 +3,7 @@
     <script>
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
+            {//1. Service overall satisfaction NPS 3 month rolling score - Target 78
                 el: 'chart-recommendation',
                 max: 730,
                 length: 5,
@@ -12,7 +12,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
             },
-            {
+            {//2. Value for money NPS 6 month rolling score - Target 68
                 el: 'chart-clean',
                 max: 730,
                 length: 5,
@@ -21,7 +21,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CLEAN)|raw }}
             },
-            {
+            {//3. F1 (Fixed it right first time) NPS 3 month rolling score - Target 79
                 el: 'chart-follow-up',
                 max: 730,
                 length: 5,
@@ -30,16 +30,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.FOLLOWUP)|raw }}
             },
-            {
-                el: 'chart-emw',
-                max: 400,
-                length: 4,
-                step: 100,
-                colors: ['#c40030'],
-                pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.EMW)|raw }}
-            },
-            {
+            {//4. Customer Paid Repair Orders vs Target Monthly Target
                 el: 'chart_customer_paid_repair',
                 max: 730,
                 length: 5,
@@ -58,7 +49,16 @@
                 isStacked: true,
                 colors: ['#111111', '#c40030' ,'#555555','#3273dc'],
                 dataSource: {{ json_encode(metrics.TRAINING)|raw }}
-            }
+            }/* not using
+            {
+                el: 'chart-emw',
+                max: 400,
+                length: 4,
+                step: 100,
+                colors: ['#c40030'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.EMW)|raw }}
+            },*/
         ];
     </script>
     <div class="container bg-white pr-25 pr-25">
