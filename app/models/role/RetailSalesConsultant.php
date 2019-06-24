@@ -114,7 +114,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $new=$recommendation=$FU=$FUcredSAT=$training=$sales_results=$recommendation_results=$fu_results=[];
+        $new=$salespersonSatisfactionScore=$followUpSatisfactionScore=$keptInformedDeliveryScore=$training=$sales_results=$recommendation_results=$followUpSatisfaction=[];
         for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
@@ -122,44 +122,70 @@ class RetailSalesConsultant extends BaseRole implements IRole
             if($item)
             {
                 $new[]              = $this->_buildForJs($item['credit_actual_sales']);
-                $recommendation[]   = $this->_buildForJs($item['ce_recommendation']);
-                $FU[]               = $this->_buildForJs($item['follow_up_credit']);
-                $FUcredSAT[]        = $this->_buildForJs($item['follow_up_credit_sat']);
+                //fleet sales executives
+                $vFleetTargetScore[]   = $this->_buildForJs($item['v_fleet_target_score']); 
+                $fleetVolumeGrowthScore[]   = $this->_buildForJs($item['fleet_volumn_growth_score']); 
+                //retail sales consultant
+                $salespersonSatisfactionScore[]   = $this->_buildForJs($item['salesperson_satisfaction_score']);
+                $keptInformedDeliveryScore[]        = $this->_buildForJs($item['kept_informed_delivery_score']);
+                $followUpSatisfactionScore[]               = $this->_buildForJs($item['follow_up_satisfaction_score']);
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
-                $followUpScoreSAT[]        = $this->_buildForTableElement($item['follow_up_score_sat'],0);
                 $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
-                $recommendation_results[]   = $this->_buildForTableElement($item['score_recommendation']).'%';
-                $fu_results[]               = $this->_buildForTableElement($item['follow_up_score']).'%';
+                //fleet sales executives
+                $vFleetTarget[]   = $this->_buildForTableElement($item['v_fleet_target']).'%'; 
+                $fleetVolumeGrowth[]   = $this->_buildForTableElement($item['fleet_volumn_growth']).'%'; 
+                //retail sales consultant
+                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']).'%';
+                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery'],0);
+                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']).'%';
             }
             else
             {
                 $new[]              = $this->_buildForJs(0);
-                $recommendation[]   = $this->_buildForJs(0);
-                $FU[]               = $this->_buildForJs(0);
-                $FUcredSAT[]        = $this->_buildForJs(0);
+                //fleet sales executives
+                $vFleetTargetScore[]   = $this->_buildForJs(0);
+                $fleetVolumeGrowthScore[]   = $this->_buildForJs(0);
+                //retail sales consultant
+                $salespersonSatisfactionScore[]   = $this->_buildForJs(0);
+                $followUpSatisfactionScore[]               = $this->_buildForJs(0);
+                $keptInformedDeliveryScore[]        = $this->_buildForJs(0);
                 $followUpCreditSAT[]= $this->_buildForJs(0);
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
-                $recommendation_results[]   = null;
-                $fu_results[]               = null;
+                //fleet sales executives
+                $vFleetTarget[]   = null;
+                $fleetVolumeGrowth[]   = null;
+                //retail sales consultant
+                $salespersonSatisfaction[]   = null;
+                $keptInformedDelivery[] = null;
+                $followUpSatisfaction[]               = null;
             }
         }
 
         return [
             // For js array
             "JS_newVehicleSales"    =>$new,
-            "JS_reCommendation"     =>$recommendation,
-            "JS_followUpCredits"    =>$FU,
-            "JS_followUpCredSat"    =>$FUcredSAT,
+            //fleet sales executives
+            "JS_vFleetTarget" => $vFleetTargetScore,
+            "JS_fleetVolumeGrowth" =>$fleetVolumeGrowthScore,
+            //retail sales consultant
+            "JS_salespersonSatisfaction"     =>$salespersonSatisfactionScore, //
+            "JS_keptInformedDelivery"    =>$keptInformedDeliveryScore,
+            "JS_followUpSatisfaction"    =>$followUpSatisfactionScore,
+
             "JS_training"           =>$training,
+
             // For PHP array
-            "followUpScoreSAT"     => $followUpScoreSAT,
             "salesResult"               =>$sales_results,
-            "followUpCredit"             =>$kept_informed,
-            "salesRecommendationResult" =>$recommendation_results,
-            "followUpCredits"           =>$fu_results,
+            //fleet sales executives
+            "vFleetTarget" => $vFleetTarget,
+            "fleetVolumeGrowth" => $fleetVolumeGrowth,
+            //retail sales consultant
+            "salespersonSatisfaction" =>$salespersonSatisfaction,
+            "keptInformedDelivery"     => $keptInformedDelivery,
+            "followUpSatisfaction"           =>$followUpSatisfaction,
         ];
     }
 

@@ -4,25 +4,7 @@
         console.log({{ json_encode(metrics.JS_followUpScoreSat)|raw }})
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
-                el: 'chart-followup',
-                max: 60,
-                length: 6,
-                step: 10,
-                colors: ['#999999'],
-                pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.JS_followUpCredits)|raw }}
-            },
-            {
-                el: 'chart-kept-informed',
-                max: 250,
-                length: 25,
-                step: 50,
-                colors: ['#999999'],
-                pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.JS_followUpCredSat)|raw }}
-            },
-            {
+            { //1. new vehicle sales
                 el: 'chart-vehicle-sales',
                 max: 5000,
                 length: 10,
@@ -31,16 +13,34 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_newVehicleSales)|raw }}
             },
-            {
-                el: 'chart-recommendation',
+            { //2. Salesperson Satisfaction NPS 6 month Rolling Score
+                el: 'chart-salesperson-satisfaction',
                 max: 5000,
                 length: 10,
                 step: 500,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.JS_reCommendation)|raw }}
+                dataSource: {{ json_encode(metrics.JS_salespersonSatisfaction)|raw }}
             },
-            {
+            { //3. Kept informed of delivery NPS 3 month rolling score - Target 88
+                el: 'chart-kept-informed',
+                max: 250,
+                length: 25,
+                step: 50,
+                colors: ['#999999'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.JS_keptInformedDelivery)|raw }}
+            },
+            { //4. Satisfaction with follow up NPS 6 month rolling score - Target 93
+                el: 'chart-followup',
+                max: 60,
+                length: 6,
+                step: 10,
+                colors: ['#999999'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.JS_followUpSatisfaction)|raw }}
+            },
+            { //5. training
                 el: 'chart-training',
                 max: 3000,
                 length: 12,
@@ -107,12 +107,12 @@
                     <div class="col-md-7">
                         <div class="table-responsive">
                             <h3>2. Salesperson Satisfaction NPS 6 month Rolling Score </h3>
-                            <div id="chart-recommendation" class="metrics-chart-wrap"></div>
+                            <div id="chart-salesperson-satisfaction" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesRecommendationResult } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salespersonSatisfaction } %}
                                 </tr>
                             </table>
                         </div>
@@ -152,7 +152,7 @@
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.followUpScoreSAT } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.keptInformedDelivery } %}
 
                                 </tr>
                             </table>
@@ -189,7 +189,7 @@
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.followUpCredits } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.followUpSatisfaction } %}
                                 </tr>
                             </table>
                         </div>

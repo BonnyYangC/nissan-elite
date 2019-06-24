@@ -65,7 +65,7 @@ class DataSource extends BaseModel
         User::RETAIL_SALES_CONSULTANTS      => 'nissan_salesconsultants',
         // User::FLEET_SALES_MANAGER           => 'nissan_salesconsultants',
         // User::FLEET_SALES_CONSULTANTS       => 'nissan_salesconsultants',
-        User::FLEET_SALES_EXECUTIVES        => 'nissan_salesconsultants',
+        User::FLEET_SALES_EXECUTIVES        => 'nissan_fleetsalesexecutives',
         User::SALES_MANAGER                 => 'nissan_salesmanagers',
         User::SERVICE_ADVISERS              => 'nissan_serviceadvisors',
         User::FI                            => 'nissan_fi',

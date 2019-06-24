@@ -229,28 +229,57 @@ class TableFieldMap{
     }
 
     /**
+     * Get the field name map for Fleet Sales Executives
+     * @return array
+     */
+    public static function FleetSalesExecutivesTable(){
+        $map = [
+            'period'                =>'d_statement',
+            'member_id'             =>'regi#', //'_amb_id',
+            'dealer_code'           =>'dcode',
+            'credit_bf'             =>'points_carried',  //'credits_carried_forward',
+            'sales'                 =>'sales_status',  //new vehicle sales //'sales',
+            'credit_actual_sales'   =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
+            'v_fleet_target'  =>'percentage_actF',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
+            'v_fleet_target_score'     =>'points_actF',//'credits_ce_OSAT', //points for fleet sales v fleet target 
+            'fleet_volumn_growth'       =>'percentage_actFV',//'ce_score_FU%', //percentage of fleet volume growth (quarterly)
+            'fleet_volumn_growth_score'      =>'points_actFV',//'credits_ce_FU%', //points for fleet volume growth (quarterly)
+            'training'              =>'points_train_online',//'credits_training_online', //training
+            'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
+            'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
+            'registration'          =>'credits_registration',
+            'incentive'             =>'credits_incentive',
+            'adjustment'            =>'credits_adjustment',
+            'excellence'            =>'credits_excellence',
+            'credit_mtd'            =>'CREDITS_MONTHLY',
+            'credit_ytd'            =>'CREDITS_YTD',
+            'lifetime'              =>'CREDITS_ytd_lifetime',
+        ];
+        return $map;
+    }
+
+    /**
      * Get the field name map for Consultant Sales
      * @return array
      */
     public static function ConsultantSalesTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'_amb_id',
+            'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'credits_carried_forward',
-            'sales'                 =>'sales',
-            'credit_actual_sales'   =>'credits_actual_sales',
-            'score_recommendation'  =>'ce_score_OSAT',
-            'ce_recommendation'     =>'credits_ce_OSAT',
-            'follow_up_score'       =>'ce_score_FU%',
-            'follow_up_credit'      =>'credits_ce_FU%',
-            'follow_up_score_sat'   =>'ce_score_FUSAT',
-            'follow_up_credit_sat'  =>'credits_ce_FUSAT',
-            'training'              =>'credits_training_online',
-            'training_competency'   =>'credits_training_competency',
-            'pathway'               =>'credits_training_pathway',
+            'credit_bf'             =>'points_carried',  //'credits_carried_forward',
+            'sales'                 =>'sales_status',  //new vehicle sales //'sales',
+            'credit_actual_sales'   =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
+            'salesperson_satisfaction'  =>'score_ce_SOS',//percentage of salesperson satisfaction
+            'salesperson_satisfaction_score'     =>'points_ce_SOS',//points for salesperson satisfaction
+            'kept_informed_delivery_score'   =>'points_ce_KID', //points for kept informed of delivery
+            'kept_informed_delivery'  =>'score_ce_KID', //kept informed of delivery
+            'follow_up_satisfaction'       =>'score_ce_SFU',//satisfaction follow up
+            'follow_up_satisfaction_score'      =>'points_ce_SFU',//points for satisfaction follow up
+            'training'              =>'points_train_online',//'credits_training_online', //training
+            'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
+            'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
             'registration'          =>'credits_registration',
-//            'classroom'             =>'credits_training_classroom',
             'incentive'             =>'credits_incentive',
             'adjustment'            =>'credits_adjustment',
             'excellence'            =>'credits_excellence',
