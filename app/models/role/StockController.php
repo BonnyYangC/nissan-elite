@@ -64,18 +64,24 @@ class StockController extends BaseRole implements IRole
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $stock[] = $this->_buildForJs($item['stock_credit']);
+                $stock_results[] = $this->_buildForTableElement($item['stock'],0);
+                //2
                 $ow[] = $this->_buildForJs($item['ow_credit']);
+                $ow_results[] = $this->_buildForTableElement($item['ow'],0);
+                //3
                 $retail[] = $this->_buildForJs($item['retail_credit']);
+                $retail_results[] = $item['retail'] == 1 ? 'YES' : 'NO';
+                //4
                 $matched[] = $this->_buildForJs($item['matched_credit']);
+                $matched_results[] = $this->_buildForTableElement($item['matched'],0);
+                //5
                 $davo[] = $this->_buildForJs($item['davo_credit']);
+                $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
+                //6
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
-                $stock_results[] = $this->_buildForTableElement($item['stock'],0);
-                $ow_results[] = $this->_buildForTableElement($item['ow'],0);
-                $retail_results[] = $item['retail'] == 1 ? 'YES' : 'NO';
-                $matched_results[] = $this->_buildForTableElement($item['matched'],0);
-                $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
             }
             else
             {
