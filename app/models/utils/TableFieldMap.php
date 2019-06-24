@@ -154,6 +154,32 @@ class TableFieldMap{
     }
 
     /**
+     * Get the field name map for Parts & Sales Representative
+     * @return array
+     */
+    public static function PartnerRepresentativeTable(){
+        $map = [
+            'period'                =>'d_statement',
+            'member_id'             =>'regi#',//'_amb_id',
+            'dealer_code'           =>'dcode',
+            'credit_bf'             =>'points_carried', //'credits_carried_forward',
+            'grp'                   =>'percentage_grp', //genuine replacement parts
+            'grp_credit'            =>'points_GRP', //'credits_GRP',
+            'training'              =>'points_train_online',//'credits_training_online',
+            'training_competency'   =>'points_train_competency',//'credits_training_competency',
+            'pathway'               =>'points_train_pathway',//'credits_training_pathway',
+            'registration'          =>'points_registration',//'credits_registration',
+            'incentive'             =>'points_incentive',//'credits_incentive',
+            'adjustment'            =>'points_adjust',//'credits_adjustment',
+            'excellence'            =>'points_excellence',//'credits_excellence',
+            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+        ];
+        return $map;
+    }
+
+    /**
      * Get the field name map for Finance Controller
      * @return array
      */
@@ -355,32 +381,6 @@ class TableFieldMap{
             'retail_midmth'         =>'credits_retail_forecast',
             'order_write_credit'    =>'credits_ow_match',
             'order_write_variation' =>'ow_match',
-        ];
-        return $map;
-    }
-
-    /**
-     * Get the field name map for services manager
-     * @return array
-     */
-    public static function PartnerRepresentativeTable(){
-        $map = [
-            'period'                =>'d_statement',
-            'member_id'             =>'_amb_id',
-            'dealer_code'           =>'dcode',
-            'credit_bf'             =>'credits_carried_forward',
-            'grp'                   =>'percentage_grp',
-            'grp_credit'            =>'credits_GRP',
-            'training'              =>'credits_training_online',
-            'training_competency'   =>'credits_training_competency',
-            'pathway'               =>'credits_training_pathway',
-            'registration'          =>'credits_registration',
-            'incentive'             =>'credits_incentive',
-            'adjustment'            =>'credits_adjustment',
-            'excellence'            =>'credits_excellence',
-            'credit_mtd'            =>'CREDITS_MONTHLY',
-            'credit_ytd'            =>'CREDITS_YTD',
-            'lifetime'              =>'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
