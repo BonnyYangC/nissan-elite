@@ -20,21 +20,22 @@ class TableFieldMap{
      */
     public static function UserTable(){
         $map = [
-            'employee_code'=>'_amb_id',
+            'employee_code'=>'regi#',//'_amb_id',
             'salutation'=>'n_title',
             'firstname'=>'n_fname_trim',
             'lastname'=>'n_sname_trim',
             'mobile'=>'ph_mobile',
             'email'=>'addr_email',
-            'company_code'=>'d_code',
-            'position'=>'sp',   // position
-            'dept'=>'amba~LMSd_ambidAmthyr::dept_code',
+            'company_code'=>'dcode',//'d_code',
+            'position'=>'sp',   // ==position
+            'dept'=>'dept_code',//'amba~LMSd_ambidAmthyr::dept_code',
             'active'=>'status',
             'registered'=>'registered',
-            'member'=>'ac_mbr',
-            'dob'=>'date_of_birth',
+            'member'=>'elite_mbr',//'ac_mbr',
+            'dob'=>'date_birth',//'date_of_birth',
             'date_created'=>'date_created',
-            'met_criteria' => 'amba_STAT_ambid_gmthyr::eligible_EOY'
+            //'met_criteria' => 'amba_STAT_ambid_gmthyr::eligible_EOY'
+            'registered' => 'registered',
         ];
 
         return $map;
@@ -464,18 +465,18 @@ class TableFieldMap{
      */
     public static function NissanDealersTable(){
         $map = [
-            'company_name'          =>'d_name',
-            'company_code'          =>'d_code',
+            'company_name'          =>'dname',//'d_name',
+            'company_code'          =>'dcode',//'d_code',
             'company_address'       =>'addr_street',
             'company_suburb'        =>'addr_city',
             'company_postcode'      =>'addr_pcode',
             'company_state'         =>'addr_state',
             'company_phone'         =>'ph_tel',
             'company_fax'           =>'ph_fax',
-            'category'              =>'d_cat',
-            'category_code'         =>'d_cat_#',
-            'region'                =>'r_name',
-            'region_code'           =>'r_code',
+            'category'              =>'dcat',//'d_cat',
+            'category_code'         =>'dcat#',//'d_cat_#',
+            'region'                =>'rname',//'r_name',
+            'region_code'           =>'rcode',//'r_code',
         ];
         $newFieldsAddByJustin = [];
         return array_merge($map, $newFieldsAddByJustin);
