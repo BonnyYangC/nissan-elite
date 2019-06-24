@@ -66,25 +66,29 @@ class FinanceController extends BaseRole implements IRole
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $financial[]    = $this->_buildForJs( [$item['frequency_credits']] );
-                $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
-                $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
-                $training[]     = $this->_buildForJs( [$item['training'], $item['pathway'], $item['training_competency']] );
-
                 $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
-                $ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
-                //$balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
-
+                //2
+                $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
                 try{
                     $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
                     $submission_results[]   = $sub->format('d/M');
                 }catch (\Exception $exception){
                     $submission_results[]   = $item['quality'];
                 }
-
-
+                //3
+                $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
                 $checklist_results[]    = $this->_buildForTableElement($item['checklist'],0);
                 $meeting_results[]      = $this->_buildForTableElement($item['meeting'],0);
+
+                $training[]     = $this->_buildForJs( [$item['training'], $item['pathway'], $item['training_competency']] );
+
+                //$ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
+                //$balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
+
+
+
             }
             else
             {
@@ -94,8 +98,8 @@ class FinanceController extends BaseRole implements IRole
                 $training[]     = $this->_buildForJs( [0,0,0] );
 
                 $frequency_results[]    = null;
-                $ontime_results[]       = null;
-                $balance_results[]      = null;
+                //$ontime_results[]       = null;
+                //$balance_results[]      = null;
                 $submission_results[]   = null;
                 $checklist_results[]    = null;
                 $meeting_results[]      = null;
@@ -105,13 +109,13 @@ class FinanceController extends BaseRole implements IRole
         return [
             "FINANCIAL" => $financial,
             "FREQUENCY_RESULTS" => $frequency_results,
-            "ONTIME_RESULTS" => $ontime_results,
             "QUALITY" => $quality,
-            "BALANCE_RESULTS" => $balance_results,
             "SUBMISSION_RESULTS" => $submission_results,
             "MANAGEMENT" => $management,
             "CHECKLIST_RESULTS" => $checklist_results,
             "MEETING_RESULTS" => $meeting_results,
+            //"ONTIME_RESULTS" => $ontime_results,
+            //"BALANCE_RESULTS" => $balance_results,
             "TRAINING" => $training
         ];
     }

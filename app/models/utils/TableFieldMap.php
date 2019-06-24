@@ -185,32 +185,32 @@ class TableFieldMap{
      */
     public static function FinanceControllerTable(){
         $map = [
-            'period'                =>'mth_yr',
-            'member_id'             =>'_amb_id',
+            'period'                =>'mthyrg',//'mth_yr',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'credits_carried_forward',
-            'frequency'             =>'bmo_frequency',
-            'frequency_credits'     =>'credits_frequency',
-            'ontime'                =>'bmo_ontime',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'frequency'             =>'bmo_frequency', //dealer financial reporting - submitted
+            'frequency_credits'     =>'points_frequency',//'credits_frequency',
+            'quality'               =>'bmo_quality',//Quality of data submission //'bmo_qlty_sub',
+            'quality_credit'        =>'points_quality',//'credits_qlty_sub',
+            'checklist'             =>'bmo_checklist', //nissan business mgmt data accuracy
+            'checklist_credit'      =>'points_checklist',//'credits_bmo_checklist',
+            'meeting'               =>'bmo_meeting', //nissan business mgmt BDG attendance
+            'meeting_credit'        =>'points_meetings',//'credits_bmo_meetings',
+            /*'ontime'                =>'bmo_ontime',
             'ontime_credits'        =>'credits_ontime',
             'balance'               =>'bmo_balance',
-            'balance_credit'        =>'credits_balance',
-            'quality'               =>'bmo_qlty_sub',
-            'quality_credit'        =>'credits_qlty_sub',
-            'checklist'             =>'bmo_checklist',
-            'checklist_credit'      =>'credits_bmo_checklist',
-            'meeting'               =>'bmo_meeting',
-            'meeting_credit'        =>'credits_bmo_meetings',
-            'training'              =>'credits_training_online',
-            'training_competency'   =>'credits_training_competency',
-            'pathway'               =>'credits_training_pathway',
-            'registration'          =>'credits_registration',
-            'incentive'             =>'credits_incentive',
-            'adjustment'            =>'credits_adjustment',
-            'excellence'            =>'credits_excellence',
-            'credit_mtd'            =>'CREDITS_MONTHLY',
-            'credit_ytd'            =>'CREDITS_YTD',
-            'lifetime'              =>'CREDITS_ytd_lifetime',
+            'balance_credit'        =>'credits_balance',*/
+            'training'              =>'points_train_online',//'credits_training_online',
+            'training_competency'   =>'points_train_competency',//'credits_training_competency',
+            'pathway'               =>'points_train_pathway',//'credits_training_pathway',
+            'registration'          =>'points_registration',//'credits_registration',
+            'incentive'             =>'points_incentive',//'credits_incentive',
+            'adjustment'            =>'points_adjust',//'credits_adjustment',
+            'excellence'            =>'points_excellence',//'credits_excellence',
+            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }

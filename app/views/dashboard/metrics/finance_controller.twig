@@ -4,7 +4,7 @@
     var TRAINING = [{{ metrics.TRAINING|raw }}];
 
     var CHART_DATA = [
-        {
+        {//1. Dealer Financial Reporting
             el: 'chart-financial',
             max: 200,
             length: 5,
@@ -13,7 +13,7 @@
             pilot: ['Month', 'Frequency'],
             dataSource: {{ json_encode(metrics.FINANCIAL)|raw }}
         },
-        {
+        {//2. Quality Of Data Submitted
             el: 'chart-quality',
             max: 550,
             length: 10,
@@ -22,7 +22,7 @@
             pilot: ['Month', 'Balance', 'Submission'],
             dataSource: {{ json_encode(metrics.QUALITY)|raw }}
         },
-        {
+        {//3. Nissan Business Management
             el: 'chart-MANAGEMENT',
             max: 600,
             length: 6,
@@ -31,7 +31,7 @@
             pilot: ['Month','Checklist', 'Attendance'],
             dataSource: {{ json_encode(metrics.MANAGEMENT)|raw }}
         },
-        {
+        {//4. Training
             el: 'chart-training',
             duration: 2000,
             pilot: ['Month', 'Online', 'Pathway','Competency'],
