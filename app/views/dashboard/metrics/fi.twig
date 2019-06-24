@@ -3,7 +3,7 @@
     <script>
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
+            {//1. NFSA Contracts
                 el: 'chart-nfsa',
                 max: 2000,
                 length: 8,
@@ -12,7 +12,16 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.NFSA)|raw }}
             },
-            {
+            {//2. Loyalty &amp; Retention Bonus
+                el: 'chart-retention',
+                max: 200,
+                length: 10,
+                step: 20,
+                colors: ['#111111'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.RETENTION)|raw }}
+            },
+            {//3. Insurance – MVI &amp; MVI/NFSA pkg
                 el: 'chart-mvi-vpi-pkg',
                 max: 800,
                 length: 8,
@@ -21,7 +30,7 @@
                 pilot: ['Month', 'MVI', 'Package'],
                 dataSource: {{ json_encode(metrics.INSURANCE)|raw }}
             },
-            {
+            {//4. EMW Genuine
                 el: 'chart-emw',
                 max: 2000,
                 length: 8,
@@ -30,7 +39,7 @@
                 pilot: ['Month','Genuine'],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
             },
-            {
+            {//5. Dealer Sales Penetration
                 el: 'chart-penetration',
                 max: 1000,
                 length: 4,
@@ -39,7 +48,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.PENETRATION)|raw }}
             },
-            {
+            {//6. CE – Satisfaction with F&I options – NPS – Single Mth
                 el: 'chart-follow-up',
                 max: 500,
                 length: 5,
@@ -47,15 +56,6 @@
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
-            },
-            {
-                el: 'chart-retention',
-                max: 200,
-                length: 10,
-                step: 20,
-                colors: ['#111111'],
-                pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.RETENTION)|raw }}
             },
         ];
     </script>

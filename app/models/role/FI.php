@@ -176,32 +176,32 @@ class FI extends BaseRole implements IRole
             {
                 // chart
                 $nfsa[] = $this->_buildForJs($item['credit_actual_sales']);
-                $emw[] = $this->_buildForJs(
-                    [
-                        $item['credits_emw']
-                    ]
-                );
+                $credits_nfsa_retention[] = $this->_buildForJs($item['credits_nfsa_retention']);
                 $ins[] = $this->_buildForJs(
                     [
                         $item['credits_mvi'],
                         $item['credits_pkg']
                     ]
                 );
+                $emw[] = $this->_buildForJs(
+                    [
+                        $item['credits_emw']
+                    ]
+                );
                 $penetration[] = $this->_buildForJs($item['credits_penetration']);
                 $fu[] = $this->_buildForJs($item['credits_fi']);
-                $credits_nfsa_retention[] = $this->_buildForJs($item['credits_nfsa_retention']);
 
 
                 // table
                 $nfsa_results[] = $this->_buildForTableElement($item['sales_nfsa'],0);
-                $emw_results[] = $this->_buildForTableElement($item['sales_emw'],0);
-                $mmu_results[] = $this->_buildForTableElement($item['sales_mmu'],0);
-                $mvi_results[] = $this->_buildForTableElement($item['sales_mvi'],0);
-                $vpi_results[] = $this->_buildForTableElement($item['sales_vpi'],0);
-                $pkg_results[] = $this->_buildForTableElement($item['sales_pkg'],0);
-                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 1 ) . '%';
-                $fu_results[] = $this->_buildForTableElement($item['score_fi'],1).'%';
                 $sales_nfsa_retention[] = $this->_buildForTableElement($item['sales_nfsa_retention'],0);
+                $mvi_results[] = $this->_buildForTableElement($item['sales_mvi'],0);
+                //$vpi_results[] = $this->_buildForTableElement($item['sales_vpi'],0);
+                $pkg_results[] = $this->_buildForTableElement($item['sales_pkg'],0);
+                $emw_results[] = $this->_buildForTableElement($item['sales_emw'],0);
+                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 1 ) . '%';
+                //$mmu_results[] = $this->_buildForTableElement($item['sales_mmu'],0);
+                $fu_results[] = $this->_buildForTableElement($item['score_fi'],1).'%';
             }
             else
             {
@@ -214,9 +214,9 @@ class FI extends BaseRole implements IRole
 
                 $nfsa_results[] = $this->_buildForTableElement();
                 $emw_results[] = $this->_buildForTableElement();
-                $mmu_results[] = $this->_buildForTableElement();
+                //$mmu_results[] = $this->_buildForTableElement();
                 $mvi_results[] = $this->_buildForTableElement();
-                $vpi_results[] = $this->_buildForTableElement();
+                //$vpi_results[] = $this->_buildForTableElement();
                 $pkg_results[] = $this->_buildForTableElement();
                 $penetration_results[] = $this->_buildForTableElement().'%';
                 $fu_results[] = $this->_buildForTableElement(null).'%';
@@ -227,20 +227,20 @@ class FI extends BaseRole implements IRole
         return  [
             "NFSA"                  => $nfsa,
             "NFSA_RESULTS"          => $nfsa_results,
-            "EMW"                   => $emw,
-            "EMW_RESULTS"           => $emw_results,
-            "MMU_RESULTS"           => $mmu_results,
+            // Retention
+            "RETENTION_RESULTS"     => $sales_nfsa_retention,
+            "RETENTION"             => $credits_nfsa_retention,
             "INSURANCE"             => $ins,
             "INSURANCE_MVI_RESULTS" => $mvi_results,
-            "INSURANCE_VPI_RESULTS" => $vpi_results,
+            //"INSURANCE_VPI_RESULTS" => $vpi_results,
             "INSURANCE_PKG_RESULTS" => $pkg_results,
+            "EMW"                   => $emw,
+            "EMW_RESULTS"           => $emw_results,
+            //"MMU_RESULTS"           => $mmu_results,
             "PENETRATION"           => $penetration,
             "PENETRATION_RESULT"    => $penetration_results,
             "FOLLOW_UP"             => $fu,
             "FOLLOW_UP_RESULTS"     => $fu_results,
-            // Retention
-            "RETENTION_RESULTS"     => $sales_nfsa_retention,
-            "RETENTION"             => $credits_nfsa_retention,
         ];
     }
 }

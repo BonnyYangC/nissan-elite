@@ -221,35 +221,35 @@ class TableFieldMap{
      */
     public static function FiAdministrationTable(){
         $map = [
-            'period'                =>'mth_yr',
-            'member_id'             =>'_amb_id',
+            'period'                =>'mthyrg',//'mth_yr',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'credits_carried_forward',
-            'sales_nfsa'            =>'sales_nfsa_nissan',
-            'credit_actual_sales'   =>'credits_actual_sales',
-            'sales_mvi'             =>'sales_ins_MVI',
-            'credits_mvi'           =>'credits_ins_MVI_CMP',
-            'sales_vpi'             =>'sales_ins_VPI',
-            'credits_vpi'           =>'credits_ins_VPI',
-            'sales_pkg'             =>'sales_ins_pkg',
-            'credits_pkg'           =>'credits_ins_pkg',
-            'sales_emw'             =>'sales_emw_gen',
-            'credits_emw'           =>'credits_emw_gen',
-            'sales_mmu'             =>'sales_ins_MMU_ext',
-            'credits_mmu'           =>'credits_ins_MMU_ext',
-            'penetration'           =>'percentage_penetration',
-            'credits_penetration'   =>'credits_penetration',
-            'score_fi'              =>'ce_score_FISAT',
-            'credits_fi'            =>'credits_ce_FISAT',
-            'registration'          =>'credits_registration',
-            'incentive'             =>'credits_incentive',
-            'adjustment'            =>'credits_adjustment',
-            'excellence'            =>'credits_excellence',
-            'credit_mtd'            =>'CREDITS_MONTHLY',
-            'credit_ytd'            =>'CREDITS_YTD',
-            'lifetime'              =>'CREDITS_ytd_lifetime',
-            'sales_nfsa_retention'    =>'sales_nfsa_retention',
-            'credits_nfsa_retention'  =>'credits_nfsa_retention',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'sales_nfsa'            =>'sales_nfsa',//nfsa finance contract //'sales_nfsa_nissan',
+            'credit_actual_sales'   =>'points_nfsa',//'credits_actual_sales',
+            'sales_nfsa_retention'    =>'sales_nfsa_bonus',//loyalty & retention //'sales_nfsa_retention',
+            'credits_nfsa_retention'  =>'points_nfsa_bonus',//'credits_nfsa_retention',
+            'sales_mvi'             =>'sales_ins_MVI', //MVI Motor Vehicle Insurance
+            'credits_mvi'           =>'points_ins_MVI',//'credits_ins_MVI_CMP',
+            /*'sales_vpi'             =>'sales_ins_VPI',
+            'credits_vpi'           =>'credits_ins_VPI',*/
+            'sales_pkg'             =>'sales_ins_pkg', //MVI & NFSA finance contract package
+            'credits_pkg'           =>'points_ins_pkg',//'credits_ins_pkg',
+            'sales_emw'             =>'sales_emw',//EMW sale Genuine (NAPS) //'sales_emw_gen',
+            'credits_emw'           =>'points_emw',//'credits_emw_gen',
+            /*'sales_mmu'             =>'sales_ins_MMU_ext',
+            'credits_mmu'           =>'credits_ins_MMU_ext',*/
+            'penetration'           =>'percentage_penetration', //dealer sales penetration
+            'credits_penetration'   =>'points_penetration',//'credits_penetration',
+            'score_fi'              =>'score_ce_FISAT1',//customer experience - satisfaction with finance & insurance   //'ce_score_FISAT',
+            'credits_fi'            =>'points_ce_FISAT',//'credits_ce_FISAT',
+            'registration'          =>'points_registration',//'credits_registration',
+            'incentive'             =>'points_incentive',//'credits_incentive',
+            'adjustment'            =>'points_adjust',//'credits_adjustment',
+            'excellence'            =>'points_excellence',//'credits_excellence',
+            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
