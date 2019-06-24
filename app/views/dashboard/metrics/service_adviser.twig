@@ -8,7 +8,7 @@
         {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
+            {//1. Service overall satisfaction NPS 3 month rolling score - Target 78
                 el: 'chart-recommend',
                 max: 640,
                 length: 8,
@@ -17,7 +17,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
             },
-            {
+            {//2. Value for money NPS 6 month rolling score - target 68
                 el: 'chart-advice',
                 max: 640,
                 length: 8,
@@ -26,16 +26,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.VALUE_FOR_MONEY)|raw }}
             },
-            {
-                el: 'chart-emw',
-                max: 400,
-                length: 4,
-                step: 100,
-                colors: ['#c40030'],
-                pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.EMW)|raw }}
-            },
-            {
+            {//3. Advice you can trust NPS 6 month rolling score - Target 80
                 el: 'chart-follow-up',
                 max: 640,
                 length: 8,
@@ -44,7 +35,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.ADVICE)|raw }}
             },
-            {
+            {//4. Customer Paid Repair Orders vs Target Monthly Target
                 el: 'chart-cpr',
                 max: 640,
                 length: 8,
@@ -53,7 +44,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CPR)|raw }}
             },
-            {
+            {//5. TRAINING
                 el: 'chart-training',
                 pilot: ['Month', 'Online', 'Pathway','Competency'],
                 max: 3000,
@@ -62,7 +53,16 @@
                 colors: ['#111111','#c40030','#3273dc'],
                 isStacked: true,
                 dataSource: {{ json_encode(metrics.TRAINING)|raw }}
-            },
+            },/* not using
+            {
+                el: 'chart-emw',
+                max: 400,
+                length: 4,
+                step: 100,
+                colors: ['#c40030'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.EMW)|raw }}
+            },*/
         ];
     </script>
     <div class="container bg-white pl-25 pr-25">

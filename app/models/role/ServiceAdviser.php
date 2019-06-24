@@ -35,21 +35,19 @@ class ServiceAdviser extends BaseRole implements IRole
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $recommendation[] = $this->_buildForJs($item['recom_credit']?$item['recom_credit']:0);
                 $recommendation_results[] = $this->_buildForTableElement($item['recom_score']).'%';
-
-                $emw[] = $this->_buildForJs($item['emw_credit']?$item['emw_credit']:0);
-
-                $advice[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
-                $advice_results[] = $this->_buildForTableElement($item['trust_score']).'%';
-
+//2
                 $valueForMoney[] = $this->_buildForJs($item['fu_credit']?$item['fu_credit']:0);
                 $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
-
+//3
+                $advice[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
+                $advice_results[] = $this->_buildForTableElement($item['trust_score']).'%';
+//4
                 $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
-
-                // get classroom point from both fields: pathway and classroom
-                $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
+                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
+//5
                 $training[] = $this->_buildForJs(
                     [
                         $item['training']?$item['training']:0,
@@ -58,8 +56,10 @@ class ServiceAdviser extends BaseRole implements IRole
                     ]
                 );
 
+                // get classroom point from both fields: pathway and classroom
+                $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
+                $emw[] = $this->_buildForJs($item['emw_credit']?$item['emw_credit']:0);
                 $emw_results[] = $this->_buildForTableElement($item['emw_score'],0);
-                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
             }
             else
             {
