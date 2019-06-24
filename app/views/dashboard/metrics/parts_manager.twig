@@ -3,7 +3,7 @@
     <script>
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
+            {//1. Nissan Genuine replacement Parts
                 el: 'chart-grp',
                 max: 2300,
                 length: 10,
@@ -12,7 +12,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GRP)|raw }}
             },
-            {
+            {//2. Nissan Genuine Accessories
                 el: 'chart-gas',
                 max: 1100,
                 length: 5,
