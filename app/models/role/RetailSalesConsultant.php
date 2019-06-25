@@ -10,10 +10,23 @@ namespace App\models\role;
 
 use App\models\role\status\RetailSalesConsultantStatus;
 use App\models\User;
+use App\models\role\status\IColor;
 
 class RetailSalesConsultant extends BaseRole implements IRole
 {
     public $name='retail_sales_consultant';
+
+    public $salesRecommendationSaturation   = [
+        'label'=>'CE Satisfaction',
+        'backgroundColor' => IColor::RED, 
+        'data'=>[]
+    ];
+
+    public $followUpSaturation             = [
+        'label'=>'Follow Up Sat',
+        'backgroundColor' => IColor::LIGHT_GREEN,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
@@ -49,9 +62,9 @@ class RetailSalesConsultant extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
-                $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
-                $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
-                $this->followUpCreditSat['data'][]  = intval($item['follow_up_credit_sat']);
+                $this->salesRecommendationSaturation['data'][]  = intval($item['salesperson_satisfaction_score']);
+                $this->followUpSaturation['data'][]  = intval($item['follow_up_satisfaction_score']);
+                $this->keptInformed['data'][]  = intval($item['kept_informed_delivery_score']);
                 $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
@@ -66,7 +79,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
-                $this->followUpCreditSat['data'][]  = 0;
+                $this->keptInformed['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -88,8 +101,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
+                $this->keptInformed,
                 $this->followUpSaturation,
-                $this->followUpCreditSat,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
@@ -114,39 +127,33 @@ class RetailSalesConsultant extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $new=$salespersonSatisfactionScore=$followUpSatisfactionScore=$keptInformedDeliveryScore=$training=$sales_results=$recommendation_results=$followUpSatisfaction=[];
+        $new=$salespersonSatisfactionScore=$followUpSatisfactionScore=$keptInformedDeliveryScore=$training=$sales_results=$salespersonSatisfaction=$followUpSatisfaction=$keptInformedDelivery=[];
         for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $new[]              = $this->_buildForJs($item['credit_actual_sales']);
-                //fleet sales executives
-                $vFleetTargetScore[]   = $this->_buildForJs($item['v_fleet_target_score']); 
-                $fleetVolumeGrowthScore[]   = $this->_buildForJs($item['fleet_volumn_growth_score']); 
-                //retail sales consultant
+                $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
+
+                //2
                 $salespersonSatisfactionScore[]   = $this->_buildForJs($item['salesperson_satisfaction_score']);
+                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']).'%';
+                //3
                 $keptInformedDeliveryScore[]        = $this->_buildForJs($item['kept_informed_delivery_score']);
+                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery'],0);
+                //4
+                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']).'%';
                 $followUpSatisfactionScore[]               = $this->_buildForJs($item['follow_up_satisfaction_score']);
+                //5
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
-                $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
-                //fleet sales executives
-                $vFleetTarget[]   = $this->_buildForTableElement($item['v_fleet_target']).'%'; 
-                $fleetVolumeGrowth[]   = $this->_buildForTableElement($item['fleet_volumn_growth']).'%'; 
-                //retail sales consultant
-                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']).'%';
-                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery'],0);
-                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']).'%';
             }
             else
             {
                 $new[]              = $this->_buildForJs(0);
-                //fleet sales executives
-                $vFleetTargetScore[]   = $this->_buildForJs(0);
-                $fleetVolumeGrowthScore[]   = $this->_buildForJs(0);
-                //retail sales consultant
                 $salespersonSatisfactionScore[]   = $this->_buildForJs(0);
                 $followUpSatisfactionScore[]               = $this->_buildForJs(0);
                 $keptInformedDeliveryScore[]        = $this->_buildForJs(0);
@@ -154,10 +161,6 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
-                //fleet sales executives
-                $vFleetTarget[]   = null;
-                $fleetVolumeGrowth[]   = null;
-                //retail sales consultant
                 $salespersonSatisfaction[]   = null;
                 $keptInformedDelivery[] = null;
                 $followUpSatisfaction[]               = null;
@@ -167,10 +170,6 @@ class RetailSalesConsultant extends BaseRole implements IRole
         return [
             // For js array
             "JS_newVehicleSales"    =>$new,
-            //fleet sales executives
-            "JS_vFleetTarget" => $vFleetTargetScore,
-            "JS_fleetVolumeGrowth" =>$fleetVolumeGrowthScore,
-            //retail sales consultant
             "JS_salespersonSatisfaction"     =>$salespersonSatisfactionScore, //
             "JS_keptInformedDelivery"    =>$keptInformedDeliveryScore,
             "JS_followUpSatisfaction"    =>$followUpSatisfactionScore,
@@ -179,10 +178,6 @@ class RetailSalesConsultant extends BaseRole implements IRole
 
             // For PHP array
             "salesResult"               =>$sales_results,
-            //fleet sales executives
-            "vFleetTarget" => $vFleetTarget,
-            "fleetVolumeGrowth" => $fleetVolumeGrowth,
-            //retail sales consultant
             "salespersonSatisfaction" =>$salespersonSatisfaction,
             "keptInformedDelivery"     => $keptInformedDelivery,
             "followUpSatisfaction"           =>$followUpSatisfaction,

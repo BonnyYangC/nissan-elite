@@ -48,23 +48,6 @@ class BaseRole extends BaseModel
         'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
-    public $salesRecommendationSaturation   = [
-        'label'=>'CE Satisfaction',
-        'backgroundColor' => IColor::RED, // dark grey
-        'data'=>[]
-    ];
-    public $followUpSaturation             = [
-        'label'=>'Follow Up Sat',
-        'backgroundColor' => IColor::MID_GREY,
-        'data'=>[]
-    ];
-
-    public $followUpCreditSat             = [
-        'label'=>'Kept Informed',
-        'backgroundColor' => IColor::LOW_RED,
-        'data'=>[]
-    ];
-
     public $trainingData = [
         'label'=>'Training',
         'backgroundColor' => IColor::LIGHT_RED,
@@ -76,7 +59,7 @@ class BaseRole extends BaseModel
         'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
-    
+
     /**
      * Add incentives for all roles
      * @var array
