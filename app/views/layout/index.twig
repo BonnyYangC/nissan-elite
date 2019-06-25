@@ -1,34 +1,58 @@
 {% extends 'layout/3brands.twig' %}
 {% block content %}
-<div class="{{ isPhone or isTablet ? '' : null }}">
-    <div class="container bg_img" align="center">
-        <div class="row" style="margin: 20% auto;">
-            {#entry point for Nissan Elite Individual #}
-            <div class="col-md-6 portfolio-item">
-                <a href="{{ url('/elite_individual') }}">
-                    <img class="img-responsive" src="{{ asset('images/loader/ELITE-individual-white.png') }}" style="width:270px; margin-bottom:30px;" width="332">
-                </a>
-            </div>
-            {#entry point for Nissan Elite Dealership #}
-            <div class="col-md-6 portfolio-item">
-                    <!--<a href="http://dealership.nessanelite.com.au">-->
-                        <a href="http://nissan-events.com.au/excellence-fy18/">
-                        <img class="img-responsive" src="{{ asset('images/loader/ELITE-dealership-white.png') }}" style="width:270px; margin-bottom:30px;" width="332">
+    <div class="{{ isPhone or isTablet ? '' : null }}">
+        <div align="center" class="contrainer bg_img">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="{{ url('/') }}">
+                        <img class="img-responsive center-block" src="{{ asset('images/NT_logo.png') }}">
                     </a>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <img class="img-responsive center-block" alt="" src="{{ asset('images/loader/ELITE-individual-white.png') }}">
+                </div>
+            </div>
+            <div
+                class="row">
+                {#entry point for Nissan Elite Individual #}
+                <div class="col-md-3 col-md-offset-3 individule">
+                    <a href="{{ url('/elite_individual') }}">
+                        <img class="img-responsive" src="{{ asset('images/loader/ELITE-individual-white.png') }}">
+                    </a>
+                </div>
+                {#entry point for Nissan Elite Dealership #}
+                <div
+                    class="col-md-3 dealership">
+                    <!--<a href="http://dealership.nessanelite.com.au">-->
+                    <a href="http://nissan-events.com.au/excellence-fy18/">
+                        <img class="img-responsive" src="{{ asset('images/loader/ELITE-dealership-white.png') }}">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<style>
-    .bg_img {
-        background-image: url('/images/loader/Nissan_Elite_banner_bg.png');
-        height: 100%;
-        background-position: center;
-        background-size: cover;
-        position: relative;
-        color: white;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 25px;
-    }
-</style>
+    <style>
+        .bg_img {
+            background-image: url('/images/loader/Nissan_Elite_bg.png');
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            width: 100%
+        }
+        .individule {
+            margin-right : 1%;
+            background-image: url('/images/loader/Nissan_Individual_bg.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .dealership {
+            margin-left:1%;
+            background-image: url('/images/loader/Nissan_Dealership_bg.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
 {% endblock %}
