@@ -71,27 +71,12 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
 
-    public $followUpPercentage= [
-        'label'=>'Follow Up %',
+    public $keptInformed= [
+        'label'=>'Kept Informed',
         'backgroundColor' => IColor::MID_GREY,
         'data'=>[]
     ];
-    public $matchedOW = [
-        'label'=>'Matched OW',
-        'backgroundColor' => IColor::BLACK,
-        'data'=>[]
-    ];
-    public $DlrRec = [
-        'label'=>'CE Sat',
-        'backgroundColor' => IColor::RED,
-        'data'=>[]
-    ];
-    public $middleMonth = [
-        'label'=>'Forecast',
-        'backgroundColor' => IColor::LIGHT_GREY,
-        'data'=>[]
-    ];
-
+    
     /**
      * Add incentives for all roles
      * @var array

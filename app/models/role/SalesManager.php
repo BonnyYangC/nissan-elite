@@ -9,10 +9,29 @@
 namespace App\models\role;
 use App\models\role\status\SalesManagerStatus;
 use App\models\User;
+use App\models\role\status\IColor;
 
 class SalesManager extends BaseRole implements IRole
 {
     public $name='sales_manager';
+//Matched Ow
+    public $matchedOW = [
+        'label'=>'Matched OW',
+        'backgroundColor' => IColor::BLACK,
+        'data'=>[]
+    ];
+//Retail Forecast
+    public $retailForecast = [
+        'label'=>'Forecast',
+        'backgroundColor' => IColor::LIGHT_GREY,
+        'data'=>[]
+    ];
+//Sales Overall Satisfaction
+    public $DlrRec = [
+        'label'=>'CE Sat',
+        'backgroundColor' => IColor::RED,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
@@ -25,7 +44,7 @@ class SalesManager extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $matched=$new=$recommendations=$followup=$retail=$training=$matched_results=$sales_results=$recommendation_results=$fu_results=$retail_results=[];
+        $matched=$new=$sos=$sos_results=$retail=$training=$matched_results=$sales_results=$kid=$kid_results=$retail_results=[];
         for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
@@ -33,32 +52,37 @@ class SalesManager extends BaseRole implements IRole
 
             if($item)
             {
+                //1
                 $matched[] = $this->_buildForJs($item['order_write_credit']);//
-                $new[] = $this->_buildForJs($item['actual_sales']);//
-                $recommendations[] = $this->_buildForJs($item['ce_recomendation']);//
-                $followup[] = $this->_buildForJs($item['follow_up_ce']);//
-                $retail[] = $this->_buildForJs($item['retail_midmth']);//
-
                 $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0);//
+//2
+                $new[] = $this->_buildForJs($item['actual_sales']);//
                 $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';//
-                $recommendation_results[] = $this->_buildForTableElement($item['score_recommendation'],1).'%';//
-                $fu_results[]       = $this->_buildForTableElement($item['follow_up_score'],1).'%';//
+//3
+                $sos[] = $this->_buildForJs($item['sos_credit']);//
+                $sos_results[] = $this->_buildForTableElement($item['sos'],1).'%';//
+                //4
+                $kid[] = $this->_buildForJs($item['kid_credit']);//
+                $kid_results[]       = $this->_buildForTableElement($item['kid'],1).'%';//
+//5
+                $retail[] = $this->_buildForJs($item['retail_credit']);//
                 $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');//
+                //6
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
             }
             else
             {
                 $matched[] = $this->_buildForJs(0);
                 $new[] = $this->_buildForJs(0);
-                $recommendations[] = $this->_buildForJs(0);
-                $followup[] = $this->_buildForJs(0);
+                $sos[] = $this->_buildForJs(0);
+                $kid[] = $this->_buildForJs(0);
                 $retail[] = $this->_buildForJs(0);
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $matched_results[] = null;
                 $sales_results[] = null;
-                $recommendation_results[] = null;
-                $fu_results[] = null;
+                $sos_results[] = null;
+                $kid_results[] = null;
                 $retail_results[] = null;
             }
         }
@@ -68,11 +92,11 @@ class SalesManager extends BaseRole implements IRole
             "MATCHED_OW_RESULTS" => $matched_results,
             "NEW_VEHICLE_SALES" => $new,
             "SALES_RESULTS" => $sales_results,
-            "RECOMMENDATIONS" => $recommendations,
-            "RECOMMENDATION_RESULTS" => $recommendation_results,
-            "FOLLOW_UP" => $followup,
-            "FU_RESULTS" => $fu_results,
-            "MIDMTH_RETAIL" => $retail,
+            "JS_SOS" => $sos,
+            "SOS_RESULTS" => $sos_results,
+            "JS_KID" => $kid,
+            "KID_RESULTS" => $kid_results,
+            "JS_RETAIL" => $retail,
             "RETAIL_RESULTS" => $retail_results,
             "TRAINING" => $training
         ];
@@ -114,9 +138,9 @@ class SalesManager extends BaseRole implements IRole
                  */
                 $this->matchedOW['data'][]          = intval($item['order_write_credit']);
                 $this->newVehicleSales['data'][]    = intval($item['actual_sales']);
-                $this->followUpPercentage['data'][] = intval($item['follow_up_ce']);
-                $this->DlrRec['data'][]             = intval($item['ce_recomendation']);
-                $this->middleMonth['data'][]        = intval($item['retail_midmth']);
+                $this->keptInformed['data'][] = intval($item['kid_credit']);
+                $this->DlrRec['data'][]             = intval($item['sos_credit']);
+                $this->retailForecast['data'][]        = intval($item['retail_midmth']);
                 $this->trainingData['data'][]           = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
@@ -130,9 +154,9 @@ class SalesManager extends BaseRole implements IRole
                  */
                 $this->matchedOW['data'][] = 0;
                 $this->newVehicleSales['data'][]  = 0;
-                $this->followUpPercentage['data'][]  = 0;
+                $this->keptInformed['data'][]  = 0;
                 $this->DlrRec['data'][]  = 0;
-                $this->middleMonth['data'][]  = 0;
+                $this->retailForecast['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -155,8 +179,8 @@ class SalesManager extends BaseRole implements IRole
                 $this->matchedOW,
                 $this->newVehicleSales,
                 $this->DlrRec,
-                $this->followUpPercentage,
-                $this->middleMonth,
+                $this->keptInformed,
+                $this->retailForecast,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],

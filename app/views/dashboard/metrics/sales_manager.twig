@@ -8,7 +8,7 @@
         {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
+            {//1. MATCHED OW
                 el: 'chart-matched-ow',
                 max: 310,
                 length: 5,
@@ -17,7 +17,7 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.MATCHED_OW)|raw }}
             },
-            {
+            {//2. NEW VEHICLE SALES
                 el: 'chart-new-vehicle',
                 max: 5000,
                 length: 10,
@@ -26,34 +26,34 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.NEW_VEHICLE_SALES)|raw }}
             },
-            {
-                el: 'chart-recommendation',
+            {//3. Sales overall satisfaction NPS 3 month rolling score
+                el: 'chart-sos',
                 max: 1000,
                 length: 5,
                 step: 200,
                 colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.RECOMMENDATIONS)|raw }}
+                dataSource: {{ json_encode(metrics.JS_SOS)|raw }}
             },
-            {
-                el: 'chart-follow-up',
+            {//4. Kept informed of delivery NPS 6 month rolling score - Target 88
+                el: 'chart-kid',
                 max: 500,
                 length: 4,
                 step: 125,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
+                dataSource: {{ json_encode(metrics.JS_KID)|raw }}
             },
-            {
-                el: 'chart-mid-month',
+            {//5. DEALER RETAIL FORECAST
+                el: 'chart-retail',
                 max: 150,
                 length: 5,
                 step: 50,
                 colors: ['#c40030'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.MIDMTH_RETAIL)|raw }}
+                dataSource: {{ json_encode(metrics.JS_RETAIL)|raw }}
             },
-            {
+            {//6. TRAINING
                 el: 'chart-training',
                 pilot: ['Month',  'Online', 'Pathway','Competency'],
                 max: 3000,
@@ -175,12 +175,12 @@
                     <div class="col-md-7">
                         <h3>3. Sales overall satisfaction NPS 3 month rolling score</h3>
                         <div class="table-responsive">
-                            <div id="chart-recommendation" class="metrics-chart-wrap"></div>
+                            <div id="chart-sos" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RECOMMENDATION_RESULTS } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SOS_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -216,12 +216,12 @@
                     <div class="col-md-7">
                         <h3>4. Kept informed of delivery NPS 6 month rolling score - Target 88</h3>
                         <div class="table-responsive">
-                            <div id="chart-follow-up" class="metrics-chart-wrap"></div>
+                            <div id="chart-kid" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
                                     <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FU_RESULTS } %}
+                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.KID_RESULTS } %}
                                 </tr>
                             </table>
                         </div>
@@ -255,7 +255,7 @@
                     <div class="col-md-7">
                         <h3>5. DEALER RETAIL FORECAST</h3>
                         <div class="table-responsive">
-                            <div id="chart-mid-month" class="metrics-chart-wrap"></div>
+                            <div id="chart-retail" class="metrics-chart-wrap"></div>
                             <table class="table table-condensed metrics-table-wrap">
                                 {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                                 <tr>
