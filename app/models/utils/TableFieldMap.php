@@ -441,20 +441,22 @@ class TableFieldMap{
      */
     public static function NissanRankingsTable(){
         $map = [
-            'period'        =>'amba_STAT_ambid_gmthyr::mth_yr',
-            'member_id'     =>'_amb_id',
-            'dealer_code'   =>'d_code',
+            'period'        =>'mthyr_g',//'amba_STAT_ambid_gmthyr::mth_yr',
+            'member_id'     =>'regi#',//'_amb_id',
+            'dealer_code'   =>'dcode',//'d_code',
             'registered'    =>'registered',
-            'category'      =>'d_cat',
+            'category'      =>'dcat',//'d_cat',
             'ranking'       =>'ranking',
-            'total'         =>'yr_2018',
+            'total'         =>'yr_2019', //status
+            'total_platinum'=>'yr_2019_platinum', //platinum
             'role'          =>'sp',
+            'elite_dealer'  => 'award_ELITE_achieved', //elite member
         ];
         $newFieldsAddByJustin = [
-            'region_code'           =>'r_code',
+            'region_code'           =>'rcode',//'r_code',
             'status'                =>'status',
-            'dlr_excellence_bonus'  =>'dlr_excellence_bonus',
-            'calc_dlr_exc'          =>'calc_dlr_exc',
+            'dlr_excellence_bonus'  =>'dlr_excellence_bonus', //?TBD
+            'calc_dlr_exc'          =>'calc_dlr_exc', //?TBD
         ];
         return array_merge($map, $newFieldsAddByJustin);
     }

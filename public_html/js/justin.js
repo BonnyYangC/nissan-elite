@@ -222,16 +222,17 @@ $(document).ready(function(){
                 return {
                     blocks:[],
                     modalTitle:'',
+                    type:'',
                     dialogTableVisible:false,
                     tableTitle:'',
                     lastSelectedRole:null,
                     lastSelectedAction: null,
                     sales_manager_status: false,
-                    sales_manager_high: false,
+                    sales_manager_platinum: false,
                     retail_sales_consultant_status: false,
-                    retail_sales_consultant_high: false,
+                    retail_sales_consultant_platinum: false,
                     fleet_sales_executive_status: false,
-                    fleet_sales_executive_high: false,
+                    fleet_sales_executive_platinum: false,
                 };
             },
             created: function(){
@@ -239,7 +240,6 @@ $(document).ready(function(){
             },
             methods: {
                 handleClick: function(role, action, type){
-                    console.log('type = '+type)
                     var that = this;
                     this.lastSelectedRole = role;
                     this.lastSelectedAction = action;
@@ -252,6 +252,7 @@ $(document).ready(function(){
                             that.modalTitle = res.data.data.modalTitle;
                             that.dialogTableVisible = true;
                             that.tableTitle = that._getRoleNameText(role) + ': ' + action;
+                            that.type = type;
                         }else{
                             that.$notify.error({
                                 title: 'Notes',
@@ -302,8 +303,8 @@ $(document).ready(function(){
                     return name;
                 },
                 printThis: function(){
-                    if(this.lastSelectedAction && this.lastSelectedRole){
-                        window.open('/dashboard/print-rankings?role='+this.lastSelectedRole+'&action='+this.lastSelectedAction);
+                    if(this.lastSelectedAction && this.lastSelectedRole && this.lastSelectedType){
+                        window.open('/dashboard/print-rankings?role='+this.lastSelectedRole+'&action='+this.lastSelectedAction+'&type='+this.lastSelectedType);
                     }else{
                         return false;
                     }

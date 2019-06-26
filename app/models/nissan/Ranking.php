@@ -22,8 +22,12 @@ class Ranking extends BaseModel implements IRole
     const CURRENT           = 'Current';
     const PREVIOUS          = 'Previous';
     const REGIONAL          = 'Regional';
+    const STATE             = 'State';
     const NATIONAL          = 'National';
 
+    const AWARD_STATUS      = 'status';
+    const AWARD_PLATINUM    = 'platinum';
+    
     const STATUS_ACTIVE = true;
     const STATUS_ACTIVE_TEXT = 'active';
     const STATUS_INACTIVE = false;
@@ -235,6 +239,8 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',
+            'nissan_rankings.total_platinum',
+            'nissan_rankings.elite_dealer',
             'users.firstname',
             'users.lastname',
             'company.company_name',

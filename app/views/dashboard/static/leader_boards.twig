@@ -44,9 +44,9 @@
                                                 <h4 class="white">{{ member.name }}</h4>
                                                 <table class="table">
                                                 {% if group.statusAndHighAchiever %}
-                                                    {% for sh in statusHigher %}
+                                                    {% for sh in awardType %}
                                                         <tr>
-                                                            <td><a href="#myPopup" v-on:click.prevent='{{ member.className }}_{{ sh }} =! {{ member.className }}_{{ sh }}'>{{ sh|upper }} {{ sh == 'high' ? 'ACHIEVER' : '' }} AWARD</a></td>
+                                                            <td><a href="#myPopup" v-on:click.prevent='{{ member.className }}_{{ sh }} =! {{ member.className }}_{{ sh }}'>{{ sh|upper }} AWARD</a></td>
                                                         </tr>
 
                                                         {% for action in rankingForAll %}
@@ -158,10 +158,12 @@
                             <el-table :data="block.rows" stripe :row-class-name="tableRowClassName">
                                 <el-table-column property="r" label="Rank" width="80"></el-table-column>
                                 <el-table-column class-name="bold-text sales-name" width="220" property="n" label="Name"></el-table-column>
-                                <el-table-column property="d" width="270" label="Dealership"></el-table-column>
+                                <el-table-column property="d" width="270" label="Dealer"></el-table-column>
+                                <el-table-column v-if="type == 'status'" property="c" label="Points"></el-table-column>
+                                <el-table-column v-if="type == 'platinum'" property="cp" label="Points Platinum"></el-table-column>
                                 <el-table-column property="s" label="State"></el-table-column>
-                                <el-table-column property="c" label="Credits"></el-table-column>
                                 <el-table-column align="center" class-name="reg" property="re" label="Registered"></el-table-column>
+                                <el-table-column align="center" class-name="elite_dealer" property="ed" label="ELITE Dealer"></el-table-column>
                             </el-table>
                         </div>
                     </el-dialog>

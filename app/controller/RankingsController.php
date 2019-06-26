@@ -54,11 +54,12 @@ class RankingsController extends DashboardController
             /**
              * If the role is Fleet sales or fleet sales manager, means no category needed
              */
-            $roles = explode(' ',$role);
+            //$roles = explode(' ',$role);
             // $isFleetSalesOrFleetSalesManager = count($roles) > 1;
             // $role = $isFleetSalesOrFleetSalesManager ? $role[0] : $role;
 
             list($period, $region) = explode(' ',$this->request->param('action'));
+            $awardType = $this->request->param('type') ? $this->request->param('type') : Ranking::AWARD_STATUS;
 
             $thisPeriod = $this->_getThisPeriod($this->userObject, $role);
 
@@ -71,7 +72,7 @@ class RankingsController extends DashboardController
 
             // Retrieve result set from database
             $resultSet = Ranking::GetByRole(
-                $isFleetSalesOrFleetSalesManager ? $role[0] : $role,
+                $role, //$isFleetSalesOrFleetSalesManager ? $role[0] : $role,
                 $thisPeriod,
                 $region
             );
@@ -80,7 +81,7 @@ class RankingsController extends DashboardController
 
             if($role == 'F'){
 
-                $splitIntoRegionRequired = strpos($this->request->param('action'),'Regional');
+                $splitIntoRegionRequired = strpos($this->request->param('action'),Ranking::STATE);
                 /**
                  * In this case, not category title required
                  * 在这种情况下, 不需要分 category, 所以 categoryName 为0
@@ -157,7 +158,7 @@ class RankingsController extends DashboardController
             }
             if($isPrintAction){
                 // Print as csv file
-                return $this->_printRankingsInCsv($result);
+                return $this->_printRankingsInCsv($result, $awardType);
             }else{
                 // Not print
                 echo JsonBuilder::Success([
@@ -171,14 +172,21 @@ class RankingsController extends DashboardController
         }
     }
 
-    private function _printRankingsInCsv($result){
-        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'rankings'.time().'.csv';
+    private function _printRankingsInCsv($result, $type){
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.$type.'rankings'.time().'.csv';
         $fileStream = fopen($filePath,'w');
 
         $writer = Writer::createFromStream($fileStream);
 
         $csvHeader = [
-            'Category','Ranking','Name','Dealer','State','Credits','Registered'
+            'Category',
+            'Ranking',
+            'Name',
+            'Dealer',
+            'State',
+            $type == Ranking::AWARD_STATUS ? 'Points' : 'Points Platinum',
+            'Registered', 
+            'ELITE Dealer'
         ];
         $writer->insertOne($csvHeader);
         foreach ($result as $categoryName=>$rows){
@@ -190,8 +198,9 @@ class RankingsController extends DashboardController
                     $row['n'],
                     $row['d'],
                     $row['s'],
-                    str_replace(',','',$row['c']),
+                    str_replace(',','',$type == Ranking::AWARD_STATUS ? $row['c'] : $row['cp']),
                     $row['re'],
+                    $row['ed']
                 ];
                 $writer->insertOne(implode(',',$record));
             }
@@ -213,20 +222,32 @@ class RankingsController extends DashboardController
      */
     private function _convertRankingRowForFrontendJson($item, $role, $rank = null){
         $re = null;
+        $ed = null;
+        //registered
         if($item['registered'] == '0' || $item['registered'] == 'NO' || empty($item['registered'])){
             $re = 'NO';
         }
         if($item['registered'] == 'YES' || $item['registered'] == 'Registered'){
             $re = 'YES';
         }
+        //elite member
+        if($item['elite_dealer'] == '0' || $item['elite_dealer'] == 'NO' || empty($item['elite_dealer'])){
+            $ed = 'NO';
+        }
+        if($item['elite_dealer'] == 'YES' || $item['elite_dealer'] == '1'){
+            $ed = 'YES';
+        }
+
         return [
             'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
             'r' =>  $rank ? $rank : $item['ranking'], // rank
             'n' =>  ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
             'd' =>  $item['company_name'], // Dealership
             's' =>  $item['company_state'], // state
-            'c' =>  number_format($item['total']), // credits
-            're'=>  $re // registered
+            'c' =>  number_format($item['total']), // status points
+            'cp' =>  number_format($item['total_platinum']), // status points
+            're'=>  $re, // registered
+            'ed'=>  $ed // elite member
         ];
     }
 
@@ -299,18 +320,24 @@ class RankingsController extends DashboardController
         /**
          * 方便的产生
          */
+        //for Sales Manager, Retail Sales Consultant and Fleet Sales Executive
         $this->dataForView['rankingForAll'] = [
-            'Current National','Current Regional','Previous National','Previous Regional'
+            Ranking::CURRENT.' '.Ranking::NATIONAL,
+            Ranking::CURRENT.' '.Ranking::STATE, 
+            Ranking::PREVIOUS.' '.Ranking::NATIONAL,
+            Ranking::PREVIOUS.' '.Ranking::STATE
         ];
+        //for All other roles
         $this->dataForView['rankingForNationalOnly'] = [
-            'Current National','Previous National'
+            Ranking::CURRENT.' '.Ranking::NATIONAL, 
+            Ranking::PREVIOUS.' '.Ranking::NATIONAL
         ];
 
         $this->dataForView['userGroups1'] = $this->_getUsersGroupsArray1();
         $this->dataForView['userGroups2'] = $this->_getUsersGroupsArray2();
         $this->dataForView['userGroups3'] = $this->_getUsersGroupsArray3();
 
-        $this->dataForView['statusHigher'] = ['status', 'high'];
+        $this->dataForView['awardType'] = [Ranking::AWARD_STATUS, Ranking::AWARD_PLATINUM];
 
         $this->render('dashboard/static/leader_boards');
         return;
