@@ -3,11 +3,13 @@
     <style>
         .in_bg_img {
             background-image: url('/images/loader/Nissan_Individual_bg.png');
-            height: 100%;
+            height: auto;
             background-position: center;
             background-size: cover;
-            position: relative;
             width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
         }
     </style>
     <div align="center" class="container in_bg_img">
@@ -24,126 +26,128 @@
             </div>
         </div>
         <div class="row">
-                <div class="col-md-2 col-md-offset-5">
-                    <form id="login-form" method="post" action="{{ url('user/login') }}" class="form-signin" role="form">
-                        <input name="action" type="hidden" value="login">
-                        <input autofocus class="form-control" id="email" name="email" placeholder="Email" type="email"/>
-                        <input class="form-control" id="password" name="password" placeholder="Password" type="password"/>
-                        {% if errorMsg %}
-                            <p style="text-align: center;color: red;margin-top: -17px;font-size: 15px;font-weight: bold;">{{ errorMsg }}</p>
-                        {% endif %}
-                        <button class="btn btn-block bt-login">Submit</button>
-                    </form>
-                    <div class="form-footer">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-7">
-                                <a class="txt-grey9" href="#forgotpassword">
-                                    Forgot password?
-                                </a>
+            <div class="col-md-2 col-md-offset-5">
+                <form id="login-form" method="post" action="{{ url('user/login') }}" class="form-signin" role="form">
+                    <input name="action" type="hidden" value="login">
+                    <input autofocus class="form-control" id="email" name="email" placeholder="Email" type="email"/>
+                    <input class="form-control" id="password" name="password" placeholder="Password" type="password"/>
+                    {% if errorMsg %}
+                        <p style="text-align: center;color: red;margin-top: -17px;font-size: 15px;font-weight: bold;">{{ errorMsg }}</p>
+                    {% endif %}
+                    <button class="btn btn-block bt-login">Submit</button>
+                </form>
+                <div class="form-footer">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-7">
+                            <a class="txt-grey9" href="#forgotpassword">
+                                Forgot password?
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-5">
+                            <a class="txt-grey9" href="#eligible">New to Nissan?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <section id="eligible">
+                <div class="container">
+                    <div style="margin:0 auto; height: 600px; padding-top:200px; text-align: center; font-size:16px; margin-bottom:200px;z-index: 9999;">
+                        <span style="font-size:50px; color:#FFFFFF;">New to Nissan?
+                        </span>
+                        <br><br>
+                        <div class="bs-example">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-parent="#accordion" data-toggle="collapse" href="#collapseOne">1. Can I join
+                                                {{env('PROGRAM_NAME')}}?</a>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapseOne">
+                                        <div class="panel-body">
+                                            <p>If you are currently employed by Nissan Australia in one of the following job functions at a Nissan Dealership in Australia, you are automatically invited to register and participate in the program:<br>
+                                                • Sales Manager<br>
+                                                • Retail Sales Consultant<br>
+                                                • Fleet Sales Consultant<br>
+                                                • F&I Manager<br>
+                                                • Financial Controller<br>
+                                                • Service Manager<br>
+                                                • Service Advisor<br>
+                                                • Stock Controllers<br>
+                                                • Parts Manager<br>
+                                                • Parts Sales Representative<br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">2. How do I register for
+                                                {{env('PROGRAM_NAME')}}?</a>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapseTwo">
+                                        <div class="panel-body">
+                                            <p>Go to
+                                                <a href="http://www.nissanevents.com.au/nissanelite/reg" target="_blank">www.nissanevents.com.au/nissanelite/reg</a>
+                                                and successfully complete the
+                                                {{env('YEAR')}}
+                                                {{env('PROGRAM_NAME')}}
+                                                registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your Nissan ELITE Program registration.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-parent="#accordion" data-toggle="collapse" href="#collapseThree">3. Further queries?</a>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapseThree">
+                                        <div class="panel-body">
+                                            <p>The
+                                                {{env('PROGRAM_NAME')}}
+                                                Service Centre can be contacted on:<br><br>
+                                                Telephone:  	03 9544 9054<br>
+                                                Email:
+                                                {{ env('SUPPORT_EMAIL_ADDRESS') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-5">
-                                <a class="txt-grey9" href="#eligible">New to Nissan?</a>
+                            <p style="color:#FFFFFF;">
+                                <strong>Note:</strong>
+                                Click on any of the above tabs to see more information. Go back to
+                                <a href="#">login</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row" id="forgotpassword">
+                        <div class="col-md-6 col-md-offset-3 col-xs-12">
+                            <div class="fgp-wrap {{ clientAgent.isPhone() ? 'mt-20' : 'pt-200' }}">
+                                <p class="txt-white" style="{{ clientAgent.isPhone() ? 'font-size: 32px;' : null }}">Forgot Password?</p>
+                                <p class="txt-white" style="{{ clientAgent.isPhone() ? 'font-size: 32px;' : null }}">Please enter your registered email address.</p>
+                                <input class="form-control" id="Email" name="Email" placeholder="Email Address" type="email" v-model="email">
+                                <el-button :loading="inProgress" class="btn btn-block bt-login fgp-submit-btn" v-on:click="onSubmit($event)">Submit</el-button>
+                                <p class="txt-white fs-14 mt-10">
+                                    <strong>Note:</strong>
+                                    Go back to
+                                    <a href="#">login</a>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
     </div>
-    <section id="eligible">
-        <div class="container">
-            <div style="margin:0 auto; height: 600px; padding-top:200px; text-align: center; font-size:16px; margin-bottom:200px;z-index: 9999;">
-                <span style="font-size:50px; color:#FFFFFF;">New to Nissan?
-                </span>
-                <br><br>
-                <div class="bs-example">
-                    <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-parent="#accordion" data-toggle="collapse" href="#collapseOne">1. Can I join
-                                        {{env('PROGRAM_NAME')}}?</a>
-                                </h4>
-                            </div>
-                            <div class="panel-collapse collapse" id="collapseOne">
-                                <div class="panel-body">
-                                    <p>If you are currently employed by Nissan Australia in one of the following job functions at a Nissan Dealership in Australia, you are automatically invited to register and participate in the program:<br>
-                                        • Sales Manager<br>
-                                        • Retail Sales Consultant<br>
-                                        • Fleet Sales Consultant<br>
-                                        • F&I Manager<br>
-                                        • Financial Controller<br>
-                                        • Service Manager<br>
-                                        • Service Advisor<br>
-                                        • Stock Controllers<br>
-                                        • Parts Manager<br>
-                                        • Parts Sales Representative<br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">2. How do I register for
-                                        {{env('PROGRAM_NAME')}}?</a>
-                                </h4>
-                            </div>
-                            <div class="panel-collapse collapse" id="collapseTwo">
-                                <div class="panel-body">
-                                    <p>Go to
-                                        <a href="http://www.nissanevents.com.au/nissanelite/reg" target="_blank">www.nissanevents.com.au/nissanelite/reg</a>
-                                        and successfully complete the
-                                        {{env('YEAR')}}
-                                        {{env('PROGRAM_NAME')}}
-                                        registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your Nissan ELITE Program registration.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-parent="#accordion" data-toggle="collapse" href="#collapseThree">3. Further queries?</a>
-                                </h4>
-                            </div>
-                            <div class="panel-collapse collapse" id="collapseThree">
-                                <div class="panel-body">
-                                    <p>The
-                                        {{env('PROGRAM_NAME')}}
-                                        Service Centre can be contacted on:<br><br>
-                                        Telephone:  	03 9544 9054<br>
-                                        Email:
-                                        {{ env('SUPPORT_EMAIL_ADDRESS') }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p style="color:#FFFFFF;">
-                        <strong>Note:</strong>
-                        Click on any of the above tabs to see more information. Go back to
-                        <a href="#">login</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <div class="row" id="forgotpassword">
-                <div class="col-md-6 col-md-offset-3 col-xs-12">
-                    <div class="fgp-wrap {{ clientAgent.isPhone() ? 'mt-20' : 'pt-200' }}">
-                        <p class="txt-white" style="{{ clientAgent.isPhone() ? 'font-size: 32px;' : null }}">Forgot Password?</p>
-                        <p class="txt-white" style="{{ clientAgent.isPhone() ? 'font-size: 32px;' : null }}">Please enter your registered email address.</p>
-                        <input class="form-control" id="Email" name="Email" placeholder="Email Address" type="email" v-model="email">
-                        <el-button :loading="inProgress" class="btn btn-block bt-login fgp-submit-btn" v-on:click="onSubmit($event)">Submit</el-button>
-                        <p class="txt-white fs-14 mt-10">
-                            <strong>Note:</strong>
-                            Go back to
-                            <a href="#">login</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 {% endblock %}
