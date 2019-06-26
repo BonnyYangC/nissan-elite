@@ -41,6 +41,28 @@ class TableFieldMap{
         return $map;
     }
 
+    /**
+     * Get map for nissan ranking table
+     * @return array
+     */
+    public static function NissanDealersTable(){
+        $map = [
+            'company_name'          =>'dname',//'d_name',
+            'company_code'          =>'dcode',//'d_code',
+            'company_address'       =>'addr_street',
+            'company_suburb'        =>'addr_city',
+            'company_postcode'      =>'addr_pcode',
+            'company_state'         =>'addr_state',
+            'company_phone'         =>'ph_tel',
+            'company_fax'           =>'ph_fax',
+            'category'              =>'dcat',//'d_cat',
+            'category_code'         =>'dcat#',//'d_cat_#',
+            'region'                =>'rname',//'r_name',
+            'region_code'           =>'rcode',//'r_code',
+        ];
+        $newFieldsAddByJustin = [];
+        return array_merge($map, $newFieldsAddByJustin);
+    }
 
     /**
      * Get the user's table map
@@ -48,12 +70,13 @@ class TableFieldMap{
      */
     public static function RegionStaffTable(){
         $map = [
-            'alt_position'=>'Region',
-            'firstname'=>'fname',
-            'lastname'=>'sname',
-            'email'=>'email',
-            'mobile'=>'mobile',
+            'alt_position'=>'region',//'Region',
+            'firstname'=>'first name',//'fname',
+            //'lastname'=>'sname', //TBD
+            'email'=>'Email Address',//'email',
+            //'mobile'=>'mobile', //TBD
             'position'=>'Position',
+            'active' => 'active'
         ];
         return $map;
     }
@@ -392,37 +415,37 @@ class TableFieldMap{
      */
     public static function RegionTerritoryReportTable(){
         $map = [
-            'dsm_full_name'         =>'amba_deal~REGI_rcode::n_fullname',
-            'region_name'           =>'amba_deal~REGI_rcode::r_name',
-            'region_code'           =>'amba_deal~REGI_rcode::r_code',
-            'dealer_code'           =>'d_code',
-            'dealer_name'           =>'d_name',
-            'dealer_cat'            =>'d_cat',  // Dealer's category, metro or district ...
+            'dsm_full_name'         =>'elit~dREG_dcode::n_fullname',//'amba_deal~REGI_rcode::n_fullname',
+            'region_name'           =>'rname',//'amba_deal~REGI_rcode::r_name',
+            'region_code'           =>'rcode',//'amba_deal~REGI_rcode::r_code',
+            'dealer_code'           =>'dcode',//'d_code',
+            'dealer_name'           =>'dname',//'d_name',
+            'dealer_cat'            =>'dcat',//'d_cat',  // Dealer's category, metro or district ...
             'sp_code'               =>'sp_code',
-            'employee_code'         =>'_amb_id',
+            'employee_code'         =>'regi#',//'_amb_id',
             'n_fullname'            =>'n_fullname',
             'position'              =>'position',
             'registered'            =>'registered',
-            'credits_monthly_04'    =>'amba_STAT_04_apr::CREDITS_MONTHLY',
-            'credits_monthly_05'    =>'amba_STAT_05_may::CREDITS_MONTHLY',
-            'credits_monthly_06'    =>'amba_STAT_06_jun::CREDITS_MONTHLY',
-            'credits_monthly_07'    =>'amba_STAT_07_jul::CREDITS_MONTHLY',
-            'credits_monthly_08'    =>'amba_STAT_08_aug::CREDITS_MONTHLY',
-            'credits_monthly_09'    =>'amba_STAT_09_sep::CREDITS_MONTHLY',
-            'credits_monthly_10'    =>'amba_STAT_10_oct::CREDITS_MONTHLY',
-            'credits_monthly_11'    =>'amba_STAT_11_nov::CREDITS_MONTHLY',
-            'credits_monthly_12'    =>'amba_STAT_12_dec::CREDITS_MONTHLY',
-            'credits_monthly_01'    =>'amba_STAT_01_jan::CREDITS_MONTHLY',
-            'credits_monthly_02'    =>'amba_STAT_02_feb::CREDITS_MONTHLY',
-            'credits_monthly_03'    =>'amba_STAT_03_mar::CREDITS_MONTHLY',
-            'cr_ytd'                =>'amba_STAT_ambid_gmthyr::CREDITS_YTD',
+            'credits_monthly_04'    =>'elit~engi_regi#04mthyrg::POINTS_MTHLY',//'amba_STAT_04_apr::CREDITS_MONTHLY',
+            'credits_monthly_05'    =>'elit~engi_regi#05mthyrg::POINTS_MTHLY',//'amba_STAT_05_may::CREDITS_MONTHLY',
+            'credits_monthly_06'    =>'elit~engi_regi#06mthyrg::POINTS_MTHLY',//'amba_STAT_06_jun::CREDITS_MONTHLY',
+            'credits_monthly_07'    =>'elit~engi_regi#07mthyrg::POINTS_MTHLY',//'amba_STAT_07_jul::CREDITS_MONTHLY',
+            'credits_monthly_08'    =>'elit~engi_regi#08mthyrg::POINTS_MTHLY',//'amba_STAT_08_aug::CREDITS_MONTHLY',
+            'credits_monthly_09'    =>'elit~engi_regi#09mthyrg::POINTS_MTHLY',//'amba_STAT_09_sep::CREDITS_MONTHLY',
+            'credits_monthly_10'    =>'elit~engi_regi#10mthyrg::POINTS_MTHLY',//'amba_STAT_10_oct::CREDITS_MONTHLY',
+            'credits_monthly_11'    =>'elit~engi_regi#11mthyrg::POINTS_MTHLY',//'amba_STAT_11_nov::CREDITS_MONTHLY',
+            'credits_monthly_12'    =>'elit~engi_regi#12mthyrg::POINTS_MTHLY',//'amba_STAT_12_dec::CREDITS_MONTHLY',
+            'credits_monthly_01'    =>'elit~engi_regi#01mthyrg::POINTS_MTHLY',//'amba_STAT_01_jan::CREDITS_MONTHLY',
+            'credits_monthly_02'    =>'elit~engi_regi#02mthyrg::POINTS_MTHLY',//'amba_STAT_02_feb::CREDITS_MONTHLY',
+            'credits_monthly_03'    =>'elit~engi_regi#03mthyrg::POINTS_MTHLY',//'amba_STAT_03_mar::CREDITS_MONTHLY',
+            'cr_ytd'                =>'points_ytd_status',//'amba_STAT_ambid_gmthyr::CREDITS_YTD',
 //            'cr_ytd'                =>'cr_ytd',
         ];
         return $map;
     }
 
     /**
-     * Get map for nissan credits table
+     * Get map for nissan credits table -- not using now
      * @return array
      */
     public static function NissanCreditsTable(){
@@ -461,26 +484,4 @@ class TableFieldMap{
         return array_merge($map, $newFieldsAddByJustin);
     }
 
-    /**
-     * Get map for nissan ranking table
-     * @return array
-     */
-    public static function NissanDealersTable(){
-        $map = [
-            'company_name'          =>'dname',//'d_name',
-            'company_code'          =>'dcode',//'d_code',
-            'company_address'       =>'addr_street',
-            'company_suburb'        =>'addr_city',
-            'company_postcode'      =>'addr_pcode',
-            'company_state'         =>'addr_state',
-            'company_phone'         =>'ph_tel',
-            'company_fax'           =>'ph_fax',
-            'category'              =>'dcat',//'d_cat',
-            'category_code'         =>'dcat#',//'d_cat_#',
-            'region'                =>'rname',//'r_name',
-            'region_code'           =>'rcode',//'r_code',
-        ];
-        $newFieldsAddByJustin = [];
-        return array_merge($map, $newFieldsAddByJustin);
-    }
 }

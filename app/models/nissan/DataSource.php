@@ -34,19 +34,19 @@ class DataSource extends BaseModel
      * @var array
      */
     public static $_rolesMap = [
-        User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
-        // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
+        User::FI                            => 'Finance & Insurance Manager',
+        User::FINANCE_CONTROLLER            => 'Financial Controller',
         // User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
         User::FLEET_SALES_EXECUTIVES        => 'Fleet Sales Executive',
-        User::SALES_MANAGER                 => 'Sales Manager',
-        User::SERVICE_ADVISERS              => 'Service Advisor',
-        User::FI                            => 'Finance & Insurance Manager',
-        User::STOCK_CONTROLLER              => 'Stock Controller',
-        User::FINANCE_CONTROLLER            => 'Financial Controller',
+        // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
         User::PARTS_MANAGER                 => 'Parts Manager',
         User::PARTS_SALES_REP               => 'Parts & Sales Representative',
-        User::SERVICE_MANAGER               => 'Service Manager',
         User::DISTRICT_SALES_MANAGER        => 'Region Territory Report',
+        User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
+        User::SALES_MANAGER                 => 'Sales Manager',
+        User::SERVICE_ADVISERS              => 'Service Advisor',
+        User::SERVICE_MANAGER               => 'Service Manager',
+        User::STOCK_CONTROLLER              => 'Stock Controller',
     ];
 
     public static $_rolesMapOld = [

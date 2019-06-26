@@ -103,7 +103,7 @@ class AdminController extends BaseController
         unset($this->dataForView['roles'][User::DISTRICT_SALES_MANAGER]);
 
         $this->dataForView['summary'] = [
-            Credit::TABLE_NAME=>'Nissan Credits',
+            /*Credit::TABLE_NAME=>'Nissan Credits',*/
             Ranking::TABLE_NAME=>'Nissan Rankings',
             User::DISTRICT_SALES_MANAGER=>'Region Territory Report'
         ];
