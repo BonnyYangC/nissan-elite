@@ -60,7 +60,7 @@ class RankingsController extends DashboardController
 
             list($period, $region) = explode(' ',$this->request->param('action'));
             $awardType = $this->request->param('type') ? $this->request->param('type') : Ranking::AWARD_STATUS;
-
+            $region = Ranking::NATIONAL;
             $thisPeriod = $this->_getThisPeriod($this->userObject, $role);
 
             if($period == Ranking::PREVIOUS){
@@ -81,7 +81,7 @@ class RankingsController extends DashboardController
 
             if($role == 'F'){
 
-                $splitIntoRegionRequired = strpos($this->request->param('action'),Ranking::STATE);
+                //$splitIntoRegionRequired = strpos($this->request->param('action'),Ranking::REGIONAL);
                 /**
                  * In this case, not category title required
                  * 在这种情况下, 不需要分 category, 所以 categoryName 为0
@@ -90,9 +90,10 @@ class RankingsController extends DashboardController
                 $currentRegion = null;
                 $currentRegionName = null;
 
-                if($splitIntoRegionRequired){
+                if($region == Ranking::REGIONAL){
                     foreach ($resultSet as $key => $item) {
                         $item['total'] = floatval($item['total']);
+                        $item['total_platinum'] = floatval($item['total_platinum']);
                         if($currentRegion !== $item['region']){
                             $currentRegion = $item['region'];
                             $currentRegionName = Company::GetRegionName($currentRegion);
@@ -117,6 +118,7 @@ class RankingsController extends DashboardController
                 }else{
                     foreach ($resultSet as $key => $item) {
                         $item['total'] = floatval($item['total']);
+                        $item['total_platinum'] = floatval($item['total_platinum']);
                         $result[0]['category'] = null;
                         $result[0]['rows'][] = $this->_convertRankingRowForFrontendJson(
                             $item,
@@ -224,17 +226,18 @@ class RankingsController extends DashboardController
         $re = null;
         $ed = null;
         //registered
-        if($item['registered'] == '0' || $item['registered'] == 'NO' || empty($item['registered'])){
+        if(in_array($item['registered'],['NO', '0']) || empty($item['registered'])){
             $re = 'NO';
         }
-        if($item['registered'] == 'YES' || $item['registered'] == 'Registered'){
+        
+        if(in_array($item['registered'],['YES', 'registered', 'Registered'])){
             $re = 'YES';
         }
         //elite member
-        if($item['elite_dealer'] == '0' || $item['elite_dealer'] == 'NO' || empty($item['elite_dealer'])){
+        if(in_array($item['elite_dealer'],['NO', '0']) || empty($item['elite_dealer'])){
             $ed = 'NO';
         }
-        if($item['elite_dealer'] == 'YES' || $item['elite_dealer'] == '1'){
+        if(in_array($item['elite_dealer'],['YES', '1'])){
             $ed = 'YES';
         }
 
@@ -322,17 +325,25 @@ class RankingsController extends DashboardController
          */
         //for Sales Manager, Retail Sales Consultant and Fleet Sales Executive
         $this->dataForView['rankingForAll'] = [
-            Ranking::CURRENT.' '.Ranking::NATIONAL,
+            Ranking::CURRENT,
+            Ranking::PREVIOUS
+            /*Ranking::CURRENT.' '.Ranking::NATIONAL,
             Ranking::CURRENT.' '.Ranking::STATE, 
             Ranking::PREVIOUS.' '.Ranking::NATIONAL,
-            Ranking::PREVIOUS.' '.Ranking::STATE
+            Ranking::PREVIOUS.' '.Ranking::STATE*/
         ];
         //for All other roles
         $this->dataForView['rankingForNationalOnly'] = [
             Ranking::CURRENT.' '.Ranking::NATIONAL, 
             Ranking::PREVIOUS.' '.Ranking::NATIONAL
         ];
-
+/* TBD
+        $this->dataForView['userGroups'] = [
+            [$this->_getUsersGroupsArray1(),
+            $this->_getUsersGroupsArray2()],
+            [$this->_getUsersGroupsArray3()]
+        ];
+*/
         $this->dataForView['userGroups1'] = $this->_getUsersGroupsArray1();
         $this->dataForView['userGroups2'] = $this->_getUsersGroupsArray2();
         $this->dataForView['userGroups3'] = $this->_getUsersGroupsArray3();
@@ -389,7 +400,7 @@ class RankingsController extends DashboardController
             [
                 'name'=>'Service',
                 'statusAndHighAchiever' => false,
-                'forAll' => false,
+                'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-service',
                 'members'=>[
@@ -403,7 +414,7 @@ class RankingsController extends DashboardController
             [
                 'name'=>'Parts',
                 'statusAndHighAchiever' => false,
-                'forAll' => false,
+                'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-parts',
                 'members'=>[
@@ -427,7 +438,7 @@ class RankingsController extends DashboardController
 [
                 'name'=>'Admin',
                 'statusAndHighAchiever' => false,
-                'forAll' => false,
+                'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-admin',
                 'members'=>[

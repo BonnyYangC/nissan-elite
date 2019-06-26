@@ -241,6 +241,7 @@ $(document).ready(function(){
             methods: {
                 handleClick: function(role, action, type){
                     var that = this;
+                    type = type || 'status';
                     this.lastSelectedRole = role;
                     this.lastSelectedAction = action;
                     this.lastSelectedType = type;
