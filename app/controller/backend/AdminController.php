@@ -73,7 +73,7 @@ class AdminController extends BaseController
         $content .= 'YEAR='.$env['YEAR'].PHP_EOL;
         $content .= 'DEFAULT_TIMEZONE="Australia/Melbourne"'.PHP_EOL;
         $content .= 'dealExcellenceOverviewUrl=http://nissan-events.com.au/excellence-fy18/ac/welcome.html'.PHP_EOL;
-        $content .= 'eventRegisterUrl="http://www.nissan-events.com.au/ac${YEAR}/reg"'.PHP_EOL;
+        $content .= 'eventRegisterUrl="http://www.nissa-nevents.com.au/nissanelite/reg"'.PHP_EOL;
         $content .= 'DB_DRIVER=mysql'.PHP_EOL;
         $content .= 'DB_USER='.$env['DB_USER'].PHP_EOL;
         $content .= 'DB_PASSWORD='.$env['DB_PASSWORD'].PHP_EOL;
