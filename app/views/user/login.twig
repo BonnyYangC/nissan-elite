@@ -3,18 +3,19 @@
     <style>
         .in_bg_img {
             background-image: url('/images/loader/Nissan_Individual_bg.png');
-            height: auto;
+            height: 100vh;
             background-position: center;
             background-size: cover;
             width: 100%;
             position: absolute;
             top: 0;
             bottom: 0;
+            visibility: visible;
         }
     </style>
     <div align="center" class="container in_bg_img">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-3">
                 <a href="{{ url('/') }}">
                     <img class="img-responsive center-block" src="{{ asset('images/NT_logo.png') }}">
                 </a>
@@ -25,8 +26,8 @@
                 <img class="img-responsive center-block" alt="" src="{{ asset('images/loader/ELITE-individual-white.png') }}">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-5">
+        <div class="row" style="margin-top:5%;margin-bottom:5%;">
+            <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
                 <form id="login-form" method="post" action="{{ url('user/login') }}" class="form-signin" role="form">
                     <input name="action" type="hidden" value="login">
                     <input autofocus class="form-control" id="email" name="email" placeholder="Email" type="email"/>
