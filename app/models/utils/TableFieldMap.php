@@ -72,7 +72,7 @@ class TableFieldMap{
         $map = [
             'alt_position'=>'region',//'Region',
             'firstname'=>'first name',//'fname',
-            //'lastname'=>'sname', //TBD
+            'lastname'=>'last name',//'sname',
             'email'=>'Email Address',//'email',
             //'mobile'=>'mobile', //TBD
             'position'=>'Position',
