@@ -71,8 +71,9 @@ class RankingsController extends DashboardController
             $modalTitle .= $thisPeriod->format('F Y');
 
             // Retrieve result set from database
-            $resultSet = Ranking::GetByRole(
+            $resultSet = Ranking::GetByRoleAndAwardType(
                 $role, //$isFleetSalesOrFleetSalesManager ? $role[0] : $role,
+                $awardType,
                 $thisPeriod,
                 $region
             );
@@ -244,11 +245,12 @@ class RankingsController extends DashboardController
         return [
             'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
             'r' =>  $rank ? $rank : $item['ranking'], // rank
+            //'rp' =>  $rank ? $rank : $item['ranking_platinum'], // rank platinum
             'n' =>  ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
             'd' =>  $item['company_name'], // Dealership
             's' =>  $item['company_state'], // state
             'c' =>  number_format($item['total']), // status points
-            'cp' =>  number_format($item['total_platinum']), // status points
+            //'cp' =>  number_format($item['total_platinum']), // status points
             're'=>  $re, // registered
             'ed'=>  $ed // elite member
         ];

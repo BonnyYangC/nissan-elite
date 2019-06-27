@@ -35,14 +35,13 @@ class TableFieldMap{
             'dob'=>'date_birth',//'date_of_birth',
             'date_created'=>'date_created',
             //'met_criteria' => 'amba_STAT_ambid_gmthyr::eligible_EOY'
-            'registered' => 'registered',
         ];
 
         return $map;
     }
 
     /**
-     * Get map for nissan ranking table
+     * Get map for nissan dealer(company) table
      * @return array
      */
     public static function NissanDealersTable(){
@@ -470,6 +469,7 @@ class TableFieldMap{
             'registered'    =>'registered',
             'category'      =>'dcat',//'d_cat',
             'ranking'       =>'ranking',
+            'ranking_platinum'       =>'ranking_platinum',
             'total'         =>'yr_2019', //status
             'total_platinum'=>'yr_2019_platinum', //platinum
             'role'          =>'sp',

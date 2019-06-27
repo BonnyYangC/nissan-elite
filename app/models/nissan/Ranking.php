@@ -142,9 +142,11 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
             'nissan_rankings.ranking',
+            'nissan_rankings.ranking_platinum',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',
+            'nissan_rankings.total_platinum',
             'users.firstname',
             'users.lastname',
             'company.company_name',
@@ -168,6 +170,102 @@ class Ranking extends BaseModel implements IRole
             if($result && is_array($result) && count($result)>0){
                 $result = $result[0];
             }
+        }
+        return $result;
+    }
+
+        /**
+     * Get by give role
+     * @param $position
+     * @param Carbon $period
+     * @param $region
+     * @return array|bool
+     */
+    public static function GetByRoleAndAwardType($position, $awardType, Carbon $period, $region){
+        $companyJoin = ['users.company_id'=>'company_id'];
+
+        $rankingColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.ranking' : 'nissan_rankings.ranking_platinum';
+        $totalColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.total' : 'nissan_rankings.total_platinum';
+
+        if($region === self::NATIONAL){
+            $order = [
+                'nissan_rankings.category',
+                $rankingColumn, //'nissan_rankings.ranking'
+            ];
+        }else{
+            $order = [
+                'company.region',
+                'nissan_rankings.category',
+                $rankingColumn, //'nissan_rankings.ranking',
+            ];
+        }
+
+        if($position === User::FLEET_SALES_EXECUTIVES){
+            // Use 'IN' condition
+            $companyJoin['nissan_rankings.category'] = 'category';
+
+            if($region === self::NATIONAL){
+                $order = $rankingColumn;//'nissan_rankings.ranking';
+            }else{
+                $order = [
+                    'company.region',
+                    $rankingColumn, //'nissan_rankings.ranking',
+                ];
+            }
+        }
+
+        $where = [
+            'AND'=>[
+                'role'=>$position,
+                'period'=>$period->format('Y-m').'-01',
+                'users.company_code[!]'=>80172
+            ],
+            "ORDER" => $order
+        ];
+
+        $joins = [
+            '[><]users'=>['member_id'=>'employee_code'],
+            '[><]company'=>$companyJoin,
+            '[><]lookups'=>[
+                    'company.region'=>'code',
+                    'company.parent_id'=>'company_id',
+            ],
+        ];
+
+        $database = self::DB();
+
+        $columns = [
+            'nissan_rankings.id',
+            'nissan_rankings.period',
+            'nissan_rankings.member_id',
+            'nissan_rankings.dealer_code',
+            $rankingColumn.'(ranking)',
+            /*'nissan_rankings.ranking',
+            'nissan_rankings.ranking_platinum',*/
+            'nissan_rankings.category',
+            'nissan_rankings.registered',
+            $totalColumn.'(total)',
+            /*'nissan_rankings.total',
+            'nissan_rankings.total_platinum',*/
+            'nissan_rankings.elite_dealer',
+            'users.firstname',
+            'users.lastname',
+            'company.company_name',
+            'company.region',
+            'company.parent_id',
+            'company.company_state'
+        ];
+
+        $result = $database->select(
+            self::TABLE_NAME,
+            $joins,
+            $columns,
+            $where
+        );
+
+        if(env('DEV_MODE', false)){
+            dump($database->log() );
+            dump('GetByRoleAndAwardType action');
         }
         return $result;
     }
@@ -236,6 +334,7 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
             'nissan_rankings.ranking',
+            'nissan_rankings.ranking_platinum',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',

@@ -157,10 +157,13 @@
                             <h3>${ block.category }</h3>
                             <el-table :data="block.rows" stripe :row-class-name="tableRowClassName">
                                 <el-table-column property="r" label="Rank" width="80"></el-table-column>
+                                <!--<el-table-column v-if="type == 'status'" property="r" label="Rank" width="80"></el-table-column>
+                                <el-table-column v-if="type == 'platinum'" property="rp" label="Rank" width="80"></el-table-column>-->
                                 <el-table-column class-name="bold-text sales-name" width="220" property="n" label="Name"></el-table-column>
                                 <el-table-column property="d" width="270" label="Dealer"></el-table-column>
                                 <el-table-column v-if="type == 'status'" property="c" label="Points"></el-table-column>
-                                <el-table-column v-if="type == 'platinum'" property="cp" label="Points Platinum"></el-table-column>
+                                <el-table-column v-if="type == 'platinum'" property="c" label="Points Platinum"></el-table-column>
+                                <!--<el-table-column v-if="type == 'platinum'" property="cp" label="Points Platinum"></el-table-column>-->
                                 <el-table-column property="s" label="State"></el-table-column>
                                 <el-table-column align="center" class-name="reg" property="re" label="Registered"></el-table-column>
                                 <el-table-column align="center" class-name="elite_dealer" property="ed" label="ELITE Dealer"></el-table-column>
