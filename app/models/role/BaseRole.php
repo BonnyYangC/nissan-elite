@@ -121,18 +121,19 @@ class BaseRole extends BaseModel
      * @param $period
      */
     protected function _setupLifeTimeAndExcellence($data, $period){
-        $dataResults = isset($data['Results']) ? $data['Results'] : null;
-        if (isset($dataResults[date("M-Y", $period)]))
+        //$dataResults = isset($data['Results']) ? $data['Results'] : null;
+        if (isset($data[date("M-Y", $period)]))
         {
             $this->lifeTime =
-                (isset($dataResults[date("M-Y", $period)]['lifetime']) ?
-                    $dataResults[date("M-Y", $period)]['lifetime'] :
-                    $dataResults[date("M-Y", $period)]['credit_mtd']);
-        }
-
-        if ( !$this->excellenceResult)
-        {
+                (isset($data[date("M-Y", $period)]['lifetime']) ?
+                    $data[date("M-Y", $period)]['lifetime'] :
+                    $data[date("M-Y", $period)]['credit_mtd']);
+        
+        //if ( !$this->excellenceResult)
+        //{
             $this->excellenceResult =$data[date("M-Y", $period)]['excellence'];
+        //}
+        
         }
     }
 

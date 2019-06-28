@@ -84,7 +84,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
-            $this->_setupLifeTimeAndExcellence($data,$period);
+            $this->_setupLifeTimeAndExcellence($dataResults,$period);
         }
 
         // Status

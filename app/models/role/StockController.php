@@ -169,7 +169,7 @@ class StockController extends BaseRole implements IRole
             }
 
             // User parent method to handle lifeTime and excellence
-            $this->_setupLifeTimeAndExcellence($data, $period);
+            $this->_setupLifeTimeAndExcellence($dataResults, $period);
         }
 
         // Status
