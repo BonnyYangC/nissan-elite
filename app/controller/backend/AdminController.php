@@ -470,11 +470,7 @@ class AdminController extends BaseController
                                                 empty($row[$this->indexes[$currentFieldName]]) ?
                                                     null :                                         // If csv value is empty, then use the 0
                                                     $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
-                                            if(strtoupper($newValue) == 'YES'){
-                                                $newValue = 1;
-                                            }elseif (strtoupper($newValue) == 'NO'){
-                                                $newValue = 0;
-                                            }
+                                            $newValue = $this->_stringValueToInteger($newValue);
                                             $model->$currentFieldName = trim($newValue);
                                         }
                                     }
@@ -512,11 +508,7 @@ class AdminController extends BaseController
                                                     empty($row[$this->indexes[$currentFieldName]]) ?
                                                         0 :                                         // If csv value is empty, then use the 0
                                                         $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
-                                                if(strtoupper($newValue) == 'YES'){
-                                                    $newValue = 1;
-                                                }elseif (strtoupper($newValue) == 'NO'){
-                                                    $newValue = 0;
-                                                }
+                                                $newValue = $this->_stringValueToInteger($newValue);
                                                 $model->$currentFieldName = trim($newValue);
                                             }
                                         }
@@ -532,11 +524,7 @@ class AdminController extends BaseController
                                                 empty($row[$rowIndex]) ?
                                                     0 :                                         // If csv value is empty, then use the 0
                                                     $row[$rowIndex];    // If csv value is not empty, save it
-                                            if(strtoupper($newValue) == 'YES'){
-                                                $newValue = 1;
-                                            }elseif (strtoupper($newValue) == 'NO'){
-                                                $newValue = 0;
-                                            }
+                                            $newValue = $this->_stringValueToInteger($newValue);
                                             $model->$fieldName = trim($newValue);
                                         }
                                     }
@@ -581,6 +569,20 @@ class AdminController extends BaseController
                 }
             }
         }
+    }
+
+    private function _stringValueToInteger($stringValue)
+    {
+        $intValue = $stringValue;
+        $arrayFor1 = ['YES'];
+        $arrayFor0 = ['NO'];
+        if( in_array(strtoupper($stringValue), $arrayFor1)){
+            $intValue = 1;
+        }else
+        if( in_array(strtoupper($stringValue), $arrayFor0)){
+            $intValue = 0;
+        }
+        return $intValue;
     }
 
     /**

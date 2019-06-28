@@ -34,7 +34,7 @@ class TableFieldMap{
             'member'=>'elite_mbr',//'ac_mbr',
             'dob'=>'date_birth',//'date_of_birth',
             'date_created'=>'date_created',
-            //'met_criteria' => 'amba_STAT_ambid_gmthyr::eligible_EOY'
+            'met_criteria' => 'criteria_met_EOY',//'amba_STAT_ambid_gmthyr::eligible_EOY'
         ];
 
         return $map;
@@ -468,12 +468,11 @@ class TableFieldMap{
             'dealer_code'   =>'dcode',//'d_code',
             'registered'    =>'registered',
             'category'      =>'dcat',//'d_cat',
-            'ranking'       =>'ranking',
-            'ranking_platinum'       =>'ranking_platinum',
-            'total'         =>'yr_2019', //status
+            'ranking'       =>'rank_STATUS',
+            'ranking_platinum'       =>'rank_PLATINUM',
+            'total'         =>'yr_2019_status', //status
             'total_platinum'=>'yr_2019_platinum', //platinum
             'role'          =>'sp',
-            'elite_dealer'  => 'award_ELITE_achieved', //elite member
         ];
         $newFieldsAddByJustin = [
             'region_code'           =>'rcode',//'r_code',
