@@ -382,7 +382,7 @@ class RankingsController extends DashboardController
                 'name'=>'Fleet',
                 'statusAndHighAchiever' => true,
                 'forAll' => false,
-                'style'  => 'font-family: \'nissan_brandbold\', Helvetica, Arial, sans-serif;',
+                'style'  => 'font-family: \'nissan_brandlight\', Helvetica, Arial, sans-serif;',
                 'className'  => 'button-fleet',
                 'members'=>[
                     [

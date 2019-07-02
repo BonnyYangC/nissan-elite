@@ -29,9 +29,9 @@ a:focus,a:hover{
 	}	
 	
 h1, h2, h3, h4, h5, h6{ 
-	font-family: "nissan_brandbold", Helvetica, Arial, sans-serif;
+	font-family: "nissan_brandlight", Helvetica, Arial, sans-serif;
 	color:#c40030;
-	font-weight:700;
+	/*font-weight:700;*/
 	text-transform:uppercase;
 	}
 	
@@ -132,7 +132,7 @@ h4{
 	
 	
 nav {
-	font-family: "nissan_brandbold", Helvetica, Arial, sans-serif;
+	font-family: "nissan_brandlight", Helvetica, Arial, sans-serif;
 	text-transform:uppercase;
 	}	
 	
@@ -257,7 +257,7 @@ footer ul.nav li a:hover {
 		 }
 
 .btn {
-	font-family: 'nissan_brandbold', sans-serif;
+	font-family: 'nissan_brandlight', sans-serif;
 	margin:0px 0px 5px 0px;
 	}
 
@@ -522,7 +522,7 @@ footer ul.nav li a:hover {
 	padding: 5px;
 	z-index: 999;
 	font-size: 12px;
-	font-family: "nissan_brandbold", sans-serif;
+	font-family: "nissan_brandlight", sans-serif;
 	transition: all 0.25s;
 	cursor: default;
 	display: none;
