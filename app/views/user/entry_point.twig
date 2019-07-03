@@ -1,8 +1,8 @@
 {% extends 'layout/3brands.twig' %}
 {% block content %}
 <div class="{{ isPhone or isTablet ? '' : null }}">
-    <div class="container" align="center">
-        <div class="row" style="margin-top:50px;">
+    <div class="container bg-site-image" align="center">
+        <div class="row" style="margin:50px;width:60%;">
             {% for block in grid %}
             <div class="col-md-4 portfolio-item">
                 <a href="{{ block['url'] }}">
@@ -13,4 +13,18 @@
         </div>
     </div>
 </div>
+<style>
+.bg-site-image{
+    background-image: url('/images/loader/Nissan_Individual_bg.png');
+    height: 100vh;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            visibility: visible;
+}
+
+</style>
 {% endblock %}

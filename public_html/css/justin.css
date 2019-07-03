@@ -4,6 +4,13 @@
 .bg-black{
     background: #000000 !important;
 }
+.bg-site-image{
+    background-image: url('/images/loader/Nissan_Individual_bg.png');
+    /*background-position: center;*/
+    background-size: contain;
+    background-repeat: repeat-y;
+    width:100%;
+}
 .txt-white, .tw{
     color: #ffffff !important;
     text-decoration:none;

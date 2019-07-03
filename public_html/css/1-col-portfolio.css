@@ -95,11 +95,6 @@ h4{
 	margin-top:-10px;
 }
 
-
-.portfolio-item {
-    margin-bottom: 50px;
-}
-
 .sidebar {
     margin: 20px 0 50px 0;
 }
@@ -155,6 +150,12 @@ nav {
 .navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+	background-color: #c40030;
+	color : #ffffff;
 }
 
 footer {
@@ -308,11 +309,6 @@ footer ul.nav li a:hover {
 .alt {
 	color:#555555;
 }
-
-.back{
-	background:#c40030;
-	color:#FFFFFF;
-	}
 	
 .light-back {	
 	background:#d85a7c;			
@@ -320,7 +316,8 @@ footer ul.nav li a:hover {
 	}	
 	
 .table-top-row {
-	background:#c40030;
+	/*background:#c40030;*/
+	background: #4b4b4c;
 	color:#FFFFFF;
 	}
 	
@@ -361,14 +358,21 @@ footer ul.nav li a:hover {
 }
 
 #banner {
-	 padding:0 0 5px 0;
+	 padding:0;
+	 height : 250px; /*TBD*/
 }
 
-
 .navbar-inverse{
-	background:#c40030;
-	}
+	background:#4b4b4c;
+	margin-bottom: 0;
+}
 
+.page-header-title {
+	font-size:25px; 
+	padding-top:0;
+	vertical-align: top;
+	padding-bottom: 5px;
+}
 
 #live-poll-area {
   overflow: auto;

@@ -2,7 +2,7 @@
 <html>
     {{ include('layout/reusable_elements/head.twig') }}
     <body
-        class="bg-black">
+        class="bg-site-image">
         {# Load the navigator from the reuseable element of dashboard #}
         {% if isMobile and env('MOBILE_VERSION','TW')=='APP STYLE' %}
             {% include 'dashboard/reusable_elements/nav_mobile.twig' %}
@@ -10,11 +10,13 @@
             {# Load the top bar from the reuseable element of dashboard #}
             <div class="container" id="banner">
                 {% include 'dashboard/reusable_elements/top_bar.twig' %}
+            </div>
+            <div class="container">
                 {% include 'dashboard/reusable_elements/nav.twig' %}
             </div>
         {% endif %}
 
-        <main class="panel-mask bg-black" id="panel">
+        <main class="panel-mask" id="panel">
             {% if isMobile and env('MOBILE_VERSION','TW')=='APP STYLE' %}
                 {# If mobile devices #}
                 <button class="toggle-button">☰</button>

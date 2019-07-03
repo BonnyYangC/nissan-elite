@@ -174,10 +174,6 @@ class UsersController extends Controller
                 'src'=>asset($imageAssetPrefix.'tile-product-challenge.png'),
             ],
             [
-                'url'=>url('/dashboard/MDguild'),
-                'src'=>asset($imageAssetPrefix.'tile-md-guild.png'),
-            ],
-            [
                 'url'=>url('/dashboard/Incentives'),
                 'src'=>asset($imageAssetPrefix.'tile-incentives.jpg'),
             ],
@@ -194,17 +190,22 @@ class UsersController extends Controller
                 'src'=>asset($imageAssetPrefix.'tile-ce.jpg'),
             ],
             [
+                'url'=>url('/dashboard/Calendar'),
+                'src'=>asset($imageAssetPrefix.'tile-calendar.png'),
+            ],
+            /*
+            [
                 'url'=>env('dealExcellenceOverviewUrl'),
                 'src'=>asset($imageAssetPrefix.'tile-dealership.png'),
             ],
             [
-                'url'=>'#',
-                'src'=>asset($imageAssetPrefix.'tile-worldrewards.jpg'),
+                'url'=>url('/dashboard/MDguild'),
+                'src'=>asset($imageAssetPrefix.'tile-md-guild.png'),
             ],
             [
-                'url'=>url('/dashboard/Calendar'),
-                'src'=>asset($imageAssetPrefix.'tile-calendar.png'),
-            ],
+                'url'=>'#',
+                'src'=>asset($imageAssetPrefix.'tile-worldrewards.jpg'),
+            ],*/
         ];
     }
 

@@ -168,7 +168,6 @@ class FleetSalesExecutive extends RetailSalesConsultant
                 'max'=>$status->getMax(),
             ],
         ];
-var_dump($result);
         return $result;
     }
 }

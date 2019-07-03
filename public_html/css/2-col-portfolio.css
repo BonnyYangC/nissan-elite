@@ -95,11 +95,6 @@ h4{
 	margin-top:-10px;
 }
 
-
-.portfolio-item {
-    margin-bottom: 50px;
-}
-
 .sidebar {
     margin: 20px 0 50px 0;
 }
@@ -352,15 +347,10 @@ footer ul.nav li a:hover {
     width: 100%;
 }
 
-#banner {
-	 padding:0 0 5px 0;
-}
-
-
 .navbar-inverse{
-	background:#c40030;
-	}
-
+	background:#4b4b4c;
+	margin-bottom: 0;
+}
 
 #live-poll-area {
   overflow: auto;
