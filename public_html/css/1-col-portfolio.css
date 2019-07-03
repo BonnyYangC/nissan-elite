@@ -316,8 +316,7 @@ footer ul.nav li a:hover {
 	}	
 	
 .table-top-row {
-	/*background:#c40030;*/
-	background: #4b4b4c;
+	background: #4c4c4c;
 	color:#FFFFFF;
 	}
 	
@@ -359,11 +358,11 @@ footer ul.nav li a:hover {
 
 #banner {
 	 padding:0;
-	 height : 250px; /*TBD*/
+	 height : 300px;
 }
 
 .navbar-inverse{
-	background:#4b4b4c;
+	background:#4c4c4c;
 	margin-bottom: 0;
 }
 

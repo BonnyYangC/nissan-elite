@@ -1,5 +1,5 @@
-{% extends 'layout/frontend.twig' %}
-{% block content %}
+{% extends 'dashboard/metrics.twig' %}
+{% block content_metrics %}
     <script>
         var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
@@ -42,8 +42,8 @@
             }
         ];
     </script>
-    <div class="container bg-white pl-25">
-        <div class="row">
+
+        <!--<div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
                     <a class="print-icon" href="#" onclick="window.print();return false;">
@@ -52,141 +52,133 @@
                     <span class='page-header-title' >MY Metrics - {{ currentRoleText }} </span>
                 </h1>
             </div>
-        </div>
-        <div class="row pb-20 pl-10">
-            <div class="col-md-12 col-sm-12  pb-20 pl-10">
-
-                <div class="row graph-back-top pl-10">
-                    <div class="col-md-7" >
-                        <div class="table-responsive">
-                            <h3>1. NEW VEHICLE SALES</h3>
-                            <div id="chart-vehicle-sales" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesResult } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>NEW VEHICLE SALES GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Member</td>
-                                <td align="center">Fleet</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Fleet Sales Executive</td>
-                                <td align="center">80</td>
+        </div>-->
+    <div class="row pb-20 pl-10">
+        <div class="col-md-12 col-sm-12  pb-20 pl-10">
+            <div class="row graph-back-top pl-10">
+                <div class="col-md-7" >
+                    <div class="table-responsive">
+                        <h3>1. NEW VEHICLE SALES</h3>
+                        <div id="chart-vehicle-sales" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesResult } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-
-                <div class="row graph-back pl-10">
-                    <div class="col-md-7">
-                        <div class="table-responsive">
-                            <h3>2. New Vehicle Fleet Sales v Fleet Target</h3>
-                            <div id="chart-v-fleet-target" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.vFleetTarget } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <h3> New Vehicle Fleet Sales v Fleet Target GUIDE</h3>
-
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Member</td>
-                                <td align="center">100%</td>
-                                <td align="center">110%</td>
-                                <td align="center">120%</td>
-                                <td align="center">140%</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Fleet Sales Executive</td>
-                                <td align="center">440</td>
-                                <td align="center">840</td>
-                                <td align="center">1240</td>
-                                <td align="center">1520</td>
+                <div class="col-md-5">
+                    <h3>NEW VEHICLE SALES GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Member</td>
+                            <td align="center">Fleet</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Fleet Sales Executive</td>
+                            <td align="center">80</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back pl-10">
+                <div class="col-md-7">
+                    <div class="table-responsive">
+                        <h3>2. New Vehicle Fleet Sales v Fleet Target</h3>
+                        <div id="chart-v-fleet-target" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.vFleetTarget } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-
-                <div class="row graph-back pl-10">
-                    <div class="col-md-7">
-                        <h3>3. Fleet Sales Volume Growth</h3>
-                        <div class="table-responsive">
-                            <div id="chart-fleet-volume-growth" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.fleetVolumeGrowth } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>Fleet Sales Volume Growth GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Member</td>
-                                <td align="center">10%</td>
-                                <td align="center">20%</td>
-                                <td align="center">50%</td>
-                                <td align="center">100%</td>
-                                <td align="center">>100%</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Fleet Sales Executive</td>
-                                <td align="center">160</td>
-                                <td align="center">200</td>
-                                <td align="center">320</td>
-                                <td align="center">640</td>
-                                <td align="center">840</td>
+                <div class="col-md-5">
+                    <h3> New Vehicle Fleet Sales v Fleet Target GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Member</td>
+                            <td align="center">100%</td>
+                            <td align="center">110%</td>
+                            <td align="center">120%</td>
+                            <td align="center">140%</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Fleet Sales Executive</td>
+                            <td align="center">440</td>
+                            <td align="center">840</td>
+                            <td align="center">1240</td>
+                            <td align="center">1520</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back pl-10">
+                <div class="col-md-7">
+                    <h3>3. Fleet Sales Volume Growth</h3>
+                    <div class="table-responsive">
+                        <div id="chart-fleet-volume-growth" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.fleetVolumeGrowth } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-
-                <div class="row graph-back pl-10">
-                    <div class="col-md-7">
-                        <h3>4. TRAINING</h3>
-                        <div class="table-responsive">
-                            <div id="chart-training" class="metrics-chart-wrap"></div>
-                        </div>
+                <div class="col-md-5">
+                    <h3>Fleet Sales Volume Growth GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Member</td>
+                            <td align="center">10%</td>
+                            <td align="center">20%</td>
+                            <td align="center">50%</td>
+                            <td align="center">100%</td>
+                            <td align="center">>100%</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Fleet Sales Executive</td>
+                            <td align="center">160</td>
+                            <td align="center">200</td>
+                            <td align="center">320</td>
+                            <td align="center">640</td>
+                            <td align="center">840</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back pl-10">
+                <div class="col-md-7">
+                    <h3>4. TRAINING</h3>
+                    <div class="table-responsive">
+                        <div id="chart-training" class="metrics-chart-wrap"></div>
                     </div>
-
-                    <div class="col-md-5">
-                        <h3>TRAINING GUIDE - FLEET SALES EXECUTIVE</h3>
-                        <table class="table small-table" >
-                            <tr class="table-top-row">
-                                <td>Competency Modules</td>
-                                <td>Points Quarterly</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Certified Fleet Sales Executive (F)</td>
-                                <td>250</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Certified Fleet Sales Executive (O)</td>
-                                <td>250</td>
-                            </tr>
-                        </table>
-                        <p>
-                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">ELITE19 Member Guide</a> for full details.</em>
-                        </p>
-                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>TRAINING GUIDE - FLEET SALES EXECUTIVE</h3>
+                    <table class="table small-table" >
+                        <tr class="table-top-row">
+                            <td>Competency Modules</td>
+                            <td>Points Quarterly</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Certified Fleet Sales Executive (F)</td>
+                            <td>250</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Certified Fleet Sales Executive (O)</td>
+                            <td>250</td>
+                        </tr>
+                    </table>
+                    <p>
+                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">ELITE19 Member Guide</a> for full details.</em>
+                    </p>
                 </div>
             </div>
         </div>
