@@ -141,12 +141,14 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.period',
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
-            'nissan_rankings.ranking',
-            'nissan_rankings.ranking_platinum',
+            'nissan_rankings.rank',
+            'nissan_rankings.rank_platinum',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',
             'nissan_rankings.total_platinum',
+            'nissan_rankings.rank_state',
+            'nissan_rankings.rank_platinum_state',
             'users.firstname',
             'users.lastname',
             'company.company_name',
@@ -178,41 +180,16 @@ class Ranking extends BaseModel implements IRole
      * Get by give role
      * @param $position
      * @param Carbon $period
-     * @param $region
      * @return array|bool
      */
-    public static function GetByRoleAndAwardType($position, $awardType, Carbon $period, $region){
-        $companyJoin = ['users.company_id'=>'company_id'];
+    public static function GetByRoleAndAwardType($position, $awardType, Carbon $period){
+        
 
-        $rankingColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.ranking' : 'nissan_rankings.ranking_platinum';
+        $rankColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.rank' : 'nissan_rankings.rank_platinum';
         $totalColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.total' : 'nissan_rankings.total_platinum';
+        $rankStateColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.rank_state' : 'nissan_rankings.rank_platinum_state';
 
-        if($region === self::NATIONAL){
-            $order = [
-                'nissan_rankings.category',
-                $rankingColumn, //'nissan_rankings.ranking'
-            ];
-        }else{
-            $order = [
-                'company.region',
-                'nissan_rankings.category',
-                $rankingColumn, //'nissan_rankings.ranking',
-            ];
-        }
-
-        if($position === User::FLEET_SALES_EXECUTIVES){
-            // Use 'IN' condition
-            $companyJoin['nissan_rankings.category'] = 'category';
-
-            if($region === self::NATIONAL){
-                $order = $rankingColumn;//'nissan_rankings.ranking';
-            }else{
-                $order = [
-                    'company.region',
-                    $rankingColumn, //'nissan_rankings.ranking',
-                ];
-            }
-        }
+        $order = [$rankStateColumn,$rankColumn];
 
         $where = [
             'AND'=>[
@@ -225,29 +202,25 @@ class Ranking extends BaseModel implements IRole
 
         $joins = [
             '[><]users'=>['member_id'=>'employee_code'],
-            '[><]company'=>$companyJoin,
-            '[><]lookups'=>[
+            '[><]company'=>['category'=>'category','dealer_code'=>'company_code'],
+            /*'[><]lookups'=>[
                     'company.region'=>'code',
                     'company.parent_id'=>'company_id',
-            ],
+            ],*/
         ];
 
         $database = self::DB();
 
         $columns = [
-            'nissan_rankings.id',
+            //'nissan_rankings.id',
             'nissan_rankings.period',
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
-            $rankingColumn.'(ranking)',
-            /*'nissan_rankings.ranking',
-            'nissan_rankings.ranking_platinum',*/
+            $rankColumn.'(rank)',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             $totalColumn.'(total)',
-            /*'nissan_rankings.total',
-            'nissan_rankings.total_platinum',*/
-            'nissan_rankings.elite_dealer',
+            $rankStateColumn.'(rank_state)',
             'users.firstname',
             'users.lastname',
             'company.company_name',
@@ -333,12 +306,14 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.period',
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
-            'nissan_rankings.ranking',
-            'nissan_rankings.ranking_platinum',
+            'nissan_rankings.rank',
+            'nissan_rankings.rank_platinum',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',
             'nissan_rankings.total_platinum',
+            'nissan_rankings.rank_state',
+            'nissan_rankings.rank_platinum_state',
             'nissan_rankings.elite_dealer',
             'users.firstname',
             'users.lastname',

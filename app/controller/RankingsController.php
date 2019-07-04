@@ -49,18 +49,11 @@ class RankingsController extends DashboardController
         $modalTitle = 'YTD ';
 
         if($this->userObject){
+
             $role = trim( $this->request->param('role') );
-
-            /**
-             * If the role is Fleet sales or fleet sales manager, means no category needed
-             */
-            //$roles = explode(' ',$role);
-            // $isFleetSalesOrFleetSalesManager = count($roles) > 1;
-            // $role = $isFleetSalesOrFleetSalesManager ? $role[0] : $role;
-
             list($period, $region) = explode(' ',$this->request->param('action'));
             $awardType = $this->request->param('type') ? $this->request->param('type') : Ranking::AWARD_STATUS;
-            $region = Ranking::NATIONAL;
+
             $thisPeriod = $this->_getThisPeriod($this->userObject, $role);
 
             if($period == Ranking::PREVIOUS){
@@ -74,91 +67,31 @@ class RankingsController extends DashboardController
             $resultSet = Ranking::GetByRoleAndAwardType(
                 $role, //$isFleetSalesOrFleetSalesManager ? $role[0] : $role,
                 $awardType,
-                $thisPeriod,
-                $region
+                $thisPeriod
             );
 
             // Loop result set to convert array to new structure for frontend json
 
-            if($role == 'F'){
-
-                //$splitIntoRegionRequired = strpos($this->request->param('action'),Ranking::REGIONAL);
-                /**
-                 * In this case, not category title required
-                 * 在这种情况下, 不需要分 category, 所以 categoryName 为0
-                 * No region required too
-                 */
-                $currentRegion = null;
-                $currentRegionName = null;
-
-                if($region == Ranking::REGIONAL){
-                    foreach ($resultSet as $key => $item) {
-                        $item['total'] = floatval($item['total']);
-                        $item['total_platinum'] = floatval($item['total_platinum']);
-                        if($currentRegion !== $item['region']){
-                            $currentRegion = $item['region'];
-                            $currentRegionName = Company::GetRegionName($currentRegion);
-                        }
-
-                        if(!$result[$currentRegionName]){
-                            $result[$currentRegionName] = [];
-                            $result[$currentRegionName]['rows'] = [];
-                        }
-
-                        $rankingIndexNumber = $region === Ranking::REGIONAL ?
-                            count($result[$currentRegionName]['rows'])+1 // Regional
-                            : null; // National
-
-                        $result[$currentRegionName]['category'] = $currentRegionName.' Region';
-                        $result[$currentRegionName]['rows'][] = $this->_convertRankingRowForFrontendJson(
-                            $item,
-                            $role,
-                            $rankingIndexNumber
-                        );
-                    }
-                }else{
-                    foreach ($resultSet as $key => $item) {
-                        $item['total'] = floatval($item['total']);
-                        $item['total_platinum'] = floatval($item['total_platinum']);
-                        $result[0]['category'] = null;
-                        $result[0]['rows'][] = $this->_convertRankingRowForFrontendJson(
-                            $item,
-                            $role,
-                            $key + 1
-                        );
-                    }
+            $currentRankState = null;
+            foreach($resultSet as $key => $item){
+                $item['total'] = floatval($item['total']);
+                if($currentRankState !== $item['rank_state']){
+                    $currentRankState = $item['rank_state'];
                 }
 
-            }
-            else{
-                /**
-                 * category title required
-                 * 在这种情况下, 需要分 category 以及 region, 所以 categoryName 要分别的生成
-                 */
-                foreach ($resultSet as $key => $item) {
-                    $categoryName = $region === Ranking::REGIONAL ?
-                        Company::GetRegionName($item['region']).' - Category '.$item['category'] // Regional
-                        : 'Category '.$item['category'];    // National
-
-                    if(!isset($result[$categoryName])){
-                        $result[$categoryName] = [];
-                        $result[$categoryName]['category'] = $categoryName;
-                        $result[$categoryName]['rows'] = [];
-                    }
-
-                    $item['total'] = floatval($item['total']);
-
-                    $rankingIndexNumber = $region === Ranking::REGIONAL ?
-                        count($result[$categoryName]['rows'])+1 // Regional
-                        : null; // National
-
-                    $result[$categoryName]['rows'][] = $this->_convertRankingRowForFrontendJson(
-                        $item,
-                        $role,
-                        $rankingIndexNumber
-                    );
+                if(!$result[$currentRankState]){
+                    $result[$currentRankState] = [];
+                    $result[$currentRankState]['rows'] = [];
                 }
+
+                $result[$currentRankState]['rank_state'] = $currentRankState;
+                $result[$currentRankState]['rows'][] = $this->_convertRankingRowForFrontendJson(
+                    $item,
+                    $role
+                );
+
             }
+
             if($isPrintAction){
                 // Print as csv file
                 return $this->_printRankingsInCsv($result, $awardType);
@@ -182,28 +115,25 @@ class RankingsController extends DashboardController
         $writer = Writer::createFromStream($fileStream);
 
         $csvHeader = [
-            'Category',
-            'Ranking',
+            'Rank',
             'Name',
             'Dealer',
+            'Category',
             'State',
             $type == Ranking::AWARD_STATUS ? 'Points' : 'Points Platinum',
             'Registered', 
-            'ELITE Dealer'
         ];
         $writer->insertOne($csvHeader);
         foreach ($result as $categoryName=>$rows){
-            $cName = str_replace('Category ','',$categoryName);
             foreach ($rows['rows'] as $row) {
                 $record = [
-                    $cName,
                     $row['r'],
                     $row['n'],
                     $row['d'],
+                    $row['c'],
                     $row['s'],
-                    str_replace(',','',$type == Ranking::AWARD_STATUS ? $row['c'] : $row['cp']),
+                    str_replace(',','',$row['p']),
                     $row['re'],
-                    $row['ed']
                 ];
                 $writer->insertOne(implode(',',$record));
             }
@@ -220,13 +150,12 @@ class RankingsController extends DashboardController
      * It's for reduce the key name length, transfer less data across the internet.
      * @param $item
      * @param $role
-     * @param null $rank
      * @return array
      */
-    private function _convertRankingRowForFrontendJson($item, $role, $rank = null){
-        $re = null;
-        $ed = null;
+    private function _convertRankingRowForFrontendJson($item, $role){
+        
         //registered
+        $re = null;
         if(in_array($item['registered'],['NO', '0']) || empty($item['registered'])){
             $re = 'NO';
         }
@@ -234,25 +163,18 @@ class RankingsController extends DashboardController
         if(in_array($item['registered'],['YES', 'registered', 'Registered'])){
             $re = 'YES';
         }
-        //elite member
-        if(in_array($item['elite_dealer'],['NO', '0']) || empty($item['elite_dealer'])){
-            $ed = 'NO';
-        }
-        if(in_array($item['elite_dealer'],['YES', '1'])){
-            $ed = 'YES';
-        }
 
         return [
             'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
-            'r' =>  $rank ? $rank : $item['ranking'], // rank
-            //'rp' =>  $rank ? $rank : $item['ranking_platinum'], // rank platinum
+            'r' =>  $item['rank'], // status/platinum rank
+            //'rp' =>  $rank ? $rank : $item['rank_platinum'], // rank platinum
             'n' =>  ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
             'd' =>  $item['company_name'], // Dealership
             's' =>  $item['company_state'], // state
-            'c' =>  number_format($item['total']), // status points
-            //'cp' =>  number_format($item['total_platinum']), // status points
+            'p' =>  number_format($item['total']), // status/platinum points
+            'c' =>  $item['category'], // category
+            //'cp' =>  number_format($item['total_platinum']), // platinum points
             're'=>  $re, // registered
-            'ed'=>  $ed // elite member
         ];
     }
 
@@ -339,13 +261,7 @@ class RankingsController extends DashboardController
             Ranking::CURRENT.' '.Ranking::NATIONAL, 
             Ranking::PREVIOUS.' '.Ranking::NATIONAL
         ];
-/* TBD
-        $this->dataForView['userGroups'] = [
-            [$this->_getUsersGroupsArray1(),
-            $this->_getUsersGroupsArray2()],
-            [$this->_getUsersGroupsArray3()]
-        ];
-*/
+
         $this->dataForView['userGroups1'] = $this->_getUsersGroupsArray1();
         $this->dataForView['userGroups2'] = $this->_getUsersGroupsArray2();
         $this->dataForView['userGroups3'] = $this->_getUsersGroupsArray3();
@@ -364,31 +280,33 @@ class RankingsController extends DashboardController
         return [
             [
                 'name'   =>'Sales',
-                'statusAndHighAchiever' => true,
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-sales',
                 'members'=>[
                     [
                         'name'=>'Sales Manager','role'=>User::SALES_MANAGER, 
-                        'className' => 'sales_manager'
+                        'className' => 'sales_manager',
+                        'statusAndHighAchiever' => false,
                     ],[
                         'name'=>'Retail Sales Consultant','role'=>User::RETAIL_SALES_CONSULTANTS,
-                        'className' => 'retail_sales_consultant'
+                        'className' => 'retail_sales_consultant',
+                        'statusAndHighAchiever' => true,
                     ]
                 ]
             ],
             [
                 'name'=>'Fleet',
-                'statusAndHighAchiever' => true,
                 'forAll' => false,
                 'style'  => 'font-family: \'nissan_brandlight\', Helvetica, Arial, sans-serif;',
                 'className'  => 'button-fleet',
                 'members'=>[
                     [
                         'name'=>'Fleet Sales Executive','role'=>User::FLEET_SALES_EXECUTIVES,
-                        'className' => 'fleet_sales_executive'
-                    ]                ]
+                        'className' => 'fleet_sales_executive',
+                        'statusAndHighAchiever' => true,
+                    ]                
+                ]
             ]
         ];
     }

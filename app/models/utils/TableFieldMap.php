@@ -466,21 +466,23 @@ class TableFieldMap{
             'period'        =>'mthyr_g',//'amba_STAT_ambid_gmthyr::mth_yr',
             'member_id'     =>'regi#',//'_amb_id',
             'dealer_code'   =>'dcode',//'d_code',
-            'registered'    =>'registered',
             'category'      =>'dcat',//'d_cat',
-            'ranking'       =>'rank_STATUS',
-            'ranking_platinum'       =>'rank_PLATINUM',
+            'rank'       =>'rank_STATUS',
+            'rank_platinum'       =>'rank_PLATINUM',
             'total'         =>'yr_2019_status', //status
             'total_platinum'=>'yr_2019_platinum', //platinum
             'role'          =>'sp',
+            'rank_state'    =>'elit~deal_dcode::state_rank',
+            'rank_platinum_state'    =>'elit~deal_dcode::state_rank_platinum',
         ];
-        $newFieldsAddByJustin = [
+        $notNecessaryFields = [
             'region_code'           =>'rcode',//'r_code',
-            'status'                =>'status',
+            'registered'    =>'registered',
+            'status'                =>'status', //active
             'dlr_excellence_bonus'  =>'dlr_excellence_bonus', //?TBD
             'calc_dlr_exc'          =>'calc_dlr_exc', //?TBD
         ];
-        return array_merge($map, $newFieldsAddByJustin);
+        return array_merge($map, $notNecessaryFields);
     }
 
 }
