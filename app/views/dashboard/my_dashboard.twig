@@ -33,22 +33,8 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <!---- Sales Percentage ---->
-                    <h3>
-                        <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
-                            {{ env('PROGRAM_AWARD_UNIT')|lower }} earned per Month (View Individual Results)
-                        </a>
-                    </h3>
-                    {% if userHasMultipleRoles %}
-                        {% include 'dashboard/widget_element/credits_earned/multiple_roles.twig' %}
-                    {% else %}
-                        {% include 'dashboard/widget_element/credits_earned/single_role.twig' %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+
+        </div>  
         <div class="col-md-3 pb-0">
             <h3>RANKINGS &amp; {{ env('PROGRAM_AWARD_UNIT')|raw }}</h3>
             {% include 'dashboard/widget_element/current_ranking_table.twig' %}
@@ -58,7 +44,22 @@
             {% include 'dashboard/widget_element/dealer_excellence_table.twig' %}
             {% include 'dashboard/widget_element/have_you_met_criteria.twig' %}
             {% include 'dashboard/widget_element/traing_or_track_table.twig' %}
-            {% include 'dashboard/widget_element/events_calendar.twig' %}
+            <!--{% include 'dashboard/widget_element/events_calendar.twig' %}-->
+        </div>  
+    </div>        
+    <div class="row">
+        <div class="col-md-12">
+            <!---- Sales Percentage ---->
+            <h3>
+                <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
+                    {{ env('PROGRAM_AWARD_UNIT')|lower }} earned per Month (View Individual Results)
+                </a>
+            </h3>
+            {% if userHasMultipleRoles %}
+                {% include 'dashboard/widget_element/credits_earned/multiple_roles.twig' %}
+            {% else %}
+                {% include 'dashboard/widget_element/credits_earned/single_role.twig' %}
+            {% endif %}
         </div>
     </div>
 </div>

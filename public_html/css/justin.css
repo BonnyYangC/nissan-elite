@@ -148,14 +148,14 @@
     text-transform: uppercase;
 }
 .el-table__header thead tr{
-    background-color: #c40030;
+    background-color: #4c4c4c;
     color: white;
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
 }
 .el-table__header thead tr th{
-    background-color: #c40030;
+    background-color: #4c4c4c;
     color: white;
     line-height: 1.42857143;
     vertical-align: top;
