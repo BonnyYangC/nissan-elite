@@ -40,7 +40,7 @@ class DataSource extends BaseModel
         User::FLEET_SALES_EXECUTIVES        => 'Fleet Sales Executive',
         // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
         User::PARTS_MANAGER                 => 'Parts Manager',
-        User::PARTS_SALES_REP               => 'Parts & Sales Representative',
+        User::PARTS_SALES_REP               => 'Parts Sales Representative',
         User::DISTRICT_SALES_MANAGER        => 'Region Territory Report',
         User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
         User::SALES_MANAGER                 => 'Sales Manager',

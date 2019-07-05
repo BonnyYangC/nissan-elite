@@ -8,7 +8,7 @@
 
     <hr>
 
-    <h3>Dollar Rewards and {{ env('PROGRAM_AWARD_UNIT')|raw }}</h3>
+    <h3>Dollar Rewards and {{ env('PROGRAM_AWARD_UNIT')|raw }} <span class="no-transform">(achieve your criteria to be rewarded)</span></h3>
     <div class="table-responsive" >
         <table class="table" >
             <tr class="table-top-row">
@@ -32,3 +32,9 @@
         </table>
     </div>
 </div>
+<style>
+    h3 .no-transform{
+        font-size : 16px;
+        text-transform: lowercase;
+    }
+</style>
