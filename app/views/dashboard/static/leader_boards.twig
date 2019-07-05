@@ -45,10 +45,11 @@
                                             <div class="col-md-{{ 12/count(group.members) }}">
                                                 <h4 class="white">{{ member.name }}</h4>
                                                 <table class="table">
-                                                {% if member.statusAndHighAchiever %}
+                                                {% if group.showAwardType %}
                                                     {% for sh in awardType %}
+                                                    {% set t = member.awardType %}
                                                         <tr>
-                                                            <td><a href="#myPopup" v-on:click.prevent='{{ member.className }}_{{ sh }} =! {{ member.className }}_{{ sh }}'>{{ sh|upper }}</a></td>
+                                                            <td><a href="#myPopup" v-if="{{ t[sh] ? 'true' : 'false' }}" v-on:click.prevent='{{ member.className }}_{{ sh }} =! {{ member.className }}_{{ sh }}'>{{ sh|upper}}</a></td>
                                                         </tr>
 
                                                         {% for action in rankingForAll %}
@@ -149,24 +150,24 @@
                 <div class="">
                     <el-dialog title="" :visible.sync="dialogTableVisible" width="70%">
                         <div class="rankings-modal-title-wrap">
-                            <h4 class="modal-title">${ tableTitle } ${ modalTitle } </h4>
+                            <h3 class="modal-title">${ tableTitle } ${ modalTitle } </h3>
                             <a class="print-icon" href="#" v-on:click="printThis()"><i class="fa fa-print" aria-hidden="true" title="Print"></i></a>
                         </div>
                         <div class="rankings-table-title-wrap">
                             <h3 class="text-center text-capitalize">${ modalTitle }</h3>
                         </div>
                         <div class="table-responsive" v-for="(block, idx) in blocks" :key="idx">
-                            <h3>${ block.rank_state }</h3>
+                            <h2 style="padding-left: 15%">${ block.rank_state }</h2>
                             <el-table :data="block.rows" stripe :row-class-name="tableRowClassName">
-                                <el-table-column property="r" label="Rank" width="80"></el-table-column>
+                                <el-table-column align="center" property="r" label="Rank"></el-table-column>
                                 <!--<el-table-column v-if="type == 'status'" property="r" label="Rank" width="80"></el-table-column>
                                 <el-table-column v-if="type == 'platinum'" property="rp" label="Rank" width="80"></el-table-column>-->
-                                <el-table-column class-name="bold-text sales-name" width="220" property="n" label="Name"></el-table-column>
-                                <el-table-column property="d" width="270" label="Dealer"></el-table-column>
-                                <el-table-column property="c" width="270" label="Category"></el-table-column>
-                                <el-table-column property="s" label="State"></el-table-column>
-                                <el-table-column v-if="type == 'status'" property="p" label="Points"></el-table-column>
-                                <el-table-column v-if="type == 'platinum'" property="p" label="Points Platinum"></el-table-column>
+                                <el-table-column align="center" class-name="bold-text sales-name" property="n" label="Name"></el-table-column>
+                                <el-table-column align="center" property="d" label="Dealer"></el-table-column>
+                                <el-table-column align="center" property="c" label="Category"></el-table-column>
+                                <el-table-column align="center" property="s" label="State"></el-table-column>
+                                <el-table-column align="center" v-if="type == 'status'" property="p" label="Points"></el-table-column>
+                                <el-table-column align="center" v-if="type == 'platinum'" property="p" label="Points Platinum"></el-table-column>
                                 <!--<el-table-column v-if="type == 'platinum'" property="cp" label="Points Platinum"></el-table-column>-->
                                 <el-table-column align="center" class-name="reg" property="re" label="Registered"></el-table-column>
                                 <!--<el-table-column align="center" class-name="elite_dealer" property="ed" label="ELITE Dealer"></el-table-column>-->

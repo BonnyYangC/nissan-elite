@@ -62,6 +62,7 @@ class RankingsController extends DashboardController
             }
 
             $modalTitle .= $thisPeriod->format('F Y');
+            $modalTitle .= ' - '.$awardType;
 
             // Retrieve result set from database
             $resultSet = Ranking::GetByRoleAndAwardType(
@@ -280,6 +281,7 @@ class RankingsController extends DashboardController
         return [
             [
                 'name'   =>'Sales',
+                'showAwardType' => true,
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-sales',
@@ -287,16 +289,23 @@ class RankingsController extends DashboardController
                     [
                         'name'=>'Sales Manager','role'=>User::SALES_MANAGER, 
                         'className' => 'sales_manager',
-                        'statusAndHighAchiever' => false,
+                        'awardType' => [
+                            Ranking::AWARD_STATUS => true,
+                            Ranking::AWARD_PLATINUM => false
+                        ]
                     ],[
                         'name'=>'Retail Sales Consultant','role'=>User::RETAIL_SALES_CONSULTANTS,
                         'className' => 'retail_sales_consultant',
-                        'statusAndHighAchiever' => true,
+                        'awardType' => [
+                            Ranking::AWARD_STATUS => true,
+                            Ranking::AWARD_PLATINUM => true
+                        ]
                     ]
                 ]
             ],
             [
                 'name'=>'Fleet',
+                'showAwardType' => true,
                 'forAll' => false,
                 'style'  => 'font-family: \'nissan_brandlight\', Helvetica, Arial, sans-serif;',
                 'className'  => 'button-fleet',
@@ -304,7 +313,10 @@ class RankingsController extends DashboardController
                     [
                         'name'=>'Fleet Sales Executive','role'=>User::FLEET_SALES_EXECUTIVES,
                         'className' => 'fleet_sales_executive',
-                        'statusAndHighAchiever' => true,
+                        'awardType' => [
+                            Ranking::AWARD_STATUS => true,
+                            Ranking::AWARD_PLATINUM => true
+                        ]
                     ]                
                 ]
             ]
@@ -319,7 +331,7 @@ class RankingsController extends DashboardController
         return [
             [
                 'name'=>'Service',
-                'statusAndHighAchiever' => false,
+                'showAwardType' => false,
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-service',
@@ -333,7 +345,7 @@ class RankingsController extends DashboardController
             ],            
             [
                 'name'=>'Parts',
-                'statusAndHighAchiever' => false,
+                'showAwardType' => false,
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-parts',
@@ -357,7 +369,7 @@ class RankingsController extends DashboardController
         return [
 [
                 'name'=>'Admin',
-                'statusAndHighAchiever' => false,
+                'showAwardType' => false,
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-admin',
