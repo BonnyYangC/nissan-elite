@@ -19,7 +19,7 @@ class FinanceController extends BaseRole implements IRole
 
     public $Frequency = [
         'label'=>'Frequency',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::LIGHT_PINK,
         'data'=>[]
     ];
     public $Ontime = [
@@ -29,7 +29,7 @@ class FinanceController extends BaseRole implements IRole
     ];
     public $Balance = [
         'label'=>'Balance',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $Quality = [
@@ -39,7 +39,7 @@ class FinanceController extends BaseRole implements IRole
     ];
     public $Checklist = [
         'label'=>'Accuracy',
-        'backgroundColor' => IColor::RED,
+        'backgroundColor' => IColor::AQUA,
         'data'=>[]
     ];
     public $Meetings = [

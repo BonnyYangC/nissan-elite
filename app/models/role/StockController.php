@@ -30,7 +30,7 @@ class StockController extends BaseRole implements IRole
     ];
     public $RetailMidMth = [
         'label'=> '',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $OWCompliance = [

@@ -11,11 +11,32 @@ namespace App\models\role;
 use App\models\role\status\ServiceManagerStatus;
 use App\models\User;
 use Carbon\Carbon;
+use App\models\role\status\IColor;
 
 class ServiceManager extends BaseRole implements IRole
 {
     public $name='service_manager';
 
+    public $serviceRecommendation = [
+        'label'=>'Service Satisfaction',
+        'backgroundColor' => IColor::AQUA,
+        'data'=>[]
+    ];
+    public $VehicleCleanliness = [
+        'label'=>'Value for Money',
+        'backgroundColor' => IColor::BLUE_PUPPLE,
+        'data'=>[]
+    ];
+    public $FFT = [
+        'label'=>'FFT',
+        'backgroundColor' => IColor::LIGHT_PINK,
+        'data'=>[]
+    ];
+    public $CUSTOMER_REPAIR_ORDER = [
+        'label'=>'CPR',
+        'backgroundColor' => IColor::LIGHT_PERU,
+        'data'=>[]
+    ];
     public function __construct(User $user = null)
     {
         parent::__construct($user);

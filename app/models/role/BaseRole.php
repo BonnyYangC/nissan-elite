@@ -45,7 +45,7 @@ class BaseRole extends BaseModel
     public $excellenceResult = null;
     public $newVehicleSales = [
         'label'=>'New Vehicle Sales',
-        'backgroundColor' => IColor::DARK_GREY,
+        'backgroundColor' => IColor::LIGHT_PINK,
         'data'=>[]
     ];
     public $trainingData = [
@@ -56,7 +56,7 @@ class BaseRole extends BaseModel
 
     public $keptInformed= [
         'label'=>'Kept Informed',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_PERU,
         'data'=>[]
     ];
 
@@ -66,47 +66,9 @@ class BaseRole extends BaseModel
      */
     public $incentivesForDashboard = [
         'label'=>'Incentive',
-        'backgroundColor' => IColor::DARK_GREEN,
+        'backgroundColor' => IColor::GREEN_YELLOW,
         'data'=>[]
     ];
-
-    // Service adviser: start
-    public $serviceRecommendation = [
-        'label'=>'Service Satisfaction',
-        'backgroundColor' => IColor::RED,
-        'data'=>[]
-    ];
-    public $advice = [
-        'label'=>'Advice',
-        'backgroundColor' => IColor::DARK_GREY,
-        'data'=>[]
-    ];
-    public $VehicleCleanliness = [
-        'label'=>'Value for Money',
-        'backgroundColor' => IColor::GAINS_BORO,
-        'data'=>[]
-    ];
-    public $EMW = [
-        'label'=>'EMW',
-        'backgroundColor' => IColor::LOW_RED,
-        'data'=>[]
-    ];
-    public $FFT = [
-        'label'=>'FFT',
-        'backgroundColor' => IColor::BLACK,
-        'data'=>[]
-    ];
-    public $SERVICE_YOU_CAN_TRUST = [
-        'label'=>'AYCT',
-        'backgroundColor' => IColor::BLACK,
-        'data'=>[]
-    ];
-    public $CUSTOMER_REPAIR_ORDER = [
-        'label'=>'CPR',
-        'backgroundColor' => IColor::GAINS_BORO,
-        'data'=>[]
-    ];
-    // Service adviser: end
 
     public function __construct(User $user = null)
     {

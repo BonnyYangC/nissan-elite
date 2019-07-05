@@ -32,22 +32,22 @@ class FI extends BaseRole implements IRole
 
     public $NFSA_Contracts = [
         'label'=>'NFSA Contracts',
-        'backgroundColor' => IColor::LIGHT_GREY,
+        'backgroundColor' => IColor::LIGHT_PINK,
         'data'=>[]
     ];
     public $Insurance = [
         'label'=>'Insurance',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
     public $EMW_Genuine_Extended = [
         'label'=>'EMW Genuine',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $SalesPenetration = [
         'label'=>'Sales Penetration',
-        'backgroundColor' => IColor::RED,
+        'backgroundColor' => IColor::LIGHT_GREEN,
         'data'=>[]
     ];
     public $FollowUp = [
@@ -58,7 +58,7 @@ class FI extends BaseRole implements IRole
 
     public $NFSA_Credits = [
         'label'=>'Loyalty & Retention',
-        'backgroundColor' => IColor::LIGHT_GREEN,
+        'backgroundColor' => IColor::AQUA,
         'data'=>[]
     ];
 

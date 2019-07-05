@@ -13,14 +13,20 @@ interface IColor
 {
     const BLACK     = '#111111';
     const DARK_GREY = '#333333';
-    const MID_GREY  = '#87CEEB';
+    const LIGHT_BLUE  = '#87CEEB';
     const LIGHT_GREY= '#d2d2d2';
     const LOW_RED   = '#999999';
     const LIGHT_RED = '#CD7F32';
     const GAINS_BORO = '#e8e9e8';
     const RED = '#c40030';
-    const LIGHT_GREEN = '#90EE90';
+    const LIGHT_GREEN = '#CCFF99'; //
     const DARK_GREEN = '#008000';
+    const LIGHT_PINK = '#FF99CC'; //
+    const LIGHT_PERU = '#FFCC99'; //
+    const GREEN_YELLOW = '#ADFF2F'; //
+    const AQUA = '#00FFFF'; 
+    const STEEL_BLUE = '#4682B4';
+    const BLUE_PUPPLE = '#6666CC';
 
     const Platinum = '#545454';
     const Gold = '#CD7F32';

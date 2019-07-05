@@ -15,6 +15,44 @@ class ServiceAdviser extends BaseRole implements IRole
 {
     public $name='service_adviser';
 
+    // Service adviser: start
+    public $serviceRecommendation = [
+        'label'=>'Service Satisfaction',
+        'backgroundColor' => IColor::AQUA,
+        'data'=>[]
+    ];
+    public $advice = [
+        'label'=>'Advice',
+        'backgroundColor' => IColor::DARK_GREY,
+        'data'=>[]
+    ];
+    public $VehicleCleanliness = [
+        'label'=>'Value for Money',
+        'backgroundColor' => IColor::BLUE_PUPPLE,
+        'data'=>[]
+    ];
+    public $EMW = [
+        'label'=>'EMW',
+        'backgroundColor' => IColor::LOW_RED,
+        'data'=>[]
+    ];
+    public $FFT = [
+        'label'=>'FFT',
+        'backgroundColor' => IColor::BLUE_PUPPLE,
+        'data'=>[]
+    ];
+    public $SERVICE_YOU_CAN_TRUST = [
+        'label'=>'AYCT',
+        'backgroundColor' => IColor::LIGHT_PINK,
+        'data'=>[]
+    ];
+    public $CUSTOMER_REPAIR_ORDER = [
+        'label'=>'CPR',
+        'backgroundColor' => IColor::LIGHT_PERU,
+        'data'=>[]
+    ];
+    // Service adviser: end
+    
     public function __construct(User $user = null)
     {
         parent::__construct($user);
