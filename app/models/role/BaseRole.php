@@ -18,6 +18,12 @@ class BaseRole extends BaseModel
     protected $user;
 
     /**
+     * Need to show the regional ranking in dashboard page
+     * @var bool
+     */
+    public $hasPlatinumRanking = false;
+
+    /**
      * @var Carbon $startPoint
      * To generate the array's key when iterate the metrics data
      */

@@ -202,23 +202,14 @@ class RankingsController extends DashboardController
                 $status = new PartsSalesRepStatus($credits);
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
-                $this->needRegionalRanking = true;
+                //$this->hasPlatinumRanking = true;
                 $status = new RetailSalesConsultantStatus($credits);
                 break;
-            // case User::FLEET_SALES_CONSULTANTS:
-            //     $this->needRegionalRanking = true;
-            //     $status = new RetailSalesConsultantStatus($credits);
-            //     break;
-            // case User::FLEET_SALES_MANAGER:
-            //     $this->needRegionalRanking = true;
-            //     $status = new RetailSalesConsultantStatus($credits);
-            //     break;
             case User::FLEET_SALES_EXECUTIVES:
-                $this->needRegionalRanking = true;
+                //$this->hasPlatinumRanking = true;
                 $status = new RetailSalesConsultantStatus($credits);
                 break;
             case User::SALES_MANAGER:
-                $this->needRegionalRanking = true;
                 $status = new SalesManagerStatus($credits);
                 break;
             case User::STOCK_CONTROLLER:

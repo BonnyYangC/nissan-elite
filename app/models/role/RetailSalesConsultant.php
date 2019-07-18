@@ -31,6 +31,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = true;
     }
 
     /**

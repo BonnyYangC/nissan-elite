@@ -5,13 +5,13 @@
         </tr>
         <tr class="nissangray-light-back">
             <td>
-                <span class="rank">{{ rankingNationally ? ordinal(rankingNationally) : 'N/A' }}</span><br>
-                <p>Nationally</p>
+                <span class="rank">{{ statusRanking ? ordinal(statusRanking) : 'N/A' }}</span><br>
+                <p>STATUS</p>
             </td>
-            {% if rankingRegionally %}
+            {% if platinumRanking %}
                 <td>
-                    <span class="rank">{{ ordinal(rankingRegionally) }}</span><br>
-                    <p>Regionally</p>
+                    <span class="rank">{{ platinumRanking ? ordinal(platinumRanking) : 'N/A' }}</span><br>
+                    <p>PLATINUM</p>
                 </td>
             {% endif %}
         </tr>

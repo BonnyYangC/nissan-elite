@@ -50,12 +50,6 @@ class DashboardController extends BaseController
     protected $userPositions = [];  // All current user's positions go here
 
     /**
-     * Need to show the regional ranking in dashboard page
-     * @var bool
-     */
-    protected $needRegionalRanking = false;
-
-    /**
      * 这个是一个要操作的数据表名称, 和用户当前提交上来的 asRole 相关
      * @var null |string
      */
@@ -401,6 +395,7 @@ class DashboardController extends BaseController
         }
         $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
         // 处理 Leader Board 的表格 结束
+
     }
 
     /**
@@ -411,28 +406,31 @@ class DashboardController extends BaseController
         // Get the latest ranking date
         $thisPeriod = $this->_getThisPeriod($this->userObject);
 
+        $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+
         // 获取了所有的 Rankings: Get all rankings
         $rankings = Ranking::Query($this->userObject, $thisPeriod);
 
         $this->dataForView['Rankings'] = $rankings;
 
-        $nationalRanking = '';
+        $statusRanking = '';
         foreach ($rankings as $ranking) {
             if($ranking['member_id'] == $this->userObject->getEmployeeCode()){
-                $nationalRanking = $ranking['ranking'];
+                $statusRanking = $ranking['rank'];
+                $platinumRanking = $ranking['rank_platinum'];
                 break;
             }
         }
-
         /**
          * Calculate the region and nationally ranking
          */
-        $this->dataForView['rankingNationally'] = $nationalRanking;
+        $this->dataForView['statusRanking'] = $statusRanking;
 
-        $this->dataForView['rankingRegionally'] = '';
-        if($this->needRegionalRanking){
-            $rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$nationalRanking);
-            $this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+        $this->dataForView['platinumRanking'] = '';
+        if($role->hasPlatinumRanking){
+            //$rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$statusRanking);
+            //$this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+            $this->dataForView['platinumRanking'] = $platinumRanking;
         }
 
         return $rankings;

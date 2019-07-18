@@ -24,6 +24,7 @@ class PartsSalesRep extends BaseRole implements IRole
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = false;
     }
 
     /**
