@@ -116,7 +116,7 @@ class Ranking extends BaseModel implements IRole
                 'role'=>$position,
                 'period'=>$carbon->format('Y-m-d')
             ],
-            "ORDER" => "ranking"
+            "ORDER" => "rank" //TBD
         ];
 
         $category = $user->getCompany()->category;
@@ -148,7 +148,6 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.total',
             'nissan_rankings.total_platinum',
             'nissan_rankings.rank_state',
-            'nissan_rankings.rank_platinum_state',
             'users.firstname',
             'users.lastname',
             'company.company_name',
@@ -187,7 +186,7 @@ class Ranking extends BaseModel implements IRole
 
         $rankColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.rank' : 'nissan_rankings.rank_platinum';
         $totalColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.total' : 'nissan_rankings.total_platinum';
-        $rankStateColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.rank_state' : 'nissan_rankings.rank_platinum_state';
+        $rankStateColumn = 'nissan_rankings.rank_state';
 
         $order = [$rankStateColumn,$rankColumn];
 
@@ -313,7 +312,6 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.total',
             'nissan_rankings.total_platinum',
             'nissan_rankings.rank_state',
-            'nissan_rankings.rank_platinum_state',
             'nissan_rankings.elite_dealer',
             'users.firstname',
             'users.lastname',

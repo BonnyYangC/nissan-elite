@@ -69,12 +69,12 @@ class TableFieldMap{
      */
     public static function RegionStaffTable(){
         $map = [
+            'position'=>'Position',
             'alt_position'=>'region',//'Region',
             'firstname'=>'first name',//'fname',
             'lastname'=>'last name',//'sname',
             'email'=>'Email Address',//'email',
             //'mobile'=>'mobile', //TBD
-            'position'=>'Position',
             'active' => 'active'
         ];
         return $map;
@@ -89,7 +89,7 @@ class TableFieldMap{
             'period'                =>'mthyrg',//'mth_yr',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'recom_score'           =>'score_ce_SOS', //sales overall satisfaction //'ce_score_OSAT',
             'recom_credit'          =>'points_ce_SOS', //'credits_ce_OSAT',
             'fu_score'              =>'score_ce_VFM',// value for money //'ce_score_VFM',
@@ -123,7 +123,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'stock'                 =>'stock_cover', //stock cover //'days_stock',
             'stock_credit'          =>'points_stock',//'credits_stock',
             'ow'                    =>'compliance_ow', //ow data entry compliance //'ow_data',
@@ -157,7 +157,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'grp'                   =>'percentage_grp', //genuine replacement parts
             'grp_credit'            =>'points_GRP', //'credits_GRP',
             'gas'                   =>'percentage_acces',//'percentage_gas',
@@ -185,7 +185,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried', //'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED', //'credits_carried_forward',
             'grp'                   =>'percentage_grp', //genuine replacement parts
             'grp_credit'            =>'points_GRP', //'credits_GRP',
             'training'              =>'points_train_online',//'credits_training_online',
@@ -211,7 +211,7 @@ class TableFieldMap{
             'period'                =>'mthyrg',//'mth_yr',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'frequency'             =>'bmo_frequency', //dealer financial reporting - submitted
             'frequency_credits'     =>'points_frequency',//'credits_frequency',
             'quality'               =>'bmo_quality',//Quality of data submission //'bmo_qlty_sub',
@@ -247,7 +247,7 @@ class TableFieldMap{
             'period'                =>'mthyrg',//'mth_yr',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'sales_nfsa'            =>'sales_nfsa',//nfsa finance contract //'sales_nfsa_nissan',
             'credit_actual_sales'   =>'points_nfsa',//'credits_actual_sales',
             'sales_nfsa_retention'    =>'sales_nfsa_bonus',//loyalty & retention //'sales_nfsa_retention',
@@ -286,7 +286,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',  //'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
             'sales'                 =>'sales_status',  //new vehicle sales //'sales',
             'credit_actual_sales'   =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
             'v_fleet_target'  =>'percentage_actF',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
@@ -316,7 +316,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',  //'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
             'sales'                 =>'sales_status',  //new vehicle sales //'sales',
             'credit_actual_sales'   =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
             'salesperson_satisfaction'  =>'score_ce_SOS',//percentage of salesperson satisfaction
@@ -348,7 +348,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'recommendation'        =>'score_ce_SOS',//service overall satisfaction  //'ce_score_OSAT',
             'recommendation_credit' =>'points_ce_SOS',//'credits_ce_OSAT',
             'vclean'                =>'score_ce_VFM', // value for money //'ce_score_VFM',
@@ -383,7 +383,7 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'order_write_credit'    =>'points_matchOW',//'credits_ow_match',
             'order_write_variation' =>'matchOW',//'ow_match',
             'percent'               =>'percentage_actual',
@@ -438,7 +438,8 @@ class TableFieldMap{
             'credits_monthly_02'    =>'elit~engi_regi#02mthyrg::POINTS_MTHLY',//'amba_STAT_02_feb::CREDITS_MONTHLY',
             'credits_monthly_03'    =>'elit~engi_regi#03mthyrg::POINTS_MTHLY',//'amba_STAT_03_mar::CREDITS_MONTHLY',
             'cr_ytd'                =>'points_ytd_status',//'amba_STAT_ambid_gmthyr::CREDITS_YTD',
-//            'cr_ytd'                =>'cr_ytd',
+            'cr_ytd_platinum'                =>'points_ytd_platinum',
+            'cr_ytd_lifetime'                =>'points_ytd_lifetime',
         ];
         return $map;
     }
@@ -472,15 +473,12 @@ class TableFieldMap{
             'total'         =>'yr_2019_status', //status
             'total_platinum'=>'yr_2019_platinum', //platinum
             'role'          =>'sp',
-            'rank_state'    =>'elit~deal_dcode::state_rank',
-            'rank_platinum_state'    =>'elit~deal_dcode::state_rank_platinum',
+            'rank_state'    =>'state_rank',
         ];
         $notNecessaryFields = [
             'region_code'           =>'rcode',//'r_code',
             'registered'    =>'registered',
             'status'                =>'status', //active
-            'dlr_excellence_bonus'  =>'dlr_excellence_bonus', //?TBD
-            'calc_dlr_exc'          =>'calc_dlr_exc', //?TBD
         ];
         return array_merge($map, $notNecessaryFields);
     }
