@@ -1,26 +1,68 @@
-<div class="table-responsive">
-    <table class="table leader-board">
-        <tr class="table-top-row">
-            <td></td>
-            <td>{{ constant('ProgramShortName') }} Program</td>
-            <td>Dealership</td>
-            <td>State</td>
-        </tr>
-        {% for row in leaderBoardTableData %}
-            <tr>
-                <td>{{ row.ranking }}</td>
-                <td>
-                    {% if row.member_id == user.employee_code %}
-                        <a href="{{ url('/dashboard/Leaderboards') }}" class="matched">
-                            {{ row.firstname }} {{ row.lastname }}
-                        </a>
-                    {% else %}
-                        {{ row.firstname }} {{ row.lastname }}
-                    {% endif %}
-                </td>
-                <td>{{ row.company_name }}</td>
-                <td>{{ row.company_state }}</td>
+
+{% if hasPlatinumRanking %}
+    <ul  class="nav nav-pills">
+        <li class="active">
+            <a href="#status" data-toggle="tab">STATUS</a>
+        </li>
+        <li>
+            <a href="#platinum" data-toggle="tab">PLATINUM</a>
+        </li>
+    </ul>
+{% endif %}
+
+<div class="tab-content clearfix">
+    <div class="tab-pane active" id="status">
+        <table class="table leader-board">
+            <tr class="table-top-row">
+                <td></td>
+                <td>{{ constant('ProgramShortName') }} Program</td>
+                <td>Dealership</td>
+                <td>State</td>
             </tr>
-        {% endfor %}
-    </table>
+            {% for row in leaderBoardStatusData %}
+                <tr>
+                    <td>{{ row.rank }}</td>
+                    <td>
+                        {% if row.member_id == user.employee_code %}
+                            <a href="{{ url('/dashboard/Leaderboards') }}" class="matched">
+                                {{ row.firstname }} {{ row.lastname }}
+                            </a>
+                        {% else %}
+                            {{ row.firstname }} {{ row.lastname }}
+                        {% endif %}
+                    </td>
+                    <td>{{ row.company_name }}</td>
+                    <td>{{ row.company_state }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% if hasPlatinumRanking %}
+        <div class="tab-pane" id="platinum">
+            <table class="table leader-board">
+                <tr class="table-top-row">
+                    <td></td>
+                    <td>{{ constant('ProgramShortName') }} Program</td>
+                    <td>Dealership</td>
+                    <td>State</td>
+                </tr>
+                {% for row in leaderBoardPlatinumData %}
+                    <tr>
+                        <td>{{ row.rank_platinum }}</td>
+                        <td>
+                            {% if row.member_id == user.employee_code %}
+                                <a href="{{ url('/dashboard/Leaderboards') }}" class="matched">
+                                    {{ row.firstname }} {{ row.lastname }}
+                                </a>
+                            {% else %}
+                                {{ row.firstname }} {{ row.lastname }}
+                            {% endif %}
+                        </td>
+                        <td>{{ row.company_name }}</td>
+                        <td>{{ row.company_state }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
 </div>

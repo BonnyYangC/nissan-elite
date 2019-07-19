@@ -46,6 +46,29 @@ class Ranking extends BaseModel implements IRole
      */
     const LEADER_BOARD_TABLE_MAX_ROW = 5;
 
+    public static function getLeaderBoardData(User $user, $rankingData) {
+
+        $iAmInTopList = false;
+        $leaderBoardData = [];
+        foreach ($rankingData as $index=>$item) {
+            if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
+                if($item['member_id'] == $user->getEmployeeCode()){
+                    $iAmInTopList = true;
+                }
+                $leaderBoardData[] = $item;
+            }else{
+                // 已经超出了前五名
+                if(!$iAmInTopList){
+                    if($item['member_id'] == $user->getEmployeeCode()){
+                        $leaderBoardData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
+                        break;
+                    }
+                }
+            }
+        }
+        return $leaderBoardData;
+    }
+
     /**
      * Count how many record's ranking is lower than give user and ranking in a period
      * 获取在给定时间条件下, 排名比给定 user 要低的
@@ -104,19 +127,15 @@ class Ranking extends BaseModel implements IRole
      * @param bool $forGivenUserOnly
      * @return array|bool
      */
-    public static function Query(User $user, Carbon $carbon, $forGivenUserOnly=false){
+    public static function Query(User $user, Carbon $carbon, $rankingType, $forGivenUserOnly=false){
         $position = $user->position;
-        // if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
-        //     // Use 'IN' condition
-        //     $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
-        // }
-
+        $order = $rankingType == self::AWARD_STATUS ? 'rank' : 'rank_platinum'; 
         $where = [
             'AND'=>[
                 'role'=>$position,
                 'period'=>$carbon->format('Y-m-d')
             ],
-            "ORDER" => "rank" //TBD
+            "ORDER" => $order, //"rank" //TBD
         ];
 
         $category = $user->getCompany()->category;

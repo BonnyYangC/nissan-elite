@@ -355,7 +355,7 @@ class DashboardController extends BaseController
         /**
          * 获取所有的排名, 自己的排名
          */
-        $rankings = $this->_makeRankingReady();
+        $this->_makeRankingReady();
         /**
          * 获取所有的排名, 自己的排名 end
          */
@@ -375,32 +375,20 @@ class DashboardController extends BaseController
          */
 
         // 处理 Leader Board 的表格: Leader board 只有5个位置
-        $iAmInTopList = false;
-        $leaderBoardTableData = [];
-        foreach ($rankings as $index=>$item) {
-            if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
-                if($item['member_id'] == $this->userObject->getEmployeeCode()){
-                    $iAmInTopList = true;
-                }
-                $leaderBoardTableData[] = $item;
-            }else{
-                // 已经超出了前五名
-                if(!$iAmInTopList){
-                    if($item['member_id'] == $this->userObject->getEmployeeCode()){
-                        $leaderBoardTableData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
-                        break;
-                    }
-                }
-            }
+        $this->dataForView['hasPlatinumRanking'] = false;
+        $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+        $this->dataForView['leaderBoardStatusData'] = Ranking::getLeaderBoardData($this->userObject, $this->dataForView['Rankings']);
+        if($role->hasPlatinumRanking){
+            $this->dataForView['hasPlatinumRanking'] = true;
+            $this->dataForView['leaderBoardPlatinumData'] = Ranking::getLeaderBoardData($this->userObject, $this->dataForView['RankingsPlatinum']);
         }
-        $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
         // 处理 Leader Board 的表格 结束
 
     }
 
     /**
      * 获取所有的排名, 自己的排名
-     * @return array|bool
+     * @return void
      */
     private function _makeRankingReady(){
         // Get the latest ranking date
@@ -409,9 +397,11 @@ class DashboardController extends BaseController
         $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
 
         // 获取了所有的 Rankings: Get all rankings
-        $rankings = Ranking::Query($this->userObject, $thisPeriod);
+        $rankings = Ranking::Query($this->userObject, $thisPeriod, Ranking::AWARD_STATUS);
+        $rankingsPlatinum = Ranking::Query($this->userObject, $thisPeriod, Ranking::AWARD_PLATINUM);
 
         $this->dataForView['Rankings'] = $rankings;
+        $this->dataForView['RankingsPlatinum'] = $rankingsPlatinum;
 
         $statusRanking = '';
         foreach ($rankings as $ranking) {
@@ -433,7 +423,6 @@ class DashboardController extends BaseController
             $this->dataForView['platinumRanking'] = $platinumRanking;
         }
 
-        return $rankings;
     }
 
     /**
