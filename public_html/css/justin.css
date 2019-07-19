@@ -98,6 +98,10 @@
     background-color: #4169E1;
 }
 
+.span-red {
+    color : #c40030;
+}
+
 .g1{
     background-size:800px;
     background: #f7f7f7 center no-repeat;

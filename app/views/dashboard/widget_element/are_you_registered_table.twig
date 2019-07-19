@@ -5,14 +5,12 @@
         </tr>
         <tr class="nissangray-light-back">
             <td>
-                <span class="rank">
-                    <a href="#" class="tw {{ user.registered ? 'txt-red' : null }}" title="You are eligible for the {{ constant('ProgramShortName') }}{{ env('YEAR') }} Program">
-                        {% if user.registered %}
-                            &#10004;
-                        {% else %}
-                            X
-                        {% endif %}
-                    </a>
+                <span class="rank span-red" title="You are eligible for the {{ constant('ProgramShortName') }}{{ env('YEAR') }} Program">
+                    {% if user.registered %}
+                        &#10004;
+                    {% else %}
+                        X
+                    {% endif %}
                 </span>
                 <br>
                 {% if user.registered %}

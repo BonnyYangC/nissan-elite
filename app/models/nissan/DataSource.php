@@ -193,12 +193,7 @@ class DataSource extends BaseModel
             'member_id'=>$user->getEmployeeCode(),
             'ORDER' => ['period' => 'ASC']
         ];
-        switch ($user->position){
-            case User::FI:
-                break;
-            default:
-                break;
-        }
+        
         $database = self::DB();
         $rows = $database->select(
             $currentTableName,

@@ -624,7 +624,9 @@ class User extends BaseModel implements Mailable, IRole
             $this->setDepartmentNameAndPositionDesc();
             // Get user's Positions
             $this->positions = DataSource::GetPositionList($this);
-            $this->setIsUserRegisteredAndExcellent();
+            //$this->setIsUserRegisteredAndExcellent();
+
+            $this->registered = $this->rowData['registered']===Ranking::REGISTERED || $this->rowData['registered']==='Registered' || $this->rowData['registered'] === '1';
 
             if($this->isManagerRole()){
                 $this->teamMembers = $this->getUsersByRoles($this->getMemberRoles());

@@ -5,8 +5,8 @@
         </tr>
         <tr class="nissangray-light-back">
             <td>
-                <span class="rank tw {{ dashboard.excellence ? 'txt-red' : null }}">
-                    {% if dashboard.excellence %}
+                <span class="rank span-red">
+                    {% if dashboard.excellence > 0 %}
                         &#10004;
                     {% else %}
                         X

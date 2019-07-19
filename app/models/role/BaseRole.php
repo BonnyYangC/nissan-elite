@@ -93,7 +93,7 @@ class BaseRole extends BaseModel
         if (isset($data[date("M-Y", $period)]))
         {
             $this->lifeTime =
-                (isset($data[date("M-Y", $period)]['lifetime']) ?
+                (($data[date("M-Y", $period)]['lifetime'] > 0) ?
                     $data[date("M-Y", $period)]['lifetime'] :
                     $data[date("M-Y", $period)]['credit_mtd']);
         

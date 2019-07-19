@@ -148,7 +148,7 @@ class DashboardController extends BaseController
      * @param null $ytd
      */
     private function _prepareDashboardData(IRole $role, $ytd = null){
-        $ytd = is_null($ytd) ? env('YEAR',2017) : $ytd;
+        $ytd = is_null($ytd) ? env('YEAR',2019) : $ytd;
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
@@ -242,7 +242,6 @@ class DashboardController extends BaseController
             $this->_prepareDashboardData($role);
         }
         // Render the view
-
         $this->render($viewToRender);
         return;
     }
@@ -368,7 +367,7 @@ class DashboardController extends BaseController
         /**
          * 计算Credits
          */
-        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,env('YEAR',2017));
+        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,env('YEAR',2019));
 
         /**
          * 以上是基础数据, 以下为页面中的特定数据

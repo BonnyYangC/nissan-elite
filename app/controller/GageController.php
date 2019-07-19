@@ -38,7 +38,7 @@ class GageController extends BaseController
 
         $role = RoleFactory::GetRole($pos = $this->request->param('position'), new User($this->request->param('id')));
 
-        $ytd = env('YEAR', 2018);
+        $ytd = env('YEAR', 2019);
         $dataForView = $role->getDashboardViewData($this->dataForView, $ytd);
         $fontFile = 'arialbd.ttf';
         
