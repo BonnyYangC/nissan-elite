@@ -57,7 +57,7 @@
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td class="nissangray-light-back">FREQUENCY</td>
+                                <td class="nissangray-light-back sm" style="padding-left: 0;padding-right:0;">FREQUENCY</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FREQUENCY_RESULTS } %}
                             </tr>
                        </table>
@@ -86,7 +86,7 @@
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td class="nissangray-light-back">SUBMISSION</td>
+                                <td class="nissangray-light-back sm" style="padding-left: 0;padding-right:0;">SUBMISSION</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SUBMISSION_RESULTS,'extraClass':'pt-9' } %}
                             </tr>
                         </table>
@@ -144,11 +144,11 @@
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td class="nissangray-light-back">CHECKLIST</td>
+                                <td class="nissangray-light-back sm" style="padding-right:0;">CHECKLIST</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CHECKLIST_RESULTS } %}
                             </tr>
                             <tr>
-                                <td class="nissangray-light-back">ATTENDANCE</td>
+                                <td class="nissangray-light-back sm" style="padding-right:0;">ATTENDED</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MEETING_RESULTS } %}
                             </tr>
                         </table>

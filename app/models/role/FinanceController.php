@@ -38,7 +38,7 @@ class FinanceController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $Checklist = [
-        'label'=>'Accuracy',
+        'label'=>'Checklist',
         'backgroundColor' => IColor::AQUA,
         'data'=>[]
     ];
