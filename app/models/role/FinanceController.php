@@ -72,16 +72,11 @@ class FinanceController extends BaseRole implements IRole
                 $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
                 //2
                 $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
-                try{
-                    $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
-                    $submission_results[]   = $sub->format('d/M');
-                }catch (\Exception $exception){
-                    $submission_results[]   = $item['quality'];
-                }
+                $submission_results[]   = $this->_buildForTableYesOrNoElement($item['quality']);
                 //3
                 $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
-                $checklist_results[]    = $this->_buildForTableElement($item['checklist'],0);
-                $meeting_results[]      = $this->_buildForTableElement($item['meeting'],0);
+                $checklist_results[]    = $this->_buildForTableYesOrNoElement($item['checklist']);
+                $meeting_results[]      = $this->_buildForTableYesOrNoElement($item['meeting']);
 
                 $training[]     = $this->_buildForJs( [$item['training'], $item['pathway'], $item['training_competency']] );
 

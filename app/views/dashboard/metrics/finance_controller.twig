@@ -11,6 +11,7 @@
             step: 40,
             colors: ['#999999','#555555','#c40030'],
             pilot: ['Month', 'Frequency'],
+            legend: 'none',
             dataSource: {{ json_encode(metrics.FINANCIAL)|raw }}
         },
         {//2. Quality Of Data Submitted
@@ -20,6 +21,7 @@
             step: 55,
             colors: ['#999999','#555555','#c40030'],
             pilot: ['Month', 'Balance', 'Submission'],
+            legend: 'none',
             dataSource: {{ json_encode(metrics.QUALITY)|raw }}
         },
         {//3. Nissan Business Management
@@ -85,7 +87,7 @@
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
                                 <td class="nissangray-light-back">SUBMISSION</td>
-                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SUBMISSION_RESULTS,'extraClass':'sm pt-9' } %}
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SUBMISSION_RESULTS,'extraClass':'pt-9' } %}
                             </tr>
                         </table>
                     </div>
