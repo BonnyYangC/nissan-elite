@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table class="table centre-text">
         <tr class="nissangray-back">
-            <td colspan="2">{{ constant('ProgramShortName') }} Dealership</td>
+            <td colspan="2">{{ constant('ProgramDealership') }}</td>
         </tr>
         <tr class="nissangray-light-back">
             <td>
@@ -16,7 +16,7 @@
                     <p class="tw">{{ number_format(dashboard.excellence) }} {{ env('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
                 {% else %}
                     <p class="tw">
-                        refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') }}">{{ constant('ProgramShortName') }} Dealership overview</a>
+                        Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') }}">{{ constant('ProgramDealership') }}</a> overview
                     </p>
                 {% endif %}
             </td>
