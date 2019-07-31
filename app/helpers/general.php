@@ -121,6 +121,28 @@ if(!function_exists('env')){
     }
 }
 
+if(!function_exists('configuration')){
+    
+    /**
+     * @param $key
+     * @param bool $default
+     * @return array|bool|false|string
+     */
+    function configuration($key, $default=false){
+        $dotenv = new \Dotenv\Dotenv(__DIR__, 'config.php');
+        $dotenv->load();
+        $result = getenv($key);
+        if($result === 'false'){
+            $result = false;
+        }
+        if($result === 'true'){
+            $result = true;
+        }
+        return $result ? $result : $default;
+    }
+    
+}
+
 if(!function_exists('random_str')){
     /**
      * Generate a random string as uuid

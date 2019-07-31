@@ -45,6 +45,7 @@ class PhpFunctionExtension extends \Twig_Extension
         'gaga_indicator_init',  // Retrieve data from session flash
         'ordinal',              // Add suffix to number
         'env',                  // output any env setting
+        'configuration',        // output any config setting
         'number_format',        // format number
         'empty',                // empty
         'get_route',            // get url by give route name
