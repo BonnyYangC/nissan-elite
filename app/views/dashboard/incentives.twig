@@ -47,7 +47,7 @@
                         <tr class="nissangray-light-back">
                             <td>
                                 <span class="rank">
-                                    <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the {{ constant('ProgramShortName') }} {{ env('YEAR') }} Program">
+                                    <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the {{ configuration('PROGRAM_SHORT_NAME') }} {{ configuration('YEAR') }} Program">
                                         {% if user.registered %}
                                             <span class="tw txt-red">&#10004</span>
                                         {% else %}
@@ -58,7 +58,7 @@
                                 {% if user.registered %}
                                     <p class="tw">250 Credits Applied</p>
                                 {% else %}
-                                <a href="http://www.nissan-events.com.au/ac{{ env('YEAR') }}/reg" target="_blank">
+                                <a href="http://www.nissan-events.com.au/ac{{ configuration('YEAR') }}/reg" target="_blank">
                                     <button style="background-color:#4169E1; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
                                 </a>
                                 {% endif %}

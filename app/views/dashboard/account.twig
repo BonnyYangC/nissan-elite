@@ -15,7 +15,7 @@
                     <table class="table">
                         <tr class="table-top-row">
                             <td><strong>Details</strong></td>
-                            <td><strong>{{ constant('ProgramShortName') }} Program Member</strong></td>
+                            <td><strong>{{ configuration('PROGRAM_SHORT_NAME') }} Program Member</strong></td>
                         </tr>
 
                         <tr class="active">
@@ -68,7 +68,7 @@
                         </tr>
                     </table>
                     <p>
-                        The details above are currently held on the Nissan Dealer User Management Portal. Please check they are correct. If not, please update, ask your Dealership to update, or email <a href="mailto:{{ env('SUPPORT_EMAIL_ADDRESS') }}">{{ env('SUPPORT_EMAIL_ADDRESS') }}</a> immediately. Incorrect details may mean your {{ constant('ProgramShortNameWithYear') }} {{ env('PROGRAM_AWARD_UNIT')|lower }} are incorrect.<br>
+                        The details above are currently held on the Nissan Dealer User Management Portal. Please check they are correct. If not, please update, ask your Dealership to update, or email <a href="mailto:{{ configuration('SUPPORT_EMAIL_ADDRESS') }}">{{ configuration('SUPPORT_EMAIL_ADDRESS') }}</a> immediately. Incorrect details may mean your {{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} {{ configuration('PROGRAM_AWARD_UNIT')|lower }} are incorrect.<br>
                     </p>
                 </div>
             </div>

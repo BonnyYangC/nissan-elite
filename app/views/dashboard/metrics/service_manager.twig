@@ -1,7 +1,7 @@
 {% extends 'dashboard/metrics.twig' %}
 {% block content_metrics %}
     <script>
-        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
+        var yAxis = "{{ configuration('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {//1. Service overall satisfaction NPS 3 month rolling score - Target 78
                 el: 'chart-recommendation',
@@ -223,7 +223,7 @@
                         </tr>
                     </table>
                     <p>
-                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ constant('ProgramShortNameWithYear') }} Member Guide</a> for full details.</em>
+                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
                     </p>
                 </div>
             </div>

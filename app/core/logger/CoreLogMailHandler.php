@@ -34,13 +34,13 @@ class CoreLogMailHandler extends MailHandler implements Mailable
             $this->_email_service_app_key = env('SENDGRID_API_KEY',null);
 
             $this->setEmailFrom(
-                env('SUPPORT_EMAIL_ADDRESS',self::DEFAULT_SUPPORT_EMAIL),
-                env('SUPPORT_EMAIL_NAME', self::DEFAULT_SUPPORT_PERSON)
+                configuration('SUPPORT_EMAIL_ADDRESS',self::DEFAULT_SUPPORT_EMAIL),
+                configuration('SUPPORT_EMAIL_NAME', self::DEFAULT_SUPPORT_PERSON)
             )
-                ->setEmailSubject('Critical error at '.env('PROGRAM_NAME'))
+                ->setEmailSubject('Critical error at '.configuration('PROGRAM_NAME'))
                 ->addEmailTo(
-                    env('SUPPORT_EMAIL_ADDRESS',self::DEFAULT_SUPPORT_EMAIL),
-                    env('SUPPORT_EMAIL_NAME', self::DEFAULT_SUPPORT_PERSON)
+                    configuration('SUPPORT_EMAIL_ADDRESS',self::DEFAULT_SUPPORT_EMAIL),
+                    configuration('SUPPORT_EMAIL_NAME', self::DEFAULT_SUPPORT_PERSON)
                 )
                 ->addEmailContent(Mailable::CONTENT_TYPE_PLAIN,$content)
                 ->sendEmail();

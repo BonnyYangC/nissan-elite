@@ -65,7 +65,7 @@ class RegionTerritoryReport extends BaseModel
             return false;
         }else{
             $this->region_id = self::GetRegionCode($this->region_name);
-            $this->period = env('YEAR');
+            $this->period = configuration('YEAR');
             $this->dealer_name = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '\'', $this->dealer_name);
             return parent::save();
         }
@@ -121,7 +121,7 @@ class RegionTerritoryReport extends BaseModel
 
         $whereCondition = [
             'region_id'=>self::GetRegionCodeWithShortName($codes),
-            'period'=>env('YEAR'),
+            'period'=>configuration('YEAR'),
             'active'=>self::ACTIVE
         ];
 
@@ -159,7 +159,7 @@ class RegionTerritoryReport extends BaseModel
 
         $whereCondition = [
             'region_id'=>$codes,
-            'period'=>env('YEAR'),
+            'period'=>configuration('YEAR'),
             'active'=>self::ACTIVE
         ];
 

@@ -64,7 +64,7 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a data-parent="#accordion" data-toggle="collapse" href="#collapseOne">1. Can I join
-                                                {{env('PROGRAM_NAME')}}?</a>
+                                                {{configuration('PROGRAM_NAME')}}?</a>
                                         </h4>
                                     </div>
                                     <div class="panel-collapse collapse" id="collapseOne">
@@ -88,17 +88,17 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">2. How do I register for
-                                                {{env('PROGRAM_NAME')}}?</a>
+                                                {{configuration('PROGRAM_NAME')}}?</a>
                                         </h4>
                                     </div>
                                     <div class="panel-collapse collapse" id="collapseTwo">
                                         <div class="panel-body">
                                             <p>Go to
-                                                <a href="{{ env('eventRegisterUrl') }}" target="_blank">{{ env('eventRegisterUrl') }}</a>
+                                                <a href="{{ configuration('eventRegisterUrl') }}" target="_blank">{{ configuration('eventRegisterUrl') }}</a>
                                                 and successfully complete the
-                                                {{env('YEAR')}}
-                                                {{env('PROGRAM_NAME')}}
-                                                registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your {{env('PROGRAM_NAME')}} registration.</p>
+                                                {{configuration('YEAR')}}
+                                                {{configuration('PROGRAM_NAME')}}
+                                                registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your {{configuration('PROGRAM_NAME')}} registration.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -111,11 +111,11 @@
                                     <div class="panel-collapse collapse" id="collapseThree">
                                         <div class="panel-body">
                                             <p>The
-                                                {{env('PROGRAM_NAME')}}
+                                                {{configuration('PROGRAM_NAME')}}
                                                 Service Centre can be contacted on:<br><br>
                                                 Telephone:  	03 9544 9054<br>
                                                 Email:
-                                                {{ env('SUPPORT_EMAIL_ADDRESS') }}
+                                                {{ configuration('SUPPORT_EMAIL_ADDRESS') }}
                                             </p>
                                         </div>
                                     </div>

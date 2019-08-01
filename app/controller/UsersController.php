@@ -117,7 +117,7 @@ class UsersController extends Controller
                 $this->dataForView['password'] = $result['password'];
                 $content = $this->render('email_templates/users/forget_password_reminder',[],[], true);
 
-                $emailSent = $user->setEmailFrom(env('SUPPORT_EMAIL_ADDRESS'),env('SUPPORT_EMAIL_NAME'))
+                $emailSent = $user->setEmailFrom(configuration('SUPPORT_EMAIL_ADDRESS'),configuration('SUPPORT_EMAIL_NAME'))
                     ->setEmailSubject('Your password recovered! (DO NOT REPLY)')
                     ->addEmailTo($result['email'],$result['firstname'])
                     ->addEmailContent(Mailable::CONTENT_TYPE_HTML, $content)
@@ -140,7 +140,7 @@ class UsersController extends Controller
      * @return bool
      */
     public function _isAdminLogin($username,$password){
-        return $username === env('ADMIN_USER') && $password === env('ADMIN_PASSWORD');
+        return $username === configuration('ADMIN_USER') && $password === configuration('ADMIN_PASSWORD');
     }
 
     /**
@@ -195,7 +195,7 @@ class UsersController extends Controller
             ],
             /*
             [
-                'url'=>env('dealExcellenceOverviewUrl'),
+                'url'=>configuration('dealExcellenceOverviewUrl'),
                 'src'=>asset($imageAssetPrefix.'tile-dealership.png'),
             ],
             [
@@ -289,7 +289,7 @@ class UsersController extends Controller
 
         session_set(env('SESSION_SEGMENT','_nissanac'), $uuid);
         session_set('admin_data_array', [
-            'email'=>env('ADMIN_USER',false)
+            'email'=>configuration('ADMIN_USER',false)
         ]);
     }
 }

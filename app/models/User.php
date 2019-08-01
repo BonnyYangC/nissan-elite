@@ -248,7 +248,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public static function Listing($options=[],$pageNumber = 0, $limit = 20){
         if(is_null($limit)){
-            $limit = env('PAGE_SIZE');
+            $limit = configuration('PAGE_SIZE');
         }
 
         if(count($options)>0){
@@ -345,7 +345,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public static function SearchByEmailOrFirstName($emailOrFirstName, $pageNumber = 0, $limit = null){
         if(is_null($limit)){
-            $limit = env('PAGE_SIZE');
+            $limit = configuration('PAGE_SIZE');
         }
 
         $positions = [

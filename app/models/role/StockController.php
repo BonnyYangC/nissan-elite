@@ -176,7 +176,7 @@ class StockController extends BaseRole implements IRole
         // Status
         $status = new StockControllerStatus($ytd);
 
-        $this->RetailMidMth['label'] = env('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
+        $this->RetailMidMth['label'] = configuration('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
 
         return [
             // For js array

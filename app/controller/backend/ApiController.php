@@ -169,18 +169,18 @@ class ApiController extends BaseController
 
         $csvHeader = [
             'Dealer','Registered','Dept','Name','Member No.','Position','YTD',
-            'APR '.env('YEAR'),
-            'MAY '.env('YEAR'),
-            'JUN '.env('YEAR'),
-            'JUL '.env('YEAR'),
-            'AUG '.env('YEAR'),
-            'SEP '.env('YEAR'),
-            'OCT '.env('YEAR'),
-            'NOV '.env('YEAR'),
-            'DEC '.env('YEAR'),
-            'JAN '.(env('YEAR')+1),
-            'FEB '.(env('YEAR')+1),
-            'MAR '.(env('YEAR')+1),
+            'APR '.configuration('YEAR'),
+            'MAY '.configuration('YEAR'),
+            'JUN '.configuration('YEAR'),
+            'JUL '.configuration('YEAR'),
+            'AUG '.configuration('YEAR'),
+            'SEP '.configuration('YEAR'),
+            'OCT '.configuration('YEAR'),
+            'NOV '.configuration('YEAR'),
+            'DEC '.configuration('YEAR'),
+            'JAN '.(configuration('YEAR')+1),
+            'FEB '.(configuration('YEAR')+1),
+            'MAR '.(configuration('YEAR')+1),
         ];
         $writer->insertOne($csvHeader);
         $writer->insertAll($rows);

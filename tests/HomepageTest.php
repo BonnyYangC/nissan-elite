@@ -55,7 +55,7 @@ class HomepageTest extends TestCase
     public function testAdminLoginUrlExist(){
         $response = $this->http->post(
             url('/user/login'),
-            ['email'=>env('ADMIN_USER'),'password'=>env('ADMIN_PASSWORD')]
+            ['email'=>configuration('ADMIN_USER'),'password'=>configuration('ADMIN_PASSWORD')]
         );
         $this->assertEquals(200, $response->getStatusCode());
     }

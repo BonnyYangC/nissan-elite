@@ -148,7 +148,7 @@ class DashboardController extends BaseController
      * @param null $ytd
      */
     private function _prepareDashboardData(IRole $role, $ytd = null){
-        $ytd = is_null($ytd) ? env('YEAR',2019) : $ytd;
+        $ytd = is_null($ytd) ? configuration('YEAR',2019) : $ytd;
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
@@ -264,7 +264,7 @@ class DashboardController extends BaseController
 
         $lifetime   = 0;
         $monthly    = [];
-        $carbon = Carbon::create(env('YEAR'),3,1);
+        $carbon = Carbon::create(configuration('YEAR'),3,1);
         foreach (range(0,11) as $i) {
             $index = $carbon->addMonth()->format('M-Y');
             if(isset($results[$index])){
@@ -280,7 +280,7 @@ class DashboardController extends BaseController
         $history = [];
 
         $now = Carbon::now();
-        if( $now->month <= 3 || env('YEAR')== date('Y')-1 ){
+        if( $now->month <= 3 || configuration('YEAR')== date('Y')-1 ){
             $currentYearData = array_shift($historyRows);
             $historyRows[0] = $currentYearData;
             $historyRows[0][0] = ($now->year -1).'' ;
@@ -367,7 +367,7 @@ class DashboardController extends BaseController
         /**
          * 计算Credits
          */
-        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,env('YEAR',2019));
+        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,configuration('YEAR',2019));
 
         /**
          * 以上是基础数据, 以下为页面中的特定数据

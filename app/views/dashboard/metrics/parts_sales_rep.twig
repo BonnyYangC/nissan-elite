@@ -3,7 +3,7 @@
     <script>
         {#var GRP = [{{ metrics.GRP|raw }}];#}
         {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
-        var yAxis = "{{ env('PROGRAM_AWARD_UNIT')}}";
+        var yAxis = "{{ configuration('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-grp',
@@ -81,7 +81,7 @@
                         </tr>
                     </table>
                     <p>
-                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ constant('ProgramShortNameWithYear') }} Member Guide</a> for full details.</em>
+                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
                     </p>
                 </div>
             </div>

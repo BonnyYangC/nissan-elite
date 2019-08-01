@@ -158,7 +158,7 @@ class DataSource extends BaseModel
                     [
                         'AND'=>[
                             'member_id'=>$user->getEmployeeCode(),
-                            'period[>]'=>env('YEAR').'-02-01',
+                            'period[>]'=>configuration('YEAR').'-02-01',
                         ]
                     ]
                 );

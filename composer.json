@@ -26,7 +26,6 @@
     },
     "files": [
       "app/helpers/general.php",
-      "app/helpers/consts.php",
       "app/helpers/gd.php"
     ]
   },

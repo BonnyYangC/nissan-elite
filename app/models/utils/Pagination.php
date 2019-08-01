@@ -17,7 +17,7 @@ class Pagination extends Model
         $result = [
             'total'     =>$total,
             'current'   =>$currentPageNumber,
-            'pages'     =>ceil($total/env('PAGE_SIZE')),
+            'pages'     =>ceil($total/configuration('PAGE_SIZE')),
         ];
         return $result;
     }
