@@ -101,7 +101,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer')
     ->name('admin.upload.csv');
 \App\core\Route::Instance()
-    ->post('/admin/update-env', \App\controller\backend\AdminController::class,'update_env')
+    ->post('/admin/update-env', \App\controller\backend\AdminController::class,'updateProjectSettings')
     ->name('admin.update.env');
 
 \App\core\Route::Instance()

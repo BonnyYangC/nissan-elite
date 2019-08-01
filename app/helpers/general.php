@@ -129,7 +129,7 @@ if(!function_exists('configuration')){
      * @return array|bool|false|string
      */
     function configuration($key, $default=false){
-        $dotenv = new \Dotenv\Dotenv(__DIR__, 'config.php');
+        $dotenv = new \Dotenv\Dotenv(__DIR__, 'setting.php');
         $dotenv->load();
         $result = getenv($key);
         if($result === 'false'){
