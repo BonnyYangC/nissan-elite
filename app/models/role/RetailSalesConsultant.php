@@ -141,12 +141,12 @@ class RetailSalesConsultant extends BaseRole implements IRole
 
                 //2
                 $salespersonSatisfactionScore[]   = $this->_buildForJs($item['salesperson_satisfaction_score']);
-                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']).'%';
+                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']);
                 //3
                 $keptInformedDeliveryScore[]        = $this->_buildForJs($item['kept_informed_delivery_score']);
-                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery'],0);
+                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery']);
                 //4
-                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']).'%';
+                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']);
                 $followUpSatisfactionScore[]               = $this->_buildForJs($item['follow_up_satisfaction_score']);
                 //5
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);

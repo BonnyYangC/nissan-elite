@@ -96,7 +96,7 @@ class TableFieldMap{
             'fu_credit'             =>'points_ce_VFM',//'credits_ce_VFM',
             'trust_score'           =>'score_ce_AYT',//advice you can trust  //'ce_score_AYCT',
             'trust_credit'          =>'points_ce_AYT',//'credits_ce_AYCT',
-            'cpr'                   =>'score_CPR_order', // custmer paid repair orders //'percentage_CPR_',
+            'cpr'                   =>'percentage_cpro', // custmer paid repair orders //'percentage_CPR_',
             'cpr_credit'            =>'points_CPRO',//'credits_CPR_order',
             /*'emw_score'             =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',not using*/
@@ -356,7 +356,7 @@ class TableFieldMap{
             'followup'              =>'score_ce_FFT', // f1 fixed it right first time //'ce_score_FFT',
             'followup_credit'       =>'points_ce_FFT',//'credits_ce_FFT',
             // New fields, added on July/2018
-            'cpr'                   =>'score_CPR_order',// customer paid repair orders //'percentage_CPR_',
+            'cpr'                   =>'percentage_cpro',// customer paid repair orders //'percentage_CPR_',
             'cpr_credit'            =>'points_CPRO',//'credits_CPR_order',
             /*'emw'                   =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',*/

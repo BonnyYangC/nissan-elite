@@ -53,16 +53,16 @@ class GageController extends BaseController
         $grey           = imageColorAllocate($this->image, 127, 127, 127);
         $black          = imageColorAllocate($this->image, 0, 0, 0);
 
-        $cc = $dataForView['statusChart']['gageArray'][0][1];
-        $dc = $dataForView['statusChart']['gageArray'][1][1];
-        $ac = $dataForView['statusChart']['gageArray'][2][1];
-        $pc = $dataForView['statusChart']['gageArray'][3][1];
+        $statusLevel1Color = $dataForView['statusChart']['gageArray'][0][1];
+        $statusLevel2Color = $dataForView['statusChart']['gageArray'][1][1];
+        $statusLevel3Color = $dataForView['statusChart']['gageArray'][2][1];
+        $statusLevel4Color = $dataForView['statusChart']['gageArray'][3][1];
 
         // create the colors from hex triplets
-        $ConsulColor =      imageColorAllocate($this->image, hexdec(substr($cc, 1, 2)), hexdec(substr($cc, 3, 2)), hexdec(substr($cc, 5, 2)));
-        $DiplomatColor =    imageColorAllocate($this->image, hexdec(substr($dc, 1, 2)), hexdec(substr($dc, 3, 2)), hexdec(substr($dc, 5, 2)));
-        $AmbassadorColor =  imageColorAllocate($this->image, hexdec(substr($ac, 1, 2)), hexdec(substr($ac, 3, 2)), hexdec(substr($ac, 5, 2)));
-        $PremierColor =     imageColorAllocate($this->image, hexdec(substr($pc, 1, 2)), hexdec(substr($pc, 3, 2)), hexdec(substr($pc, 5, 2)));
+        $statusLevel1ArcColor =      imageColorAllocate($this->image, hexdec(substr($statusLevel1Color, 1, 2)), hexdec(substr($statusLevel1Color, 3, 2)), hexdec(substr($statusLevel1Color, 5, 2)));
+        $statusLevel2ArcColor =    imageColorAllocate($this->image, hexdec(substr($statusLevel2Color, 1, 2)), hexdec(substr($statusLevel2Color, 3, 2)), hexdec(substr($statusLevel2Color, 5, 2)));
+        $statusLevel3ArcColor =  imageColorAllocate($this->image, hexdec(substr($statusLevel3Color, 1, 2)), hexdec(substr($statusLevel3Color, 3, 2)), hexdec(substr($statusLevel3Color, 5, 2)));
+        $statusLevel4ArcColor =     imageColorAllocate($this->image, hexdec(substr($statusLevel4Color, 1, 2)), hexdec(substr($statusLevel4Color, 3, 2)), hexdec(substr($statusLevel4Color, 5, 2)));
 
         //background to white
         imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
@@ -77,10 +77,10 @@ class GageController extends BaseController
         $completePercent = min(100, $completePercent);
 
         drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia / 4,  $this->gageDia / 2);
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $ConsulColor,       $this->gageDia / 4,  $this->gageDia / 2);
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $DiplomatColor,     $this->gageDia / 4,  $this->gageDia / 2);
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $AmbassadorColor,   $this->gageDia / 4,  $this->gageDia / 2);
-        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $PremierColor,      $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $statusLevel1ArcColor,       $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $statusLevel2ArcColor,     $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $statusLevel3ArcColor,   $this->gageDia / 4,  $this->gageDia / 2);
+        drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $statusLevel4ArcColor,      $this->gageDia / 4,  $this->gageDia / 2);
 
         drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
         drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
@@ -162,16 +162,16 @@ class GageController extends BaseController
         imagefttext($this->image, $size = 48, $angle = 0, $x = $textX, $y = $this->yCenter - 45, $black,      $fontFile, number_format($complete, 0, '.', ','));
 
         // // Legend text
-        imagefttext($this->image, $size = 48, $angle = 0, $x = 160, $y = 160, $black,  $fontFile, $statusLevel1Text);
-        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 80, $black,  $fontFile, $statusLevel2Text);
-        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 160, $black, $fontFile, $statusLevel3Text);
-        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 240, $black, $fontFile, $statusLevel4Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x = 160, $y = 160, $black,  $fontFile, $statusLevel4Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 80, $black,  $fontFile, $statusLevel3Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 160, $black, $fontFile, $statusLevel2Text);
+        imagefttext($this->image, $size = 48, $angle = 0, $x, $y + 240, $black, $fontFile, $statusLevel1Text);
 
         // //Legend colors
-        imagefilledpolygon($this->image, [$x1 = 80, $y1 = 120,      $x2 = 120, $y2 = $y1,    $x4 = 120, $y4 = $y2 + 40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $ConsulColor);
-        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $DiplomatColor);
-        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $AmbassadorColor);
-        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $PremierColor);
+        imagefilledpolygon($this->image, [$x1 = 80, $y1 = 120,      $x2 = 120, $y2 = $y1,    $x4 = 120, $y4 = $y2 + 40, $x3 = $x1, $y3 = $y4], $no_of_points = 4, $statusLevel4ArcColor);
+        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $statusLevel3ArcColor);
+        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $statusLevel2ArcColor);
+        imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $statusLevel1ArcColor);
 
         // Set type of image and send the output
         header("Content-type: image/png");

@@ -54,20 +54,20 @@ class SalesManager extends BaseRole implements IRole
             if($item)
             {
                 //1
-                $matched[] = $this->_buildForJs($item['order_write_credit']);//
-                $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0);//
+                $matched[] = $this->_buildForJs($item['order_write_credit']);
+                $matched_results[]    = $this->_buildForTableElement($item['order_write_variation'],0);
 //2
-                $new[] = $this->_buildForJs($item['actual_sales']);//
-                $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';//
+                $new[] = $this->_buildForJs($item['actual_sales']);
+                $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';
 //3
-                $sos[] = $this->_buildForJs($item['sos_credit']);//
-                $sos_results[] = $this->_buildForTableElement($item['sos'],1).'%';//
+                $sos[] = $this->_buildForJs($item['sos_credit']);
+                $sos_results[] = $this->_buildForTableElement($item['sos'],1);
                 //4
-                $kid[] = $this->_buildForJs($item['kid_credit']);//
-                $kid_results[]       = $this->_buildForTableElement($item['kid'],1).'%';//
+                $kid[] = $this->_buildForJs($item['kid_credit']);
+                $kid_results[]       = $this->_buildForTableElement($item['kid'],1).'%';
 //5
-                $retail[] = $this->_buildForJs($item['retail_credit']);//
-                $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');//
+                $retail[] = $this->_buildForJs($item['retail_credit']);
+                $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');
                 //6
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
             }

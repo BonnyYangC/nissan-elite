@@ -75,7 +75,7 @@ class ServiceManager extends BaseRole implements IRole
                 $fu_results[]                   = $this->_buildForTableElement($item['followup'],1).'%';
 //4
                 $customerPaidRepair[]   = $this->_buildForJs($item['cpr_credit']);
-                $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'] * 100,1) .'%';
+                $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr'],1) .'%';
 //5                
                 $training[]             = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 /*

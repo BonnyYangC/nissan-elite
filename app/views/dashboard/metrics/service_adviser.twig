@@ -12,7 +12,7 @@
                 el: 'chart-recommend',
                 max: 640,
                 length: 8,
-                step: 80,
+                step: 320,
                 colors: ['#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
@@ -21,7 +21,7 @@
                 el: 'chart-advice',
                 max: 640,
                 length: 8,
-                step: 80,
+                step: 320,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.VALUE_FOR_MONEY)|raw }}
@@ -30,7 +30,7 @@
                 el: 'chart-follow-up',
                 max: 640,
                 length: 8,
-                step: 80,
+                step: 320,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.ADVICE)|raw }}
@@ -39,7 +39,7 @@
                 el: 'chart-cpr',
                 max: 640,
                 length: 8,
-                step: 80,
+                step: 320,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CPR)|raw }}
@@ -70,7 +70,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="row graph-back-top">
                 <div class="col-md-7">
-                    <h3>1. Service overall satisfaction NPS 3 month rolling score - Target 78</h3>
+                    <h3>1. Service overall satisfaction NPS 3 month rolling score</h3>
                     <div class="table-responsive">
                         <div id="chart-recommend" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Service overall satisfaction NPS 3 month rolling score - Target 78 Guide</h3>
+                    <h3>Service overall satisfaction <br>NPS 3 month rolling score Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Advisor</td>
@@ -91,18 +91,19 @@
                             <td align="center">110-119.9%</td>
                             <td align="center">≥120%</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">320</td>
                             <td align="center">550</td>
                             <td align="center">640</td>
                         </tr>
                     </table>
+                    <p><em>(current target set at 78)</em></p>
                 </div>
             </div>
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>2. Value for money NPS 6 month rolling score - target 68</h3>
+                    <h3>2. Value for money NPS 6 month rolling score</h3>
                     <div class="table-responsive">
                         <div id="chart-advice" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -115,7 +116,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Value for money NPS 6 month rolling score - target 68 Guide</h3>
+                    <h3>Value for money <br>NPS 6 month rolling score Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Advisor</td>
@@ -123,18 +124,19 @@
                             <td align="center">110-119.9%</td>
                             <td align="center">≥120%</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">320</td>
                             <td align="center">530</td>
                             <td align="center">640</td>
                         </tr>
                     </table>
+                    <p><em>(current target set at 68)</em></p>
                 </div>
             </div>
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>3. Advice you can trust NPS 6 month rolling score - Target 80</h3>
+                    <h3>3. Advice you can trust NPS 6 month rolling score</h3>
                     <div class="table-responsive">
                         <div id="chart-follow-up" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -147,7 +149,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Advice you can trust NPS 6 month rolling score - Target 80 Guide</h3>
+                    <h3>Advice you can trust <br>NPS 6 month rolling score Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Advisor</td>
@@ -155,18 +157,19 @@
                             <td align="center">110-119.9%</td>
                             <td align="center">≥120%</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">320</td>
                             <td align="center">530</td>
                             <td align="center">640</td>
                         </tr>
                     </table>
+                    <p><em>(current target set at 80)</em></p>
                 </div>
             </div>
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>4. Customer Paid Repair Orders vs Target Monthly Target</h3>
+                    <h3>4. Customer Paid Repair Orders vs Target</h3>
                     <div class="table-responsive">
                         <div id="chart-cpr" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -179,7 +182,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Customer Paid Repair Orders vs Target Monthly Target Guide</h3>
+                    <h3>Customer Paid Repair Orders vs Target Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Advisor</td>
@@ -187,13 +190,14 @@
                             <td align="center">110-119.9%</td>
                             <td align="center">≥120%</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">320</td>
                             <td align="center">550</td>
                             <td align="center">640</td>
                         </tr>
                     </table>
+                    <p><em>(monthly target as shown in iNsight Portal (target 100%))</em></p>
                 </div>
             </div>
             <div class="row graph-back">

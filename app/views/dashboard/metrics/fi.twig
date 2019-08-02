@@ -14,27 +14,27 @@
             },
             {//2. Loyalty &amp; Retention Bonus
                 el: 'chart-retention',
-                max: 200,
+                max: 100,
                 length: 10,
-                step: 20,
+                step: 10,
                 colors: ['#111111'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RETENTION)|raw }}
             },
             {//3. Insurance – MVI &amp; MVI/NFSA pkg
                 el: 'chart-mvi-vpi-pkg',
-                max: 800,
-                length: 8,
-                step: 100,
+                max: 400,
+                length: 10,
+                step: 40,
                 colors: ['#999999', '#555555' ,'#111111'],
                 pilot: ['Month', 'MVI', 'Package'],
                 dataSource: {{ json_encode(metrics.INSURANCE)|raw }}
             },
             {//4. EMW Genuine
                 el: 'chart-emw',
-                max: 2000,
-                length: 8,
-                step: 250,
+                max: 800,
+                length: 20,
+                step: 40,
                 colors: ['#555555','#c40030'],
                 pilot: ['Month','Genuine'],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
@@ -83,7 +83,7 @@
                             <td>F&amp;I Manager </td>
                             <td align="center">NFSA Finance Contract</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">40</td>
                         </tr>
@@ -111,7 +111,7 @@
                             <td nowrap>F&amp;I Manager </td>
                             <td align="center">Loyalty &amp; Retention Bonus</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td nowrap>Category A, B, C</td>
                             <td align="center">10</td>
                         </tr>
@@ -144,7 +144,7 @@
                             <td align="center">MVI Motor Vehicle Insurance</td>
                             <td align="center">Package</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td nowrap>Category A, B, C</td>
                             <td align="center">40</td>
                             <td align="center">10</td>
@@ -173,7 +173,7 @@
                             <td nowrap>F&amp;I Manager</td>
                             <td align="center">EMW Sale Genuine (NAPS)</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">40</td>
                         </tr>
@@ -204,7 +204,7 @@
                             <td align="center">65% - 74.99%</td>
                             <td align="center">75% or more</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">250</td>
                             <td align="center">500</td>
@@ -229,15 +229,15 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>CE – Satisfaction with F&I options – NPS – Single Mth Score Guide</h3>
+                    <h3>CE – Satisfaction with F&I options <br>– NPS – Single Mth Score Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>F&amp;I Manager</td>
-                            <td align="center">86.0%</td>
-                            <td align="center">86.1 - 89.9%</td>
-                            <td align="center">90% or greater</td>
+                            <td align="center">86.0</td>
+                            <td align="center">86.1 - 89.9</td>
+                            <td align="center">90 or greater</td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">100</td>
                             <td align="center">300</td>

@@ -74,7 +74,7 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>
-                            <td align="center">Fleet</td>
+                            <td align="center">Fleet and Retail</td>
                         </tr>
                         <tr class="active">
                             <td>Fleet Sales Executive</td>
@@ -119,10 +119,11 @@
             </div>
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
-                    <h3>3. Fleet Sales Volume Growth</h3>
+                    <h3>3. Fleet Sales Volume Growth(Quarterly) </h3>
                     <div class="table-responsive">
                         <div id="chart-fleet-volume-growth" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
+                            {% set monthsArray = ['JUN','SEP','DEC','MAR'] %} <!--TBC : should not be here -->
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
                                 <td class="nissangray-light-back">RESULT</td>
@@ -151,6 +152,7 @@
                             <td align="center">840</td>
                         </tr>
                     </table>
+                    <p><em>(metric measured Quarterly only)</em></p>
                 </div>
             </div>
             <div class="row graph-back pl-10">
@@ -165,15 +167,15 @@
                     <table class="table small-table" >
                         <tr class="table-top-row">
                             <td>Competency Modules</td>
-                            <td>Points Quarterly</td>
-                        </tr>
-                        <tr class="active">
-                            <td>Certified Fleet Sales Executive (F)</td>
-                            <td>250</td>
+                            <td align="center">Points Quarterly</td>
                         </tr>
                         <tr class="active">
                             <td>Certified Fleet Sales Executive (O)</td>
-                            <td>250</td>
+                            <td align="center">250</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Certified Fleet Sales Executive (F)</td>
+                            <td align="center">250</td>
                         </tr>
                     </table>
                     <p>

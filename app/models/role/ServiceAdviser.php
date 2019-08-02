@@ -85,7 +85,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $advice_results[] = $this->_buildForTableElement($item['trust_score']).'%';
 //4
                 $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
-                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
+                $cpr_result[] = $this->_buildForTableElement($item['cpr'],1).'%';
 //5
                 $training[] = $this->_buildForJs(
                     [
@@ -115,7 +115,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $emw_results[]              = null;
                 $recommendation_results[]   = null;
                 $fu_results[]               = null;
-                $cpr_result[]               = '';
+                $cpr_result[]               = null;
             }
         }
 
