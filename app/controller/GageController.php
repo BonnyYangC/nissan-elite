@@ -141,18 +141,19 @@ class GageController extends BaseController
         $statusLevel3Text = $dataForView['statusChart']['gageArray'][2][2];
         $statusLevel4Text = $dataForView['statusChart']['gageArray'][3][2];
 
-        $s1 = round(180 + $percent1 * 1.8);
+        $s1 = round(180 + $percent1 * 1.788);
         $s2 = round(180 + $percent2 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, $statusLevel1Text, $fontFile, $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, $statusLevel1Text, $fontFile, $size = 33, $pad = 0);
 
         $s3 = round(180 + $percent3 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, $statusLevel2Text, $fontFile, $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, $statusLevel2Text, $fontFile, $size = 33, $pad = 0);
 
         $s4 = round(180 + $percent4 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, $statusLevel3Text, $fontFile, $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, $statusLevel3Text, $fontFile, $size = 33, $pad = 0);
 
+        $s4 = round(180 + $percent4 * 1.82);
         $s5 = round(180 + 100 * 1.8);
-        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, $statusLevel4Text, $fontFile, $size = 36, $pad = 0);
+        textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, $statusLevel4Text, $fontFile, $size = 33, $pad = 0);
 
         $textX = $this->xCenter - 100;
         if (!$complete) {
