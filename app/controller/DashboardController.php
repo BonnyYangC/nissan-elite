@@ -396,8 +396,8 @@ class DashboardController extends BaseController
         $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
 
         // 获取了所有的 Rankings: Get all rankings
-        $rankings = Ranking::Query($this->userObject, $thisPeriod, Ranking::AWARD_STATUS);
-        $rankingsPlatinum = Ranking::Query($this->userObject, $thisPeriod, Ranking::AWARD_PLATINUM);
+        $rankings = Ranking::QueryByUserAndPeriodAndType($this->userObject, $thisPeriod, Ranking::AWARD_STATUS);
+        $rankingsPlatinum = Ranking::QueryByUserAndPeriodAndType($this->userObject, $thisPeriod, Ranking::AWARD_PLATINUM);
 
         $this->dataForView['Rankings'] = $rankings;
         $this->dataForView['RankingsPlatinum'] = $rankingsPlatinum;

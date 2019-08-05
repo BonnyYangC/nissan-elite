@@ -127,7 +127,7 @@ class Ranking extends BaseModel implements IRole
      * @param bool $forGivenUserOnly
      * @return array|bool
      */
-    public static function Query(User $user, Carbon $carbon, $rankingType, $forGivenUserOnly=false){
+    public static function QueryByUserAndPeriodAndType(User $user, Carbon $carbon, $rankingType, $forGivenUserOnly=false){
         $position = $user->position;
         $order = $rankingType == self::AWARD_STATUS ? 'rank' : 'rank_platinum'; 
         $where = [
@@ -141,6 +141,11 @@ class Ranking extends BaseModel implements IRole
         $category = $user->getCompany()->category;
         if($category){
             $where['AND']['nissan_rankings.category'] = $category;
+        }
+
+        $state = $user->getCompany()->company_state;
+        if($category){
+            $where['AND']['company.company_state'] = $state;
         }
 
         if($forGivenUserOnly){
@@ -191,6 +196,7 @@ class Ranking extends BaseModel implements IRole
                 $result = $result[0];
             }
         }
+
         return $result;
     }
 
