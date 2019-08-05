@@ -13,6 +13,6 @@ class PartsSalesRepStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(9000, 13000, 22000, 33000, $yearToDate, 34500);
+        parent::__construct(9000, 13000, 22000, 33000, $yearToDate, 34500); //set 34500 instead of 40000 to prevent 'commendation' slop over
     }
 }
