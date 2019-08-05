@@ -7,7 +7,7 @@
                 el: 'chart-recommendation',
                 max: 730,
                 length: 5,
-                step: 146,
+                step: 365,
                 colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
@@ -16,7 +16,7 @@
                 el: 'chart-clean',
                 max: 730,
                 length: 5,
-                step: 146,
+                step: 365,
                 colors: ['#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CLEAN)|raw }}
@@ -25,7 +25,7 @@
                 el: 'chart-follow-up',
                 max: 730,
                 length: 5,
-                step: 146,
+                step: 365,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.FOLLOWUP)|raw }}
@@ -34,7 +34,7 @@
                 el: 'chart_customer_paid_repair',
                 max: 730,
                 length: 5,
-                step: 146,
+                step: 365,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }}

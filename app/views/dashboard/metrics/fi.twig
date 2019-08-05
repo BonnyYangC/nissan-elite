@@ -25,7 +25,7 @@
                 el: 'chart-mvi-vpi-pkg',
                 max: 400,
                 length: 10,
-                step: 40,
+                step: 50,
                 colors: ['#999999', '#555555' ,'#111111'],
                 pilot: ['Month', 'MVI', 'Package'],
                 dataSource: {{ json_encode(metrics.INSURANCE)|raw }}
@@ -33,8 +33,8 @@
             {//4. EMW Genuine
                 el: 'chart-emw',
                 max: 800,
-                length: 20,
-                step: 40,
+                length: 10,
+                step: 100,
                 colors: ['#555555','#c40030'],
                 pilot: ['Month','Genuine'],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}

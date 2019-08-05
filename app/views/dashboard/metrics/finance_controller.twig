@@ -16,9 +16,9 @@
         },
         {//2. Quality Of Data Submitted
             el: 'chart-quality',
-            max: 1200,
+            max: 1025,
             length: 10,
-            step: 200,
+            step: 205,
             colors: ['#999999','#555555','#c40030'],
             pilot: ['Month', 'Balance', 'Submission'],
             legend: 'none',
@@ -28,7 +28,7 @@
             el: 'chart-MANAGEMENT',
             max: 700,
             length: 6,
-            step: 100,
+            step: 350,
             colors: ['#999999', '#555555' ,'#c40030'],
             pilot: ['Month','Checklist', 'Attendance'],
             dataSource: {{ json_encode(metrics.MANAGEMENT)|raw }}
