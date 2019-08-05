@@ -24,18 +24,18 @@
             },
             { //3. Kept informed of delivery NPS 3 month rolling score - Target 88
                 el: 'chart-kept-informed',
-                max: 250,
+                max: 275,
                 length: 25,
-                step: 50,
+                step: 25,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_keptInformedDelivery)|raw }}
             },
             { //4. Satisfaction with follow up NPS 6 month rolling score - Target 93
                 el: 'chart-followup',
-                max: 60,
-                length: 6,
-                step: 10,
+                max: 100,
+                length: 10,
+                step: 20,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_followUpSatisfaction)|raw }}

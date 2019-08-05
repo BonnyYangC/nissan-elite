@@ -51,7 +51,7 @@ class FleetSalesExecutive extends RetailSalesConsultant
                 $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
                 //2
                 $vFleetTargetScore[]   = $this->_buildForJs($item['v_fleet_target_score']); 
-                $vFleetTarget[]   = $this->_buildForTableElement($item['v_fleet_target']).'%'; 
+                $vFleetTarget[]   = $this->_buildForTableElement($item['v_fleet_target']*100).'%'; 
 //3
                 $fleetVolumeGrowthScore[]   = $this->_buildForJs($item['fleet_volumn_growth_score']); 
                 $fleetVolumeGrowth[]   = $this->_buildForTableElement($item['fleet_volumn_growth']).'%'; 
