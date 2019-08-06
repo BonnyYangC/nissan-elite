@@ -53,10 +53,13 @@ class UsersController extends BaseController
         $whereCondition = [
             'users.active'=>1,
             'users.parent_id'=>8,
-            'users.position'=>User::$REGION_STAFF_POSITIONS
+            'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
         ];
-        $this->dataForView['roles'] = DataSource::$_rolesMap;
-        $this->dataForView['users'] = User::GetRegionStaff([],$currentPageNumber);
+        
+        $staffs = User::GetRegionStaff([],$currentPageNumber);
+        $this->dataForView['users'] = $staffs;
+        $this->dataForView['usersCount'] = User::GetRegionStaffCount();
+        $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
         $this->render('backend/region_staff');
         return;
     }
@@ -65,7 +68,16 @@ class UsersController extends BaseController
      * Get Nissan super users
      */
     public function super_users(){
-        $this->dataForView['users'] = User::GetNissanSuperUsers();
+        $currentPageNumber = $this->request->param('pn') ? $this->request->param('pn') : 0;
+        $whereCondition = [
+            'users.parent_id'=>8,
+            'users.company_id'=>8,
+            'users.alt_position'=>User::ADMIN,
+        ];
+        $admins = User::GetNissanSuperUsers([],$currentPageNumber);
+        $this->dataForView['users'] = $admins;
+        $this->dataForView['usersCount'] = User::GetNissanSuperUsersCount();
+        $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
         $this->render('backend/users/super_users');
         return;
     }
