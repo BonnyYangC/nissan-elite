@@ -9,7 +9,9 @@
         {% else %}
             {# Load the top bar from the reuseable element of dashboard #}
             <div class="container-fluid" id="banner">
-                {% include 'dashboard/reusable_elements/top_bar.twig' %}
+                {% include 'dashboard/reusable_elements/top_bar.twig' %}</div>
+            </div>
+            <div class="container-fluid">
                 {% include 'dashboard/reusable_elements/nav.twig' %}
             </div>
         {% endif %}

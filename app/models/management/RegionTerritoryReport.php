@@ -91,13 +91,20 @@ class RegionTerritoryReport extends BaseModel
         }
         $map = [
             'Southern'           =>self::REGION_SOUTHERN,
+            'SOUTHERN'           =>self::REGION_SOUTHERN,
+            'Southern Region' =>self::REGION_SOUTHERN,
             'S'                 =>self::REGION_SOUTHERN,
             'Western'            =>self::REGION_WESTERN_AND_CENTRAL,
+            'WESTERN'            =>self::REGION_WESTERN_AND_CENTRAL,
+            'CENTRAL'            =>self::REGION_WESTERN_AND_CENTRAL,
             'W'                 =>self::REGION_WESTERN_AND_CENTRAL,
             'Western & Central'  =>self::REGION_WESTERN_AND_CENTRAL,
+            'WESTERN & CENTRAL'  =>self::REGION_WESTERN_AND_CENTRAL,
             'Eastern'            =>self::REGION_EASTERN,
+            'EASTERN' =>self::REGION_EASTERN,
             'E'                 =>self::REGION_EASTERN,
             'Northern'           =>self::REGION_NORTHERN,
+            'NORTHERN'           =>self::REGION_NORTHERN,
             'N'                 =>self::REGION_NORTHERN,
             'Eastern-NFSA'      =>self::REGION_EASTERN,
             'Southern-NFSA'     =>self::REGION_SOUTHERN,
@@ -118,7 +125,6 @@ class RegionTerritoryReport extends BaseModel
         if(count($codes) === 1){
             $codes = $codes[0];
         }
-
         $whereCondition = [
             'region_id'=>self::GetRegionCodeWithShortName($codes),
             'period'=>configuration('YEAR'),
@@ -132,7 +138,6 @@ class RegionTerritoryReport extends BaseModel
         if($dealerNameKeyword){
             $whereCondition['dealer_name[~]'] = $dealerNameKeyword;
         }
-
         return $database->select(self::TABLE_NAME,[
             'dealer_name(d)','registered(c)',
             'sp_code(s)','n_fullname(f)','employee_code(e)','position(p)','cr_ytd(y)',
