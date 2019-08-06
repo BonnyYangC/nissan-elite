@@ -96,7 +96,7 @@ class TableFieldMap{
             'fu_credit'             =>'points_ce_VFM',//'credits_ce_VFM',
             'trust_score'           =>'score_ce_AYT',//advice you can trust  //'ce_score_AYCT',
             'trust_credit'          =>'points_ce_AYT',//'credits_ce_AYCT',
-            'cpr'                   =>'percentage_cpro', // custmer paid repair orders //'percentage_CPR_',
+            'cpr'                   =>'percentage_CPRO', // custmer paid repair orders //'percentage_CPR_',
             'cpr_credit'            =>'points_CPRO',//'credits_CPR_order',
             /*'emw_score'             =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',not using*/
@@ -188,9 +188,12 @@ class TableFieldMap{
             'credit_bf'             =>'points_CARRIED', //'credits_carried_forward',
             'grp'                   =>'percentage_grp', //genuine replacement parts
             'grp_credit'            =>'points_GRP', //'credits_GRP',
+            'genuine_acc'                   =>'percentage_acces',
+            'genuine_acc_credit'            =>'points_acces', 
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
+            'training_bonus'               =>'points_train_bonus',
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
@@ -355,14 +358,12 @@ class TableFieldMap{
             'vclean_credit'         =>'points_ce_VFM',//'credits_ce_VFM',
             'followup'              =>'score_ce_FFT', // f1 fixed it right first time //'ce_score_FFT',
             'followup_credit'       =>'points_ce_FFT',//'credits_ce_FFT',
-            // New fields, added on July/2018
-            'cpr'                   =>'percentage_cpro',// customer paid repair orders //'percentage_CPR_',
+            'cpr'                   =>'percentage_CPRO',// customer paid repair orders //'percentage_CPR_',
             'cpr_credit'            =>'points_CPRO',//'credits_CPR_order',
-            /*'emw'                   =>'sales_emw_gen',
-            'emw_credit'            =>'credits_emw_gen',*/
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
+            'training_bonus'               =>'points_train_bonus',
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
