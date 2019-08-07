@@ -69,7 +69,7 @@ class SalesManager extends BaseRole implements IRole
                 $retail[] = $this->_buildForJs($item['retail_credit']);
                 $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');
                 //6
-                $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
+                $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
             }
             else
             {
@@ -78,7 +78,7 @@ class SalesManager extends BaseRole implements IRole
                 $sos[] = $this->_buildForJs(0);
                 $kid[] = $this->_buildForJs(0);
                 $retail[] = $this->_buildForJs(0);
-                $training[]         = $this->_buildForJs([0,0,0]);
+                $training[]         = $this->_buildForJs([0,0,0,0]);
 
                 $matched_results[] = null;
                 $sales_results[] = null;

@@ -21,13 +21,13 @@
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GAS)|raw }}
             },
-            {
+            {//3. Training
                 el: 'chart-training',
                 max: 3000,
                 length: 6,
                 step: 500,
-                colors: ['#111111', '#555555','#3273dc'],
-                pilot: ['Month','Online','Pathway','Competency'],
+                colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999'],
+                pilot: ['Month','Online','Pathway','Competency','Bonus'],
                 isStacked: true,
                 dataSource: {{ json_encode(metrics.TRAINING)|raw }}
             },

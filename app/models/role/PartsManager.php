@@ -48,7 +48,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs($item['grp_credit']);
                 $gas[]      = $this->_buildForJs($item['gas_credit']);
-                $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
+                $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 
                 $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
                 $gas_results[] = $this->_buildForTableElement($item['gas']*100,0).'%';
@@ -57,7 +57,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs(0);
                 $gas[]      = $this->_buildForJs(0);
-                $training[] = $this->_buildForJs([0,0,0]);
+                $training[] = $this->_buildForJs([0,0,0,0]);
 
                 $grp_results[] = null;
                 $gas_results[] = null;
