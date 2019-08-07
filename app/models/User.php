@@ -110,7 +110,6 @@ class User extends BaseModel implements Mailable, IRole
         self::DAM_NFSA,
         self::DSM,
         self::NFSA,
-        self::DESTINATION,
         self::HEAD_OFFICE,
         self::FDM,
         self::FRANCHISE_DEVELOPMENT_MANAGER,
@@ -675,7 +674,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public function init(){
         // Todo: check if the user is in management team
-        if($this->position === self::NISSAN_SUPER){
+        if($this->alt_position === self::ADMIN){
             $this->managedRegions = [
                 Company::REGION_EASTERN,
                 Company::REGION_NORTHERN,
@@ -710,7 +709,7 @@ class User extends BaseModel implements Mailable, IRole
      * @return array
      */
     private function _getRegionStaffRoles(){
-        return self::$REGION_STAFF_POSITIONS;
+        return self::$REGION_STAFF_POSITIONS_WITHOUT_SUPER;
     }
 
     /**
