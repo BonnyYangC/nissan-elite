@@ -33,7 +33,7 @@ class AdminController extends BaseController
     private $csvFileIndexes = null; // The first row of the csv file, as the index
     private $resultArray = [];
     private $notFoundArray = [];
-
+    private $fieldMap = [];
     /**
      * Result table had td tags only
      * @var string
@@ -642,7 +642,7 @@ class AdminController extends BaseController
             if(empty($this->resultTableHead)){
                 $keys = array_keys($tr);
                 foreach ($keys as $theKey) {
-                    $this->resultTableHead .= '<td>'.$theKey.'</td>';
+                    $this->resultTableHead .= '<td>'.$this->fieldMap[$theKey].'</td>';
                 }
                 $html .= '<tr>'.$this->resultTableHead.'</tr>';
             }
@@ -751,7 +751,7 @@ class AdminController extends BaseController
         if($roleAbbr === User::REGION_STAFF){
             $map = DbMap::RegionStaffTable();
         }
-
+        $this->fieldMap = $map;
         $map = array_flip($map);
 
         foreach ($csvRowArray as $index => $rowName) {
