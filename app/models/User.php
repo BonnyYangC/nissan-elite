@@ -43,7 +43,7 @@ class User extends BaseModel implements Mailable, IRole
     const DSM = 'DSM'; //
     const NFSA = 'NFSA'; //
     const DESTINATION = 'DESTINATION'; //
-    const HEAD_OFFICE='Head Office'; //
+    const HEAD_OFFICE='HEAD OFFICE'; //
     const FDM = 'FDM';
     const FRANCHISE_DEVELOPMENT_MANAGER='Franchise Development Manager'; //
     const GENERAL_MANAGER='General Manager'; //
