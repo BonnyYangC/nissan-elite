@@ -7,7 +7,7 @@
 .bg-site-image{
     background-image: url('/images/loader/Nissan_Individual_bg.png');
     /*background-position: center;*/
-    background-size: contain;
+    background-size: cover;
     background-repeat: repeat-y;
     width:100%;
 }
