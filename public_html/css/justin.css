@@ -8,7 +8,8 @@
     background-image: url('/images/loader/Nissan_Individual_bg.png');
     /*background-position: center;*/
     background-size: cover;
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     width:100%;
 }
 .txt-white, .tw{
