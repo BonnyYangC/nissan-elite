@@ -362,7 +362,7 @@ footer ul.nav li a:hover {
 }
 
 .navbar-inverse{
-	background:#4c4c4c;
+	background:#000000;
 	margin-bottom: 0;
 }
 
@@ -456,11 +456,13 @@ footer ul.nav li a:hover {
 }
 
 .border12 {
-    border: 15px solid #e31d3c;
+    /*border: 15px solid #e31d3c;*/
     padding: 10px;
     width: 80%;
 }
-
+.panel-group a {
+	color : #4169E1;
+}
 .borderteam {
     border: 1px solid #b79533;
     padding: 10px;

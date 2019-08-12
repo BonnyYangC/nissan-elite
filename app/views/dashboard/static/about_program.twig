@@ -1,7 +1,7 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
     <div
-        class="container bg-image">
+        class="container">
         <!--1-->
         <div class="row">
             <div class="col-lg-12">
@@ -125,6 +125,11 @@
         </div>
     </div>
 </div>
+<script>
+(function(){
+    document.body.style.backgroundImage = "url('/images/about_program_bg.png')";
+})();
+</script>
 <style>
     .bg-image {
         background-image: url('/images/about_program_bg.png');
