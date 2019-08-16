@@ -138,13 +138,8 @@ class Ranking extends BaseModel implements IRole
             "ORDER" => $order, //"rank" //TBD
         ];
 
-        $category = $user->getCompany()->category;
-        if($category){
-            $where['AND']['nissan_rankings.category'] = $category;
-        }
-
         $state = $user->getCompany()->company_state;
-        if($category){
+        if($state){
             $where['AND']['company.company_state'] = $state;
         }
 
