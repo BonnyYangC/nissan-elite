@@ -70,6 +70,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
 
 \App\core\Route::Instance()->get('/dashboard/current-status-level',\App\controller\GageController::class, 'current_status_level');
+\App\core\Route::Instance()->get('/dashboard/loyalty-status-level',\App\controller\GageController::class, 'loyalty_status_level');
 
 // static pages end
 // dynamic pages

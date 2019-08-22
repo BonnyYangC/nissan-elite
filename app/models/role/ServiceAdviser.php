@@ -68,7 +68,7 @@ class ServiceAdviser extends BaseRole implements IRole
         $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training=$cpr=$cpr_result=[];
         $valueForMoney = $valueForMoneyTable = [];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -87,6 +87,8 @@ class ServiceAdviser extends BaseRole implements IRole
                 $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
                 $cpr_result[] = $this->_buildForTableElement($item['cpr'],1).'%';
 //5
+                // get classroom point from both fields: pathway and classroom
+                $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
                 $training[] = $this->_buildForJs(
                     [
                         $item['training']?$item['training']:0,
@@ -95,8 +97,6 @@ class ServiceAdviser extends BaseRole implements IRole
                     ]
                 );
 
-                // get classroom point from both fields: pathway and classroom
-                $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
                 $emw[] = $this->_buildForJs($item['emw_credit']?$item['emw_credit']:0);
                 $emw_results[] = $this->_buildForTableElement($item['emw_score'],0);
             }
@@ -157,9 +157,9 @@ class ServiceAdviser extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 

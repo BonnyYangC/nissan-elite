@@ -43,7 +43,7 @@ if(!function_exists('get_month_array')){
 
     function get_months_array(){
         return [
-            'APR','MAY','JUN','JUL',
+            'MAY','JUN','JUL',
             'AUG','SEP','OCT','NOV',
             'DEC','JAN','FEB','MAR'
         ];

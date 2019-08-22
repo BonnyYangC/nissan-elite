@@ -323,7 +323,6 @@ class DashboardController extends BaseController
             'https://www.google.com/jsapi',
             asset('js/justgage/raphael-2.1.4.min.js'),
             asset('js/justgage/justgage.js'),
-            asset('js/dashboard/lifetime.js')
         ];
 
         $this->render('dashboard/lifetime');

@@ -1,52 +1,184 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
-    <div class="container bg-md-guide" id="md-event-app">
-        <div class="container-layer" style="background-image: url('/images/fish-background.jpg'); background-size: cover;">
-            <img src="/images/md-guild-banner.png" alt="" class="md-guild-banner">
-            <h1>Nissan Ambassador Club<br>Stay Tuned for our next Destination</h1>
-            <div class="row">
-                <div class="col-lg-9 col-sm-12">
-                    <p>
-                        
-                    </p>
-                    <table class="md-guild-table md-guild-table--gold md-guild-table--emphasize-left md-guild-table--full-width">
-                        <thead>
+    <div class="container bg-white pl-25 pr-25">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                        <span class='page-header-title'>GUILD</span>
+                </h1>
+            </div>
+        </div>
+        <div class="row pb-20">
+            <div class="col-md-9 mb-60">
+                <div class="border12 center-block">
+                    <img src="{{ asset('images/md_guild/hobart.png') }}" class="img-responsive" alt="" />
+                </div>
+
+                <p>&nbsp;</p>
+                <p>On behalf of everyone at Nissan Australia congratulations on your fine achievement and we look forward to your company in Hobart. </p>
+
+                <h3>Nissan ELITE Guild weekend</h3>
+                <h3>Saturday 19th Hobart – Monday 21st October 2019</h3>
+
+                <p>During the weekend, we will induct new members into this prestigious group and celebrate their success alongside eligible Foundation members. 
+                    High Achievers for FY18 will also be recognised throughout the weekend.
+                </p>
+                <p>The invitees for this event…</p>
+
+                <h3>GUILD MEMBERS…</h3>
+
+                <table class="table table-striped">
+                    <tbody>
                         <tr>
-                            <th colspan="2">MD GUILD INVITEES</th>
+                            <td>Ben Bilsborow</td>
+                            <td>Jarrett Nissan</td>
                         </tr>
-                        </thead>
-                        <tbody data-source="/data/md-guild/guild-current-event-invited.json" id="first-table">
-                        {# To modify the contents of this table, use the data file above #}
-                        <tr v-for="(row, key, index) in firstTable" :key="index">
-                            <td>${ row[0] }</td>
-                            <td>${ row[1] }</td>
+                        <tr>
+                            <td>Ben Maslen</td>
+                            <td>Westpoint Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Braith Gartshore</td>
+                            <td>Gaukroger Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Colin Wallace</td>
+                            <td>Western Plains Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Craig Scanlan</td>
+                            <td>Warwick Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Ed Staff</td>
+                            <td>Moorooka Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Emidio Tarzia</td>
+                            <td>Lakeside Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Giuseppe Gentile</td>
+                            <td>Hobart Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Jason Collins</td>
+                            <td>Main North Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Jason Tan</td>
+                            <td>Berwick Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Jeremy James</td>
+                            <td>Burwood Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Josh Klein</td>
+                            <td>Gatton Auto</td>
+                        </tr>
+                        <tr>
+                            <td>Mark Madgwick</td>
+                            <td>Lakeside Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Matt Shine</td>
+                            <td>Parry NQ Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Walton</td>
+                            <td>Rod Grittner Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Philip Cullen</td>
+                            <td>von Bibra Robina Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Ross Vella</td>
+                            <td>Macarthur Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Russell Hodges</td>
+                            <td>Ron Doyle Motors Nissan</td>
+                            </tr>
+                        <tr>
+                            <td>Stephen Forrest</td>
+                            <td>Ipswich Nissan</td>
+                            </tr>
+                        <tr>
+                            <td>Stephen Vassel</td>
+                            <td>Muswellbrook Nissan</td>
+                            </tr>
+                        <tr>
+                            <td>Tim Overall</td>
+                            <td>North Jacklin Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Wayne Bultitude</td>
+                            <td>Great Lakes Nissan</td>
                         </tr>
 
-                        </tbody>
-                    </table>
-                    <table class="md-guild-table md-guild-table--platinum md-guild-table--emphasize-left md-guild-table--full-width">
-                        <thead>
+                    </tbody>
+                </table>
+
+                <h3>HIGH ACHIEVERS FY18…</h3>
+
+                <table class="table table-striped">
+                    <tbody>
                         <tr>
-                            <th colspan="2">HIGH ACHIEVERS 2017</th>
+                            <td>Aaron Wareham</td>	
+                            <td>Rockingham Nissan</td>
                         </tr>
-                        </thead>
-                        <tbody data-source="/data/md-guild/guild-current-event-2017-high-achievers.json" id="second-table">
-                        {# To modify the contents of this table, use the data file above #}
-                        <tr v-for="(row, key, index) in secondTable" :key="index">
-                            <td>${ row[0] }</td>
-                            <td>${ row[1] }</td>
+                        <tr>
+                            <td>Graham Francis</td>	
+                            <td>Jarrett Nissan</td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-lg-3 col-sm-12">
-                    <a href="{{ url('/dashboard/MDguild-events-past') }}">
-                        <button type="button" class="btn btn-default btn-lg btn-block">Past</button>
-                    </a>
-                    <a href="{{ url('/dashboard/MDguild') }}">
-                        <button type="button" class="btn btn-default btn-lg btn-block">Back</button>
-                    </a>
-                </div>
+                        <tr>
+                            <td>Greg Dennis</td>		
+                            <td>Ferntree Gully Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Jason Sarikakis</td>	
+                            <td>Parramatta Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Jenny-Lyn Stokes</td>	
+                            <td>Gatton Auto</td>
+                        </tr>
+                        <tr>
+                            <td>Kaylee Brandy</td>		
+                            <td>Northside Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Mat Mitchell</td>		
+                            <td>Northside Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Mohit Arora</td>		
+                            <td>Ferntree Gully Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Peter Jarick</td>		
+                            <td>Lieschke Nissan</td>
+                        </tr>
+                        <tr>
+                            <td>Tahlia Yates</td>		
+                            <td>Western Nissan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-3 col-sm-12">
+                <a href="{{ url('/dashboard/MDguild-members') }}">
+                    <button type="button" class="btn btn-default btn-lg btn-block">Guild Members</button>
+                </a>
+                <!--<a href="{{ url('/dashboard/MDguild-high-achievers') }}">
+                    <button type="button" class="btn btn-default btn-lg btn-block">High Achievers</button>
+                </a>-->
+                <a href="{{ url('/dashboard/MDguild-events') }}">
+                    <button type="button" class="btn btn-default btn-lg btn-block">Events</button>
+                </a>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@ use App\models\BaseModel;
 use App\models\role\IRole;
 use App\models\User;
 use Carbon\Carbon;
+use App\models\utils\RankingState;
 
 class Ranking extends BaseModel implements IRole
 {
@@ -133,14 +134,14 @@ class Ranking extends BaseModel implements IRole
         $where = [
             'AND'=>[
                 'role'=>$position,
-                'period'=>$carbon->format('Y-m-d')
+                'period'=>$carbon->format('Y-m-d'),
             ],
-            "ORDER" => $order, //"rank" //TBD
+            "ORDER" => $order,
         ];
 
         $state = $user->getCompany()->company_state;
         if($state){
-            $where['AND']['company.company_state'] = $state;
+            $where['AND']['nissan_rankings.rank_state'] = Rankingstate::RANKING_STATE_MAP[$state];
         }
 
         if($forGivenUserOnly){

@@ -46,7 +46,7 @@ class SalesManager extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $matched=$new=$sos=$sos_results=$retail=$training=$matched_results=$sales_results=$kid=$kid_results=$retail_results=[];
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -124,9 +124,9 @@ class SalesManager extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 
@@ -141,7 +141,7 @@ class SalesManager extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]    = intval($item['actual_sales']);
                 $this->keptInformed['data'][] = intval($item['kid_credit']);
                 $this->DlrRec['data'][]             = intval($item['sos_credit']);
-                $this->retailForecast['data'][]        = intval($item['retail_midmth']);
+                $this->retailForecast['data'][]        = intval($item['retail_credit']);
                 $this->trainingData['data'][]           = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
