@@ -144,7 +144,7 @@ class LifetimeUtil
 
             case $lifetimeRevenue >= self::Bronze && $lifetimeRevenue < self::Silver:
                 $lifetimeUtil->_init(
-                    IColor::Bronze,
+                    IColor::BRONZE,
                     self::SilverText,
                     self::Silver - $lifetimeRevenue);
                 break;
