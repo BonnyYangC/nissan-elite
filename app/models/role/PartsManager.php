@@ -22,7 +22,7 @@ class PartsManager extends BaseRole implements IRole
     ];
     public $GENUINE_ACCESSORIES = [
         'label'=>'GENUINE ACCESSORIES',
-        'backgroundColor' => IColor::LIGHT_BLUE,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
 

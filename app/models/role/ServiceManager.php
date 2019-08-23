@@ -19,17 +19,17 @@ class ServiceManager extends BaseRole implements IRole
 
     public $serviceRecommendation = [
         'label'=>'Service Satisfaction',
-        'backgroundColor' => IColor::AQUA,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
     public $VehicleCleanliness = [
         'label'=>'Value for Money',
-        'backgroundColor' => IColor::BLUE_PUPPLE,
+        'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
     public $FFT = [
         'label'=>'FFT',
-        'backgroundColor' => IColor::LIGHT_PINK,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
     public $CUSTOMER_REPAIR_ORDER = [

@@ -124,7 +124,9 @@
 .footer-nav .current a{
     color: #c40030;
 }
-
+.font-weight-bold {
+    font-weight: bold;
+}
 /* dashboard page */
 .fc-day-grid-container.fc-scroller {
     height: auto!important;
@@ -197,7 +199,7 @@
     min-width: 600px; min-height: 400px;
 }
 .metrics-table-wrap{
-    width: 590px;
+    width: 600px;
 }
 .sm{
     font-size: 10px;

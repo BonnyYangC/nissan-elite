@@ -17,13 +17,13 @@ class SalesManager extends BaseRole implements IRole
 //Matched Ow
     public $matchedOW = [
         'label'=>'Matched OW',
-        'backgroundColor' => IColor::LIGHT_GREEN,
+        'backgroundColor' => IColor::BRONZE,
         'data'=>[]
     ];
 //Retail Forecast
     public $retailForecast = [
         'label'=>'Forecast',
-        'backgroundColor' => IColor::LIGHT_BLUE,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
 //Sales Overall Satisfaction

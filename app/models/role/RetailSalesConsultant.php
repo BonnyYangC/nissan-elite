@@ -24,7 +24,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
 
     public $followUpSaturation             = [
         'label'=>'Follow Up Sat',
-        'backgroundColor' => IColor::LIGHT_GREEN,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
 

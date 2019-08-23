@@ -18,7 +18,7 @@ class ServiceAdviser extends BaseRole implements IRole
     // Service adviser: start
     public $serviceRecommendation = [
         'label'=>'Service Satisfaction',
-        'backgroundColor' => IColor::AQUA,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
     public $advice = [
@@ -28,7 +28,7 @@ class ServiceAdviser extends BaseRole implements IRole
     ];
     public $VehicleCleanliness = [
         'label'=>'Value for Money',
-        'backgroundColor' => IColor::BLUE_PUPPLE,
+        'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
     public $EMW = [
@@ -38,12 +38,12 @@ class ServiceAdviser extends BaseRole implements IRole
     ];
     public $FFT = [
         'label'=>'FFT',
-        'backgroundColor' => IColor::BLUE_PUPPLE,
+        'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
     public $SERVICE_YOU_CAN_TRUST = [
         'label'=>'AYCT',
-        'backgroundColor' => IColor::LIGHT_PINK,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
     public $CUSTOMER_REPAIR_ORDER = [

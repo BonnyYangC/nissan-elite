@@ -51,12 +51,7 @@ class BaseRole extends BaseModel
     public $excellenceResult = null;
     public $newVehicleSales = [
         'label'=>'New Vehicle Sales',
-        'backgroundColor' => IColor::LIGHT_PINK,
-        'data'=>[]
-    ];
-    public $trainingData = [
-        'label'=>'Training',
-        'backgroundColor' => IColor::LIGHT_RED,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
 
@@ -66,13 +61,18 @@ class BaseRole extends BaseModel
         'data'=>[]
     ];
 
+    public $trainingData = [
+        'label'=>'Training',
+        'backgroundColor' => IColor::LEMON_CHIFFON,
+        'data'=>[]
+    ];
     /**
      * Add incentives for all roles
      * @var array
      */
     public $incentivesForDashboard = [
         'label'=>'Incentive',
-        'backgroundColor' => IColor::GREEN_YELLOW,
+        'backgroundColor' => IColor::GOLD,
         'data'=>[]
     ];
 

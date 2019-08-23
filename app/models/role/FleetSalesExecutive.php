@@ -18,7 +18,7 @@ class FleetSalesExecutive extends RetailSalesConsultant
 
     public $salesVTarget   = [
         'label'=>'Sales v Target',
-        'backgroundColor' => IColor::AQUA,
+        'backgroundColor' => IColor::BRONZE,
         'data'=>[]
     ];
 
