@@ -29,7 +29,7 @@ class SalesManager extends BaseRole implements IRole
 //Sales Overall Satisfaction
     public $DlrRec = [
         'label'=>'CE Sat',
-        'backgroundColor' => '#99CCCC',
+        'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
 
