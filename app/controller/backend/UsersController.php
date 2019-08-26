@@ -60,6 +60,7 @@ class UsersController extends BaseController
         $this->dataForView['users'] = $staffs;
         $this->dataForView['usersCount'] = User::GetRegionStaffCount();
         $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
+        $this->dataForView['currentPageNumber'] = $currentPageNumber;
         $this->render('backend/region_staff');
         return;
     }
@@ -108,7 +109,7 @@ class UsersController extends BaseController
      */
     public function region_staff_new(){
         $this->dataForView['user'] = new User();
-        $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
+        $this->dataForView['regions'] = User::$REGIONS_MAP;
         $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
         $this->dataForView['positions_map'] = User::POSITION_FULLNAME_MAP;
         $this->render('backend/users/edit_region_staff');
@@ -121,7 +122,7 @@ class UsersController extends BaseController
     public function region_staff_edit(){
         $user = new User($this->request->param('uid'));
         $this->dataForView['user'] = $user;
-        $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
+        $this->dataForView['regions'] = User::$REGIONS_MAP;
         $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
         $this->dataForView['positions_map'] = User::POSITION_FULLNAME_MAP;
         $this->render('backend/users/edit_region_staff');

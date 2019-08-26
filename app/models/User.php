@@ -10,7 +10,7 @@ namespace App\models;
 
 use App\core\contracts\support\Mailable;
 use App\models\management\ManagerDealer;
-use App\models\management\ManagerRegion;
+use App\models\management\RegionTerritoryReport;
 use App\models\nissan\DataSource;
 use App\core\contracts\support\MailTrait;
 use App\models\nissan\Ranking;
@@ -86,6 +86,15 @@ class User extends BaseModel implements Mailable, IRole
     const NISSAN_SUPER = 'NISSAN_SUPER';
     const SHOP_OWNER = 'SHOP_OWNER';
     //end
+
+    public static $REGIONS_MAP = [ //for regional staff edit
+        'SOUTHERN'               =>RegionTerritoryReport::REGION_SOUTHERN,
+        'WESTERN & CENTRAL'      =>RegionTerritoryReport::REGION_WESTERN_AND_CENTRAL,
+        'EASTERN'                =>RegionTerritoryReport::REGION_EASTERN,
+        'NORTHERN'               =>RegionTerritoryReport::REGION_NORTHERN,
+        self::HEAD_OFFICE           =>self::HEAD_OFFICE,
+        self::NFSA              =>self::NFSA
+    ];
 
     const POSITION_FULLNAME_MAP = [
         self::DSM => self::DISTRICT_SALES_MANAGER_FULL,
