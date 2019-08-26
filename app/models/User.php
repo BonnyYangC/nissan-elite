@@ -296,14 +296,15 @@ class User extends BaseModel implements Mailable, IRole
         }
 
         $db = self::DB();
-        $result = $db->select('users','*',[
+        $condition = [
             'AND'=>$where,
             'ORDER'=>[
                 'alt_position'=>'ASC',
                 'firstname'=>'ASC',
             ],
-            'LIMIT'=>[$pageNumber,$limit]
-        ]);
+        ];
+        if($limit != null) $condition['LIMIT'] = [$pageNumber*$limit,$limit];
+        $result = $db->select('users','*',$condition);
 
         return $result;
     }

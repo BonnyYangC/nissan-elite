@@ -25,7 +25,7 @@
                     {% set yearShort = configuration('YEAR')-2000 %}
                     <a href="http://learning.nissan.com.au" class="btn btn-default" target="_blank" style="background-color: #cccccc;">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Academy</a>&nbsp;
-                    <a href="http://nissan-events.com.au/excellence-fy18" class="btn btn-danger" target="_blank">
+                    <a href="{{ configuration('dealExcellenceOverviewUrl','') }}" class="btn btn-danger" target="_blank">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence</a>&nbsp;
                     <a href="#" v-on:click="handlerTerritoryReport($event,{{ user.user_id }})" class="btn btn-default">
                         <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Territory Report</a>&nbsp;

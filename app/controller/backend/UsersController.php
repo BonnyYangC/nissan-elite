@@ -278,7 +278,7 @@ class UsersController extends BaseController
             $this->response->file($filePath,null,'csv');
 
         }elseif ($this->request->param('type') === 'region'){
-            $users = User::GetRegionStaff([]);
+            $users = User::GetRegionStaff([],0,null);
             $rows = [];
             foreach ($users as $user) {
                 $rows[] = [
