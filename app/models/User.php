@@ -21,6 +21,8 @@ class User extends BaseModel implements Mailable, IRole
 {
     use MailTrait;
 
+    const TABLE_NAME = 'users';
+
     // Nissan user's position define
     const RETAIL_SALES_CONSULTANTS  = 'R';
     const FLEET_SALES_CONSULTANTS   = 'F';  // can probably remove this
@@ -36,96 +38,102 @@ class User extends BaseModel implements Mailable, IRole
     const FI                        = 'I';
 
     // position that currently using
-    const DTS = 'DTS';//
-    const PDM = 'PDM';//
-    const FOM = 'FOM'; //
-    const DAM_NFSA = 'DAM NFSA'; //
-    const DSM = 'DSM'; //
-    const NFSA = 'NFSA'; //
-    const DESTINATION = 'DESTINATION'; //
-    const HEAD_OFFICE='HEAD OFFICE'; //
+    const DSM = 'DSM'; 
+    const DISTRICT_SALES_MANAGER_FULL = 'DISTRICT SALES MANAGER';
+    const DISTRICT_SALES_MANAGER    = 'DSM';
+
+    const DTS = 'DTS';
+    const DEALER_TECHNICAL_SPECIALIST = 'DEALER TECHNICAL SPECIALIST';
+
     const FDM = 'FDM';
-    const FRANCHISE_DEVELOPMENT_MANAGER='Franchise Development Manager'; //
-    const GENERAL_MANAGER='General Manager'; //
-    const REGIONAL_AFTER_SALES_MANAGER='Regional After Sales Manager'; //
-    const REGIONAL_FLEET_MANAGER='Regional Fleet Manager '; //
+    const FRANCHISE_DEVELOPMENT_MANAGER = 'FRANCHISE DEVELOPMENT MANAGER';
+    const FOM = 'FOM';
+    const FIELD_OPERATION_MANAGER = 'FIELD OPERATION MANAGER';
+    const HEAD_OFFICE='HEAD OFFICE';
+    const NFSA = 'NFSA';
+    const RAM = 'RAM';
+    const REGIONAL_AFTER_SALES_MANAGER = 'REGIONAL AFTER SALES MANAGER';
+    const RFM = 'RFM';
+    const REGIONAL_FLEET_MANAGER = "REGIONAL FLEET MANAGER"; 
+
     const RGM = 'RGM';
-    const REGIONAL_GENERAL_MANAGER='Regional General Manager '; //
+    const REGIONAL_GENERAL_MANAGER='REGIONAL GENERAL MANAGER';
     const ROA = 'ROA';
-    const REGIONAL_OPERATIONS_ANALYST='Regional Operations Analyst'; //
-    const ROM = 'ROM';//
-    const REGIONAL_OPERATIONS_MANAGER='Regional Operations Manager'; //
+    const REGIONAL_OPERATIONS_ANALYST='REGIONAL OPERATIONS ANALYST';
+    const ROM = 'ROM';
+    const REGIONAL_OPERATIONS_MANAGER='REGIONAL OPERATIONS MANAGER';
     const RSC = 'RSC';
-    const REGIONAL_SALES_COORDINATOR='Regional Sales Coordinator'; //
+    const REGIONAL_SALES_COORDINATOR='REGIONAL SALES COORDINATOR';
     const RSM = 'RSM';
-    const REGIONAL_SALES_MANAGER='Regional Sales Manager'; //
+    const REGIONAL_SALES_MANAGER='REGIONAL SALES MANAGER'; 
+    const TRAINING = 'TRAINING';
 
     const ADMIN = 'ADMIN';
-    
+
+
     //currently not using -- begin
+    const PDM = 'PDM';//
+    const DAM_NFSA = 'DAM NFSA'; //
+    const DESTINATION = 'DESTINATION'; //
+    const GENERAL_MANAGER='General Manager'; //
+
+    
     const REGION_STAFF    = 'region_staff';
-    const DISTRICT_SALES_MANAGER    = 'DSM';
-    const DISTRICT_SALES_MANAGER_FULL    = 'Region Staff';
     const NATIONAL_SALES_MANAGER    = 'GSM';
     const NATIONAL_SALES_MANAGER_FULL    = 'General Sales Manager';
-    const RAM = 'RAM';
     const RSM_NFSA = 'RSM NFSA';
     const RM_NFSA = 'RM NFSA';
     const NISSAN_SUPER = 'NISSAN_SUPER';
     const SHOP_OWNER = 'SHOP_OWNER';
     //end
 
-    const TABLE_NAME = 'users';
-
-    public static $REGION_STAFF_POSITIONS = [
-        self::DTS,
-        self::PDM,
-        self::FOM,
-        self::DAM_NFSA,
-        self::DSM,
-        self::NFSA,
-        self::DESTINATION,
-        self::HEAD_OFFICE,
-        self::FDM,
-        self::FRANCHISE_DEVELOPMENT_MANAGER,
-        self::GENERAL_MANAGER,
-        self::REGIONAL_AFTER_SALES_MANAGER,
-        self::REGIONAL_FLEET_MANAGER,
-        self::RGM,
-        self::REGIONAL_GENERAL_MANAGER,
-        self::ROA,
-        self::REGIONAL_OPERATIONS_ANALYST,
-        self::ROM,
-        self::REGIONAL_OPERATIONS_MANAGER,
-        self::RSC,
-        self::REGIONAL_SALES_COORDINATOR,
-        self::RSM,
-        self::REGIONAL_SALES_MANAGER,
+    const POSITION_FULLNAME_MAP = [
+        self::DSM => self::DISTRICT_SALES_MANAGER_FULL,
+        self::DTS => self::DEALER_TECHNICAL_SPECIALIST,
+        self::FDM => self::FRANCHISE_DEVELOPMENT_MANAGER,
+        self::FOM => self::FIELD_OPERATION_MANAGER,
+        self::RAM => self::REGIONAL_AFTER_SALES_MANAGER,
+        self::RFM => self::REGIONAL_FLEET_MANAGER,
+        self::RGM => self::REGIONAL_GENERAL_MANAGER,
+        self::ROA => self::REGIONAL_OPERATIONS_ANALYST,
+        self::ROM => self::REGIONAL_OPERATIONS_MANAGER,
+        self::RSC => self::REGIONAL_SALES_COORDINATOR,
+        self::RSM => self::REGIONAL_SALES_MANAGER,
     ];
 
-    public static $REGION_STAFF_POSITIONS_WITHOUT_SUPER = [
-        self::DTS,
-        self::PDM,
-        self::FOM,
-        self::DAM_NFSA,
+    public static $REGION_STAFF_POSITIONS = [
         self::DSM,
-        self::NFSA,
-        self::HEAD_OFFICE,
+        self::DTS,
         self::FDM,
-        self::FRANCHISE_DEVELOPMENT_MANAGER,
-        self::GENERAL_MANAGER,
-        self::REGIONAL_AFTER_SALES_MANAGER,
-        self::REGIONAL_FLEET_MANAGER,
+        self::FOM,
+        self::HEAD_OFFICE,
+        self::NFSA,
+        self::RAM,
+        self::RFM,
         self::RGM,
-        self::REGIONAL_GENERAL_MANAGER,
         self::ROA,
-        self::REGIONAL_OPERATIONS_ANALYST,
         self::ROM,
-        self::REGIONAL_OPERATIONS_MANAGER,
         self::RSC,
-        self::REGIONAL_SALES_COORDINATOR,
         self::RSM,
-        self::REGIONAL_SALES_MANAGER,
+        self::TRAINING,
+    ];
+
+    public static $REGION_STAFF_POSITIONS_WITH_SUPER = [
+        self::DSM,
+        self::DTS,
+        self::FDM,
+        self::FOM,
+        self::HEAD_OFFICE,
+        self::NFSA,
+        self::RAM,
+        self::RFM,
+        self::RGM,
+        self::ROA,
+        self::ROM,
+        self::RSC,
+        self::RSM,
+        self::TRAINING,
+        self::DESTINATION,
     ];
 
     /**
@@ -261,7 +269,7 @@ class User extends BaseModel implements Mailable, IRole
         $where = [
             'users.parent_id'=>8,
             'users.company_id'=>8,
-            'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
+            'users.position'=>User::$REGION_STAFF_POSITIONS
         ];
         $db = self::DB();
         $result = $db->count('users',$where);
@@ -282,7 +290,7 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.parent_id'=>8,
                 'users.company_id'=>8,
-                'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
+                'users.position'=>User::$REGION_STAFF_POSITIONS
             ];
             foreach ($options as $fieldName=>$value){
                 $where[$fieldName] = $value;
@@ -291,7 +299,7 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.parent_id'=>8,
                 'users.company_id'=>8,
-                'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
+                'users.position'=>User::$REGION_STAFF_POSITIONS
             ];
         }
 
@@ -675,7 +683,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public function init(){
         // Todo: check if the user is in management team
-        if($this->alt_position === self::ADMIN){
+        if(($this->alt_position === self::ADMIN) || ($this->position == self::NFSA) || ($this->position == self::HEAD_OFFICE)){
             $this->managedRegions = [
                 Company::REGION_EASTERN,
                 Company::REGION_NORTHERN,
@@ -710,7 +718,7 @@ class User extends BaseModel implements Mailable, IRole
      * @return array
      */
     private function _getRegionStaffRoles(){
-        return self::$REGION_STAFF_POSITIONS_WITHOUT_SUPER;
+        return self::$REGION_STAFF_POSITIONS;
     }
 
     /**

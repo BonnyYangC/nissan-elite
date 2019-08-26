@@ -206,7 +206,7 @@ class DashboardController extends BaseController
 
 
         // Todo: Check if user is a regular employee or not
-        if($this->userObject->alt_position === User::ADMIN){
+        if(($this->userObject->alt_position === User::ADMIN) || ($this->userObject->position == User::HEAD_OFFICE) || ($this->userObject->position == User::NFSA)){ //destination admin and head officer and nfsa
             // Nissan admin user login
             $viewToRender = 'dashboard/nissan_super_dashboard';
             $regions = $this->userObject->getManagedRegions();

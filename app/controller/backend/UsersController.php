@@ -53,7 +53,7 @@ class UsersController extends BaseController
         $whereCondition = [
             'users.active'=>1,
             'users.parent_id'=>8,
-            'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
+            'users.position'=>User::$REGION_STAFF_POSITIONS
         ];
         
         $staffs = User::GetRegionStaff([],$currentPageNumber);
@@ -110,6 +110,7 @@ class UsersController extends BaseController
         $this->dataForView['user'] = new User();
         $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
         $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
+        $this->dataForView['positions_map'] = User::POSITION_FULLNAME_MAP;
         $this->render('backend/users/edit_region_staff');
         return;
     }
@@ -122,6 +123,7 @@ class UsersController extends BaseController
         $this->dataForView['user'] = $user;
         $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
         $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
+        $this->dataForView['positions_map'] = User::POSITION_FULLNAME_MAP;
         $this->render('backend/users/edit_region_staff');
         return;
     }
