@@ -151,6 +151,7 @@ class RoleFactory
                 break;
             case User::REGION_STAFF:
                 $role = new User();
+                $role->active = 1; //TBD
                 break;
             default:
                 break;
