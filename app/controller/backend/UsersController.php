@@ -49,6 +49,13 @@ class UsersController extends BaseController
      * List region staff
      */
     public function region_staff(){
+        $sortCondition = null;
+        if($this->request->param('sortby') || $this->request->param('order')){
+            $sortCondition = [
+                'sortBy' => $this->request->param('sortby'),
+                'order' => $this->request->param('order'),
+            ];
+        }
         $currentPageNumber = $this->request->param('pn') ? $this->request->param('pn') : 0;
         $whereCondition = [
             'users.active'=>1,
@@ -56,11 +63,11 @@ class UsersController extends BaseController
             'users.position'=>User::$REGION_STAFF_POSITIONS
         ];
         
-        $staffs = User::GetRegionStaff([],$currentPageNumber);
+        $staffs = User::GetRegionStaff([], $sortCondition, $currentPageNumber);
         $this->dataForView['users'] = $staffs;
         $this->dataForView['usersCount'] = User::GetRegionStaffCount();
         $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
-        $this->dataForView['currentPageNumber'] = $currentPageNumber;
+        $this->dataForView['sortCondition'] = $sortCondition;
         $this->render('backend/region_staff');
         return;
     }
@@ -281,7 +288,7 @@ class UsersController extends BaseController
             $this->response->file($filePath,null,'csv');
 
         }elseif ($this->request->param('type') === 'region'){
-            $users = User::GetRegionStaff([],0,null);
+            $users = User::GetRegionStaff([],null,0,null);
             $rows = [];
             foreach ($users as $user) {
                 $rows[] = [

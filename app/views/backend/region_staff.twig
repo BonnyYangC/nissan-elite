@@ -17,8 +17,8 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Region</th>
-                    <th>Name</th>
+                    <th>Region <a href="{{ url('/admin/region-staff', {'sortby':'alt_position', 'order':'ASC'})}}">&uarr;</a><a href="{{ url('/admin/region-staff', {'sortby':'alt_position', 'order':'DESC'})}}">&darr;</a></th>
+                    <th>Name <a href="{{ url('/admin/region-staff', {'sortby':'firstname', 'order':'ASC'})}}">&uarr;</a><a href="{{ url('/admin/region-staff', {'sortby':'firstname', 'order':'DESC'})}}">&darr;</a></th>
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Password</th>

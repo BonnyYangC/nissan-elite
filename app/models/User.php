@@ -294,7 +294,7 @@ class User extends BaseModel implements Mailable, IRole
      * @param int $limit
      * @return array|bool
      */
-    public static function GetRegionStaff($options=[],$pageNumber = 0, $limit = 20){
+    public static function GetRegionStaff($options=[], $sortCondition, $pageNumber = 0, $limit = 20){
         if(count($options)>0){
             $where = [
                 'users.parent_id'=>8,
@@ -315,11 +315,17 @@ class User extends BaseModel implements Mailable, IRole
         $db = self::DB();
         $condition = [
             'AND'=>$where,
-            'ORDER'=>[
+        ];
+        if($sortCondition){
+            $condition['ORDER'] = [
+                $sortCondition['sortBy'] => $sortCondition['order'],
+            ];
+        }else{
+            $condition['ORDER'] = [
                 'alt_position'=>'ASC',
                 'firstname'=>'ASC',
-            ],
-        ];
+            ];
+        }
         if($limit != null) $condition['LIMIT'] = [$pageNumber*$limit,$limit];
         $result = $db->select('users','*',$condition);
 
