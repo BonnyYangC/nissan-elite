@@ -75,8 +75,6 @@ class AdminController extends BaseController
         $content .= 'SUPPORT_EMAIL_NAME="'.$setting['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
         $content .= 'ADMIN_USER='.$setting['ADMIN_USER'].PHP_EOL;
         $content .= 'ADMIN_PASSWORD='.$setting['ADMIN_PASSWORD'].PHP_EOL;
-        $content .= 'dealExcellenceOverviewUrl='.$setting['dealExcellenceOverviewUrl'].PHP_EOL;
-        $content .= 'eventRegisterUrl='.$setting['eventRegisterUrl'].PHP_EOL;
 
         file_put_contents(env('APP_PATH').'/helpers/setting.php',$content);
 

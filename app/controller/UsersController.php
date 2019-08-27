@@ -195,7 +195,7 @@ class UsersController extends Controller
             ],
             /*
             [
-                'url'=>configuration('dealExcellenceOverviewUrl'),
+                'url'=>env('dealExcellenceOverviewUrl', ''),
                 'src'=>asset($imageAssetPrefix.'tile-dealership.png'),
             ],
             [

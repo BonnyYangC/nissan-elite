@@ -16,7 +16,7 @@
                     <p class="tw">{{ number_format(dashboard.excellence) }} {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
                 {% else %}
                     <p class="tw">
-                        Refer <a target="_blank" href="{{ configuration('dealExcellenceOverviewUrl') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview
+                        Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl', '') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview
                     </p>
                 {% endif %}
             </td>

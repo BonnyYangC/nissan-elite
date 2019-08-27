@@ -11,5 +11,3 @@ SUPPORT_EMAIL_ADDRESS=info@nissanelite.com.au
 SUPPORT_EMAIL_NAME="NISSAN ELITE SUPPORT"
 ADMIN_USER=admin@admin.com
 ADMIN_PASSWORD=Pamjo1
-dealExcellenceOverviewUrl=http://staging-dealership.nissanelite.com.au
-eventRegisterUrl=http://www.nissan-events.com.au/nissanelite/reg
