@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Entry point of the NissanAC application
@@ -11,18 +10,11 @@ error_reporting(env('DEV_MODE',true) ? E_ERROR : 0);
 ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 
 /**
- * Route: /  -> It's the entry point of the application
+ * Route: /  -> It's the entry point of the application, will render login and 3brands grid view
  */
 \App\core\Route::Instance()
-    ->get('/',\App\controller\ApplicationController::class, 'index')
+    ->get('/',\App\controller\UsersController::class, 'login')
     ->name('homepage');
-
-/**
- * Route: /  -> It's the entry point of the Nissan Elite Individual, will render login and 3brands grid view
- */
-\App\core\Route::Instance()
-    ->get('/elite_individual',\App\controller\UsersController::class, 'login')
-    ->name('elite_individual_homepage');
 
 /**
  * Route: /  -> It's the entry point of the application, will render login and 3brands grid view
@@ -59,7 +51,6 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard');
 \App\core\Route::Instance()->get('/Dashboard',\App\controller\DashboardController::class, 'dashboard');
 \App\core\Route::Instance()->get('/dashboard/MembersGuide',\App\controller\StaticPagesController::class, 'members_guide');
-\App\core\Route::Instance()->get('/dashboard/AboutProgram',\App\controller\StaticPagesController::class, 'about_program');
 \App\core\Route::Instance()->get('/dashboard/Lifetime',\App\controller\StaticPagesController::class, 'lifetime');
 \App\core\Route::Instance()->get('/dashboard/FAQ',\App\controller\StaticPagesController::class, 'faq');
 \App\core\Route::Instance()->get('/dashboard/MDguild',\App\controller\StaticPagesController::class, 'md_guide');
@@ -71,7 +62,6 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
 
 \App\core\Route::Instance()->get('/dashboard/current-status-level',\App\controller\GageController::class, 'current_status_level');
-\App\core\Route::Instance()->get('/dashboard/loyalty-status-level',\App\controller\GageController::class, 'loyalty_status_level');
 
 // static pages end
 // dynamic pages
@@ -103,7 +93,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->post('/admin/importer/csv', \App\controller\backend\AdminController::class,'csv_importer')
     ->name('admin.upload.csv');
 \App\core\Route::Instance()
-    ->post('/admin/update-env', \App\controller\backend\AdminController::class,'updateProjectSettings')
+    ->post('/admin/update-env', \App\controller\backend\AdminController::class,'update_env')
     ->name('admin.update.env');
 
 \App\core\Route::Instance()
