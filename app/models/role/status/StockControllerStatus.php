@@ -13,6 +13,6 @@ class StockControllerStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(9000, 12000, 16000, 22000, $yearToDate, 30000);
+        parent::__construct(8000, 12000, 16000, 22000, $yearToDate, 30000);
     }
 }

@@ -111,64 +111,18 @@
                         <form action="{{ get_route('admin.update.env') }}" method="post" class="form">
                             <h2 class="m-4">System Configuration</h2>
                             <hr>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Running Mode</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field is-narrow">
-                                        <div class="control">
-                                            <div class="select is-fullwidth">
-                                                <select name="env[DEV_MODE]">
-                                                    <option value="1" {{ env('DEV_MODE',false) ? null :'selected' }}>Production Mode</option>
-                                                    <option value="0" {{ env('DEV_MODE',false) ? 'selected' : null }}>Test Mode</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">Switch the system's running mode, be careful!</p>
-                                </div>
-                            </div>
 
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
-                                    <label class="label">App Name</label>
+                                    <label class="label">Program Name</label>
                                 </div>
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[APP_NAME]" placeholder="The name of this website" value="{{ env('APP_NAME','') }}">
+                                            <input class="input" type="text" name="setting[PROGRAM_NAME]" placeholder="The name of this website" value="{{ configuration('PROGRAM_NAME','') }}">
                                         </div>
                                     </div>
-                                    <p class="help has-text-grey is-size-6">The website's name</p>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Site URL</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[SITE_URL]" placeholder="Site URL: https://your_site.com" value="{{ env('SITE_URL','') }}">
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">The URL you're using for this website, be careful!</p>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">App root path</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[ROOT_PATH]" placeholder="APP root path" value="{{ env('ROOT_PATH','') }}">
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">Please don't change</p>
+                                    <p class="help has-text-grey is-size-6">The program's name</p>
                                 </div>
                             </div>
 
@@ -179,12 +133,27 @@
                                 <div class="field-body">
                                     <div class="field is-narrow">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[YEAR]" placeholder="Which year you want to display" value="{{ env('YEAR','') }}">
+                                            <input class="input" type="text" name="setting[YEAR]" placeholder="Which year you want to display" value="{{ configuration('YEAR','') }}">
                                         </div>
                                     </div>
                                     <p class="help has-text-grey is-size-6">Which year's data the user will see</p>
                                 </div>
                             </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">Program Award Unit</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input class="input" type="text" name="setting[PROGRAM_AWARD_UNIT]" placeholder="Credits or Points" value="{{ configuration('PROGRAM_AWARD_UNIT','') }}">
+                                        </div>
+                                    </div>
+                                    <p class="help has-text-grey is-size-6">What unit the program is using</p>
+                                </div>
+                            </div>
+
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label">Challenge Winner</label>
@@ -192,66 +161,13 @@
                                 <div class="field-body">
                                     <div class="field is-narrow">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[PRODUCT_CHALLENGE_WINNER]" placeholder="Which year you want to display" value="{{ env('PRODUCT_CHALLENGE_WINNER','Parry NQ Nissan') }}">
+                                            <input class="input" type="text" name="setting[PRODUCT_CHALLENGE_WINNER]" placeholder="Product Challenge Winner" value="{{ configuration('PRODUCT_CHALLENGE_WINNER','') }}">
                                         </div>
                                     </div>
                                     <p class="help has-text-grey is-size-6">Product Challenge Winner this year</p>
                                 </div>
                             </div>
                             <hr>
-                            <h5>Database</h5>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">DB Host</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field is-narrow">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[DB_HOST]" placeholder="Database Host" value="{{ env('DB_HOST','') }}">
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">Please don't change</p>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">DB user</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field is-narrow">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[DB_USER]" placeholder="Database user name" value="{{ env('DB_USER','') }}">
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">Please don't change</p>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">DB password</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field is-narrow">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[DB_PASSWORD]" placeholder="Database password" value="{{ env('DB_PASSWORD','') }}">
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">Please don't change</p>
-                                </div>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Database name</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field is-narrow">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[DB_NAME]" placeholder="Database user name" value="{{ env('DB_NAME','') }}">
-                                        </div>
-                                    </div>
-                                    <p class="help has-text-danger is-size-6">Please don't change</p>
-                                </div>
-                            </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label">Pagination Size</label>
@@ -259,44 +175,14 @@
                                 <div class="field-body">
                                     <div class="field is-narrow">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[PAGE_SIZE]" placeholder="Rows/Page" value="{{ env('PAGE_SIZE','') }}">
+                                            <input class="input" type="text" name="setting[PAGE_SIZE]" placeholder="Rows/Page" value="{{ configuration('PAGE_SIZE','') }}">
                                         </div>
                                     </div>
                                     <p class="help has-text-grey is-size-6">How many rows per page</p>
                                 </div>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Mobile View</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field is-narrow">
-                                        <div class="control">
-                                            <div class="select is-fullwidth">
-                                                <select name="env[MOBILE_VERSION]">
-                                                    <option value="Website Version" {{ env('MOBILE_VERSION','Website Version')=='Website Version' ? 'selected' : null }}>Website Version</option>
-                                                    <option value="APP STYLE" {{ env('MOBILE_VERSION','Website Version')=='APP STYLE' ? 'selected' : null }}>Mobile App Style</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <hr>
                             <h5>Email Settings</h5>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Email KEY</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input" type="text" name="env[MAIL_SENDGRID_API_KEY]" placeholder="SendGrid APP KEY" value="{{ env('MAIL_SENDGRID_API_KEY','') }}">
-                                        </div>
-                                        <p class="help has-text-danger is-size-6">Please don't change</p>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
                                     <label class="label">Support Email</label>
@@ -304,7 +190,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[SUPPORT_EMAIL_ADDRESS]" placeholder="Support email" value="{{ env('SUPPORT_EMAIL_ADDRESS','') }}">
+                                            <input class="input" type="text" name="setting[SUPPORT_EMAIL_ADDRESS]" placeholder="Support email" value="{{ configuration('SUPPORT_EMAIL_ADDRESS','') }}">
                                         </div>
                                         <p class="help has-text-grey is-size-6">As the sender's email when user tries to recover the password</p>
                                     </div>
@@ -317,7 +203,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[SUPPORT_EMAIL_NAME]" placeholder="Support's name when sending email" value="{{ env('SUPPORT_EMAIL_NAME','') }}">
+                                            <input class="input" type="text" name="setting[SUPPORT_EMAIL_NAME]" placeholder="Support's name when sending email" value="{{ configuration('SUPPORT_EMAIL_NAME','') }}">
                                         </div>
                                         <p class="help has-text-grey is-size-6">As the sender's name when user tries to recover the password</p>
                                     </div>
@@ -332,7 +218,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[ADMIN_USER]" placeholder="Admin username" value="{{ env('ADMIN_USER','') }}">
+                                            <input class="input" type="text" name="setting[ADMIN_USER]" placeholder="Admin username" value="{{ configuration('ADMIN_USER','') }}">
                                         </div>
                                     </div>
                                     <p class="help has-text-grey is-size-6">As the administrator's login name</p>
@@ -345,10 +231,19 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="env[ADMIN_PASSWORD]" placeholder="Admin password" value="{{ env('ADMIN_PASSWORD','') }}">
+                                            <input class="input" type="text" name="setting[ADMIN_PASSWORD]" placeholder="Admin password" value="{{ configuration('ADMIN_PASSWORD','') }}">
                                         </div>
                                     </div>
                                     <p class="help has-text-grey is-size-6">As the administrator's login password</p>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <input type="hidden" name="setting[PROGRAM_SHORT_NAME]" value="{{ configuration('PROGRAM_SHORT_NAME','') }}">
+                                    <input type="hidden" name="setting[PROGRAM_SHORT_NAME_WITH_YEAR]" value="{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR','') }}">
+                                    <input type="hidden" name="setting[PROGRAM_I_ELITE]" value="{{ configuration('PROGRAM_I_ELITE','') }}">
+                                    <input type="hidden" name="setting[PROGRAM_DEALERSHIP]" value="{{ configuration('PROGRAM_DEALERSHIP','') }}">
                                 </div>
                             </div>
                             <hr>

@@ -13,6 +13,7 @@ use App\models\BaseModel;
 use App\models\role\IRole;
 use App\models\User;
 use Carbon\Carbon;
+use App\models\utils\RankingState;
 
 class Ranking extends BaseModel implements IRole
 {
@@ -22,8 +23,12 @@ class Ranking extends BaseModel implements IRole
     const CURRENT           = 'Current';
     const PREVIOUS          = 'Previous';
     const REGIONAL          = 'Regional';
+    const STATE             = 'State';
     const NATIONAL          = 'National';
 
+    const AWARD_STATUS      = 'status';
+    const AWARD_PLATINUM    = 'platinum';
+    
     const STATUS_ACTIVE = true;
     const STATUS_ACTIVE_TEXT = 'active';
     const STATUS_INACTIVE = false;
@@ -41,6 +46,29 @@ class Ranking extends BaseModel implements IRole
      * Variables for how to show the leader board
      */
     const LEADER_BOARD_TABLE_MAX_ROW = 5;
+
+    public static function getLeaderBoardData(User $user, $rankingData) {
+
+        $iAmInTopList = false;
+        $leaderBoardData = [];
+        foreach ($rankingData as $index=>$item) {
+            if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
+                if($item['member_id'] == $user->getEmployeeCode()){
+                    $iAmInTopList = true;
+                }
+                $leaderBoardData[] = $item;
+            }else{
+                // 已经超出了前五名
+                if(!$iAmInTopList){
+                    if($item['member_id'] == $user->getEmployeeCode()){
+                        $leaderBoardData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
+                        break;
+                    }
+                }
+            }
+        }
+        return $leaderBoardData;
+    }
 
     /**
      * Count how many record's ranking is lower than give user and ranking in a period
@@ -100,24 +128,20 @@ class Ranking extends BaseModel implements IRole
      * @param bool $forGivenUserOnly
      * @return array|bool
      */
-    public static function Query(User $user, Carbon $carbon, $forGivenUserOnly=false){
+    public static function QueryByUserAndPeriodAndType(User $user, Carbon $carbon, $rankingType, $forGivenUserOnly=false){
         $position = $user->position;
-        // if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
-        //     // Use 'IN' condition
-        //     $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
-        // }
-
+        $order = $rankingType == self::AWARD_STATUS ? 'rank' : 'rank_platinum'; 
         $where = [
             'AND'=>[
                 'role'=>$position,
-                'period'=>$carbon->format('Y-m-d')
+                'period'=>$carbon->format('Y-m-d'),
             ],
-            "ORDER" => "ranking"
+            "ORDER" => $order,
         ];
 
-        $category = $user->getCompany()->category;
-        if($category){
-            $where['AND']['nissan_rankings.category'] = $category;
+        $state = $user->getCompany()->company_state;
+        if($state){
+            $where['AND']['nissan_rankings.rank_state'] = Rankingstate::RANKING_STATE_MAP[$state];
         }
 
         if($forGivenUserOnly){
@@ -137,10 +161,13 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.period',
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
-            'nissan_rankings.ranking',
+            'nissan_rankings.rank',
+            'nissan_rankings.rank_platinum',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',
+            'nissan_rankings.total_platinum',
+            'nissan_rankings.rank_state',
             'users.firstname',
             'users.lastname',
             'company.company_name',
@@ -164,6 +191,74 @@ class Ranking extends BaseModel implements IRole
             if($result && is_array($result) && count($result)>0){
                 $result = $result[0];
             }
+        }
+
+        return $result;
+    }
+
+        /**
+     * Get by give role
+     * @param $position
+     * @param Carbon $period
+     * @return array|bool
+     */
+    public static function GetByRoleAndAwardType($position, $awardType, Carbon $period){
+        
+
+        $rankColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.rank' : 'nissan_rankings.rank_platinum';
+        $totalColumn = $awardType == Ranking::AWARD_STATUS ? 'nissan_rankings.total' : 'nissan_rankings.total_platinum';
+        $rankStateColumn = 'nissan_rankings.rank_state';
+
+        $order = [$rankStateColumn,$rankColumn];
+
+        $where = [
+            'AND'=>[
+                'role'=>$position,
+                'period'=>$period->format('Y-m').'-01',
+                'users.company_code[!]'=>80172
+            ],
+            "ORDER" => $order
+        ];
+
+        $joins = [
+            '[><]users'=>['member_id'=>'employee_code'],
+            '[><]company'=>['category'=>'category','dealer_code'=>'company_code'],
+            /*'[><]lookups'=>[
+                    'company.region'=>'code',
+                    'company.parent_id'=>'company_id',
+            ],*/
+        ];
+
+        $database = self::DB();
+
+        $columns = [
+            //'nissan_rankings.id',
+            'nissan_rankings.period',
+            'nissan_rankings.member_id',
+            'nissan_rankings.dealer_code',
+            $rankColumn.'(rank)',
+            'nissan_rankings.category',
+            'nissan_rankings.registered',
+            $totalColumn.'(total)',
+            $rankStateColumn.'(rank_state)',
+            'users.firstname',
+            'users.lastname',
+            'company.company_name',
+            'company.region',
+            'company.parent_id',
+            'company.company_state'
+        ];
+
+        $result = $database->select(
+            self::TABLE_NAME,
+            $joins,
+            $columns,
+            $where
+        );
+
+        if(env('DEV_MODE', false)){
+            dump($database->log() );
+            dump('GetByRoleAndAwardType action');
         }
         return $result;
     }
@@ -231,10 +326,14 @@ class Ranking extends BaseModel implements IRole
             'nissan_rankings.period',
             'nissan_rankings.member_id',
             'nissan_rankings.dealer_code',
-            'nissan_rankings.ranking',
+            'nissan_rankings.rank',
+            'nissan_rankings.rank_platinum',
             'nissan_rankings.category',
             'nissan_rankings.registered',
             'nissan_rankings.total',
+            'nissan_rankings.total_platinum',
+            'nissan_rankings.rank_state',
+            'nissan_rankings.elite_dealer',
             'users.firstname',
             'users.lastname',
             'company.company_name',
@@ -300,6 +399,21 @@ class Ranking extends BaseModel implements IRole
             return Carbon::createFromFormat('Y-m-d',$result);
         }
         return null;
+    }
+
+    /**
+     * Save ranking status and registered
+     * @return \App\core\Model|bool
+     */
+    public function save()
+    {
+        // Todo: handle status
+        $this->status =
+            strtolower($this->status) == 'inactive' ||
+            strtolower($this->active) == 'ineligible' ||
+            empty($this->status) ? 0 : 1;
+
+        return parent::save(); // TODO: Change the autogenerated stub
     }
 
     /**

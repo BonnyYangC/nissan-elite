@@ -8,16 +8,19 @@
 
 namespace App\models\role\status;
 
-
-use App\models\role\IRole;
-
 class GageStatus
 {
-    const PREMIER_COLOR       = '#B47C37';
-    const AMBASSADOR_COLOR    = '#546E22';
-    const DIPLOMAT_COLOR      = '#BC2628';
-    const CONSUL_COLOR        = '#525357';
-    const DEFAULT_COLOR       = '#000000';
+    const STATUS_LEVEL_4       = 'Gold';
+    const STATUS_LEVEL_3    = 'Silver';
+    const STATUS_LEVEL_2      = 'Bronze';
+    const STATUS_LEVEL_1        = 'Commendation';
+    const STATUS_LEVEL_DEFAULT       = 'Default';
+
+    const STATUS_LEVEL_4_COLOR       = '#FFD700'; //gold
+    const STATUS_LEVEL_3_COLOR    = '#C0C0C0'; //silver
+    const STATUS_LEVEL_2_COLOR      = '#8B4513'; //SaddleBrown
+    const STATUS_LEVEL_1_COLOR        = '#525357';
+    const STATUS_LEVEL_DEFAULT_COLOR       = '#000000';
 
     const PREMIER_CLASS_STRING       = 'T-P';
     const AMBASSADOR_CLASS_STRING     = 'T-A';
@@ -53,16 +56,16 @@ class GageStatus
         $this->yearToDate = $yearToDate;
         $this->setGageIndicators([
             [
-                ($this->consul/$this->max) * 100, self::CONSUL_COLOR, 'Consul'
+                ($this->consul/$this->max) * 100, self::STATUS_LEVEL_1_COLOR, self::STATUS_LEVEL_1
             ],
             [
-                ($this->diplomat/$this->max) * 100, self::DIPLOMAT_COLOR, 'Diplomat'
+                ($this->diplomat/$this->max) * 100, self::STATUS_LEVEL_2_COLOR, self::STATUS_LEVEL_2
             ],
             [
-                ($this->ambassador/$this->max) * 100, self::AMBASSADOR_COLOR, 'Ambassador'
+                ($this->ambassador/$this->max) * 100, self::STATUS_LEVEL_3_COLOR, self::STATUS_LEVEL_3
             ],
             [
-                ($this->premier/$this->max) * 100, self::PREMIER_COLOR, 'Premier'
+                ($this->premier/$this->max) * 100, self::STATUS_LEVEL_4_COLOR, self::STATUS_LEVEL_4
             ],
         ]);
         $this->initColor();
@@ -73,22 +76,22 @@ class GageStatus
      */
     public function initColor(){
         if($this->_inBetween($this->premier)){
-            $this->color = self::PREMIER_COLOR;
+            $this->color = self::STATUS_LEVEL_4_COLOR;
         }elseif($this->_inBetween($this->ambassador, $this->premier)){
-            $this->color = self::AMBASSADOR_COLOR;
-            $this->colorText = 'credits to reach '.ucfirst(IRole::PREMIER_STR).' level';
+            $this->color = self::STATUS_LEVEL_3_COLOR;
+            $this->colorText = strtolower(configuration('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_4).' level';
             $this->toReach = $this->premier - $this->yearToDate;
         }elseif($this->_inBetween($this->diplomat, $this->ambassador)){
-            $this->color = self::DIPLOMAT_COLOR;
-            $this->colorText = 'credits to reach '.ucfirst(IRole::AMBASSADOR_STR).' level';
+            $this->color = self::STATUS_LEVEL_2_COLOR;
+            $this->colorText = strtolower(configuration('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_3).' level';
             $this->toReach = $this->ambassador - $this->yearToDate;
         }elseif($this->_inBetween($this->consul, $this->diplomat)){
-            $this->color = self::CONSUL_COLOR;
-            $this->colorText = 'credits to reach '.ucfirst(IRole::DIPLOMAT_STR).' level';
+            $this->color = self::STATUS_LEVEL_1_COLOR;
+            $this->colorText = strtolower(configuration('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_2).' level';
             $this->toReach = $this->diplomat - $this->yearToDate;
         }else{
-            $this->color = self::DEFAULT_COLOR;
-            $this->colorText = 'credits to reach '.ucfirst(IRole::CONSUL_STR).' level';
+            $this->color = self::STATUS_LEVEL_DEFAULT_COLOR;
+            $this->colorText = strtolower(configuration('PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_1).' level';
             $this->toReach = $this->consul - $this->yearToDate;
         }
     }

@@ -25,7 +25,8 @@
       "App\\": "app/"
     },
     "files": [
-      "app/helpers/general.php"
+      "app/helpers/general.php",
+      "app/helpers/gd.php"
     ]
   },
   "require-dev": {

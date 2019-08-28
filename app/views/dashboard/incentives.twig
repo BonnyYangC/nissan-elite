@@ -1,9 +1,11 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
-    <div class="container bg-white">
+    <div class="container bg-white pl-25 pr-25">
         <div class="row" id="Current">
             <div class="col-lg-12">
-                <h1 class="page-header">INCENTIVES</h1>
+                <h1 class="page-header">
+                    <span class='page-header-title'>INCENTIVES</span>
+                </h1>
             </div>
         </div>
         <div class="row">
@@ -18,7 +20,7 @@
                                 </div>
                             {% endfor %}
                         {% else %}
-                            <div data-img="{{ asset('/images/holding_slide_incentives.jpg') }}">
+                            <div data-img="{{ asset('/images/incentives/Incentive_Cover.jpg') }}">
                                 <a href="#"></a>
                             </div>
                         {% endif %}
@@ -45,7 +47,7 @@
                         <tr class="nissangray-light-back">
                             <td>
                                 <span class="rank">
-                                    <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the AC{{ env('YEAR') }} Program">
+                                    <a href="#" style="color:#FFFFFF; text-decoration:none;" title="You are eligible for the {{ configuration('PROGRAM_SHORT_NAME') }} {{ configuration('YEAR') }} Program">
                                         {% if user.registered %}
                                             <span class="tw txt-red">&#10004</span>
                                         {% else %}
@@ -56,20 +58,13 @@
                                 {% if user.registered %}
                                     <p class="tw">250 Credits Applied</p>
                                 {% else %}
-                                <a href="http://www.nissan-events.com.au/ac{{ env('YEAR') }}/reg" target="_blank">
-                                    <button style="background-color:#c40030; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
+                                <a href="http://www.nissan-events.com.au/ac{{ configuration('YEAR') }}/reg" target="_blank">
+                                    <button style="background-color:#4169E1; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
                                 </a>
                                 {% endif %}
                             </td>
                         </tr>
                     </table>
-                </div>
-                <div class="table-responsive">
-                    <a href="{{ url('/videos?event=nissan-fleet') }}" target="_blank"><img src="{{ asset('/images/nissan-fleet.png') }}" alt="Nissan Fleet Rocks Vegas" style="width: 100%;"></a>
-                    <p>Nissan Fleet Rocks Vegas</p>
-                    <br>
-                    <a href="{{ url('/videos?event=nissan-sales') }}" target="_blank"><img src="{{ asset('/images/nissan-sales.png') }}" alt="Navara Rocks Vegas" style="width: 100%;"></a>
-                    <p>Navara Rocks Vegas</p>
                 </div>
             </div>
         </div>

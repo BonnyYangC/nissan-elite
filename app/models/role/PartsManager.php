@@ -17,18 +17,19 @@ class PartsManager extends BaseRole implements IRole
 
     public $GENUINE_REPLACEMENT_PARTS = [
         'label'=>'GENUINE REPLACEMENT PARTS',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::LIGHT_PERU,
         'data'=>[]
     ];
     public $GENUINE_ACCESSORIES = [
         'label'=>'GENUINE ACCESSORIES',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
 
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = false;
     }
 
     /**
@@ -38,7 +39,7 @@ class PartsManager extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $grp=$grp_results=$gas=$gas_results=$training=[];
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -47,7 +48,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs($item['grp_credit']);
                 $gas[]      = $this->_buildForJs($item['gas_credit']);
-                $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
+                $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 
                 $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
                 $gas_results[] = $this->_buildForTableElement($item['gas']*100,0).'%';
@@ -56,7 +57,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs(0);
                 $gas[]      = $this->_buildForJs(0);
-                $training[] = $this->_buildForJs([0,0,0]);
+                $training[] = $this->_buildForJs([0,0,0,0]);
 
                 $grp_results[] = null;
                 $gas_results[] = null;
@@ -91,9 +92,9 @@ class PartsManager extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
@@ -124,7 +125,7 @@ class PartsManager extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
-            $this->_setupLifeTimeAndExcellence($data,$period);
+            $this->_setupLifeTimeAndExcellence($dataResults,$period);
         }
 
         // Status

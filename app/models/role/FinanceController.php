@@ -19,7 +19,7 @@ class FinanceController extends BaseRole implements IRole
 
     public $Frequency = [
         'label'=>'Frequency',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
     public $Ontime = [
@@ -29,7 +29,7 @@ class FinanceController extends BaseRole implements IRole
     ];
     public $Balance = [
         'label'=>'Balance',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $Quality = [
@@ -38,8 +38,8 @@ class FinanceController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $Checklist = [
-        'label'=>'Accuracy',
-        'backgroundColor' => IColor::RED,
+        'label'=>'Checklist',
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
     public $Meetings = [
@@ -51,6 +51,7 @@ class FinanceController extends BaseRole implements IRole
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = false;
     }
 
     /**
@@ -60,42 +61,41 @@ class FinanceController extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $financial=$frequency_results=$ontime_results=$quality=$balance_results=$submission_results=$management=$checklist_results=$meeting_results=$training=[];
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $financial[]    = $this->_buildForJs( [$item['frequency_credits']] );
-                $quality[]      = $this->_buildForJs( [$item['balance_credit'], $item['quality_credit']] );
+                $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
+                //2
+                $quality[]      = $this->_buildForJs( [$item['quality_credit']] );
+                $submission_results[]   = $this->_buildForTableYesOrNoElement($item['quality']);
+                //3
                 $management[]   = $this->_buildForJs( [$item['checklist_credit'], $item['meeting_credit']] );
+                $checklist_results[]    = $this->_buildForTableYesOrNoElement($item['checklist']);
+                $meeting_results[]      = $this->_buildForTableYesOrNoElement($item['meeting']);
+
                 $training[]     = $this->_buildForJs( [$item['training'], $item['pathway'], $item['training_competency']] );
 
-                $frequency_results[]    = $this->_buildForTableYesOrNoElement($item['frequency']);
-                $ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
+                //$ontime_results[]       = $this->_buildForTableYesOrNoElement($item['ontime']);
                 //$balance_results[]      = $this->_buildForTableYesOrNoElement($item['balance']);
 
-                try{
-                    $sub = Carbon::createFromFormat('d-M-Y', $item['quality']);
-                    $submission_results[]   = $sub->format('d/M');
-                }catch (\Exception $exception){
-                    $submission_results[]   = $item['quality'];
-                }
 
 
-                $checklist_results[]    = $this->_buildForTableElement($item['checklist'],0);
-                $meeting_results[]      = $this->_buildForTableElement($item['meeting'],0);
             }
             else
             {
                 $financial[]    = $this->_buildForJs( [0] );
-                $quality[]      = $this->_buildForJs( [0,0] );
+                $quality[]      = $this->_buildForJs( [0] );
                 $management[]   = $this->_buildForJs( [0,0] );
                 $training[]     = $this->_buildForJs( [0,0,0] );
 
                 $frequency_results[]    = null;
-                $ontime_results[]       = null;
-                $balance_results[]      = null;
+                //$ontime_results[]       = null;
+                //$balance_results[]      = null;
                 $submission_results[]   = null;
                 $checklist_results[]    = null;
                 $meeting_results[]      = null;
@@ -105,13 +105,13 @@ class FinanceController extends BaseRole implements IRole
         return [
             "FINANCIAL" => $financial,
             "FREQUENCY_RESULTS" => $frequency_results,
-            "ONTIME_RESULTS" => $ontime_results,
             "QUALITY" => $quality,
-            "BALANCE_RESULTS" => $balance_results,
             "SUBMISSION_RESULTS" => $submission_results,
             "MANAGEMENT" => $management,
             "CHECKLIST_RESULTS" => $checklist_results,
             "MEETING_RESULTS" => $meeting_results,
+            //"ONTIME_RESULTS" => $ontime_results,
+            //"BALANCE_RESULTS" => $balance_results,
             "TRAINING" => $training
         ];
     }
@@ -136,9 +136,9 @@ class FinanceController extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
@@ -175,7 +175,7 @@ class FinanceController extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
-            $this->_setupLifeTimeAndExcellence($data,$period);
+            $this->_setupLifeTimeAndExcellence($dataResults,$period);
         }
 
         // Status

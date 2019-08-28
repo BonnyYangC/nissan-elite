@@ -1,37 +1,39 @@
-{% extends 'layout/frontend.twig' %}
-{% block content %}
+{% extends 'dashboard/metrics.twig' %}
+{% block content_metrics %}
 <script>
     var TRAINING = [{{ metrics.TRAINING|raw }}];
 
     var CHART_DATA = [
-        {
+        {//1. Dealer Financial Reporting
             el: 'chart-financial',
             max: 200,
             length: 5,
             step: 40,
             colors: ['#999999','#555555','#c40030'],
             pilot: ['Month', 'Frequency'],
+            legend: 'none',
             dataSource: {{ json_encode(metrics.FINANCIAL)|raw }}
         },
-        {
+        {//2. Quality Of Data Submitted
             el: 'chart-quality',
-            max: 550,
+            max: 1025,
             length: 10,
-            step: 55,
+            step: 205,
             colors: ['#999999','#555555','#c40030'],
-            pilot: ['Month', 'Balance', 'Submission'],
+            pilot: ['Month', 'Balance'],
+            legend: 'none',
             dataSource: {{ json_encode(metrics.QUALITY)|raw }}
         },
-        {
+        {//3. Nissan Business Management
             el: 'chart-MANAGEMENT',
-            max: 600,
+            max: 700,
             length: 6,
-            step: 100,
+            step: 350,
             colors: ['#999999', '#555555' ,'#c40030'],
             pilot: ['Month','Checklist', 'Attendance'],
             dataSource: {{ json_encode(metrics.MANAGEMENT)|raw }}
         },
-        {
+        {//4. Training
             el: 'chart-training',
             duration: 2000,
             pilot: ['Month', 'Online', 'Pathway','Competency'],
@@ -44,62 +46,55 @@
         }
     ];
 </script>
-    <div class="container bg-white">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">MY Metrics - <em>FINANCIAL CONTROLLER</em></h1>
-            </div>
-        </div>
-        <div class="row pb-20 pl-10">
-            <div class="col-md-12 col-sm-12">
-                <div class="row graph-back-top">
-                    <div class="col-md-7">
-                        <h3>1. Dealer Financial Reporting</h3>
-                        <div class="table-responsive">
-                            <div id="chart-financial" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">FREQUENCY</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FREQUENCY_RESULTS } %}
-                                </tr>
-                           </table>
-                        </div>
-                    </div>
 
-                    <div class="col-md-5">
-                        <h3>Dealer Financial Reporting Guide</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Financial Controller</td>
-                                <td align="center">Submitted<br>
-                                    Frequency</td>
+    <div class="row pb-20 pl-10">
+        <div class="col-md-12 col-sm-12">
+            <div class="row graph-back-top">
+                <div class="col-md-7">
+                    <h3>1. Dealer Financial Reporting</h3>
+                    <div class="table-responsive">
+                        <div id="chart-financial" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back sm" style="padding-left: 0;padding-right:0;">FREQUENCY</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FREQUENCY_RESULTS } %}
                             </tr>
-                            <tr class="active">
-                                <td>Category A, B, C</td>
-                                <td align="center">200</td>
+                       </table>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>Dealer Financial Reporting Guide</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Financial Controller</td>
+                            <td align="center">Submitted<br>
+                                Frequency</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category A, B, C</td>
+                            <td align="center">200</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>2. Quality Of Data Submitted</h3>
+                    <div class="table-responsive">
+                        <div id="chart-quality" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back sm" style="padding-left: 0;padding-right:0;">SUBMISSION</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SUBMISSION_RESULTS,'extraClass':'pt-9' } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>2. Quality Of Data Submitted</h3>
-                        <div class="table-responsive">
-                            <div id="chart-quality" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">SUBMISSION</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SUBMISSION_RESULTS,'extraClass':'sm pt-9' } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">                       
-                        <h3>Quality of Data GUIDE - Date of Submission</h3>
+                <div class="col-md-5">                       
+                    <h3>Quality of Data GUIDE - Date of Submission</h3>
+                    <div class="table-responsive">
                         <table class="table small-table table-condensed">
                             <tr class="table-top-row">
                                 <td>Financial Controller</td>
@@ -113,9 +108,6 @@
                                 <td align="center">16</td>
                                 <td align="center">17</td>
                                 <td align="center">18</td>
-                                <td align="center">19</td>
-                                <td align="center">20</td>
-                                <td align="center">21</td>
                             </tr>
                             <tr class="active">
                                 <td>Category A, B, C</td>
@@ -129,76 +121,75 @@
                                 <td align="center">500</td>
                                 <td align="center">450</td>
                                 <td align="center">400</td>
-                                <td align="center">300</td>
-                                <td align="center">250</td>
-                                <td align="center">200</td>
                             </tr>
                         </table>
                     </div>
+                    <p>
+                        <br>
+                        <em>Note:  As of 1st July 2019 – this report must be at Submission Status in Nissan BMO on or before COB 18th of each month, or first working day following if 18th falls on a weekend</em>
+                    </p>
                 </div>
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>3. Nissan Business Management</h3>
-                        <div class="table-responsive">
-                            <div id="chart-MANAGEMENT" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">CHECKLIST</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CHECKLIST_RESULTS } %}
-                                </tr>
-                                <tr>
-                                    <td class="nissangray-light-back">ATTENDANCE</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MEETING_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>Nissan Business Management GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Financial Controller</td>
-                                <td align="center">
-                                    Data Accuracy Monthly checklist<br>
-                                    Monthly (max)
-                                </td>
-                                <td align="center">
-                                    BDG Attendance Each<br>                                    
-                                </td>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>3. Nissan Business Management</h3>
+                    <div class="table-responsive">
+                        <div id="chart-MANAGEMENT" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back sm" style="padding-right:0;">CHECKLIST</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CHECKLIST_RESULTS } %}
                             </tr>
                             <tr>
-                                <td>Category A, B, C</td>
-                                <td align="center">550</td>
-                                <td align="center">700</td>
+                                <td class="nissangray-light-back sm" style="padding-right:0;">ATTENDED</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MEETING_RESULTS } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>4. Training </h3>
-                        <div class="table-responsive">
-                            <div id="chart-training" class="metrics-chart-wrap"></div>
-                        </div>
+                <div class="col-md-5">
+                    <h3>Nissan Business Management GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Financial Controller</td>
+                            <td align="center">
+                                Data Accuracy <br>checklist
+                            </td>
+                            <td align="center">
+                                BDG Attendance Each<br>                                    
+                            </td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category A, B, C</td>
+                            <td align="center">550</td>
+                            <td align="center">700</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>4. Training </h3>
+                    <div class="table-responsive">
+                        <div id="chart-training" class="metrics-chart-wrap"></div>
                     </div>
-                    <div class="col-md-5">
-                        <h3>TRAINING GUIDE</h3>
-                        <table class="table small-table" >
-                            <tr class="table-top-row">
-                                <td>Competency Modules</td>
-                                <td>Credits</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Online Modules</td>
-                                <td>450</td>
-                            </tr>
-                        </table>
-                        <p>
-                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC19 Member Guide</a> for full details.</em>
-                        </p>
-                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>TRAINING GUIDE</h3>
+                    <table class="table small-table" >
+                        <tr class="table-top-row">
+                            <td>Competency Modules</td>
+                            <td>Points</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Financial Controller Pathway (O)</td>
+                            <td>450</td>
+                        </tr>
+                    </table>
+                    <p>
+                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
+                    </p>
                 </div>
             </div>
         </div>

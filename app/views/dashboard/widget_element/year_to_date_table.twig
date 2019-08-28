@@ -1,9 +1,9 @@
 <div class="table-responsive">
     <table class="table centre-text">
         <tr class="table-top-row">
-            <td>YTD Credits</td>
+            <td>YTD {{ configuration('PROGRAM_AWARD_UNIT') }}</td>
         </tr>
-        <tr class="light-back">
+        <tr class="nissangray-light-back">
             <td><span class="rank">{{ empty(dashboard.ytd) ? null : number_format(dashboard.ytd,0) }}</span><br></td>
         </tr>
     </table>

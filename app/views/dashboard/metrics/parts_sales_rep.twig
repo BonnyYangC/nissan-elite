@@ -1,15 +1,17 @@
-{% extends 'layout/frontend.twig' %}
-{% block content %}
+{% extends 'dashboard/metrics.twig' %}
+{% block content_metrics %}
     <script>
         {#var GRP = [{{ metrics.GRP|raw }}];#}
         {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
+        var yAxis = "{{ configuration('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
             {
                 el: 'chart-grp',
                 max: 2300,
                 length: 10,
-                step: 230,
+                step: 575,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GRP)|raw }}
             },
             {
@@ -24,70 +26,63 @@
             },
         ];
     </script>
-    <div class="container bg-white pl-25 pr-25">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">MY Metrics - <em>Parts Sales RepresentaTive</em> </h1>
-            </div>
-        </div>
-        <div class="row" style="padding-bottom:20px">
-            <div class="col-md-12 col-sm-12">
-                <div class="row graph-back-top">
-                    <div class="col-md-7">
-                        <h3>1. Nissan Genuine replacement Parts</h3>
-                        <div class="table-responsive">
-                            <div id="chart-grp" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.GRP_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>Nissan Genuine Replacement Parts<strong> </strong>Guide</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Parts Sales Representative</td>
-                                <td align="center">100%</td>
-                                <td align="center">110%</td>
-                                <td align="center">120%+</td>
-                            </tr>
+
+    <div class="row" style="padding-bottom:20px">
+        <div class="col-md-12 col-sm-12">
+            <div class="row graph-back-top">
+                <div class="col-md-7">
+                    <h3>1. Nissan Genuine replacement Parts</h3>
+                    <div class="table-responsive">
+                        <div id="chart-grp" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td>Category A, B, C</td>
-                                <td align="center">600</td>
-                                <td align="center">1,300</td>
-                                <td align="center">2,300</td>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.GRP_RESULTS } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>2. TRAINING</h3>
-                        <div class="table-responsive">
-                            <div id="chart-training" class="metrics-chart-wrap"></div>
-                        </div>
+                <div class="col-md-5">
+                    <h3>Nissan Genuine Replacement Parts<strong> </strong>Guide</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Parts Sales Representative</td>
+                            <td align="center">100%</td>
+                            <td align="center">110%</td>
+                            <td align="center">120%+</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category A, B, C</td>
+                            <td align="center">600</td>
+                            <td align="center">1,300</td>
+                            <td align="center">2,300</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>2. TRAINING</h3>
+                    <div class="table-responsive">
+                        <div id="chart-training" class="metrics-chart-wrap"></div>
                     </div>
-                    <div class="col-md-5">
-                        <h3>TRAINING GUIDE</h3>
-                        <table class="table small-table" >
-                            <tr class="table-top-row">
-                                <td>Competency Modules</td>
-                                <td>Credits Quarterly</td>
-                            </tr>
-                            <tr>
-                                <td>Certified Parts Advisor (O)</td>
-                                <td>375</td>
-                            </tr>
-                        </table>
-                        <p>
-                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC19 Member Guide</a> for full details.</em>
-                        </p>
-                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>TRAINING GUIDE</h3>
+                    <table class="table small-table" >
+                        <tr class="table-top-row">
+                            <td>Competency Modules</td>
+                            <td align="center">Points Quarterly</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Certified Parts Advisor (O)</td>
+                            <td align="center">375</td>
+                        </tr>
+                    </table>
+                    <p>
+                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
+                    </p>
                 </div>
             </div>
         </div>

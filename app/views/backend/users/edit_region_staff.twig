@@ -97,7 +97,7 @@
                                             <div class="select is-fullwidth">
                                                 <select name="user[position]">
                                                     {% for position in positions %}
-                                                        <option value="{{ position }}" {{ position==user.position ? 'selected':null }}>{{ position }}</option>
+                                                        <option value="{{ position }}" {{ position==user.position ? 'selected':null }}>{{ position ~ ' -- ' ~ positions_map[position] }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>

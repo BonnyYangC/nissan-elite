@@ -43,7 +43,7 @@ if(!function_exists('get_month_array')){
 
     function get_months_array(){
         return [
-            'APR','MAY','JUN','JUL',
+            'MAY','JUN','JUL',
             'AUG','SEP','OCT','NOV',
             'DEC','JAN','FEB','MAR'
         ];
@@ -119,6 +119,28 @@ if(!function_exists('env')){
         }
         return $result ? $result : $default;
     }
+}
+
+if(!function_exists('configuration')){
+    
+    /**
+     * @param $key
+     * @param bool $default
+     * @return array|bool|false|string
+     */
+    function configuration($key, $default=false){
+        $dotenv = new \Dotenv\Dotenv(__DIR__, 'setting.php');
+        $dotenv->load();
+        $result = getenv($key);
+        if($result === 'false'){
+            $result = false;
+        }
+        if($result === 'true'){
+            $result = true;
+        }
+        return $result ? $result : $default;
+    }
+    
 }
 
 if(!function_exists('random_str')){

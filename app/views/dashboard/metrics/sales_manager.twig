@@ -1,314 +1,318 @@
-{% extends 'layout/frontend.twig' %}
-{% block content %}
+{% extends 'dashboard/metrics.twig' %}
+{% block content_metrics %}
     <script>
         {#var NEW_VEHICLE_SALES = [{{ metrics.NEW_VEHICLE_SALES|raw }}];#}
         {#var RECOMMENDATIONS = [{{ metrics.RECOMMENDATIONS|raw }}];#}
         {#var FOLLOW_UP = [{{ metrics.FOLLOW_UP|raw }}];#}
         {#var MIDMTH_RETAIL = [{{ metrics.MIDMTH_RETAIL|raw }}];#}
         {#var TRAINING = [{{ metrics.TRAINING|raw }}];#}
+        var yAxis = "{{ configuration('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {
+            {//1. MATCHED OW
                 el: 'chart-matched-ow',
                 max: 310,
                 length: 5,
                 step: 62,
                 colors: ['#c40030'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.MATCHED_OW)|raw }}
             },
-            {
+            {//2. NEW VEHICLE SALES
                 el: 'chart-new-vehicle',
                 max: 5000,
                 length: 10,
                 step: 500,
                 colors: ['#999999'],
+                pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.NEW_VEHICLE_SALES)|raw }}
             },
-            {
-                el: 'chart-recommendation',
+            {//3. Sales overall satisfaction NPS 3 month rolling score
+                el: 'chart-sos',
                 max: 1000,
                 length: 5,
                 step: 200,
                 colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
-                dataSource: {{ json_encode(metrics.RECOMMENDATIONS)|raw }}
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.JS_SOS)|raw }}
             },
-            {
-                el: 'chart-follow-up',
+            {//4. Kept informed of delivery NPS 6 month rolling score - Target 88
+                el: 'chart-kid',
                 max: 500,
                 length: 4,
                 step: 125,
                 colors: ['#555555'],
-                dataSource: {{ json_encode(metrics.FOLLOW_UP)|raw }}
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.JS_KID)|raw }}
             },
-            {
-                el: 'chart-mid-month',
+            {//5. DEALER RETAIL FORECAST
+                el: 'chart-retail',
                 max: 150,
                 length: 5,
                 step: 50,
                 colors: ['#c40030'],
-                dataSource: {{ json_encode(metrics.MIDMTH_RETAIL)|raw }}
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.JS_RETAIL)|raw }}
             },
-            {
+            {//6. TRAINING
                 el: 'chart-training',
-                pilot: ['Month',  'Online', 'Pathway','Competency'],
+                pilot: ['Month',  'Online', 'Pathway','Competency','Bonus'],
                 max: 3000,
                 length: 6,
                 step: 500,
-                colors: ['#111111', '#c40030','#999999','#3273dc'],
+                colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999'],
                 isStacked: true,
                 dataSource: {{ json_encode(metrics.TRAINING)|raw }}
             }
         ];
     </script>
-    <div class="container bg-white pl-25 pr-25">
-        <div class="row">
+
+        <!--<div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
                     <a class="print-icon" href="#" onclick="window.print();return false;">
                         <i class="fa fa-print" aria-hidden="true" title="Print"></i>
                     </a>
-                    <br>
-                    MY Metrics - <em>SALES MANAGER</em>
+                    <span class='page-header-title' >MY Metrics - {{ currentRoleText }} </span>
                 </h1>
             </div>
-        </div>
-        <div class="row pb-20">
-            <div class="col-md-12 col-sm-12">
-                <div class="row graph-back-top">
-                    <div class="col-md-7">
-                        <h3>1. MATCHED OW</h3>
-                        <div class="table-responsive">
-                            <div id="chart-matched-ow" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MATCHED_OW_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>MATCHED OW GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">0 or 1 unit Variation</td>
-                                <td align="center">2 unit Variation</td>
-                                <td align="center">3 unit Variation</td>
-                            </tr>
+        </div>-->
+    <div class="row pb-20">
+        <div class="col-md-12 col-sm-12">
+            <div class="row graph-back-top">
+                <div class="col-md-7">
+                    <h3>1. MATCHED OW</h3>
+                    <div class="table-responsive">
+                        <div id="chart-matched-ow" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td>Category A</td>
-                                <td align="center">310</td>
-                                <td align="center"></td>
-                                <td align="center">105</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">310</td>
-                                <td align="center"></td>
-                                <td align="center">105</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">310</td>
-                                <td align="center">105</td>
-                                <td align="center"></td>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.MATCHED_OW_RESULTS } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="row graph-back">
-                    <div class="col-md-7" >
-                        <div class="table-responsive">
-                            <h3>2. NEW VEHICLE SALES</h3>
-                            <div id="chart-new-vehicle" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SALES_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>NEW VEHICLE SALES GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">100%</td>
-                                <td align="center">110%</td>
-                                <td align="center">120%</td>
-                                <td align="center">140%</td>
-                            </tr>
+                <div class="col-md-5">
+                    <h3>MATCHED OW GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Manager</td>
+                            <td align="center">0 or 1 unit Variation</td>
+                            <td align="center">2 unit Variation</td>
+                            <td align="center">3 unit Variation</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category A</td>
+                            <td align="center">310</td>
+                            <td align="center">105</td>
+                            <td align="center">105</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">310</td>
+                            <td align="center">105</td>
+                            <td align="center">105</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category C</td>
+                            <td align="center">310</td>
+                            <td align="center">105</td>
+                            <td align="center"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7" >
+                    <div class="table-responsive">
+                        <h3>2. NEW VEHICLE SALES</h3>
+                        <div id="chart-new-vehicle" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td> Category A</td>
-                                <td align="center">820</td>
-                                <td align="center">1220</td>
-                                <td align="center">1620</td>
-                                <td align="center">2420</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">820</td>
-                                <td align="center">1020</td>
-                                <td align="center">1220</td>
-                                <td align="center">1620</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">820</td>
-                                <td align="center">1020</td>
-                                <td align="center">1220</td>
-                                <td align="center">1620</td>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SALES_RESULTS } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>3. Sales Overall Satisfaction NPS R3M</h3>
-                        <div class="table-responsive">
-                            <div id="chart-recommendation" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RECOMMENDATION_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <h3>Sales Overall Satisfaction NPS R3M GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">84%-87.9%</td>
-                                <td align="center">≥ 88%</td>
-                            </tr>
+                <div class="col-md-5">
+                    <h3>NEW VEHICLE SALES GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Manager</td>
+                            <td align="center">100%</td>
+                            <td align="center">110%</td>
+                            <td align="center">120%</td>
+                            <td align="center">140%</td>
+                        </tr>
+                        <tr class="active">
+                            <td> Category A</td>
+                            <td align="center">820</td>
+                            <td align="center">1020</td>
+                            <td align="center">1220</td>
+                            <td align="center">1620</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">820</td>
+                            <td align="center">920</td>
+                            <td align="center">1020</td>
+                            <td align="center">1220</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category C</td>
+                            <td align="center">820</td>
+                            <td align="center">920</td>
+                            <td align="center">1020</td>
+                            <td align="center">1220</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>3. Sales overall satisfaction NPS 3 month rolling score</h3>
+                    <div class="table-responsive">
+                        <div id="chart-sos" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td> Category A</td>
-                                <td align="center">500</td>
-                                <td align="center">1000</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">500</td>
-                                <td align="center">1000</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">500</td>
-                                <td align="center">1000</td>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.SOS_RESULTS } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>4. Kept informed of delivery 3 month rolling score (Overall satisfaction NPS)</h3>
-                        <div class="table-responsive">
-                            <div id="chart-follow-up" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.FU_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>Kept informed of delivery 3 month rolling score (Overall satisfaction NPS) Guide</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">100%</td>
-                            </tr>
-                            <tr>
-                                <td> Category A</td>
-                                <td align="center">500</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">500</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">500</td>
-                            </tr>
-                        </table>
-                        <p>&nbsp;</p>
-
-
-                    </div>
+                <div class="col-md-5">
+                    <h3>Sales overall satisfaction <br>NPS 3 month rolling score GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Manager</td>
+                            <td align="center">85-88.9</td>
+                            <td align="center">≥89</td>
+                        </tr>
+                        <tr class="active">
+                            <td> Category A</td>
+                            <td align="center">500</td>
+                            <td align="center">1000</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">500</td>
+                            <td align="center">1000</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category C</td>
+                            <td align="center">500</td>
+                            <td align="center">1000</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>5. DEALER RETAIL FORECAST</h3>
-                        <div class="table-responsive">
-                            <div id="chart-mid-month" class="metrics-chart-wrap"></div>
-                            <table class="table table-condensed metrics-table-wrap">
-                                {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                                <tr>
-                                    <td class="nissangray-light-back">RESULT</td>
-                                    {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RETAIL_RESULTS } %}
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <h3>DEALER RETAIL FORECAST GUIDE</h3>
-                        <table class="table small-table">
-                            <tr class="table-top-row">
-                                <td>Sales Manager</td>
-                                <td align="center">Yes</td>
-                            </tr>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>4. Kept informed of delivery NPS 3 month rolling score</h3>
+                    <div class="table-responsive">
+                        <div id="chart-kid" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td> Category A</td>
-                                <td align="center">150</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Category B</td>
-                                <td align="center">150</td>
-                            </tr>
-                            <tr>
-                                <td>Category C</td>
-                                <td align="center">150</td>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.KID_RESULTS } %}
                             </tr>
                         </table>
                     </div>
                 </div>
-                <div class="row graph-back">
-                    <div class="col-md-7">
-                        <h3>6. TRAINING</h3>
-                        <div class="table-responsive">
-                            <div id="chart-training" class="metrics-chart-wrap"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3>TRAINING GUIDE</h3>
-                        <table class="table small-table" >
-                            <tr class="table-top-row">
-                                <td>Competency Modules</td>
-                                <td>Credits Quarterly</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Certified Dealership Manager (O)</td>
-                                <td>200</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Certified Dealership Manager (F)</td>
-                                <td>375</td>
+                <div class="col-md-5">
+                    <h3>Kept informed of delivery <br>NPS 3 month rolling score Guide</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Manager</td>
+                            <td align="center">100% of FY19 Target(88)</td>
+                        </tr>
+                        <tr class="active">
+                            <td> Category A</td>
+                            <td align="center">500</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">500</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category C</td>
+                            <td align="center">500</td>
+                        </tr>
+                    </table>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>5. DEALER RETAIL FORECAST</h3>
+                    <div class="table-responsive">
+                        <div id="chart-retail" class="metrics-chart-wrap"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RETAIL_RESULTS } %}
                             </tr>
                         </table>
-                        <p>
-                            <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">AC19 Member Guide</a> for full details.</em>
-                        </p>
                     </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>DEALER RETAIL FORECAST GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Sales Manager</td>
+                            <td align="center">Yes</td>
+                        </tr>
+                        <tr class="active">
+                            <td> Category A</td>
+                            <td align="center">150</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">150</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category C</td>
+                            <td align="center">150</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>6. TRAINING</h3>
+                    <div class="table-responsive">
+                        <div id="chart-training" class="metrics-chart-wrap"></div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>TRAINING GUIDE</h3>
+                    <table class="table small-table" >
+                        <tr class="table-top-row">
+                            <td>Competency Modules</td>
+                            <td align="center">Points Quarterly</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Certified Dealership Manager (O)</td>
+                            <td align="center">200</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Certified Dealership Manager (F)</td>
+                            <td align="center">375</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Bonus</td>
+                            <td align="center">2000</td>
+                        </tr>
+                    </table>
+                    <p>
+                        <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
+                    </p>
                 </div>
             </div>
         </div>

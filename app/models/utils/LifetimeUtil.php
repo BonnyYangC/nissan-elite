@@ -13,6 +13,28 @@ use App\models\role\status\IColor;
 
 class LifetimeUtil
 {
+    //add new const, need clean old ones later
+    const STATUS_LEVEL_4       = 'Platinum';
+    const STATUS_LEVEL_3    = 'Gold';
+    const STATUS_LEVEL_2      = 'Silver';
+    const STATUS_LEVEL_1        = 'Bronze';
+
+    const STATUS_LEVEL_4_COLOR       = '#545454'; //Platinum
+    const STATUS_LEVEL_3_COLOR    = '#CD7F32'; //Gold
+    const STATUS_LEVEL_2_COLOR      = '#C0C0C0'; //Silver
+    const STATUS_LEVEL_1_COLOR        = '#8C7853'; //Bronze
+
+    const MAX_LEVEL_4 = 500000;
+    const MAX_LEVEL_3 = 325000;
+    const MAX_LEVEL_2 = 200000;
+    const MAX_LEVEL_1 = 100000;
+
+    const PERCENTAGE_LEVEL_1 = (self::MAX_LEVEL_1/self::MAX_LEVEL_4)*100;
+    const PERCENTAGE_LEVEL_2 = (self::MAX_LEVEL_2/self::MAX_LEVEL_4)*100;
+    const PERCENTAGE_LEVEL_3 = (self::MAX_LEVEL_3/self::MAX_LEVEL_4)*100;
+    const PERCENTAGE_LEVEL_4 = (self::MAX_LEVEL_4/self::MAX_LEVEL_4)*100;
+
+
     const Platinum  = 500000;
     const Gold      = 325000;
     const Silver    = 200000;
@@ -43,8 +65,8 @@ class LifetimeUtil
 
     public function getGagaData(){
         return [
-            [self::Bronze, IColor::Bronze, self::BronzeText],
-            [self::Silver, IColor::Silver, self::SilverText],
+            [self::Bronze, IColor::BRONZE, self::BronzeText],
+            [self::Silver, IColor::SILVER, self::SilverText],
             [self::Gold, IColor::Gold, self::GoldText],
             [self::Platinum, IColor::Platinum, self::PlatinumText],
         ];
@@ -122,7 +144,7 @@ class LifetimeUtil
 
             case $lifetimeRevenue >= self::Bronze && $lifetimeRevenue < self::Silver:
                 $lifetimeUtil->_init(
-                    IColor::Bronze,
+                    IColor::BRONZE,
                     self::SilverText,
                     self::Silver - $lifetimeRevenue);
                 break;

@@ -30,7 +30,7 @@ class StockController extends BaseRole implements IRole
     ];
     public $RetailMidMth = [
         'label'=> '',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $OWCompliance = [
@@ -48,6 +48,7 @@ class StockController extends BaseRole implements IRole
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = false;
     }
 
     /**
@@ -58,24 +59,30 @@ class StockController extends BaseRole implements IRole
     public function getMetrics($data){
         $stock=$stock_results=$ow=$ow_results=$retail=$retail_results=$matched=$matched_results=$davo=$davo_results=$training=[];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $stock[] = $this->_buildForJs($item['stock_credit']);
+                $stock_results[] = $this->_buildForTableElement($item['stock'],0);
+                //2
                 $ow[] = $this->_buildForJs($item['ow_credit']);
+                $ow_results[] = $this->_buildForTableElement($item['ow'],0);
+                //3
                 $retail[] = $this->_buildForJs($item['retail_credit']);
+                $retail_results[] = $item['retail'] == 1 ? 'YES' : 'NO';
+                //4
                 $matched[] = $this->_buildForJs($item['matched_credit']);
+                $matched_results[] = $this->_buildForTableElement($item['matched'],0);
+                //5
                 $davo[] = $this->_buildForJs($item['davo_credit']);
+                $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
+                //6
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
-                $stock_results[] = $this->_buildForTableElement($item['stock'],0);
-                $ow_results[] = $this->_buildForTableElement($item['ow'],0);
-                $retail_results[] = $item['retail'] == 1 ? 'YES' : 'NO';
-                $matched_results[] = $this->_buildForTableElement($item['matched'],0);
-                $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
             }
             else
             {
@@ -123,9 +130,9 @@ class StockController extends BaseRole implements IRole
         $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);//only show from May to Mar
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
@@ -163,13 +170,13 @@ class StockController extends BaseRole implements IRole
             }
 
             // User parent method to handle lifeTime and excellence
-            $this->_setupLifeTimeAndExcellence($data, $period);
+            $this->_setupLifeTimeAndExcellence($dataResults, $period);
         }
 
         // Status
         $status = new StockControllerStatus($ytd);
 
-        $this->RetailMidMth['label'] = env('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
+        $this->RetailMidMth['label'] = configuration('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
 
         return [
             // For js array

@@ -12,7 +12,7 @@ function adjustLegendMargin () {
 }
 function newDrawFunc(obj){
     if(!obj.pilot){
-        obj.pilot = ['Month', 'Credits'];
+        obj.pilot = ['Month', 'Points'];
     }
     if(!obj.duration){
         obj.duration = 1600;
@@ -36,7 +36,7 @@ function newDrawFunc(obj){
 
     var options = {
         chartArea:{left:65,top:40,bottom:40,width:'80%',height:'75%'},
-        legend: 'top',
+        legend: obj.legend || 'top',
         animation: {
             duration: obj.duration,
             easing: 'out',

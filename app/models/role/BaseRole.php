@@ -18,6 +18,12 @@ class BaseRole extends BaseModel
     protected $user;
 
     /**
+     * Need to show the regional ranking in dashboard page
+     * @var bool
+     */
+    public $hasPlatinumRanking = false;
+
+    /**
      * @var Carbon $startPoint
      * To generate the array's key when iterate the metrics data
      */
@@ -45,106 +51,36 @@ class BaseRole extends BaseModel
     public $excellenceResult = null;
     public $newVehicleSales = [
         'label'=>'New Vehicle Sales',
-        'backgroundColor' => IColor::DARK_GREY,
-        'data'=>[]
-    ];
-    public $salesRecommendationSaturation   = [
-        'label'=>'CE Satisfaction',
-        'backgroundColor' => IColor::RED, // dark grey
-        'data'=>[]
-    ];
-    public $followUpSaturation             = [
-        'label'=>'Follow Up Sat',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
 
-    public $followUpCreditSat             = [
+    public $keptInformed= [
         'label'=>'Kept Informed',
-        'backgroundColor' => IColor::LOW_RED,
+        'backgroundColor' => IColor::LIGHT_PERU,
         'data'=>[]
     ];
 
     public $trainingData = [
         'label'=>'Training',
-        'backgroundColor' => IColor::LIGHT_RED,
+        'backgroundColor' => IColor::LEMON_CHIFFON,
         'data'=>[]
     ];
-
-    public $followUpPercentage= [
-        'label'=>'Follow Up %',
-        'backgroundColor' => IColor::MID_GREY,
-        'data'=>[]
-    ];
-    public $matchedOW = [
-        'label'=>'Matched OW',
-        'backgroundColor' => IColor::BLACK,
-        'data'=>[]
-    ];
-    public $DlrRec = [
-        'label'=>'CE Sat',
-        'backgroundColor' => IColor::RED,
-        'data'=>[]
-    ];
-    public $middleMonth = [
-        'label'=>'Forecast',
-        'backgroundColor' => IColor::LIGHT_GREY,
-        'data'=>[]
-    ];
-
     /**
      * Add incentives for all roles
      * @var array
      */
     public $incentivesForDashboard = [
         'label'=>'Incentive',
-        'backgroundColor' => IColor::DARK_GREEN,
+        'backgroundColor' => IColor::GOLD,
         'data'=>[]
     ];
-
-    // Service adviser: start
-    public $serviceRecommendation = [
-        'label'=>'Service Satisfaction',
-        'backgroundColor' => IColor::RED,
-        'data'=>[]
-    ];
-    public $advice = [
-        'label'=>'Advice',
-        'backgroundColor' => IColor::DARK_GREY,
-        'data'=>[]
-    ];
-    public $VehicleCleanliness = [
-        'label'=>'Value for Money',
-        'backgroundColor' => IColor::GAINS_BORO,
-        'data'=>[]
-    ];
-    public $EMW = [
-        'label'=>'EMW',
-        'backgroundColor' => IColor::LOW_RED,
-        'data'=>[]
-    ];
-    public $FFT = [
-        'label'=>'FFT',
-        'backgroundColor' => IColor::BLACK,
-        'data'=>[]
-    ];
-    public $SERVICE_YOU_CAN_TRUST = [
-        'label'=>'AYCT',
-        'backgroundColor' => IColor::BLACK,
-        'data'=>[]
-    ];
-    public $CUSTOMER_REPAIR_ORDER = [
-        'label'=>'CPR',
-        'backgroundColor' => IColor::GAINS_BORO,
-        'data'=>[]
-    ];
-    // Service adviser: end
 
     public function __construct(User $user = null)
     {
         parent::__construct();
         $this->user = $user;
-        $this->startPoint = Carbon::createFromDate(env('YEAR'),3,1,env('DEFAULT_TIMEZONE'));
+        $this->startPoint = Carbon::createFromDate(configuration('YEAR'),4,1,env('DEFAULT_TIMEZONE'));
     }
 
     /**
@@ -153,18 +89,19 @@ class BaseRole extends BaseModel
      * @param $period
      */
     protected function _setupLifeTimeAndExcellence($data, $period){
-        $dataResults = isset($data['Results']) ? $data['Results'] : null;
-        if (isset($dataResults[date("M-Y", $period)]))
+        //$dataResults = isset($data['Results']) ? $data['Results'] : null;
+        if (isset($data[date("M-Y", $period)]))
         {
             $this->lifeTime =
-                (isset($dataResults[date("M-Y", $period)]['lifetime']) ?
-                    $dataResults[date("M-Y", $period)]['lifetime'] :
-                    $dataResults[date("M-Y", $period)]['credit_mtd']);
-        }
-
-        if ( !$this->excellenceResult)
-        {
+                (($data[date("M-Y", $period)]['lifetime'] > 0) ?
+                    $data[date("M-Y", $period)]['lifetime'] :
+                    $data[date("M-Y", $period)]['credit_mtd']);
+        
+        //if ( !$this->excellenceResult)
+        //{
             $this->excellenceResult =$data[date("M-Y", $period)]['excellence'];
+        //}
+        
         }
     }
 

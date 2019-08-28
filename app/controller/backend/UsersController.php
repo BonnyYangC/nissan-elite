@@ -49,14 +49,25 @@ class UsersController extends BaseController
      * List region staff
      */
     public function region_staff(){
+        $sortCondition = null;
+        if($this->request->param('sortby') || $this->request->param('order')){
+            $sortCondition = [
+                'sortBy' => $this->request->param('sortby'),
+                'order' => $this->request->param('order'),
+            ];
+        }
         $currentPageNumber = $this->request->param('pn') ? $this->request->param('pn') : 0;
         $whereCondition = [
             'users.active'=>1,
             'users.parent_id'=>8,
             'users.position'=>User::$REGION_STAFF_POSITIONS
         ];
-        $this->dataForView['roles'] = DataSource::$_rolesMap;
-        $this->dataForView['users'] = User::GetRegionStaff([],$currentPageNumber);
+        
+        $staffs = User::GetRegionStaff([], $sortCondition, $currentPageNumber);
+        $this->dataForView['users'] = $staffs;
+        $this->dataForView['usersCount'] = User::GetRegionStaffCount();
+        $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
+        $this->dataForView['sortCondition'] = $sortCondition;
         $this->render('backend/region_staff');
         return;
     }
@@ -65,7 +76,16 @@ class UsersController extends BaseController
      * Get Nissan super users
      */
     public function super_users(){
-        $this->dataForView['users'] = User::GetNissanSuperUsers();
+        $currentPageNumber = $this->request->param('pn') ? $this->request->param('pn') : 0;
+        $whereCondition = [
+            'users.parent_id'=>8,
+            'users.company_id'=>8,
+            'users.alt_position'=>User::ADMIN,
+        ];
+        $admins = User::GetNissanSuperUsers([],$currentPageNumber);
+        $this->dataForView['users'] = $admins;
+        $this->dataForView['usersCount'] = User::GetNissanSuperUsersCount();
+        $this->dataForView['pagination'] = Pagination::Build(User::TABLE_NAME, $currentPageNumber,$whereCondition);
         $this->render('backend/users/super_users');
         return;
     }
@@ -96,8 +116,9 @@ class UsersController extends BaseController
      */
     public function region_staff_new(){
         $this->dataForView['user'] = new User();
-        $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
+        $this->dataForView['regions'] = User::$REGIONS_MAP;
         $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
+        $this->dataForView['positions_map'] = User::POSITION_FULLNAME_MAP;
         $this->render('backend/users/edit_region_staff');
         return;
     }
@@ -108,8 +129,9 @@ class UsersController extends BaseController
     public function region_staff_edit(){
         $user = new User($this->request->param('uid'));
         $this->dataForView['user'] = $user;
-        $this->dataForView['regions'] = RegionTerritoryReport::$REGIONS;
+        $this->dataForView['regions'] = User::$REGIONS_MAP;
         $this->dataForView['positions'] = User::$REGION_STAFF_POSITIONS;
+        $this->dataForView['positions_map'] = User::POSITION_FULLNAME_MAP;
         $this->render('backend/users/edit_region_staff');
         return;
     }
@@ -266,7 +288,7 @@ class UsersController extends BaseController
             $this->response->file($filePath,null,'csv');
 
         }elseif ($this->request->param('type') === 'region'){
-            $users = User::GetRegionStaff([]);
+            $users = User::GetRegionStaff([],null,0,null);
             $rows = [];
             foreach ($users as $user) {
                 $rows[] = [

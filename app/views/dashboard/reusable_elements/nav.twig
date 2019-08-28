@@ -1,4 +1,5 @@
-    <nav class="navbar navbar-inverse back navbar-static-top" role="navigation">
+<div class="row">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -21,13 +22,16 @@
                 {% endif %}
                 <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a></li>
                 <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a></li>
-                <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a></li>
                 <li class="{{ currentUri=='MembersGuide' ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a></li>
-                <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a></li>
+                <li class="{{ currentUri=='AboutProgram' ? 'current' : null }}"> <a href="{{ url('/dashboard/AboutProgram') }}">About the Program</a></li>
+                <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a></li>
                 <li class="{{ currentUri=='ProductChallenge' ? 'current' : null }}"> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a></li>
-                <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">MD Guild</a></li>
+                <li class="{{ currentUri=='Lifetime' ? 'current' : null }}"> <a href="{{ url('/dashboard/Lifetime') }}">Loyalty</a></li>
+                <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">Guild</a></li>
+                <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a></li>
                 <li class="{{ currentUri=='FAQ' ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a></li>
             {% endif %}
             </ul>
         </div>
     </nav>
+    </div>

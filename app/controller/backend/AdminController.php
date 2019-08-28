@@ -33,7 +33,7 @@ class AdminController extends BaseController
     private $csvFileIndexes = null; // The first row of the csv file, as the index
     private $resultArray = [];
     private $notFoundArray = [];
-
+    private $fieldMap = [];
     /**
      * Result table had td tags only
      * @var string
@@ -56,39 +56,27 @@ class AdminController extends BaseController
     /**
      * Update system env file
      */
-    public function update_env(){
+    public function updateProjectSettings(){
         /**
          * @var array $env
          */
-        $env = $this->request->param('env');
-        $content = 'APP_NAME="'.$env['APP_NAME'].'"'.PHP_EOL;
-        $content .= 'DEV_MODE='.( $env['DEV_MODE']=='1' ? 'false' : 'true').PHP_EOL;
-        $content .= 'SALT=L=kGL*y^Cv3YYs5Lq2k_wZQxtjS5_Y$LFaJJ%MdC+#NpbAZ#PaZtNJ2!HmffXTsc'.PHP_EOL;
-        $content .= 'SITE_URL='.$env['SITE_URL'].PHP_EOL;
-        $content .= 'ROOT_PATH="'.$env['ROOT_PATH'].'"'.PHP_EOL;
-        $content .= 'APP_PATH="${ROOT_PATH}/app/"'.PHP_EOL;
-        $content .= 'VIEW_PATH="${ROOT_PATH}/app/views/"'.PHP_EOL;
-        $content .= 'PUBLIC_UPLOADS_PATH_ROOT="${APP_PATH}storage/public/uploads"'.PHP_EOL;
-        $content .= 'SESSION_SEGMENT=_nissanac'.PHP_EOL;
-        $content .= 'YEAR='.$env['YEAR'].PHP_EOL;
-        $content .= 'DEFAULT_TIMEZONE="Australia/Melbourne"'.PHP_EOL;
-        $content .= 'dealExcellenceOverviewUrl=http://nissan-events.com.au/excellence-fy18/ac/welcome.html'.PHP_EOL;
-        $content .= 'eventRegisterUrl="http://www.nissan-events.com.au/ac${YEAR}/reg"'.PHP_EOL;
-        $content .= 'DB_DRIVER=mysql'.PHP_EOL;
-        $content .= 'DB_USER='.$env['DB_USER'].PHP_EOL;
-        $content .= 'DB_PASSWORD='.$env['DB_PASSWORD'].PHP_EOL;
-        $content .= 'DB_NAME='.$env['DB_NAME'].PHP_EOL;
-        $content .= 'DB_HOST='.$env['DB_HOST'].PHP_EOL;
-        $content .= 'PAGE_SIZE='.$env['PAGE_SIZE'].PHP_EOL;
-        $content .= 'ADMIN_USER='.$env['ADMIN_USER'].PHP_EOL;
-        $content .= 'ADMIN_PASSWORD='.$env['ADMIN_PASSWORD'].PHP_EOL;
-        $content .= 'MAIL_SENDGRID_API_KEY='.$env['MAIL_SENDGRID_API_KEY'].PHP_EOL;
-        $content .= 'SUPPORT_EMAIL_ADDRESS='.$env['SUPPORT_EMAIL_ADDRESS'].PHP_EOL;
-        $content .= 'SUPPORT_EMAIL_NAME="'.$env['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
-        $content .= 'MOBILE_VERSION="'.$env['MOBILE_VERSION'].'"'.PHP_EOL;
-        $content .= 'PRODUCT_CHALLENGE_WINNER="'.$env['PRODUCT_CHALLENGE_WINNER'].'"'.PHP_EOL;
+        $setting = $this->request->param('setting');
 
-        file_put_contents(env('APP_PATH').'/helpers/.env',$content);
+        $content = 'PROGRAM_NAME="'.$setting['PROGRAM_NAME'].'"'.PHP_EOL;
+        $content .= 'PROGRAM_SHORT_NAME="'.$setting['PROGRAM_SHORT_NAME'].'"'.PHP_EOL;
+        $content .= 'PROGRAM_SHORT_NAME_WITH_YEAR="'.$setting['PROGRAM_SHORT_NAME_WITH_YEAR'].'"'.PHP_EOL;
+        $content .= 'PROGRAM_I_ELITE="'.$setting['PROGRAM_I_ELITE'].'"'.PHP_EOL;
+        $content .= 'PROGRAM_DEALERSHIP="'.$setting['PROGRAM_DEALERSHIP'].'"'.PHP_EOL;
+        $content .= 'YEAR='.$setting['YEAR'].PHP_EOL;
+        $content .= 'PROGRAM_AWARD_UNIT="'.$setting['PROGRAM_AWARD_UNIT'].'"'.PHP_EOL;
+        $content .= 'PRODUCT_CHALLENGE_WINNER="'.$setting['PRODUCT_CHALLENGE_WINNER'].'"'.PHP_EOL;
+        $content .= 'PAGE_SIZE='.$setting['PAGE_SIZE'].PHP_EOL;
+        $content .= 'SUPPORT_EMAIL_ADDRESS='.$setting['SUPPORT_EMAIL_ADDRESS'].PHP_EOL;
+        $content .= 'SUPPORT_EMAIL_NAME="'.$setting['SUPPORT_EMAIL_NAME'].'"'.PHP_EOL;
+        $content .= 'ADMIN_USER='.$setting['ADMIN_USER'].PHP_EOL;
+        $content .= 'ADMIN_PASSWORD='.$setting['ADMIN_PASSWORD'].PHP_EOL;
+
+        file_put_contents(env('APP_PATH').'/helpers/setting.php',$content);
 
         $this->response->redirect('/admin-panel');
     }
@@ -102,7 +90,7 @@ class AdminController extends BaseController
         unset($this->dataForView['roles'][User::DISTRICT_SALES_MANAGER]);
 
         $this->dataForView['summary'] = [
-            Credit::TABLE_NAME=>'Nissan Credits',
+            /*Credit::TABLE_NAME=>'Nissan Credits',*/
             Ranking::TABLE_NAME=>'Nissan Rankings',
             User::DISTRICT_SALES_MANAGER=>'Region Territory Report'
         ];
@@ -469,11 +457,7 @@ class AdminController extends BaseController
                                                 empty($row[$this->indexes[$currentFieldName]]) ?
                                                     null :                                         // If csv value is empty, then use the 0
                                                     $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
-                                            if(strtoupper($newValue) == 'YES'){
-                                                $newValue = 1;
-                                            }elseif (strtoupper($newValue) == 'NO'){
-                                                $newValue = 0;
-                                            }
+                                            $newValue = $this->_stringValueToInteger($newValue);
                                             $model->$currentFieldName = trim($newValue);
                                         }
                                     }
@@ -511,11 +495,7 @@ class AdminController extends BaseController
                                                     empty($row[$this->indexes[$currentFieldName]]) ?
                                                         0 :                                         // If csv value is empty, then use the 0
                                                         $row[$this->indexes[$currentFieldName]];    // If csv value is not empty, save it
-                                                if(strtoupper($newValue) == 'YES'){
-                                                    $newValue = 1;
-                                                }elseif (strtoupper($newValue) == 'NO'){
-                                                    $newValue = 0;
-                                                }
+                                                $newValue = $this->_stringValueToInteger($newValue);
                                                 $model->$currentFieldName = trim($newValue);
                                             }
                                         }
@@ -531,11 +511,7 @@ class AdminController extends BaseController
                                                 empty($row[$rowIndex]) ?
                                                     0 :                                         // If csv value is empty, then use the 0
                                                     $row[$rowIndex];    // If csv value is not empty, save it
-                                            if(strtoupper($newValue) == 'YES'){
-                                                $newValue = 1;
-                                            }elseif (strtoupper($newValue) == 'NO'){
-                                                $newValue = 0;
-                                            }
+                                            $newValue = $this->_stringValueToInteger($newValue);
                                             $model->$fieldName = trim($newValue);
                                         }
                                     }
@@ -582,6 +558,20 @@ class AdminController extends BaseController
         }
     }
 
+    private function _stringValueToInteger($stringValue)
+    {
+        $intValue = $stringValue;
+        $arrayFor1 = ['YES'];
+        $arrayFor0 = ['NO'];
+        if( in_array(strtoupper($stringValue), $arrayFor1)){
+            $intValue = 1;
+        }else
+        if( in_array(strtoupper($stringValue), $arrayFor0)){
+            $intValue = 0;
+        }
+        return $intValue;
+    }
+
     /**
      * Get the right where conditions for different table
      * @param $tableName
@@ -609,7 +599,7 @@ class AdminController extends BaseController
             $where = [
                 'AND'=>[
                     DbMap::EMPLOYEE_CODE=> $row[$this->indexes[DbMap::EMPLOYEE_CODE]],
-                    DbMap::PERIOD  => env('YEAR'),
+                    DbMap::PERIOD  => configuration('YEAR'),
                 ]
             ];
         }
@@ -650,7 +640,7 @@ class AdminController extends BaseController
             if(empty($this->resultTableHead)){
                 $keys = array_keys($tr);
                 foreach ($keys as $theKey) {
-                    $this->resultTableHead .= '<td>'.$theKey.'</td>';
+                    $this->resultTableHead .= '<td>'.$this->fieldMap[$theKey].'</td>';
                 }
                 $html .= '<tr>'.$this->resultTableHead.'</tr>';
             }
@@ -718,6 +708,9 @@ class AdminController extends BaseController
             case 'nissan_salesconsultants':
                 $map = DbMap::ConsultantSalesTable();
                 break;
+            case 'nissan_fleetsalesexecutives':
+                $map = DbMap::FleetSalesExecutivesTable();
+                break;
             case 'nissan_fi':
                 $map = DbMap::FiAdministrationTable();
                 break;
@@ -756,7 +749,7 @@ class AdminController extends BaseController
         if($roleAbbr === User::REGION_STAFF){
             $map = DbMap::RegionStaffTable();
         }
-
+        $this->fieldMap = $map;
         $map = array_flip($map);
 
         foreach ($csvRowArray as $index => $rowName) {

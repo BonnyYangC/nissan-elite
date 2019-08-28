@@ -4,46 +4,46 @@
     {% set next = {'pn':pagination.current+1} %}
     {% set last = {'pn':pagination.pages-1} %}
     {% set first = {'pn':0} %}
+    {% set sort = [] %}
+        {% if sortCondition %}
+        {% set sort = {'sortby':sortCondition.sortBy,'order':sortCondition.order} %}
+        {% endif %}
 
     {% if total %}
     <span style="margin-right: 20px;">Total: {{ total }}</span>
     {% endif %}
-
+    
     {% if pagination.current > 0 %}
-        <a class="pagination-previous" href="{{ url(path,prev) }}">&lt;&nbsp;Previous</a>
-    {% else %}
-        <a class="pagination-previous">&lt;&nbsp;Previous</a>
+        <a class="pagination-previous" href="{{ url(path,prev|merge(sort)) }}">&lt;&nbsp;Previous</a>
     {% endif %}
 
-    {% if pagination.current == pagination.pages-1 %}
-        <a class="pagination-next">Next&nbsp;&gt;</a>
-    {% else %}
-        <a class="pagination-next" href="{{ url(path,next) }}">Next&nbsp;&gt;</a>
+    {% if pagination.current < pagination.pages-1 %}
+        <a class="pagination-next" href="{{ url(path,next|merge(sort)) }}">Next&nbsp;&gt;</a>
     {% endif %}
 
     {% set currentPageNumber = pagination.current+1 %}
 
     <ul class="pagination-list" style="list-style: none;margin-top: 0;">
         {% if currentPageNumber > 6 %}
-            <li><a class="pagination-link" href="{{ url(path,{ 'pn':0 }) }}" aria-label="Page 1" aria-current="page">1</a></li>
+            <li><a class="pagination-link" href="{{ url(path,{ 'pn':0 }|merge(sort)) }}" aria-label="Page 1" aria-current="page">1</a></li>
             <li><span class="pagination-ellipsis">&hellip;</span></li>
         {% endif %}
 
         {% for i in currentPageNumber-5..currentPageNumber-1 %}
             {% if i > 0 %}
-            <li><a class="pagination-link" href="{{ url(path,{ 'pn':i-1 }) }}" aria-label="Goto page {{ i }}">{{ i }}</a></li>
+            <li><a class="pagination-link" href="{{ url(path,{ 'pn':i-1 }|merge(sort)) }}" aria-label="Goto page {{ i }}">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
 
         <li><a class="pagination-link is-current" aria-label="Page {{ currentPageNumber }}" aria-current="page">{{ currentPageNumber }}</a></li>
         {% for i in currentPageNumber+1..currentPageNumber+6 %}
-            {% if i > 0 %}
-                <li><a class="pagination-link" href="{{ url(path,{ 'pn':i-1 }) }}" aria-label="Goto page {{ i }}">{{ i }}</a></li>
+            {% if i > 0 and i < pagination.pages %}
+                <li><a class="pagination-link" href="{{ url(path,{ 'pn':i-1 }|merge(sort)) }}" aria-label="Goto page {{ i }}">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
 
         <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" href="{{ url(path,last) }}" aria-label="Goto page {{ pagination.pages }}">{{ pagination.pages }}</a></li>
+        <li><a class="pagination-link" href="{{ url(path,last|merge(sort)) }}" aria-label="Goto page {{ pagination.pages }}">{{ pagination.pages }}</a></li>
     </ul>
 </nav>
 <hr>

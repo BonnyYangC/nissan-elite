@@ -1,22 +1,22 @@
 <div class="table-responsive">
     <table class="table centre-text">
         <tr class="nissangray-back">
-            <td colspan="2">Dealer Excellence</td>
+            <td colspan="2">{{ configuration('PROGRAM_DEALERSHIP') }}</td>
         </tr>
         <tr class="nissangray-light-back">
             <td>
-                <span class="rank tw {{ user.excellence ? 'txt-red' : null }}">
-                    {% if user.excellence %}
+                <span class="rank span-red">
+                    {% if dashboard.excellence > 0 %}
                         &#10004;
                     {% else %}
                         X
                     {% endif %}
                 </span>
-                {% if user.excellence %}
-                    <p class="tw">{{ number_format(user.excellence) }} Credits Applied</p>
+                {% if dashboard.excellence %}
+                    <p class="tw">{{ number_format(dashboard.excellence) }} {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
                 {% else %}
                     <p class="tw">
-                        refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') }}">Dealer Excellence overview</a>
+                        Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl', '') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview
                     </p>
                 {% endif %}
             </td>

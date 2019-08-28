@@ -32,39 +32,40 @@ class FI extends BaseRole implements IRole
 
     public $NFSA_Contracts = [
         'label'=>'NFSA Contracts',
-        'backgroundColor' => IColor::LIGHT_GREY,
+        'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
     public $Insurance = [
         'label'=>'Insurance',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
     public $EMW_Genuine_Extended = [
         'label'=>'EMW Genuine',
-        'backgroundColor' => IColor::MID_GREY,
+        'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $SalesPenetration = [
         'label'=>'Sales Penetration',
-        'backgroundColor' => IColor::RED,
+        'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
     public $FollowUp = [
         'label'=>'FI Sat.',
-        'backgroundColor' => IColor::LIGHT_RED,
+        'backgroundColor' => IColor::LEMON_CHIFFON,
         'data'=>[]
     ];
 
     public $NFSA_Credits = [
         'label'=>'Loyalty & Retention',
-        'backgroundColor' => IColor::LIGHT_GREEN,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
 
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = false;
     }
 
     /**
@@ -78,9 +79,9 @@ class FI extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 
@@ -114,7 +115,7 @@ class FI extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
-            $this->_setupLifeTimeAndExcellence($data,$period);
+            $this->_setupLifeTimeAndExcellence($dataResults,$period);
         }
 
 
@@ -168,7 +169,7 @@ class FI extends BaseRole implements IRole
         $credits_nfsa_retention = [];
         $sales_nfsa_retention = [];
 
-        for($i=0; $i<12; $i++) {
+        for($i=0; $i<11; $i++) {  //only show from May to Mar
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
 
@@ -176,32 +177,32 @@ class FI extends BaseRole implements IRole
             {
                 // chart
                 $nfsa[] = $this->_buildForJs($item['credit_actual_sales']);
-                $emw[] = $this->_buildForJs(
-                    [
-                        $item['credits_emw']
-                    ]
-                );
+                $credits_nfsa_retention[] = $this->_buildForJs($item['credits_nfsa_retention']);
                 $ins[] = $this->_buildForJs(
                     [
                         $item['credits_mvi'],
                         $item['credits_pkg']
                     ]
                 );
+                $emw[] = $this->_buildForJs(
+                    [
+                        $item['credits_emw']
+                    ]
+                );
                 $penetration[] = $this->_buildForJs($item['credits_penetration']);
                 $fu[] = $this->_buildForJs($item['credits_fi']);
-                $credits_nfsa_retention[] = $this->_buildForJs($item['credits_nfsa_retention']);
 
 
                 // table
                 $nfsa_results[] = $this->_buildForTableElement($item['sales_nfsa'],0);
-                $emw_results[] = $this->_buildForTableElement($item['sales_emw'],0);
-                $mmu_results[] = $this->_buildForTableElement($item['sales_mmu'],0);
-                $mvi_results[] = $this->_buildForTableElement($item['sales_mvi'],0);
-                $vpi_results[] = $this->_buildForTableElement($item['sales_vpi'],0);
-                $pkg_results[] = $this->_buildForTableElement($item['sales_pkg'],0);
-                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 1 ) . '%';
-                $fu_results[] = $this->_buildForTableElement($item['score_fi'],1).'%';
                 $sales_nfsa_retention[] = $this->_buildForTableElement($item['sales_nfsa_retention'],0);
+                $mvi_results[] = $this->_buildForTableElement($item['sales_mvi'],0);
+                //$vpi_results[] = $this->_buildForTableElement($item['sales_vpi'],0);
+                $pkg_results[] = $this->_buildForTableElement($item['sales_pkg'],0);
+                $emw_results[] = $this->_buildForTableElement($item['sales_emw'],0);
+                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 1 ) . '%';
+                //$mmu_results[] = $this->_buildForTableElement($item['sales_mmu'],0);
+                $fu_results[] = $this->_buildForTableElement($item['score_fi'],1);
             }
             else
             {
@@ -214,12 +215,12 @@ class FI extends BaseRole implements IRole
 
                 $nfsa_results[] = $this->_buildForTableElement();
                 $emw_results[] = $this->_buildForTableElement();
-                $mmu_results[] = $this->_buildForTableElement();
+                //$mmu_results[] = $this->_buildForTableElement();
                 $mvi_results[] = $this->_buildForTableElement();
-                $vpi_results[] = $this->_buildForTableElement();
+                //$vpi_results[] = $this->_buildForTableElement();
                 $pkg_results[] = $this->_buildForTableElement();
                 $penetration_results[] = $this->_buildForTableElement().'%';
-                $fu_results[] = $this->_buildForTableElement(null).'%';
+                $fu_results[] = $this->_buildForTableElement(null);
                 $sales_nfsa_retention[] = $this->_buildForTableElement();
             }
         }
@@ -227,20 +228,20 @@ class FI extends BaseRole implements IRole
         return  [
             "NFSA"                  => $nfsa,
             "NFSA_RESULTS"          => $nfsa_results,
-            "EMW"                   => $emw,
-            "EMW_RESULTS"           => $emw_results,
-            "MMU_RESULTS"           => $mmu_results,
+            // Retention
+            "RETENTION_RESULTS"     => $sales_nfsa_retention,
+            "RETENTION"             => $credits_nfsa_retention,
             "INSURANCE"             => $ins,
             "INSURANCE_MVI_RESULTS" => $mvi_results,
-            "INSURANCE_VPI_RESULTS" => $vpi_results,
+            //"INSURANCE_VPI_RESULTS" => $vpi_results,
             "INSURANCE_PKG_RESULTS" => $pkg_results,
+            "EMW"                   => $emw,
+            "EMW_RESULTS"           => $emw_results,
+            //"MMU_RESULTS"           => $mmu_results,
             "PENETRATION"           => $penetration,
             "PENETRATION_RESULT"    => $penetration_results,
             "FOLLOW_UP"             => $fu,
             "FOLLOW_UP_RESULTS"     => $fu_results,
-            // Retention
-            "RETENTION_RESULTS"     => $sales_nfsa_retention,
-            "RETENTION"             => $credits_nfsa_retention,
         ];
     }
 }

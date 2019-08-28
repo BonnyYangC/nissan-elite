@@ -50,12 +50,6 @@ class DashboardController extends BaseController
     protected $userPositions = [];  // All current user's positions go here
 
     /**
-     * Need to show the regional ranking in dashboard page
-     * @var bool
-     */
-    protected $needRegionalRanking = false;
-
-    /**
      * 这个是一个要操作的数据表名称, 和用户当前提交上来的 asRole 相关
      * @var null |string
      */
@@ -154,7 +148,7 @@ class DashboardController extends BaseController
      * @param null $ytd
      */
     private function _prepareDashboardData(IRole $role, $ytd = null){
-        $ytd = is_null($ytd) ? env('YEAR',2017) : $ytd;
+        $ytd = is_null($ytd) ? configuration('YEAR',2019) : $ytd;
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
@@ -212,7 +206,7 @@ class DashboardController extends BaseController
 
 
         // Todo: Check if user is a regular employee or not
-        if($this->userObject->position === User::NISSAN_SUPER){
+        if(($this->userObject->alt_position === User::ADMIN) || ($this->userObject->position == User::HEAD_OFFICE) || ($this->userObject->position == User::NFSA)){ //destination admin and head officer and nfsa
             // Nissan admin user login
             $viewToRender = 'dashboard/nissan_super_dashboard';
             $regions = $this->userObject->getManagedRegions();
@@ -248,7 +242,6 @@ class DashboardController extends BaseController
             $this->_prepareDashboardData($role);
         }
         // Render the view
-
         $this->render($viewToRender);
         return;
     }
@@ -271,7 +264,7 @@ class DashboardController extends BaseController
 
         $lifetime   = 0;
         $monthly    = [];
-        $carbon = Carbon::create(env('YEAR'),3,1);
+        $carbon = Carbon::create(configuration('YEAR'),3,1);
         foreach (range(0,11) as $i) {
             $index = $carbon->addMonth()->format('M-Y');
             if(isset($results[$index])){
@@ -287,7 +280,7 @@ class DashboardController extends BaseController
         $history = [];
 
         $now = Carbon::now();
-        if( $now->month <= 3 || env('YEAR')== date('Y')-1 ){
+        if( $now->month <= 3 || configuration('YEAR')== date('Y')-1 ){
             $currentYearData = array_shift($historyRows);
             $historyRows[0] = $currentYearData;
             $historyRows[0][0] = ($now->year -1).'' ;
@@ -330,7 +323,6 @@ class DashboardController extends BaseController
             'https://www.google.com/jsapi',
             asset('js/justgage/raphael-2.1.4.min.js'),
             asset('js/justgage/justgage.js'),
-            asset('js/dashboard/lifetime.js')
         ];
 
         $this->render('dashboard/lifetime');
@@ -361,7 +353,7 @@ class DashboardController extends BaseController
         /**
          * 获取所有的排名, 自己的排名
          */
-        $rankings = $this->_makeRankingReady();
+        $this->_makeRankingReady();
         /**
          * 获取所有的排名, 自己的排名 end
          */
@@ -374,68 +366,61 @@ class DashboardController extends BaseController
         /**
          * 计算Credits
          */
-        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,env('YEAR',2017));
+        $this->dataForView['Credits'] = Credit::QueryByUserAndYearPeriod($this->userObject,configuration('YEAR',2019));
 
         /**
          * 以上是基础数据, 以下为页面中的特定数据
          */
 
         // 处理 Leader Board 的表格: Leader board 只有5个位置
-        $iAmInTopList = false;
-        $leaderBoardTableData = [];
-        foreach ($rankings as $index=>$item) {
-            if($index<Ranking::LEADER_BOARD_TABLE_MAX_ROW){
-                if($item['member_id'] == $this->userObject->getEmployeeCode()){
-                    $iAmInTopList = true;
-                }
-                $leaderBoardTableData[] = $item;
-            }else{
-                // 已经超出了前五名
-                if(!$iAmInTopList){
-                    if($item['member_id'] == $this->userObject->getEmployeeCode()){
-                        $leaderBoardTableData[Ranking::LEADER_BOARD_TABLE_MAX_ROW - 1] = $item;
-                        break;
-                    }
-                }
-            }
+        $this->dataForView['hasPlatinumRanking'] = false;
+        $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+        $this->dataForView['leaderBoardStatusData'] = Ranking::getLeaderBoardData($this->userObject, $this->dataForView['Rankings']);
+        if($role->hasPlatinumRanking){
+            $this->dataForView['hasPlatinumRanking'] = true;
+            $this->dataForView['leaderBoardPlatinumData'] = Ranking::getLeaderBoardData($this->userObject, $this->dataForView['RankingsPlatinum']);
         }
-        $this->dataForView['leaderBoardTableData'] = $leaderBoardTableData;
         // 处理 Leader Board 的表格 结束
+
     }
 
     /**
      * 获取所有的排名, 自己的排名
-     * @return array|bool
+     * @return void
      */
     private function _makeRankingReady(){
         // Get the latest ranking date
         $thisPeriod = $this->_getThisPeriod($this->userObject);
 
+        $role = RoleFactory::GetRole($this->userObject->position, $this->userObject);
+
         // 获取了所有的 Rankings: Get all rankings
-        $rankings = Ranking::Query($this->userObject, $thisPeriod);
+        $rankings = Ranking::QueryByUserAndPeriodAndType($this->userObject, $thisPeriod, Ranking::AWARD_STATUS);
+        $rankingsPlatinum = Ranking::QueryByUserAndPeriodAndType($this->userObject, $thisPeriod, Ranking::AWARD_PLATINUM);
 
         $this->dataForView['Rankings'] = $rankings;
+        $this->dataForView['RankingsPlatinum'] = $rankingsPlatinum;
 
-        $nationalRanking = '';
+        $statusRanking = '';
         foreach ($rankings as $ranking) {
             if($ranking['member_id'] == $this->userObject->getEmployeeCode()){
-                $nationalRanking = $ranking['ranking'];
+                $statusRanking = $ranking['rank'];
+                $platinumRanking = $ranking['rank_platinum'];
                 break;
             }
         }
-
         /**
          * Calculate the region and nationally ranking
          */
-        $this->dataForView['rankingNationally'] = $nationalRanking;
+        $this->dataForView['statusRanking'] = $statusRanking;
 
-        $this->dataForView['rankingRegionally'] = '';
-        if($this->needRegionalRanking){
-            $rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$nationalRanking);
-            $this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+        $this->dataForView['platinumRanking'] = '';
+        if($role->hasPlatinumRanking){
+            //$rankingRegionally = Ranking::countRegionalRankingLessThan($this->userObject,$thisPeriod,$statusRanking);
+            //$this->dataForView['rankingRegionally'] = $rankingRegionally ? $rankingRegionally+1 : 1;
+            $this->dataForView['platinumRanking'] = $platinumRanking;
         }
 
-        return $rankings;
     }
 
     /**

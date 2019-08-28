@@ -17,13 +17,13 @@
         <div class="row">
             <div class="col-md-4 col-xs-12">
                 <h1 class="{{ isPhone?'text-center':'pull-left' }}" >
-                    <span style="font-size:20px; padding-top:0;">Territory Report {{ env('YEAR') }}</span>
+                    <span style="font-size:20px; padding-top:0;">Territory Report {{ configuration('YEAR') }}</span>
                 </h1>
             </div>
             <div class="col-md-8 col-xs-12">
-                {% set yearShort = env('YEAR')-2000 %}
+                {% set yearShort = configuration('YEAR')-2000 %}
                 <p class="pull-right" style="margin-top: 25px;">
-                    <a href="http://nissan-events.com.au/excellence-fy{{ yearShort }}" class="btn btn-danger" target="_blank">
+                    <a href="{{ env('dealExcellenceOverviewUrl','') }}" class="btn btn-danger" target="_blank">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence</a>&nbsp;
                 </p>
             </div>

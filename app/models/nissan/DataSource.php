@@ -34,19 +34,19 @@ class DataSource extends BaseModel
      * @var array
      */
     public static $_rolesMap = [
-        User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
-        // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
+        User::FI                            => 'Finance & Insurance Manager',
+        User::FINANCE_CONTROLLER            => 'Financial Controller',
         // User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
         User::FLEET_SALES_EXECUTIVES        => 'Fleet Sales Executive',
+        // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
+        User::PARTS_MANAGER                 => 'Parts Manager',
+        User::PARTS_SALES_REP               => 'Parts Sales Representative',
+        User::DISTRICT_SALES_MANAGER        => 'Region Territory Report',
+        User::RETAIL_SALES_CONSULTANTS      => 'Retail Sales Consultant',
         User::SALES_MANAGER                 => 'Sales Manager',
         User::SERVICE_ADVISERS              => 'Service Advisor',
-        User::FI                            => 'Finance & Insurance Manager',
-        User::STOCK_CONTROLLER              => 'Stock Controller',
-        User::FINANCE_CONTROLLER            => 'Financial Controller',
-        User::PARTS_MANAGER                 => 'Parts Manager',
-        User::PARTS_SALES_REP               => 'Parts & Sales Representative',
         User::SERVICE_MANAGER               => 'Service Manager',
-        User::DISTRICT_SALES_MANAGER        => 'Region Territory Report',
+        User::STOCK_CONTROLLER              => 'Stock Controller',
     ];
 
     public static $_rolesMapOld = [
@@ -65,7 +65,7 @@ class DataSource extends BaseModel
         User::RETAIL_SALES_CONSULTANTS      => 'nissan_salesconsultants',
         // User::FLEET_SALES_MANAGER           => 'nissan_salesconsultants',
         // User::FLEET_SALES_CONSULTANTS       => 'nissan_salesconsultants',
-        User::FLEET_SALES_EXECUTIVES        => 'nissan_salesconsultants',
+        User::FLEET_SALES_EXECUTIVES        => 'nissan_fleetsalesexecutives',
         User::SALES_MANAGER                 => 'nissan_salesmanagers',
         User::SERVICE_ADVISERS              => 'nissan_serviceadvisors',
         User::FI                            => 'nissan_fi',
@@ -158,7 +158,7 @@ class DataSource extends BaseModel
                     [
                         'AND'=>[
                             'member_id'=>$user->getEmployeeCode(),
-                            'period[>]'=>env('YEAR').'-02-01',
+                            'period[>]'=>configuration('YEAR').'-02-01',
                         ]
                     ]
                 );
@@ -193,12 +193,7 @@ class DataSource extends BaseModel
             'member_id'=>$user->getEmployeeCode(),
             'ORDER' => ['period' => 'ASC']
         ];
-        switch ($user->position){
-            case User::FI:
-                break;
-            default:
-                break;
-        }
+        
         $database = self::DB();
         $rows = $database->select(
             $currentTableName,

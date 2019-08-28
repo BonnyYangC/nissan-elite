@@ -17,13 +17,14 @@ class PartsSalesRep extends BaseRole implements IRole
 
     public $GENUINE_REPLACEMENT_PARTS = [
         'label'=>'GENUINE REPLACEMENT PARTS',
-        'backgroundColor' => IColor::BLACK,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
 
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = false;
     }
 
     /**
@@ -34,7 +35,7 @@ class PartsSalesRep extends BaseRole implements IRole
     public function getMetrics($data){
         $grp=$grp_results=$training=[];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -75,9 +76,9 @@ class PartsSalesRep extends BaseRole implements IRole
         $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
@@ -106,7 +107,7 @@ class PartsSalesRep extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
-            $this->_setupLifeTimeAndExcellence($data,$period);
+            $this->_setupLifeTimeAndExcellence($dataResults,$period);
         }
 
         // Status

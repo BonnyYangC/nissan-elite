@@ -7,12 +7,12 @@
         </div>
         <div class="row">
             <div class="col-lg-4">
-                <p>&copy; Nissan Ambassador Club Program {{ env('YEAR') }}<br>
+                <p>&copy; Nissan {{ configuration('PROGRAM_SHORT_NAME') }} {{ configuration('YEAR') }} Program<br>
                     <br>
                     <br>
                     All enquiries: <br>
-                    <a href="mailto:info@nissanac.com.au?subject=Nissan Ambassador Club Online Enquiry">info@nissanac.com.au</a> <br>
-                    <a href="{{ asset('images/members/AC-MEMBERS-GUIDE-2018.pdf#page=38') }}" target="_blank">Term & Conditions</a></p>
+                    <a href="mailto:{{ configuration('SUPPORT_EMAIL_ADDRESS') }}?subject={{ configuration('PROGRAM_NAME') }} Online Enquiry">{{ configuration('SUPPORT_EMAIL_ADDRESS') }}</a> <br>
+                    <a href="{{ asset('files/MEMBERS_GUIDE.pdf#page=36') }}" target="_blank">Term & Conditions</a></p>
             </div>
             <div class="col-lg-3">
                 <ul class="nav footer-nav">
@@ -21,15 +21,17 @@
                     {% include 'dashboard/reusable_elements/footer_matrics_item.twig' %}
                     <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
                     <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>
-                    <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a> </li>
                     <li class="{{ currentUri=='MembersGuide' ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a> </li>
-                    <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a> </li>
+                    <li class="{{ currentUri=='AboutProgram' ? 'current' : null }}"> <a href="{{ url('/dashboard/AboutProgram') }}">About the Program</a></li>
+                    <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a> </li>
                     <li class="{{ currentUri=='ProductChallenge' ? 'current' : null }}"> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a> </li>
-                    <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">MD Guild</a> </li>
+                    <li class="{{ currentUri=='Lifetime' ? 'current' : null }}"> <a href="{{ url('/dashboard/Lifetime') }}">Loyalty</a></li>
+                    <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">Guild</a> </li>
+                    <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a> </li>
                     <li class="{{ currentUri=='FAQ' ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a> </li>
                 </ul>
             </div>
-            <div class="col-lg-5" align="right"> <img src="{{ asset('/images/nissanac-logo-footer.png') }}" width="183"/> </div>
+            <div class="col-lg-5" align="right"> <img src="{{ asset('/images/loader/ELITE-individual-white.png') }}" width="250"/> </div>
         </div>
     </footer>
 </div>

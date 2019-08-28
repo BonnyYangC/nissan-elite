@@ -10,14 +10,28 @@ namespace App\models\role;
 
 use App\models\role\status\RetailSalesConsultantStatus;
 use App\models\User;
+use App\models\role\status\IColor;
 
 class RetailSalesConsultant extends BaseRole implements IRole
 {
     public $name='retail_sales_consultant';
 
+    public $salesRecommendationSaturation   = [
+        'label'=>'CE Satisfaction',
+        'backgroundColor' => IColor::RED, 
+        'data'=>[]
+    ];
+
+    public $followUpSaturation             = [
+        'label'=>'Follow Up Sat',
+        'backgroundColor' => IColor::SILVER,
+        'data'=>[]
+    ];
+
     public function __construct(User $user = null)
     {
         parent::__construct($user);
+        $this->hasPlatinumRanking = true;
     }
 
     /**
@@ -32,9 +46,9 @@ class RetailSalesConsultant extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 //        dd($dataResults);
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,4+$i,1,$ytdParam);
+            $period=mktime(0,0,0,5+$i,1,$ytdParam);
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
@@ -49,9 +63,9 @@ class RetailSalesConsultant extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
-                $this->salesRecommendationSaturation['data'][]  = intval($item['ce_recommendation']);
-                $this->followUpSaturation['data'][]  = intval($item['follow_up_credit']);
-                $this->followUpCreditSat['data'][]  = intval($item['follow_up_credit_sat']);
+                $this->salesRecommendationSaturation['data'][]  = intval($item['salesperson_satisfaction_score']);
+                $this->followUpSaturation['data'][]  = intval($item['follow_up_satisfaction_score']);
+                $this->keptInformed['data'][]  = intval($item['kept_informed_delivery_score']);
                 $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
@@ -66,12 +80,12 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
-                $this->followUpCreditSat['data'][]  = 0;
+                $this->keptInformed['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
 
-            $this->_setupLifeTimeAndExcellence($data,$period);
+            $this->_setupLifeTimeAndExcellence($dataResults,$period);
         }
 
         // Status
@@ -88,8 +102,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
+                $this->keptInformed,
                 $this->followUpSaturation,
-                $this->followUpCreditSat,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
@@ -114,52 +128,60 @@ class RetailSalesConsultant extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $new=$recommendation=$FU=$FUcredSAT=$training=$sales_results=$recommendation_results=$fu_results=[];
-        for($i=0; $i<12; $i++)
+        $new=$salespersonSatisfactionScore=$followUpSatisfactionScore=$keptInformedDeliveryScore=$training=$sales_results=$salespersonSatisfaction=$followUpSatisfaction=$keptInformedDelivery=[];
+        for($i=0; $i<11; $i++) //only show from May to Mar
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
             if($item)
             {
+                //1
                 $new[]              = $this->_buildForJs($item['credit_actual_sales']);
-                $recommendation[]   = $this->_buildForJs($item['ce_recommendation']);
-                $FU[]               = $this->_buildForJs($item['follow_up_credit']);
-                $FUcredSAT[]        = $this->_buildForJs($item['follow_up_credit_sat']);
+                $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
+
+                //2
+                $salespersonSatisfactionScore[]   = $this->_buildForJs($item['salesperson_satisfaction_score']);
+                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']);
+                //3
+                $keptInformedDeliveryScore[]        = $this->_buildForJs($item['kept_informed_delivery_score']);
+                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery']);
+                //4
+                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']);
+                $followUpSatisfactionScore[]               = $this->_buildForJs($item['follow_up_satisfaction_score']);
+                //5
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
-                $followUpScoreSAT[]        = $this->_buildForTableElement($item['follow_up_score_sat'],0);
-                $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
-                $recommendation_results[]   = $this->_buildForTableElement($item['score_recommendation']).'%';
-                $fu_results[]               = $this->_buildForTableElement($item['follow_up_score']).'%';
             }
             else
             {
                 $new[]              = $this->_buildForJs(0);
-                $recommendation[]   = $this->_buildForJs(0);
-                $FU[]               = $this->_buildForJs(0);
-                $FUcredSAT[]        = $this->_buildForJs(0);
+                $salespersonSatisfactionScore[]   = $this->_buildForJs(0);
+                $followUpSatisfactionScore[]               = $this->_buildForJs(0);
+                $keptInformedDeliveryScore[]        = $this->_buildForJs(0);
                 $followUpCreditSAT[]= $this->_buildForJs(0);
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
-                $recommendation_results[]   = null;
-                $fu_results[]               = null;
+                $salespersonSatisfaction[]   = null;
+                $keptInformedDelivery[] = null;
+                $followUpSatisfaction[]               = null;
             }
         }
 
         return [
             // For js array
             "JS_newVehicleSales"    =>$new,
-            "JS_reCommendation"     =>$recommendation,
-            "JS_followUpCredits"    =>$FU,
-            "JS_followUpCredSat"    =>$FUcredSAT,
+            "JS_salespersonSatisfaction"     =>$salespersonSatisfactionScore, //
+            "JS_keptInformedDelivery"    =>$keptInformedDeliveryScore,
+            "JS_followUpSatisfaction"    =>$followUpSatisfactionScore,
+
             "JS_training"           =>$training,
+
             // For PHP array
-            "followUpScoreSAT"     => $followUpScoreSAT,
             "salesResult"               =>$sales_results,
-            "followUpCredit"             =>$kept_informed,
-            "salesRecommendationResult" =>$recommendation_results,
-            "followUpCredits"           =>$fu_results,
+            "salespersonSatisfaction" =>$salespersonSatisfaction,
+            "keptInformedDelivery"     => $keptInformedDelivery,
+            "followUpSatisfaction"           =>$followUpSatisfaction,
         ];
     }
 

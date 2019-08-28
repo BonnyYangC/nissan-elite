@@ -8,14 +8,14 @@
 
     <hr>
 
-    <h3>Dollar Rewards and Credits</h3>
+    <h3>Dollar Rewards and {{ configuration('PROGRAM_AWARD_UNIT')|raw }} <span class="no-transform">(achieve your criteria to be rewarded)</span></h3>
     <div class="table-responsive" >
         <table class="table" >
             <tr class="table-top-row">
-                <td align="center">Consul</td>
-                <td align="center">Diplomat</td>
-                <td align="center">Ambassador</td>
-                <td align="center">Premier</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[0][2]|upper }}</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[1][2]|upper }}</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[2][2]|upper }}</td>
+                <td align="center">{{ dashboard.statusChart.gageArray[3][2]|upper }}</td>
             </tr>
             <tr>
                 {% set dollorDataRanges = dashboard.rewardsDollars[0] %}
@@ -32,3 +32,9 @@
         </table>
     </div>
 </div>
+<style>
+    h3 .no-transform{
+        font-size : 16px;
+        text-transform: lowercase;
+    }
+</style>

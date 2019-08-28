@@ -1,9 +1,11 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
-   <div class="container bg-white">
+   <div class="container bg-white pl-25 pr-25">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">My ACCOUNT</h1>
+                <h1 class="page-header">
+                        <span class='page-header-title'>My ACCOUNT</span>
+                </h1>
             </div>
         </div>
         <div class="row pb-20">
@@ -13,11 +15,11 @@
                     <table class="table">
                         <tr class="table-top-row">
                             <td><strong>Details</strong></td>
-                            <td><strong>Ambassador Club Member</strong></td>
+                            <td><strong>{{ configuration('PROGRAM_SHORT_NAME') }} Member</strong></td>
                         </tr>
 
                         <tr class="active">
-                            <td><strong>Ambassador Number</strong></td>
+                            <td><strong>Registration Number</strong></td>
                             <td>{{ user.employee_code }}</td>
                         </tr>
                         <tr>
@@ -66,7 +68,7 @@
                         </tr>
                     </table>
                     <p>
-                        The details above are currently held on the Nissan Dealer User Management Portal. Please check they are correct. If not, please update, ask your Dealership to update, or email <a href="mailto:info@nissanac.com.au">info@nissanac.com.au</a> immediately. Incorrect details may mean your AC{{ env('YEAR') }} credits are incorrect<br>
+                        The details above are currently held on the Nissan Dealer User Management Portal. Please check they are correct. If not, please update, ask your Dealership to update, or email <a href="mailto:{{ configuration('SUPPORT_EMAIL_ADDRESS') }}">{{ configuration('SUPPORT_EMAIL_ADDRESS') }}</a> immediately. Incorrect details may mean your {{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} {{ configuration('PROGRAM_AWARD_UNIT')|lower }} are incorrect.<br>
                     </p>
                 </div>
             </div>

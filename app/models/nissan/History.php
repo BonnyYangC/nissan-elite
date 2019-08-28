@@ -63,7 +63,7 @@ class History extends BaseModel
 //        }
 //        $result = [];
 //
-//        foreach (range(1992, env('YEAR')) as $yearInteger) {
+//        foreach (range(1992, configuration('YEAR')) as $yearInteger) {
 //            $value = 0;
 //            $hasFF = false;
 //            $ffValue = 0;

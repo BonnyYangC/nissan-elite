@@ -1,75 +1,137 @@
 {% extends 'layout/frontend.twig' %}
 {% block content %}
-    <div class="container bg-white">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">PRODUCT CHALLENGE</h1>
-            </div>
-        </div>
-        <div class="row pb-20">
-            <div class="col-md-9 mb-60">
-                <div class="border12 center-block">
-                    <img src="{{ asset('images/12.jpg') }}" class="img-responsive" alt="" />
+            <div class="col-lg-6 col-lg-offset-3" style="background-color: #000000; color:#ffffff;padding-left:0; padding-right:0;">
+                <img class="img-responsive center-block" alt="" src="{{ asset('images/pc/cover.jpg') }}">
+                <div style="margin: 45px; font-size: 14px;">
+
+                    <h1 class="font-weight-bold" style="color: #c40030;">{{ configuration('PROGRAM_SHORT_NAME') }} Product Challenge 2019 Final Results</h1>
+
+                    <p class="pc_graph">Over the course of July and August, Nissan conducted seven Product Challenge events across the country. 
+                        Dealership teams came together for a night to recognize individual and dealership achievements and of course test their Nissan product knowledge.  
+                        The events were very well attended, with many new attendance records broken under the new {{ configuration('PROGRAM_SHORT_NAME') }} program.  
+                        </p>
+
+                    <p class="pc_graph">Each state’s event winning team was a contender for the {{ configuration('PROGRAM_SHORT_NAME') }} Product Challenge National Masters.  
+                        The final results leader board is as follows, and Nissan would like to congratulate our National Masters Champion:</p>
+
+                    <h1 class="font-weight-bold" style="color: #c40030;">Ferntree Gully Nissan</h1>
                 </div>
+                <img class="img-responsive center-block" alt="" src="{{ asset('images/pc/Ferntree_Gully_Nissan.jpg') }}">
+                <div style="margin: 45px;">
+                    <table class="table text-center">
+                        <thead>
+                            <tr class="font-weight-bold" style="background: #c40030">
+                                <td class="r-border">National Masters Place</td>
+                                <td class="r-border">Winning State Event Dealership</td>
+                                <td>Event Location</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="r-border">1st</td>
+                                <td class="font-weight-bold r-border">Ferntree Gully Nissan</td>
+                                <td>Melbourne</td>
+                            </tr>
+                            <tr>
+                                <td class="r-border">2nd</td>
+                                <td class="font-weight-bold r-border">Clarkson Nissan</td>
+                                <td>Western & Central - WA</td>
+                            </tr>
+                            <tr>
+                                <td class="r-border">3rd</td>
+                                <td class="font-weight-bold r-border">von Bibra Gold Coast Nissan</td>
+                                <td>Brisbane</td>
+                            </tr>
+                            <tr>
+                                <td class="r-border">3rd</td>
+                                <td class="font-weight-bold r-border">Pennant Hills Nissan</td>
+                                <td>Sydney</td>
+                            </tr>
+                            <tr>
+                                <td class="r-border">5th</td>
+                                <td class="font-weight-bold r-border">Main North Nissan</td>
+                                <td>Western & Central - SA</td>
+                            </tr>
+                            <tr>
+                                <td class="r-border">5th</td>
+                                <td class="font-weight-bold r-border">Parry NQ Nissan</td>
+                                <td>Townsville</td>
+                            </tr>
+                            <tr>
+                                <td class="r-border">7th</td>
+                                <td class="font-weight-bold r-border">Motors Nissan Launceston</td>
+                                <td>Launceston</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <h3>2019 PRODUCT CHALLENGE EVENTS</h3>
+                    <p>&nbsp;</p>
+                    <p class="font-weight-bold pc_graph">Congratulations also goes to our Runner up teams who were not far behind….</p>
+                    <table class="table text-center">
+                        <tr>
+                            <td class="font-weight-bold r-border">Brighton Nissan</td> 					
+                            <td>Melbourne</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold r-border">Rockingham Nissan</td> 				
+                            <td>Western & Central - WA </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold r-border">Ipswich Nissan</td> 					
+                            <td>Brisbane</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold r-border">Brookvale Nissan</td> 					
+                            <td>Sydney</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold r-border">Jarrett Nissan</td> 					
+                            <td>Western & Central - SA</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold r-border">North Jacklin Nissan</td> 				
+                            <td>Townsville</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold r-border">Hobart Nissan</td>					
+                            <td>Launceston</td>
+                        </tr>
+                    </table>
 
-                <p>The 2019 Product Challenge Regional events are not far away! In coming months, we will be in contact with all Dealers in preparation of our Presentation of High Achiever awards, ensuring all eligible members will be in attendance at their Region event.  Time is now to start thinking about your Product Knowledge, get your team together on the Nissan Academy to brush up on all Training available – we have a broad range of questions on offer so be prepared.  Competition is fierce!</p>
+                    <p>&nbsp;</p>
+                    <p class="pc_graph">The {{ configuration('PROGRAM_SHORT_NAME') }} program is designed to reward high achievement and loyalty to the Nissan brand and will continue to bring you engaging and relevant incentives and reward programs. 
+                        Get your staff involved and make sure you and your staff register in the  {{ configuration('PROGRAM_SHORT_NAME') }} program.
+                    </p>
 
-                <p>Dealer Registration will open 1<sup>st</sup> June 2019 – to register your team online (maximum 12) 1 table per Dealer.</p>
-
-                <p>Our record was broken again last year with record numbers and we would like to exceed this again in 2019.</p>
-
-                <p>Congratulations to <strong>{{ env('CHALLENGE_WINNER','Parry NQ Nissan') }} </strong> for taking out 1st place nationally to become our current Masters Champion. </p>
-
-                <p>2019…..could it be your year…… </p>
-
-                <h3>NEW DATES</h3>
-                <table width=100%>
-                    <tr>
-                        <td>ADELAIDE</td>
-                        <td>STAMFORD GRAND – GLENELG</td>
-                        <td>WEDNESDAY 17TH JULY</td>
-                    </tr>
-                    <tr>
-                        <td>PERTH</td>
-                        <td>CROWN TOWERS HOTEL</td>
-                        <td>FRIDAY 19TH JULY</td>
-                    </tr>
-                    <tr>
-                        <td>BRISBANE</td>
-                        <td>HILTON BRISBANE</td>
-                        <td>WEDNESDAY 24TH JULY</td>
-                    </tr>
-                    <tr>
-                        <td>TOWNSVILLE</td>
-                        <td>THE VILLE</td>
-                        <td>SATURDAY 27TH JULY</td>
-                    </tr>
-                    <tr>
-                        <td>SYDNEY</td>
-                        <td>AQUA LUNA</td>
-                        <td>WEDNESDAY 7TH AUGUST</td>
-                    </tr>
-                    <tr>
-                        <td>LAUNCESTON</td>
-                        <td>PEPPERS SILO</td>
-                        <td>FRIDAY 9TH AUGUST</td>
-                    </tr>
-                    <tr>
-                        <td>MELBOURNE</td>
-                        <td>TBA</td>
-                        <td>THURSDAY 16TH AUGUST</td>
-                    </tr>
-                </table>
-            </div>
-
-
-            <div class="col-md-3">
-                <a href="{{ url('/dashboard/ProductChallengeWinners') }}"><button type="button" class="btn btn-default btn-lg btn-block">Winners</button></a>
-                <a href="{{ url('/dashboard/ProductChallengeCurrentEvent') }}"><button type="button" class="btn btn-default btn-lg btn-block">Current Event</button></a>
-                <img style="margin: 0 auto; margin-top: 25px;" class="img-responsive" src="{{ asset('images/PRODUCT_CHALLENGE_16.jpg') }}" width="80%" alt="">
+                    <p>&nbsp;</p>
+                    <img class="img-responsive center-block" alt="" src="{{ asset('images/pc/footer_image.jpg') }}">
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </div>
             </div>
         </div>
     </div>
+    <style>
+        table .r-border {
+            border-right: 1px solid #ffffff;
+        }
+
+        table tr:nth-of-type(even) {
+            background-color: #222222;
+        }
+
+        table tr:nth-of-type(odd) {
+            background-color: #666666;
+        }
+
+        .table>tbody>tr>td {
+            vertical-align: middle;
+        }
+
+        .pc_graph {
+            margin: 20px 0;
+        }
+    </style>
 {% endblock %}

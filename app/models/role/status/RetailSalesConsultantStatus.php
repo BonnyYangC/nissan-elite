@@ -13,6 +13,6 @@ class RetailSalesConsultantStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(12000, 22000, 27000, 38000, $yearToDate, 50000);
+        parent::__construct(15000, 20000, 27000, 38000, $yearToDate, 43000); //set 43000 instead of 50000 to prevent 'commendation' slop over
     }
 }

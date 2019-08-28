@@ -10,7 +10,7 @@ namespace App\models;
 
 use App\core\contracts\support\Mailable;
 use App\models\management\ManagerDealer;
-use App\models\management\ManagerRegion;
+use App\models\management\RegionTerritoryReport;
 use App\models\nissan\DataSource;
 use App\core\contracts\support\MailTrait;
 use App\models\nissan\Ranking;
@@ -20,6 +20,8 @@ use Carbon\Carbon;
 class User extends BaseModel implements Mailable, IRole
 {
     use MailTrait;
+
+    const TABLE_NAME = 'users';
 
     // Nissan user's position define
     const RETAIL_SALES_CONSULTANTS  = 'R';
@@ -35,66 +37,112 @@ class User extends BaseModel implements Mailable, IRole
     const SERVICE_MANAGER           = 'SM';
     const FI                        = 'I';
 
-    // The following roles don't need a dashboard
-    const REGION_STAFF    = 'region_staff';
+    // position that currently using
+    const DSM = 'DSM'; 
+    const DISTRICT_SALES_MANAGER_FULL = 'DISTRICT SALES MANAGER';
     const DISTRICT_SALES_MANAGER    = 'DSM';
-    const DISTRICT_SALES_MANAGER_FULL    = 'Region Staff';
 
+    const DTS = 'DTS';
+    const DEALER_TECHNICAL_SPECIALIST = 'DEALER TECHNICAL SPECIALIST';
+
+    const FDM = 'FDM';
+    const FRANCHISE_DEVELOPMENT_MANAGER = 'FRANCHISE DEVELOPMENT MANAGER';
+    const FOM = 'FOM';
+    const FIELD_OPERATION_MANAGER = 'FIELD OPERATION MANAGER';
+    const HEAD_OFFICE='HEAD OFFICE';
+    const NFSA = 'NFSA';
+    const RAM = 'RAM';
+    const REGIONAL_AFTER_SALES_MANAGER = 'REGIONAL AFTER SALES MANAGER';
+    const RFM = 'RFM';
+    const REGIONAL_FLEET_MANAGER = "REGIONAL FLEET MANAGER"; 
+
+    const RGM = 'RGM';
+    const REGIONAL_GENERAL_MANAGER='REGIONAL GENERAL MANAGER';
+    const ROA = 'ROA';
+    const REGIONAL_OPERATIONS_ANALYST='REGIONAL OPERATIONS ANALYST';
+    const ROM = 'ROM';
+    const REGIONAL_OPERATIONS_MANAGER='REGIONAL OPERATIONS MANAGER';
+    const RSC = 'RSC';
+    const REGIONAL_SALES_COORDINATOR='REGIONAL SALES COORDINATOR';
+    const RSM = 'RSM';
+    const REGIONAL_SALES_MANAGER='REGIONAL SALES MANAGER'; 
+    const TRAINING = 'TRAINING';
+
+    const ADMIN = 'ADMIN';
+
+
+    //currently not using -- begin
+    const PDM = 'PDM';//
+    const DAM_NFSA = 'DAM NFSA'; //
+    const DESTINATION = 'DESTINATION'; //
+    const GENERAL_MANAGER='General Manager'; //
+
+    
+    const REGION_STAFF    = 'region_staff';
     const NATIONAL_SALES_MANAGER    = 'GSM';
     const NATIONAL_SALES_MANAGER_FULL    = 'General Sales Manager';
-    const RSM = 'RSM';
-    const FOM = 'FOM';
-    const ROM = 'ROM';
-    const FDM = 'FDM';
-    const RAM = 'RAM';
-    const DTS = 'DTS';
-    const ROA = 'ROA';
-    const RSC = 'RSC';
     const RSM_NFSA = 'RSM NFSA';
-    const DAM_NFSA = 'DAM NFSA';
     const RM_NFSA = 'RM NFSA';
-    const RGM = 'RGM';
-    const DSM = 'DSM';
-    const ADMIN = 'ADMIN';
     const NISSAN_SUPER = 'NISSAN_SUPER';
-
     const SHOP_OWNER = 'SHOP_OWNER';
+    //end
 
-    const TABLE_NAME = 'users';
-
-    public static $REGION_STAFF_POSITIONS = [
-        self::RSM,
-        self::FOM,
-        self::ROM,
-        self::FDM,
-        self::RAM,
-        self::DTS,
-        self::DSM,
-        self::ROA,
-        self::RSC,
-        self::RSM_NFSA,
-        self::DAM_NFSA,
-        self::RM_NFSA,
-        self::RGM,
-        self::ADMIN,
-        self::NISSAN_SUPER
+    public static $REGIONS_MAP = [ //for regional staff edit
+        'SOUTHERN'               =>RegionTerritoryReport::REGION_SOUTHERN,
+        'WESTERN & CENTRAL'      =>RegionTerritoryReport::REGION_WESTERN_AND_CENTRAL,
+        'EASTERN'                =>RegionTerritoryReport::REGION_EASTERN,
+        'NORTHERN'               =>RegionTerritoryReport::REGION_NORTHERN,
+        self::HEAD_OFFICE           =>self::HEAD_OFFICE,
+        self::NFSA              =>self::NFSA
     ];
 
-    public static $REGION_STAFF_POSITIONS_WITHOUT_SUPER = [
-        self::RSM,
-        self::FOM,
-        self::ROM,
-        self::FDM,
-        self::RAM,
-        self::DTS,
+    const POSITION_FULLNAME_MAP = [
+        self::DSM => self::DISTRICT_SALES_MANAGER_FULL,
+        self::DTS => self::DEALER_TECHNICAL_SPECIALIST,
+        self::FDM => self::FRANCHISE_DEVELOPMENT_MANAGER,
+        self::FOM => self::FIELD_OPERATION_MANAGER,
+        self::RAM => self::REGIONAL_AFTER_SALES_MANAGER,
+        self::RFM => self::REGIONAL_FLEET_MANAGER,
+        self::RGM => self::REGIONAL_GENERAL_MANAGER,
+        self::ROA => self::REGIONAL_OPERATIONS_ANALYST,
+        self::ROM => self::REGIONAL_OPERATIONS_MANAGER,
+        self::RSC => self::REGIONAL_SALES_COORDINATOR,
+        self::RSM => self::REGIONAL_SALES_MANAGER,
+    ];
+
+    public static $REGION_STAFF_POSITIONS = [
         self::DSM,
-        self::ROA,
-        self::RSC,
-        self::RSM_NFSA,
-        self::DAM_NFSA,
-        self::RM_NFSA,
+        self::DTS,
+        self::FDM,
+        self::FOM,
+        self::HEAD_OFFICE,
+        self::NFSA,
+        self::RAM,
+        self::RFM,
         self::RGM,
-        self::ADMIN
+        self::ROA,
+        self::ROM,
+        self::RSC,
+        self::RSM,
+        self::TRAINING,
+    ];
+
+    public static $REGION_STAFF_POSITIONS_WITH_SUPER = [
+        self::DSM,
+        self::DTS,
+        self::FDM,
+        self::FOM,
+        self::HEAD_OFFICE,
+        self::NFSA,
+        self::RAM,
+        self::RFM,
+        self::RGM,
+        self::ROA,
+        self::ROM,
+        self::RSC,
+        self::RSM,
+        self::TRAINING,
+        self::DESTINATION,
     ];
 
     /**
@@ -184,22 +232,59 @@ class User extends BaseModel implements Mailable, IRole
     }
 
     /**
-     * Get nissan super users
-     * @return array|bool
+     * get super admin count
+     *
+     * @return void
      */
-    public static function GetNissanSuperUsers(){
+    public static function GetNissanSuperUsersCount(){
         $where = [
             'users.parent_id'=>8,
             'users.company_id'=>8,
-            'users.position'=>self::NISSAN_SUPER,
+            'users.alt_position'=>self::ADMIN,
+        ];
+        $db = self::DB();
+        $result = $db->count('users',$where);
+
+        return $result;
+
+    }
+
+    /**
+     * Get nissan super users
+     * @return array|bool
+     */
+    public static function GetNissanSuperUsers($pageNumber = 0, $limit = 20){
+        $where = [
+            'users.parent_id'=>8,
+            'users.company_id'=>8,
+            'users.alt_position'=>self::ADMIN,
         ];
 
         $db = self::DB();
         $result = $db->select('users','*',[
-            'AND'=>$where
+            'AND'=>$where,
+            'LIMIT'=>[$pageNumber,$limit]
         ]);
 
         return $result;
+    }
+
+    /**
+     * get regional staff count
+     *
+     * @return void
+     */
+    public static function GetRegionStaffCount(){
+        $where = [
+            'users.parent_id'=>8,
+            'users.company_id'=>8,
+            'users.position'=>User::$REGION_STAFF_POSITIONS
+        ];
+        $db = self::DB();
+        $result = $db->count('users',$where);
+
+        return $result;
+
     }
 
     /**
@@ -209,12 +294,12 @@ class User extends BaseModel implements Mailable, IRole
      * @param int $limit
      * @return array|bool
      */
-    public static function GetRegionStaff($options=[],$pageNumber = 0, $limit = 20){
+    public static function GetRegionStaff($options=[], $sortCondition, $pageNumber = 0, $limit = 20){
         if(count($options)>0){
             $where = [
                 'users.parent_id'=>8,
                 'users.company_id'=>8,
-                'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
+                'users.position'=>User::$REGION_STAFF_POSITIONS
             ];
             foreach ($options as $fieldName=>$value){
                 $where[$fieldName] = $value;
@@ -223,18 +308,26 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.parent_id'=>8,
                 'users.company_id'=>8,
-                'users.position'=>User::$REGION_STAFF_POSITIONS_WITHOUT_SUPER
+                'users.position'=>User::$REGION_STAFF_POSITIONS
             ];
         }
 
         $db = self::DB();
-        $result = $db->select('users','*',[
+        $condition = [
             'AND'=>$where,
-            'ORDER'=>[
+        ];
+        if($sortCondition){
+            $condition['ORDER'] = [
+                $sortCondition['sortBy'] => $sortCondition['order'],
+            ];
+        }else{
+            $condition['ORDER'] = [
                 'alt_position'=>'ASC',
                 'firstname'=>'ASC',
-            ]
-        ]);
+            ];
+        }
+        if($limit != null) $condition['LIMIT'] = [$pageNumber*$limit,$limit];
+        $result = $db->select('users','*',$condition);
 
         return $result;
     }
@@ -248,7 +341,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public static function Listing($options=[],$pageNumber = 0, $limit = 20){
         if(is_null($limit)){
-            $limit = env('PAGE_SIZE');
+            $limit = configuration('PAGE_SIZE');
         }
 
         if(count($options)>0){
@@ -345,7 +438,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public static function SearchByEmailOrFirstName($emailOrFirstName, $pageNumber = 0, $limit = null){
         if(is_null($limit)){
-            $limit = env('PAGE_SIZE');
+            $limit = configuration('PAGE_SIZE');
         }
 
         $positions = [
@@ -416,34 +509,34 @@ class User extends BaseModel implements Mailable, IRole
         $result = [];
         switch ($this->position){
             case self::FI:
-                $result=[[300,600,1000,1500],[11000,20000,27000,36000]];
+                $result=[[100,500,850,1000],[14000,20000,27000,36000]];
                 break;
             case self::FLEET_SALES_EXECUTIVES:
-                $result=[[500,1000,1500,2000],[12000,22000,27000,38000]];
+                $result=[[100,750,1500,2000],[15000,20000,27000,38000]];
                 break;
             case self::RETAIL_SALES_CONSULTANTS:
-                $result=[[500,1000,1500,2000],[12000,22000,27000,38000]];
+                $result=[[100,750,1500,2000],[15000,20000,27000,38000]];
                 break;
             case self::SALES_MANAGER:
-                $result=[[500,1000,1500,2000],[12000,22000,27000,38000]];
+                $result=[[100,750,1500,2000],[15000,20000,27000,38000]];
                 break;
             case self::SERVICE_ADVISERS:
-                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
                 break;
             case self::STOCK_CONTROLLER:
-                $result=[[150,400,1000,1500],[9000,12000,16000,22000]];
+                $result=[[100,500,850,1000],[8000,12000,16000,22000]];
                 break;
             case self::FINANCE_CONTROLLER:
-                $result=[[300,600,1000,1500],[9000,12000,16000,22000]];
+                $result=[[100,500,850,1000],[8000,12000,16000,20000]];
                 break;
             case self::PARTS_MANAGER:
-                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
                 break;
             case self::PARTS_SALES_REP:
-                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
                 break;
             case self::SERVICE_MANAGER:
-                $result=[[150,400,1000,1500],[7000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
                 break;
             default:
                 break;
@@ -605,7 +698,7 @@ class User extends BaseModel implements Mailable, IRole
      */
     public function init(){
         // Todo: check if the user is in management team
-        if($this->position === self::NISSAN_SUPER){
+        if(($this->alt_position === self::ADMIN) || ($this->position == self::NFSA) || ($this->position == self::HEAD_OFFICE)){
             $this->managedRegions = [
                 Company::REGION_EASTERN,
                 Company::REGION_NORTHERN,
@@ -624,7 +717,9 @@ class User extends BaseModel implements Mailable, IRole
             $this->setDepartmentNameAndPositionDesc();
             // Get user's Positions
             $this->positions = DataSource::GetPositionList($this);
-            $this->setIsUserRegisteredAndExcellent();
+            //$this->setIsUserRegisteredAndExcellent();
+
+            $this->registered = $this->rowData['registered']===Ranking::REGISTERED || $this->rowData['registered']==='Registered' || $this->rowData['registered'] === '1';
 
             if($this->isManagerRole()){
                 $this->teamMembers = $this->getUsersByRoles($this->getMemberRoles());
@@ -638,22 +733,7 @@ class User extends BaseModel implements Mailable, IRole
      * @return array
      */
     private function _getRegionStaffRoles(){
-        return [
-            self::NATIONAL_SALES_MANAGER,
-            self::DISTRICT_SALES_MANAGER,
-            self::RSM,
-            self::FOM,
-            self::FDM,
-            self::RAM,
-            self::DTS,
-            self::ROA,
-            self::RSC,
-            self::RSM_NFSA,
-            self::DAM_NFSA,
-            self::RM_NFSA,
-            self::RGM,
-            self::ADMIN
-        ];
+        return self::$REGION_STAFF_POSITIONS;
     }
 
     /**
