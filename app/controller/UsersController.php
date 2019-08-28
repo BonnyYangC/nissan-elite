@@ -182,7 +182,7 @@ class UsersController extends Controller
                 'src'=>asset($imageAssetPrefix.'tile-training.jpg'),
             ],
             [
-                'url'=>'http://www.nissan.com.au/Discover/News',
+                'url'=>'https://www.nissan.com.au/about-nissan/news-and-events.html',
                 'src'=>asset($imageAssetPrefix.'whatsnews-nissannews.jpg'),
             ],
             [
