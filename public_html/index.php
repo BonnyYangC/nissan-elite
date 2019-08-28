@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Entry point of the NissanAC application
