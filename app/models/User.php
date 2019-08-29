@@ -201,8 +201,7 @@ class User extends BaseModel implements Mailable, IRole
     public static function GetNissanUsersPosition(){
         return [
             self::RETAIL_SALES_CONSULTANTS,
-            self::FLEET_SALES_CONSULTANTS,
-            self::FLEET_SALES_MANAGER,
+            self::FLEET_SALES_EXECUTIVES,
             self::SALES_MANAGER,
             self::SERVICE_ADVISERS,
             self::STOCK_CONTROLLER,
@@ -348,19 +347,7 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.active'=>1,
                 'company.parent_id'=>8,
-                'users.position'=>[
-                    self::RETAIL_SALES_CONSULTANTS,
-                    self::FLEET_SALES_CONSULTANTS,
-                    self::FLEET_SALES_MANAGER,
-                    self::SALES_MANAGER,
-                    self::SERVICE_ADVISERS,
-                    self::STOCK_CONTROLLER,
-                    self::FINANCE_CONTROLLER,
-                    self::PARTS_MANAGER,
-                    self::PARTS_SALES_REP,
-                    self::SERVICE_MANAGER,
-                    self::FI,
-                ]
+                'users.position'=>self::GetNissanUsersPosition(),
             ];
             foreach ($options as $fieldName=>$value){
                 $where[$fieldName] = $value;
@@ -370,19 +357,7 @@ class User extends BaseModel implements Mailable, IRole
             $where = [
                 'users.active'=>1,
                 'company.parent_id'=>8,
-                'users.position'=>[
-                    self::RETAIL_SALES_CONSULTANTS,
-                    self::FLEET_SALES_CONSULTANTS,
-                    self::FLEET_SALES_MANAGER,
-                    self::SALES_MANAGER,
-                    self::SERVICE_ADVISERS,
-                    self::STOCK_CONTROLLER,
-                    self::FINANCE_CONTROLLER,
-                    self::PARTS_MANAGER,
-                    self::PARTS_SALES_REP,
-                    self::SERVICE_MANAGER,
-                    self::FI,
-                ]
+                'users.position'=>self::GetNissanUsersPosition(),
             ];
         }
 
@@ -441,19 +416,7 @@ class User extends BaseModel implements Mailable, IRole
             $limit = configuration('PAGE_SIZE');
         }
 
-        $positions = [
-            self::RETAIL_SALES_CONSULTANTS,
-            self::FLEET_SALES_CONSULTANTS,
-            self::FLEET_SALES_MANAGER,
-            self::SALES_MANAGER,
-            self::SERVICE_ADVISERS,
-            self::STOCK_CONTROLLER,
-            self::FINANCE_CONTROLLER,
-            self::PARTS_MANAGER,
-            self::PARTS_SALES_REP,
-            self::SERVICE_MANAGER,
-            self::FI,
-        ];
+        $positions = self::GetNissanUsersPosition();
         $positions = array_merge($positions,self::$REGION_STAFF_POSITIONS);
 
         $temp = explode(' ',$emailOrFirstName,2);

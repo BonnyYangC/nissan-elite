@@ -153,7 +153,7 @@ if(dsmEl){
                         fullName = 'Retail Sales Consultant';
                         break;
                     case 'F':
-                        fullName = 'Fleet Sales Consultant';
+                        fullName = 'Fleet Sales Executive';
                         break;
                     case 'FM':
                         fullName = 'Fleet Sales Manager';

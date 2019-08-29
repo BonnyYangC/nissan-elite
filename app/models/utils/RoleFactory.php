@@ -55,14 +55,6 @@ class RoleFactory
             case User::FLEET_SALES_EXECUTIVES:
                 $role = new FleetSalesExecutive($user);   // Refined
                 break;
-            case User::FLEET_SALES_CONSULTANTS:  // can propbably remove this
-                dd('role removed');
-                $role = new FleetSalesConsultant($user);
-                break;
-            case User::FLEET_SALES_MANAGER:      // can probably remove this
-                dd('role removed');
-                $role = new FleetSalesManager($user);   // Refined
-                break;
             case User::SALES_MANAGER:
                 $role = new SalesManager($user);    // Refined
                 break;
@@ -112,12 +104,6 @@ class RoleFactory
                 break;
             case User::RETAIL_SALES_CONSULTANTS:
                 $role = new RetailSalesConsultant($user);   // Refined
-                break;
-            case User::FLEET_SALES_CONSULTANTS:
-                $role = new FleetSalesConsultant($user);
-                break;
-            case User::FLEET_SALES_MANAGER:
-                $role = new FleetSalesManager($user);   // Refined
                 break;
             case User::SALES_MANAGER:
                 $role = new SalesManager($user);    // Refined

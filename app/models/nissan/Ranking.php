@@ -80,10 +80,6 @@ class Ranking extends BaseModel implements IRole
      */
     public static function countRegionalRankingLessThan(User $user, Carbon $carbon, $rankingToCompare){
         $position = $user->position;
-        // if($user->position === User::FLEET_SALES_CONSULTANTS || $user->position === User::FLEET_SALES_MANAGER){
-        //     // Use 'IN' condition
-        //     $position = [User::FLEET_SALES_CONSULTANTS, User::FLEET_SALES_MANAGER];
-        // }
 
         $where = [
             'AND'=>[

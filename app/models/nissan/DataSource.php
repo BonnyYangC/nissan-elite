@@ -36,9 +36,7 @@ class DataSource extends BaseModel
     public static $_rolesMap = [
         User::FI                            => 'Finance & Insurance Manager',
         User::FINANCE_CONTROLLER            => 'Financial Controller',
-        // User::FLEET_SALES_CONSULTANTS       => 'Fleet Sales Consultant',
         User::FLEET_SALES_EXECUTIVES        => 'Fleet Sales Executive',
-        // User::FLEET_SALES_MANAGER           => 'Fleet Sales Manager',
         User::PARTS_MANAGER                 => 'Parts Manager',
         User::PARTS_SALES_REP               => 'Parts Sales Representative',
         User::DISTRICT_SALES_MANAGER        => 'Region Territory Report',
@@ -63,8 +61,6 @@ class DataSource extends BaseModel
 
     public static $_rolesTableNameMap = [
         User::RETAIL_SALES_CONSULTANTS      => 'nissan_salesconsultants',
-        // User::FLEET_SALES_MANAGER           => 'nissan_salesconsultants',
-        // User::FLEET_SALES_CONSULTANTS       => 'nissan_salesconsultants',
         User::FLEET_SALES_EXECUTIVES        => 'nissan_fleetsalesexecutives',
         User::SALES_MANAGER                 => 'nissan_salesmanagers',
         User::SERVICE_ADVISERS              => 'nissan_serviceadvisors',
