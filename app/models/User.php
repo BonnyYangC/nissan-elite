@@ -615,7 +615,7 @@ class User extends BaseModel implements Mailable, IRole
                 $result = [self::SERVICE_ADVISERS];
                 break;
             case self::SALES_MANAGER:
-                $result = [self::RETAIL_SALES_CONSULTANTS,self::FLEET_SALES_CONSULTANTS,self::FLEET_SALES_MANAGER];
+                $result = [self::RETAIL_SALES_CONSULTANTS,self::FLEET_SALES_EXECUTIVES];
                 break;
             default:
                 break;

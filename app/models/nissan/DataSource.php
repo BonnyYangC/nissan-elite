@@ -17,7 +17,8 @@ class DataSource extends BaseModel
      * @var array
      */
     private static $_maps = [
-        'nissan_salesconsultants'       => [User::RETAIL_SALES_CONSULTANTS,User::FLEET_SALES_MANAGER,User::FLEET_SALES_CONSULTANTS],
+        'nissan_salesconsultants'       => [User::RETAIL_SALES_CONSULTANTS],
+        'nissan_fleetsalesexecutives'   => [User::FLEET_SALES_EXECUTIVES],
         'nissan_salesmanagers'          => User::SALES_MANAGER,
         'nissan_serviceadvisors'        => User::SERVICE_ADVISERS,
         'nissan_fi'                     => User::FI,
@@ -45,18 +46,6 @@ class DataSource extends BaseModel
         User::SERVICE_ADVISERS              => 'Service Advisor',
         User::SERVICE_MANAGER               => 'Service Manager',
         User::STOCK_CONTROLLER              => 'Stock Controller',
-    ];
-
-    public static $_rolesMapOld = [
-        'nissan_salesconsultants'       => 'Sales Consultant',
-        'nissan_salesmanagers'          => 'Sales Manager',
-        'nissan_serviceadvisors'        => 'Service Advisor',
-        'nissan_fi'                     => 'Finance & Insurance Manager',
-        'nissan_stockcontroller'        => 'Stock Controller',
-        'nissan_financialcontrollers'   => 'Financial Controller',
-        'nissan_partsmanager'           => 'Parts Manager',
-        'nissan_partsrep'               => 'Parts & Sales Representative',
-        'nissan_servicemanagers'        => 'Service Manager'
     ];
 
     public static $_rolesTableNameMap = [
