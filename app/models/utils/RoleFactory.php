@@ -102,6 +102,9 @@ class RoleFactory
             case User::PARTS_MANAGER:
                 $role = new PartsManager($user);    // Refined
                 break;
+            case User::FLEET_SALES_EXECUTIVES:
+                $role = new FleetSalesExecutive($user);
+                break;
             case User::RETAIL_SALES_CONSULTANTS:
                 $role = new RetailSalesConsultant($user);   // Refined
                 break;
