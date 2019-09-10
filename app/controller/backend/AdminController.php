@@ -134,7 +134,8 @@ class AdminController extends BaseController
         session_set('selected_role',null);
 
         // redirect to this user's dashboard
-        return $this->response->redirect('/dashboard')->send();
+        $redirect = '/dashboard?fromApi=1';
+        return $this->response->redirect($redirect)->send();
     }
 
     /**
@@ -167,7 +168,8 @@ class AdminController extends BaseController
         session_set('selected_role',null);
 
         // redirect to this user's dashboard
-        return $this->response->redirect('/dashboard/Metrics')->send();
+        $redirect = '/dashboard/Metrics?fromApi=1';
+        return $this->response->redirect($redirect)->send();
     }
 
     public function fake_region_staff(){

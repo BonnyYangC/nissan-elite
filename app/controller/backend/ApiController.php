@@ -200,4 +200,14 @@ class ApiController extends BaseController
     private function _retrieve_regional_data($regions,$dept = 'All', $dealerNameKeyword = null){
         return RegionTerritoryReport::GetByRegionCodes($regions,$dept,$dealerNameKeyword);
     }
+
+    public function fake_dealer_team(){
+        $dealerCode = $this->request->param('code');
+        $this->dataForView['currentUri'] = 'fake-dealer-team';
+        $this->dataForView['fromApi'] = true;
+        $this->dataForView['dashboardMenuOnly'] = true;
+        $this->dataForView['dealer'] = Company::GetByCompanyCode($dealerCode);
+        $this->dataForView['user']['teamMembers'] = User::getUsersByCompanyCode($dealerCode);
+        return $this->render('dashboard/my_team');
+    }
 }
