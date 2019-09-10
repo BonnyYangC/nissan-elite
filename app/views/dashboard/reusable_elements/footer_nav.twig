@@ -15,21 +15,25 @@
                     <a href="{{ asset('files/MEMBERS_GUIDE.pdf#page=36') }}" target="_blank">Term & Conditions</a></p>
             </div>
             <div class="col-lg-3">
-                <ul class="nav footer-nav">
-                    <li> <a href="{{ url('/') }}">HOME</a> </li>
-                    <li class="{{ currentUri=='dashboard' ? 'current' : null }}"> <a href="{{ url('/dashboard') }}">My Dashboard</a> </li>
-                    {% include 'dashboard/reusable_elements/footer_matrics_item.twig' %}
-                    <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
-                    <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>
-                    <li class="{{ currentUri=='MembersGuide' ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a> </li>
-                    <li class="{{ currentUri=='AboutProgram' ? 'current' : null }}"> <a href="{{ url('/dashboard/AboutProgram') }}">About the Program</a></li>
-                    <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a> </li>
-                    <li class="{{ currentUri=='ProductChallenge' ? 'current' : null }}"> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a> </li>
-                    <li class="{{ currentUri=='Lifetime' ? 'current' : null }}"> <a href="{{ url('/dashboard/Lifetime') }}">Loyalty</a></li>
-                    <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">Guild</a> </li>
-                    <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a> </li>
-                    <li class="{{ currentUri=='FAQ' ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a> </li>
-                </ul>
+                {% if dashboardMenuOnly %}
+                    {# Is mocking data, so no any nav item needed #}
+                {% else %}
+                    <ul class="nav footer-nav">
+                        <li> <a href="{{ url('/') }}">HOME</a> </li>
+                        <li class="{{ currentUri=='dashboard' ? 'current' : null }}"> <a href="{{ url('/dashboard') }}">My Dashboard</a> </li>
+                        {% include 'dashboard/reusable_elements/footer_matrics_item.twig' %}
+                        <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a> </li>
+                        <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a> </li>
+                        <li class="{{ currentUri=='MembersGuide' ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a> </li>
+                        <li class="{{ currentUri=='AboutProgram' ? 'current' : null }}"> <a href="{{ url('/dashboard/AboutProgram') }}">About the Program</a></li>
+                        <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a> </li>
+                        <li class="{{ currentUri=='ProductChallenge' ? 'current' : null }}"> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a> </li>
+                        <li class="{{ currentUri=='Lifetime' ? 'current' : null }}"> <a href="{{ url('/dashboard/Lifetime') }}">Loyalty</a></li>
+                        <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">Guild</a> </li>
+                        <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a> </li>
+                        <li class="{{ currentUri=='FAQ' ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a> </li>
+                    </ul>
+                {% endif %}
             </div>
             <div class="col-lg-5" align="right"> <img src="{{ asset('/images/loader/ELITE-individual-white.png') }}" width="250"/> </div>
         </div>

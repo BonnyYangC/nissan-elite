@@ -5,7 +5,11 @@
         <div class="row">
             <div class="col-md-9">
                 <h1 class="page-header" >
-                    <span class='page-header-title'>Welcome {{ user.firstname }} - {{ currentRoleText }}</span>
+                    {% if fromApi %}
+                        <span class='page-header-title'>Welcome {{ dealer.company_name }}</span>
+                    {% else %}
+                        <span class='page-header-title'>Welcome {{ user.firstname }} - {{ currentRoleText }}</span>
+                    {% endif %}
                 </h1>
             </div>
         </div>

@@ -654,6 +654,27 @@ class User extends BaseModel implements Mailable, IRole
         }
     }
 
+    /**
+     * get users by company code
+     *
+     * @param [string] $code
+     * @return void
+     */
+    public function getUsersByCompanyCode($code)
+    {
+        $result = [];
+        if($code){
+            $database = self::DB();
+            $result = $database->select(self::TABLE_NAME,'*',[
+                'company_code'=>$code,
+                'active'=>1,
+                'ORDER'=>[
+                    'firstname'=>'ASC'
+                ]
+            ]);
+        }
+        return $result;
+    }
 
     /**
      * Init user's basic info about company and position ...

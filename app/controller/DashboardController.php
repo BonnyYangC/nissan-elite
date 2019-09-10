@@ -123,10 +123,14 @@ class DashboardController extends BaseController
         if($this->userObject){
             $this->dataForView['user'] = $this->userObject;
         }
-
         // 表示发现现在是 manager 在 mock 他的组员
         if($this->_clearUserDataSessionWhenDone && !$this->userObject->isSuperUser() && !$this->userObject->isRegionsManager()){
             $this->dataForView['dashboardMenuOnly'] = true;
+        }
+        //come from api
+        if($this->request->param('fromApi')){
+            $this->dataForView['dashboardMenuOnly'] = true;
+            $this->_clearUserDataSessionWhenDone=true;
         }
     }
 
