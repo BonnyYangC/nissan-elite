@@ -12,11 +12,11 @@
                         X
                     {% endif %}
                 </span>
-                {% if dashboard.excellence %}
+                {% if dashboard.excellence > 0 %}
                     <p class="tw">{{ number_format(dashboard.excellence) }} {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
                 {% else %}
                     <p class="tw">
-                        Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl', '') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview
+                        Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') ~ '/api/welcome?api_token=' ~ env('DEALER_EXCELLENCE_API_TOKEN') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview
                     </p>
                 {% endif %}
             </td>
