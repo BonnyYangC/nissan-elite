@@ -98,6 +98,9 @@
 .dashboard-canvas-wrap{
     width: 95%;
 }
+.text-nowrap {
+    white-space: nowrap;
+}
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     color: #fff;
     background-color: #4169E1;
