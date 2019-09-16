@@ -7,6 +7,6 @@
 /app/storage/public/uploads
 /app/storage/public/downloads
 /app/helpers/.env
-/public_html/images/incentives/images/pdf
+/public_html/images/incentives/images
 .DS_Store
 *.sql
