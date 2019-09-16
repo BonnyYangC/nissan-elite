@@ -16,7 +16,7 @@
                     <p class="tw">2000 {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
                 {% else %}
                     <p class="tw">
-                        Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl', '') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview
+                        Refer <span class='span-red'>{{ configuration('PROGRAM_DEALERSHIP') }}</span>
                     </p>
                 {% endif %}
             </td>
