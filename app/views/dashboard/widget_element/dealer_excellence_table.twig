@@ -6,14 +6,14 @@
         <tr class="nissangray-light-back">
             <td>
                 <span class="rank span-red">
-                    {% if dashboard.excellence > 0 %}
+                    {% if user.excellence_eligible %}
                         &#10004;
                     {% else %}
                         X
                     {% endif %}
                 </span>
-                {% if dashboard.excellence %}
-                    <p class="tw">{{ number_format(dashboard.excellence) }} {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
+                {% if user.excellence_eligible %}
+                    <p class="tw">2000 {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
                 {% else %}
                     <p class="tw">
                         Refer <a target="_blank" href="{{ env('dealExcellenceOverviewUrl', '') }}">{{ configuration('PROGRAM_DEALERSHIP') }}</a> overview

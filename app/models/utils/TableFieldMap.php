@@ -34,7 +34,8 @@ class TableFieldMap{
             'member'=>'elite_mbr',//'ac_mbr',
             'dob'=>'date_birth',//'date_of_birth',
             'date_created'=>'date_created',
-            'met_criteria' => 'criteria_met_EOY',//'amba_STAT_ambid_gmthyr::eligible_EOY'
+            'met_criteria' => 'criteria_met_EOY',
+            'excellence_eligible' => 'excellence_eligible'
         ];
 
         return $map;
