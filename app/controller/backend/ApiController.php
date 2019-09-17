@@ -203,11 +203,21 @@ class ApiController extends BaseController
 
     public function fake_dealer_team(){
         $dealerCode = $this->request->param('code');
+        session_set('api_session',true);
         $this->dataForView['currentUri'] = 'fake-dealer-team';
         $this->dataForView['fromApi'] = true;
         $this->dataForView['dashboardMenuOnly'] = true;
         $this->dataForView['dealer'] = Company::GetByCompanyCode($dealerCode);
         $this->dataForView['user']['teamMembers'] = User::getUsersByCompanyCode($dealerCode);
         return $this->render('dashboard/my_team');
+    }
+
+    public function close_api_session(){
+        //clean api session
+        if(session_get('api_session',true)){
+            session_set('api_session', false);
+        }
+        //close current tab
+        echo "<script>window.close();</script>";
     }
 }

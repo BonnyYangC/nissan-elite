@@ -13,7 +13,7 @@
         <p class="loggedin">
             {% if fromApi %}
                 <span>
-                    <a href="#" onclick="window.close();return false;">BACK TO DEALER EXCELLENCE</a>
+                    <a href="{{ url('/api/close') }}">BACK TO DEALER EXCELLENCE</a>
                 </span>
             {% elseif dashboardMenuOnly %}
                 <span>

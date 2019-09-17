@@ -134,7 +134,7 @@ class AdminController extends BaseController
         session_set('selected_role',null);
 
         // redirect to this user's dashboard
-        $redirect = '/dashboard?fromApi=1';
+        $redirect = '/dashboard';
         return $this->response->redirect($redirect)->send();
     }
 
@@ -168,7 +168,7 @@ class AdminController extends BaseController
         session_set('selected_role',null);
 
         // redirect to this user's dashboard
-        $redirect = '/dashboard/Metrics?fromApi=1';
+        $redirect = '/dashboard/Metrics';
         return $this->response->redirect($redirect)->send();
     }
 

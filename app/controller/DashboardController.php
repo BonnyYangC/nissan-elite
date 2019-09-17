@@ -68,6 +68,7 @@ class DashboardController extends BaseController
     protected $excellence = null;
 
     protected $_clearUserDataSessionWhenDone = false;
+    protected $_clearApiSessionWhenDone = false;
 
     public function __construct(Request $request, Response $response)
     {
@@ -128,9 +129,10 @@ class DashboardController extends BaseController
             $this->dataForView['dashboardMenuOnly'] = true;
         }
         //come from api
-        if($this->request->param('fromApi')){
+        if(session_get('api_session',true)){
+            var_dump('before render');
             $this->dataForView['dashboardMenuOnly'] = true;
-            $this->_clearUserDataSessionWhenDone=true;
+            $this->_clearApiSessionWhenDone=true;
         }
     }
 

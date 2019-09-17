@@ -263,6 +263,10 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->get('/api/my-team', \App\controller\backend\ApiController::class,'fake_dealer_team')
     ->name('api.get.dealer_team');
+
+\App\core\Route::Instance()
+    ->get('/api/close', \App\controller\backend\ApiController::class,'close_api_session')
+    ->name('api.close');
 /**
  * This is a must do action: dispatch at last
  */
