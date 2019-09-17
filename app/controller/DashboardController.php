@@ -130,9 +130,9 @@ class DashboardController extends BaseController
         }
         //come from api
         if(session_get('api_session',true)){
-            var_dump('before render');
             $this->dataForView['dashboardMenuOnly'] = true;
             $this->_clearApiSessionWhenDone=true;
+            $this->_clearUserDataSessionWhenDone=true;
         }
     }
 
