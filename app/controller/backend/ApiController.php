@@ -204,6 +204,7 @@ class ApiController extends BaseController
     public function fake_dealer_team(){
         $dealerCode = $this->request->param('code');
         session_set('api_session',true);
+        $this->clean_session();
         $this->dataForView['currentUri'] = 'api/my-team';
         $this->dataForView['dealer_code'] = $dealerCode;
         $this->dataForView['fromApi'] = true;
@@ -224,5 +225,12 @@ class ApiController extends BaseController
         }
         //close current tab
         echo "<script>window.close();</script>";
+    }
+
+    public function clean_session(){
+        //when api session, clean up other session
+        session_set('user_data_array', []);
+        session_set('manager_data_array', []);
+        session_set('region_staff_data_array', []);
     }
 }
