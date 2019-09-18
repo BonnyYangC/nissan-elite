@@ -666,32 +666,31 @@ class User extends BaseModel implements Mailable, IRole
     {
         $members = [];
         $order = [
-            'users.position' => 'ASC',
+            'lookups.content' => 'ASC',
             'firstname'=>'ASC'
         ];
         
         if($user && $user->position){
             $database = self::DB();
             if($param['sortBy'] && $param['order']){
-                if($param['sortBy'] == 'position'){
-                    $param['sortBy'] = 'users.position';
-                }
                 $order = [
                     $param['sortBy'] => $param['order']
                 ];
             }
             $members = $database->select(self::TABLE_NAME,
-                ["[>]nissan_region_territory_reports" => ["employee_code" => "employee_code"]],
+                [
+                    '[>]nissan_region_territory_reports' => ["employee_code" => "employee_code"],
+                    '[>]lookups' => ["position" => "code"]
+                ],
                 '*',
                 [
                 'users.company_code'=>$user->company_code,
                 'users.active'=>1,
                 'users.position'=>$user->getMemberRoles(),
+                'lookups.company_id'=>8,
+                'lookups.grouping'=>'POSITION',
                 'ORDER'=>$order,
             ]);
-            foreach($members as $member){
-                $member['position'] = DataSource::getRoleNameByAbbr($member['position']);
-            }
 
         }
         return $members;
@@ -708,7 +707,7 @@ class User extends BaseModel implements Mailable, IRole
     {
         $members = [];
         $order = [
-            'users.position' => 'ASC',
+            'lookups.content' => 'ASC',
             'firstname'=>'ASC'
         ];
         if($code){
@@ -719,16 +718,18 @@ class User extends BaseModel implements Mailable, IRole
                 ];
             }
             $members = $database->select(self::TABLE_NAME,
-                ["[>]nissan_region_territory_reports" => ["employee_code" => "employee_code"]],
+                [
+                    '[>]nissan_region_territory_reports' => ["employee_code" => "employee_code"],
+                    '[>]lookups' => ["position" => "code"]
+                ],
                 '*',
                 [
                 'company_code'=>$code,
                 'users.active'=>1,
+                'lookups.company_id'=>8,
+                'lookups.grouping'=>'POSITION',
                 'ORDER'=>$order,
             ]);
-            foreach($members as $member){
-                $member['position'] = DataSource::getRoleNameByAbbr($member['position']);
-            }
         }
         return $members;
     }
