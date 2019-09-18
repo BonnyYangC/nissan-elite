@@ -158,7 +158,6 @@ class DashboardController extends BaseController
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
-        $this->dataForView['team_members'] = $this->userObject->getTeamMembers();
 
         $this->dataForView['extra_css'] = [
             asset('/includes/fullcalendar/fullcalendar.min.css')
@@ -473,6 +472,7 @@ class DashboardController extends BaseController
         $this->dataForView['currentRoleText'] = DataSource::getRoleNameByAbbr($this->userObject->position);
         $this->dataForView['targetDatabaseTableName'] = $this->targetTableName;
         $this->dataForView['userPositions'] = $this->userPositions;
+        $this->dataForView['currentUser'] = $this->userObject;
 
 
         /**

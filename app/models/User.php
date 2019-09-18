@@ -647,6 +647,7 @@ class User extends BaseModel implements Mailable, IRole
                 'active'=>1,
                 'position'=>$roles,
                 'ORDER'=>[
+                    'position' => 'ASC',
                     'firstname'=>'ASC'
                 ]
             ]);
@@ -655,25 +656,81 @@ class User extends BaseModel implements Mailable, IRole
     }
 
     /**
+     * get team members by user role
+     *
+     * @param [object] $user
+     * @param [array] $code
+     * @return void
+     */
+    public function getTeamMembersByRole($user,$param)
+    {
+        $members = [];
+        $order = [
+            'users.position' => 'ASC',
+            'firstname'=>'ASC'
+        ];
+        
+        if($user && $user->position){
+            $database = self::DB();
+            if($param['sortBy'] && $param['order']){
+                if($param['sortBy'] == 'position'){
+                    $param['sortBy'] = 'users.position';
+                }
+                $order = [
+                    $param['sortBy'] => $param['order']
+                ];
+            }
+            $members = $database->select(self::TABLE_NAME,
+                ["[>]nissan_region_territory_reports" => ["employee_code" => "employee_code"]],
+                '*',
+                [
+                'users.company_code'=>$user->company_code,
+                'users.active'=>1,
+                'users.position'=>$user->getMemberRoles(),
+                'ORDER'=>$order,
+            ]);
+            foreach($members as $member){
+                $member['position'] = DataSource::getRoleNameByAbbr($member['position']);
+            }
+
+        }
+        return $members;
+    }
+
+    /**
      * get users by company code
      *
      * @param [string] $code
+     * @param [array] $code
      * @return void
      */
-    public function getUsersByCompanyCode($code)
+    public function getTeamMembersByCompanyCode($code,$param)
     {
-        $result = [];
+        $members = [];
+        $order = [
+            'users.position' => 'ASC',
+            'firstname'=>'ASC'
+        ];
         if($code){
             $database = self::DB();
-            $result = $database->select(self::TABLE_NAME,'*',[
+            if($param['sortBy'] && $param['order']){
+                $order = [
+                    $param['sortBy'] => $param['order']
+                ];
+            }
+            $members = $database->select(self::TABLE_NAME,
+                ["[>]nissan_region_territory_reports" => ["employee_code" => "employee_code"]],
+                '*',
+                [
                 'company_code'=>$code,
-                'active'=>1,
-                'ORDER'=>[
-                    'firstname'=>'ASC'
-                ]
+                'users.active'=>1,
+                'ORDER'=>$order,
             ]);
+            foreach($members as $member){
+                $member['position'] = DataSource::getRoleNameByAbbr($member['position']);
+            }
         }
-        return $result;
+        return $members;
     }
 
     /**

@@ -204,11 +204,16 @@ class ApiController extends BaseController
     public function fake_dealer_team(){
         $dealerCode = $this->request->param('code');
         session_set('api_session',true);
-        $this->dataForView['currentUri'] = 'fake-dealer-team';
+        $this->dataForView['currentUri'] = 'api/my-team';
+        $this->dataForView['dealer_code'] = $dealerCode;
         $this->dataForView['fromApi'] = true;
         $this->dataForView['dashboardMenuOnly'] = true;
         $this->dataForView['dealer'] = Company::GetByCompanyCode($dealerCode);
-        $this->dataForView['user']['teamMembers'] = User::getUsersByCompanyCode($dealerCode);
+        $param = [
+            'sortBy' => $this->request->param('sortby'),
+            'order' => $this->request->param('order'),
+        ];
+        $this->dataForView['teamMembers'] = User::getTeamMembersByCompanyCode($dealerCode, $param);
         return $this->render('dashboard/my_team');
     }
 

@@ -32,6 +32,12 @@ class UsersController extends Controller
             $this->render('user/update_browser');
         }else{
             $this->dataForView['errorMsg'] = session_flash('error_msg');
+            
+            //clean api session if still available, this happens due to api user did not close api session before open new login window
+            if(session_get('api_session',true)){
+                session_set('api_session',false);
+            }
+            
             // check if session still available
             $userData = session_get('manager_data_array',true); // Check manager data first
             if(is_null($userData)){

@@ -13,6 +13,7 @@ use App\models\role\IRole;
 use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;
+use App\models\User;
 
 class AccountsController extends DashboardController
 {
@@ -154,6 +155,13 @@ class AccountsController extends DashboardController
 
     public function my_team(){
         $this->dataForView['currentUri'] = 'my-team';
+        $param = [
+            'sortBy' => $this->request->param('sortby'),
+            'order' => $this->request->param('order'),
+        ];
+        
+        $this->dataForView['teamMembers'] = User::getTeamMembersByRole($this->dataForView['currentUser'], $param);
+
         $this->render('dashboard/my_team');
         return;
     }

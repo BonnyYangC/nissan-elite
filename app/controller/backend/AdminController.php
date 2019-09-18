@@ -108,6 +108,11 @@ class AdminController extends BaseController
      * @return \Klein\AbstractResponse
      */
     public function fake_user(){
+        $fromApi = $this->request->param('fromApi');
+        if($fromApi && !session_get('api_session')){
+            //redirect to session expire page
+            return $this->render('dashboard/static/session_expired');
+        }
         $userId = $this->request->param('uid');
         $employeeCode = $this->request->param('uc');
         if($employeeCode){
@@ -142,6 +147,11 @@ class AdminController extends BaseController
      * @return \Klein\AbstractResponse
      */
     public function fake_user_matrics(){
+        $fromApi = $this->request->param('fromApi');
+        if($fromApi && !session_get('api_session')){
+            //redirect to session expire page
+            return $this->render('dashboard/static/session_expired');
+        }
         $userId = $this->request->param('uid');
         $employeeCode = $this->request->param('uc');
         if($employeeCode){
