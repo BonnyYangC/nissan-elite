@@ -12,13 +12,20 @@
                         X
                     {% endif %}
                 </span>
+
                 {% if user.excellence_eligible %}
                     <p class="tw">2000 {{ configuration('PROGRAM_AWARD_UNIT')|lower }} Applied</p>
-                {% else %}
-                    <p class="tw">
-                        Refer <span class='span-red'>{{ configuration('PROGRAM_DEALERSHIP') }}</span>
-                    </p>
                 {% endif %}
+                <p class="tw">
+                    {% if not dashboardMenuOnly %}
+                        {% if user.position == 'M' %}
+                        {% set param = '/api?role=' ~ user.position ~ '&code=' ~ user.company_code %}
+                        {% else %}
+                        {% set param = '/api?role=AP'%}
+                        {% endif %}
+                        <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') ~ param }}">View FY19 Rankings</a>
+                    {% endif %}
+                </p>
             </td>
         </tr>
     </table>

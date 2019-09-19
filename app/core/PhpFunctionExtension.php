@@ -51,7 +51,6 @@ class PhpFunctionExtension extends \Twig_Extension
         'get_route',            // get url by give route name
         'good_date',            // get url by give route name
         'str_contains',            // string contains sub string
-        'more_details_for_member',    // get more details data for members
     );
     public function __construct(array $functions = array())
     {

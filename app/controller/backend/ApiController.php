@@ -200,4 +200,37 @@ class ApiController extends BaseController
     private function _retrieve_regional_data($regions,$dept = 'All', $dealerNameKeyword = null){
         return RegionTerritoryReport::GetByRegionCodes($regions,$dept,$dealerNameKeyword);
     }
+
+    public function fake_dealer_team(){
+        $dealerCode = $this->request->param('code');
+        session_set('api_session',true);
+        $this->clean_session();
+        $this->dataForView['currentUri'] = 'api/my-team';
+        $this->dataForView['dealer_code'] = $dealerCode;
+        $this->dataForView['fromApi'] = true;
+        $this->dataForView['dashboardMenuOnly'] = true;
+        $this->dataForView['dealer'] = Company::GetByCompanyCode($dealerCode);
+        $param = [
+            'sortBy' => $this->request->param('sortby'),
+            'order' => $this->request->param('order'),
+        ];
+        $this->dataForView['teamMembers'] = User::getTeamMembersByCompanyCode($dealerCode, $param);
+        return $this->render('dashboard/my_team');
+    }
+
+    public function close_api_session(){
+        //clean api session
+        if(session_get('api_session',true)){
+            session_set('api_session', false);
+        }
+        //close current tab
+        echo "<script>window.close();</script>";
+    }
+
+    public function clean_session(){
+        //when api session, clean up other session
+        session_set('user_data_array', []);
+        session_set('manager_data_array', []);
+        session_set('region_staff_data_array', []);
+    }
 }

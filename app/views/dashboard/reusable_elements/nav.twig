@@ -13,12 +13,12 @@
             {% if dashboardMenuOnly %}
                 {# Is mocking data, so no any nav item needed #}
             {% else %}
-                    <li class="{{ currentUri=='dashboard' ? 'current' : null }}">
-                        <a href="{{ url('/dashboard') }}">My dashboard</a>
-                    </li>
+                <li class="{{ currentUri=='dashboard' ? 'current' : null }}">
+                    <a href="{{ url('/dashboard') }}">My dashboard</a>
+                </li>
                 {% include 'dashboard/reusable_elements/nav_matrics_item.twig' %}
                 {% if count(user.teamMembers)>0 %}
-                <li class="{{ currentUri=='my-team' ? 'current' : null }}"> <a href="{{ url('/my-team') }}">My Team</a></li>
+                    <li class="{{ currentUri=='my-team' ? 'current' : null }}"> <a href="{{ url('/my-team') }}">My Team</a></li>
                 {% endif %}
                 <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a></li>
                 <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a></li>

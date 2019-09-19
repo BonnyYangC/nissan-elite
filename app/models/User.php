@@ -647,6 +647,7 @@ class User extends BaseModel implements Mailable, IRole
                 'active'=>1,
                 'position'=>$roles,
                 'ORDER'=>[
+                    'position' => 'ASC',
                     'firstname'=>'ASC'
                 ]
             ]);
@@ -654,6 +655,84 @@ class User extends BaseModel implements Mailable, IRole
         }
     }
 
+    /**
+     * get team members by user role
+     *
+     * @param [object] $user
+     * @param [array] $code
+     * @return void
+     */
+    public function getTeamMembersByRole($user,$param)
+    {
+        $members = [];
+        $order = [
+            'lookups.content' => 'ASC',
+            'firstname'=>'ASC'
+        ];
+        
+        if($user && $user->position){
+            $database = self::DB();
+            if($param['sortBy'] && $param['order']){
+                $order = [
+                    $param['sortBy'] => $param['order']
+                ];
+            }
+            $members = $database->select(self::TABLE_NAME,
+                [
+                    '[>]nissan_region_territory_reports' => ["employee_code" => "employee_code"],
+                    '[>]lookups' => ["position" => "code"]
+                ],
+                '*',
+                [
+                'users.company_code'=>$user->company_code,
+                'users.active'=>1,
+                'users.position'=>$user->getMemberRoles(),
+                'lookups.company_id'=>8,
+                'lookups.grouping'=>'POSITION',
+                'ORDER'=>$order,
+            ]);
+
+        }
+        return $members;
+    }
+
+    /**
+     * get users by company code
+     *
+     * @param [string] $code
+     * @param [array] $code
+     * @return void
+     */
+    public function getTeamMembersByCompanyCode($code,$param)
+    {
+        $members = [];
+        $order = [
+            'lookups.content' => 'ASC',
+            'firstname'=>'ASC'
+        ];
+        if($code){
+            $database = self::DB();
+            if($param['sortBy'] && $param['order']){
+                $order = [
+                    $param['sortBy'] => $param['order']
+                ];
+            }
+            $members = $database->select(self::TABLE_NAME,
+                [
+                    '[>]nissan_region_territory_reports' => ["employee_code" => "employee_code"],
+                    '[>]lookups' => ["position" => "code"]
+                ],
+                '*',
+                [
+                'company_code'=>$code,
+                'users.active'=>1,
+                'lookups.company_id'=>8,
+                'lookups.grouping'=>'POSITION',
+                'ORDER'=>$order,
+            ]);
+        }
+        return $members;
+    }
 
     /**
      * Init user's basic info about company and position ...

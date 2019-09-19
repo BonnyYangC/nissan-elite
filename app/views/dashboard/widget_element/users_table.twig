@@ -1,32 +1,30 @@
-<div class="table-responsive">
+<div class="table-responsive" id="my-team-app">
     <table class="table leader-board">
         <tr class="table-top-row">
             <td></td>
-            <td>Name</td>
-            <td>Position</td>
-            <td>Credits</td>
+            <td>Name <a href="{{ url(currentUri, {'code':dealer_code, 'sortby':'firstname', 'order':'ASC'})}}">&uarr;</a><a href="{{ url(currentUri, {'code':dealer_code, 'sortby':'firstname', 'order':'DESC'})}}">&darr;</a></td>
+            <td>Position <a href="{{ url(currentUri, {'code':dealer_code, 'sortby':'lookups.content', 'order':'ASC'})}}">&uarr;</a><a href="{{ url(currentUri, {'code':dealer_code, 'sortby':'lookups.content', 'order':'DESC'})}}">&darr;</a></td>
+            <td>Credits <a href="{{ url(currentUri, {'code':dealer_code, 'sortby':'cr_ytd', 'order':'ASC'})}}">&uarr;</a><a href="{{ url(currentUri, {'code':dealer_code, 'sortby':'cr_ytd', 'order':'DESC'})}}">&darr;</a></td>
             <td>Dashboard</td>
             <td>Metrics</td>
-            <td></td>
         </tr>
-        {% set members = more_details_for_member(user.teamMembers) %}
-        {% for idx,user in members %}
+        {% for idx,user in teamMembers %}
             <tr>
                 <td>{{ idx+1 }}</td>
                 <td>
                     {{ user.firstname }} {{ user.lastname }}
                 </td>
                 <td>
-                    {{ user.position }}
+                    {{ user.content }}
                 </td>
                 <td>
-                    {{ number_format(user.ytd,0) }}
+                    {{ number_format(user.cr_ytd,0) }}
                 </td>
                 <td>
-                    <a href="{{ url('/manager/fake-user/dashboard?uid=') }}{{ user.user_id }}" target="_blank">View Details</a>
+                    <a href="{{ url('/manager/fake-user/dashboard?uid=') ~ user.user_id }}{{ fromApi ? '&fromApi=1' : ''}}" target="_blank">View Details</a>
                 </td>
                 <td>
-                    <a href="{{ url('/manager/fake-user/matrics?uid=') }}{{ user.user_id }}" target="_blank">View Details</a>
+                    <a href="{{ url('/manager/fake-user/matrics?uid=') ~ user.user_id }}{{ fromApi ? '&fromApi=1' : ''}}" target="_blank">View Details</a>
                 </td>
             </tr>
         {% endfor %}

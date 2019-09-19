@@ -51,7 +51,12 @@
         <div class="col-md-12">
             <!---- Sales Percentage ---->
             <h3>
-                <a href="{{ url('/dashboard/Metrics') }}{{ userHasMultipleRoles ? '?roleAs='.targetDatabaseTableName : null }}">
+                {% if dashboardMenuOnly %}
+                {% set matrics_url = url('/manager/fake-user/matrics?uid=') ~ user.user_id %}
+                {% else %}
+                {% set matrics_url = url('/dashboard/Metrics') %}
+                {% endif %}
+                <a href="{{ matrics_url }}">
                     {{ configuration('PROGRAM_AWARD_UNIT')|lower }} earned per Month (View Individual Results)
                 </a>
             </h3>

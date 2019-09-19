@@ -108,6 +108,11 @@ class AdminController extends BaseController
      * @return \Klein\AbstractResponse
      */
     public function fake_user(){
+        $fromApi = $this->request->param('fromApi');
+        if($fromApi && !session_get('api_session')){
+            //redirect to session expire page
+            return $this->render('dashboard/static/session_expired');
+        }
         $userId = $this->request->param('uid');
         $employeeCode = $this->request->param('uc');
         if($employeeCode){
@@ -134,13 +139,19 @@ class AdminController extends BaseController
         session_set('selected_role',null);
 
         // redirect to this user's dashboard
-        return $this->response->redirect('/dashboard')->send();
+        $redirect = '/dashboard';
+        return $this->response->redirect($redirect)->send();
     }
 
     /**
      * @return \Klein\AbstractResponse
      */
     public function fake_user_matrics(){
+        $fromApi = $this->request->param('fromApi');
+        if($fromApi && !session_get('api_session')){
+            //redirect to session expire page
+            return $this->render('dashboard/static/session_expired');
+        }
         $userId = $this->request->param('uid');
         $employeeCode = $this->request->param('uc');
         if($employeeCode){
@@ -167,7 +178,8 @@ class AdminController extends BaseController
         session_set('selected_role',null);
 
         // redirect to this user's dashboard
-        return $this->response->redirect('/dashboard/Metrics')->send();
+        $redirect = '/dashboard/Metrics';
+        return $this->response->redirect($redirect)->send();
     }
 
     public function fake_region_staff(){

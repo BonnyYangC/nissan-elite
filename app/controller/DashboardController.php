@@ -68,6 +68,7 @@ class DashboardController extends BaseController
     protected $excellence = null;
 
     protected $_clearUserDataSessionWhenDone = false;
+    protected $_clearApiSessionWhenDone = false;
 
     public function __construct(Request $request, Response $response)
     {
@@ -123,10 +124,15 @@ class DashboardController extends BaseController
         if($this->userObject){
             $this->dataForView['user'] = $this->userObject;
         }
-
         // 表示发现现在是 manager 在 mock 他的组员
         if($this->_clearUserDataSessionWhenDone && !$this->userObject->isSuperUser() && !$this->userObject->isRegionsManager()){
             $this->dataForView['dashboardMenuOnly'] = true;
+        }
+        //come from api
+        if(session_get('api_session',true)){
+            $this->dataForView['dashboardMenuOnly'] = true;
+            $this->_clearApiSessionWhenDone=true;
+            $this->_clearUserDataSessionWhenDone=true;
         }
     }
 
@@ -152,7 +158,6 @@ class DashboardController extends BaseController
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
-        $this->dataForView['team_members'] = $this->userObject->getTeamMembers();
 
         $this->dataForView['extra_css'] = [
             asset('/includes/fullcalendar/fullcalendar.min.css')
@@ -467,6 +472,7 @@ class DashboardController extends BaseController
         $this->dataForView['currentRoleText'] = DataSource::getRoleNameByAbbr($this->userObject->position);
         $this->dataForView['targetDatabaseTableName'] = $this->targetTableName;
         $this->dataForView['userPositions'] = $this->userPositions;
+        $this->dataForView['currentUser'] = $this->userObject;
 
 
         /**
