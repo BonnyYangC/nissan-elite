@@ -270,5 +270,8 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 /**
  * This is a must do action: dispatch at last
  */
+
+file_put_contents('../app/storage/log/usage_log', time() .' '. print_r(session_get('user_data_array'),1) .' '. $_SERVER['REQUEST_URI'] ."\n",8);
+
 \App\core\Route::Instance()->dispatch();
 exit;
