@@ -190,9 +190,27 @@ class DataSource extends BaseModel
             dump($database->log());
         }
 
+        $history_result = $database->query('
+            select 
+                count(*), 
+                sum(amount) 
+            from nissan_history 
+            where 
+                member_id='. $user->getEmployeeCode() .' and 
+                period <> \''. configuration('YEAR') .'-01-01\'
+
+        ')->fetchAll()[0][1];
+
+        // $result = $database->select(
+        //     'nissan_history',
+        //     [Medoo::raw('count<amount>'), Medoo::raw('sum(<amount>)')],
+        //     ['member_id' => $user->getEmployeeCode()]
+        // );
+
         return [
             'view_name'=>$currentTableName,
-            'result'=>self::_handle($rows)
+            'result'=>self::_handle($rows),
+            'history'=>$history_result
         ];
     }
 
