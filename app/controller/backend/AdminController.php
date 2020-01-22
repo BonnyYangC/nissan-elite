@@ -134,7 +134,8 @@ class AdminController extends BaseController
         session_set(env('SESSION_SEGMENT','_nissanac_fake'), $uuid);
         session_set('user_data_array', [
             'id'=>$user->getId(),
-            'name'=>$user->getName()
+            'name'=>$user->getName(),
+            'from_user'=>session_get('user_data_array', 'id')
         ]);
         session_set('selected_role',null);
 
@@ -197,8 +198,18 @@ class AdminController extends BaseController
             'id'=>$user->getId(),
             'name'=>$user->getName()
         ]);
+
         // redirect to this user's dashboard
         return $this->response->redirect('/dashboard')->send();
+    }
+
+    public function jump_to_dealer(){
+        print 'hello';
+        $rsd = json_decode(session_get('region_staff_data_array'));
+        return $this->response->redirect( env('dealerExcellence') .'/admin/mock/'. md5(rand()). '/'. $rsd->id);
+
+        
+
     }
 
     /**
