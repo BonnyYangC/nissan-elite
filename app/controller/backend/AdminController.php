@@ -207,9 +207,6 @@ class AdminController extends BaseController
         print 'hello';
         $rsd = json_decode(session_get('region_staff_data_array'));
         return $this->response->redirect( env('dealerExcellence') .'/admin/mock/'. md5(rand()). '/'. $rsd->id);
-
-        
-
     }
 
     /**
