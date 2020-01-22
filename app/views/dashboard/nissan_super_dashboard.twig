@@ -24,7 +24,13 @@
                 {% set yearShort = configuration('YEAR')-2000 %}
                 <p class="pull-right" style="margin-top: 25px;">
                     <a href="{{ env('dealExcellenceOverviewUrl','') }}" class="btn btn-danger" target="_blank">
-                        <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence</a>&nbsp;
+                        <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence
+                    </a>&nbsp;
+
+                    <a href="{{ url('/admin/jump_to_dealer') }}" class="btn btn-danger">
+                        <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan DE
+                    </a>&nbsp;
+
                 </p>
             </div>
         </div>
