@@ -353,6 +353,8 @@ class DashboardController extends BaseController
 
         $result = DataSource::Query($this->userObject);
         $this->dataForView['Results'] = $result['result']['Results'];
+
+        $this->dataForView['history'] = number_format($result['history'],0);
 //        $this->dataForView['Excellence'] = $result['result']['Excellence'];
 
         /**
