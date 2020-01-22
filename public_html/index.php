@@ -257,6 +257,10 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->name('admin.fake.region.staff');
 
 \App\core\Route::Instance()
+    ->get('/admin/jump_to_dealer', \App\controller\backend\AdminController::class,'jump_to_dealer')
+    ->name('admin.jump_to_dealer');
+
+\App\core\Route::Instance()
     ->get('/api/get-menus', \App\controller\backend\ApiController::class,'get_menus')
     ->name('api.get.menu');
 
