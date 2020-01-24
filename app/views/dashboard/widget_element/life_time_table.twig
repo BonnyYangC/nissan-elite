@@ -6,12 +6,7 @@
             </td>
         </tr>
         <tr class="nissangray-light-back">
-            <!--
-            <td><span><a href="{{ url('/dashboard/Lifetime') }}" class="tw">{{ empty(dashboard.lifeTime) ? null : number_format(dashboard.lifeTime,0) }}</a></span><br></td>
-            -->
-
             <td><span class="rank"><a href="{{ url('/dashboard/Lifetime') }}" class="tw">{{ number_format(history2 + dashboard.ytd, 0) }} </a></span><br></td>
-
         </tr>
     </table>
 </div>
