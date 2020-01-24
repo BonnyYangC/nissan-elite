@@ -15,9 +15,14 @@
                     <h3 class="pl-10">Current STATUS LEVEL</h3>
                     {% include 'dashboard/widget_element/lifetime_status_level_chart.twig' %}
                 </div>
+
+                <h3>Loyalty to the brand: {{ number_format(history2, 0) }} </h3>
+                <h3>Year to Date: {{ number_format(dashboard.ytd, 0) }} </h3>
             </div>
             <div class="col-md-3 pb-0">
+            
                 {% include 'dashboard/widget_element/life_time_table.twig' %}
+                
                 <table class="table centre-text">
                     <tr class="table-top-row"><td colspan=2>Legend</td></tr>
                     <tr><td style="background: #8C7853;">Bronze</td><td>100,000</td></tr> <!--need to update to use LifetimeUtil:: const TBD-->
@@ -27,5 +32,5 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div>    
 {% endblock %}

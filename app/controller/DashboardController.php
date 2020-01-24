@@ -267,6 +267,12 @@ class DashboardController extends BaseController
         $data = DataSource::Query($this->userObject);
         $results = $data['result']['Results'];
 
+        foreach ($results as $r) {
+            $credit_ytd = $r['credit_ytd'];
+        }
+
+        $this->dataForView['history2'] = $data['history'];
+
         $lifetime   = 0;
         $monthly    = [];
         $carbon = Carbon::create(configuration('YEAR'),3,1);
@@ -320,7 +326,8 @@ class DashboardController extends BaseController
             'gaga_data' =>$lifetimeUtil->getGagaData(),
             'max'       =>LifetimeUtil::Platinum,
             'monthly'   =>$monthly,
-            'history'   =>$history
+            'history'   =>$history,
+            'ytd'       =>$credit_ytd
         ];
 
         $this->dataForView['extra_js'] = [
@@ -353,8 +360,7 @@ class DashboardController extends BaseController
 
         $result = DataSource::Query($this->userObject);
         $this->dataForView['Results'] = $result['result']['Results'];
-
-        $this->dataForView['history'] = number_format($result['history'],0);
+        $this->dataForView['history2'] = $result['history'];
 //        $this->dataForView['Excellence'] = $result['result']['Excellence'];
 
         /**
