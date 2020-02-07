@@ -23,9 +23,14 @@
             <div class="col-md-8 col-xs-12">
                 {% set yearShort = configuration('YEAR')-2000 %}
                 <p class="pull-right" style="margin-top: 25px;">
+                    <a href="http://learning.nissan.com.au" class="btn btn-default" target="_blank" style="background-color: #cccccc;">
+                        <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Academy</a>&nbsp;
                     <a href="{{ url('/admin/jump_to_dealer') }}" class="btn btn-danger">
-                        <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence
-                    </a>&nbsp;
+                        <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence</a>&nbsp;
+                    <a href="#" v-on:click="handlerTerritoryReport($event,{{ user.user_id }})" class="btn btn-default">
+                        <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Territory Report</a>&nbsp;
+                    <a href="#" v-on:click="handlerActiveMemberList($event,{{ user.user_id }})" class="btn btn-default">
+                        <i class="fa fa-download"></i>&nbsp;{{ isPhone?null:'Download' }} Active Member List</a>
 
                 </p>
             </div>
