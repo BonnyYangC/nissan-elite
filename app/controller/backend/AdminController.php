@@ -800,4 +800,86 @@ class AdminController extends BaseController
         }
         dump($count);
     }
+
+    public function usage() {
+
+        $this->dataForView['datestart'] = $this->request->param('datestart');
+        $this->dataForView['dateend'] = $this->request->param('dateend');
+        $this->dataForView['page'] = $this->request->param('page');
+        $this->dataForView['summarise_by_region']       = $this->request('summarise_by_region');
+        $this->dataForView['summarise_by_dealership']   = $this->request('summarise_by_dealership');
+        $this->dataForView['summarise_by_position']     = $this->request('summarise_by_position');
+
+        $usage = file_get_contents('../app/storage/log/usage_log');
+        $usage_lines = explode("\n", $usage);
+
+        $db = User::DB();
+
+        $pages = [];
+
+        $excludes = [
+            '/^\/$/',
+            '/^\/css/',
+            '/\.js$/',
+            '/^\/admin/',
+            '/^\/api/',
+            '/^\/user\/logout/',
+            '/^\/files/'
+        ];
+
+        $users = $db->query( $q = "
+            SELECT 
+                users.user_id,
+                lastname, 
+                firstname,
+                CASE 
+                    WHEN company.region='N' THEN 'North'
+                    WHEN company.region='E' THEN 'East'
+                    WHEN company.region='W' THEN 'West'
+                    WHEN company.region='S' THEN 'South'
+                    ELSE 'No region'
+                END as region,
+                company.company_name,
+                company.company_id
+            FROM 
+                users
+            JOIN 
+                company ON users.company_id=company.company_id
+            where user_id in (". implode(',',$user_ids) .")
+            ORDER BY 
+                company.region, company.company_name, firstname, lastname
+        ")->fetchAll();
+
+        foreach ($usage_lines as $line) {
+            if (preg_match('/^(.*)\?/', $line, $matches)) {
+                $line = $matches[1];
+            }
+
+            if (preg_match('/^([^\s]*)\s(\{[^\{]*\})\s([^\s]*)$/', $line, $matches)) {
+                list($all, $time, $user, $page) = $matches;
+
+                foreach ($excludes as $ex) {
+                    if (preg_match($ex, $page)) continue 2;
+                }
+
+                $json = json_decode($user);                
+
+                if (!in_array($page, $pages)) $pages[] = $page;
+
+                if (!in_array($json->id, $user_ids)) $user_ids[] = $json->id;
+            }
+
+            if ($this->request('summarise_by_region')) {
+                $key = \
+
+                            }
+        }
+        sort($pages);
+
+        $this->dataForView['users'] = $users;
+        $this->dataForView['pages'] = $pages;
+
+        $this->render('backend/users/usage');
+        return;
+    }
 }
