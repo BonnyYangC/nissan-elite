@@ -870,9 +870,9 @@ class AdminController extends BaseController
             }
 
             if ($this->request('summarise_by_region')) {
-                $key = \
+                $key = '';
 
-                            }
+            }
         }
         sort($pages);
 
