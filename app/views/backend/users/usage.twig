@@ -1,0 +1,186 @@
+{% extends 'layout/backend.twig' %}
+{% block content %}
+    <form action="{{ get_route('admin.usage') }}" method="post" class="form">
+
+        <div class="container">
+            <div class="content mt-20">
+                <div class="columns">
+                    <div class="column">
+                        <h1>Page Usage</h1>
+                    </div>
+                    <div class="column">
+                        <button type="submit" class="button is-pulled-right" style="margin-right: 10px;"><i class="fa fa-download"></i>&nbsp;Export All</button>
+                        <button type="submit" class="button is-pulled-right" style="margin-right: 10px;"><i class="fa fa-filter"></i>&nbsp;Filter</button>
+                    </div>
+                </div>
+
+                <input type="hidden" name="event[id]" value="{{ event.id }}">
+                <h2 class="m-4"> {{ event.title }}</h2>
+                <hr>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Start Date</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="date" name="datestart" placeholder="Start at" value="{{ datestart }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">End Date</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="date" name="dateend" placeholder="End at" value="{{ dateend }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">User</label>
+                    </div>
+
+                    <div class="field-body">
+                        <div class="field">
+
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select name="page">
+                                        {% set last_reg = '' %}                                        
+                                        {% for u in users %}
+
+                                            {% if (last_reg != u.region) %}
+                                                </optgroup>
+                                                <optgroup label="{{u.region}}">
+                                                    <option value="All {{u.region}}">All for {{u.region}} -------------------------------------------------------------------------</option>
+                                            {% endif %}
+
+                                            {% if (last_com != u.company_name) %}
+                                                </optgroup>
+                                                <optgroup label="{{u.region}} - {{u.company_name}}">
+                                                    <option value="All company {{u.company_id}}">{{u.region}} - &nbsp;(All for {{u.company_name}})</option>
+                                            {% endif %}
+                                                    <option {{ (u.id == user_selected) ? 'selected' : '' }}>{{u.region}} - <strong>{{ u.company_name }}</strong> - {{ u.firstname }} {{ u.lastname }}</option>                                        
+                                            {% set last_reg = u.region %}
+                                            {% set last_com = u.company_name %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Page</label>
+                    </div>
+
+                    <div class="field-body">
+                        <div class="field">
+
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select name="page">
+                                        <option value="All" {{ event.region=='All'?'selected':null }}>All</option>
+                                        {% for page_el in pages %}
+                                            <option {{ (page==page_el) ? 'selected' : '' }}>{{ page_el }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Summarise by Region</label>
+                    </div>
+
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="is-fullwidth">
+                                    <input type="checkbox" name="summarise_by_region">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Summarise by Dealership</label>
+                    </div>
+
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="is-fullwidth">
+                                    <input type="checkbox" name="summarise_by_dealership">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Summarise by position</label>
+                    </div>
+
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="is-fullwidth">
+                                    <input type="checkbox" name="summarise_by_position">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <br>
+                <br>
+
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Page</th>
+                        <th>Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th>Northern</th>
+                            <td>John Smith </td>
+                            <td>Sales Guy</td>
+                            <td>home/about</td>
+                            <td>home/about</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
