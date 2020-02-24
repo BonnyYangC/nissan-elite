@@ -116,6 +116,13 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->post('/admin/users-save', \App\controller\backend\UsersController::class,'user_save')
     ->name('admin.users.save');
 
+\App\core\Route::Instance()
+    ->get('/admin/usage', \App\controller\backend\AdminController::class,'usage')
+    ->name('admin.usage');
+\App\core\Route::Instance()
+    ->post('/admin/usage', \App\controller\backend\AdminController::class,'usage')
+    ->name('admin.usage');
+
 /**
  * Routes for manage calendars
  */
