@@ -9,8 +9,8 @@
                         <h1>Page Usage</h1>
                     </div>
                     <div class="column">
-                        <button type="submit" class="button is-pulled-right" style="margin-right: 10px;"><i class="fa fa-download"></i>&nbsp;Export All</button>
-                        <button type="submit" class="button is-pulled-right" style="margin-right: 10px;"><i class="fa fa-filter"></i>&nbsp;Filter</button>
+                        <button type="submit" name="submit" class="button is-pulled-right" style="margin-right: 10px;" value="Export"><i class="fa fa-download"></i>&nbsp;Export All</button>
+                        <button type="submit" name="submit" class="button is-pulled-right" style="margin-right: 10px;" value="Filter"><i class="fa fa-filter"></i>&nbsp;Filter</button>
                     </div>
                 </div>
 
@@ -54,22 +54,28 @@
 
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select name="page">
+                                    <select name="user_selected">
+                                        <option value="All Users">All Users</option>
                                         {% set last_reg = '' %}                                        
                                         {% for u in users %}
 
                                             {% if (last_reg != u.region) %}
                                                 </optgroup>
-                                                <optgroup label="{{u.region}}">
-                                                    <option value="All {{u.region}}">All for {{u.region}} -------------------------------------------------------------------------</option>
+                                                <optgroup label="{{u.region}} -------------------------------------------------------------------------">
+                                                    <option value="All for {{u.region}}" {{ 'All for '~u.region == user_selected ? 'selected' : '' }}>All for {{u.region}} </option>                                                    
+                                                    {{ 'All for '~u.region }} == {{ user_selected }}
+                                                    
                                             {% endif %}
 
                                             {% if (last_com != u.company_name) %}
                                                 </optgroup>
                                                 <optgroup label="{{u.region}} - {{u.company_name}}">
-                                                    <option value="All company {{u.company_id}}">{{u.region}} - &nbsp;(All for {{u.company_name}})</option>
+                                                    <option value="All company {{u.company_id}}" {{ 'All company '~u.company_id == user_selected ? 'selected' : '' }} >{{u.region}} - &nbsp;(All for {{u.company_name}})</option>
+                                                    {{'All company '~u.company_id }} == {{ user_selected }}
+
                                             {% endif %}
-                                                    <option {{ (u.id == user_selected) ? 'selected' : '' }}>{{u.region}} - <strong>{{ u.company_name }}</strong> - {{ u.firstname }} {{ u.lastname }}</option>                                        
+                                                    <option {{ u.user_id == user_selected ? 'selected' : '' }} value="{{u.user_id}}">{{u.region}} - <strong>{{ u.company_name }}</strong> - {{ u.firstname }} {{ u.lastname }}</option>                                        
+
                                             {% set last_reg = u.region %}
                                             {% set last_com = u.company_name %}
                                         {% endfor %}
@@ -90,10 +96,10 @@
 
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select name="page">
-                                        <option value="All" {{ event.region=='All'?'selected':null }}>All</option>
+                                    <select name="page_selected">
+                                        <option value="" {{ event.region=='All'?'selected':null }}>All</option>
                                         {% for page_el in pages %}
-                                            <option {{ (page==page_el) ? 'selected' : '' }}>{{ page_el }}</option>
+                                            <option {{ (page_selected==page_el) ? 'selected' : '' }}>{{ page_el }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -104,46 +110,20 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Summarise by Region</label>
+                        <label class="label">Summarise by</label>
                     </div>
 
                     <div class="field-body">
                         <div class="field">
+
                             <div class="control">
-                                <div class="is-fullwidth">
-                                    <input type="checkbox" name="summarise_by_region">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Summarise by Dealership</label>
-                    </div>
-
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <div class="is-fullwidth">
-                                    <input type="checkbox" name="summarise_by_dealership">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Summarise by position</label>
-                    </div>
-
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <div class="is-fullwidth">
-                                    <input type="checkbox" name="summarise_by_position">
+                                <div class="select is-fullwidth">
+                                    <select name="summarise_by" >
+                                        <option value="">--</option>
+                                        <option {{ summarise_by == 'Region'     ? 'selected' : '' }}>Region</option>
+                                        <option {{ summarise_by == 'Dealership' ? 'selected' : '' }}>Dealership</option>
+                                        <option {{ summarise_by == 'Position'   ? 'selected' : '' }}>Position</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -160,21 +140,21 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Region</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Page</th>
-                        <th>Time</th>
+                        {% for heading in report_headings %}
+                            <th>
+                                {{ heading }}
+                            </th>
+                        {% endfor %}
                     </tr>
                     </thead>
                     <tbody>
-                    {% for user in users %}
+                    {% for row in report %}
                         <tr>
-                            <th>Northern</th>
-                            <td>John Smith </td>
-                            <td>Sales Guy</td>
-                            <td>home/about</td>
-                            <td>home/about</td>
+                            {% for field in row %}    
+                                <td>
+                                    {{ field }}
+                                </td>
+                            {% endfor %}
                         </tr>
                     {% endfor %}
                     </tbody>
