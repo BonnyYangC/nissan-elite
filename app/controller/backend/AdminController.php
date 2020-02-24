@@ -206,7 +206,6 @@ class AdminController extends BaseController
     }
 
     public function jump_to_dealer(){
-        print 'hello';
         $rsd = json_decode(session_get('region_staff_data_array'));
         return $this->response->redirect( env('dealerExcellence') .'/admin/mock/'. md5(rand()). '/'. base64_encode($rsd->id));
     }
@@ -865,7 +864,34 @@ class AdminController extends BaseController
                 END as region,                
                 company.company_name,
                 company.company_id,
-                users.position
+                CASE
+                    WHEN users.position='PM'  then 'Parts Manager'
+                    WHEN users.position='SM'  then 'Service Manager'
+                    WHEN users.position='SA'  then 'Service Advisor'
+                    WHEN users.position='R'   then 'Retail Sales Consultant'
+                    WHEN users.position='M'   then 'Sales Manager'
+                    WHEN users.position='F'   then 'Fleet Sales Manager'
+                    WHEN users.position='I'   then 'Finance & Insurance Manager'
+                    WHEN users.position='SC'  then 'Stock Controller'
+                    WHEN users.position='PS'  then 'Parts Sales Rep'
+                    WHEN users.position='C'   then 'Finance Controller'
+                    else users.position
+                END as position,
+                CASE
+                    WHEN users.position='PM'  then 'Parts'
+                    WHEN users.position='SM'  then 'Service'
+                    WHEN users.position='SA'  then 'Service'
+                    WHEN users.position='R'   then 'Sales'
+                    WHEN users.position='M'   then 'Sales'
+                    WHEN users.position='F'   then 'Sales'
+                    WHEN users.position='I'   then 'Admin'
+                    WHEN users.position='SC'  then 'Admin'
+                    WHEN users.position='PS'  then 'Parts'
+                    WHEN users.position='C'   then 'Admin'
+                    else users.position
+                END as department
+
+
             FROM 
                 users
             JOIN 
@@ -884,8 +910,12 @@ class AdminController extends BaseController
         $pages_data= [];
 
         foreach ($usage_lines as $line) {
+            //if (!preg_match('/Waugh/', $line)) continue;
+
             if (preg_match('/^(.*)\?/', $line, $matches)) {
                 $line = $matches[1];
+            } else {
+
             }
 
             if (preg_match('/^([^\s]*)\s(\{[^\{]*\})\s([^\s]*)$/', $line, $matches)) {
@@ -925,10 +955,11 @@ class AdminController extends BaseController
                 $region = $users_by_id[$json->id]['region'];
                 $dealership = $users_by_id[$json->id]['company_name'];
                 $position = $users_by_id[$json->id]['position'];
+                $department = $users_by_id[$json->id]['department'];
 
                 if ($summarise_by == 'Region')     $key = "$region|$page";
                 if ($summarise_by == 'Dealership') $key = "$region|$dealership|$page";
-                if ($summarise_by == 'Position')   $key = "$position|$page";
+                if ($summarise_by == 'Position')   $key = "$position|$department|$page";
                 if ($summarise_by) {
                     if (!isset($pages_data[$key])) {
                         $pages_data[$key] = 1;
@@ -940,6 +971,7 @@ class AdminController extends BaseController
                         $region,
                         $dealership,
                         $users_by_id[$json->id]['firstname'].' '.$users_by_id[$json->id]['lastname'],
+                        $department,
                         $position,
                         Carbon::createFromTimestamp($time,'Australia/Melbourne')->format('d-m-y H:i'),
                         $page
@@ -955,6 +987,8 @@ class AdminController extends BaseController
 
                     ];
                 }
+            } else {
+//                print $line;
             }
         }
 
@@ -972,15 +1006,11 @@ class AdminController extends BaseController
                     // 'page' => $summarise_by == 'Dealership' ? $arr[2] : $arr[1],
                     // 'count' => $p
                 //];
-
-                if ($summarise_by == 'Region')     $key = "$region|$page";
-                if ($summarise_by == 'Dealership') $key = "$region|$dealership|$page";
-                if ($summarise_by == 'Position')   $key = "$position|$page";
                 
                 $row = [];
                 $row[] = $arr[0];
                 $row[] = $arr[1];
-                if ($summarise_by == 'Dealership') $row[] = $arr[2];
+                if ($summarise_by == 'Dealership' || $summarise_by == 'Position') $row[] = $arr[2];
                 $row[] = $p;                
                 $report[] = $row;
             }
@@ -992,6 +1022,7 @@ class AdminController extends BaseController
         if ($summarise_by != 'Position')                                  $headings[] = 'Region';
         if ($summarise_by != 'Region' and $summarise_by != 'Position' )   $headings[] = 'Dealership';
         if ($summarise_by == '')                                          $headings[] = 'Name';
+        if ($summarise_by != 'Dealership' and $summarise_by != 'Region' ) $headings[] = 'Department';
         if ($summarise_by != 'Dealership' and $summarise_by != 'Region' ) $headings[] = 'Position';
         if ($summarise_by == '')                                          $headings[] = 'Time';
                                                                           $headings[] = 'Page';
