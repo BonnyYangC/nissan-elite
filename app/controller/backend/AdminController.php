@@ -23,6 +23,8 @@ use App\models\utils\RoleFactory;
 use Klein\Request;
 use Klein\Response;
 use App\models\utils\TableFieldMap as DbMap;
+use Carbon\Carbon;
+use League\Csv\Writer;
 
 class AdminController extends BaseController
 {
@@ -802,13 +804,13 @@ class AdminController extends BaseController
     }
 
     public function usage() {
+        $submit = $this->request->param('submit');
 
-        $this->dataForView['datestart'] = $this->request->param('datestart');
-        $this->dataForView['dateend'] = $this->request->param('dateend');
-        $this->dataForView['page'] = $this->request->param('page');
-        $this->dataForView['summarise_by_region']       = $this->request('summarise_by_region');
-        $this->dataForView['summarise_by_dealership']   = $this->request('summarise_by_dealership');
-        $this->dataForView['summarise_by_position']     = $this->request('summarise_by_position');
+        $datestart =    $this->dataForView['datestart']    = $this->request->param('datestart');
+        $dateend =      $this->dataForView['dateend']      = $this->request->param('dateend');
+        $user_selected =$this->dataForView['user_selected']= $this->request->param('user_selected');
+        $page_selected =$this->dataForView['page_selected']= $this->request->param('page_selected');
+        $summarise_by = $this->dataForView['summarise_by'] = $this->request->param('summarise_by');
 
         $usage = file_get_contents('../app/storage/log/usage_log');
         $usage_lines = explode("\n", $usage);
@@ -827,29 +829,9 @@ class AdminController extends BaseController
             '/^\/files/'
         ];
 
-        $users = $db->query( $q = "
-            SELECT 
-                users.user_id,
-                lastname, 
-                firstname,
-                CASE 
-                    WHEN company.region='N' THEN 'North'
-                    WHEN company.region='E' THEN 'East'
-                    WHEN company.region='W' THEN 'West'
-                    WHEN company.region='S' THEN 'South'
-                    ELSE 'No region'
-                END as region,
-                company.company_name,
-                company.company_id
-            FROM 
-                users
-            JOIN 
-                company ON users.company_id=company.company_id
-            where user_id in (". implode(',',$user_ids) .")
-            ORDER BY 
-                company.region, company.company_name, firstname, lastname
-        ")->fetchAll();
+        $pages_data= '';
 
+        // this pass get all pages
         foreach ($usage_lines as $line) {
             if (preg_match('/^(.*)\?/', $line, $matches)) {
                 $line = $matches[1];
@@ -863,23 +845,181 @@ class AdminController extends BaseController
                 }
 
                 $json = json_decode($user);                
-
                 if (!in_array($page, $pages)) $pages[] = $page;
-
                 if (!in_array($json->id, $user_ids)) $user_ids[] = $json->id;
-            }
-
-            if ($this->request('summarise_by_region')) {
-                $key = '';
-
             }
         }
         sort($pages);
 
-        $this->dataForView['users'] = $users;
-        $this->dataForView['pages'] = $pages;
+        $users = $db->query( $q = "
+            SELECT 
+                users.user_id,
+                lastname, 
+                firstname,
+                CASE 
+                    WHEN company.region='N' THEN 'Northern Region'
+                    WHEN company.region='E' THEN 'Eastern Region'
+                    WHEN company.region='W' THEN 'Western and Central Region'
+                    WHEN company.region='S' THEN 'Southern Region'
+                    ELSE '(Head Office)'
+                END as region,                
+                company.company_name,
+                company.company_id,
+                users.position
+            FROM 
+                users
+            JOIN 
+                company ON users.company_id=company.company_id
+            where user_id in (". implode(',',$user_ids) .")
+            ORDER BY 
+                company.region, company.company_name, firstname, lastname
+        ")->fetchAll();
 
-        $this->render('backend/users/usage');
-        return;
+        $users_by_id = [];
+        foreach ($users  as $u) {
+            $users_by_id[$u['user_id']] = $u;
+
+        }
+
+        $pages_data= [];
+
+        foreach ($usage_lines as $line) {
+            if (preg_match('/^(.*)\?/', $line, $matches)) {
+                $line = $matches[1];
+            }
+
+            if (preg_match('/^([^\s]*)\s(\{[^\{]*\})\s([^\s]*)$/', $line, $matches)) {
+
+                list($all, $time, $user, $page) = $matches;
+
+                if ($page == '/') continue 1;
+
+                foreach ($excludes as $ex) {
+                    if (preg_match($ex, $page)) continue 2;
+                }
+
+                $json = json_decode($user);                
+
+                if ($user_selected > 0) {  // filter by user
+                    if ($json->id != $user_selected) continue;
+
+                } elseif (preg_match('/All company (\d*)$/', $user_selected, $matches)) {
+                    if ($users_by_id[$json->id]['company_id'] != $matches[1]) continue;
+
+                } elseif (preg_match('/All for (.*)$/', $user_selected, $matches)) {  // filter by region
+                    if ($users_by_id[$json->id]['region'] != $matches[1]) continue;
+                }
+
+                if ($page_selected && $page_selected != $page) continue;  // filter by page
+
+                if (strtotime($datestart) > $time) {
+//print date('r', strtotime($datestart)) .'>'. date('r', $time) ."<br>";                   
+                }
+
+                if ($datestart && strtotime($datestart) > $time) continue;
+                if ($dateend   && strtotime($dateend)+86400 < $time) continue;   // add a day for inclusive date range 
+
+                if (!in_array($page, $pages)) $pages[] = $page;                 // for pages selector
+                if (!in_array($json->id, $user_ids)) $user_ids[] = $json->id;   // for list of users selector
+
+                $region = $users_by_id[$json->id]['region'];
+                $dealership = $users_by_id[$json->id]['company_name'];
+                $position = $users_by_id[$json->id]['position'];
+
+                if ($summarise_by == 'Region')     $key = "$region|$page";
+                if ($summarise_by == 'Dealership') $key = "$region|$dealership|$page";
+                if ($summarise_by == 'Position')   $key = "$position|$page";
+                if ($summarise_by) {
+                    if (!isset($pages_data[$key])) {
+                        $pages_data[$key] = 1;
+                    } else {
+                        $pages_data[$key]++;
+                    }
+                } else {
+                    $report[] = [
+                        $region,
+                        $dealership,
+                        $users_by_id[$json->id]['firstname'].' '.$users_by_id[$json->id]['lastname'],
+                        $position,
+                        Carbon::createFromTimestamp($time,'Australia/Melbourne')->format('d-m-y H:i'),
+                        $page
+                        
+
+                        // 'name' => $users_by_id[$json->id]['firstname'].' '.$users_by_id[$json->id]['lastname'],
+                        // 'position' => $position,
+                        // 'dealership' => $dealership,
+                        // 'region' => $region,
+                        // 'page' => $page,
+                        // 'dealership' => $deakership,
+                        // 'time' => date('d-m-y H:i')
+
+                    ];
+                }
+            }
+        }
+
+
+        if ($this->request->param('summarise_by')) {
+            ksort($pages_data);
+            $report = [];
+            foreach ($pages_data as $key=>$p) {
+                $arr = explode('|', $key);
+
+                //$report[] = [
+                    // 'region' => $arr[0],
+                    // 'dealership' => $arr[1],
+                    // 'position' => $arr[0],
+                    // 'page' => $summarise_by == 'Dealership' ? $arr[2] : $arr[1],
+                    // 'count' => $p
+                //];
+
+                if ($summarise_by == 'Region')     $key = "$region|$page";
+                if ($summarise_by == 'Dealership') $key = "$region|$dealership|$page";
+                if ($summarise_by == 'Position')   $key = "$position|$page";
+                
+                $row = [];
+                $row[] = $arr[0];
+                $row[] = $arr[1];
+                if ($summarise_by == 'Dealership') $row[] = $arr[2];
+                $row[] = $p;                
+                $report[] = $row;
+            }
+        }
+      
+
+        $headings = [];
+
+        if ($summarise_by != 'Position')                                  $headings[] = 'Region';
+        if ($summarise_by != 'Region' and $summarise_by != 'Position' )   $headings[] = 'Dealership';
+        if ($summarise_by == '')                                          $headings[] = 'Name';
+        if ($summarise_by != 'Dealership' and $summarise_by != 'Region' ) $headings[] = 'Position';
+        if ($summarise_by == '')                                          $headings[] = 'Time';
+                                                                          $headings[] = 'Page';
+        if ($summarise_by != '')                                          $headings[] = 'Count';
+
+        if ($submit == 'Export') {
+            $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+            $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'nissan_admin_'.$today->format('d_M_Y').'.csv';
+            $fileStream = fopen($filePath,'w');
+
+            $writer = Writer::createFromStream($fileStream);
+
+            $writer->insertOne(implode(',',$headings));
+            $writer->insertAll($report);
+
+            fclose($fileStream);
+
+            $this->response->file($filePath,null,'csv');
+            return;
+        } else {
+            $this->dataForView['report_headings'] = $headings;
+            $this->dataForView['report'] = $report;
+            $this->dataForView['users'] = $users;
+            $this->dataForView['user_selected'] = $user_selected;
+            $this->dataForView['pages'] = $pages; //a list of all pages
+
+            $this->render('backend/users/usage');
+            return;
+        }
     }
 }
