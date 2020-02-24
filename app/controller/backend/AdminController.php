@@ -802,6 +802,11 @@ class AdminController extends BaseController
         dump($count);
     }
 
+    /**
+     * Usage Log - this is a route
+     * @param none
+     * @return null
+     */
     public function usage() {
         $submit = $this->request->param('submit');
 
@@ -910,8 +915,6 @@ class AdminController extends BaseController
                     WHEN users.position='HEAD OFFICE' then 'Nissan AU'
                     else users.position
                 END as department
-
-
             FROM 
                 users
             JOIN 
@@ -924,18 +927,14 @@ class AdminController extends BaseController
         $users_by_id = [];
         foreach ($users  as $u) {
             $users_by_id[$u['user_id']] = $u;
-
         }
 
         $pages_data= [];
 
         foreach ($usage_lines as $line) {
-            //if (!preg_match('/Waugh/', $line)) continue;
 
             if (preg_match('/^(.*)\?/', $line, $matches)) {
                 $line = $matches[1];
-            } else {
-
             }
 
             if (preg_match('/^([^\s]*)\s(\{[^\{]*\})\s([^\s]*)$/', $line, $matches)) {
@@ -961,10 +960,6 @@ class AdminController extends BaseController
                 }
 
                 if ($page_selected && $page_selected != $page) continue;  // filter by page
-
-                if (strtotime($datestart) > $time) {
-//print date('r', strtotime($datestart)) .'>'. date('r', $time) ."<br>";                   
-                }
 
                 if ($datestart && strtotime($datestart) > $time) continue;
                 if ($dateend   && strtotime($dateend)+86400 < $time) continue;   // add a day for inclusive date range 
@@ -995,37 +990,16 @@ class AdminController extends BaseController
                         $position,
                         Carbon::createFromTimestamp($time,'Australia/Melbourne')->format('d-m-y H:i'),
                         $page
-                        
-
-                        // 'name' => $users_by_id[$json->id]['firstname'].' '.$users_by_id[$json->id]['lastname'],
-                        // 'position' => $position,
-                        // 'dealership' => $dealership,
-                        // 'region' => $region,
-                        // 'page' => $page,
-                        // 'dealership' => $deakership,
-                        // 'time' => date('d-m-y H:i')
-
                     ];
                 }
-            } else {
-//                print $line;
             }
         }
-
 
         if ($this->request->param('summarise_by')) {
             ksort($pages_data);
             $report = [];
             foreach ($pages_data as $key=>$p) {
                 $arr = explode('|', $key);
-
-                //$report[] = [
-                    // 'region' => $arr[0],
-                    // 'dealership' => $arr[1],
-                    // 'position' => $arr[0],
-                    // 'page' => $summarise_by == 'Dealership' ? $arr[2] : $arr[1],
-                    // 'count' => $p
-                //];
                 
                 $row = [];
                 $row[] = $arr[0];
@@ -1034,8 +1008,7 @@ class AdminController extends BaseController
                 $row[] = $p;                
                 $report[] = $row;
             }
-        }
-      
+        }      
 
         $headings = [];
 
