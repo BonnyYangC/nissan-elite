@@ -875,6 +875,16 @@ class AdminController extends BaseController
                     WHEN users.position='SC'  then 'Stock Controller'
                     WHEN users.position='PS'  then 'Parts Sales Rep'
                     WHEN users.position='C'   then 'Finance Controller'
+                    WHEN users.position='NFSA' then 'Head Office'
+                    WHEN users.position='DSM' then 'Region Staff'
+                    WHEN users.position='RGM' then 'Region Staff'
+                    WHEN users.position='ROA' then 'Region Staff'
+                    WHEN users.position='FOM' then 'Region Staff'
+                    WHEN users.position='FDM' then 'Region Staff'
+                    WHEN users.position='DSM' then 'Region Staff'
+                    WHEN users.position='DTS' then 'Region Staff'
+                    WHEN users.position='RAM' then 'Region Staff'
+                    WHEN users.position='HEAD OFFICE' then 'Head Office'
                     else users.position
                 END as position,
                 CASE
@@ -888,6 +898,16 @@ class AdminController extends BaseController
                     WHEN users.position='SC'  then 'Admin'
                     WHEN users.position='PS'  then 'Parts'
                     WHEN users.position='C'   then 'Admin'
+                    WHEN users.position='NFSA' then 'Nissan AU'
+                    WHEN users.position='DSM' then 'Nissan AU'
+                    WHEN users.position='RGM' then 'Nissan AU'
+                    WHEN users.position='ROA' then 'Nissan AU'
+                    WHEN users.position='FOM' then 'Nissan AU'
+                    WHEN users.position='FDM' then 'Nissan AU'
+                    WHEN users.position='DSM' then 'Nissan AU'
+                    WHEN users.position='DTS' then 'Nissan AU'
+                    WHEN users.position='RAM' then 'Nissan AU'
+                    WHEN users.position='HEAD OFFICE' then 'Nissan AU'
                     else users.position
                 END as department
 
@@ -898,7 +918,7 @@ class AdminController extends BaseController
                 company ON users.company_id=company.company_id
             where user_id in (". implode(',',$user_ids) .")
             ORDER BY 
-                company.region, company.company_name, firstname, lastname
+                company.region, company.company_name, firstname, lastname     
         ")->fetchAll();
 
         $users_by_id = [];
