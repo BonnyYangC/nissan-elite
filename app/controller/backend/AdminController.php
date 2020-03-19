@@ -837,7 +837,7 @@ class AdminController extends BaseController
 
         // this pass get all pages
         foreach ($usage_lines as $line) {
-            if (preg_match('/^(.*)\?/', $line, $matches)) {
+            if (preg_match('/^(.*)\?/', $line, $matches)) {  // strip off ?query part of url
                 $line = $matches[1];
             }
 
