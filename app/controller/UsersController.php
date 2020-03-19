@@ -298,4 +298,8 @@ class UsersController extends Controller
             'email'=>configuration('ADMIN_USER',false)
         ]);
     }
+
+    public function reg2020(){
+        $this->response->redirect('https://destination.eventsair.com/nissan-ielite-2020-program/registration')->send();
+    }
 }
