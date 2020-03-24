@@ -307,12 +307,12 @@ class UsersController extends Controller
         $url = env('SITE_URL');
 
         $fy2020_sites = [
-            'http://nissan-elite.test/'          => 'http://fy2020.nissan-elite.test',
-            'http://fy2020.nissan-elite.test/'   => 'http://fy2020.nissan-elite.test',
-            'http://staging.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au',
-            'http://staging-fy2020.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au',
-            'http://nissanelite.com.au/'         => 'http://fy2020.nissanelite.com.au',
-            'http://fy2020.nissanelite.com.au/'  => 'http://fy2020.nissanelite.com.au'
+            'http://nissan-elite.test/'          => 'http://fy2020.nissan-elite.test/elite_individual',
+            'http://fy2020.nissan-elite.test/'   => 'http://fy2020.nissan-elite.test/elite_individual',
+            'http://staging.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au/elite_individual',
+            'http://staging-fy2020.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au/elite_individual',
+            'http://nissanelite.com.au/'         => 'http://fy2020.nissanelite.com.au/elite_individual',
+            'http://fy2020.nissanelite.com.au/'  => 'http://fy2020.nissanelite.com.au/elite_individual'
         ];
 
         if (        isset($fy2020_sites[env('SITE_URL')])) {
