@@ -286,6 +286,11 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
     ->get('/reg2020',\App\controller\UsersController::class, 'reg2020')
     ->name('reg2020');
 
+\App\core\Route::Instance()
+    ->get('/fy2020',\App\controller\UsersController::class, 'fy2020')
+    ->name('fy2020');
+
+
 file_put_contents('../app/storage/log/usage_log', time() .' '. print_r(session_get('user_data_array'),1) .' '. $_SERVER['REQUEST_URI'] ."\n",8);
 
 \App\core\Route::Instance()->dispatch();
