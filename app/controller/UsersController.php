@@ -311,7 +311,7 @@ class UsersController extends Controller
             'http://fy2020.nissan-elite.test/'   => 'http://fy2020.nissan-elite.test',
             'http://staging.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au',
             'http://staging-fy2020.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au',
-            'http://nissanelite.com.au/'         => 'http://fy2020.nissanelite.com.au'
+            'http://nissanelite.com.au/'         => 'http://fy2020.nissanelite.com.au',
             'http://fy2020.nissanelite.com.au/'  => 'http://fy2020.nissanelite.com.au'
         ];
 
