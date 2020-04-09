@@ -60,6 +60,8 @@
                     {{ configuration('PROGRAM_AWARD_UNIT')|lower }} earned per Month (View Individual Results)
                 </a>
             </h3>
+
+            <!-- points earned per month -->
             {% if userHasMultipleRoles %}
                 {% include 'dashboard/widget_element/credits_earned/multiple_roles.twig' %}
             {% else %}
