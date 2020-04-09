@@ -302,4 +302,27 @@ class UsersController extends Controller
     public function reg2020(){
         $this->response->redirect('https://destination.eventsair.com/nissan-ielite-2020-program/registration')->send();
     }
+
+    public function fy2020(){
+        $url = env('SITE_URL');
+
+        $fy2020_sites = [
+            'http://nissan-elite.test/'          => 'http://fy2020.nissan-elite.test/elite_individual',
+            'http://fy2020.nissan-elite.test/'   => 'http://fy2020.nissan-elite.test/elite_individual',
+            'http://staging.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au/elite_individual',
+            'http://staging-fy2020.nissanelite.com.au/' => 'http://staging-fy2020.nissanelite.com.au/elite_individual',
+            'http://nissanelite.com.au/'         => 'http://fy2020.nissanelite.com.au/elite_individual',
+            'http://www.nissanelite.com.au/'     => 'http://fy2020.nissanelite.com.au/elite_individual',
+            'http://fy2020.nissanelite.com.au/'  => 'http://fy2020.nissanelite.com.au/elite_individual'
+        ];
+
+        if (        isset($fy2020_sites[env('SITE_URL')])) {
+            $fy2020_url = $fy2020_sites[env('SITE_URL')];
+        } else {
+            print __FILE__ .' '.__LINE__;
+            dd($url);
+        }
+
+        $this->response->redirect($fy2020_url)->send();
+    }    
 }
