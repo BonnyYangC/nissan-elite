@@ -137,9 +137,9 @@ class SalesManager extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<11; $i++)//only show from May to Mar
+        for($i=0; $i<12; $i++)//only show from May to Mar
         {
-            $period=mktime(0,0,0,5+$i,1,$ytdParam);
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
 
