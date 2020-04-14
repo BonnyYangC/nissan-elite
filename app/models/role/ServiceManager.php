@@ -58,7 +58,7 @@ class ServiceManager extends BaseRole implements IRole
          */
         $startPoint = $this->startPoint;
 
-        for($i=0; $i<11; $i++) //only show from May to Mar
+        for($i=0; $i<12; $i++) 
         {
             $key = $startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -135,9 +135,9 @@ class ServiceManager extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<11; $i++) //only show from May to Mar
+        for($i=0; $i<12; $i++) 
         {
-            $period=mktime(0,0,0,5+$i,1,$ytdParam);
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;

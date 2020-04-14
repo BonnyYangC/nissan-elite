@@ -61,7 +61,7 @@ class FinanceController extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $financial=$frequency_results=$ontime_results=$quality=$balance_results=$submission_results=$management=$checklist_results=$meeting_results=$training=[];
-        for($i=0; $i<11; $i++) //only show from May to Mar
+        for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -136,7 +136,7 @@ class FinanceController extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<11; $i++)//only show from May to Mar
+        for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,5+$i,1,$ytdParam);
 
