@@ -15,27 +15,27 @@
             },
             { //2. Salesperson Satisfaction NPS 6 month Rolling Score
                 el: 'chart-salesperson-satisfaction',
-                max: 5000,
+                max: 900,
                 length: 10,
-                step: 500,
+                step: 100,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_salespersonSatisfaction)|raw }}
             },
             { //3. Kept informed of delivery NPS 3 month rolling score - Target 88
                 el: 'chart-kept-informed',
-                max: 275,
-                length: 25,
-                step: 25,
+                max: 305,
+                length: 5,
+                step: 62,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_keptInformedDelivery)|raw }}
             },
             { //4. Satisfaction with follow up NPS 6 month rolling score - Target 93
                 el: 'chart-followup',
-                max: 100,
-                length: 10,
-                step: 20,
+                max: 175,
+                length: 7,
+                step: 25,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_followUpSatisfaction)|raw }}
@@ -43,8 +43,8 @@
             { //5. training
                 el: 'chart-training',
                 max: 3000,
-                length: 12,
-                step: 250,
+                length: 6,
+                step: 500,
                 colors: ['#111111' ,'#c40030','#3273dc'],
                 pilot: ['Month', 'Online' ,'Pathway','Competency'],
                 isStacked: true,
@@ -88,14 +88,46 @@
                             <td align="center">Fleet</td>
                         </tr>
                         <tr class="active">
-                            <td>Category A & B </td>
+                            <td>Category A &amp; B </td>
                             <td align="center">80</td>
                             <td align="center">80</td>
                         </tr>
                         <tr class="active">
                             <td>Category C </td>
-                            <td align="center">100</td>
-                            <td align="center">100</td>
+                            <td align="center">160</td>
+                            <td align="center">160</td>
+                        </tr>
+                    </table>
+
+                    <h3>NEW VEHICLE TARGET ACHIEVEMENT GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Retail Sales Member</td>
+                            <td>100%</td>
+                            <td>110%</td>
+                            <td>120%</td>
+                            <td>140%</td>
+                        </tr>
+                        <tr>
+                            <td>Category A</td>
+                            <td>820</td>
+                            <td>1020</td>
+                            <td>1220</td>
+                            <td>1620</td>
+                        </tr>
+                        <tr>
+                            <td>Category B</td>
+                            <td>820</td>
+                            <td>920</td>
+                            <td>1020</td>
+                            <td>1220</td>
+                        </tr>
+                        <tr>
+                            <td>Category C</td>
+                            <td>820</td>
+                            <td>920</td>
+                            <td>1020</td>
+                            <td>1220</td>
                         </tr>
                     </table>
                 </div>
@@ -115,22 +147,27 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Salesperson Satisfaction <br>NPS 6 month Rolling Score Guide</h3>
+                    <h3>Sales overall satisfaction NPS 3 month<br>rolling score GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
-                            <td>Sales Member</td>
-                            <td align="center">88-91.9</td>
-                            <td align="center">≥92</td>
+                            <td>Retail Sales Member</td>
+                            <td align="center">≥88</td>
+                            <td align="center">≥89</td>
                         </tr>
                         <tr class="active">
-                            <td>Category A & B</td>
-                            <td align="center">50%</td>
-                            <td align="center">100%</td>
+                            <td>Category A</td>
+                            <td align="center">450</td>
+                            <td align="center">900</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">450</td>
+                            <td align="center">900</td>
                         </tr>
                         <tr class="active">
                             <td>Category C</td>
-                            <td align="center">60%</td>
-                            <td align="center">120%</td>
+                            <td align="center">450</td>
+                            <td align="center">900</td>
                         </tr>
                     </table>
                 </div>
@@ -150,19 +187,23 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Kept informed of delivery <br>NPS 6 month rolling score Guide</h3>
+                    <h3>Kept informed of delivery NPS 3<br>month rolling score Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>
-                            <td align="center">100% of FY19 Target(88)</td>
+                            <td align="center">100% of FY20 Target(88)</td>
                         </tr>
                         <tr class="active">
-                            <td>Category A & B</td>
-                            <td align="center">275</td>
+                            <td>Category A</td>
+                            <td align="center">305</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category B</td>
+                            <td align="center">305</td>
                         </tr>
                         <tr class="active">
                             <td>Category C</td>
-                            <td align="center">275</td>
+                            <td align="center">305</td>
                         </tr>
                     </table>
                 </div>
@@ -182,26 +223,26 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Satisfaction with follow up <br>NPS 6 month rolling score Guide</h3>
+                    <h3>Percentage Followed Up NPS<br>3 month rolling score Guide </h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>
-                            <td align="center">100% of FY19 Target(93)</td>
+                            <td align="center">100% of FY20 Target(89)</td>
                         </tr>
                         <tr class="active">
                             <td>Category A &amp; B</td>
-                            <td align="center">100</td>
+                            <td align="center">175</td>
                         </tr>
                         <tr class="active">
                             <td>Category C</td>
-                            <td align="center">100</td>
+                            <td align="center">175</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
-                    <h3>5. TRAINING</h3>
+                    <h3>5. TRAINING GUIDE - RETAIL SALES CONSULTANT</h3>
                     <div class="table-responsive">
                         <div id="chart-training" class="metrics-chart-wrap"></div>
                     </div>
