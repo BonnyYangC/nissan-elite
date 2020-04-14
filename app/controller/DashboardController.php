@@ -259,7 +259,7 @@ class DashboardController extends BaseController
             $user = new User($this->currentUserId);
             $this->userObject = $user;
         }
-        $this->dataForView['currentUri'] = 'dashboard';
+        $this->dataForView['currentUri'] = 'Lifetime';
 
         /**
          * Get Data
