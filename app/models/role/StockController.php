@@ -59,7 +59,7 @@ class StockController extends BaseRole implements IRole
     public function getMetrics($data){
         $stock=$stock_results=$ow=$ow_results=$retail=$retail_results=$matched=$matched_results=$davo=$davo_results=$training=[];
 
-        for($i=0; $i<11; $i++) //only show from May to Mar
+        for($i=0; $i<12; $i++) 
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
@@ -130,9 +130,9 @@ class StockController extends BaseRole implements IRole
         $aryCredits = $data['Credits'];
         $dataResults = $data['Results'];
 
-        for($i=0; $i<11; $i++)
+        for($i=0; $i<12; $i++)
         {
-            $period=mktime(0,0,0,5+$i,1,$ytdParam);//only show from May to Mar
+            $period=mktime(0,0,0,4+$i,1,$ytdParam);
 
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($dataResults[$key]) ? $dataResults[$key] : null;
