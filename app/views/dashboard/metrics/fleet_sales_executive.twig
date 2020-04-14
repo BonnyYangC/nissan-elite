@@ -14,18 +14,18 @@
             },
             { //2. New Vehicle Fleet Sales v Fleet Target
                 el: 'chart-v-fleet-target',
-                max: 5000,
+                max: 2000,
                 length: 10,
-                step: 500,
+                step: 200,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_vFleetTarget)|raw }}
             },
             { //3. Fleet Sales Volume Growth
                 el: 'chart-fleet-volume-growth',
-                max: 60,
-                length: 6,
-                step: 10,
+                max: 1000,
+                length: 5,
+                step: 200,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_fleetVolumeGrowth)|raw }}
