@@ -16,7 +16,7 @@
                             <div class="panel-heading"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <strong>How and when do I have to register?</strong></a></div>
                             <div id="collapseOne" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <p>Members must register once every program year. 2019 program starts 1 May 2019 – 31 March 2020 at <a href="{{ configuration('eventRegisterUrl') }}">www.nissan-events.com.au/nissanelite/reg</a>.</p>
+                                    <p>Members must register once every program year. {{ configuration('YEAR') }} program starts 1 May {{ configuration('YEAR') }} – 31 March {{ configuration('YEAR')+1 }} at <a href="{{ configuration('eventRegisterUrl') }}">www.nissan-events.com.au/nissanelite/reg</a>.</p>
                                 </div>
                             </div>
                         </div>
