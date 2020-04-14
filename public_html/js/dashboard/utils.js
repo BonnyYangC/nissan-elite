@@ -64,8 +64,7 @@ google.setOnLoadCallback(drawCharts);
 $(document).ready(function(){
     if(typeof CREDITS_EARNED_METRICS !== 'undefined'){
         var barChartData = {
-            // labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December" , "January", "February", "March"],
-            labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" , "Jan", "Feb", "Mar"], //take off APR as requirement
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" , "Jan", "Feb", "Mar"],            
             datasets: CREDITS_EARNED_METRICS
         };
         window.onload = function() {
