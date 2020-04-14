@@ -45,8 +45,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
         // TODO: Implement getDashboardViewData() method.
         $ytd = 0;
         $dataResults = $data['Results'];
-//        dd($dataResults);
-        for($i=0; $i<12; $i++)//only show from May to Mar
+        for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
 
@@ -129,7 +128,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $new=$salespersonSatisfactionScore=$followUpSatisfactionScore=$keptInformedDeliveryScore=$training=$sales_results=$salespersonSatisfaction=$followUpSatisfaction=$keptInformedDelivery=[];
-        for($i=0; $i<11; $i++) //only show from May to Mar
+        for($i=0; $i<11; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;

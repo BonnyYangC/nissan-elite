@@ -35,7 +35,7 @@ class PartsSalesRep extends BaseRole implements IRole
     public function getMetrics($data){
         $grp=$grp_results=$training=[];
 
-        for($i=0; $i<12; $i++) //only show from May to Mar
+        for($i=0; $i<12; $i++) 
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;

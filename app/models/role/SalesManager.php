@@ -48,7 +48,7 @@ class SalesManager extends BaseRole implements IRole
         $matched=$new=$sos=$sos_results=$retail=$training=$matched_results=$sales_results=$kid=$kid_results=$retail_results=$apnur=[];
         //$apnur = [[],[],[]];
 
-        for($i=0; $i<12; $i++) //only show from May to Mar
+        for($i=0; $i<12; $i++) 
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
