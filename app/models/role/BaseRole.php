@@ -80,7 +80,7 @@ class BaseRole extends BaseModel
     {
         parent::__construct();
         $this->user = $user;
-        $this->startPoint = Carbon::createFromDate(configuration('YEAR'),4,1,env('DEFAULT_TIMEZONE'));
+        $this->startPoint = Carbon::createFromDate(configuration('YEAR'),3,1,env('DEFAULT_TIMEZONE'));
     }
 
     /**
