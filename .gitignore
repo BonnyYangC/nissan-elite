@@ -10,3 +10,4 @@
 /public_html/images/incentives/images
 .DS_Store
 *.sql
+app/storage/log/usage_log

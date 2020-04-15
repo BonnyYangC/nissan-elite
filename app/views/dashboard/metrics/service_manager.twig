@@ -3,43 +3,80 @@
     <script>
         var yAxis = "{{ configuration('PROGRAM_AWARD_UNIT')}}";
         var CHART_DATA = [
-            {//1. Service overall satisfaction NPS 3 month rolling score - Target 78
+            {//1. Overall satisfaction NPS R3M
                 el: 'chart-recommendation',
-                max: 730,
+                max: 625, // previously 730
                 length: 5,
-                step: 365,
+                step: 125, // previously 365,
                 colors: ['#999999', '#555555' ,'#c40030' ,'#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RECOMMENDATION)|raw }}
             },
-            {//2. Value for money NPS 6 month rolling score - Target 68
-                el: 'chart-clean',
-                max: 730,
-                length: 5,
-                step: 365,
-                colors: ['#c40030'],
-                pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.CLEAN)|raw }}
-            },
-            {//3. F1 (Fixed it right first time) NPS 3 month rolling score - Target 79
+            // retired for FY2020
+            {#{//2. Value for money NPS 6 month rolling score - Target 68#}
+            {#    el: 'chart-clean',#}
+            {#    max: 730,#}
+            {#    length: 5,#}
+            {#    step: 365,#}
+            {#    colors: ['#c40030'],#}
+            {#    pilot: ['Month', yAxis],#}
+            {#    dataSource: {{ json_encode(metrics.CLEAN)|raw }}#}
+            {#},#}
+            {//2. F1 (Fixed it right first time) NPS 3 month rolling score
                 el: 'chart-follow-up',
-                max: 730,
+                max: 425,// previously 730,
                 length: 5,
-                step: 365,
+                step: 85, //prevously 365,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.FOLLOWUP)|raw }}
             },
+            {//3. Explanation of costs NPS R3M
+                el: 'chart_explanation',
+                max: 460,
+                length: 5,
+                step: 112,
+                colors: ['#555555'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+            },
             {//4. Customer Paid Repair Orders vs Target Monthly Target
                 el: 'chart_customer_paid_repair',
-                max: 730,
+                max: 355,
                 length: 5,
-                step: 365,
+                step: 71,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }}
             },
-            {//5. Training
+            {//5. Retention %
+                el: 'chart_retention',
+                max: 355,
+                length: 5,
+                step: 71,
+                colors: ['#555555'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+            },
+            {//6. Brake and Wiper Parts Sales per CPRO
+                el: 'chart_brake_wiper_sales',
+                max: 355,
+                length: 5,
+                step: 71,
+                colors: ['#555555'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+            },
+            {//7. Loyalty per Loyalty Sales
+                el: 'chart_loyalty',
+                max: 800,
+                length: 5,
+                step: 160,
+                colors: ['#555555'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+            },
+            {//8. Training
                 el: 'chart-training',
                 duration: 2000,
                 pilot: ['Month', 'Online', 'Pathway','Competency','Bonus'],
@@ -66,7 +103,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="row graph-back-top">
                 <div class="col-md-7">
-                    <h3>1. Service overall satisfaction NPS 3 month rolling score</h3>
+                    <h3>1. Overall satisfaction NPS R3M</h3>
                     <div class="table-responsive">
                         <div id="chart-recommendation" class="metrics-chart-wrap">
                         </div>
@@ -90,50 +127,50 @@
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
-                            <td align="center">375</td>
-                            <td align="center">580</td>
-                            <td align="center">730</td>
+                            <td align="center">225</td>
+                            <td align="center">425</td>
+                            <td align="center">625</td>
                         </tr>
                     </table>
-                    <p><em>(current target set at 78)</em></p>
+                    <p><em>(refer to the member guide for Quarterly Targets)</em></p>
                 </div>
             </div>
+            {#            <div class="row graph-back">#}
+            {#                <div class="col-md-7">#}
+            {#                    <h3>2. Value for money NPS 6 month rolling score</h3>#}
+            {#                    <div class="table-responsive">#}
+            {#                        <div class="metrics-chart-wrap" id="chart-clean"></div>#}
+            {#                        <table class="table table-condensed metrics-table-wrap">#}
+            {#                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}#}
+            {#                            <tr>#}
+            {#                                <td class="nissangray-light-back">RESULT</td>#}
+            {#                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CLEAN_RESULTS } %}#}
+            {#                            </tr>#}
+            {#                        </table>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <div class="col-md-5">#}
+            {#                    <h3>Value for money <br>NPS 6 month rolling score Guide</h3>#}
+            {#                    <table class="table small-table">#}
+            {#                        <tr class="table-top-row">#}
+            {#                            <td>Service Manager</td>#}
+            {#                            <td align="center">100-109.9%</td>#}
+            {#                            <td align="center">110-119.9%</td>#}
+            {#                            <td align="center">≥120%</td>#}
+            {#                        </tr>#}
+            {#                        <tr class="active">#}
+            {#                            <td>Category A, B, C</td>#}
+            {#                            <td align="center">375</td>#}
+            {#                            <td align="center">580</td>#}
+            {#                            <td align="center">730</td>#}
+            {#                        </tr>#}
+            {#                    </table>#}
+            {#                    <p><em>(current target set at 68)</em></p>#}
+            {#                </div>#}
+            {#            </div>#}
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>2. Value for money NPS 6 month rolling score</h3>
-                    <div class="table-responsive">
-                        <div class="metrics-chart-wrap" id="chart-clean"></div>
-                        <table class="table table-condensed metrics-table-wrap">
-                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
-                            <tr>
-                                <td class="nissangray-light-back">RESULT</td>
-                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.CLEAN_RESULTS } %}
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <h3>Value for money <br>NPS 6 month rolling score Guide</h3>
-                    <table class="table small-table">
-                        <tr class="table-top-row">
-                            <td>Service Manager</td>
-                            <td align="center">100-109.9%</td>
-                            <td align="center">110-119.9%</td>
-                            <td align="center">≥120%</td>
-                        </tr>
-                        <tr class="active">
-                            <td>Category A, B, C</td>
-                            <td align="center">375</td>
-                            <td align="center">580</td>
-                            <td align="center">730</td>
-                        </tr>
-                    </table>
-                    <p><em>(current target set at 68)</em></p>
-                </div>
-            </div>
-            <div class="row graph-back">
-                <div class="col-md-7">
-                    <h3>3. F1 (Fixed it right first time) NPS 3 month rolling score</h3>
+                    <h3>2. F1 (Fixed it right first time) %yes NPS R3M</h3>
                     <div class="table-responsive">
                         <div id="chart-follow-up" class="metrics-chart-wrap">
                         </div>
@@ -147,7 +184,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>F1 (Fixed it right first time) <br>NPS 3 month rolling score GUIDE</h3>
+                    <h3>F1 (Fixed it right first time) <br>%yes NPS R3M</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Manager</td>
@@ -157,12 +194,44 @@
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
-                            <td align="center">375</td>
-                            <td align="center">600</td>
-                            <td align="center">730</td>
+                            <td align="center">225</td>
+                            <td align="center">325</td>
+                            <td align="center">425</td>
                         </tr>
                     </table>
-                    <p><em>(current target set at 79)</em></p>
+                    <p><em>(refer to the member guide for Quarterly Targets)</em></p>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7">
+                    <h3>3. Explanation of costs NPS R3M</h3>
+                    <div class="table-responsive">
+                        <div id="chart-explanation" class="metrics-chart-wrap">
+                        </div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.EXPLANATION_RESULTS } %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>Explanation of costs<br>NPS 3MR GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td align="center">100-109.9%</td>
+                            <td align="center">110-119.9%</td>
+                            <td align="center">≥120%</td>
+                        </tr>
+                        <tr class="active">
+                            <td align="center">260</td>
+                            <td align="center">360</td>
+                            <td align="center">460</td>
+                        </tr>
+                    </table>
+                    <p><em>(refer to the member guide for Quarterly Targets)</em></p>
                 </div>
             </div>
             <div class="row graph-back">
@@ -190,17 +259,106 @@
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
-                            <td align="center">375</td>
-                            <td align="center">600</td>
-                            <td align="center">730</td>
+                            <td align="center">155</td>
+                            <td align="center">255</td>
+                            <td align="center">355</td>
                         </tr>
                     </table>
                     <p><em>(monthly target as shown in iNsight Portal (target 100%))</em></p>
                 </div>
             </div>
             <div class="row graph-back">
+                <div class="col-md-7" >
+                    <div class="table-responsive">
+                        <h3>5. Retention %</h3>
+                        <div class="metrics-chart-wrap" id="chart_retention"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.RETENTION_RESULTS } %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>Retention % GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td align="center">*≥35%</td>
+                            <td align="center">*≥40%</td>
+                            <td align="center">*≥45%</td>
+                            <td align="center">*≥50%</td>
+                        </tr>
+                        <tr class="active">
+                            <td align="center">120</td>
+                            <td align="center">160</td>
+                            <td align="center">200</td>
+                            <td align="center">260</td>
+                        </tr>
+                    </table>
+                    <p><em>(monthly target as shown in iNsight Portal (target 100%))</em></p>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7" >
+                    <div class="table-responsive">
+                        <h3>6. Brake and Wiper Parts Sales per CPRO</h3>
+                        <div class="metrics-chart-wrap" id="chart_brake_wiper_sales"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.BRAKE_WIPER_RESULTS } %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>Brake and Wiper Parts Sales per CPRO GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td align="center">*≥$10.00</td>
+                            <td align="center">*≥$20.00</td>
+                            <td align="center">*≥$30.00</td>
+                        </tr>
+                        <tr class="active">
+                            <td align="center">155</td>
+                            <td align="center">255</td>
+                            <td align="center">355</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7" >
+                    <div class="table-responsive">
+                        <h3>7. Loyalty per Loyalty Sales</h3>
+                        <div class="metrics-chart-wrap" id="chart_loyalty"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.LOYALTY_RESULTS } %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>Loyalty GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td align="center">80</td>
+                        </tr>
+                        <tr class="active">
+                            <td align="center">80</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>5. TRAINING</h3>
+                    <h3>8. TRAINING</h3>
                     <div class="table-responsive">
                         <div id="chart-training" class="metrics-chart-wrap">
                         </div>

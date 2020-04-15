@@ -52,6 +52,7 @@ class ServiceManager extends BaseRole implements IRole
         $recommendation=$recommendation_results=$clean=$clean_results=$fu=$fu_results=$emw=$emw_results=$training=[];
         $customerPaidRepairCredits = [];
         $customerPaidRepair = [];
+        $explanation=$explanation_results=$retention=$retention_results=$brake_wiper=$brake_wiper_results=$loyalty=$loyalty_results=[];
 
         /**
          * @var Carbon $startPoint
@@ -67,16 +68,28 @@ class ServiceManager extends BaseRole implements IRole
                 //1
                 $recommendation[]       = $this->_buildForJs($item['recommendation_credit']);
                 $recommendation_results[]       = $this->_buildForTableElement($item['recommendation'],1).'%';
-//2
-                $clean[]                = $this->_buildForJs($item['vclean_credit']);
-                $clean_results[]                = $this->_buildForTableElement($item['vclean'],1).'%';
-//3
+//2 retired for FY2020
+//                $clean[]                = $this->_buildForJs($item['vclean_credit']);
+//                $clean_results[]                = $this->_buildForTableElement($item['vclean'],1).'%';
+//2 updated for FY2020
                 $fu[]                   = $this->_buildForJs($item['followup_credit']);
                 $fu_results[]                   = $this->_buildForTableElement($item['followup'],1).'%';
+//3 added for FY2020
+                $explanation[]                   = $this->_buildForJs($item['ecosts_credit']);
+                $explanation_results[]                   = $this->_buildForTableElement($item['ecosts_pct'],1).'%';
 //4
                 $customerPaidRepair[]   = $this->_buildForJs($item['cpr_credit']);
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr']*100,1) .'%';
-//5                
+//5 added for FY2020
+                $retention[]   = $this->_buildForJs($item['retention_credit']);
+                $retention_results[]    = $this->_buildForTableElement($item['retention_pct']*100,1) .'%';
+//6 added for FY2020
+                $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
+                $brake_wiper_results[]    = $this->_buildForJs($item['brakewpr_sales']);;
+//7 added for FY2020
+                $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
+                $loyalty_results[]              = $this->_buildForJs($item['loyaltyser_sales']);
+//8 updated for FY2020                
                 $training[]             = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 /*
                 $emw[]                  = $this->_buildForJs($item['emw_credit']);
@@ -86,15 +99,21 @@ class ServiceManager extends BaseRole implements IRole
             {
                 $customerPaidRepair[]   = $this->_buildForJs(0);
                 $recommendation[]       = $this->_buildForJs(0);
-                $clean[]                = $this->_buildForJs(0);
+                //$clean[]                = $this->_buildForJs(0);
                 $fu[]                   = $this->_buildForJs(0);
+                $retention[]            = $this->_buildForJs(0);
+                $brake_wiper[]            = $this->_buildForJs(0);
+                $loyalty[]              = $this->_buildForJs(0);
                // $emw[]                  = $this->_buildForJs(0);
                 $training[]             = $this->_buildForJs([0,0,0,0]);
 
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement();
                 $recommendation_results[]       = $this->_buildForTableElement();
-                $clean_results[]                = $this->_buildForTableElement();
+                //$clean_results[]                = $this->_buildForTableElement();
                 $fu_results[]                   = $this->_buildForTableElement();
+                $retention_results[]            = $this->_buildForTableElement();
+                $brake_wiper_sales[]            = $this->_buildForTableElement();
+                $loyalty_sales[]                = $this->_buildForTableElement();
                // $emw_results[]                  = $this->_buildForTableElement();
             }
 
@@ -102,15 +121,23 @@ class ServiceManager extends BaseRole implements IRole
         $metrics = [
             "RECOMMENDATION" => $recommendation,
             "RECOMMENDATION_RESULTS" => $recommendation_results,
-            "CLEAN" => $clean,
-            "CLEAN_RESULTS" => $clean_results,
+            //"CLEAN" => $clean,
+            //"CLEAN_RESULTS" => $clean_results,
             "FOLLOWUP" => $fu,
             "FOLLOWUP_RESULTS" => $fu_results,
             /*"EMW" => $emw,
             "EMW_RESULTS" => $emw_results,*/
             "TRAINING" => $training,
+            "EXPLANATION"=>$explanation,
+            "EXPLANATION_RESULTS"=>$explanation_results,
             "CUSTOMER_PAID_REPAIR" => $customerPaidRepair,
             "customerPaidRepairCredits" => $customerPaidRepairCredits,
+            "RETENTION" => $retention,
+            "RETENTION_RESULTS" => $retention_results,
+            "BRAKE_WIPER" => $brake_wiper,
+            "BRAKE_WIPER_RESULTS" => $brake_wiper_results,
+            "LOYALTY"   => $loyalty,
+            "LOYALTY_RESULTS"   => $loyalty_results,
         ];
         return $metrics;
     }
@@ -150,13 +177,17 @@ class ServiceManager extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->serviceRecommendation['data'][]  = intval($item['recommendation_credit']);
-                $this->VehicleCleanliness['data'][]     = intval($item['vclean_credit']);
+                //$this->VehicleCleanliness['data'][]     = intval($item['vclean_credit']);
                 $this->FFT['data'][]     = intval($item['followup_credit']);
                 //$this->EMW['data'][]                    = intval($item['emw_credit']);
                 $this->trainingData['data'][]               = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
+                $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
+                $this->RETENTION['data'][]  = $item['retention_credit'];
+                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];
+                $this->LOYALTY['data'][]  = $item['loyaltyser_credit'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
