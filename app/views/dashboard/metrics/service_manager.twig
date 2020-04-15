@@ -38,7 +38,7 @@
                 step: 112,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+                dataSource: {{ json_encode(metrics.TBC)|raw }}
             },
             {//4. Customer Paid Repair Orders vs Target Monthly Target
                 el: 'chart_customer_paid_repair',
@@ -56,7 +56,7 @@
                 step: 71,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+                dataSource: {{ json_encode(metrics.TBC)|raw }}
             },
             {//6. Brake and Wiper Parts Sales per CPRO
                 el: 'chart_brake_wiper_sales',
@@ -65,7 +65,7 @@
                 step: 71,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+                dataSource: {{ json_encode(metrics.TBC)|raw }}
             },
             {//7. Loyalty per Loyalty Sales
                 el: 'chart_loyalty',
@@ -74,7 +74,7 @@
                 step: 160,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
-                dataSource: {{ json_encode(metrics.'TBC')|raw }}
+                dataSource: {{ json_encode(metrics.TBC)|raw }}
             },
             {//8. Training
                 el: 'chart-training',
