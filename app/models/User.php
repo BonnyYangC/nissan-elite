@@ -25,9 +25,7 @@ class User extends BaseModel implements Mailable, IRole
 
     // Nissan user's position define
     const RETAIL_SALES_CONSULTANTS  = 'R';
-    const FLEET_SALES_CONSULTANTS   = 'F';  // can probably remove this
     const FLEET_SALES_EXECUTIVES    = 'F';  // added for 2019
-    const FLEET_SALES_MANAGER       = 'FM'; // can probably remove this
     const SALES_MANAGER             = 'M';
     const SERVICE_ADVISERS          = 'SA';
     const STOCK_CONTROLLER          = 'SC';
