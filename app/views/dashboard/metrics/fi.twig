@@ -32,9 +32,9 @@
             },
             {//4. EMW Genuine
                 el: 'chart-emw',
-                max: 800,
+                max: 400,
                 length: 10,
-                step: 100,
+                step: 50,
                 colors: ['#555555','#c40030'],
                 pilot: ['Month','Genuine'],
                 dataSource: {{ json_encode(metrics.EMW)|raw }}
@@ -199,24 +199,22 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>F&amp;I Manager</td>
-                            <td align="center">50.0% - 54.99%</td>
-                            <td align="center">55% - 64.99%</td>
-                            <td align="center">65% - 74.99%</td>
-                            <td align="center">75% or more</td>
+                            <td align="center">*≥50%</td>
+                            <td align="center">*≥55%</td>
+                            <td align="center">*≥65%</td>
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
                             <td align="center">250</td>
                             <td align="center">500</td>
                             <td align="center">750</td>
-                            <td align="center">1000</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>6. CE – Satisfaction with F&I options – NPS – Single Mth</h3>
+                    <h3>6. CE – Satisfaction with F&amp;I options – NPS – Single Mth</h3>
                     <div class="table-responsive">
                         <div id="chart-follow-up" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -229,13 +227,13 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>CE – Satisfaction with F&I options <br>– NPS – Single Mth Score Guide</h3>
+                    <h3>CE – Satisfaction with explanation of F &amp; I  – NPS R3M</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>F&amp;I Manager</td>
-                            <td align="center">86.0</td>
-                            <td align="center">86.1 - 89.9</td>
-                            <td align="center">90 or greater</td>
+                            <td align="center">=86.0%</td>
+                            <td align="center">*≥86.1%</td>
+                            <td align="center">≥90%</td>
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
