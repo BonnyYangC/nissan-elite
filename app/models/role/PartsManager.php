@@ -48,6 +48,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs($item['grp_credit']);
                 $gas[]      = $this->_buildForJs($item['gas_credit']);
+                $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_q'],$item['points_apnur_x']]);
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 
                 $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
@@ -57,6 +58,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs(0);
                 $gas[]      = $this->_buildForJs(0);
+                $apnur[]    = $this->_buildForJs([0,0,0]);                
                 $training[] = $this->_buildForJs([0,0,0,0]);
 
                 $grp_results[] = null;
@@ -68,6 +70,7 @@ class PartsManager extends BaseRole implements IRole
             "GRP_RESULTS" => $grp_results,
             "GAS" => $gas,
             "GAS_RESULTS" => $gas_results,
+            "APNUR" => $apnur,
             "TRAINING" => $training,
         ];
     }
@@ -108,6 +111,7 @@ class PartsManager extends BaseRole implements IRole
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = intval($item['grp_credit']);
                 $this->GENUINE_ACCESSORIES['data'][] = intval($item['gas_credit']);
+                $this->apnur['data'][]              = intval($item['apnur']);                
                 $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
@@ -121,6 +125,7 @@ class PartsManager extends BaseRole implements IRole
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
                 $this->GENUINE_ACCESSORIES['data'][]  = 0;
+                $this->apnur['data'][] = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -142,6 +147,7 @@ class PartsManager extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->GENUINE_REPLACEMENT_PARTS,
                 $this->GENUINE_ACCESSORIES,
+                $this->apnur,                
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
