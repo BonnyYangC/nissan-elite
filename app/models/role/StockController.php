@@ -57,7 +57,7 @@ class StockController extends BaseRole implements IRole
      * @return array
      */
     public function getMetrics($data){
-        $stock=$stock_results=$ow=$ow_results=$retail=$retail_results=$matched=$matched_results=$davo=$davo_results=$training=[];
+        $stock=$stock_results=$ow=$ow_results=$retail=$retail_results=$matched=$matched_results=$davo=$davo_results=$regvret=$regvret_results=$training=[];
 
         for($i=0; $i<12; $i++) 
         {
@@ -81,6 +81,9 @@ class StockController extends BaseRole implements IRole
                 $davo[] = $this->_buildForJs($item['davo_credit']);
                 $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
                 //6
+                $regvret[] = $this->_buildForJs($item['points_regvret']);
+                $regvret_results[] = $this->_buildForTableElement($item['percentage_regvret'],0).'%';
+                //7
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
             }
@@ -91,6 +94,7 @@ class StockController extends BaseRole implements IRole
                 $retail[] = $this->_buildForJs(0);
                 $matched[] = $this->_buildForJs(0);
                 $davo[] = $this->_buildForJs(0);
+                $regvret[] = $this->_buildForJs(0);
                 $training[] = $this->_buildForJs([0,0,0]);
 
                 $stock_results[] = null;
@@ -98,6 +102,7 @@ class StockController extends BaseRole implements IRole
                 $retail_results[] = null;
                 $matched_results[] = null;
                 $davo_results[] = null;
+                $regvret_results[] = null;
             }
         }
         return [
@@ -111,6 +116,8 @@ class StockController extends BaseRole implements IRole
             "MATCHED_RESULTS" => $matched_results,
             "DAVO" => $davo,
             "DAVO_RESULTS" => $davo_results,
+            "REGVRET" => $regvret,
+            "REGVRET_RESULTS" => $regvret_results,
             "TRAINING" => $training
         ];
     }
@@ -148,6 +155,7 @@ class StockController extends BaseRole implements IRole
                 $this->OWDataEntry['data'][] = intval($item['ow_credit']);
                 $this->RetailMidMth['data'][]  = intval($item['retail_credit']);
                 $this->OWCompliance['data'][]  = intval($item['matched_credit']);
+                $this->RegVRet['data'][]  = intval($item['points_regvret']);
                 $this->Davo['data'][]  = intval($item['davo_credit']);
                 $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
@@ -165,6 +173,7 @@ class StockController extends BaseRole implements IRole
                 $this->RetailMidMth['data'][]  = 0;
                 $this->OWCompliance['data'][]  = 0;
                 $this->Davo['data'][]  = 0;
+                $this->RegVRet['data'][] = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][]  = 0;
             }
@@ -192,6 +201,7 @@ class StockController extends BaseRole implements IRole
                 $this->RetailMidMth,
                 $this->OWCompliance,
                 $this->Davo,
+                $this->RegVRetm,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
