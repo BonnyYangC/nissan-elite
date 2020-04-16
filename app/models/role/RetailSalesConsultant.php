@@ -135,8 +135,10 @@ class RetailSalesConsultant extends BaseRole implements IRole
             if($item)
             {
                 //1
-                $new[]              = $this->_buildForJs($item['credit_actual_sales']);
+                //$new[]               = $this->_buildForJs($item['credit_actual_sales']);
+                $new[]              = $this->_buildForJs([$item['credit_actual_sales'], $item['points_actual']]);
                 $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
+                $percentage_actual_results[]            = $this->_buildForTableElement(intval($item['percentage_actual']),0,'%');
 
                 //2
                 $salespersonSatisfactionScore[]   = $this->_buildForJs($item['salesperson_satisfaction_score']);
@@ -153,7 +155,8 @@ class RetailSalesConsultant extends BaseRole implements IRole
             }
             else
             {
-                $new[]              = $this->_buildForJs(0);
+                //$new[]              = $this->_buildForJs(0);
+                $new[]              = $this->_buildForJs([0,0]);
                 $salespersonSatisfactionScore[]   = $this->_buildForJs(0);
                 $followUpSatisfactionScore[]               = $this->_buildForJs(0);
                 $keptInformedDeliveryScore[]        = $this->_buildForJs(0);
@@ -161,6 +164,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
+                $percentage_actual_results[] = null;
                 $salespersonSatisfaction[]   = null;
                 $keptInformedDelivery[] = null;
                 $followUpSatisfaction[]               = null;
@@ -178,6 +182,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
 
             // For PHP array
             "salesResult"               =>$sales_results,
+            "percentageActual"          => $percentage_actual_results,
             "salespersonSatisfaction" =>$salespersonSatisfaction,
             "keptInformedDelivery"     => $keptInformedDelivery,
             "followUpSatisfaction"           =>$followUpSatisfaction,
