@@ -32,6 +32,12 @@ class SalesManager extends BaseRole implements IRole
         'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
+//apnur
+    public $apnur = [
+        'label'=>'APNUR',
+        'backgroundColor' => IColor::LIGHT_GREEN,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
@@ -137,7 +143,7 @@ class SalesManager extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<12; $i++)
+        for($i=0; $i<11; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
             $key = $this->startPoint->addMonth()->format('M-Y');
@@ -155,7 +161,10 @@ class SalesManager extends BaseRole implements IRole
                 $this->keptInformed['data'][] = intval($item['kid_credit']);
                 $this->DlrRec['data'][]             = intval($item['sos_credit']);
                 $this->retailForecast['data'][]     = intval($item['retail_credit']);
-                $this->apnur['data'][]              = intval($item['apnur']);
+                $this->apnur['data'][]              = 
+                    intval($item['points_apnur_n']) + 
+                    intval($item['points_apnur_q']) + 
+                    intval($item['points_apnur_x']);
                 $this->trainingData['data'][]           = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
@@ -213,3 +222,4 @@ class SalesManager extends BaseRole implements IRole
         ];
     }
 }
+

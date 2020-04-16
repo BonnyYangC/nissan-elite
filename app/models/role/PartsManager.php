@@ -25,6 +25,11 @@ class PartsManager extends BaseRole implements IRole
         'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
+    public $apnur = [
+        'label'=>'APNUR',
+        'backgroundColor' => IColor::LIGHT_GREEN,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
@@ -111,7 +116,10 @@ class PartsManager extends BaseRole implements IRole
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = intval($item['grp_credit']);
                 $this->GENUINE_ACCESSORIES['data'][] = intval($item['gas_credit']);
-                $this->apnur['data'][]              = intval($item['apnur']);                
+                $this->apnur['data'][]              = 
+                    intval($item['points_apnur_n']) + 
+                    intval($item['points_apnur_q']) + 
+                    intval($item['points_apnur_x']);
                 $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
