@@ -58,6 +58,10 @@ class PartsManager extends BaseRole implements IRole
 
                 $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
                 $gas_results[] = $this->_buildForTableElement($item['gas']*100,0).'%';
+
+                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n'],1).'%';
+                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q'],1).'%';
+                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x'],1).'%';                
             }
             else
             {
@@ -68,6 +72,11 @@ class PartsManager extends BaseRole implements IRole
 
                 $grp_results[] = null;
                 $gas_results[] = null;
+
+                $apnur_n_results[] = null;
+                $apnur_q_results[] = null;
+                $apnur_x_results[] = null;
+
             }
         }
         return [
@@ -76,7 +85,11 @@ class PartsManager extends BaseRole implements IRole
             "GAS" => $gas,
             "GAS_RESULTS" => $gas_results,
             "APNUR" => $apnur,
+            "APNUR_N_RESULTS" => $apnur_n_results,
+            "APNUR_Q_RESULTS" => $apnur_q_results,
+            "APNUR_X_RESULTS" => $apnur_x_results,
             "TRAINING" => $training,
+            
         ];
     }
 
@@ -124,6 +137,8 @@ class PartsManager extends BaseRole implements IRole
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
+
+
             }
             else
             {

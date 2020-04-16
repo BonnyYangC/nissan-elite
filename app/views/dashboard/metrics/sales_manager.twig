@@ -61,7 +61,7 @@
                 step: 25,
                 colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999'],
                 isStacked: false,
-                pilot: ['Month','Points Sale','QASHQAI','XTRAIL'],
+                pilot: ['Month','NAVARA','QASHQAI','XTRAIL'],
                 dataSource: {{ json_encode(metrics.APNUR)|raw }}
             },
             {//7. TRAINING
@@ -303,6 +303,23 @@
                         <p>
                             <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
                         </p>
+
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">NAVARA</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_N_RESULTS } %}
+                            </tr>
+                            <tr>
+                                <td class="nissangray-light-back">QASHQAI</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_Q_RESULTS } %}
+                            </tr>
+                            <tr>
+                                <td class="nissangray-light-back">XTRAIL</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_X_RESULTS } %}
+                            </tr>
+                        </table>
+
 
                     </div>
                 </div>

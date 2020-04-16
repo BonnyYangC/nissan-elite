@@ -83,6 +83,9 @@ class SalesManager extends BaseRole implements IRole
 
                 //6
                 $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_q'],$item['points_apnur_x']]);
+                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n'],1).'%';
+                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q'],1).'%';
+                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x'],1).'%';
 
                 //7
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
@@ -96,6 +99,10 @@ class SalesManager extends BaseRole implements IRole
                 $retail[] = $this->_buildForJs(0);
                 $training[] = $this->_buildForJs([0,0,0,0]);
                 $apnur[] = $this->_buildForJs([0,0,0]);
+
+                $apnur_n_results[] = null;
+                $apnur_q_results[] = null;
+                $apnur_x_results[] = null;
 
                 $matched_results[] = null;
                 $sales_results[] = null;
@@ -118,6 +125,9 @@ class SalesManager extends BaseRole implements IRole
             "JS_RETAIL" => $retail,
             "RETAIL_RESULTS" => $retail_results,
             "APNUR" => $apnur,
+            "APNUR_N_RESULTS" => $apnur_n_results,
+            "APNUR_Q_RESULTS" => $apnur_q_results,
+            "APNUR_X_RESULTS" => $apnur_x_results,
             "TRAINING" => $training
         ];
         return $result;
