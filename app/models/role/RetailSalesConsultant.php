@@ -128,7 +128,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
      */
     public function getMetrics($data){
         $new=$salespersonSatisfactionScore=$followUpSatisfactionScore=$keptInformedDeliveryScore=$training=$sales_results=$salespersonSatisfaction=$followUpSatisfaction=$keptInformedDelivery=[];
-        for($i=0; $i<11; $i++)
+        for($i=0; $i<12; $i++)
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
             $item = isset($data[$key]) ? $data[$key] : null;
