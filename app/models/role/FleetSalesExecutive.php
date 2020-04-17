@@ -53,8 +53,10 @@ class FleetSalesExecutive extends RetailSalesConsultant
                 $vFleetTargetScore[]   = $this->_buildForJs($item['v_fleet_target_score']); 
                 $vFleetTarget[]   = $this->_buildForTableElement($item['v_fleet_target']*100).'%'; 
 //3
-                $fleetVolumeGrowthScore[]   = $this->_buildForJs($item['fleet_volumn_growth_score']); 
-                $fleetVolumeGrowth[]   = $this->_buildForTableElement($item['fleet_volumn_growth'] *100).'%'; 
+                if ($i % 3 ==2) {  // jun, sep, dec, mar
+                    $fleetVolumeGrowthScore[]   = $this->_buildForJs($item['fleet_volumn_growth_score']);                 
+                    $fleetVolumeGrowth[]   = $this->_buildForTableElement($item['fleet_volumn_growth'] *100).'%'; 
+                }
 //4
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
@@ -63,13 +65,15 @@ class FleetSalesExecutive extends RetailSalesConsultant
             {
                 $new[]              = $this->_buildForJs(0);
                 $vFleetTargetScore[]   = $this->_buildForJs(0);
-                $fleetVolumeGrowthScore[]   = $this->_buildForJs(0);
+                if ($i % 3 == 2) {
+                    $fleetVolumeGrowthScore[]   = $this->_buildForJs(0);
+                    $fleetVolumeGrowth[]   = null;
+                }
 
                 $training[]         = $this->_buildForJs([0,0,0]);
 
                 $sales_results[]            = null;
-                $vFleetTarget[]   = null;
-                $fleetVolumeGrowth[]   = null;
+                $vFleetTarget[]   = null;                
             }
         }
 

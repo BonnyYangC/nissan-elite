@@ -20,9 +20,9 @@
             },
             {//2. NEW VEHICLE SALES
                 el: 'chart-new-vehicle',
-                max: 5000,
-                length: 5,
-                step: 1000,
+                max: 3000,
+                length: 6,
+                step: 500,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.NEW_VEHICLE_SALES)|raw }}
@@ -59,7 +59,7 @@
                 max: 275,
                 length: 11,
                 step: 25,
-                colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999'],
+                colors: ['#111111', '#c40030' ,'#3273dc'],
                 isStacked: false,
                 pilot: ['Month','NAVARA','QASHQAI','XTRAIL'],
                 dataSource: {{ json_encode(metrics.APNUR)|raw }}
@@ -136,7 +136,7 @@
             <div class="row graph-back">
                 <div class="col-md-7" >
                     <div class="table-responsive">
-                        <h3>2. NEW VEHICLE SALES</h3>
+                        <h3>2. NEW VEHICLE SALES PERFORMANCE</h3>
                         <div id="chart-new-vehicle" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>NEW VEHICLE SALES GUIDE</h3>
+                    <h3>NEW VEHICLE SALES PERFORMANCE GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Manager</td>
@@ -200,7 +200,7 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Manager</td>
-                            <td align="center">85-88.9</td>
+                            <td align="center">≥85</td>
                             <td align="center">≥89</td>
                         </tr>
                         <tr class="active">
@@ -240,7 +240,7 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Manager</td>
-                            <td align="center">100% of FY19 Target(88)</td>
+                            <td align="center">100% of FY19 Target</td>
                         </tr>
                         <tr class="active">
                             <td> Category A</td>
@@ -255,7 +255,7 @@
                             <td align="center">350</td>
                         </tr>
                     </table>
-                    <p>&nbsp;</p>
+                    <p>(current Target 88)</p>
                 </div>
             </div>
             <div class="row graph-back">
@@ -324,7 +324,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>APNUR PERFORMANCE</h3>
+                    <h3>APNUR PERFORMANCE GUIDE</h3>
                     <table class="table small-table" >
                         <tr class="table-top-row">
                             <td colspan="3" align="center">
@@ -333,10 +333,10 @@
                             </td>
                         </tr>
 
-                        <tr class="active">                                
-                            <td align="center">*≥100%</td>
-                            <td align="center">*≥110%</td>
-                            <td align="center">*≥120%</td>
+                        <tr>
+                            <td align="center" class="nissangray-light-back">≥100%</td>
+                            <td align="center" class="nissangray-light-back">≥110%</td>
+                            <td align="center" class="nissangray-light-back">≥120%</td>
                         </tr>
                         <tr class="active">
                             <td align="center">110</td>
@@ -361,11 +361,10 @@
                             </td>
                         </tr>
 
-                        <tr class="active">
-                       <tr class="active">                                
-                            <td align="center">*≥100%</td>
-                            <td align="center">*≥110%</td>
-                            <td align="center">*≥120%</td>
+                        <tr>
+                            <td align="center" class="nissangray-light-back">≥100%</td>
+                            <td align="center" class="nissangray-light-back">≥110%</td>
+                            <td align="center" class="nissangray-light-back">≥120%</td>
                         </tr>
                         <tr class="active">
                             <td align="center">110</td>
@@ -390,10 +389,10 @@
                             </td>
                         </tr>
 
-                       <tr class="active">                                
-                            <td align="center">*≥100%</td>
-                            <td align="center">*≥110%</td>
-                            <td align="center">*≥120%</td>
+                        <tr>                                
+                            <td align="center" class="nissangray-light-back">≥100%</td>
+                            <td align="center" class="nissangray-light-back">≥110%</td>
+                            <td align="center" class="nissangray-light-back">≥120%</td>
                         </tr>
                         <tr class="active">
                             <td align="center">110</td>
