@@ -17,7 +17,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
     public $name='retail_sales_consultant';
 
     public $salesRecommendationSaturation   = [
-        'label'=>'CE Satisfaction',
+        'label'=>'Overall Sat',
         'backgroundColor' => IColor::RED, 
         'data'=>[]
     ];
