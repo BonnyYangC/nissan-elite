@@ -24,7 +24,7 @@ class StockController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $OWDataEntry = [
-        'label'=>'OW Data Entry',
+        'label'=>'OW Data',
         'backgroundColor' => IColor::LIGHT_GREY,
         'data'=>[]
     ];
@@ -34,7 +34,7 @@ class StockController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $OWCompliance = [
-        'label'=>'OW Compliance',
+        'label'=>'Matched OW',
         'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
@@ -44,8 +44,8 @@ class StockController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $RegVRet = [
-        'label'=>'Regstr vs. Retail',
-        'backgroundColor' => IColor::DARK_GREY,
+        'label'=>'Reg vs. Retail',
+        'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
     /* Views data */
