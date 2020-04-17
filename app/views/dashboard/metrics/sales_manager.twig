@@ -61,7 +61,7 @@
                 step: 25,
                 colors: ['#111111', '#c40030' ,'#3273dc'],
                 isStacked: false,
-                pilot: ['Month','NAVARA','QASHQAI','XTRAIL'],
+                pilot: ['Month','NAVARA','XTRAIL','QASHQAI'],
                 dataSource: {{ json_encode(metrics.APNUR)|raw }}
             },
             {//7. TRAINING
@@ -226,7 +226,7 @@
                     <h3>4. Kept informed of delivery NPS 3 month rolling score</h3>
                     <div class="table-responsive">
                         <div id="chart-kid" class="metrics-chart-wrap"></div>
-                        <table class="table table-condensed metrics-table-wrap">
+                        <table class="table table-condensed metrics-table-wrap">                            
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
                                 <td class="nissangray-light-back">RESULT</td>
@@ -305,21 +305,20 @@
                         </p>
 
                         <table class="table table-condensed metrics-table-wrap">
-                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' with {'topLeft': 'RESULTS'} %}
                             <tr>
                                 <td class="nissangray-light-back">NAVARA</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_N_RESULTS } %}
                             </tr>
                             <tr>
-                                <td class="nissangray-light-back">QASHQAI</td>
-                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_Q_RESULTS } %}
-                            </tr>
-                            <tr>
                                 <td class="nissangray-light-back">XTRAIL</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_X_RESULTS } %}
                             </tr>
+                            <tr>
+                                <td class="nissangray-light-back">QASHQAI</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_Q_RESULTS } %}
+                            </tr>
                         </table>
-
 
                     </div>
                 </div>

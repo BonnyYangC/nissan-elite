@@ -68,23 +68,23 @@
             <div class="row graph-back-top pl-10">
                 <div class="col-md-7" >
                     <div class="table-responsive">
-                        <h3>1. NEW VEHICLE SALES</h3>
+                        <h3>1. NEW VEHICLE SALES PERFORMANCE</h3>
                         <div id="chart-vehicle-sales" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
-                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' with {'topLeft':'RESULTS' } %}
                             <tr>
                                 <td class="nissangray-light-back">SALES</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesResult } %}
                             </tr>
                             <tr>
-                                <td class="nissangray-light-back">%ACTUAL</td>
+                                <td class="nissangray-light-back">DLR%</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.percentageActual } %}
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>NEW VEHICLE SALES GUIDE</h3>
+                    <h3>NEW VEHICLE SALES PERFORMANCE GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>
@@ -139,7 +139,7 @@
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
                     <div class="table-responsive">
-                        <h3>2. Salesperson Satisfaction NPS 3 month Rolling Score </h3>
+                        <h3>2. Overall Satisfaction NPS 3 month Rolling Score </h3>
                         <div id="chart-salesperson-satisfaction" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Sales overall satisfaction NPS 3 month<br>rolling score GUIDE</h3>
+                    <h3>Overall satisfaction <br>NPS 3 monthrolling score GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Retail Sales Member</td>
@@ -195,7 +195,7 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>
-                            <td align="center">100% of FY20 Target(88)</td>
+                            <td align="center">100% of FY20 Target</td>
                         </tr>
                         <tr class="active">
                             <td>Category A</td>
@@ -210,11 +210,12 @@
                             <td align="center">305</td>
                         </tr>
                     </table>
+                    <p>(current Target 88)</p>
                 </div>
             </div>
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
-                    <h3>4. Satisfaction with follow up NPS 3 month rolling score</h3>
+                    <h3>4. Overall Satisfaction NPS 3 month rolling score</h3>
                     <div class="table-responsive">
                         <div id="chart-followup" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -227,11 +228,11 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Percentage Followed Up NPS<br>3 month rolling score Guide </h3>
+                    <h3>Percentage Followed Up <br>NPS3 month rolling score Guide </h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>
-                            <td align="center">100% of FY20 Target(89)</td>
+                            <td align="center">100% of FY20 Target</td>
                         </tr>
                         <tr class="active">
                             <td>Category A &amp; B</td>
@@ -242,6 +243,7 @@
                             <td align="center">175</td>
                         </tr>
                     </table>
+                    <p>(current Target 89)</p>
                 </div>
             </div>
             <div class="row graph-back pl-10">
