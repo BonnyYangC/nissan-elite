@@ -111,6 +111,14 @@ class TableFieldMap{
             'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
             'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'indication_credit'     =>'points_indication',     // FY2020 new metric #2 Indication of work and costs involved NPS R3M
+            'indication'            =>'percentage_indication', // FY2020 new metric #2 Indication of work and costs involved NPS R3M
+            'ecosts_credit'            =>'points_ecosts',     // FY2020 new metric #3 Explanation of costs NPS R3M
+            'ecosts'                =>'percentage_ecosts',    // FY2020 new metric #3 Explanation of costs NPS R3M
+            'brakewpr_credit'          =>'points_brakewpr',   // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
+            'brakewpr'              =>'sales_brakewpr',       // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
+            'loyaltyser_credit'        =>'points_loyaltyser', // FY2020 new metric #5 Loyalty per Loyalty Sales
+            'loyaltyser'            =>'sales_loyaltyser',     // FY2020 new metric #5 Loyalty per Loyalty Sales
         ];
         return $map;
     }

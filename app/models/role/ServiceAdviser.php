@@ -67,7 +67,9 @@ class ServiceAdviser extends BaseRole implements IRole
     public function getMetrics($data){
         $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training=$cpr=$cpr_result=[];
         $valueForMoney = $valueForMoneyTable = [];
-
+        $indication=$indication_results=[];
+        $explanation=$explanation_results=$retention=$retention_results=$brake_wiper=$brake_wiper_results=$loyalty=$loyalty_results=[];
+        
         for($i=0; $i<12; $i++) 
         {
             $key = $this->startPoint->addMonth()->format('M-Y');
@@ -78,15 +80,28 @@ class ServiceAdviser extends BaseRole implements IRole
                 $recommendation[] = $this->_buildForJs($item['recom_credit']?$item['recom_credit']:0);
                 $recommendation_results[] = $this->_buildForTableElement($item['recom_score']).'%';
 //2
-                $valueForMoney[] = $this->_buildForJs($item['fu_credit']?$item['fu_credit']:0);
-                $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
+//                $valueForMoney[] = $this->_buildForJs($item['fu_credit']?$item['fu_credit']:0);
+//                $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
+//2 added for FY2020
+                $indication[]                   = $this->_buildForJs($item['indication_credit']);
+                $indication_results[]                   = $this->_buildForTableElement($item['indication'],1).'%';
+                
 //3
-                $advice[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
-                $advice_results[] = $this->_buildForTableElement($item['trust_score']).'%';
+//                $advice[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
+//                $advice_results[] = $this->_buildForTableElement($item['trust_score']).'%';
+//3 added for FY2020
+                $explanation[]                   = $this->_buildForJs($item['ecosts_credit']);
+                $explanation_results[]                   = $this->_buildForTableElement($item['ecosts'],1).'%';
 //4
-                $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
-                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
-//5
+//                $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
+//                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
+//4 added for FY2020
+                $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
+                $brake_wiper_results[]    = $this->_buildForJs($item['brakewpr']);;
+//5 added for FY2020
+                $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
+                $loyalty_results[]              = $this->_buildForJs($item['loyaltyser']);
+//6 shifted for FY2020
                 // get classroom point from both fields: pathway and classroom
                 $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
                 $training[] = $this->_buildForJs(
@@ -109,13 +124,21 @@ class ServiceAdviser extends BaseRole implements IRole
                 $advice[]           = $this->_buildForJs(0);
                 $fu[]               = $this->_buildForJs(0);
                 $cpr[]               = $this->_buildForJs(0);
-                $training[]   = $this->_buildForJs([0,0,0]);
+                $indication[]       = $this->_buildForJs(0);
+                $explanation[]       = $this->_buildForJs(0);
+                $brake_wiper[]       = $this->_buildForJs(0);
+                $loyalty[]          = $this->_buildForJs(0);
+                $training[]         = $this->_buildForJs([0,0,0]);
 
                 $advice_results[]           = null;
                 $emw_results[]              = null;
                 $recommendation_results[]   = null;
                 $fu_results[]               = null;
                 $cpr_result[]               = null;
+                $indication_results[]       = null;
+                $explanation_results[]       = null;
+                $brake_wiper_results[]       = null;
+                $loyalty_results[]          = null;
             }
         }
 
@@ -134,6 +157,14 @@ class ServiceAdviser extends BaseRole implements IRole
             // New field of 2018
             "CPR" => $cpr,
             "CPR_RESULT" => $cpr_result,
+            "INDICATION" => $indication,
+            "INDICATION_RESULT" => $indication_results,
+            "EXPLANATION"=>$explanation,
+            "EXPLANATION_RESULTS"=>$explanation_results,
+            "BRAKE_WIPER" => $brake_wiper,
+            "BRAKE_WIPER_RESULTS" => $brake_wiper_results,
+            "LOYALTY"   => $loyalty,
+            "LOYALTY_RESULTS"   => $loyalty_results,
         ];
     }
 
@@ -179,6 +210,10 @@ class ServiceAdviser extends BaseRole implements IRole
                                                         + $item['classroom'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
+                $this->INDICATION['data'][]  = $item['indication_credit'];
+                $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
+                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];
+                $this->LOYALTY['data'][]  = $item['loyaltyser_credit'];
             }
             else
             {
@@ -192,6 +227,10 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->trainingData['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
+                $this->INDICATION['data'][]  = $item['indication_credit'];
+                $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
+                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];
+                $this->LOYALTY['data'][]  = $item['loyaltyser_credit'];
             }
 
             $this->_setupLifeTimeAndExcellence($dataResults,$period);
