@@ -43,6 +43,11 @@ class StockController extends BaseRole implements IRole
         'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
+    public $RegVRet = [
+        'label'=>'Regstr vs. Retail',
+        'backgroundColor' => IColor::DARK_GREY,
+        'data'=>[]
+    ];
     /* Views data */
 
     public function __construct(User $user = null)
@@ -201,7 +206,7 @@ class StockController extends BaseRole implements IRole
                 $this->RetailMidMth,
                 $this->OWCompliance,
                 $this->Davo,
-                $this->RegVRetm,
+                $this->RegVRet,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
