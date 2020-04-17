@@ -97,10 +97,10 @@ class ServiceAdviser extends BaseRole implements IRole
 //                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
 //4 added for FY2020
                 $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
-                $brake_wiper_results[]    = $this->_buildForTableElement($item['brakewpr'],1).'%';;
+                $brake_wiper_results[]    = '$' . $this->_buildForTableElement($item['brakewpr'],1);;
 //5 added for FY2020
                 $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
-                $loyalty_results[]              = $this->_buildForTableElement($item['loyaltyser'],1).'%';
+                $loyalty_results[]              = $this->_buildForTableElement($item['loyaltyser'],1);
 //6 shifted for FY2020
                 // get classroom point from both fields: pathway and classroom
                 $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
