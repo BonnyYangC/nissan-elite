@@ -32,7 +32,7 @@
                 dataSource: {{ json_encode(metrics.FOLLOWUP)|raw }}
             },
             {//3. Explanation of costs NPS R3M
-                el: 'chart_explanation',
+                el: 'chart-explanation',
                 max: 460,
                 length: 5,
                 step: 112,
@@ -50,7 +50,7 @@
                 dataSource: {{ json_encode(metrics.CUSTOMER_PAID_REPAIR)|raw }}
             },
             {//5. Retention %
-                el: 'chart_retention',
+                el: 'chart-retention',
                 max: 355,
                 length: 5,
                 step: 71,
@@ -68,7 +68,7 @@
                 dataSource: {{ json_encode(metrics.BRAKE_WIPER)|raw }}
             },
             {//7. Loyalty per Loyalty Sales
-                el: 'chart_loyalty',
+                el: 'chart-loyalty',
                 max: 800,
                 length: 5,
                 step: 160,
@@ -273,7 +273,7 @@
                 <div class="col-md-7" >
                     <div class="table-responsive">
                         <h3>5. Retention %</h3>
-                        <div class="metrics-chart-wrap" id="chart_retention"></div>
+                        <div class="metrics-chart-wrap" id="chart-retention"></div>
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
@@ -340,7 +340,7 @@
                 <div class="col-md-7" >
                     <div class="table-responsive">
                         <h3>7. Loyalty per Loyalty Sales</h3>
-                        <div class="metrics-chart-wrap" id="chart_loyalty"></div>
+                        <div class="metrics-chart-wrap" id="chart-loyalty"></div>
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
