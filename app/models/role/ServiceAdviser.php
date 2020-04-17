@@ -68,7 +68,7 @@ class ServiceAdviser extends BaseRole implements IRole
         $advice=$advice_results=$emw=$emw_results=$recommendation=$recommendation_results=$fu=$fu_results=$training=$cpr=$cpr_result=[];
         $valueForMoney = $valueForMoneyTable = [];
         $indication=$indication_results=[];
-        $explanation=$explanation_results=$retention=$retention_results=$brake_wiper=$brake_wiper_results=$loyalty=$loyalty_results=[];
+        $explanation=$explanation_results=$brake_wiper=$brake_wiper_results=$loyalty=$loyalty_results=[];
         
         for($i=0; $i<12; $i++) 
         {
@@ -97,10 +97,10 @@ class ServiceAdviser extends BaseRole implements IRole
 //                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
 //4 added for FY2020
                 $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
-                $brake_wiper_results[]    = $this->_buildForJs($item['brakewpr']);;
+                $brake_wiper_results[]    = $this->_buildForTableElement($item['brakewpr'],1).'%';;
 //5 added for FY2020
                 $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
-                $loyalty_results[]              = $this->_buildForJs($item['loyaltyser']);
+                $loyalty_results[]              = $this->_buildForTableElement($item['loyaltyser'],1).'%';
 //6 shifted for FY2020
                 // get classroom point from both fields: pathway and classroom
                 $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
@@ -130,15 +130,15 @@ class ServiceAdviser extends BaseRole implements IRole
                 $loyalty[]          = $this->_buildForJs(0);
                 $training[]         = $this->_buildForJs([0,0,0]);
 
-                $advice_results[]           = null;
-                $emw_results[]              = null;
-                $recommendation_results[]   = null;
-                $fu_results[]               = null;
-                $cpr_result[]               = null;
-                $indication_results[]       = null;
-                $explanation_results[]       = null;
-                $brake_wiper_results[]       = null;
-                $loyalty_results[]          = null;
+                $advice_results[]           = $this->_buildForTableElement();;
+                $emw_results[]              = $this->_buildForTableElement();;
+                $recommendation_results[]   = $this->_buildForTableElement();;
+                $fu_results[]               = $this->_buildForTableElement();;
+                $cpr_result[]               = $this->_buildForTableElement();;
+                $indication_results[]       = $this->_buildForTableElement();;
+                $explanation_results[]       = $this->_buildForTableElement();;
+                $brake_wiper_results[]       = $this->_buildForTableElement();;
+                $loyalty_results[]          = $this->_buildForTableElement();;
             }
         }
 

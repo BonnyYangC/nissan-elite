@@ -111,9 +111,10 @@ class ServiceManager extends BaseRole implements IRole
                 $recommendation_results[]       = $this->_buildForTableElement();
                 //$clean_results[]                = $this->_buildForTableElement();
                 $fu_results[]                   = $this->_buildForTableElement();
+                $explanation_results            = $this->_buildForTableElement();
                 $retention_results[]            = $this->_buildForTableElement();
-                $brake_wiper_sales[]            = $this->_buildForTableElement();
-                $loyalty_sales[]                = $this->_buildForTableElement();
+                $brake_wiper_results[]            = $this->_buildForTableElement();
+                $loyalty_results[]                = $this->_buildForTableElement();
                // $emw_results[]                  = $this->_buildForTableElement();
             }
 
