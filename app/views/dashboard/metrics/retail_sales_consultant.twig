@@ -9,8 +9,8 @@
                 max: 5000,
                 length: 10,
                 step: 500,
-                colors: ['#999999'],
-                pilot: ['Month', yAxis],
+                colors: ['#999999','#c40030'],                
+                pilot: ['Month','Points Sale Status','Points Actual'],
                 dataSource: {{ json_encode(metrics.JS_newVehicleSales)|raw }}
             },
             { //2. Salesperson Satisfaction NPS 6 month Rolling Score
@@ -25,8 +25,8 @@
             { //3. Kept informed of delivery NPS 3 month rolling score - Target 88
                 el: 'chart-kept-informed',
                 max: 305,
-                length: 5,
-                step: 62,
+                length: 6,
+                step: 61,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_keptInformedDelivery)|raw }}
@@ -73,8 +73,12 @@
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td class="nissangray-light-back">RESULT</td>
+                                <td class="nissangray-light-back">SALES</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.salesResult } %}
+                            </tr>
+                            <tr>
+                                <td class="nissangray-light-back">%ACTUAL</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.percentageActual } %}
                             </tr>
                         </table>
                     </div>
@@ -175,7 +179,7 @@
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
                     <div class="table-responsive">
-                        <h3>3. Kept informed of delivery NPS 6 month rolling score</h3>
+                        <h3>3. Kept informed of delivery NPS 3 month rolling score</h3>
                         <div id="chart-kept-informed" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
@@ -210,7 +214,7 @@
             </div>
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
-                    <h3>4. Satisfaction with follow up NPS 6 month rolling score</h3>
+                    <h3>4. Satisfaction with follow up NPS 3 month rolling score</h3>
                     <div class="table-responsive">
                         <div id="chart-followup" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">

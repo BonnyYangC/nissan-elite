@@ -48,7 +48,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="row graph-back-top">
                 <div class="col-md-7">
-                    <h3>1. Nissan Genuine replacement Parts</h3>
+                    <h3>1. Nissan Genuine replacement Parts (GRP)</h3>
                     <div class="table-responsive">
                         <div id="chart-grp" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Nissan Genuine Replacement Parts<strong> </strong>Guide</h3>
+                    <h3>Nissan Genuine Replacement Parts Guide<strong> </strong>Guide</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Parts Manager</td>
@@ -112,18 +112,33 @@
             </div>
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>3. APNUR PERFORMANCE</h3>
+                    <h3>3. APNUR PERFORMANCE v TARGET - NAVARA/XTRAIL/QASHQAI</h3>
                     <div class="table-responsive">
                         <div id="chart-apnur" class="metrics-chart-wrap"></div>
 
                         <p>
                             <em>Refer to the <a href="{{ url('dashboard/MembersGuide') }}">{{ configuration('PROGRAM_SHORT_NAME_WITH_YEAR') }} Member Guide</a> for full details.</em>
                         </p>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">NAVARA</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_N_RESULTS } %}
+                            </tr>
+                            <tr>
+                                <td class="nissangray-light-back">QASHQAI</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_Q_RESULTS } %}
+                            </tr>
+                            <tr>
+                                <td class="nissangray-light-back">XTRAIL</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.APNUR_X_RESULTS } %}
+                            </tr>
+                        </table>
 
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>APNUR PERFORMANCE</h3>
+                    <h3>APNUR PERFORMANCE v TARGET - NAVARA/XTRAIL/QASHQAI GUIDE</h3>
                     <table class="table small-table" >
                         <tr class="table-top-row">
                             <td colspan="3" align="center">
