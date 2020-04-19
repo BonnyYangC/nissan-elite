@@ -75,7 +75,7 @@ class ServiceManager extends BaseRole implements IRole
                 $fu[]                   = $this->_buildForJs($item['followup_credit']);
                 $fu_results[]                   = $this->_buildForTableElement($item['followup'],1).'%';
 //3 added for FY2020
-                $explanation[]                   = $this->_buildForJs($item['ecosts_credit']);
+                $explanation[]          = $this->_buildForJs($item['ecosts_credit']);
                 $explanation_results[]           = $this->_buildForTableElement($item['ecosts'],1).'%';
 //4
                 $customerPaidRepair[]   = $this->_buildForJs($item['cpr_credit']);
@@ -101,6 +101,7 @@ class ServiceManager extends BaseRole implements IRole
                 $recommendation[]       = $this->_buildForJs(0);
                 //$clean[]                = $this->_buildForJs(0);
                 $fu[]                   = $this->_buildForJs(0);
+                $explanation[]            = $this->_buildForJs(0);
                 $retention[]            = $this->_buildForJs(0);
                 $brake_wiper[]            = $this->_buildForJs(0);
                 $loyalty[]              = $this->_buildForJs(0);
@@ -111,7 +112,7 @@ class ServiceManager extends BaseRole implements IRole
                 $recommendation_results[]       = $this->_buildForTableElement();
                 //$clean_results[]                = $this->_buildForTableElement();
                 $fu_results[]                   = $this->_buildForTableElement();
-                $explanation_results            = $this->_buildForTableElement();
+                $explanation_results[]            = $this->_buildForTableElement();
                 $retention_results[]            = $this->_buildForTableElement();
                 $brake_wiper_results[]            = $this->_buildForTableElement();
                 $loyalty_results[]                = $this->_buildForTableElement();
@@ -129,8 +130,8 @@ class ServiceManager extends BaseRole implements IRole
             /*"EMW" => $emw,
             "EMW_RESULTS" => $emw_results,*/
             "TRAINING" => $training,
-            "EXPLANATION"=>$explanation,
-            "EXPLANATION_RESULTS"=>$explanation_results,
+            "EXPLANATION" => $explanation,
+            "EXPLANATION_RESULTS" => $explanation_results,
             "CUSTOMER_PAID_REPAIR" => $customerPaidRepair,
             "customerPaidRepairCredits" => $customerPaidRepairCredits,
             "RETENTION" => $retention,
@@ -140,6 +141,7 @@ class ServiceManager extends BaseRole implements IRole
             "LOYALTY"   => $loyalty,
             "LOYALTY_RESULTS"   => $loyalty_results,
         ];
+        dump($metrics);
         return $metrics;
     }
 

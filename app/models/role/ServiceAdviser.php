@@ -84,7 +84,7 @@ class ServiceAdviser extends BaseRole implements IRole
 //                $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
 //2 added for FY2020
                 $indication[]                   = $this->_buildForJs($item['indication_credit']);
-                $indication_results[]                   = $this->_buildForTableElement($item['indication'],1).'%';
+                $indication_results[]           = $this->_buildForTableElement($item['indication'],1) . '%';
                 
 //3
 //                $advice[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
@@ -158,7 +158,7 @@ class ServiceAdviser extends BaseRole implements IRole
             "CPR" => $cpr,
             "CPR_RESULT" => $cpr_result,
             "INDICATION" => $indication,
-            "INDICATION_RESULT" => $indication_results,
+            "INDICATION_RESULTS" => $indication_results,
             "EXPLANATION"=>$explanation,
             "EXPLANATION_RESULTS"=>$explanation_results,
             "BRAKE_WIPER" => $brake_wiper,
