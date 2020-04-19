@@ -141,7 +141,6 @@ class ServiceManager extends BaseRole implements IRole
             "LOYALTY"   => $loyalty,
             "LOYALTY_RESULTS"   => $loyalty_results,
         ];
-        dump($metrics);
         return $metrics;
     }
 
