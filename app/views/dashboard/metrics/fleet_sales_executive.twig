@@ -131,7 +131,7 @@
                         <div id="chart-fleet-volume-growth" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
                             {% set monthsArray = ['JUN','SEP','DEC','MAR'] %} <!--TBC : should not be here -->
-                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' with {'tdParam' : 'width=7%'} %}
                             <tr>
                                 <td class="nissangray-light-back">RESULT</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.fleetVolumeGrowth } %}

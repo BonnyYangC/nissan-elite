@@ -21,6 +21,12 @@ class PartsSalesRep extends BaseRole implements IRole
         'data'=>[]
     ];
 
+    public $TRADE_SALES = [
+        'label'=>'TRADE SALES',
+        'backgroundColor' => IColor::STEEL_BLUE,
+        'data'=>[]
+    ];
+
     public function __construct(User $user = null)
     {
         parent::__construct($user);
@@ -43,12 +49,14 @@ class PartsSalesRep extends BaseRole implements IRole
             if($item)
             {
                 $grp[] = $this->_buildForJs($item['grp_credit']);
+                $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
                 $grp_results[] = $this->_buildForTableElement($item['grp'] * 100, 0).'%';
             }
             else
             {
                 $grp[] = $this->_buildForJs(0);
+                $trade_sales[] =  $this->_buildForJs([0,0]);
                 $training[] = $this->_buildForJs([0,0,0]);
                 $grp_results[] = null;
             }
@@ -57,6 +65,7 @@ class PartsSalesRep extends BaseRole implements IRole
         return [
             "GRP" => $grp,
             "GRP_RESULTS" => $grp_results,
+            "TRADE_SALES" => $trade_sales,
             "TRAINING" => $training,
         ];
     }
@@ -91,6 +100,7 @@ class PartsSalesRep extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = intval($item['grp_credit']);
+                $this->TRADE_SALES['data'][] = $item['points_perform_vs_prev_year']+$item['points_performvprev'];
                 $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
@@ -102,6 +112,7 @@ class PartsSalesRep extends BaseRole implements IRole
                 /**
                  * From Data results
                  */
+                $this->TRADE_SALES['data'][] = 0;
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
@@ -123,6 +134,7 @@ class PartsSalesRep extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->GENUINE_REPLACEMENT_PARTS,
+                $this->TRADE_SALES,
                 $this->trainingData,
                 $this->incentivesForDashboard,
             ],
