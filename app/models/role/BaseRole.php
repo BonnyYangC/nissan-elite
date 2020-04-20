@@ -50,19 +50,19 @@ class BaseRole extends BaseModel
     public $lifeTime = null;
     public $excellenceResult = null;
     public $newVehicleSales = [
-        'label'=>'New Vehicle Sales',
+        'label'=>'NEW VEHICLE SALES',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
 
     public $keptInformed= [
-        'label'=>'Kept Informed',
+        'label'=>'KEPT INFORMED',
         'backgroundColor' => IColor::LIGHT_PERU,
         'data'=>[]
     ];
 
     public $trainingData = [
-        'label'=>'Training',
+        'label'=>'TRAINING',
         'backgroundColor' => IColor::LEMON_CHIFFON,
         'data'=>[]
     ];
@@ -71,7 +71,7 @@ class BaseRole extends BaseModel
      * @var array
      */
     public $incentivesForDashboard = [
-        'label'=>'Incentive',
+        'label'=>'INCENTIVE',
         'backgroundColor' => IColor::GOLD,
         'data'=>[]
     ];
