@@ -18,7 +18,7 @@ class ServiceManager extends BaseRole implements IRole
     public $name='service_manager';
 
     public $serviceRecommendation = [
-        'label'=>'SAT.',
+        'label'=>'SVCS. SAT.',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
@@ -27,6 +27,7 @@ class ServiceManager extends BaseRole implements IRole
 //        'backgroundColor' => IColor::DARK_KHAKI,
 //        'data'=>[]
 //    ];
+
     public $FFT = [
         'label'=>'FFT',
         'backgroundColor' => IColor::SILVER,

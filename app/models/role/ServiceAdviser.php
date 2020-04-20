@@ -58,9 +58,19 @@ class ServiceAdviser extends BaseRole implements IRole
 //    ];
     public $EXPLANATION = [
         'label'=>'EOC',
-        'backgroundColor' => IColor::DARK_KHAKI,
+        'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
+//    public $advice = [
+//        'label'=>'ADVICE',
+//        'backgroundColor' => IColor::DARK_GREY,
+//        'data'=>[]
+//    ];
+//    public $VehicleCleanliness = [
+//        'label'=>'VALUE FOR MONEY',
+//        'backgroundColor' => IColor::DARK_KHAKI,
+//        'data'=>[]
+//    ];
     public $BRAKE_WIPER_SALES = [
         'label'=>'BWPS',
         'backgroundColor' => IColor::LOW_RED,
