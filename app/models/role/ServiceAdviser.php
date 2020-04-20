@@ -17,17 +17,17 @@ class ServiceAdviser extends BaseRole implements IRole
 
     // Service adviser: start
     public $serviceRecommendation = [
-        'label'=>'Service Satisfaction',
+        'label'=>'SERVICE SATISFACTION',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
     public $advice = [
-        'label'=>'Advice',
+        'label'=>'ADVICE',
         'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
     public $VehicleCleanliness = [
-        'label'=>'Value for Money',
+        'label'=>'VALUE FOR MONEY',
         'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];

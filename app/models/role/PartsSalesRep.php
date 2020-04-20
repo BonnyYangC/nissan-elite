@@ -134,7 +134,8 @@ class PartsSalesRep extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->GENUINE_REPLACEMENT_PARTS,
-                $this->TRADE_SALES,
+                $this->TRADE_SALES_LFY,
+                $this->TRADE_SALES_LQ,
                 $this->trainingData,
                 $this->incentivesForDashboard,
             ],

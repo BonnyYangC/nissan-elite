@@ -31,33 +31,33 @@ class FI extends BaseRole implements IRole
     public $name='fi';
 
     public $NFSA_Contracts = [
-        'label'=>'NFSA Contracts',
+        'label'=>'NFSA CONTRACTS',
         'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
     public $Insurance = [
-        'label'=>'Insurance',
+        'label'=>'INSURANCE',
         'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
     public $EMW_Genuine_Extended = [
-        'label'=>'EMW Genuine',
+        'label'=>'EMW GENUINE',
         'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
     public $SalesPenetration = [
-        'label'=>'Sales Penetration',
+        'label'=>'SALES PENETRATION',
         'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
     public $FollowUp = [
-        'label'=>'FI Sat.',
+        'label'=>'FI SAT.',
         'backgroundColor' => IColor::LEMON_CHIFFON,
         'data'=>[]
     ];
 
     public $NFSA_Credits = [
-        'label'=>'Loyalty & Retention',
+        'label'=>'LOYALTY & RETENTION',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];

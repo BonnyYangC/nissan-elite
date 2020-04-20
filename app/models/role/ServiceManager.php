@@ -18,12 +18,12 @@ class ServiceManager extends BaseRole implements IRole
     public $name='service_manager';
 
     public $serviceRecommendation = [
-        'label'=>'Service Satisfaction',
+        'label'=>'SERVIE SATISFACTION',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
     public $VehicleCleanliness = [
-        'label'=>'Value for Money',
+        'label'=>'VALUE FOR MONEY',
         'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
