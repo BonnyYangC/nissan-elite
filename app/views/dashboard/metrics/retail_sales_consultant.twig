@@ -16,8 +16,8 @@
             { //2. Salesperson Satisfaction NPS 6 month Rolling Score
                 el: 'chart-salesperson-satisfaction',
                 max: 900,
-                length: 10,
-                step: 100,
+                length: 2,
+                step: 450,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_salespersonSatisfaction)|raw }}

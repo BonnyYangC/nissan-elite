@@ -5,33 +5,42 @@
         var CHART_DATA = [
             {//1. Nissan Genuine replacement Parts
                 el: 'chart-grp',
-                max: 2300,
-                length: 10,
-                step: 575,
+                max: 600,
+                length: 4,
+                step: 150,
                 colors: ['#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GRP)|raw }}
             },
             {//2. Nissan Genuine Accessories
                 el: 'chart-gas',
-                max: 1100,
-                length: 5,
-                step: 275,
+                max: 500,
+                length: 10,
+                step: 50,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.GAS)|raw }}
             },
             {//3. APNUR PERFORMANCE v TARGET - NAVARA/XTRAIL/QASHQAI
                 el: 'chart-apnur',
-                max: 275,
-                length: 11,
-                step: 25,
+                max: 550,
+                length: 5,
+                step: 110,
                 colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999'],
                 isStacked: false,
                 pilot: ['Month','NAVARA','QASHQAI','XTRAIL'],
                 dataSource: {{ json_encode(metrics.APNUR)|raw }}
             },            
-            {//4. Training
+            {//4. Brake and Wiper Parts Sales per CPRO
+                el: 'chart_brake_wiper_sales',
+                max: 355,
+                length: 5,
+                step: 71,
+                colors: ['#555555'],
+                pilot: ['Month', yAxis],
+                dataSource: {{ json_encode(metrics.BRAKE_WIPER)|raw }}
+            },            
+            {//5. Training
                 el: 'chart-training',
                 max: 3000,
                 length: 6,
@@ -65,15 +74,15 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Parts Manager</td>
-                            <td align="center">100%</td>
-                            <td align="center">110%</td>
-                            <td align="center">120%+</td>
+                            <td align="center">≥100%</td>
+                            <td align="center">≥110%</td>
+                            <td align="center">≥120%</td>
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
+                            <td align="center">300</td>
+                            <td align="center">450</td>
                             <td align="center">600</td>
-                            <td align="center">1,300</td>
-                            <td align="center">2,300</td>
                         </tr>
                     </table>
                 </div>
@@ -97,15 +106,15 @@
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Parts Manager</td>
-                            <td align="center">100%</td>
-                            <td align="center">110%</td>
-                            <td align="center">120%+</td>
+                            <td align="center">≥100%</td>
+                            <td align="center">≥110%</td>
+                            <td align="center">≥120%</td>
                         </tr>
                         <tr class="active">
                             <td>Category A, B, C</td>
-                            <td align="center">400</td>
-                            <td align="center">700</td>
-                            <td align="center">1,100</td>
+                            <td align="center">250</td>
+                            <td align="center">350</td>
+                            <td align="center">500</td>
                         </tr>
                     </table>
                 </div>
@@ -138,7 +147,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>APNUR PERFORMANCE v TARGET - NAVARA/XTRAIL/QASHQAI GUIDE</h3>
+                    <h3>APNUR PERFORMANCE v TARGET - <br>NAVARA/XTRAIL/QASHQAI GUIDE</h3>
                     <table class="table small-table" >
                         <tr class="table-top-row">
                             <td colspan="3" align="center">
@@ -146,57 +155,32 @@
                                 APNUR vs Target
                             </td>
                         </tr>
-
-                        <tr class="active">                                
-                            <td align="center">*≥100%</td>
-                            <td align="center">*≥110%</td>
-                            <td align="center">*≥120%</td>
+                        <tr class="">                                
+                            <td class="nissangray-light-back" align="center">≥100%</td>
+                            <td class="nissangray-light-back" align="center">≥110%</td>
+                            <td class="nissangray-light-back" align="center">≥120%</td>
                         </tr>
                         <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
+                            <td align="center">220</td>
+                            <td align="center">345</td>
+                            <td align="center">550</td>
                         </tr>
-                        <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
-                        </tr>
-                        <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
-                        </tr>
-
                         <tr class="table-top-row">
                             <td colspan="3" align="center">
                                 XTRAIL
                                 APNUR vs Target
                             </td>
                         </tr>
-
-                        <tr class="active">
-                       <tr class="active">                                
-                            <td align="center">*≥100%</td>
-                            <td align="center">*≥110%</td>
-                            <td align="center">*≥120%</td>
+                        <tr class="">                        
+                            <td class="nissangray-light-back" align="center">≥100%</td>
+                            <td class="nissangray-light-back" align="center">≥110%</td>
+                            <td class="nissangray-light-back" align="center">≥120%</td>
                         </tr>
                         <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
+                            <td align="center">220</td>
+                            <td align="center">345</td>
+                            <td align="center">550</td>
                         </tr>
-                        <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
-                        </tr>
-                        <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
-                        </tr>
-
                         <tr class="table-top-row">
                             <td colspan="3" align="center">
                                 QASHQAI
@@ -204,37 +188,59 @@
                             </td>
                         </tr>
 
-                       <tr class="active">                                
-                            <td align="center">*≥100%</td>
-                            <td align="center">*≥110%</td>
-                            <td align="center">*≥120%</td>
+                       <tr class="">                                
+                            <td class="nissangray-light-back" align="center">≥100%</td>
+                            <td class="nissangray-light-back" align="center">≥110%</td>
+                            <td class="nissangray-light-back" align="center">≥120%</td>
                         </tr>
                         <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
-                        </tr>
-                        <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
-                        </tr>
-                        <tr class="active">
-                            <td align="center">110</td>
-                            <td align="center">175</td>
-                            <td align="center">275</td>
+                            <td align="center">220</td>
+                            <td align="center">345</td>
+                            <td align="center">550</td>
                         </tr>
                         <tr>
-                            <td colspan="3"></td>
+                            <td colspan="3"></td> <!-- for the line at the bottom -->
                         </tr>
 
+                    </table>
+                </div>
+            </div>
+            <div class="row graph-back">
+                <div class="col-md-7" >
+                    <div class="table-responsive">
+                        <h3>4. Brake and Wiper Parts Sales per CPRO</h3>
+                        <div class="metrics-chart-wrap" id="chart_brake_wiper_sales"></div>
+                        <table class="table table-condensed metrics-table-wrap">
+                            {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
+                            <tr>
+                                <td class="nissangray-light-back">RESULT</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.BRAKE_WIPER_RESULTS } %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h3>Brake and Wiper Parts Sales per CPRO GUIDE</h3>
+                    <table class="table small-table">
+                        <tr class="table-top-row">
+                            <td>Service Manager</td>
+                            <td align="center">≥$10.00</td>
+                            <td align="center">≥$20.00</td>
+                            <td align="center">≥$30.00</td>
+                        </tr>
+                        <tr class="active">
+                            <td>Category A, B, C</td>
+                            <td align="center">155</td>
+                            <td align="center">255</td>
+                            <td align="center">355</td>
+                        </tr>
                     </table>
                 </div>
             </div>
 
             <div class="row graph-back">
                 <div class="col-md-7">
-                    <h3>4. TRAINING</h3>
+                    <h3>5. TRAINING</h3>
                     <div class="table-responsive">
                         <div id="chart-training" class="metrics-chart-wrap"></div>
                     </div>
