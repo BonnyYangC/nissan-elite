@@ -13,6 +13,6 @@ class SalesManagerStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(12000, 20000, 27000, 38000, $yearToDate, 50000);
+        parent::__construct(12000, 18000, 27000, 38000, $yearToDate, 50000);
     }
 }

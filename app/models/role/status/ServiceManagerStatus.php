@@ -13,6 +13,6 @@ class ServiceManagerStatus extends GageStatus
 {
     public function __construct($yearToDate)
     {
-        parent::__construct(9000, 14000, 23000, 33000, $yearToDate, 34500); //set 34500 instead of 40000 to prevent 'commendation' slop over
+        parent::__construct(9000, 14000, 23000, 33000, $yearToDate, 30000); //set 34500 instead of 40000 to prevent 'commendation' slop over
     }
 }
