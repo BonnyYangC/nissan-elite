@@ -17,7 +17,7 @@ class ServiceAdviser extends BaseRole implements IRole
 
     // Service adviser: start
     public $serviceRecommendation = [
-        'label'=>'SVCS. SAT.',
+        'label'=>'Overall Sat',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
@@ -32,7 +32,7 @@ class ServiceAdviser extends BaseRole implements IRole
 //        'data'=>[]
 //    ];
     public $INDICATION = [
-        'label'=>'IWC',
+        'label'=>'ind W&C',
         'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
@@ -57,7 +57,7 @@ class ServiceAdviser extends BaseRole implements IRole
 //        'data'=>[]
 //    ];
     public $EXPLANATION = [
-        'label'=>'EOC',
+        'label'=>'Exp Costs',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
@@ -72,12 +72,12 @@ class ServiceAdviser extends BaseRole implements IRole
 //        'data'=>[]
 //    ];
     public $BRAKE_WIPER_SALES = [
-        'label'=>'BWPS',
+        'label'=>'B & K',
         'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
     public $LOYALTY = [
-        'label'=>'LOY.',
+        'label'=>'Loyalty',
         'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
