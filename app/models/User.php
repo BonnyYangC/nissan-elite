@@ -470,34 +470,34 @@ class User extends BaseModel implements Mailable, IRole
         $result = [];
         switch ($this->position){
             case self::FI:
-                $result=[[100,500,850,1000],[14000,20000,27000,36000]];
+                $result=[[100,500,850,1000],[11000,20000,27000,36000]];
                 break;
             case self::FLEET_SALES_EXECUTIVES:
-                $result=[[100,750,1500,2000],[15000,20000,27000,38000]];
+                $result=[[100,750,1500,2000],[12000,18000,27000,38000]];
                 break;
             case self::RETAIL_SALES_CONSULTANTS:
-                $result=[[100,750,1500,2000],[15000,20000,27000,38000]];
+                $result=[[100,750,1500,2000],[12000,18000,27000,38000]];
                 break;
             case self::SALES_MANAGER:
-                $result=[[100,750,1500,2000],[15000,20000,27000,38000]];
+                $result=[[100,750,1500,2000],[12000,18000,27000,38000]];
                 break;
             case self::SERVICE_ADVISERS:
-                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,14000,23000,33000]];
                 break;
             case self::STOCK_CONTROLLER:
-                $result=[[100,500,850,1000],[8000,12000,16000,22000]];
+                $result=[[100,500,850,1000],[10000,14000,18000,24000]];
                 break;
             case self::FINANCE_CONTROLLER:
                 $result=[[100,500,850,1000],[8000,12000,16000,20000]];
                 break;
             case self::PARTS_MANAGER:
-                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,14000,23000,33000]];
                 break;
             case self::PARTS_SALES_REP:
-                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,14000,23000,33000]];
                 break;
             case self::SERVICE_MANAGER:
-                $result=[[100,500,1000,1500],[9000,13000,22000,33000]];
+                $result=[[100,500,1000,1500],[9000,14000,23000,33000]];
                 break;
             default:
                 break;
