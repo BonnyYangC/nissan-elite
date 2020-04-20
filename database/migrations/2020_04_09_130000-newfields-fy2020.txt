@@ -50,3 +50,21 @@ INSERT INTO `nissan_partsmanager` VALUES
 (null,'2020-04-01','40400','2509',0.0,0.39,0.0,0.16,0.0,0.0,0.0,NULL,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,175.0, 175.0, 110.0, 40.0, 40.0, 20.0),
 (null,'2020-05-01','40400','2509',3600.0,1.17,1300.0,0.65,0.0,0.0,0.0,NULL,0.0,0.0,0.0,NULL,1300.0,4900.0,0.0,0.0,0.0,175.0, 175.0, 110.0, 40.0, 40.0, 20.0),
 (null,'2020-06-01','40400','2509',3600.0,1.17,1300.0,0.65,0.0,0.0,0.0,NULL,0.0,0.0,0.0,NULL,1300.0,4900.0,0.0,0.0,0.0,175.0, 175.0, 110.0, 40.0, 40.0, 20.0);
+
+ALTER TABLE `nissan_partsrep`
+	ADD COLUMN `points_perform_vs_prev_year` DECIMAL(10,1) NULL DEFAULT NULL AFTER `training_competency`,
+	ADD COLUMN `percentage_perform_vs_prev_year` DECIMAL(10,1) NULL DEFAULT NULL AFTER `points_perform_vs_prev_year`,
+	ADD COLUMN `points_performvprev` DECIMAL(10,1) NULL DEFAULT NULL AFTER `percentage_perform_vs_prev_year`,
+	ADD COLUMN `percentage_performvprev` DECIMAL(10,1) NULL DEFAULT NULL AFTER `points_performvprev`;
+
+INSERT INTO `nissan_partsrep` (`id`, `period`, `member_id`, `dealer_code`, `credit_bf`, `grp`, `grp_credit`, `training`, `pathway`, `classroom`, `registration`, `incentive`, `adjustment`, `excellence`, `credit_mtd`, `credit_ytd`, `lifetime`, `training_competency`, `points_perform_vs_prev_year`, `percentage_perform_vs_prev_year`, `points_performvprev`, `percentage_performvprev`) VALUES 
+(null, '2020-04-01', '20934', '30289', 0.0, 1.31, 2300.00, 0.0, 0.0, NULL, 250.0, 0.0, 0.0, 0.0, 2550.0, 2550.0, 0.0, 0.0, 500, 90, 400, 80),
+(null, '2019-05-01', '20934', '30289', 4850.0, 1.71, 2300.00, 0.0, 0.0, NULL, 0.0, 0.0, 0.0, 0.0, 2300.0, 7150.0, 0.0, 0.0, 500, 90, 400, 80),
+(null, '2019-06-01', '20934', '30289', 2550.0, 1.29, 2300.00, 0.0, 0.0, NULL, 0.0, 0.0, 0.0, 0.0, 2300.0, 4850.0, 0.0, 0.0, 500, 90, 400, 80);
+
+points_perform_vs_prev_year points_performvprev
+
+
+
+
+
