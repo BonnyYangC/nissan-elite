@@ -17,41 +17,60 @@ class ServiceAdviser extends BaseRole implements IRole
 
     // Service adviser: start
     public $serviceRecommendation = [
-        'label'=>'Service Satisfaction',
+        'label'=>'SVCS. SAT.',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
-    public $advice = [
-        'label'=>'Advice',
+//    public $advice = [
+//        'label'=>'Advice',
+//        'backgroundColor' => IColor::DARK_GREY,
+//        'data'=>[]
+//    ];
+//    public $VehicleCleanliness = [
+//        'label'=>'Value for Money',
+//        'backgroundColor' => IColor::DARK_KHAKI,
+//        'data'=>[]
+//    ];
+    public $INDICATION = [
+        'label'=>'IWC',
         'backgroundColor' => IColor::DARK_GREY,
         'data'=>[]
     ];
-    public $VehicleCleanliness = [
-        'label'=>'Value for Money',
+//    public $EMW = [
+//        'label'=>'EMW',
+//        'backgroundColor' => IColor::LOW_RED,
+//        'data'=>[]
+//    ];
+//    public $FFT = [
+//        'label'=>'FFT',
+//        'backgroundColor' => IColor::DARK_KHAKI,
+//        'data'=>[]
+//    ];
+//    public $SERVICE_YOU_CAN_TRUST = [
+//        'label'=>'AYCT',
+//        'backgroundColor' => IColor::SILVER,
+//        'data'=>[]
+//    ];
+//    public $CUSTOMER_REPAIR_ORDER = [
+//        'label'=>'CPR',
+//        'backgroundColor' => IColor::LIGHT_PERU,
+//        'data'=>[]
+//    ];
+    public $EXPLANATION = [
+        'label'=>'EOC',
         'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
-    public $EMW = [
-        'label'=>'EMW',
+    public $BRAKE_WIPER_SALES = [
+        'label'=>'BWPS',
         'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
-    public $FFT = [
-        'label'=>'FFT',
+    public $LOYALTY = [
+        'label'=>'LOY.',
         'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
-    public $SERVICE_YOU_CAN_TRUST = [
-        'label'=>'AYCT',
-        'backgroundColor' => IColor::SILVER,
-        'data'=>[]
-    ];
-    public $CUSTOMER_REPAIR_ORDER = [
-        'label'=>'CPR',
-        'backgroundColor' => IColor::LIGHT_PERU,
-        'data'=>[]
-    ];
-    // Service adviser: end
     
     public function __construct(User $user = null)
     {
@@ -78,29 +97,29 @@ class ServiceAdviser extends BaseRole implements IRole
             {
                 //1
                 $recommendation[] = $this->_buildForJs($item['recom_credit']?$item['recom_credit']:0);
-                $recommendation_results[] = $this->_buildForTableElement($item['recom_score']).'%';
+                $recommendation_results[] = $this->_buildForTableElement($item['recom_score']);
 //2
 //                $valueForMoney[] = $this->_buildForJs($item['fu_credit']?$item['fu_credit']:0);
 //                $valueForMoneyTable[] = $this->_buildForTableElement($item['fu_score']).'%';
 //2 added for FY2020
                 $indication[]                   = $this->_buildForJs($item['indication_credit']);
-                $indication_results[]           = $this->_buildForTableElement($item['indication'],1) . '%';
+                $indication_results[]           = $this->_buildForTableElement($item['indication'],1);
                 
 //3
 //                $advice[] = $this->_buildForJs($item['trust_credit']?$item['trust_credit']:0);
 //                $advice_results[] = $this->_buildForTableElement($item['trust_score']).'%';
 //3 added for FY2020
                 $explanation[]                   = $this->_buildForJs($item['ecosts_credit']);
-                $explanation_results[]                   = $this->_buildForTableElement($item['ecosts'],1).'%';
+                $explanation_results[]                   = $this->_buildForTableElement($item['ecosts'],1);
 //4
 //                $cpr[] = $this->_buildForJs($item['cpr_credit']?$item['cpr_credit']:0);
 //                $cpr_result[] = $this->_buildForTableElement($item['cpr']*100,1).'%';
 //4 added for FY2020
                 $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
-                $brake_wiper_results[]    = '$' . $this->_buildForTableElement($item['brakewpr'],1);;
+                $brake_wiper_results[]    = '$' . $this->_buildForTableElement($item['brakewpr'],2);;
 //5 added for FY2020
                 $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
-                $loyalty_results[]              = $this->_buildForTableElement($item['loyaltyser'],1);
+                $loyalty_results[]              = $this->_buildForTableElement(intval($item['loyaltyser']),0);
 //6 shifted for FY2020
                 // get classroom point from both fields: pathway and classroom
                 $classroomTrainingPoints = ($item['pathway']?$item['pathway']:0) + ($item['classroom']?$item['classroom']:0);
@@ -249,11 +268,16 @@ class ServiceAdviser extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->serviceRecommendation,
-                $this->VehicleCleanliness,
-                $this->SERVICE_YOU_CAN_TRUST,
-                $this->CUSTOMER_REPAIR_ORDER,
+                //$this->VehicleCleanliness,
+                //$this->SERVICE_YOU_CAN_TRUST,
+                //$this->CUSTOMER_REPAIR_ORDER,
                 $this->trainingData,
-                $this->incentivesForDashboard
+                //$this->incentivesForDashboard,
+                $this->LOYALTY,
+                $this->INDICATION,
+                $this->EXPLANATION,
+                $this->BRAKE_WIPER_SALES,
+                
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),

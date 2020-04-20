@@ -35,7 +35,7 @@
                 el: 'chart-explanation',
                 max: 460,
                 length: 5,
-                step: 112,
+                step: 92,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.EXPLANATION)|raw }}
@@ -51,9 +51,9 @@
             },
             {//5. Retention %
                 el: 'chart-retention',
-                max: 355,
+                max: 260,
                 length: 5,
-                step: 71,
+                step: 52,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RETENTION)|raw }}
@@ -70,8 +70,8 @@
             {//7. Loyalty per Loyalty Sales
                 el: 'chart-loyalty',
                 max: 80,
-                length: 5,
-                step: 16,
+                length: 1,
+                step: 80,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.LOYALTY)|raw }}
@@ -184,7 +184,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>F1 (Fixed it right first time) <br>%Yes NPS R3M</h3>
+                    <h3>F1 (Fixed it right first time) %Yes<br> NPS 3 MONTH ROLLING SCORE GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Manager</td>
@@ -218,7 +218,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Explanation of costs<br>NPS R3M GUIDE</h3>
+                    <h3>Explanation of costs<br>NPS 3 MONTH ROLLING SCORE GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Service Manager</td>

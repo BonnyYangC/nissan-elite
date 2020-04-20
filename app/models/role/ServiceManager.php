@@ -18,18 +18,23 @@ class ServiceManager extends BaseRole implements IRole
     public $name='service_manager';
 
     public $serviceRecommendation = [
-        'label'=>'Service Satisfaction',
+        'label'=>'SAT.',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
-    public $VehicleCleanliness = [
-        'label'=>'Value for Money',
-        'backgroundColor' => IColor::DARK_KHAKI,
-        'data'=>[]
-    ];
+//    public $VehicleCleanliness = [
+//        'label'=>'Value for Money',
+//        'backgroundColor' => IColor::DARK_KHAKI,
+//        'data'=>[]
+//    ];
     public $FFT = [
         'label'=>'FFT',
         'backgroundColor' => IColor::SILVER,
+        'data'=>[]
+    ];
+    public $EXPLANATION = [
+        'label'=>'EOC',
+        'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
     public $CUSTOMER_REPAIR_ORDER = [
@@ -37,6 +42,22 @@ class ServiceManager extends BaseRole implements IRole
         'backgroundColor' => IColor::LIGHT_PERU,
         'data'=>[]
     ];
+    public $RETENTION = [
+        'label'=>'RETEN.',
+        'backgroundColor' => IColor::STEEL_BLUE,
+        'data'=>[]
+    ];
+    public $BRAKE_WIPER_SALES = [
+        'label'=>'BWPS',
+        'backgroundColor' => IColor::LOW_RED,
+        'data'=>[]
+    ];
+    public $LOYALTY = [
+        'label'=>'LOY.',
+        'backgroundColor' => IColor::DARK_KHAKI,
+        'data'=>[]
+    ];
+    
     public function __construct(User $user = null)
     {
         parent::__construct($user);
@@ -67,16 +88,16 @@ class ServiceManager extends BaseRole implements IRole
             {
                 //1
                 $recommendation[]       = $this->_buildForJs($item['recommendation_credit']);
-                $recommendation_results[]       = $this->_buildForTableElement($item['recommendation'],1).'%';
+                $recommendation_results[]       = $this->_buildForTableElement($item['recommendation'],1);
 //2 retired for FY2020
 //                $clean[]                = $this->_buildForJs($item['vclean_credit']);
 //                $clean_results[]                = $this->_buildForTableElement($item['vclean'],1).'%';
 //2 updated for FY2020
                 $fu[]                   = $this->_buildForJs($item['followup_credit']);
-                $fu_results[]                   = $this->_buildForTableElement($item['followup'],1).'%';
+                $fu_results[]                   = $this->_buildForTableElement($item['followup'],1);
 //3 added for FY2020
                 $explanation[]          = $this->_buildForJs($item['ecosts_credit']);
-                $explanation_results[]           = $this->_buildForTableElement($item['ecosts'],1).'%';
+                $explanation_results[]           = $this->_buildForTableElement($item['ecosts'],1);
 //4
                 $customerPaidRepair[]   = $this->_buildForJs($item['cpr_credit']);
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr']*100,1) .'%';
@@ -85,10 +106,10 @@ class ServiceManager extends BaseRole implements IRole
                 $retention_results[]    = $this->_buildForTableElement($item['retention'],1) .'%';
 //6 added for FY2020
                 $brake_wiper[]              = $this->_buildForJs($item['brakewpr_credit']);
-                $brake_wiper_results[]      = '$' . $this->_buildForTableElement($item['brakewpr']);;
+                $brake_wiper_results[]      = '$' . $this->_buildForTableElement($item['brakewpr'],2);
 //7 added for FY2020
                 $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
-                $loyalty_results[]              = $this->_buildForTableElement($item['loyaltyser']);
+                $loyalty_results[]              = $this->_buildForTableElement(intval($item['loyaltyser']),0);
 //8 updated for FY2020                
                 $training[]             = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 /*
@@ -188,8 +209,8 @@ class ServiceManager extends BaseRole implements IRole
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
                 $this->RETENTION['data'][]  = $item['retention_credit'];
-                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];
-                $this->LOYALTY['data'][]  = $item['loyaltyser_credit'];
+                $this->BRAKE_WIPER_SALES['data'][]  = $item['brakewpr_credit'];
+                $this->LOYALTY['data'][]  = intval($item['loyaltyser_credit']);
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else
@@ -199,7 +220,7 @@ class ServiceManager extends BaseRole implements IRole
                  * From Data results
                  */
                 $this->serviceRecommendation['data'][] = 0;
-                $this->VehicleCleanliness['data'][]  = 0;
+                //$this->VehicleCleanliness['data'][]  = 0;
                 $this->FFT['data'][]  = 0;
                 //$this->EMW['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
@@ -207,7 +228,7 @@ class ServiceManager extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
                 $this->EXPLANATION['data'][]  = 0;
                 $this->RETENTION['data'][]  = 0;
-                $this->BRAKE_WIPER['data'][]  = 0;
+                $this->BRAKE_WIPER_SALES['data'][]  = 0;
                 $this->LOYALTY['data'][]  = 0;
             }
 
@@ -227,7 +248,7 @@ class ServiceManager extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->serviceRecommendation,
-                $this->VehicleCleanliness,
+                //$this->VehicleCleanliness,
                 $this->FFT,
                 $this->CUSTOMER_REPAIR_ORDER,
                 //$this->EMW,
@@ -235,8 +256,8 @@ class ServiceManager extends BaseRole implements IRole
                 $this->incentivesForDashboard,
                 $this->EXPLANATION,
                 $this->RETENTION,
-                $this->BRAKE_WIPER,
-                $this->LOYALTY
+                $this->BRAKE_WIPER_SALES,
+                $this->LOYALTY,
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
