@@ -30,6 +30,11 @@ class PartsManager extends BaseRole implements IRole
         'backgroundColor' => IColor::LIGHT_GREEN,
         'data'=>[]
     ];
+    public $BRAKE_WIPER = [
+        'label'=>'BRAKE/WIPER',
+        'backgroundColor' => IColor::STEEL_BLUE,
+        'data'=>[]
+    ];
 
     public function __construct(User $user = null)
     {
@@ -54,20 +59,24 @@ class PartsManager extends BaseRole implements IRole
                 $grp[]      = $this->_buildForJs($item['grp_credit']);
                 $gas[]      = $this->_buildForJs($item['gas_credit']);
                 $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_q'],$item['points_apnur_x']]);
+                $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 
                 $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
                 $gas_results[] = $this->_buildForTableElement($item['gas']*100,0).'%';
 
-                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n'],1).'%';
-                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q'],1).'%';
-                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x'],1).'%';                
+                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n'],1);
+                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q'],1);
+                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x'],1);                
+                $brake_wiper_results[]    = '$' . $this->_buildForTableElement($item['brakewpr'],2);
+
             }
             else
             {
                 $grp[]      = $this->_buildForJs(0);
                 $gas[]      = $this->_buildForJs(0);
                 $apnur[]    = $this->_buildForJs([0,0,0]);                
+                $brake_wiper[] = $this->_buildForJs(0);
                 $training[] = $this->_buildForJs([0,0,0,0]);
 
                 $grp_results[] = null;
@@ -76,6 +85,7 @@ class PartsManager extends BaseRole implements IRole
                 $apnur_n_results[] = null;
                 $apnur_q_results[] = null;
                 $apnur_x_results[] = null;
+                $brake_wiper_results[] = null;
 
             }
         }
@@ -89,6 +99,9 @@ class PartsManager extends BaseRole implements IRole
             "APNUR_Q_RESULTS" => $apnur_q_results,
             "APNUR_X_RESULTS" => $apnur_x_results,
             "TRAINING" => $training,
+            "BRAKE_WIPER" => $brake_wiper,
+            "BRAKE_WIPER_RESULTS" => $brake_wiper_results,
+
             
         ];
     }
@@ -133,11 +146,11 @@ class PartsManager extends BaseRole implements IRole
                     intval($item['points_apnur_n']) + 
                     intval($item['points_apnur_q']) + 
                     intval($item['points_apnur_x']);
+                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];                    
                 $this->trainingData['data'][]  = $item['training']
                     + $item['pathway']
                     + $item['training_competency'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
-
 
             }
             else
@@ -149,6 +162,7 @@ class PartsManager extends BaseRole implements IRole
                 $this->GENUINE_REPLACEMENT_PARTS['data'][] = 0;
                 $this->GENUINE_ACCESSORIES['data'][]  = 0;
                 $this->apnur['data'][] = 0;
+                $this->BRAKE_WIPER['data'][]  = 0;                
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
             }
@@ -170,7 +184,8 @@ class PartsManager extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->GENUINE_REPLACEMENT_PARTS,
                 $this->GENUINE_ACCESSORIES,
-                $this->apnur,                
+                $this->apnur,       
+                $this->BRAKE_WIPER,
                 $this->trainingData,
                 $this->incentivesForDashboard
             ],
