@@ -256,10 +256,10 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->trainingData['data'][]  = 0;
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
-                $this->INDICATION['data'][]  = $item['indication_credit'];
-                $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
-                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];
-                $this->LOYALTY['data'][]  = $item['loyaltyser_credit'];
+                $this->INDICATION['data'][]  = 0;
+                $this->EXPLANATION['data'][]  = 0;
+                $this->BRAKE_WIPER['data'][]  = 0;
+                $this->LOYALTY['data'][]  = 0;
             }
 
             $this->_setupLifeTimeAndExcellence($dataResults,$period);
