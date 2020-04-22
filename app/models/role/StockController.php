@@ -29,7 +29,7 @@ class StockController extends BaseRole implements IRole
         'data'=>[]
     ];
     public $RetailMidMth = [
-        'label'=> '',
+        'label'=> 'RETAIL FORECAST',
         'backgroundColor' => IColor::LIGHT_BLUE,
         'data'=>[]
     ];
@@ -190,8 +190,18 @@ class StockController extends BaseRole implements IRole
         // Status
         $status = new StockControllerStatus($ytd);
 
-        $this->RetailMidMth['label'] = configuration('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
-
+        //$this->RetailMidMth['label'] = configuration('YEAR') == 2017 ? 'Retail % Mid Mth' : 'Retail Forecast';
+        switch (configuration('YEAR')) {
+            case 2017:
+                $this->RetailMidMth['label'] = 'Retail % Mid Mth';
+                break;
+            case 2020:
+                break;
+            default:
+                $this->RetailMidMth['label'] = 'Retail Forecast';
+                break;
+        }
+        
         return [
             // For js array
             "JS_credits"    =>convert_array_to_js_2_dimension_array($this->JS_credits),

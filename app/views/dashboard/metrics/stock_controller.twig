@@ -24,8 +24,8 @@
             {//3. Dealer Retail Forecast
                 el: 'chart-retail',
                 max: 150,
-                length: 5,
-                step: 30,
+                length: 1,
+                step: 150,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RETAIL)|raw }}
@@ -124,7 +124,7 @@
                         <tr class="table-top-row">
                             <td>Stock Controller </td>
                             <td align="center">≤ 1 Missed Day</td>
-                            <td align="center">2 to 3 Missed Days</td>
+                            <td align="center">2-3 Missed Days</td>
                         </tr>
                         <tr class="active">
                             <td>Category A &amp; B</td>
@@ -170,7 +170,7 @@
                             <td align="center">150</td>
                         </tr>
                     </table>
-                    <p><em>Entered 2<sup>nd</sup> Monday of month (NISCOM)</em></p>
+                    <p><em>Entered 2<sup>nd</sup> Monday of month in NISCOM</em></p>
                 </div>
             </div>
             <div class="row graph-back">
@@ -264,7 +264,7 @@
                     <h3>Registration v Retails Compliance GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
-                            <td align="center">*≥90%</td>
+                            <td align="center">≥90%</td>
                         </tr>
                         <tr class="active">
                             <td align="center">360</td>
