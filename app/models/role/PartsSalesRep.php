@@ -51,15 +51,22 @@ class PartsSalesRep extends BaseRole implements IRole
                 $grp[] = $this->_buildForJs($item['grp_credit']);
                 if ($i % 3 == 2) {  // jun, sep, dec, mar
                     $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);
+                    
+                    $trade_fy19_results[] = $this->_buildForTableElement($item['percentage_performvfy19'] * 100, 0).'%';
+                    $trade_prev_results[] = $this->_buildForTableElement($item['percentage_performvprev'] * 100, 0).'%';
                 }
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
                 $grp_results[] = $this->_buildForTableElement($item['grp'] * 100, 0).'%';
+
             }
             else
             {
                 $grp[] = $this->_buildForJs(0);
                 if ($i % 3 == 2) {  // jun, sep, dec, mar
                   $trade_sales[] =  $this->_buildForJs([0,0]);
+
+                  $trade_fy19_results[] = null;
+                  $trade_prev_results[] = null;
                 }
                 $training[] = $this->_buildForJs([0,0,0]);
                 $grp_results[] = null;
@@ -70,6 +77,8 @@ class PartsSalesRep extends BaseRole implements IRole
             "GRP" => $grp,
             "GRP_RESULTS" => $grp_results,
             "TRADE_SALES" => $trade_sales,
+            "TRADE_FY19_RESULTS" => $trade_fy19_results,
+            "TRADE_PREV_RESULTS" => $trade_prev_results,
             "TRAINING" => $training,
         ];
     }

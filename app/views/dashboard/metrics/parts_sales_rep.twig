@@ -78,7 +78,11 @@
                         <table class="table table-condensed metrics-table-wrap">
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' %}
                             <tr>
-                                <td class="nissangray-light-back">RESULT</td>
+                                <td class="nissangray-light-back">FY19</td>
+                                {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.TRADE_RESULTS } %}
+                            </tr>
+                            <tr>
+                                <td class="nissangray-light-back">previous quarter</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.TRADE_RESULTS } %}
                             </tr>
                         </table>
