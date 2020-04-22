@@ -58,7 +58,7 @@ class ServiceAdviser extends BaseRole implements IRole
 //    ];
     public $EXPLANATION = [
         'label'=>'EXP COSTS',
-        'backgroundColor' => IColor::SADDLE_BROWN,
+        'backgroundColor' => IColor::LIGHT_GREEN,
         'data'=>[]
     ];
 //    public $advice = [
@@ -73,12 +73,12 @@ class ServiceAdviser extends BaseRole implements IRole
 //    ];
     public $BRAKE_WIPER_SALES = [
         'label'=>'B & K',
-        'backgroundColor' => IColor::LOW_RED,
+        'backgroundColor' => IColor::LIGHT_PINK,
         'data'=>[]
     ];
     public $LOYALTY = [
         'label'=>'LOYALTY',
-        'backgroundColor' => IColor::DARK_KHAKI,
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     
@@ -241,7 +241,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
                 $this->INDICATION['data'][]  = $item['indication_credit'];
                 $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
-                $this->BRAKE_WIPER['data'][]  = $item['brakewpr_credit'];
+                $this->BRAKE_WIPER_SALES['data'][]  = $item['brakewpr_credit'];
                 $this->LOYALTY['data'][]  = $item['loyaltyser_credit'];
             }
             else
@@ -258,7 +258,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->incentivesForDashboard['data'][] = 0;
                 $this->INDICATION['data'][]  = 0;
                 $this->EXPLANATION['data'][]  = 0;
-                $this->BRAKE_WIPER['data'][]  = 0;
+                $this->BRAKE_WIPER_SALES['data'][]  = 0;
                 $this->LOYALTY['data'][]  = 0;
             }
 

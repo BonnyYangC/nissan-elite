@@ -50,12 +50,12 @@ class ServiceManager extends BaseRole implements IRole
     ];
     public $BRAKE_WIPER_SALES = [
         'label'=>'B & K',
-        'backgroundColor' => IColor::LOW_RED,
+        'backgroundColor' => IColor::LIGHT_PINK,
         'data'=>[]
     ];
     public $LOYALTY = [
         'label'=>'LOYALTY',
-        'backgroundColor' => IColor::DARK_KHAKI,
+        'backgroundColor' => IColor::RED,
         'data'=>[]
     ];
     
