@@ -27,7 +27,7 @@ INSERT INTO `nissan_fleetsalesexecutives` (`id`, `period`, `member_id`, `dealer_
 INSERT INTO `nissan_fleetsalesexecutives` (`id`, `period`, `member_id`, `dealer_code`, `credit_bf`, `sales`, `credit_actual_sales`, `v_fleet_target`, `v_fleet_target_score`, `fleet_volumn_growth_score`, `fleet_volumn_growth`, `training`, `pathway`, `training_competency`, `classroom`, `registration`, `incentive`, `adjustment`, `excellence`, `credit_mtd`, `credit_ytd`, `lifetime`) VALUES (null, '2020-06-01', '18276', '30462', 2680, 33, 2640, 1.5, 1520.0, 840.0, 1.5, 0.0, 0.0, 250.0, NULL, 250.0, 0.0, 0.0, 0.0, 5500.0, 8180.0, 0.0);
 INSERT INTO `nissan_fleetsalesexecutives` (`id`, `period`, `member_id`, `dealer_code`, `credit_bf`, `sales`, `credit_actual_sales`, `v_fleet_target`, `v_fleet_target_score`, `fleet_volumn_growth_score`, `fleet_volumn_growth`, `training`, `pathway`, `training_competency`, `classroom`, `registration`, `incentive`, `adjustment`, `excellence`, `credit_mtd`, `credit_ytd`, `lifetime`) VALUES (null, '2020-07-01', '18276', '30462', 8180, 10, 800, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, NULL, 0.0, 0.0, 0.0, 0.0, 800.0, 8980.0, 0.0);
 
-ALTER TABLE nissan_stockcontroller where member_id=18276
+ALTER TABLE nissan_stockcontroller
 	ADD COLUMN points_regvret   DECIMAL(10,1) NULL DEFAULT NULL,
 	ADD COLUMN percentage_regvret   DECIMAL(10,1) NULL DEFAULT NULL;
 

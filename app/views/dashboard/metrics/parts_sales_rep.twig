@@ -20,7 +20,7 @@
                 length: 4,
                 step: 220,
                 colors: ['#555555','#c40030'],
-                pilot: ['Month', 'Last Quarter', 'Last Year'],
+                pilot: ['Month', 'FY19', 'previous quarter'],
                 dataSource: {{ json_encode(metrics.TRADE_SALES)|raw }}
             },
             {
@@ -87,20 +87,36 @@
                 <div class="col-md-5">
                     <h3>Trade Parts Sales Guide</h3>
                     <table class="table small-table">
+                        <tr class="">
+                            <td colspan="4" align="center">
+                                vs FY19 Total
+                            </td>
+                        </tr>
                         <tr class="table-top-row">
-                            <td>Quarterly performance</td>
+                            <td>Parts Sales Representative</td>
                             <td align="center">≥100%</td>
                             <td align="center">≥110%</td>
                             <td align="center">≥120%</td>
                         </tr>
                         <tr class="active">
-                            <td>vs FY19 Total</td>
+                            <td>Category A, B, C</td>
                             <td align="center">475</td>
                             <td align="center">680</td>
                             <td align="center">880</td>
                         </tr>
+                        <tr class="">
+                            <td colspan="4" align="center">
+                                vs previous quarter
+                            </td>
+                        </tr>
+                        <tr class="table-top-row">
+                            <td>Parts Sales Representative</td>
+                            <td align="center">≥100%</td>
+                            <td align="center">≥110%</td>
+                            <td align="center">≥120%</td>
+                        </tr>
                         <tr class="active">
-                            <td>vs Last Quarter</td>
+                            <td>Category A, B, C</td>
                             <td align="center">575</td>
                             <td align="center">675</td>
                             <td align="center">875</td>
