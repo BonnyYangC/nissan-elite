@@ -58,7 +58,7 @@ class PartsManager extends BaseRole implements IRole
             {
                 $grp[]      = $this->_buildForJs($item['grp_credit']);
                 $gas[]      = $this->_buildForJs($item['gas_credit']);
-                $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_q'],$item['points_apnur_x']]);
+                $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_x'],$item['points_apnur_q']]);
                 $brake_wiper[]   = $this->_buildForJs($item['brakewpr_credit']);
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
 
