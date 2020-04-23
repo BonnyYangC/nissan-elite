@@ -65,8 +65,11 @@ INSERT INTO `nissan_partsrep` (`id`, `period`, `member_id`, `dealer_code`, `cred
 (null, '2020-05-01', '20934', '30289', 4850.0, 1.71, 2300.00, 0.0, 0.0, NULL, 0.0, 0.0, 0.0, 0.0, 2300.0, 7150.0, 0.0, 0.0, 500, 90, 400, 80),
 (null, '2020-06-01', '20934', '30289', 2550.0, 1.29, 2300.00, 0.0, 0.0, NULL, 0.0, 0.0, 0.0, 0.0, 2300.0, 4850.0, 0.0, 0.0, 500, 90, 400, 80);
 
-points_perform_vs_prev_year points_performvprev
-
+/* some sample data for Ray Lu */
+INSERT INTO `nissan_fi` (`id`, `period`, `member_id`, `dealer_code`, `credit_bf`, `sales_nfsa`, `credit_actual_sales`, `sales_mvi`, `credits_mvi`, `sales_vpi`, `credits_vpi`, `sales_pkg`, `credits_pkg`, `sales_emw`, `credits_emw`, `sales_mmu`, `credits_mmu`, `penetration`, `credits_penetration`, `score_fi`, `credits_fi`, `sales_nfsa_retention`, `credits_nfsa_retention`, `registration`, `incentive`, `adjustment`, `excellence`, `credit_mtd`, `credit_ytd`, `lifetime`) VALUES (null, '2020-04-01', '21459', '3150', 0.0, 30.0, 1200.0, 2.0, 80.0, NULL, NULL, 0.0, 0.0, 5.0, 200.0, NULL, NULL, 0.65, 500.0, 86.1, 300.0, 2.0, 20.0, 250.0, 0.0, 0.0, 0.0, 2550.0, 2550.0, 0.0);
+INSERT INTO `nissan_fi` (`id`, `period`, `member_id`, `dealer_code`, `credit_bf`, `sales_nfsa`, `credit_actual_sales`, `sales_mvi`, `credits_mvi`, `sales_vpi`, `credits_vpi`, `sales_pkg`, `credits_pkg`, `sales_emw`, `credits_emw`, `sales_mmu`, `credits_mmu`, `penetration`, `credits_penetration`, `score_fi`, `credits_fi`, `sales_nfsa_retention`, `credits_nfsa_retention`, `registration`, `incentive`, `adjustment`, `excellence`, `credit_mtd`, `credit_ytd`, `lifetime`) VALUES (null, '2020-05-01', '21459', '3150', 2550.0, 47.0, 1880.0, 2.0, 80.0, NULL, NULL, 0.0, 0.0, 10.0, 400.0, NULL, NULL, 0.59, 500.0, 94.7, 500.0, 5.0, 50.0, 0.0, 0.0, 0.0, 0.0, 3410.0, 5960.0, 0.0);
+INSERT INTO `nissan_fi` (`id`, `period`, `member_id`, `dealer_code`, `credit_bf`, `sales_nfsa`, `credit_actual_sales`, `sales_mvi`, `credits_mvi`, `sales_vpi`, `credits_vpi`, `sales_pkg`, `credits_pkg`, `sales_emw`, `credits_emw`, `sales_mmu`, `credits_mmu`, `penetration`, `credits_penetration`, `score_fi`, `credits_fi`, `sales_nfsa_retention`, `credits_nfsa_retention`, `registration`, `incentive`, `adjustment`, `excellence`, `credit_mtd`, `credit_ytd`, `lifetime`) VALUES (null, '2020-06-01', '21459', '3150', 5960.0, 42.0, 1680.0, 0.0, 0.0, NULL, NULL, 0.0, 0.0, 3.0, 120.0, NULL, NULL, 1.16, 1000.0, 83.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2800.0, 8760.0, 0.0);
+ 
 
 
 
