@@ -21,7 +21,7 @@ class PartsManager extends BaseRole implements IRole
         'data'=>[]
     ];
     public $GENUINE_ACCESSORIES = [
-        'label'=>'ACCESSORIES',
+        'label'=>'Accessories',
         'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];
@@ -31,7 +31,7 @@ class PartsManager extends BaseRole implements IRole
         'data'=>[]
     ];
     public $BRAKE_WIPER = [
-        'label'=>'BRAKE/WIPER',
+        'label'=>'Brake/Wiper',
         'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];

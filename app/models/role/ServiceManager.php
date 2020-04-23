@@ -18,7 +18,7 @@ class ServiceManager extends BaseRole implements IRole
     public $name='service_manager';
 
     public $serviceRecommendation = [
-        'label'=>'OVERALL SAT',
+        'label'=>'Overall Sat',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
@@ -34,7 +34,7 @@ class ServiceManager extends BaseRole implements IRole
         'data'=>[]
     ];
     public $EXPLANATION = [
-        'label'=>'EXP COSTS',
+        'label'=>'Exp Costs',
         'backgroundColor' => IColor::DARK_KHAKI,
         'data'=>[]
     ];
@@ -44,7 +44,7 @@ class ServiceManager extends BaseRole implements IRole
         'data'=>[]
     ];
     public $RETENTION = [
-        'label'=>'RETENTION',
+        'label'=>'Retention',
         'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
@@ -54,7 +54,7 @@ class ServiceManager extends BaseRole implements IRole
         'data'=>[]
     ];
     public $LOYALTY = [
-        'label'=>'LOYALTY',
+        'label'=>'Loyalty',
         'backgroundColor' => IColor::RED,
         'data'=>[]
     ];

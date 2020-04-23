@@ -17,13 +17,13 @@ class RetailSalesConsultant extends BaseRole implements IRole
     public $name='retail_sales_consultant';
 
     public $salesRecommendationSaturation   = [
-        'label'=>'OVERALL SAT',
+        'label'=>'Overall Sat.',
         'backgroundColor' => IColor::RED, 
         'data'=>[]
     ];
 
     public $followUpSaturation             = [
-        'label'=>'% FOLLOWED UP SAT',
+        'label'=>'% Followed up Sat.',
         'backgroundColor' => IColor::SILVER,
         'data'=>[]
     ];

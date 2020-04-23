@@ -16,13 +16,13 @@ class PartsSalesRep extends BaseRole implements IRole
     public $name='parts_sales_rep';
 
     public $GENUINE_REPLACEMENT_PARTS = [
-        'label'=>'GENUINE REPLACEMENT PARTS',
+        'label'=>'Genuine Raplacement Parts',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
 
     public $TRADE_SALES = [
-        'label'=>'TRADE SALES',
+        'label'=>'Trade Sales',
         'backgroundColor' => IColor::STEEL_BLUE,
         'data'=>[]
     ];
@@ -50,7 +50,7 @@ class PartsSalesRep extends BaseRole implements IRole
             {
                 $grp[] = $this->_buildForJs($item['grp_credit']);
                 if ($i % 3 == 2) {  // jun, sep, dec, mar
-                    $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);
+                    $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);  
                     
                     $trade_fy19_results[] = $this->_buildForTableElement($item['percentage_performvfy19'] * 100, 0).'%';
                     $trade_prev_results[] = $this->_buildForTableElement($item['percentage_performvprev'] * 100, 0).'%';
@@ -65,14 +65,15 @@ class PartsSalesRep extends BaseRole implements IRole
                 if ($i % 3 == 2) {  // jun, sep, dec, mar
                   $trade_sales[] =  $this->_buildForJs([0,0]);
 
-                  $trade_fy19_results[] = null;
-                  $trade_prev_results[] = null;
+                  $trade_fy19_results[] = '';
+                  $trade_prev_results[] = '';
                 }
                 $training[] = $this->_buildForJs([0,0,0]);
                 $grp_results[] = null;
             }
 
         }
+
         return [
             "GRP" => $grp,
             "GRP_RESULTS" => $grp_results,
