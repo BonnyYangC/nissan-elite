@@ -177,7 +177,8 @@ class SalesManager extends BaseRole implements IRole
                     intval($item['points_apnur_x']);
                 $this->trainingData['data'][]           = $item['training']
                     + $item['pathway']
-                    + $item['training_competency'];
+                    + $item['training_competency']
+                    + $item['training_bonus'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else

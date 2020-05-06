@@ -206,7 +206,8 @@ class ServiceManager extends BaseRole implements IRole
                 //$this->EMW['data'][]                    = intval($item['emw_credit']);
                 $this->trainingData['data'][]               = $item['training']
                     + $item['pathway']
-                    + $item['training_competency'];
+                    + $item['training_competency']
+                    + $item['training_bonus'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
                 $this->RETENTION['data'][]  = $item['retention_credit'];
