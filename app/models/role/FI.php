@@ -46,18 +46,18 @@ class FI extends BaseRole implements IRole
         'data'=>[]
     ];
     public $SalesPenetration = [
-        'label'=>'Sales Penetration',
+        'label'=>'Penetration',
         'backgroundColor' => IColor::LOW_RED,
         'data'=>[]
     ];
     public $FollowUp = [
-        'label'=>'FI Sat.',
+        'label'=>'Satisfaction',
         'backgroundColor' => IColor::LEMON_CHIFFON,
         'data'=>[]
     ];
 
     public $NFSA_Credits = [
-        'label'=>'Loyalty & Retention',
+        'label'=>'Loyalty',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
@@ -132,11 +132,12 @@ class FI extends BaseRole implements IRole
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
                 $this->NFSA_Contracts,
+                $this->NFSA_Credits,
                 $this->Insurance,
                 $this->EMW_Genuine_Extended,
                 $this->SalesPenetration,
                 $this->FollowUp,
-                $this->NFSA_Credits,
+
                 $this->incentivesForDashboard
             ],
             'statusChart'=>[

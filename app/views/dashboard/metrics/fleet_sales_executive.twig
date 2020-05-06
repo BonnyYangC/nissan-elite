@@ -5,7 +5,7 @@
         var CHART_DATA = [
             { //1. new vehicle sales
                 el: 'chart-vehicle-sales',
-                max: 5000,
+                max: 3000,
                 length: 10,
                 step: 500,
                 colors: ['#999999'],
@@ -14,18 +14,18 @@
             },
             { //2. New Vehicle Fleet Sales v Fleet Target
                 el: 'chart-v-fleet-target',
-                max: 2000,
-                length: 10,
-                step: 200,
+                max: 1600,
+                length: 4,
+                step: 400,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_vFleetTarget)|raw }}
             },
             { //3. Fleet Sales Volume Growth
                 el: 'chart-fleet-volume-growth',
-                max: 1000,
+                max: 840,
                 length: 5,
-                step: 200,
+                step: 168,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_fleetVolumeGrowth)|raw }}
@@ -126,7 +126,7 @@
             </div>
             <div class="row graph-back pl-10">
                 <div class="col-md-7">
-                    <h3>3. Fleet Sales Volume Growth(Quarterly) </h3>
+                    <h3>3. Fleet Sales Volume Growth - Quarterly</h3>
                     <div class="table-responsive">
                         <div id="chart-fleet-volume-growth" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">
@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h3>Fleet Sales Volume Growth GUIDE</h3>
+                    <h3>Fleet Sales Volume Growth - Quarterly GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
                             <td>Sales Member</td>

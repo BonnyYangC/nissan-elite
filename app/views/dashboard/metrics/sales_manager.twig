@@ -39,8 +39,8 @@
             {//4. Kept informed of delivery NPS 6 month rolling score - Target 88
                 el: 'chart-kid',
                 max: 350,
-                length: 7,
-                step: 50,
+                length: 1,
+                step: 350,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_KID)|raw }}
@@ -48,8 +48,8 @@
             {//5. DEALER RETAIL FORECAST
                 el: 'chart-retail',
                 max: 100,
-                length: 5,
-                step: 20,
+                length: 1,
+                step: 100,
                 colors: ['#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.JS_RETAIL)|raw }}
@@ -436,7 +436,7 @@
                             <td align="center">Points Yearly</td>
                         </tr>
                         <tr class="active">
-                            <td>Certified Dealership Manager (O)</td>
+                            <td width=45%>Certified Dealership Manager (O)</td>
                             <td></td>
                             <td align="center">200</td>
                             <td></td>
@@ -446,12 +446,6 @@
                             <td></td>
                             <td align="center">375</td>
                             <td></td>                            
-                        </tr>
-                        <tr class="active">
-                            <td>Bonus</td>
-                            <td></td>
-                            <td></td>
-                            <td align="center">2000</td>
                         </tr>
                         <tr class="active">
                             <td>Mastery Goal Achievement</td>
@@ -470,6 +464,12 @@
                             <td align="center">100</td>
                             <td></td>
                             <td></td>
+                        </tr>
+                        <tr class="active">
+                            <td>Bonus</td>
+                            <td></td>
+                            <td></td>
+                            <td align="center">2000</td>
                         </tr>
                     </table>
                 </div>
