@@ -48,6 +48,8 @@ function drawCharts() {
 			startup: true
     }
   };
+
+  var barData = google.visualization.arrayToDataTable(monthlyCreditTableArray);  
   // draw bar chart twice so it animates
   var barChart = new google.visualization.ColumnChart(document.getElementById('bar-chart'));
   //barChart.draw(barZeroData, barOptions);

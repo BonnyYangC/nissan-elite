@@ -56,12 +56,15 @@ var monthlyCreditTableArray = [
 for (var i=0;i<JS_credits.length;i++){
     monthlyCreditTableArray.push(JS_credits[i]);
 }
-var barData = google.visualization.arrayToDataTable(monthlyCreditTableArray);
+
+//var barData = google.visualization.arrayToDataTable(monthlyCreditTableArray);
 
 google.setOnLoadCallback(drawCharts);
 
 // credits earned metrics
 $(document).ready(function(){
+
+
     if(typeof CREDITS_EARNED_METRICS !== 'undefined'){
         var barChartData = {
             labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" , "Jan", "Feb", "Mar"],            
