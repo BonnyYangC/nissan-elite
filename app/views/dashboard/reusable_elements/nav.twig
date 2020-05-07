@@ -13,23 +13,24 @@
             {% if dashboardMenuOnly %}
                 {# Is mocking data, so no any nav item needed #}
             {% else %}
-                <li class="{{ currentUri=='dashboard' ? 'current' : null }}">
+                <li class="{{ currentUri=='dashboard'        ? 'current' : null }}">
                     <a href="{{ url('/dashboard') }}">My dashboard</a>
                 </li>
                 {% include 'dashboard/reusable_elements/nav_matrics_item.twig' %}
                 {% if count(user.teamMembers)>0 %}
-                    <li class="{{ currentUri=='my-team' ? 'current' : null }}"> <a href="{{ url('/my-team') }}">My Team</a></li>
+                    <li class="{{ currentUri=='my-team'      ? 'current' : null }}"> <a href="{{ url('/my-team') }}">My Team</a></li>
                 {% endif %}
-                <li class="{{ currentUri=='LeaderBoards' ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a></li>
-                <li class="{{ currentUri=='Incentives' ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a></li>
-                <li class="{{ currentUri=='MembersGuide' ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Members Guide</a></li>
-                <li class="{{ currentUri=='AboutProgram' ? 'current' : null }}"> <a href="{{ url('/dashboard/AboutProgram') }}">About the Program</a></li>
-                <li class="{{ currentUri=='Calendar' ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a></li>
+                <li class="{{ currentUri=='LeaderBoards'     ? 'current' : null }}"> <a href="{{ url('/dashboard/Leaderboards') }}">Rankings</a></li>
+                <li class="{{ currentUri=='Incentives'       ? 'current' : null }}"> <a href="{{ url('/dashboard/Incentives') }}?status=current">Incentives</a></li>
+                <li class="{{ currentUri=='MembersGuide'     ? 'current' : null }}"> <a href="{{ url('/dashboard/MembersGuide') }}">Member Guide</a></li>
+                <li class="{{ currentUri=='AboutProgram'     ? 'current' : null }}"> <a href="{{ url('/dashboard/AboutProgram') }}">The Program</a></li>
+                <li class="{{ currentUri=='Calendar'         ? 'current' : null }}"> <a href="{{ url('/dashboard/Calendar') }}">Calendar</a></li>
                 <li class="{{ currentUri=='ProductChallenge' ? 'current' : null }}"> <a href="{{ url('/dashboard/ProductChallenge') }}">Product Challenge</a></li>
-                <li class="{{ currentUri=='Lifetime' ? 'current' : null }}"> <a href="{{ url('/dashboard/Lifetime') }}">Loyalty</a></li>
-                <li class="{{ currentUri=='MDguild' ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">Guild</a></li>
-                <li class="{{ currentUri=='Account' ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a></li>
-                <li class="{{ currentUri=='FAQ' ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a></li>
+                <li class="{{ currentUri=='Awards'           ? 'current' : null }}"> <a href="{{ url('/dashboard/Awards') }}">Awards</a></li>
+                <li class="{{ currentUri=='Lifetime'         ? 'current' : null }}"> <a href="{{ url('/dashboard/Lifetime') }}">Loyalty</a></li>
+                <li class="{{ currentUri=='MDguild'          ? 'current' : null }}"> <a href="{{ url('/dashboard/MDguild') }}">Guild</a></li>
+                <li class="{{ currentUri=='Account'          ? 'current' : null }}"> <a href="{{ url('/dashboard/Account') }}">Account</a></li>
+                <li class="{{ currentUri=='FAQ'              ? 'current' : null }}"> <a href="{{ url('/dashboard/FAQ') }}">FAQs</a></li>
             {% endif %}
             </ul>
         </div>

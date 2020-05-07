@@ -38,6 +38,15 @@ class StaticPagesController extends DashboardController
         $this->render('dashboard/static/about_program');
         return;
     }
+
+    /**
+     * Load members guide view
+     */
+    public function awards(){
+        $this->dataForView['currentUri'] = 'Awards';
+        $this->render('dashboard/static/awards');
+        return;
+    }
     
     /**
      * Load members guide view

@@ -61,6 +61,7 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()->get('/dashboard/AboutProgram',\App\controller\StaticPagesController::class, 'about_program');
 \App\core\Route::Instance()->get('/dashboard/Lifetime',\App\controller\StaticPagesController::class, 'lifetime');
 \App\core\Route::Instance()->get('/dashboard/FAQ',\App\controller\StaticPagesController::class, 'faq');
+\App\core\Route::Instance()->get('/dashboard/Awards',\App\controller\StaticPagesController::class, 'awards');
 \App\core\Route::Instance()->get('/dashboard/MDguild',\App\controller\StaticPagesController::class, 'md_guide');
 \App\core\Route::Instance()->get('/dashboard/MDguild-members',\App\controller\StaticPagesController::class, 'md_guide_members');
 \App\core\Route::Instance()->get('/dashboard/MDguild-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_high_achievers');
