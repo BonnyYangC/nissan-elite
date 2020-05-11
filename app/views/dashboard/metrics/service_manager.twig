@@ -70,8 +70,8 @@
             {//7. Loyalty per Loyalty Sales
                 el: 'chart-loyalty',
                 max: 80,
-                length: 1,
-                step: 80,
+                length: 4,
+                step: 20,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.LOYALTY)|raw }}
@@ -342,7 +342,7 @@
                     <h3>TRAINING GUIDE</h3>
                     <table class="table small-table">
                         <tr class="table-top-row">
-                            <td>Competency Modules</td>
+                            <td WIDTH="45%">Competency Modules</td>
                             <td align="center">Points Monthly</td>
                             <td align="center">Points Quarterly</td>
                             <td align="center">Points Yearly</td>
@@ -358,12 +358,6 @@
                             <td></td>
                             <td align="center">375</td>
                             <td></td>                            
-                        </tr>
-                        <tr class="active">
-                            <td>Bonus</td>
-                            <td></td>
-                            <td></td>
-                            <td align="center">2000</td>
                         </tr>
                         <tr class="active">
                             <td>Mastery Goal Achievement</td>
@@ -382,6 +376,12 @@
                             <td align="center">100</td>
                             <td></td>
                             <td></td>
+                        </tr>
+                        <tr class="active">
+                            <td>Bonus</td>
+                            <td></td>
+                            <td></td>
+                            <td align="center">2000</td>
                         </tr>
                     </table>
                     <p>
