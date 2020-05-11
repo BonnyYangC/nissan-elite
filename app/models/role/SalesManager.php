@@ -153,7 +153,7 @@ class SalesManager extends BaseRole implements IRole
         $ytd = 0;
         $dataResults = $data['Results'];
 
-        for($i=0; $i<11; $i++)
+        for($i=0; $i<12; $i++)
         {
             $period=mktime(0,0,0,4+$i,1,$ytdParam);
             $key = $this->startPoint->addMonth()->format('M-Y');

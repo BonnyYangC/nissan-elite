@@ -6,8 +6,8 @@
             {//1. Dealer Stock Cover
                 el: 'chart-cover-result',
                 max: 425,
-                length: 1,
-                step: 425,
+                length: 5,
+                step: 85,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.STOCK_COVER)|raw }}
@@ -24,8 +24,8 @@
             {//3. Dealer Retail Forecast
                 el: 'chart-retail',
                 max: 150,
-                length: 1,
-                step: 150,
+                length: 3,
+                step: 50,
                 colors: ['#999999'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.RETAIL)|raw }}
@@ -51,8 +51,8 @@
             {//6. Registration v Retails Compliance
                 el: 'chart-regvret',
                 max: 360,
-                length: 1,
-                step: 360,
+                length: 6,
+                step: 60,
                 colors: ['#c40030'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.REGVRET)|raw }}

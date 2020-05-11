@@ -171,6 +171,10 @@ class ServiceAdviser extends BaseRole implements IRole
             }
         }
 
+
+
+
+
         return [
             "RECOMMENDATION" => $recommendation,
             "RECOMMENDATION_RESULTS" => $recommendation_results,
@@ -277,17 +281,17 @@ class ServiceAdviser extends BaseRole implements IRole
             "ytd"           =>$ytd,
             'rewardsDollars'=>$this->user->getDollarRewardsRange(),
             'metricsCurrentStatus'   =>[
-                $this->serviceRecommendation,
+                $this->serviceRecommendation,  //Overall Sat
                 //$this->VehicleCleanliness,
                 //$this->SERVICE_YOU_CAN_TRUST,
-                //$this->CUSTOMER_REPAIR_ORDER,
-                $this->trainingData,
-                //$this->incentivesForDashboard,
-                $this->LOYALTY,
+                //$this->CUSTOMER_REPAIR_ORDER,                
                 $this->INDICATION,
                 $this->EXPLANATION,
                 $this->BRAKE_WIPER_SALES,
-                
+                $this->LOYALTY,
+                $this->trainingData,
+                $this->incentivesForDashboard
+
             ],
             'statusChart'=>[
                 'gageArray'=>$status->getGageIndicators(),
