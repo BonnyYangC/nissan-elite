@@ -612,12 +612,11 @@ footer ul.nav li a:hover {
 	}
 }
 
-@media (min-width: 992px) and (max-width: 1198px) {
+@media (min-width: 992px) and (max-width: 1199px) {
 
     ul.navbar-nav > li > a {	
 		padding-left: 3px;
 		padding-right: 3px;
-		color:red !important
 	}
 }
 
@@ -626,6 +625,5 @@ footer ul.nav li a:hover {
     ul.navbar-nav > li > a {	
 		padding-left: 1px;
 		padding-right: 1px;
-		color:green !important
 	}
 }
