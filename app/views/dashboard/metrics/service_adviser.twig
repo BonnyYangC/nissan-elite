@@ -80,8 +80,8 @@
             {//5. Loyalty per Loyalty Sales
                 el: 'chart-loyalty',
                 max: 80,
-                length: 1,
-                step: 80,
+                length: 4,
+                step: 20,
                 colors: ['#555555'],
                 pilot: ['Month', yAxis],
                 dataSource: {{ json_encode(metrics.LOYALTY)|raw }}
