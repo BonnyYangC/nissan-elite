@@ -147,6 +147,8 @@ nav {
     padding: 10px 11px;
 }
 
+
+
 .navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -610,6 +612,20 @@ footer ul.nav li a:hover {
 	}
 }
 
-.d-none {
-	display: none
+@media (min-width: 992px) and (max-width: 1198px) {
+
+    ul.navbar-nav > li > a {	
+		padding-left: 3px;
+		padding-right: 3px;
+		color:red !important
+	}
+}
+
+@media (max-width: 991px) {
+
+    ul.navbar-nav > li > a {	
+		padding-left: 1px;
+		padding-right: 1px;
+		color:green !important
+	}
 }
