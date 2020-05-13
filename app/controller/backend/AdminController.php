@@ -401,6 +401,7 @@ class AdminController extends BaseController
      * Cross check or sync database with submitted csv file
      */
     public function csv_importer(){
+        ini_set('max_execution_time', 300); 
         $isSyncAction = $this->request->param('action_type') == 'sync';
         $uploader = new FileUploader($this->request);
         $filePath = $uploader->store('csv');
