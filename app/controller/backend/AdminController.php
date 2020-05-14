@@ -407,6 +407,12 @@ class AdminController extends BaseController
         $filePath = $uploader->store('csv');
         $syncedRowsCount = 0;
 
+        $date_type_fields = [
+            'dob',
+            'date_created'
+        ];
+
+
         if($filePath){
             /**
              * @var File $file
@@ -438,7 +444,7 @@ class AdminController extends BaseController
                         $index > 0 &&
                         (
                             !empty($row[$this->indexes[DbMap::MEMBER_ID]]) ||
-                            !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]) ||
+                            !empty($row[$this->indexes[DbMap::EMPLOYEE_CODE]]) ||  //regi#
                             !empty($row[$this->indexes[DbMap::EMAIL]]) ||
                             !empty($row[$this->indexes[DbMap::COMPANY_CODE]])   // This condition is for company table only
                         )
@@ -462,6 +468,7 @@ class AdminController extends BaseController
                         $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 
                         if($found){
+
                             $this->_lastFoundResultSet = $resultSet[0];
 
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
@@ -471,9 +478,11 @@ class AdminController extends BaseController
                                         if($currentFieldName == $model->getIdFieldName()){
 //                                            $idField = $model->getIdFieldName();
                                             $model->$currentFieldName = $fieldValue;
+
                                         }elseif($currentFieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $model->period = $periodConverted;
+
                                         }elseif(isset($this->indexes[$currentFieldName])){
                                             $newValue =
                                                 empty($row[$this->indexes[$currentFieldName]]) ?
@@ -484,12 +493,26 @@ class AdminController extends BaseController
                                         }
                                     }
                                     else{
+                                        $val = $row[$this->indexes[$currentFieldName]];
+                                        if ( in_array($currentFieldName, $date_type_fields)) {                             
+                                            if(!preg_match('/^\d{7,8}$/', $val)) {
+                                                print "Bad date line(". ($index+2) . ") $currentFieldName: <em>". $val ."</em>";
+                                                exit;
+                                            }
+                                         }
+
+
                                         if($currentFieldName == $model->getIdFieldName()){
                                             $this->resultArray[$index][$model->getIdFieldName()] = $fieldValue;
                                         }elseif($currentFieldName == 'period'){
                                             $tmp = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                             $equal = $fieldValue == $tmp;
                                             $this->resultArray[$index]['period'] = $fieldValue.' / <span style="color:'.($equal?'blue':'red').';">'.$row[$this->indexes[$currentFieldName]].'</span>';
+                                        
+
+
+
+
                                         }elseif(isset($this->indexes[$currentFieldName])){
                                             // Not ID, need compare
                                             $equal = trim($row[$this->indexes[$currentFieldName]]) == $fieldValue || empty($row[$this->indexes[$currentFieldName]]);
@@ -512,6 +535,7 @@ class AdminController extends BaseController
                                             }elseif($currentFieldName == 'period'){
                                                 $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                                 $model->period = $periodConverted;
+
                                             }elseif(isset($this->indexes[$currentFieldName])){
                                                 $newValue =
                                                     empty($row[$this->indexes[$currentFieldName]]) ?
