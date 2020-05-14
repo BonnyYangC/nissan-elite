@@ -55,20 +55,20 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
  * Route: /dashboard  -> Dashboard view
  */
 // static pages
-\App\core\Route::Instance()->get('/dashboard',\App\controller\DashboardController::class, 'dashboard');
-\App\core\Route::Instance()->get('/Dashboard',\App\controller\DashboardController::class, 'dashboard');
-\App\core\Route::Instance()->get('/dashboard/MembersGuide',\App\controller\StaticPagesController::class, 'members_guide');
-\App\core\Route::Instance()->get('/dashboard/AboutProgram',\App\controller\StaticPagesController::class, 'about_program');
-\App\core\Route::Instance()->get('/dashboard/Lifetime',\App\controller\StaticPagesController::class, 'lifetime');
-\App\core\Route::Instance()->get('/dashboard/FAQ',\App\controller\StaticPagesController::class, 'faq');
-\App\core\Route::Instance()->get('/dashboard/Awards',\App\controller\StaticPagesController::class, 'awards');
-\App\core\Route::Instance()->get('/dashboard/MDguild',\App\controller\StaticPagesController::class, 'md_guide');
-\App\core\Route::Instance()->get('/dashboard/MDguild-members',\App\controller\StaticPagesController::class, 'md_guide_members');
-\App\core\Route::Instance()->get('/dashboard/MDguild-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_high_achievers');
+\App\core\Route::Instance()->get('/dashboard',                               \App\controller\DashboardController::class, 'dashboard');
+\App\core\Route::Instance()->get('/Dashboard',                               \App\controller\DashboardController::class, 'dashboard');
+\App\core\Route::Instance()->get('/dashboard/MembersGuide',                  \App\controller\StaticPagesController::class, 'members_guide');
+\App\core\Route::Instance()->get('/dashboard/AboutProgram',                  \App\controller\StaticPagesController::class, 'about_program');
+\App\core\Route::Instance()->get('/dashboard/Lifetime',                      \App\controller\StaticPagesController::class, 'lifetime');
+\App\core\Route::Instance()->get('/dashboard/FAQ',                           \App\controller\StaticPagesController::class, 'faq');
+\App\core\Route::Instance()->get('/dashboard/Awards',                        \App\controller\StaticPagesController::class, 'awards');
+\App\core\Route::Instance()->get('/dashboard/MDguild',                       \App\controller\StaticPagesController::class, 'md_guide');
+\App\core\Route::Instance()->get('/dashboard/MDguild-members',               \App\controller\StaticPagesController::class, 'md_guide_members');
+\App\core\Route::Instance()->get('/dashboard/MDguild-high-achievers',        \App\controller\StaticPagesController::class, 'md_guide_high_achievers');
 \App\core\Route::Instance()->get('/dashboard/MDguild-high-achievers-winners',\App\controller\StaticPagesController::class, 'md_guide_high_achievers_winners');
-\App\core\Route::Instance()->get('/dashboard/MDguild-events',\App\controller\StaticPagesController::class, 'md_guide_events');
-\App\core\Route::Instance()->get('/dashboard/MDguild-events-past',\App\controller\StaticPagesController::class, 'md_guide_events_past');
-\App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers',\App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
+\App\core\Route::Instance()->get('/dashboard/MDguild-events',                \App\controller\StaticPagesController::class, 'md_guide_events');
+\App\core\Route::Instance()->get('/dashboard/MDguild-events-past',           \App\controller\StaticPagesController::class, 'md_guide_events_past');
+\App\core\Route::Instance()->get('/dashboard/MDguild-events-high-achievers', \App\controller\StaticPagesController::class, 'md_guide_events_high_achievers');
 
 \App\core\Route::Instance()->get('/dashboard/current-status-level',\App\controller\GageController::class, 'current_status_level');
 \App\core\Route::Instance()->get('/dashboard/loyalty-status-level',\App\controller\GageController::class, 'loyalty_status_level');
