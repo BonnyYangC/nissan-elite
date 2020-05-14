@@ -496,7 +496,7 @@ class AdminController extends BaseController
                                         $val = $row[$this->indexes[$currentFieldName]];
                                         if ( in_array($currentFieldName, $date_type_fields)) {                             
                                             if(!preg_match('/^\d{7,8}$/', $val)) {
-                                                print "Bad date line(". ($index+2) . ") $currentFieldName: <em>". $val ."</em>";
+                                                print "Bad date line(". ($index+2) . ") $currentFieldName: '<em>". nl2br($val) ."</em>'";
                                                 exit;
                                             }
                                          }
