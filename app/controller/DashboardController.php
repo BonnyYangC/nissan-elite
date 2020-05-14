@@ -271,7 +271,10 @@ class DashboardController extends BaseController
             $credit_ytd = $r['credit_ytd'];
         }
 
-        $this->dataForView['history2'] = $data['history'];
+        $this->dataForView['loyalty_to_brand'] = $data['history'];
+        $this->dataForView['display_years'] = $data['display_years'];
+        $this->dataForView['sum_display_years'] = array_sum($data['display_years']);
+        $this->dataForView['this_year_two_digit'] = substr(getenv('YEAR',2020),2,2);
 
         $lifetime   = 0;
         $monthly    = [];
@@ -327,7 +330,7 @@ class DashboardController extends BaseController
             'max'       =>LifetimeUtil::Platinum,
             'monthly'   =>$monthly,
             'history'   =>$history,
-            'ytd'       =>$credit_ytd
+            'ytd'       =>$credit_ytd            
         ];
 
         $this->dataForView['extra_js'] = [
@@ -360,7 +363,10 @@ class DashboardController extends BaseController
 
         $result = DataSource::Query($this->userObject);
         $this->dataForView['Results'] = $result['result']['Results'];
-        $this->dataForView['history2'] = $result['history'];
+        $this->dataForView['loyalty_to_brand'] = $result['history'];
+        $this->dataForView['display_years'] = $data['display_years'];
+        $this->dataForView['sum_display_years'] = array_sum($data['display_years']);
+        
 //        $this->dataForView['Excellence'] = $result['result']['Excellence'];
 
         /**

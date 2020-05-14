@@ -16,8 +16,14 @@
                     {% include 'dashboard/widget_element/lifetime_status_level_chart.twig' %}
                 </div>
 
-                <h3 style="color:black">Loyalty to the brand: {{ number_format(history2, 0) }} </h3>
-                <h3 style="color:black">FY{{ configuration('YEAR') }} YTD : {{ number_format(dashboard.ytd, 0) }} </h3>
+                <h3 style="color:black">Loyalty to the brand: {{ number_format(loyalty_to_brand, 0) }} </h3>
+
+                {% for year,amount in display_years %}
+                    <h3 style="color:black">FY{{ year }} : {{ number_format(amount, 0) }} </h3>
+                {% endfor %}
+
+                <h3 style="color:black">FY{{ this_year_two_digit }} YTD : {{ number_format(dashboard.ytd, 0) }} </h3>
+
             </div>
             <div class="col-md-3 pb-0">
             

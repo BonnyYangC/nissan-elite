@@ -190,16 +190,33 @@ class DataSource extends BaseModel
             dump($database->log());
         }
 
-        $history_result = $database->query('
+        $history_result = $database->query($q= '
             select 
                 count(*), 
                 sum(amount) 
             from nissan_history 
             where 
                 member_id='. $user->getEmployeeCode() .' and 
-                period <> \''. configuration('YEAR') .'-01-01\'
+                period < \'2019-01-01\'
+        ')->fetchAll()[0][1];  // everything before 2019 is nissan-ac which will be called "loyalty to the brand"
 
-        ')->fetchAll()[0][1];
+        $years_result = $database->query($q2= '
+            select 
+                period,
+                amount
+            from nissan_history 
+            where 
+                member_id='. $user->getEmployeeCode() .' and 
+                period >= \'2019-01-01\'
+            order by period
+        ')->fetchAll();  // everything before 2019 is nissan-ac which will be called "loyalty to the brand"
+
+        $display_years = [];
+        foreach (range(19, substr(getenv('YEAR')-1,2,2)) as $year) $display_years[$year] = 0; // in 2020 [19]  in 2021 [19,20]
+
+        foreach ($years_result as $row) {
+            $display_years[substr($row['period'],2,2)] = $row['amount'];
+        }
 
         // $result = $database->select(
         //     'nissan_history',
@@ -210,7 +227,8 @@ class DataSource extends BaseModel
         return [
             'view_name'=>$currentTableName,
             'result'=>self::_handle($rows),
-            'history'=>$history_result
+            'history'=>$history_result,
+            'display_years' => $display_years            
         ];
     }
 
