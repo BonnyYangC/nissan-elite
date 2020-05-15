@@ -212,7 +212,7 @@ class DataSource extends BaseModel
         ')->fetchAll();  // everything before 2019 is nissan-ac which will be called "loyalty to the brand"
 
         $display_years = [];
-        foreach (range(19, substr(getenv('YEAR')-1,2,2)) as $year) $display_years[$year] = 0; // in 2020 [19]  in 2021 [19,20]
+        foreach (range(substr(getenv('YEAR')-1,2,2),19,-1) as $year) $display_years[$year] = 0; // in 2020 [19]  in 2021 [19,20]
 
         foreach ($years_result as $row) {
             $display_years[substr($row['period'],2,2)] = $row['amount'];
