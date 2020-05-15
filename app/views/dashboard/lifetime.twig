@@ -20,7 +20,7 @@
 
                 <h3 style="color:black">FY{{ this_year_two_digit }} YTD : {{ number_format(ytd, 0) }} </h3>
 
-                {% for year,amount in display_years%}
+                {% for year,amount in display_years %}
                     <h3 style="color:black">FY{{ year }} : {{ number_format(amount, 0) }} </h3>
                 {% endfor %}
 
