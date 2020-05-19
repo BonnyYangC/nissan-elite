@@ -429,7 +429,9 @@ class AdminController extends BaseController
                 foreach ($reader as $index=>$row) {
                     if($index === 0){
                         $this->csvFileIndexes = $row;
+                        $csvColHeaders = $row;
                         $this->_matchDbFields($row, $tableName, $roleAbbr);
+                        $map = $this->_matchDbFields($row, $tableName, $roleAbbr, true);
                         break;
                     }
                 }
@@ -466,10 +468,16 @@ class AdminController extends BaseController
 //                            $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 //                        }
                         $model = $this->_getANewModel($roleAbbr, $user, $tableName);
-
                         if($found){
 
                             $this->_lastFoundResultSet = $resultSet[0];
+
+
+                            if ($index === 1) {                                
+                                $dumpedCsvFields = array_diff($csvColHeaders, array_keys($map)); 
+                                $dbFieldsNotSet = array_diff(array_keys($this->_lastFoundResultSet), array_values($map));
+                                $dbFieldsNotSet = array_diff($dbFieldsNotSet, [$model->getIdFieldName()]);
+                            }                            
 
                             foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
                                 if(is_string($currentFieldName)){
@@ -521,6 +529,7 @@ class AdminController extends BaseController
                                     }
                                 }
                             }
+
                         }
                         else{
                             // Trying to create a new record
@@ -599,6 +608,11 @@ class AdminController extends BaseController
                     echo $this->allHtml."Synced: $syncedRowsCount rows.";
                 }else{
                     $this->_printResultArray( '<h1>'.$tableName.'</h1>');
+                    print "<pre>";
+                    print "Fields from the CSV not mapped to anything\n";
+                    print_r($dumpedCsvFields);
+                    print "Fields in the database not set by the import\n";
+                    print_r($dbFieldsNotSet);
                 }
             }
         }
@@ -738,7 +752,7 @@ class AdminController extends BaseController
      * @param $tableName
      * @return bool
      */
-    private function _matchDbFields($csvRowArray, $tableName, $roleAbbr){
+    private function _matchDbFields($csvRowArray, $tableName, $roleAbbr, $getMap=false){
         $findMatch = true;
 
         switch ($tableName){
@@ -797,6 +811,8 @@ class AdminController extends BaseController
         }
         $this->fieldMap = $map;
         $map = array_flip($map);
+
+        if ($getMap) return $map;
 
         foreach ($csvRowArray as $index => $rowName) {
             if(isset($map[$rowName])){
