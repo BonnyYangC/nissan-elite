@@ -129,20 +129,25 @@ class TableFieldMap{
      */
     public static function StockControllerTable(){
         $map = [
+//registered,regi#,dcode,dcat,rcode,sp,mthyrg,points_CARRIED_,score_STOCK_,points_stock_,score_compOW_,points_compOW_,ach_forecast_,points_forecast_,score_matchOW_,points_matchOW_,pcent_DAVO_,points_davo_,pcent_REGvRET_,points_regvret_,points_train_online,points_train_competency,points_train_pathway,points_incentive,points_adjust_,points_registration,POINTS_MTHLY_,POINTS_YTD,POINTS_ytd_historical,award_status,award_gcard_elite,elig_EOY_criteria,elig_EOY_payment,regi#_mthyrg,d_statement,spcode,status,n_fname,n_sname,dcode_mthyr
+
+
             'period'                =>'d_statement',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
-            'stock'                 =>'stock_cover', //stock cover //'days_stock',
-            'stock_credit'          =>'points_stock',//'credits_stock',
-            'ow'                    =>'compliance_ow', //ow data entry compliance //'ow_data',
-            'ow_credit'             =>'points_compliance',//'credits_ow_data',
-            'retail'                =>'achieved_forecast', //dealer forecast //'retail_forecast_achieved',
-            'retail_credit'         =>'points_forecast',//'credits_retail_forecast',
+            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
+            'stock'                 =>'score_STOCK_', //stock cover //'days_stock',
+            'stock_credit'          =>'points_stock_',//'credits_stock',
+            'ow'                    =>'score_matchOW_', //ow data entry compliance //'ow_data',
+            'ow_credit'             =>'points_matchOW_',//'credits_ow_data',
+            'retail'                =>'ach_forecast_', //dealer forecast //'retail_forecast_achieved',
+            'retail_credit'         =>'points_forecast_',//'credits_retail_forecast',
+            'points_regvret'        =>'points_regvret_',
+            'percentage_regvret'    =>'pcent_REGvRET_',
             'matched'               =>'matchOW', //matched ow compliance //'ow_match',
             'matched_credit'        =>'points_matchOW',//'credits_ow_match',
-            'davo'                  =>'percentage_davo',//DAVO Orders //'percentage_davo',
-            'davo_credit'           =>'points_davo',//'credits_davo',
+            'davo'                  =>'pcent_DAVO_',//DAVO Orders //'percentage_davo',
+            'davo_credit'           =>'points_davo_',//'credits_davo',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
@@ -150,7 +155,7 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
             'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
@@ -293,24 +298,28 @@ class TableFieldMap{
      */
     public static function FleetSalesExecutivesTable(){
         $map = [
+
+//registered  regi#   dcode   dcat    rcode   sp  mthyrg  points_CARRIED_ sales_status_   points_sales_status_    pcent_ACT_F_    points_ACT_F_   pcent_ACT_FV_   points_ACT_FV_  points_train_online points_train_competency points_train_pathway    points_train_bonus  points_registration points_incentive    points_adjust_  POINTS_MTHLY_   POINTS_YTD  POINTS_ytd_historical   award_status    award_gcard_elite   elig_EOY_criteria   elig_EOY_payment    d_statement regi#_mthyrg    spcode  status  n_fname n_sname dcode_mthyr
+
+
             'period'                =>'d_statement',
             'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
-            'sales'                 =>'sales_status',  //new vehicle sales //'sales',
-            'credit_actual_sales'   =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
-            'v_fleet_target'  =>'percentage_actF',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
-            'v_fleet_target_score'     =>'points_actF',//'credits_ce_OSAT', //points for fleet sales v fleet target 
-            'fleet_volumn_growth'       =>'percentage_actFV',//'ce_score_FU%', //percentage of fleet volume growth (quarterly)
-            'fleet_volumn_growth_score'      =>'points_actFV',//'credits_ce_FU%', //points for fleet volume growth (quarterly)
+            'credit_bf'             =>'points_CARRIED_',  //'credits_carried_forward',
+            'sales'                 =>'sales_status_',  //new vehicle sales //'sales',
+            'credit_actual_sales'   =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
+            'v_fleet_target'        =>'pcent_ACT_FV_',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
+            'v_fleet_target_score'  =>'points_ACT_FV_',//'credits_ce_OSAT', //points for fleet sales v fleet target 
+            'fleet_volumn_growth'   =>'pcent_ACT_F_',//'ce_score_FU%', //percentage of fleet volume growth (quarterly)
+            'fleet_volumn_growth_score'=>'points_ACT_F_',//'credits_ce_FU%', //points for fleet volume growth (quarterly)
             'training'              =>'points_train_online',//'credits_training_online', //training
             'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
-            'adjustment'            =>'points_adjust',//'credits_adjustment',
+            'adjustment'            =>'points_adjust_',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
             'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
