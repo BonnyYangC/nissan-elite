@@ -502,8 +502,8 @@ class TableFieldMap{
             'rank_state'    =>'state_rank_',
         ];
         $notNecessaryFields = [
-            'region_code'           =>'rcode',//'r_code',
-            'registered'    =>'registered',
+            'region_code'           =>'rcode_',//'r_code',  //it's in the company table
+            'registered'    =>'registered_',
             'status'                =>'status', //active
         ];
         return array_merge($map, $notNecessaryFields);
