@@ -88,7 +88,7 @@ class TableFieldMap{
     public static function ServiceAdvisorsTable(){
         $map = [
             'period'                =>'mthyrg',//'mth_yr',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'recom_score'           =>'score_ce_SOS', //sales overall satisfaction //'ce_score_OSAT',
@@ -130,7 +130,7 @@ class TableFieldMap{
     public static function StockControllerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'stock'                 =>'stock_cover', //stock cover //'days_stock',
@@ -164,7 +164,7 @@ class TableFieldMap{
     public static function PartsManagerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#', //'_amb_id',
+            'member_id'             =>'regi#_', //'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'grp'                   =>'percentage_grp', //genuine replacement parts
@@ -193,7 +193,7 @@ class TableFieldMap{
     public static function PartnerRepresentativeTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED', //'credits_carried_forward',
             'grp'                   =>'percentage_grp', //genuine replacement parts
@@ -219,7 +219,7 @@ class TableFieldMap{
     public static function FinanceControllerTable(){
         $map = [
             'period'                =>'mthyrg',//'mth_yr',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'frequency'             =>'bmo_frequency', //dealer financial reporting - submitted
@@ -255,7 +255,7 @@ class TableFieldMap{
     public static function FiAdministrationTable(){
         $map = [
             'period'                =>'mthyrg',//'mth_yr',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'sales_nfsa'            =>'sales_nfsa',//nfsa finance contract //'sales_nfsa_nissan',
@@ -294,7 +294,7 @@ class TableFieldMap{
     public static function FleetSalesExecutivesTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#', //'_amb_id',
+            'member_id'             =>'regi#_', //'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
             'sales'                 =>'sales_status',  //new vehicle sales //'sales',
@@ -324,7 +324,7 @@ class TableFieldMap{
     public static function ConsultantSalesTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#', //'_amb_id',
+            'member_id'             =>'regi#_', //'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
             'sales'                 =>'sales_status',  //new vehicle sales //'sales',
@@ -356,7 +356,7 @@ class TableFieldMap{
     public static function ServiceManagerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
             'recommendation'        =>'score_ce_SOS',//service overall satisfaction  //'ce_score_OSAT',
@@ -397,7 +397,7 @@ class TableFieldMap{
     public static function SalesManagerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#',//'_amb_id',
+            'member_id'             =>'regi#_',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
             'order_write_credit'    =>'points_matchOW_',//'credits_ow_match',
@@ -490,16 +490,16 @@ class TableFieldMap{
      */
     public static function NissanRankingsTable(){
         $map = [
-            'period'        =>'mthyr_g',//'amba_STAT_ambid_gmthyr::mth_yr',
-            'member_id'     =>'regi#',//'_amb_id',
+            'period'        =>'mthyr_g_',//'amba_STAT_ambid_gmthyr::mth_yr',
+            'member_id'     =>'regi#_',//'_amb_id',
             'dealer_code'   =>'dcode',//'d_code',
             'category'      =>'dcat',//'d_cat',
-            'rank'       =>'rank_STATUS',
+            'rank'       =>'rank_STATUS_',
             'rank_platinum'       =>'rank_PLATINUM',
             'total'         =>'yr_2019_status', //status
             'total_platinum'=>'yr_2019_platinum', //platinum
-            'role'          =>'sp',
-            'rank_state'    =>'state_rank',
+            'role'          =>'sp_',
+            'rank_state'    =>'state_rank_',
         ];
         $notNecessaryFields = [
             'region_code'           =>'rcode',//'r_code',
