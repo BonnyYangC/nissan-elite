@@ -412,6 +412,8 @@ class AdminController extends BaseController
             'date_created'
         ];
 
+        $allRowsIgnored = true;
+
 
         if($filePath){
             /**
@@ -442,6 +444,7 @@ class AdminController extends BaseController
                 $db = BaseModel::DB();
 
                 foreach ($reader as $index=>$row) {
+
                     if(
                         $index > 0 &&
                         (
@@ -451,6 +454,8 @@ class AdminController extends BaseController
                             !empty($row[$this->indexes[DbMap::COMPANY_CODE]])   // This condition is for company table only
                         )
                     ){
+                        $allRowsIgnored = false;
+
                         // 对于 Regional territory report 来讲, 有一些特殊处理: 55开头的 dealer code 都是无效的; dealer code 141 是无效的
                         if($tableName == RegionTerritoryReport::TABLE_NAME
                             && (
@@ -537,6 +542,7 @@ class AdminController extends BaseController
                                 if($this->_lastFoundResultSet){
                                     foreach ($this->_lastFoundResultSet as $currentFieldName => $fieldValue) {
                                         if(is_string($currentFieldName)){
+
                                             if($currentFieldName == $model->getIdFieldName()){
                                                 // 为了新增操作
                                                 $idField = $model->getIdFieldName();
@@ -544,6 +550,7 @@ class AdminController extends BaseController
                                             }elseif($currentFieldName == 'period'){
                                                 $periodConverted  = CsvTool::ConvertDateToYmd($row[$this->indexes[$currentFieldName]]);
                                                 $model->period = $periodConverted;
+
 
                                             }elseif(isset($this->indexes[$currentFieldName])){
                                                 $newValue =
@@ -558,6 +565,7 @@ class AdminController extends BaseController
                                 }
                                 else{
                                     foreach ($this->indexes as $fieldName=>$rowIndex) {
+
                                         if($fieldName == 'period'){
                                             $periodConverted  = CsvTool::ConvertDateToYmd($row[$rowIndex]);
                                             $model->period = $periodConverted;
@@ -570,6 +578,7 @@ class AdminController extends BaseController
                                             $model->$fieldName = trim($newValue);
                                         }
                                     }
+
                                 }
                             }else{
                                 $this->notFoundArray[$index] = $row;
@@ -604,15 +613,31 @@ class AdminController extends BaseController
                     }
                 }
 
+                if ($allRowsIgnored) {
+                    print "Couldn't find any of these fields <br>";
+                    print DbMap::MEMBER_ID ."<br>";
+                    print DbMap::EMPLOYEE_CODE ."<br>";
+                    print DbMap::EMAIL ."<br>";
+                    print DbMap::COMPANY_CODE ."<br>";
+
+                    print "<pre>";
+                    print_r($map);
+                    exit;                    
+                }
+
                 if($isSyncAction){
                     echo $this->allHtml."Synced: $syncedRowsCount rows.";
                 }else{
                     $this->_printResultArray( '<h1>'.$tableName.'</h1>');
-                    print "<pre>";
-                    print "Fields from the CSV not mapped to anything\n";
-                    print_r($dumpedCsvFields);
-                    print "Fields in the database not set by the import\n";
-                    print_r($dbFieldsNotSet);
+                    print "\n<pre>\n";
+                    if ($dumpedCsvFields) {
+                        print "Fields from the CSV not mapped to anything\n";
+                        print_r($dumpedCsvFields);
+                    }
+                    if ($dbFieldsNotSet) {
+                        print "Fields in the database not set by the import\n";
+                        print_r($dbFieldsNotSet);
+                    }
                 }
             }
         }
