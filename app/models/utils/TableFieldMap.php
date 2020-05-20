@@ -294,7 +294,7 @@ class TableFieldMap{
     public static function FleetSalesExecutivesTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#_', //'_amb_id',
+            'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
             'sales'                 =>'sales_status',  //new vehicle sales //'sales',
