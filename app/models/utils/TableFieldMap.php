@@ -397,7 +397,7 @@ class TableFieldMap{
     public static function SalesManagerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
             'order_write_credit'    =>'points_matchOW_',//'credits_ow_match',
