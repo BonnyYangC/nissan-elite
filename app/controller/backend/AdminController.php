@@ -632,12 +632,19 @@ class AdminController extends BaseController
                     print "\n<pre>\n";
                     if ($dumpedCsvFields) {
                         print "Fields from the CSV not mapped to anything\n";
-                        print_r($dumpedCsvFields);
+                        $out = print_r($dumpedCsvFields,1);
+                        foreach(explode("\n", $out) as $line) {
+                            if (preg_match('/\[(\d\d?)\](.*)/', $line, $matches)) {
+                                $letter = ($matches[1] > 26 ? 'A':'') . (chr( 65 + $matches[1] % 26)); 
+                                print "  col($letter) $matches[2]\n";
+                            }
+                        }
                     }
                     if ($dbFieldsNotSet) {
-                        print "Fields in the database not set by the import\n";
+                        print "\nFields in the database not set by the import\n";
                         print_r($dbFieldsNotSet);
                     }
+
                 }
             }
         }
