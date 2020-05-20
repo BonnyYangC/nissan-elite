@@ -494,10 +494,10 @@ class TableFieldMap{
             'member_id'     =>'regi#_',//'_amb_id',
             'dealer_code'   =>'dcode',//'d_code',
             'category'      =>'dcat',//'d_cat',
-            'rank'       =>'rank_STATUS_',
-            'rank_platinum'       =>'rank_PLATINUM',
-            'total'         =>'yr_2019_status', //status
-            'total_platinum'=>'yr_2019_platinum', //platinum
+            'rank'          =>'rank_STATUS_',
+            'rank_platinum' =>'rank_PLATINUM_',
+            'total'         =>'yr_2020_status_', //status
+            'total_platinum'=>'yr_2020_platinum_', //platinum
             'role'          =>'sp_',
             'rank_state'    =>'state_rank_',
         ];
