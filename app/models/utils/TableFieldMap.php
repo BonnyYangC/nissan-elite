@@ -302,26 +302,26 @@ class TableFieldMap{
 //registered  regi#   dcode   dcat    rcode   sp  mthyrg  points_CARRIED_ sales_status_   points_sales_status_    pcent_ACT_F_    points_ACT_F_   pcent_ACT_FV_   points_ACT_FV_  points_train_online points_train_competency points_train_pathway    points_train_bonus  points_registration points_incentive    points_adjust_  POINTS_MTHLY_   POINTS_YTD  POINTS_ytd_historical   award_status    award_gcard_elite   elig_EOY_criteria   elig_EOY_payment    d_statement regi#_mthyrg    spcode  status  n_fname n_sname dcode_mthyr
 
 
-            'period'                =>'d_statement',
-            'member_id'             =>'regi#', //'_amb_id',
-            'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',  //'credits_carried_forward',
-            'sales'                 =>'sales_status_',  //new vehicle sales //'sales',
-            'credit_actual_sales'   =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
-            'v_fleet_target'        =>'pcent_ACT_FV_',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
-            'v_fleet_target_score'  =>'points_ACT_FV_',//'credits_ce_OSAT', //points for fleet sales v fleet target 
-            'fleet_volumn_growth'   =>'pcent_ACT_F_',//'ce_score_FU%', //percentage of fleet volume growth (quarterly)
-            'fleet_volumn_growth_score'=>'points_ACT_F_',//'credits_ce_FU%', //points for fleet volume growth (quarterly)
-            'training'              =>'points_train_online',//'credits_training_online', //training
-            'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
-            'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
-            'registration'          =>'points_registration',//'credits_registration',
-            'incentive'             =>'points_incentive',//'credits_incentive',
-            'adjustment'            =>'points_adjust_',//'credits_adjustment',
-            'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'period'                   =>'d_statement',
+            'member_id'                =>'regi#', //'_amb_id',
+            'dealer_code'              =>'dcode',
+            'credit_bf'                =>'points_CARRIED_',  //'credits_carried_forward',
+            'sales'                    =>'sales_status_',  //new vehicle sales //'sales',
+            'credit_actual_sales'      =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
+            'v_fleet_target'           =>'pcent_ACT_F_',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
+            'v_fleet_target_score'     =>'points_ACT_F_',//'credits_ce_OSAT', //points for fleet sales v fleet target 
+            'fleet_volumn_growth'      =>'pcent_ACT_FV_',//'ce_score_FU%', //percentage of fleet volume growth (quarterly)
+            'fleet_volumn_growth_score'=>'points_ACT_FV_',//'credits_ce_FU%', //points for fleet volume growth (quarterly)
+            'training'                 =>'points_train_online',//'credits_training_online', //training
+            'training_competency'      =>'points_train_competency',//'credits_training_competency',  //training
+            'pathway'                  =>'points_train_pathway',//'credits_training_pathway',  //training
+            'registration'             =>'points_registration',//'credits_registration',
+            'incentive'                =>'points_incentive',//'credits_incentive',
+            'adjustment'               =>'points_adjust_',//'credits_adjustment',
+            'excellence'               =>'points_excellence',//'credits_excellence',
+            'credit_mtd'               =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
+            'credit_ytd'               =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'                 =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
