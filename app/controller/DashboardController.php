@@ -155,6 +155,7 @@ class DashboardController extends BaseController
      */
     private function _prepareDashboardData(IRole $role, $ytd = null){
         $ytd = is_null($ytd) ? configuration('YEAR',2019) : $ytd;
+
         $this->dataForView['dashboard'] = $role->getDashboardViewData($this->dataForView,$ytd);
         $this->dataForView['calendar_events'] = Events::LoadForCalendarEvents();
         $this->dataForView['metrics_template_file_name'] = $role->getTemplateName();
@@ -368,6 +369,8 @@ class DashboardController extends BaseController
         foreach ($results as $r) {
             $credit_ytd = $r['credit_ytd'];
         }
+
+        $this->dataForView['Results'] = $data['result']['Results'];        
 
         $this->dataForView['loyalty_to_brand'] = $data['history'];
         $this->dataForView['display_years'] = $data['display_years'];
