@@ -368,8 +368,6 @@ class RankingsController extends DashboardController
                     [
                         'name'=>'F&I Manager','role'=>User::FI
                     ],[
-                        'name'=>'Financial Controller','role'=>User::FINANCE_CONTROLLER
-                    ],[
                         'name'=>'Stock Controller','role'=>User::STOCK_CONTROLLER
                     ]
                 ]
