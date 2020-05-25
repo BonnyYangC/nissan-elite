@@ -67,7 +67,7 @@ class SalesManager extends BaseRole implements IRole
 
                 //2
                 $new[] = $this->_buildForJs($item['actual_sales']);
-                $sales_results[]    = $this->_buildForTableElement($item['percent'],0).'%';
+                $sales_results[]    = $this->_buildForTableElement($item['percent_act_s']*100,0).'%';
 
                 //3
                 $sos[] = $this->_buildForJs($item['sos_credit']);
