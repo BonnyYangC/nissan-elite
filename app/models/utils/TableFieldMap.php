@@ -198,11 +198,11 @@ class TableFieldMap{
     public static function PartnerRepresentativeTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED', //'credits_carried_forward',
-            'grp'                   =>'percentage_grp', //genuine replacement parts
-            'grp_credit'            =>'points_GRP', //'credits_GRP',
+            'credit_bf'             =>'points_CARRIED_', //'credits_carried_forward',
+            'grp'                   =>'pcent_GRP_', //genuine replacement parts
+            'grp_credit'            =>'points_GRP_', //'credits_GRP',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
@@ -212,7 +212,13 @@ class TableFieldMap{
             'excellence'            =>'points_excellence',//'credits_excellence',
             'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'lifetime'              =>'POINTS_ytd_',//'CREDITS_ytd_lifetime',
+            'points_perform_vs_prev_year' => 'points_PvFY19_Q_',
+            'percentage_perform_vs_prev_year' => 'pcent_PvFY19_Q_',
+            'points_performvprev'    => 'pcent_PvLQ_Q_',
+            'percentage_performvprev'=> 'points_PvLQ_Q_',
+
+
         ];
         return $map;
     }
