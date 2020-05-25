@@ -49,12 +49,10 @@ class PartsSalesRep extends BaseRole implements IRole
             if($item)
             {
                 $grp[] = $this->_buildForJs($item['grp_credit']);
-                if ($i % 3 == 2) {  // jun, sep, dec, mar
-                    $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);  
-                    
-                    $trade_fy19_results[] = $this->_buildForTableElement($item['percentage_performvfy19'] * 100, 0).'%';
-                    $trade_prev_results[] = $this->_buildForTableElement($item['percentage_performvprev'] * 100, 0).'%';
-                }
+                $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);  
+                   
+                $trade_fy19_results[] = $this->_buildForTableElement($item['percentage_performvfy19'] * 100, 0).'%';
+                $trade_prev_results[] = $this->_buildForTableElement($item['percentage_performvprev'] * 100, 0).'%';
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
                 $grp_results[] = $this->_buildForTableElement($item['grp'] * 100, 0).'%';
 
@@ -62,12 +60,9 @@ class PartsSalesRep extends BaseRole implements IRole
             else
             {
                 $grp[] = $this->_buildForJs(0);
-                if ($i % 3 == 2) {  // jun, sep, dec, mar
-                  $trade_sales[] =  $this->_buildForJs([0,0]);
-
-                  $trade_fy19_results[] = '';
-                  $trade_prev_results[] = '';
-                }
+                $trade_fy19_results[] = '';
+                $trade_prev_results[] = '';                
+                $trade_sales[] =  $this->_buildForJs([0,0]);
                 $training[] = $this->_buildForJs([0,0,0]);
                 $grp_results[] = null;
             }

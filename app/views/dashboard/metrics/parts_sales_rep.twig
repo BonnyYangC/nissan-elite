@@ -75,8 +75,7 @@
                     <h3>2. Trade Parts Sales per unit in Operation</h3>
                     <div class="table-responsive">
                         <div id="chart-trade-sales" class="metrics-chart-wrap"></div>
-                        <table class="table table-condensed metrics-table-wrap">
-                            {% set monthsArray = ['JUN','SEP','DEC','MAR'] %}
+                        <table class="table table-condensed metrics-table-wrap">                            
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' with {'tdParam' : 'width=7%'} %}
                             <tr>
                                 <td class="nissangray-light-back">FY19</td>
@@ -127,6 +126,7 @@
                             <td align="center">875</td>
                         </tr>
                     </table>
+                    <em>Points are applied monthly for both metrics</em>
                 </div>
             </div>
             <div class="row graph-back">
