@@ -192,10 +192,10 @@ class TableFieldMap{
     }
 
     /**
-     * Get the field name map for Parts & Sales Representative
+     * Get the field name map for Parts Representative
      * @return array
      */
-    public static function PartnerRepresentativeTable(){
+    public static function PartsRepTable(){
         $map = [
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
