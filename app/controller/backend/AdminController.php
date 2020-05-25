@@ -622,6 +622,9 @@ class AdminController extends BaseController
 
                     print "<pre>";
                     print_r($map);
+
+                    print_r($this->indexes);
+                    print "tableName = $tableName\n";
                     exit;                    
                 }
 
