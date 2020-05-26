@@ -371,36 +371,36 @@ class TableFieldMap{
     public static function ServiceManagerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
-            'recommendation'        =>'score_ce_SOS',//service overall satisfaction  //'ce_score_OSAT',
-            'recommendation_credit' =>'points_ce_SOS',//'credits_ce_OSAT',
+            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
+            'recommendation'        =>'score_ce_SOS3',//service overall satisfaction  //'ce_score_OSAT',
+            'recommendation_credit' =>'points_ce_SOS3_',//'credits_ce_OSAT',
             'vclean'                =>'score_ce_VFM', // value for money //'ce_score_VFM',
             'vclean_credit'         =>'points_ce_VFM',//'credits_ce_VFM',
-            'followup'              =>'score_ce_FFT', // f1 fixed it right first time //'ce_score_FFT',
-            'followup_credit'       =>'points_ce_FFT',//'credits_ce_FFT',
-            'cpr'                   =>'percentage_CPRO',// customer paid repair orders //'percentage_CPR_',
-            'cpr_credit'            =>'points_CPRO',//'credits_CPR_order',
+            'followup'              =>'score_ce_FFT3_', // f1 fixed it right first time //'ce_score_FFT',
+            'followup_credit'       =>'points_ce_FFT3_',//'credits_ce_FFT',
+            'cpr'                   =>'pcent_CPRO_',// customer paid repair orders //'percentage_CPR_',
+            'cpr_credit'            =>'points_CPRO_',//'credits_CPR_order',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
-            'training_bonus'               =>'points_train_bonus',
+            'training_bonus'        =>'points_train_bonus',
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
-            'ecosts_credit'            =>'points_ecosts',     // FY2020 new metric #3 Explanation of costs NPS R3M
-            'ecosts'                =>'percentage_ecosts', // FY2020 new metric #3 Explanation of costs NPS R3M
-            'retention_credit'         =>'points_retention',     // FY2020 new metric #5 Retention %
-            'retention'             =>'percentage_retention', // FY2020 new metric #5 Retention %
-            'brakewpr_credit'          =>'points_brakewpr', // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
-            'brakewpr'              =>'sales_brakewpr',  // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
-            'loyaltyser_credit'        =>'points_loyaltyser', // FY2020 new metric #7 Loyalty per Loyalty Sales
-            'loyaltyser'            =>'sales_loyaltyser',  // FY2020 new metric #7 Loyalty per Loyalty Sales
+            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'ecosts_credit'         =>'points_ce_EOC3_',     // FY2020 new metric #3 Explanation of costs NPS R3M
+            'ecosts'                =>'score_ce_EOC3_', // FY2020 new metric #3 Explanation of costs NPS R3M
+            'retention_credit'      =>'points_Retent_',     // FY2020 new metric #5 Retention %
+            'retention'             =>'pcent_RETENT_', // FY2020 new metric #5 Retention %
+            'brakewpr_credit'       =>'points_BWP_', // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
+            'brakewpr'              =>'sales_BWP',  // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
+            'loyaltyser_credit'     =>'points_loyalty_', // FY2020 new metric #7 Loyalty per Loyalty Sales
+            'loyaltyser'            =>'sales_loyalty',  // FY2020 new metric #7 Loyalty per Loyalty Sales
         ];
         return $map;
     }
