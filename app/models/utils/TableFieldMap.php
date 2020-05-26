@@ -88,11 +88,11 @@ class TableFieldMap{
     public static function ServiceAdvisorsTable(){
         $map = [
             'period'                =>'mthyrg',//'mth_yr',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
-            'recom_score'           =>'score_ce_SOS', //sales overall satisfaction //'ce_score_OSAT',
-            'recom_credit'          =>'points_ce_SOS', //'credits_ce_OSAT',
+            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
+            'recom_score'           =>'score_ce_SOS3', //sales overall satisfaction //'ce_score_OSAT',
+            'recom_credit'          =>'points_ce_SOS3_', //'credits_ce_OSAT',
             'fu_score'              =>'score_ce_VFM',// value for money //'ce_score_VFM',
             'fu_credit'             =>'points_ce_VFM',//'credits_ce_VFM',
             'trust_score'           =>'score_ce_AYT',//advice you can trust  //'ce_score_AYCT',
@@ -108,17 +108,17 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
-            'indication_credit'     =>'points_indication',     // FY2020 new metric #2 Indication of work and costs involved NPS R3M
-            'indication'            =>'percentage_indication', // FY2020 new metric #2 Indication of work and costs involved NPS R3M
-            'ecosts_credit'            =>'points_ecosts',     // FY2020 new metric #3 Explanation of costs NPS R3M
-            'ecosts'                =>'percentage_ecosts',    // FY2020 new metric #3 Explanation of costs NPS R3M
-            'brakewpr_credit'          =>'points_brakewpr',   // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
-            'brakewpr'              =>'sales_brakewpr',       // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
-            'loyaltyser_credit'        =>'points_loyaltyser', // FY2020 new metric #5 Loyalty per Loyalty Sales
-            'loyaltyser'            =>'sales_loyaltyser',     // FY2020 new metric #5 Loyalty per Loyalty Sales
+            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'indication_credit'     =>'points_ce_IWC3_',     // FY2020 new metric #2 Indication of work and costs involved NPS R3M
+            'indication'            =>'score_ce_IWC3_', // FY2020 new metric #2 Indication of work and costs involved NPS R3M
+            'ecosts_credit'         =>'points_ce_EOC3_',     // FY2020 new metric #3 Explanation of costs NPS R3M
+            'ecosts'                =>'score_ce_EOC3_',    // FY2020 new metric #3 Explanation of costs NPS R3M
+            'brakewpr_credit'       =>'points_BWP_',   // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
+            'brakewpr'              =>'sales_BWP',       // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
+            'loyaltyser_credit'     =>'points_loyalty_', // FY2020 new metric #5 Loyalty per Loyalty Sales
+            'loyaltyser'            =>'sales_loyalty_',     // FY2020 new metric #5 Loyalty per Loyalty Sales
         ];
         return $map;
     }
