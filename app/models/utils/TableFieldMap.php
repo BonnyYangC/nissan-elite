@@ -338,28 +338,28 @@ class TableFieldMap{
      */
     public static function ConsultantSalesTable(){
         $map = [
-            'period'                =>'d_statement',
-            'member_id'             =>'regi#_', //'_amb_id',
-            'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',  //'credits_carried_forward',
-            'sales'                 =>'sales_status',  //new vehicle sales //'sales',
-            'credit_actual_sales'   =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
-            'salesperson_satisfaction'  =>'score_ce_SOS',//percentage of salesperson satisfaction
-            'salesperson_satisfaction_score'     =>'points_ce_SOS',//points for salesperson satisfaction
-            'kept_informed_delivery_score'   =>'points_ce_KID', //points for kept informed of delivery
-            'kept_informed_delivery'  =>'score_ce_KID', //kept informed of delivery
-            'follow_up_satisfaction'       =>'score_ce_SFU',//satisfaction follow up
-            'follow_up_satisfaction_score'      =>'points_ce_SFU',//points for satisfaction follow up
-            'training'              =>'points_train_online',//'credits_training_online', //training
-            'training_competency'   =>'points_train_competency',//'credits_training_competency',  //training
-            'pathway'               =>'points_train_pathway',//'credits_training_pathway',  //training
-            'registration'          =>'points_registration',//'credits_registration',
-            'incentive'             =>'points_incentive',//'credits_incentive',
-            'adjustment'            =>'points_adjust',//'credits_adjustment',
-            'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'period'                            =>'d_statement',
+            'member_id'                         =>'regi#', //'_amb_id',
+            'dealer_code'                       =>'dcode',
+            'credit_bf'                         =>'points_CARRIED_',  //'credits_carried_forward',
+            'sales'                             =>'sales_status_',  //new vehicle sales //'sales',
+            'credit_actual_sales'               =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
+            'salesperson_satisfaction'          =>'score_ce_SOS3',//percentage of salesperson satisfaction
+            'salesperson_satisfaction_score'    =>'points_ce_SOS3_',//points for salesperson satisfaction
+            'kept_informed_delivery_score'      =>'points_ce_KID3_', //points for kept informed of delivery
+            'kept_informed_delivery'            =>'score_ce_KID3_', //kept informed of delivery
+            'follow_up_satisfaction'            =>'score_ce_PFU3_',//satisfaction follow up
+            'follow_up_satisfaction_score'      =>'points_ce_PFU3_',//points for satisfaction follow up
+            'training'                          =>'points_train_online',//'credits_training_online', //training
+            'training_competency'               =>'points_train_competency',//'credits_training_competency',  //training
+            'pathway'                           =>'points_train_pathway',//'credits_training_pathway',  //training
+            'registration'                      =>'points_registration',//'credits_registration',
+            'incentive'                         =>'points_incentive',//'credits_incentive',
+            'adjustment'                        =>'points_adjust',//'credits_adjustment',
+            'excellence'                        =>'points_excellence',//'credits_excellence',
+            'credit_mtd'                        =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
+            'credit_ytd'                        =>'POINTS_YTD',//'CREDITS_YTD',
+            'lifetime'                          =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
