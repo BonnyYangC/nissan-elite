@@ -266,34 +266,30 @@ class TableFieldMap{
     public static function FiAdministrationTable(){
         $map = [
             'period'                =>'mthyrg',//'mth_yr',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
-            'sales_nfsa'            =>'sales_nfsa',//nfsa finance contract //'sales_nfsa_nissan',
-            'credit_actual_sales'   =>'points_nfsa',//'credits_actual_sales',
-            'sales_nfsa_retention'    =>'sales_nfsa_bonus',//loyalty & retention //'sales_nfsa_retention',
-            'credits_nfsa_retention'  =>'points_nfsa_bonus',//'credits_nfsa_retention',
-            'sales_mvi'             =>'sales_ins_MVI', //MVI Motor Vehicle Insurance
-            'credits_mvi'           =>'points_ins_MVI',//'credits_ins_MVI_CMP',
-            /*'sales_vpi'             =>'sales_ins_VPI',
-            'credits_vpi'           =>'credits_ins_VPI',*/
-            'sales_pkg'             =>'sales_ins_pkg', //MVI & NFSA finance contract package
-            'credits_pkg'           =>'points_ins_pkg',//'credits_ins_pkg',
-            'sales_emw'             =>'sales_emw',//EMW sale Genuine (NAPS) //'sales_emw_gen',
-            'credits_emw'           =>'points_emw',//'credits_emw_gen',
-            /*'sales_mmu'             =>'sales_ins_MMU_ext',
-            'credits_mmu'           =>'credits_ins_MMU_ext',*/
-            'penetration'           =>'percentage_penetration', //dealer sales penetration
-            'credits_penetration'   =>'points_penetration',//'credits_penetration',
-            'score_fi'              =>'score_ce_FISAT1',//customer experience - satisfaction with finance & insurance   //'ce_score_FISAT',
-            'credits_fi'            =>'points_ce_FISAT',//'credits_ce_FISAT',
+            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
+            'sales_nfsa'            =>'sales_nfsa_LRB_',//nfsa finance contract //'sales_nfsa_nissan',
+            'credit_actual_sales'   =>'points_nfsa_LRB_',//'credits_actual_sales',
+            'sales_nfsa_retention'  =>'sales_nfsa_bonus',//loyalty & retention //'sales_nfsa_retention',
+            'credits_nfsa_retention'=>'points_nfsa_bonus',//'credits_nfsa_retention',
+            'sales_mvi'             =>'sales_nfsa_MVI_', //MVI Motor Vehicle Insurance
+            'credits_mvi'           =>'points_nfsa_MVI_',//'credits_ins_MVI_CMP',
+            'sales_pkg'             =>'sales_nfsa_PKG_', //MVI & NFSA finance contract package
+            'credits_pkg'           =>'points_nfsa_PKG_',//'credits_ins_pkg',
+            'sales_emw'             =>'sales_nfsa_EMW_',//EMW sale Genuine (NAPS) //'sales_emw_gen',
+            'credits_emw'           =>'points_nfsa_EMW_',//'credits_emw_gen',
+            'penetration'           =>'pcent_nfsa_PEN_', //dealer sales penetration
+            'credits_penetration'   =>'points_nfsa_PEN_',//'credits_penetration',
+            'score_fi'              =>'score_ce_EFI3_',//customer experience - satisfaction with finance & insurance   //'ce_score_FISAT',
+            'credits_fi'            =>'points_ce_EFI3_',//'credits_ce_FISAT',
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
@@ -304,10 +300,6 @@ class TableFieldMap{
      */
     public static function FleetSalesExecutivesTable(){
         $map = [
-
-//registered  regi#   dcode   dcat    rcode   sp  mthyrg  points_CARRIED_ sales_status_   points_sales_status_    pcent_ACT_F_    points_ACT_F_   pcent_ACT_FV_   points_ACT_FV_  points_train_online points_train_competency points_train_pathway    points_train_bonus  points_registration points_incentive    points_adjust_  POINTS_MTHLY_   POINTS_YTD  POINTS_ytd_historical   award_status    award_gcard_elite   elig_EOY_criteria   elig_EOY_payment    d_statement regi#_mthyrg    spcode  status  n_fname n_sname dcode_mthyr
-
-
             'period'                   =>'d_statement',
             'member_id'                =>'regi#', //'_amb_id',
             'dealer_code'              =>'dcode',
