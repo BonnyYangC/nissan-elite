@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-3 pb-0">
             
-                {% include 'dashboard/widget_element/life_time_table.twig' %}
+                {% include 'dashboard/widget_element/life_time_table.twig' with {'link': url('/dashboard') } %}
                 
                 <table class="table centre-text">
                     <tr class="table-top-row"><td colspan=2>Legend</td></tr>
