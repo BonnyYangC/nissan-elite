@@ -269,10 +269,10 @@ class TableFieldMap{
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'sales_nfsa'            =>'sales_nfsa_LRB_',//nfsa finance contract //'sales_nfsa_nissan',
-            'credit_actual_sales'   =>'points_nfsa_LRB_',//'credits_actual_sales',
-            'sales_nfsa_retention'  =>'sales_nfsa_bonus',//loyalty & retention //'sales_nfsa_retention',
-            'credits_nfsa_retention'=>'points_nfsa_bonus',//'credits_nfsa_retention',
+            'sales_nfsa'            =>'sales_nfsa_',//nfsa finance contract //'sales_nfsa_nissan',
+            'credit_actual_sales'   =>'points_nfsa_',//'credits_actual_sales',
+            'sales_nfsa_retention'  =>'sales_nfsa_LRB_',//loyalty & retention //'sales_nfsa_retention',
+            'credits_nfsa_retention'=>'points_nfsa_LRB_',//'credits_nfsa_retention',
             'sales_mvi'             =>'sales_nfsa_MVI_', //MVI Motor Vehicle Insurance
             'credits_mvi'           =>'points_nfsa_MVI_',//'credits_ins_MVI_CMP',
             'sales_pkg'             =>'sales_nfsa_PKG_', //MVI & NFSA finance contract package
