@@ -437,7 +437,8 @@ class User extends BaseModel implements Mailable, IRole
                 'company.parent_id'=>[8,0],
                 'OR'=>[
                     "users.firstname[~]" => $emailOrFirstName,
-                    "users.lastname[~]" => $emailOrFirstName
+                    "users.lastname[~]" => $emailOrFirstName,
+                    "users.employee_code" => $emailOrFirstName
                 ],
                 'users.position'=>$positions
             ];
