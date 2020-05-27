@@ -104,7 +104,7 @@ class ServiceManager extends BaseRole implements IRole
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement($item['cpr']*100,0) .'%';
 //5 added for FY2020
                 $retention[]            = $this->_buildForJs($item['retention_credit']);
-                $retention_results[]    = $this->_buildForTableElement($item['retention']*100,1) .'%';
+                $retention_results[]    = $this->_buildForTableElement($item['retention']*100,0) .'%';
 //6 added for FY2020
                 $brake_wiper[]              = $this->_buildForJs($item['brakewpr_credit']);
                 $brake_wiper_results[]      = '$' . $this->_buildForTableElement($item['brakewpr'],2);
