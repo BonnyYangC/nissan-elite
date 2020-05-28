@@ -129,9 +129,6 @@ class TableFieldMap{
      */
     public static function StockControllerTable(){
         $map = [
-//registered,regi#,dcode,dcat,rcode,sp,mthyrg,points_CARRIED_,score_STOCK_,points_stock_,score_compOW_,points_compOW_,ach_forecast_,points_forecast_,score_matchOW_,points_matchOW_,pcent_DAVO_,points_davo_,pcent_REGvRET_,points_regvret_,points_train_online,points_train_competency,points_train_pathway,points_incentive,points_adjust_,points_registration,POINTS_MTHLY_,POINTS_YTD,POINTS_ytd_historical,award_status,award_gcard_elite,elig_EOY_criteria,elig_EOY_payment,regi#_mthyrg,d_statement,spcode,status,n_fname,n_sname,dcode_mthyr
-
-
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
@@ -169,17 +166,17 @@ class TableFieldMap{
     public static function PartsManagerTable(){
         $map = [
             'period'                =>'d_statement',
-            'member_id'             =>'regi#_', //'_amb_id',
+            'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
             'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
-            'grp'                   =>'percentage_grp', //genuine replacement parts
+            'grp'                   =>'pcent_GRP_', //genuine replacement parts
             'grp_credit'            =>'points_GRP', //'credits_GRP',
             'gas'                   =>'percentage_acces',//'percentage_gas',
             'gas_credit'            =>'points_acces', //'credits_GAS',
             'training'              =>'points_train_online', //'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',  //'credits_training_pathway',
-            'training_bonus'               =>'points_train_bonus',
+            'training_bonus'         =>'points_train_bonus',
             'registration'          =>'points_registration', //'credits_registration',
             'incentive'             =>'points_incentive',   //'credits_incentive',
             'adjustment'            =>'points_adjust',   //'credits_adjustment',
@@ -454,7 +451,7 @@ class TableFieldMap{
             'dealer_name'           =>'dname',//'d_name',
             'dealer_cat'            =>'dcat',//'d_cat',  // Dealer's category, metro or district ...
             'sp_code'               =>'sp_code',
-            'employee_code'         =>'regi#',//'_amb_id',
+            'employee_code'         =>'regi#_',//'_amb_id',
             'n_fullname'            =>'n_fullname',
             'position'              =>'position',
             'registered'            =>'registered',
@@ -515,5 +512,4 @@ class TableFieldMap{
         ];
         return array_merge($map, $notNecessaryFields);
     }
-
 }
