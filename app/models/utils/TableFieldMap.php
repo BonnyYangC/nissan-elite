@@ -450,7 +450,7 @@ class TableFieldMap{
             'dealer_code'           =>'dcode',//'d_code',
             'dealer_name'           =>'dname',//'d_name',
             'dealer_cat'            =>'dcat',//'d_cat',  // Dealer's category, metro or district ...
-            'sp_code'               =>'sp_code',
+            'sp_code'               =>'sp_code_',
             'employee_code'         =>'regi#_',//'_amb_id',
             'n_fullname'            =>'n_fullname_',
             'position'              =>'position_',
