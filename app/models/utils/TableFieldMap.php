@@ -452,9 +452,9 @@ class TableFieldMap{
             'dealer_cat'            =>'dcat',//'d_cat',  // Dealer's category, metro or district ...
             'sp_code'               =>'sp_code',
             'employee_code'         =>'regi#_',//'_amb_id',
-            'n_fullname'            =>'n_fullname',
-            'position'              =>'position',
-            'registered'            =>'registered',
+            'n_fullname'            =>'n_fullname_',
+            'position'              =>'position_',
+            'registered'            =>'registered_',
             'credits_monthly_04'    =>'elit~engi_regi#04mthyrg::POINTS_MTHLY_',//'amba_STAT_04_apr::CREDITS_MONTHLY',
             'credits_monthly_05'    =>'elit~engi_regi#05mthyrg::POINTS_MTHLY_',//'amba_STAT_05_may::CREDITS_MONTHLY',
             'credits_monthly_06'    =>'elit~engi_regi#06mthyrg::POINTS_MTHLY_',//'amba_STAT_06_jun::CREDITS_MONTHLY',
@@ -467,9 +467,9 @@ class TableFieldMap{
             'credits_monthly_01'    =>'elit~engi_regi#01mthyrg::POINTS_MTHLY_',//'amba_STAT_01_jan::CREDITS_MONTHLY',
             'credits_monthly_02'    =>'elit~engi_regi#02mthyrg::POINTS_MTHLY_',//'amba_STAT_02_feb::CREDITS_MONTHLY',
             'credits_monthly_03'    =>'elit~engi_regi#03mthyrg::POINTS_MTHLY_',//'amba_STAT_03_mar::CREDITS_MONTHLY',
-            'cr_ytd'                =>'points_ytd_status',//'amba_STAT_ambid_gmthyr::CREDITS_YTD',
-            'cr_ytd_platinum'                =>'points_ytd_platinum',
-            'cr_ytd_lifetime'                =>'points_ytd_lifetime',
+            'cr_ytd'                =>'points_ytd_status_',//'amba_STAT_ambid_gmthyr::CREDITS_YTD',
+            'cr_ytd_platinum'       =>'points_ytd_platinum_',
+            'cr_ytd_lifetime'       =>'points_ytd_lifetime_',
         ];
         return $map;
     }
