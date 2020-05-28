@@ -446,7 +446,7 @@ class TableFieldMap{
         $map = [
             'dsm_full_name'         =>'elit~dREG_dcode::n_fullname',//'amba_deal~REGI_rcode::n_fullname',
             'region_name'           =>'rname',//'amba_deal~REGI_rcode::r_name',
-            'region_code'           =>'rcode',//'amba_deal~REGI_rcode::r_code',
+            'region_code'           =>'region_id',//'amba_deal~REGI_rcode::r_code',
             'dealer_code'           =>'dcode',//'d_code',
             'dealer_name'           =>'dname',//'d_name',
             'dealer_cat'            =>'dcat',//'d_cat',  // Dealer's category, metro or district ...
