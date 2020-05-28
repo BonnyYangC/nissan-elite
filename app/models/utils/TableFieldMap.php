@@ -445,7 +445,7 @@ class TableFieldMap{
     public static function RegionTerritoryReportTable(){
         $map = [
             'dsm_full_name'         =>'elit~dREG_dcode::n_fullname',//'amba_deal~REGI_rcode::n_fullname',
-            'region_name'           =>'rname',//'amba_deal~REGI_rcode::r_name',
+            'region_name'           =>'rname_',//'amba_deal~REGI_rcode::r_name',
             'region_code'           =>'rcode_',//'amba_deal~REGI_rcode::r_code',
             'dealer_code'           =>'dcode',//'d_code',
             'dealer_name'           =>'dname',//'d_name',
