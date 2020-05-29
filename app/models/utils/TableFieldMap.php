@@ -154,7 +154,7 @@ class TableFieldMap{
             'excellence'            =>'points_excellence',//'credits_excellence',
             'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
@@ -168,22 +168,33 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
+            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
             'grp'                   =>'pcent_GRP_', //genuine replacement parts
-            'grp_credit'            =>'points_GRP', //'credits_GRP',
-            'gas'                   =>'percentage_acces',//'percentage_gas',
-            'gas_credit'            =>'points_acces', //'credits_GAS',
+            'grp_credit'            =>'points_GRP_', //'credits_GRP',
+            'gas'                   =>'pcent_ACC_',//'percentage_gas',
+            'gas_credit'            =>'points_ACC_', //'credits_GAS',
+
+            'percent_apnur_n'       => 'pcent_APNUR_N_',
+            'points_apnur_n'        =>'points_APNUR_N_',
+            'percent_apnur_x'       => 'pcent_APNUR_X_',
+            'points_apnur_x'        =>'points_APNUR_X_',
+            'percent_apnur_q'       => 'pcent_APNUR_Q_',
+            'points_apnur_q'        =>'points_APNUR_Q_',
+
+            'brakewpr_credit'       => 'sales_BWP',
+            'brakewpr'              =>'points_BWP_',
+
             'training'              =>'points_train_online', //'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',  //'credits_training_pathway',
-            'training_bonus'         =>'points_train_bonus',
+            'training_bonus'        =>'points_train_bonus',
             'registration'          =>'points_registration', //'credits_registration',
             'incentive'             =>'points_incentive',   //'credits_incentive',
-            'adjustment'            =>'points_adjust',   //'credits_adjustment',
+            'adjustment'            =>'points_adjust_',   //'credits_adjustment',
             'excellence'            =>'points_excellence',  //'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY', //'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_', //'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',  //'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime'  //'CREDITS_ytd_lifetime',
+            'lifetime'              =>'POINTS_ytd_historical'  //'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
@@ -251,7 +262,7 @@ class TableFieldMap{
             'excellence'            =>'points_excellence',//'credits_excellence',
             'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
@@ -316,7 +327,7 @@ class TableFieldMap{
             'excellence'               =>'points_excellence',//'credits_excellence',
             'credit_mtd'               =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'               =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'                 =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'lifetime'                 =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
@@ -348,7 +359,7 @@ class TableFieldMap{
             'excellence'                        =>'points_excellence',//'credits_excellence',
             'credit_mtd'                        =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'                        =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'                          =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'lifetime'                          =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
         ];
         return $map;
     }
