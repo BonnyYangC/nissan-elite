@@ -336,6 +336,7 @@ class TableFieldMap{
      * Get the field name map for Consultant Sales
      * @return array
      */
+
     public static function ConsultantSalesTable(){
         $map = [
             'period'                            =>'d_statement',
@@ -346,8 +347,8 @@ class TableFieldMap{
             'credit_actual_sales'               =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
             'salesperson_satisfaction'          =>'score_ce_SOS3',//percentage of salesperson satisfaction
             'salesperson_satisfaction_score'    =>'points_ce_SOS3_',//points for salesperson satisfaction
-            'points_actual'                     =>'score_NVR_',
-            'percentage_actual'                 =>'points_NVR_',
+            'points_actual'                     =>'points_NVR_',
+            'percentage_actual'                 =>'score_NVR_',
             'kept_informed_delivery_score'      =>'points_ce_KID3_', //points for kept informed of delivery
             'kept_informed_delivery'            =>'score_ce_KID3_', //kept informed of delivery
             'follow_up_satisfaction'            =>'score_ce_PFU3_',//satisfaction follow up
