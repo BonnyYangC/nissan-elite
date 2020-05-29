@@ -348,7 +348,7 @@ class TableFieldMap{
             'salesperson_satisfaction'          =>'score_ce_SOS3',//percentage of salesperson satisfaction
             'salesperson_satisfaction_score'    =>'points_ce_SOS3_',//points for salesperson satisfaction
             'points_actual'                     =>'points_NVR_',
-            'percentage_actual'                 =>'score_NVR_',
+            'percentage_actual'                 =>'pcent_ACT_S_',
             'kept_informed_delivery_score'      =>'points_ce_KID3_', //points for kept informed of delivery
             'kept_informed_delivery'            =>'score_ce_KID3_', //kept informed of delivery
             'follow_up_satisfaction'            =>'score_ce_PFU3_',//satisfaction follow up
