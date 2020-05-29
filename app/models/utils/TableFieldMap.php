@@ -207,7 +207,7 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
+            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
             'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
             'lifetime'              =>'POINTS_ytd_',//'CREDITS_ytd_lifetime',
             'points_perform_vs_prev_year' => 'points_PvFY19_Q_',

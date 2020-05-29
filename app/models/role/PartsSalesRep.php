@@ -104,7 +104,7 @@ class PartsSalesRep extends BaseRole implements IRole
             if($item)
             {
                 $ytd=$item['credit_ytd'];
-                $this->JS_credits[date("M", $period)] = $item['credit_mtd'];
+                $this->JS_credits[date("M", $period)] = intval($item['credit_mtd']);
                 /**
                  * From Data results
                  */
