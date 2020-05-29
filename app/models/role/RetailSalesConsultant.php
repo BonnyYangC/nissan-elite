@@ -28,6 +28,12 @@ class RetailSalesConsultant extends BaseRole implements IRole
         'data'=>[]
     ];
 
+    public $points_actual    =[
+        'label'=>'Perf. Target',
+        'backgroundColor' => IColor::DARK_KHAKI,
+        'data'=>[]
+    ];
+
     public function __construct(User $user = null)
     {
         parent::__construct($user);
@@ -64,6 +70,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['salesperson_satisfaction_score']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_satisfaction_score']);
+                $this->points_actual['data'][]  = intval($item['points_actual']);
                 $this->keptInformed['data'][]  = intval($item['kept_informed_delivery_score']);
                 $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'];
@@ -79,6 +86,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
+                $this->points_actual['data'][]  = 0;
                 $this->keptInformed['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
@@ -101,6 +109,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
+                $this->points_actual,
                 $this->keptInformed,
                 $this->followUpSaturation,
                 $this->trainingData,
