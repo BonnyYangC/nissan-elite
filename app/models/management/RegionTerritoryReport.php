@@ -160,6 +160,8 @@ class RegionTerritoryReport extends BaseModel
         $database = self::DB();
         if(count($codes) === 1){
             $codes = self::GetRegionCodeWithShortName($codes[0]);
+        } else {
+            $codes = [1,2,3,4];
         }
 
         $whereCondition = [
