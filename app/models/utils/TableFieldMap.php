@@ -141,7 +141,7 @@ class TableFieldMap{
             'retail_credit'         =>'points_forecast_',//'credits_retail_forecast',
             'points_regvret'        =>'points_regvret_',
             'percentage_regvret'    =>'pcent_REGvRET_',
-            'matched'               =>'score_matchOW', //matched ow compliance //'ow_match',
+            'matched'               =>'score_matchOW_', //matched ow compliance //'ow_match',
             'matched_credit'        =>'points_matchOW_',//'credits_ow_match',
             'davo'                  =>'pcent_DAVO_',//DAVO Orders //'percentage_davo',
             'davo_credit'           =>'points_davo_',//'credits_davo',
