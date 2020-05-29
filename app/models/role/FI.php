@@ -201,7 +201,7 @@ class FI extends BaseRole implements IRole
                 //$vpi_results[] = $this->_buildForTableElement($item['sales_vpi'],0);
                 $pkg_results[] = $this->_buildForTableElement($item['sales_pkg'],0);
                 $emw_results[] = $this->_buildForTableElement($item['sales_emw'],0);
-                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 1 ) . '%';
+                $penetration_results[] = $this->_buildForTableElement( $item['penetration']*100, 0 ) . '%';
                 //$mmu_results[] = $this->_buildForTableElement($item['sales_mmu'],0);
                 $fu_results[] = $this->_buildForTableElement($item['score_fi'],1);
             }
