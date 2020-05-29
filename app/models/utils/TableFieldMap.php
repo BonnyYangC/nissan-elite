@@ -181,8 +181,8 @@ class TableFieldMap{
             'percent_apnur_q'       => 'pcent_APNUR_Q_',
             'points_apnur_q'        =>'points_APNUR_Q_',
 
-            'brakewpr_credit'       => 'sales_BWP',
-            'brakewpr'              =>'points_BWP_',
+            'brakewpr_credit'       => 'points_BWP_',
+            'brakewpr'              => 'sales_BWP',
 
             'training'              =>'points_train_online', //'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
@@ -400,7 +400,7 @@ class TableFieldMap{
             'ecosts'                =>'score_ce_EOC3_', // FY2020 new metric #3 Explanation of costs NPS R3M
             'retention_credit'      =>'points_Retent_',     // FY2020 new metric #5 Retention %
             'retention'             =>'pcent_RETENT_', // FY2020 new metric #5 Retention %
-            'brakewpr_credit'       =>'points_BWP_', // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
+            'brakewpr_credit'       =>'credit_BWP_', // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
             'brakewpr'              =>'sales_BWP',  // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
             'loyaltyser_credit'     =>'points_loyalty_', // FY2020 new metric #7 Loyalty per Loyalty Sales
             'loyaltyser'            =>'sales_loyalty',  // FY2020 new metric #7 Loyalty per Loyalty Sales
