@@ -20,17 +20,17 @@ class TableFieldMap{
      */
     public static function UserTable(){
         $map = [
-            'employee_code'=>'regi#',//'_amb_id',
+            'employee_code'=>'regi#_',
             'salutation'=>'n_title',
             'firstname'=>'n_fname_trim',
             'lastname'=>'n_sname_trim',
             'mobile'=>'ph_mobile',
             'email'=>'addr_email',
-            'company_code'=>'dcode',//'d_code',
-            'position'=>'sp',   // ==position
-            'dept'=>'dept_code',//'amba~LMSd_ambidAmthyr::dept_code',
+            'company_code'=>'dcode',
+            'position'=>'sp_',   
+            'dept'=>'dept_code',
             'active'=>'status',
-            'registered'=>'registered',
+            'registered'=>'registered_',
             'member'=>'elite_mbr',//'ac_mbr',
             'dob'=>'date_birth',//'date_of_birth',
             'date_created'=>'date_created',
