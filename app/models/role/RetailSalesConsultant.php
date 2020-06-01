@@ -109,7 +109,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
-                $this->pointsActual,
+                $this->pointsActual, // Perf. Target
                 $this->keptInformed,
                 $this->followUpSaturation,
                 $this->trainingData,
@@ -144,7 +144,6 @@ class RetailSalesConsultant extends BaseRole implements IRole
             if($item)
             {
                 //1
-                //$new[]               = $this->_buildForJs($item['credit_actual_sales']);
                 $new[]                          = $this->_buildForJs([         $item['credit_actual_sales'], $item['points_actual']]);
                 $sales_results[]                = $this->_buildForTableElement($item['sales'],0);
                 $percentage_actual_results[]    = $this->_buildForTableElement(intval($item['percentage_actual']*100),0).'%';
@@ -164,7 +163,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
             }
             else
             {
-                //$new[]              = $this->_buildForJs(0);
+                //1
                 $new[]                          = $this->_buildForJs([0,0]);
                 $salespersonSatisfactionScore[] = $this->_buildForJs(0);
                 $followUpSatisfactionScore[]    = $this->_buildForJs(0);
