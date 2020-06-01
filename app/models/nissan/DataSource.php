@@ -180,11 +180,16 @@ class DataSource extends BaseModel
         ];
         
         $database = self::DB();
-        $rows = $database->select(
-            $currentTableName,
-            '*',
-            $wheres
-        );
+        
+        if ($currentTableName) {
+            $rows = $database->select(
+                $currentTableName,
+                '*',
+                $wheres
+            );
+        } else {
+            $rows = [];            
+        }
 
         if(env('DEV_MODE',false)){
             dump($database->log());
