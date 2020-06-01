@@ -67,7 +67,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 /**
                  * From Data results
                  */
-                $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']);
+                $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']+$item['points_actual']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['salesperson_satisfaction_score']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_satisfaction_score']);
                 $this->points_actual['data'][]  = intval($item['points_actual']);
@@ -145,56 +145,56 @@ class RetailSalesConsultant extends BaseRole implements IRole
             {
                 //1
                 //$new[]               = $this->_buildForJs($item['credit_actual_sales']);
-                $new[]              = $this->_buildForJs([$item['credit_actual_sales'], $item['points_actual']]);
-                $sales_results[]            = $this->_buildForTableElement($item['sales'],0);
-                $percentage_actual_results[]            = $this->_buildForTableElement(intval($item['percentage_actual']),0).'%';
+                $new[]                          = $this->_buildForJs([         $item['credit_actual_sales'], $item['points_actual']]);
+                $sales_results[]                = $this->_buildForTableElement($item['sales'],0);
+                $percentage_actual_results[]    = $this->_buildForTableElement(intval($item['percentage_actual']),0).'%';
 
                 //2
-                $salespersonSatisfactionScore[]   = $this->_buildForJs($item['salesperson_satisfaction_score']);
-                $salespersonSatisfaction[]   = $this->_buildForTableElement($item['salesperson_satisfaction']);
+                $salespersonSatisfactionScore[] = $this->_buildForJs(          $item['salesperson_satisfaction_score']);
+                $salespersonSatisfaction[]      = $this->_buildForTableElement($item['salesperson_satisfaction']);
                 //3
-                $keptInformedDeliveryScore[]        = $this->_buildForJs($item['kept_informed_delivery_score']);
-                $keptInformedDelivery[]        = $this->_buildForTableElement($item['kept_informed_delivery']);
+                $keptInformedDeliveryScore[]    = $this->_buildForJs(          $item['kept_informed_delivery_score']);
+                $keptInformedDelivery[]         = $this->_buildForTableElement($item['kept_informed_delivery']);
                 //4
-                $followUpSatisfaction[]               = $this->_buildForTableElement($item['follow_up_satisfaction']);
-                $followUpSatisfactionScore[]               = $this->_buildForJs($item['follow_up_satisfaction_score']);
+                $followUpSatisfaction[]         = $this->_buildForTableElement($item['follow_up_satisfaction']);
+                $followUpSatisfactionScore[]    = $this->_buildForJs(          $item['follow_up_satisfaction_score']);
                 //5
-                $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
+                $training[]                     = $this->_buildForJs([         $item['training'],$item['pathway'],$item['training_competency']]);
 
             }
             else
             {
                 //$new[]              = $this->_buildForJs(0);
-                $new[]              = $this->_buildForJs([0,0]);
-                $salespersonSatisfactionScore[]   = $this->_buildForJs(0);
-                $followUpSatisfactionScore[]               = $this->_buildForJs(0);
-                $keptInformedDeliveryScore[]        = $this->_buildForJs(0);
-                $followUpCreditSAT[]= $this->_buildForJs(0);
-                $training[]         = $this->_buildForJs([0,0,0]);
+                $new[]                          = $this->_buildForJs([0,0]);
+                $salespersonSatisfactionScore[] = $this->_buildForJs(0);
+                $followUpSatisfactionScore[]    = $this->_buildForJs(0);
+                $keptInformedDeliveryScore[]    = $this->_buildForJs(0);
+                $followUpCreditSAT[]            = $this->_buildForJs(0);
+                $training[]                     = $this->_buildForJs([0,0,0]);
 
-                $sales_results[]            = null;
+                $sales_results[]             = null;
                 $percentage_actual_results[] = null;
                 $salespersonSatisfaction[]   = null;
-                $keptInformedDelivery[] = null;
-                $followUpSatisfaction[]               = null;
+                $keptInformedDelivery[]      = null;
+                $followUpSatisfaction[]      = null;
             }
         }
 
         return [
             // For js array
-            "JS_newVehicleSales"    =>$new,
-            "JS_salespersonSatisfaction"     =>$salespersonSatisfactionScore, //
-            "JS_keptInformedDelivery"    =>$keptInformedDeliveryScore,
-            "JS_followUpSatisfaction"    =>$followUpSatisfactionScore,
+            "JS_newVehicleSales"            => $new,
+            "JS_salespersonSatisfaction"    => $salespersonSatisfactionScore, //
+            "JS_keptInformedDelivery"       => $keptInformedDeliveryScore,
+            "JS_followUpSatisfaction"       => $followUpSatisfactionScore,
 
-            "JS_training"           =>$training,
+            "JS_training"                   => $training,
 
             // For PHP array
-            "salesResult"               =>$sales_results,
-            "percentageActual"          => $percentage_actual_results,
-            "salespersonSatisfaction" =>$salespersonSatisfaction,
-            "keptInformedDelivery"     => $keptInformedDelivery,
-            "followUpSatisfaction"           =>$followUpSatisfaction,
+            "salesResult"                   => $sales_results,
+            "percentageActual"              => $percentage_actual_results,
+            "salespersonSatisfaction"       => $salespersonSatisfaction,
+            "keptInformedDelivery"          => $keptInformedDelivery,
+            "followUpSatisfaction"          => $followUpSatisfaction,
         ];
     }
 
