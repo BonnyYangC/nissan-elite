@@ -87,7 +87,7 @@ class StockController extends BaseRole implements IRole
                 $davo_results[] = $this->_buildForTableElement($item['davo']*100,0).'%';
                 //6
                 $regvret[] = $this->_buildForJs($item['points_regvret']);
-                $regvret_results[] = $this->_buildForTableElement($item['percentage_regvret'],0).'%';
+                $regvret_results[] = $this->_buildForTableElement($item['percentage_regvret']*100,0).'%';
                 //7
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
 
