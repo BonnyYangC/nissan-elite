@@ -147,7 +147,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 //$new[]               = $this->_buildForJs($item['credit_actual_sales']);
                 $new[]                          = $this->_buildForJs([         $item['credit_actual_sales'], $item['points_actual']]);
                 $sales_results[]                = $this->_buildForTableElement($item['sales'],0);
-                $percentage_actual_results[]    = $this->_buildForTableElement(intval($item['percentage_actual']),0).'%';
+                $percentage_actual_results[]    = $this->_buildForTableElement(intval($item['percentage_actual']*100),0).'%';
 
                 //2
                 $salespersonSatisfactionScore[] = $this->_buildForJs(          $item['salesperson_satisfaction_score']);

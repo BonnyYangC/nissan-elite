@@ -83,9 +83,9 @@ class SalesManager extends BaseRole implements IRole
 
                 //6
                 $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_x'],$item['points_apnur_q']]);
-                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n'],1).'%';
-                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x'],1).'%';
-                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q'],1).'%';
+                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n']*100,1).'%';
+                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x']*100,1).'%';
+                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q']*100,1).'%';
 
                 //7
                 $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);

@@ -65,9 +65,9 @@ class PartsManager extends BaseRole implements IRole
                 $grp_results[] = $this->_buildForTableElement($item['grp']*100,0).'%';
                 $gas_results[] = $this->_buildForTableElement($item['gas']*100,0).'%';
 
-                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n'],0) . '%';
-                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q'],0) . '%';
-                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x'],0) . '%';                
+                $apnur_n_results[] = $this->_buildForTableElement($item['percent_apnur_n']*100,0) . '%';
+                $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q']*100,0) . '%';
+                $apnur_x_results[] = $this->_buildForTableElement($item['percent_apnur_x']*100,0) . '%';                
                 $brake_wiper_results[]    = '$' . $this->_buildForTableElement($item['brakewpr'],2);
 
             }
