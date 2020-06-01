@@ -21,10 +21,10 @@ class TableFieldMap{
     public static function UserTable(){
         $map = [
             'employee_code'=>'regi#_',
-            'salutation'=>'n_title',
-            'firstname'=>'n_fname_trim',
-            'lastname'=>'n_sname_trim',
-            'mobile'=>'ph_mobile',
+            'salutation'=>'n_title_',
+            'firstname'=>'n_fname_trim_',
+            'lastname'=>'n_sname_trim_',
+            'mobile'=>'ph_mobile_',
             'email'=>'addr_email',
             'company_code'=>'dcode',
             'position'=>'sp_',   
