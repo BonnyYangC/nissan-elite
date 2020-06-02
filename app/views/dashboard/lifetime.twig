@@ -16,7 +16,7 @@
                     {% include 'dashboard/widget_element/lifetime_status_level_chart.twig' %}
                 </div>
 
-                {% if loyalty_to_brand > 0 %}
+                {% if loyalty_to_brand + ytd > 0 %}
 
                     <h3 style="color:black">Loyalty to the brand: {{ number_format(loyalty_to_brand, 0) }} </h3>
 
