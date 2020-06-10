@@ -6,7 +6,7 @@
         <tr class="nissangray-light-back">
             <td>
                 <form action="{{ env('lastYear') }}/../admin/fake-user" method="post">
-                    <input type="hidden" name="uid" value="{{ user.id }}" />
+                    <input type="hidden" name="uid" value="{{ user.old_id }}" />
                     <button style="background-color:#4169E1; color: #FFFFFF; width:100%; margin:0 auto; font-weight: lighter; font-size:11px;" type="submit" class="btn btn-primary btn-block">
                         View Previous Year
                     </button>
