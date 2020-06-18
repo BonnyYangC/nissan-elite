@@ -801,7 +801,7 @@ class AdminController extends BaseController
                 $map = DbMap::SalesManagerTable();
                 break;
             case 'nissan_salesconsultants':
-                $map = DbMap::ConsultantSalesTable();
+                $map = DbMap::RetailSalesConsultantTable();
                 break;
             case 'nissan_fleetsalesexecutives':
                 $map = DbMap::FleetSalesExecutivesTable();

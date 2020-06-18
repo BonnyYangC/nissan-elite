@@ -340,7 +340,7 @@ class TableFieldMap{
      * @return array
      */
 
-    public static function ConsultantSalesTable(){
+    public static function RetailSalesConsultantTable(){
         $map = [
             'period'                            =>'d_statement',
             'member_id'                         =>'regi#', //'_amb_id',
