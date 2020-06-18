@@ -850,8 +850,9 @@ class AdminController extends BaseController
         if ($getMap) return $map;
 
         foreach ($csvRowArray as $index => $rowName) {
-            if(isset($map[$rowName])){
-                $this->indexes[$map[$rowName]] = $index;
+            $rowName2 = preg_replace('/_$/', '', strtolower($rowName)); // replace _ at the end and change to lower case 
+            if(isset($map[$rowName2])){
+                $this->indexes[$map[$rowName2]] = $index;
             }
         }
 

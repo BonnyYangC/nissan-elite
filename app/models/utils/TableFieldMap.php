@@ -20,21 +20,21 @@ class TableFieldMap{
      */
     public static function UserTable(){
         $map = [
-            'employee_code'=>'regi#_',
-            'salutation'=>'n_title_',
-            'firstname'=>'n_fname_trim_',
-            'lastname'=>'n_sname_trim_',
-            'mobile'=>'ph_mobile_',
+            'employee_code'=>'regi#',
+            'salutation'=>'n_title',
+            'firstname'=>'n_fname_trim',
+            'lastname'=>'n_sname_trim',
+            'mobile'=>'ph_mobile',
             'email'=>'addr_email',
             'company_code'=>'dcode',
-            'position'=>'sp_',   
+            'position'=>'sp',   
             'dept'=>'dept_code',
             'active'=>'status',
-            'registered'=>'registered_',
+            'registered'=>'registered',
             'member'=>'elite_mbr',//'ac_mbr',
             'dob'=>'date_birth',//'date_of_birth',
             'date_created'=>'date_created',
-            'met_criteria' => 'criteria_met_EOY',
+            'met_criteria' => 'criteria_met_eoy',
             'excellence_eligible' => 'excellence_eligible'
         ];
 
@@ -70,12 +70,12 @@ class TableFieldMap{
      */
     public static function RegionStaffTable(){
         $map = [
-            'position'=>'Position',
-            'alt_position'=>'region',//'Region',
+            'position'=>'position',
+            'alt_position'=>'region',//'region',
             'firstname'=>'first name',//'fname',
             'lastname'=>'last name',//'sname',
-            'email'=>'Email Address',//'email',
-            //'mobile'=>'mobile', //TBD
+            'email'=>'email address',//'email',
+            //'mobile'=>'mobile', //tbd
             'active' => 'active'
         ];
         return $map;
@@ -90,15 +90,15 @@ class TableFieldMap{
             'period'                =>'mthyrg',//'mth_yr',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'recom_score'           =>'score_ce_SOS3', //sales overall satisfaction //'ce_score_OSAT',
-            'recom_credit'          =>'points_ce_SOS3_', //'credits_ce_OSAT',
-            'fu_score'              =>'score_ce_VFM',// value for money //'ce_score_VFM',
-            'fu_credit'             =>'points_ce_VFM',//'credits_ce_VFM',
-            'trust_score'           =>'score_ce_AYT',//advice you can trust  //'ce_score_AYCT',
-            'trust_credit'          =>'points_ce_AYT',//'credits_ce_AYCT',
-            'cpr'                   =>'percentage_CPRO', // custmer paid repair orders //'percentage_CPR_',
-            'cpr_credit'            =>'points_CPRO',//'credits_CPR_order',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'recom_score'           =>'score_ce_sos3', //sales overall satisfaction //'ce_score_osat',
+            'recom_credit'          =>'points_ce_sos3', //'credits_ce_osat',
+            'fu_score'              =>'score_ce_vfm',// value for money //'ce_score_vfm',
+            'fu_credit'             =>'points_ce_vfm',//'credits_ce_vfm',
+            'trust_score'           =>'score_ce_ayt',//advice you can trust  //'ce_score_ayct',
+            'trust_credit'          =>'points_ce_ayt',//'credits_ce_ayct',
+            'cpr'                   =>'percentage_cpro', // custmer paid repair orders //'percentage_cpr',
+            'cpr_credit'            =>'points_cpro',//'credits_cpr_order',
             /*'emw_score'             =>'sales_emw_gen',
             'emw_credit'            =>'credits_emw_gen',not using*/
             'training'              =>'points_train_online',//'credits_training_online',
@@ -111,17 +111,17 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
-            'indication_credit'     =>'points_ce_IWC3_',     // FY2020 new metric #2 Indication of work and costs involved NPS R3M
-            'indication'            =>'score_ce_IWC3_', // FY2020 new metric #2 Indication of work and costs involved NPS R3M
-            'ecosts_credit'         =>'points_ce_EOC3_',     // FY2020 new metric #3 Explanation of costs NPS R3M
-            'ecosts'                =>'score_ce_EOC3_',    // FY2020 new metric #3 Explanation of costs NPS R3M
-            'brakewpr_credit'       =>'points_BWP_',   // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
-            'brakewpr'              =>'sales_BWP',       // FY2020 new metric #4 Brake and Wiper Parts Sales per CPRO
-            'loyaltyser_credit'     =>'points_loyalty_', // FY2020 new metric #5 Loyalty per Loyalty Sales
-            'loyaltyser'            =>'sales_loyalty_',     // FY2020 new metric #5 Loyalty per Loyalty Sales
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
+            'indication_credit'     =>'points_ce_iwc3',     // fy2020 new metric #2 indication of work and costs involved nps r3m
+            'indication'            =>'score_ce_iwc3', // fy2020 new metric #2 indication of work and costs involved nps r3m
+            'ecosts_credit'         =>'points_ce_eoc3',     // fy2020 new metric #3 explanation of costs nps r3m
+            'ecosts'                =>'score_ce_eoc3',    // fy2020 new metric #3 explanation of costs nps r3m
+            'brakewpr_credit'       =>'points_bwp',   // fy2020 new metric #4 brake and wiper parts sales per cpro
+            'brakewpr'              =>'sales_bwp',       // fy2020 new metric #4 brake and wiper parts sales per cpro
+            'loyaltyser_credit'     =>'points_loyalty', // fy2020 new metric #5 loyalty per loyalty sales
+            'loyaltyser'            =>'sales_loyalty',     // fy2020 new metric #5 loyalty per loyalty sales
         ];
         return $map;
     }
@@ -135,19 +135,19 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'stock'                 =>'score_STOCK_', //stock cover //'days_stock',
-            'stock_credit'          =>'points_stock_',//'credits_stock',
-            'ow'                    =>'score_compOW_', //ow data entry compliance //'ow_data',
-            'ow_credit'             =>'points_compOW_',//'credits_ow_data',     score_matchOW_  points_matchOW_
-            'retail'                =>'ach_forecast_', //dealer forecast //'retail_forecast_achieved',   
-            'retail_credit'         =>'points_forecast_',//'credits_retail_forecast',
-            'points_regvret'        =>'points_regvret_',
-            'percentage_regvret'    =>'pcent_REGvRET_',
-            'matched'               =>'score_matchOW_', //matched ow compliance //'ow_match',
-            'matched_credit'        =>'points_matchOW_',//'credits_ow_match',
-            'davo'                  =>'pcent_DAVO_',//DAVO Orders //'percentage_davo',
-            'davo_credit'           =>'points_davo_',//'credits_davo',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'stock'                 =>'score_stock', //stock cover //'days_stock',
+            'stock_credit'          =>'points_stock',//'credits_stock',
+            'ow'                    =>'score_compow', //ow data entry compliance //'ow_data',
+            'ow_credit'             =>'points_compow',//'credits_ow_data',     score_matchow_  points_matchow_
+            'retail'                =>'ach_forecast', //dealer forecast //'retail_forecast_achieved',   
+            'retail_credit'         =>'points_forecast',//'credits_retail_forecast',
+            'points_regvret'        =>'points_regvret',
+            'percentage_regvret'    =>'pcent_regvret',
+            'matched'               =>'score_matchow', //matched ow compliance //'ow_match',
+            'matched_credit'        =>'points_matchow',//'credits_ow_match',
+            'davo'                  =>'pcent_davo',//davo orders //'percentage_davo',
+            'davo_credit'           =>'points_davo',//'credits_davo',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
@@ -155,9 +155,9 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
         ];
         return $map;
     }
@@ -171,21 +171,21 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#', //'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'grp'                   =>'pcent_GRP_', //genuine replacement parts
-            'grp_credit'            =>'points_GRP_', //'credits_GRP',
-            'gas'                   =>'pcent_ACC_',//'percentage_gas',
-            'gas_credit'            =>'points_ACC_', //'credits_GAS',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'grp'                   =>'pcent_grp', //genuine replacement parts
+            'grp_credit'            =>'points_grp', //'credits_grp',
+            'gas'                   =>'pcent_acc',//'percentage_gas',
+            'gas_credit'            =>'points_acc', //'credits_gas',
 
-            'percent_apnur_n'       => 'pcent_APNUR_N_',
-            'points_apnur_n'        =>'points_APNUR_N_',
-            'percent_apnur_x'       => 'pcent_APNUR_X_',
-            'points_apnur_x'        =>'points_APNUR_X_',
-            'percent_apnur_q'       => 'pcent_APNUR_Q_',
-            'points_apnur_q'        =>'points_APNUR_Q_',
+            'percent_apnur_n'       => 'pcent_apnur_n',
+            'points_apnur_n'        =>'points_apnur_n',
+            'percent_apnur_x'       => 'pcent_apnur_x',
+            'points_apnur_x'        =>'points_apnur_x',
+            'percent_apnur_q'       => 'pcent_apnur_q',
+            'points_apnur_q'        =>'points_apnur_q',
 
-            'brakewpr_credit'       => 'points_BWP_',
-            'brakewpr'              => 'sales_BWP',
+            'brakewpr_credit'       => 'points_bwp',
+            'brakewpr'              => 'sales_bwp',
 
             'training'              =>'points_train_online', //'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
@@ -193,11 +193,11 @@ class TableFieldMap{
             'training_bonus'        =>'points_train_bonus',
             'registration'          =>'points_registration', //'credits_registration',
             'incentive'             =>'points_incentive',   //'credits_incentive',
-            'adjustment'            =>'points_adjust_',   //'credits_adjustment',
+            'adjustment'            =>'points_adjust',   //'credits_adjustment',
             'excellence'            =>'points_excellence',  //'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_', //'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',  //'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_historical'  //'CREDITS_ytd_lifetime',
+            'credit_mtd'            =>'points_mthly', //'credits_monthly',
+            'credit_ytd'            =>'points_ytd',  //'credits_ytd',
+            'lifetime'              =>'points_ytd_historical'  //'credits_ytd_lifetime',
         ];
         return $map;
     }
@@ -211,9 +211,9 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_', //'credits_carried_forward',
-            'grp'                   =>'pcent_GRP_', //genuine replacement parts
-            'grp_credit'            =>'points_GRP_', //'credits_GRP',
+            'credit_bf'             =>'points_carried', //'credits_carried_forward',
+            'grp'                   =>'pcent_grp', //genuine replacement parts
+            'grp_credit'            =>'points_grp', //'credits_grp',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
@@ -221,13 +221,13 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_',//'CREDITS_ytd_lifetime',
-            'points_perform_vs_prev_year' => 'points_PvFY19_Q_',
-            'percentage_perform_vs_prev_year' => 'pcent_PvFY19_Q_',
-            'points_performvprev'    => 'pcent_PvLQ_Q_',
-            'percentage_performvprev'=> 'points_PvLQ_Q_',
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd',//'credits_ytd_lifetime',
+            'points_perform_vs_prev_year' => 'points_pvfy19_q',
+            'percentage_perform_vs_prev_year' => 'pcent_pvfy19_q',
+            'points_performvprev'    => 'pcent_pvlq_q',
+            'percentage_performvprev'=> 'points_pvlq_q',
 
 
         ];
@@ -241,16 +241,16 @@ class TableFieldMap{
     public static function FinanceControllerTable(){
         $map = [
             'period'                =>'mthyrg',//'mth_yr',
-            'member_id'             =>'regi#_',//'_amb_id',
+            'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED',//'credits_carried_forward',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
             'frequency'             =>'bmo_frequency', //dealer financial reporting - submitted
             'frequency_credits'     =>'points_frequency',//'credits_frequency',
-            'quality'               =>'bmo_quality',//Quality of data submission //'bmo_qlty_sub',
+            'quality'               =>'bmo_quality',//quality of data submission //'bmo_qlty_sub',
             'quality_credit'        =>'points_quality',//'credits_qlty_sub',
             'checklist'             =>'bmo_checklist', //nissan business mgmt data accuracy
             'checklist_credit'      =>'points_checklist',//'credits_bmo_checklist',
-            'meeting'               =>'bmo_meeting', //nissan business mgmt BDG attendance
+            'meeting'               =>'bmo_meeting', //nissan business mgmt bdg attendance
             'meeting_credit'        =>'points_meetings',//'credits_bmo_meetings',
             /*'ontime'                =>'bmo_ontime',
             'ontime_credits'        =>'credits_ontime',
@@ -263,9 +263,9 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
         ];
         return $map;
     }
@@ -279,28 +279,28 @@ class TableFieldMap{
             'period'                =>'mthyrg',//'mth_yr',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'sales_nfsa'            =>'sales_nfsa_',//nfsa finance contract //'sales_nfsa_nissan',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'sales_nfsa'            =>'sales_nfsa',//nfsa finance contract //'sales_nfsa_nissan',
             'credit_actual_sales'   =>'points_nfsa',//'credits_actual_sales',
-            'sales_nfsa_retention'  =>'sales_nfsa_LRB_',//loyalty & retention //'sales_nfsa_retention',
-            'credits_nfsa_retention'=>'points_nfsa_LRB_',//'credits_nfsa_retention',
-            'sales_mvi'             =>'sales_nfsa_MVI_', //MVI Motor Vehicle Insurance
-            'credits_mvi'           =>'points_nfsa_MVI_',//'credits_ins_MVI_CMP',
-            'sales_pkg'             =>'sales_nfsa_PKG_', //MVI & NFSA finance contract package
-            'credits_pkg'           =>'points_nfsa_PKG_',//'credits_ins_pkg',
-            'sales_emw'             =>'sales_nfsa_EMW_',//EMW sale Genuine (NAPS) //'sales_emw_gen',
-            'credits_emw'           =>'points_nfsa_EMW_',//'credits_emw_gen',
-            'penetration'           =>'pcent_nfsa_PEN_', //dealer sales penetration
-            'credits_penetration'   =>'points_nfsa_PEN_',//'credits_penetration',
-            'score_fi'              =>'score_ce_EFI3_',//customer experience - satisfaction with finance & insurance   //'ce_score_FISAT',
-            'credits_fi'            =>'points_ce_EFI3_',//'credits_ce_FISAT',
+            'sales_nfsa_retention'  =>'sales_nfsa_lrb',//loyalty & retention //'sales_nfsa_retention',
+            'credits_nfsa_retention'=>'points_nfsa_lrb',//'credits_nfsa_retention',
+            'sales_mvi'             =>'sales_nfsa_mvi', //mvi motor vehicle insurance
+            'credits_mvi'           =>'points_nfsa_mvi',//'credits_ins_mvi_cmp',
+            'sales_pkg'             =>'sales_nfsa_pkg', //mvi & nfsa finance contract package
+            'credits_pkg'           =>'points_nfsa_pkg',//'credits_ins_pkg',
+            'sales_emw'             =>'sales_nfsa_emw',//emw sale genuine (naps) //'sales_emw_gen',
+            'credits_emw'           =>'points_nfsa_emw',//'credits_emw_gen',
+            'penetration'           =>'pcent_nfsa_pen', //dealer sales penetration
+            'credits_penetration'   =>'points_nfsa_pen',//'credits_penetration',
+            'score_fi'              =>'score_ce_efi3',//customer experience - satisfaction with finance & insurance   //'ce_score_fisat',
+            'credits_fi'            =>'points_ce_efi3',//'credits_ce_fisat',
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
         ];
         return $map;
     }
@@ -314,23 +314,23 @@ class TableFieldMap{
             'period'                   =>'d_statement',
             'member_id'                =>'regi#', //'_amb_id',
             'dealer_code'              =>'dcode',
-            'credit_bf'                =>'points_CARRIED_',  //'credits_carried_forward',
-            'sales'                    =>'sales_status_',  //new vehicle sales //'sales',
-            'credit_actual_sales'      =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
-            'v_fleet_target'           =>'pcent_ACT_F_',//'ce_score_OSAT', //percentage of fleet sales v fleet target 
-            'v_fleet_target_score'     =>'points_ACT_F_',//'credits_ce_OSAT', //points for fleet sales v fleet target 
-            'fleet_volumn_growth'      =>'pcent_ACT_FV_',//'ce_score_FU%', //percentage of fleet volume growth (quarterly)
-            'fleet_volumn_growth_score'=>'points_ACT_FV_',//'credits_ce_FU%', //points for fleet volume growth (quarterly)
+            'credit_bf'                =>'points_carried',  //'credits_carried_forward',
+            'sales'                    =>'sales_status',  //new vehicle sales //'sales',
+            'credit_actual_sales'      =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
+            'v_fleet_target'           =>'pcent_act_f',//'ce_score_osat', //percentage of fleet sales v fleet target 
+            'v_fleet_target_score'     =>'points_act_f',//'credits_ce_osat', //points for fleet sales v fleet target 
+            'fleet_volumn_growth'      =>'pcent_act_fv',//'ce_score_fu%', //percentage of fleet volume growth (quarterly)
+            'fleet_volumn_growth_score'=>'points_act_fv',//'credits_ce_fu%', //points for fleet volume growth (quarterly)
             'training'                 =>'points_train_online',//'credits_training_online', //training
             'training_competency'      =>'points_train_competency',//'credits_training_competency',  //training
             'pathway'                  =>'points_train_pathway',//'credits_training_pathway',  //training
             'registration'             =>'points_registration',//'credits_registration',
             'incentive'                =>'points_incentive',//'credits_incentive',
-            'adjustment'               =>'points_adjust_',//'credits_adjustment',
+            'adjustment'               =>'points_adjust',//'credits_adjustment',
             'excellence'               =>'points_excellence',//'credits_excellence',
-            'credit_mtd'               =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'               =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'                 =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'credit_mtd'               =>'points_mthly',//'credits_monthly',
+            'credit_ytd'               =>'points_ytd',//'credits_ytd',
+            'lifetime'                 =>'points_ytd_historical',//'credits_ytd_lifetime',
         ];
         return $map;
     }
@@ -345,17 +345,17 @@ class TableFieldMap{
             'period'                            =>'d_statement',
             'member_id'                         =>'regi#', //'_amb_id',
             'dealer_code'                       =>'dcode',
-            'credit_bf'                         =>'points_CARRIED_',  //'credits_carried_forward',
-            'sales'                             =>'sales_status_',  //new vehicle sales //'sales',
-            'credit_actual_sales'               =>'points_sales_status_', //points for new vehicle sales //'credits_actual_sales',
-            'salesperson_satisfaction'          =>'score_ce_SOS3',//percentage of salesperson satisfaction
-            'salesperson_satisfaction_score'    =>'points_ce_SOS3_',//points for salesperson satisfaction
-            'points_actual'                     =>'points_NVR_',
-            'percentage_actual'                 =>'pcent_ACT_S_',
-            'kept_informed_delivery_score'      =>'points_ce_KID3_', //points for kept informed of delivery
-            'kept_informed_delivery'            =>'score_ce_KID3_', //kept informed of delivery
-            'follow_up_satisfaction'            =>'score_ce_PFU3_',//satisfaction follow up
-            'follow_up_satisfaction_score'      =>'points_ce_PFU3_',//points for satisfaction follow up
+            'credit_bf'                         =>'points_carried',  //'credits_carried_forward',
+            'sales'                             =>'sales_status',  //new vehicle sales //'sales',
+            'credit_actual_sales'               =>'points_sales_status', //points for new vehicle sales //'credits_actual_sales',
+            'salesperson_satisfaction'          =>'score_ce_sos3',//percentage of salesperson satisfaction
+            'salesperson_satisfaction_score'    =>'points_ce_sos3',//points for salesperson satisfaction
+            'points_actual'                     =>'points_nvr',
+            'percentage_actual'                 =>'pcent_act_s',
+            'kept_informed_delivery_score'      =>'points_ce_kid3', //points for kept informed of delivery
+            'kept_informed_delivery'            =>'score_ce_kid3', //kept informed of delivery
+            'follow_up_satisfaction'            =>'score_ce_pfu3',//satisfaction follow up
+            'follow_up_satisfaction_score'      =>'points_ce_pfu3',//points for satisfaction follow up
             'training'                          =>'points_train_online',//'credits_training_online', //training
             'training_competency'               =>'points_train_competency',//'credits_training_competency',  //training
 
@@ -367,9 +367,9 @@ class TableFieldMap{
             'incentive'                         =>'points_incentive',//'credits_incentive',
             'adjustment'                        =>'points_adjust',//'credits_adjustment',
             'excellence'                        =>'points_excellence',//'credits_excellence',
-            'credit_mtd'                        =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'                        =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'                          =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
+            'credit_mtd'                        =>'points_mthly',//'credits_monthly',
+            'credit_ytd'                        =>'points_ytd',//'credits_ytd',
+            'lifetime'                          =>'points_ytd_historical',//'credits_ytd_lifetime',
         ];
         return $map;
     }
@@ -383,15 +383,15 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'recommendation'        =>'score_ce_SOS3',//service overall satisfaction  //'ce_score_OSAT',
-            'recommendation_credit' =>'points_ce_SOS3_',//'credits_ce_OSAT',
-            'vclean'                =>'score_ce_VFM', // value for money //'ce_score_VFM',
-            'vclean_credit'         =>'points_ce_VFM',//'credits_ce_VFM',
-            'followup'              =>'score_ce_FFT3_', // f1 fixed it right first time //'ce_score_FFT',
-            'followup_credit'       =>'points_ce_FFT3_',//'credits_ce_FFT',
-            'cpr'                   =>'pcent_CPRO_',// customer paid repair orders //'percentage_CPR_',
-            'cpr_credit'            =>'points_CPRO_',//'credits_CPR_order',
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'recommendation'        =>'score_ce_sos3',//service overall satisfaction  //'ce_score_osat',
+            'recommendation_credit' =>'points_ce_sos3',//'credits_ce_osat',
+            'vclean'                =>'score_ce_vfm', // value for money //'ce_score_vfm',
+            'vclean_credit'         =>'points_ce_vfm',//'credits_ce_vfm',
+            'followup'              =>'score_ce_fft3', // f1 fixed it right first time //'ce_score_fft',
+            'followup_credit'       =>'points_ce_fft3',//'credits_ce_fft',
+            'cpr'                   =>'pcent_cpro',// customer paid repair orders //'percentage_cpr',
+            'cpr_credit'            =>'points_cpro',//'credits_cpr_order',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
@@ -403,17 +403,17 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_historical',//'CREDITS_ytd_lifetime',
-            'ecosts_credit'         =>'points_ce_EOC3_',     // FY2020 new metric #3 Explanation of costs NPS R3M
-            'ecosts'                =>'score_ce_EOC3_', // FY2020 new metric #3 Explanation of costs NPS R3M
-            'retention_credit'      =>'points_Retent_',     // FY2020 new metric #5 Retention %
-            'retention'             =>'pcent_RETENT_', // FY2020 new metric #5 Retention %
-            'brakewpr_credit'       =>'credit_BWP_', // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
-            'brakewpr'              =>'sales_BWP',  // FY2020 new metric #6 Brake and Wiper Parts Sales per CPRO
-            'loyaltyser_credit'     =>'points_loyalty_', // FY2020 new metric #7 Loyalty per Loyalty Sales
-            'loyaltyser'            =>'sales_loyalty',  // FY2020 new metric #7 Loyalty per Loyalty Sales
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
+            'ecosts_credit'         =>'points_ce_eoc3',     // fy2020 new metric #3 explanation of costs nps r3m
+            'ecosts'                =>'score_ce_eoc3', // fy2020 new metric #3 explanation of costs nps r3m
+            'retention_credit'      =>'points_retent',     // fy2020 new metric #5 retention %
+            'retention'             =>'pcent_retent', // fy2020 new metric #5 retention %
+            'brakewpr_credit'       =>'credit_bwp', // fy2020 new metric #6 brake and wiper parts sales per cpro
+            'brakewpr'              =>'sales_bwp',  // fy2020 new metric #6 brake and wiper parts sales per cpro
+            'loyaltyser_credit'     =>'points_loyalty', // fy2020 new metric #7 loyalty per loyalty sales
+            'loyaltyser'            =>'sales_loyalty',  // fy2020 new metric #7 loyalty per loyalty sales
         ];
         return $map;
     }
@@ -427,17 +427,17 @@ class TableFieldMap{
             'period'                =>'d_statement',
             'member_id'             =>'regi#',//'_amb_id',
             'dealer_code'           =>'dcode',
-            'credit_bf'             =>'points_CARRIED_',//'credits_carried_forward',
-            'order_write_credit'    =>'points_matchOW_',//'credits_ow_match',
-            'order_write_variation' =>'score_matchOW_',//'ow_match',   //score
+            'credit_bf'             =>'points_carried',//'credits_carried_forward',
+            'order_write_credit'    =>'points_matchow',//'credits_ow_match',
+            'order_write_variation' =>'score_matchow',//'ow_match',   //score
             'percent'               =>'percentage_actual',
-            'actual_sales'          =>'points_sales_status_',//'credits_actual_sales',
-            'sos'                   =>'score_ce_SOS3',//Sales overall satisfaction   //'ce_score_OSAT',
-            'sos_credit'            =>'points_ce_SOS3_',//'credits_ce_OSAT',
-            'kid'                   =>'score_ce_KID3_',//Kept informed of delivery //'ce_score_FU',
-            'kid_credit'            =>'points_ce_KID3_',//'credits_ce_FU',
-            'retail_percentage'     =>'ach_forecast_',// DEALER RETAIL FORECAST //'retail_forecast_achieved',
-            'retail_credit'         =>'points_forecast_',//'credits_retail_forecast',
+            'actual_sales'          =>'points_sales_status',//'credits_actual_sales',
+            'sos'                   =>'score_ce_sos3',//sales overall satisfaction   //'ce_score_osat',
+            'sos_credit'            =>'points_ce_sos3',//'credits_ce_osat',
+            'kid'                   =>'score_ce_kid3',//kept informed of delivery //'ce_score_fu',
+            'kid_credit'            =>'points_ce_kid3',//'credits_ce_fu',
+            'retail_percentage'     =>'ach_forecast',// dealer retail forecast //'retail_forecast_achieved',
+            'retail_credit'         =>'points_forecast',//'credits_retail_forecast',
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
@@ -449,18 +449,18 @@ class TableFieldMap{
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
             'excellence'            =>'points_excellence',//'credits_excellence',
-            'credit_mtd'            =>'POINTS_MTHLY_',//'CREDITS_MONTHLY',
-            'credit_ytd'            =>'POINTS_YTD',//'CREDITS_YTD',
-            'lifetime'              =>'POINTS_ytd_lifetime',//'CREDITS_ytd_lifetime',
+            'credit_mtd'            =>'points_mthly',//'credits_monthly',
+            'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_lifetime',//'credits_ytd_lifetime',
 
-            'points_apnur_n'        =>'points_APNUR_N_',
-            'points_apnur_q'        =>'points_APNUR_Q_',
-            'points_apnur_x'        =>'points_APNUR_X_',
-            'percent_apnur_n'       =>'pcent_APNUR_N_',
-            'percent_apnur_q'       =>'pcent_APNUR_Q_',
-            'percent_apnur_x'       =>'pcent_APNUR_X_',  
+            'points_apnur_n'        =>'points_apnur_n',
+            'points_apnur_q'        =>'points_apnur_q',
+            'points_apnur_x'        =>'points_apnur_x',
+            'percent_apnur_n'       =>'pcent_apnur_n',
+            'percent_apnur_q'       =>'pcent_apnur_q',
+            'percent_apnur_x'       =>'pcent_apnur_x',  
 
-            'percent_act_s'         =>'pcent_ACT_S_'
+            'percent_act_s'         =>'pcent_act_s'
         ];
         return $map;
     }
@@ -471,32 +471,32 @@ class TableFieldMap{
      */
     public static function RegionTerritoryReportTable(){
         $map = [
-            'dsm_full_name'         =>'elit~dREG_dcode::n_fullname',//'amba_deal~REGI_rcode::n_fullname',
-            'region_name'           =>'rname_',//'amba_deal~REGI_rcode::r_name',
-            'region_code'           =>'rcode_',//'amba_deal~REGI_rcode::r_code',
+            'dsm_full_name'         =>'elit~dreg_dcode::n_fullname',//'amba_deal~regi_rcode::n_fullname',
+            'region_name'           =>'rname',//'amba_deal~regi_rcode::r_name',
+            'region_code'           =>'rcode',//'amba_deal~regi_rcode::r_code',
             'dealer_code'           =>'dcode',//'d_code',
             'dealer_name'           =>'dname',//'d_name',
-            'dealer_cat'            =>'dcat',//'d_cat',  // Dealer's category, metro or district ...
-            'sp_code'               =>'sp_code_',
-            'employee_code'         =>'regi#_',//'_amb_id',
-            'n_fullname'            =>'n_fullname_',
-            'position'              =>'position_',
-            'registered'            =>'registered_',
-            'credits_monthly_04'    =>'elit~engi_regi#04mthyrg::POINTS_MTHLY_',//'amba_STAT_04_apr::CREDITS_MONTHLY',
-            'credits_monthly_05'    =>'elit~engi_regi#05mthyrg::POINTS_MTHLY_',//'amba_STAT_05_may::CREDITS_MONTHLY',
-            'credits_monthly_06'    =>'elit~engi_regi#06mthyrg::POINTS_MTHLY_',//'amba_STAT_06_jun::CREDITS_MONTHLY',
-            'credits_monthly_07'    =>'elit~engi_regi#07mthyrg::POINTS_MTHLY_',//'amba_STAT_07_jul::CREDITS_MONTHLY',
-            'credits_monthly_08'    =>'elit~engi_regi#08mthyrg::POINTS_MTHLY_',//'amba_STAT_08_aug::CREDITS_MONTHLY',
-            'credits_monthly_09'    =>'elit~engi_regi#09mthyrg::POINTS_MTHLY_',//'amba_STAT_09_sep::CREDITS_MONTHLY',
-            'credits_monthly_10'    =>'elit~engi_regi#10mthyrg::POINTS_MTHLY_',//'amba_STAT_10_oct::CREDITS_MONTHLY',
-            'credits_monthly_11'    =>'elit~engi_regi#11mthyrg::POINTS_MTHLY_',//'amba_STAT_11_nov::CREDITS_MONTHLY',
-            'credits_monthly_12'    =>'elit~engi_regi#12mthyrg::POINTS_MTHLY_',//'amba_STAT_12_dec::CREDITS_MONTHLY',
-            'credits_monthly_01'    =>'elit~engi_regi#01mthyrg::POINTS_MTHLY_',//'amba_STAT_01_jan::CREDITS_MONTHLY',
-            'credits_monthly_02'    =>'elit~engi_regi#02mthyrg::POINTS_MTHLY_',//'amba_STAT_02_feb::CREDITS_MONTHLY',
-            'credits_monthly_03'    =>'elit~engi_regi#03mthyrg::POINTS_MTHLY_',//'amba_STAT_03_mar::CREDITS_MONTHLY',
-            'cr_ytd'                =>'points_ytd_status_',//'amba_STAT_ambid_gmthyr::CREDITS_YTD',
-            'cr_ytd_platinum'       =>'points_ytd_platinum_',
-            'cr_ytd_lifetime'       =>'points_ytd_lifetime_',
+            'dealer_cat'            =>'dcat',//'d_cat',  // dealer's category, metro or district ...
+            'sp_code'               =>'sp_code',
+            'employee_code'         =>'regi#',//'_amb_id',
+            'n_fullname'            =>'n_fullname',
+            'position'              =>'position',
+            'registered'            =>'registered',
+            'credits_monthly_04'    =>'elit~engi_regi#04mthyrg::points_mthly',//'amba_stat_04_apr::credits_monthly',
+            'credits_monthly_05'    =>'elit~engi_regi#05mthyrg::points_mthly',//'amba_stat_05_may::credits_monthly',
+            'credits_monthly_06'    =>'elit~engi_regi#06mthyrg::points_mthly',//'amba_stat_06_jun::credits_monthly',
+            'credits_monthly_07'    =>'elit~engi_regi#07mthyrg::points_mthly',//'amba_stat_07_jul::credits_monthly',
+            'credits_monthly_08'    =>'elit~engi_regi#08mthyrg::points_mthly',//'amba_stat_08_aug::credits_monthly',
+            'credits_monthly_09'    =>'elit~engi_regi#09mthyrg::points_mthly',//'amba_stat_09_sep::credits_monthly',
+            'credits_monthly_10'    =>'elit~engi_regi#10mthyrg::points_mthly',//'amba_stat_10_oct::credits_monthly',
+            'credits_monthly_11'    =>'elit~engi_regi#11mthyrg::points_mthly',//'amba_stat_11_nov::credits_monthly',
+            'credits_monthly_12'    =>'elit~engi_regi#12mthyrg::points_mthly',//'amba_stat_12_dec::credits_monthly',
+            'credits_monthly_01'    =>'elit~engi_regi#01mthyrg::points_mthly',//'amba_stat_01_jan::credits_monthly',
+            'credits_monthly_02'    =>'elit~engi_regi#02mthyrg::points_mthly',//'amba_stat_02_feb::credits_monthly',
+            'credits_monthly_03'    =>'elit~engi_regi#03mthyrg::points_mthly',//'amba_stat_03_mar::credits_monthly',
+            'cr_ytd'                =>'points_ytd_status',//'amba_stat_ambid_gmthyr::credits_ytd',
+            'cr_ytd_platinum'       =>'points_ytd_platinum',
+            'cr_ytd_lifetime'       =>'points_ytd_lifetime',
         ];
         return $map;
     }
@@ -509,8 +509,8 @@ class TableFieldMap{
         $map = [
             'period'        =>'mth_yr',
             'member_id'     =>'_amb_id',
-            'mtd'           =>'CREDITS_MONTHLY',
-            'ytd'           =>'CREDITS_YTD',
+            'mtd'           =>'credits_monthly',
+            'ytd'           =>'credits_ytd',
         ];
         return $map;
     }
@@ -521,22 +521,23 @@ class TableFieldMap{
      */
     public static function NissanRankingsTable(){
         $map = [
-            'period'        =>'mthyr_g_',//'amba_STAT_ambid_gmthyr::mth_yr',
-            'member_id'     =>'regi#_',//'_amb_id',
+            'period'        =>'mthyr_g',//'amba_stat_ambid_gmthyr::mth_yr',
+            'member_id'     =>'regi#',//'_amb_id',
             'dealer_code'   =>'dcode',//'d_code',
             'category'      =>'dcat',//'d_cat',
-            'rank'          =>'rank_STATUS_',
-            'rank_platinum' =>'rank_PLATINUM_',
-            'total'         =>'yr_2020_status_', //status
-            'total_platinum'=>'yr_2020_platinum_', //platinum
-            'role'          =>'sp_',
-            'rank_state'    =>'state_rank_',
+            'rank'          =>'rank_status',
+            'rank_platinum' =>'rank_platinum',
+            'total'         =>'yr_2020_status', //status
+            'total_platinum'=>'yr_2020_platinum', //platinum
+            'role'          =>'sp',
+            'rank_state'    =>'state_rank',
         ];
         $notNecessaryFields = [
-            'region_code'           =>'rcode_',//'r_code',  //it's in the company table
-            'registered'    =>'registered_',
+            'region_code'           =>'rcode',//'r_code',  //it's in the company table
+            'registered'    =>'registered',
             'status'                =>'status', //active
         ];
         return array_merge($map, $notNecessaryFields);
     }
 }
+
