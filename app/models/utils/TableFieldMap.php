@@ -357,7 +357,7 @@ class TableFieldMap{
             'follow_up_satisfaction'            =>'score_ce_pfu3',//satisfaction follow up
             'follow_up_satisfaction_score'      =>'points_ce_pfu3',//points for satisfaction follow up
             'training'                          =>'points_train_online',//'credits_training_online', //training
-            'training_competency'               =>'points_train_competency',//'credits_training_competency',  //training
+            'training_competency'               =>'points_train_competency',//'credits_training_competency',  //training 
 
             'train_mastery'         =>'points_train_mastery',
 
