@@ -103,6 +103,9 @@ class TableFieldMap{
             'emw_credit'            =>'credits_emw_gen',not using*/
             'training'              =>'points_train_online',//'credits_training_online',
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
+
+            'train_mastery'         =>'points_train_mastery',
+
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
@@ -333,7 +336,7 @@ class TableFieldMap{
     }
 
     /**
-     * Get the field name map for Consultant Sales
+     * Get the field name map for Retail Sales Consultant (R)
      * @return array
      */
 
@@ -355,6 +358,10 @@ class TableFieldMap{
             'follow_up_satisfaction_score'      =>'points_ce_PFU3_',//points for satisfaction follow up
             'training'                          =>'points_train_online',//'credits_training_online', //training
             'training_competency'               =>'points_train_competency',//'credits_training_competency',  //training
+
+            'train_mastery'         =>'points_train_mastery',
+
+
             'pathway'                           =>'points_train_pathway',//'credits_training_pathway',  //training
             'registration'                      =>'points_registration',//'credits_registration',
             'incentive'                         =>'points_incentive',//'credits_incentive',
@@ -389,6 +396,9 @@ class TableFieldMap{
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
             'training_bonus'        =>'points_train_bonus',
+
+            'train_mastery'         =>'points_train_mastery',
+
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
@@ -432,6 +442,9 @@ class TableFieldMap{
             'training_competency'   =>'points_train_competency',//'credits_training_competency',
             'pathway'               =>'points_train_pathway',//'credits_training_pathway',
             'training_bonus'        =>'points_train_bonus',
+
+            'train_mastery'         =>'points_train_mastery',
+
             'registration'          =>'points_registration',//'credits_registration',
             'incentive'             =>'points_incentive',//'credits_incentive',
             'adjustment'            =>'points_adjust',//'credits_adjustment',
