@@ -48,7 +48,7 @@ class AdminController extends BaseController
      */
     private $_lastFoundResultSet = null;
 
-    private $allHtml = '<a href="/admin-panel">Go Back</a><br>';
+    private $allHtml = '<a href="/admin-panel">Go Back</a>&nbsp&nbsp;<a target="_blank" href="/admin-panel">Admin Panel</a><br>';
 
     public function __construct(Request $request, Response $response)
     {
