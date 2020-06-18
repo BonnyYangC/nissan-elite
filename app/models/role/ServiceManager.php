@@ -112,7 +112,7 @@ class ServiceManager extends BaseRole implements IRole
                 $loyalty[]                      = $this->_buildForJs($item['loyaltyser_credit']);
                 $loyalty_results[]              = $this->_buildForTableElement(intval($item['loyaltyser']),0);
 //8 updated for FY2020                
-                $training[]             = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
+                $training[]             = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus'], $item['train_mastery']]);
 /*
                 $emw[]                  = $this->_buildForJs($item['emw_credit']);
                 $emw_results[]                  = $this->_buildForTableElement($item['emw'],0);*/
@@ -128,7 +128,7 @@ class ServiceManager extends BaseRole implements IRole
                 $brake_wiper[]            = $this->_buildForJs(0);
                 $loyalty[]              = $this->_buildForJs(0);
                // $emw[]                  = $this->_buildForJs(0);
-                $training[]             = $this->_buildForJs([0,0,0,0]);
+                $training[]             = $this->_buildForJs([0,0,0,0,0]);
 
                 $customerPaidRepairCredits[]    = $this->_buildForTableElement();
                 $recommendation_results[]       = $this->_buildForTableElement();
@@ -207,7 +207,8 @@ class ServiceManager extends BaseRole implements IRole
                 $this->trainingData['data'][]               = $item['training']
                     + $item['pathway']
                     + $item['training_competency']
-                    + $item['training_bonus'];
+                    + $item['training_bonus']
+                    + $item['train_mastery'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->EXPLANATION['data'][]  = $item['ecosts_credit'];
                 $this->RETENTION['data'][]  = $item['retention_credit'];

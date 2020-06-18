@@ -66,11 +66,11 @@
             },
             {//7. TRAINING
                 el: 'chart-training',
-                pilot: ['Month',  'Online', 'Pathway','Competency','Bonus'],
+                pilot: ['Month',  'Online', 'Pathway','Competency','Bonus','Mastery'],
                 max: 3000,
                 length: 6,
                 step: 500,
-                colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999'],
+                colors: ['#111111', '#c40030' ,'#555555','#3273dc','#999999','green'],
                 isStacked: true,
                 dataSource: {{ json_encode(metrics.TRAINING)|raw }}
             }

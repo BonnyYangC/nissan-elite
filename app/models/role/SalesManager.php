@@ -88,7 +88,7 @@ class SalesManager extends BaseRole implements IRole
                 $apnur_q_results[] = $this->_buildForTableElement($item['percent_apnur_q']*100,1).'%';
 
                 //7
-                $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus']]);
+                $training[]         = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency'],$item['training_bonus'], $item['train_mastery']]);
             }
             else
             {
@@ -178,7 +178,8 @@ class SalesManager extends BaseRole implements IRole
                 $this->trainingData['data'][]           = $item['training']
                     + $item['pathway']
                     + $item['training_competency']
-                    + $item['training_bonus'];
+                    + $item['training_bonus']
+                    + $item['train_mastery'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
             }
             else

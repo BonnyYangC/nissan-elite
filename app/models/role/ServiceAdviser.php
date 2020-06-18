@@ -138,6 +138,7 @@ class ServiceAdviser extends BaseRole implements IRole
                         $item['training']?$item['training']:0,
                         $classroomTrainingPoints,
                         $item['training_competency']?$item['training_competency']:0,
+                        $item['train_mastery']?$item['train_mastery']:0
                     ]
                 );
 
@@ -157,7 +158,7 @@ class ServiceAdviser extends BaseRole implements IRole
                 $explanation[]       = $this->_buildForJs(0);
                 $brake_wiper[]       = $this->_buildForJs(0);
                 $loyalty[]          = $this->_buildForJs(0);
-                $training[]         = $this->_buildForJs([0,0,0]);
+                $training[]         = $this->_buildForJs([0,0,0,0]);
 
                 $advice_results[]           = $this->_buildForTableElement();;
                 $emw_results[]              = $this->_buildForTableElement();;
@@ -240,7 +241,8 @@ class ServiceAdviser extends BaseRole implements IRole
                 $this->trainingData['data'][]               = $item['training'] // Training Online
                                                         + $item['pathway']  // credits_training_pathway
                                                         + $item['training_competency']  // competency
-                                                        + $item['classroom'];
+                                                        + $item['classroom']
+                                                        + $item['train_mastery'];
                 $this->CUSTOMER_REPAIR_ORDER['data'][]  = $item['cpr_credit'];
                 $this->incentivesForDashboard['data'][] = isset($item['incentive']) && !empty(trim($item['incentive'])) ? intval($item['incentive']) : 0;
                 $this->INDICATION['data'][]  = $item['indication_credit'];
