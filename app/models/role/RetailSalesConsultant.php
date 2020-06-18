@@ -73,7 +73,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->pointsActual['data'][]  = intval($item['points_actual']);  // Perf. Target
                 $this->keptInformed['data'][]  = intval($item['kept_informed_delivery_score']);
                 $this->trainingData['data'][]  = $item['training'] // Online
-                    + $item['pathway'] + $item['training_competency'];
+                    + $item['pathway'] + $item['training_competency'] + $item['train_mastery'];
                 $this->incentivesForDashboard['data'][] = empty(trim($item['incentive'])) ? 0 : intval($item['incentive']);
             }
             else
@@ -158,7 +158,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $followUpSatisfaction[]         = $this->_buildForTableElement($item['follow_up_satisfaction']);
                 $followUpSatisfactionScore[]    = $this->_buildForJs(          $item['follow_up_satisfaction_score']);
                 //5
-                $training[]                     = $this->_buildForJs([         $item['training'],$item['pathway'],$item['training_competency']]);
+                $training[]                     = $this->_buildForJs([         $item['training'],$item['pathway'],$item['training_competency'], $item['train_mastery']]);
 
             }
             else
@@ -169,7 +169,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $followUpSatisfactionScore[]    = $this->_buildForJs(0);
                 $keptInformedDeliveryScore[]    = $this->_buildForJs(0);
                 $followUpCreditSAT[]            = $this->_buildForJs(0);
-                $training[]                     = $this->_buildForJs([0,0,0]);
+                $training[]                     = $this->_buildForJs([0,0,0,0]);
 
                 $sales_results[]             = null;
                 $percentage_actual_results[] = null;
