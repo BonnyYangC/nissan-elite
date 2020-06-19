@@ -70,7 +70,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][] = intval($item['credit_actual_sales']+$item['points_actual']);
                 $this->salesRecommendationSaturation['data'][]  = intval($item['salesperson_satisfaction_score']);
                 $this->followUpSaturation['data'][]  = intval($item['follow_up_satisfaction_score']);
-                $this->pointsActual['data'][]  = intval($item['points_actual']);  // Perf. Target
+                //$this->pointsActual['data'][]  = intval($item['points_actual']);  // Perf. Target
                 $this->keptInformed['data'][]  = intval($item['kept_informed_delivery_score']);
                 $this->trainingData['data'][]  = $item['training'] // Online
                     + $item['pathway'] + $item['training_competency'] + $item['train_mastery'];
@@ -86,7 +86,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
                 $this->newVehicleSales['data'][]  = 0;
                 $this->salesRecommendationSaturation['data'][]  = 0;
                 $this->followUpSaturation['data'][]  = 0;
-                $this->pointsActual['data'][]  = 0;
+                //$this->pointsActual['data'][]  = 0;
                 $this->keptInformed['data'][]  = 0;
                 $this->trainingData['data'][]  = 0;
                 $this->incentivesForDashboard['data'][] = 0;
@@ -109,7 +109,7 @@ class RetailSalesConsultant extends BaseRole implements IRole
             'metricsCurrentStatus'   =>[
                 $this->newVehicleSales,
                 $this->salesRecommendationSaturation,
-                $this->pointsActual, // Perf. Target
+                //$this->pointsActual, // Perf. Target
                 $this->keptInformed,
                 $this->followUpSaturation,
                 $this->trainingData,
