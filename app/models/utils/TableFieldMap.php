@@ -223,6 +223,7 @@ class TableFieldMap{
             'excellence'            =>'points_excellence',//'credits_excellence',
             'credit_mtd'            =>'points_mthly',//'credits_monthly',
             'credit_ytd'            =>'points_ytd',//'credits_ytd',
+            'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
             'points_perform_vs_prev_year' => 'points_pvfy19_q',
             'percentage_perform_vs_prev_year' => 'pcent_pvfy19_q',
             'points_performvprev'    => 'pcent_pvlq_q',
