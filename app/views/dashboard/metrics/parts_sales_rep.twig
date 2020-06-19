@@ -76,7 +76,9 @@
                     <div class="table-responsive">
                         <div id="chart-trade-sales" class="metrics-chart-wrap"></div>
                         <table class="table table-condensed metrics-table-wrap">                            
+                            {% set monthsArray = ['JUN','SEP','DEC','MAR'] %} <!--TBC : should not be here -->
                             {% include 'dashboard/metrics/elements/common/months_table_title.twig' with {'tdParam' : 'width=7%'} %}
+
                             <tr>
                                 <td class="nissangray-light-back">FY19</td>
                                 {% include 'dashboard/metrics/elements/common/result_table_elements.twig' with {'tdElements':metrics.TRADE_FY19_RESULTS } %}
@@ -125,8 +127,7 @@
                             <td align="center">675</td>
                             <td align="center">875</td>
                         </tr>
-                    </table>
-                    <em>Points are applied monthly for both metrics</em>
+                    </table>                    
                 </div>
             </div>
             <div class="row graph-back">
