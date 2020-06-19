@@ -48,7 +48,7 @@ class AdminController extends BaseController
      */
     private $_lastFoundResultSet = null;
 
-    private $allHtml = '<a href="/admin-panel">Go Back</a>&nbsp&nbsp;<a target="_blank" href="/admin-panel">Admin Panel</a><br>';
+    private $allHtml = '<a href="/admin-panel">Go Back</a>&nbsp&nbsp;<a target="_blank" href="/admin-panel">Go Back (new tab)</a><br>';
 
     public function __construct(Request $request, Response $response)
     {
@@ -848,9 +848,9 @@ class AdminController extends BaseController
         $map = array_flip($map);
 
         if ($getMap) return $map;
-
         foreach ($csvRowArray as $index => $rowName) {
             $rowName2 = preg_replace('/_$/', '', strtolower($rowName)); // replace _ at the end and change to lower case 
+
             if(isset($map[$rowName2])){
                 $this->indexes[$map[$rowName2]] = $index;
             }
