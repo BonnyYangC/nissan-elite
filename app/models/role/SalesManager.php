@@ -79,7 +79,15 @@ class SalesManager extends BaseRole implements IRole
 
                 //5
                 $retail[] = $this->_buildForJs($item['retail_credit']);
-                $retail_results[]   = is_null($item['retail_percentage']) ? null : ($item['retail_percentage']>0 ? 'YES' : 'NO');
+                $retail_results[]   = is_null($item['retail_percentage']) ? null : (
+                    $item['retail_percentage'] == 2 ? 
+                        'NA' : 
+                        (
+                            $item['retail_percentage'] > 0 ? 
+                                'YES' : 
+                                'NO'
+                        )
+                );
 
                 //6
                 $apnur[] = $this->_buildForJs([$item['points_apnur_n'],$item['points_apnur_x'],$item['points_apnur_q']]);
