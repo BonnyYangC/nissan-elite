@@ -410,7 +410,7 @@ class TableFieldMap{
             'ecosts'                =>'score_ce_eoc3', // fy2020 new metric #3 explanation of costs nps r3m
             'retention_credit'      =>'points_retent',     // fy2020 new metric #5 retention %
             'retention'             =>'pcent_retent', // fy2020 new metric #5 retention %
-            'brakewpr_credit'       =>'credit_bwp', // fy2020 new metric #6 brake and wiper parts sales per cpro
+            'brakewpr_credit'       =>'points_bwp', 
             'brakewpr'              =>'sales_bwp',  // fy2020 new metric #6 brake and wiper parts sales per cpro
             'loyaltyser_credit'     =>'points_loyalty', // fy2020 new metric #7 loyalty per loyalty sales
             'loyaltyser'            =>'sales_loyalty',  // fy2020 new metric #7 loyalty per loyalty sales
