@@ -78,7 +78,14 @@ class StockController extends BaseRole implements IRole
                 $ow_results[] = $this->_buildForTableElement($item['ow'],0);
                 //3
                 $retail[] = $this->_buildForJs($item['retail_credit']);
-                $retail_results[] = $item['retail'] == 1 ? 'YES' : 'NO';
+                $retail_results[] = $item['retail'] == 2 ? 
+                    'NA' : 
+                    (
+                        $item['retail'] > 0 ? 
+                            'YES' : 
+                            'NO'
+                    );
+
                 //4
                 $matched[] = $this->_buildForJs($item['matched_credit']);
                 $matched_results[] = $this->_buildForTableElement($item['matched'],0);
