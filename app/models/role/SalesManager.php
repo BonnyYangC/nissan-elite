@@ -105,8 +105,8 @@ class SalesManager extends BaseRole implements IRole
                 $sos[] = $this->_buildForJs(0);
                 $kid[] = $this->_buildForJs(0);
                 $retail[] = $this->_buildForJs(0);
-                $training[] = $this->_buildForJs([0,0,0,0]);
-                $apnur[] = $this->_buildForJs([0,0,0,0]);
+                $training[] = $this->_buildForJs([0,0,0,0,0]);
+                $apnur[] = $this->_buildForJs([0,0,0]);
 
                 $apnur_n_results[] = null;
                 $apnur_x_results[] = null;
