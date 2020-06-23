@@ -126,8 +126,7 @@ class DataSource extends BaseModel
     }
 
     /**
-     * Get user's positions array; One conditions, for support multiple roles, the user's position has to be set before calling this function
-     * 获取用户所有可能的职务的方法. 为了正确获取, 在本方法被调用之前, 必须保证 user 对象的 position 已经被设置, 才能支持多职位的情况
+     * Get user's positions array
      * @param User $user
      * @return array|null
      */
@@ -135,7 +134,6 @@ class DataSource extends BaseModel
         if(is_null(self::$_positionList)){
             $database = self::DB();
             self::$_positionList = [];
-            // Todo : 这里的设计是 - 用户表中的用户角色可能随时发生变化, 因此需要查询所有的表格, 如果有记录条数返回, 表示有对应表角色的数据
             foreach (self::$_maps as $table => $positionAbbr) {
                 $num_rows = $database->count(
                     $table,
@@ -148,13 +146,12 @@ class DataSource extends BaseModel
                     ]
                 );
                 if ($num_rows > 0) {
-                    $abbr = $positionAbbr;
                     if(is_string($positionAbbr)){
                         $theRoleName = self::getRoleNameByAbbr($positionAbbr);
+                        $abbr = $positionAbbr;
                     }else{
-                        // Position abbr is an array now, so have to use user's current position
-                        $theRoleName = 'Sales Consultant';
-                        $abbr = User::RETAIL_SALES_CONSULTANTS ;
+                        $theRoleName = self::getRoleNameByAbbr($positionAbbr[0]);
+                        $abbr = $positionAbbr[0];
                     }
                     self::$_positionList[$table] = [
                         'abbr'=>$abbr,
