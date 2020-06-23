@@ -479,7 +479,12 @@ class AdminController extends BaseController
 
 
                             if ($index === 1) {                                
-                                $dumpedCsvFields = array_diff($csvColHeaders, array_keys($map)); 
+                                $cCH = [];
+                                foreach ($csvColHeaders as $key) {
+                                    $cCH[] = preg_replace('/_$/', '', strtolower($key));
+                                }
+
+                                $dumpedCsvFields = array_diff($cCH, array_keys($map)); 
                                 $dbFieldsNotSet = array_diff(array_keys($this->_lastFoundResultSet), array_values($map));
                                 $dbFieldsNotSet = array_diff($dbFieldsNotSet, [$model->getIdFieldName()]);
                             }                            
