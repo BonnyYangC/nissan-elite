@@ -690,7 +690,6 @@ class User extends BaseModel implements Mailable, IRole
                 'lookups.grouping'=>'POSITION',
                 'ORDER'=>$order,
             ]);
-
         }
         return $members;
     }
@@ -709,6 +708,19 @@ class User extends BaseModel implements Mailable, IRole
             'lookups.content' => 'ASC',
             'firstname'=>'ASC'
         ];
+
+        /* 
+        select * FROM 
+        users 
+        left join nissan_region_territory_reports  n ON n.employee_code = users.employee_code
+        left join lookups ON users.POSITION=CODE
+        WHERE
+            company_code                =30390 and
+            users.active=1 and
+            lookups.company_id=8 and
+            lookups.grouping='POSITION'   */
+
+
         if($code){
             $database = self::DB();
             if($param['sortBy'] && $param['order']){
@@ -728,6 +740,7 @@ class User extends BaseModel implements Mailable, IRole
                 'lookups.company_id'=>8,
                 'lookups.grouping'=>'POSITION',
                 'ORDER'=>$order,
+                'period'=>configuration('YEAR')
             ]);
         }
         return $members;
