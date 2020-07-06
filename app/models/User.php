@@ -688,6 +688,7 @@ class User extends BaseModel implements Mailable, IRole
                 'users.position'=>$user->getMemberRoles(),
                 'lookups.company_id'=>8,
                 'lookups.grouping'=>'POSITION',
+                'nissan_region_territory_reports.period'=>configuration('YEAR'),
                 'ORDER'=>$order,
             ]);
         }
