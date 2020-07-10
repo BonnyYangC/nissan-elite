@@ -74,7 +74,7 @@ class TableFieldMap{
             'alt_position'=>'region',//'region',
             'firstname'=>'first name',//'fname',
             'lastname'=>'last name',//'sname',
-            'email'=>'email address',//'email',
+            'email'=>'email',//'email',
             //'mobile'=>'mobile', //tbd
             'active' => 'active'
         ];
