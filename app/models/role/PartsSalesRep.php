@@ -54,8 +54,10 @@ class PartsSalesRep extends BaseRole implements IRole
 
                     $trade_sales[] = $this->_buildForJs([$item['points_perform_vs_prev_year'],$item['points_performvprev']]);  
 
-                    $trade_fy19_results[] = $this->_buildForTableElement($item['percentage_performvfy19'] * 100, 0).'%';
+                    $trade_fy19_results[] = $this->_buildForTableElement($item['percentage_perform_vs_prev_year'] * 100, 0).'%';
                     $trade_prev_results[] = $this->_buildForTableElement($item['percentage_performvprev'] * 100, 0).'%';
+
+                    
                 }
 
                 $training[] = $this->_buildForJs([$item['training'],$item['pathway'],$item['training_competency']]);
