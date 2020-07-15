@@ -226,10 +226,8 @@ class TableFieldMap{
             'lifetime'              =>'points_ytd_historical',//'credits_ytd_lifetime',
             'points_perform_vs_prev_year' => 'points_pvfy19_q',
             'percentage_perform_vs_prev_year' => 'pcent_pvfy19_q',
-            'points_performvprev'    => 'pcent_pvlq_q',
-            'percentage_performvprev'=> 'points_pvlq_q',
-
-
+            'points_performvprev'    => 'points_pvlq_q',
+            'percentage_performvprev'=> 'pcent_pvlq_q',
         ];
         return $map;
     }
