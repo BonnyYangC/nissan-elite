@@ -168,6 +168,7 @@ class ApiController extends BaseController
         $writer = Writer::createFromStream($fileStream);
 
         $csvHeader = [
+            'Region',
             'Dealer','Registered','Dept','Name','Member No.','Position','YTD',
             'APR '.configuration('YEAR'),
             'MAY '.configuration('YEAR'),
