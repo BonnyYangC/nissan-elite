@@ -122,14 +122,15 @@ class RegionTerritoryReport extends BaseModel
      */
     public static function GetByRegionCodes($codes,$dept = 'All', $dealerNameKeyword = null){
         $database = self::DB();
-        if(count($codes) === 1){
-            $codes = $codes[0];
-        }
-        $whereCondition = [
-            'region_id'=>self::GetRegionCodeWithShortName($codes),
+
+        $whereCondition = [            
             'period'=>configuration('YEAR'),
             'active'=>self::ACTIVE
         ];
+
+        if(count($codes) === 1){
+            $whereCondition['region_id'] = self::GetRegionCodeWithShortName($codes[0]);
+        }
 
         if($dept !== 'All'){
             $whereCondition['sp_code'] = $dept;
@@ -139,6 +140,7 @@ class RegionTerritoryReport extends BaseModel
             $whereCondition['dealer_name[~]'] = $dealerNameKeyword;
         }
         return $database->select(self::TABLE_NAME,[
+            'region_name',
             'dealer_name(d)','registered(c)',
             'sp_code(s)','n_fullname(f)','employee_code(e)','position(p)','cr_ytd(y)',
             'credits_monthly_04(c04)','credits_monthly_05(c05)','credits_monthly_06(c06)','credits_monthly_07(c07)',
