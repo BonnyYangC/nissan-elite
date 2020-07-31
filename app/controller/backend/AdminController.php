@@ -111,6 +111,7 @@ class AdminController extends BaseController
      */
     public function fake_user(){
         $fromApi = $this->request->param('fromApi');
+        $mock = $this->request->param('mock'); // link from last year        
         if($fromApi && !session_get('api_session')){
             //redirect to session expire page
             return $this->render('dashboard/static/session_expired');
@@ -137,8 +138,9 @@ class AdminController extends BaseController
         session_set('user_data_array', [
             'id'=>$user->getId(),
             'name'=>$user->getName(),
-            'from_user'=>session_get('user_data_array', 'id')
+            'mock'=>$mock
         ]);
+
         session_set('selected_role',null);
 
         // redirect to this user's dashboard

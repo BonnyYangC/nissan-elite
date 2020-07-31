@@ -141,7 +141,7 @@ if(dsmEl){
                 );
             },
             getMockUserUrl: function(employeeCode){
-                return '/admin/fake-user?uc='+employeeCode;
+                return '/admin/fake-user?uc='+employeeCode+'&mock=1';
             },
             getFullPositionNameByCode: function(abbr){
                 var fullName = null;
