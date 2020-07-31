@@ -49,7 +49,7 @@ class ServiceManager extends BaseRole implements IRole
         'data'=>[]
     ];
     public $BRAKE_WIPER_SALES = [
-        'label'=>'B & K',
+        'label'=>'Brake/Wiper',
         'backgroundColor' => IColor::LIGHT_PINK,
         'data'=>[]
     ];
