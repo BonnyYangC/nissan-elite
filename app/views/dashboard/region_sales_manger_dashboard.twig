@@ -86,7 +86,7 @@
                             prop="f" {{ isPhone?null:'fixed' }} sortable
                             label="Name" width="180">
                         <template slot-scope="scope">
-                            <a class="txt-black" :href="getMockUserUrl(scope.row.e)" target="_blank">${ scope.row.f }</a>
+                            <a class="txt-black" v-on:click="window.open(getMockUserUrl(scope.row.e))">${ scope.row.f }</a> {# must use window.open so window.close works later #}
                         </template>
                     </el-table-column>
                     <el-table-column
