@@ -29,7 +29,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <h3>Current STATUS LEVEL</h3>
+                    <h3>Current Status Level</h3>
                     {% include 'dashboard/widget_element/current_status_level_chart.twig' %}
                 </div>
             </div>
@@ -59,8 +59,9 @@
                 {% else %}
                 {% set matrics_url = url('/dashboard/Metrics') %}
                 {% endif %}
-                <a href="{{ matrics_url }}">
-                    {{ configuration('PROGRAM_AWARD_UNIT')|lower }} earned per Month (View Individual Results)
+                {{ configuration('PROGRAM_AWARD_UNIT')|lower }} earned per Month 
+                <a href="{{ matrics_url }} " class="btn btn-primary" style="background-color:#4169E1; color: #FFFFFF; margin:0 auto; font-weight: lighter; font-size:11px;">
+                    VIEW METRICS PAGE HERE
                 </a>
             </h3>
 
