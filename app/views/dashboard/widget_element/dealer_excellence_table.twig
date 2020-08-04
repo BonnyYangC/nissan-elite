@@ -13,25 +13,21 @@
                     {% endif %}
                 </span>
 
-                <!--
-                    {% if user.excellence_eligible %}
-                        <p class="tw">2000 {{ configuration('PROGRAM_AWARD_UNIT')|lower }} applied to Monthly points</p>
-                    {% endif %}
-                -->
+                {% if user.excellence_eligible %}
+                    <p class="tw">2000 {{ configuration('PROGRAM_AWARD_UNIT')|lower }} applied to Monthly points</p>
+                {% endif %}
 
 
-                <!--
-                    <p class="tw">
-                        {% if not dashboardMenuOnly %}
-                            {% if user.position == 'M' %}
-                            {% set param = '/api?role=' ~ user.position ~ '&code=' ~ user.company_code %}
-                            {% else %}
-                            {% set param = '/api?role=AP'%}
-                            {% endif %}
-                            <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') ~ param }}">View FY19 Rankings</a>
+                <p class="tw">
+                    {% if not dashboardMenuOnly %}
+                        {% if user.position == 'M' %}
+                        {% set param = '/api?role=' ~ user.position ~ '&code=' ~ user.company_code %}
+                        {% else %}
+                        {% set param = '/api?role=AP'%}
                         {% endif %}
-                    </p>
-                -->
+                        <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') ~ param }}">View FY20 Rankings</a>
+                    {% endif %}
+                </p>
             </td>
         </tr>
     </table>
