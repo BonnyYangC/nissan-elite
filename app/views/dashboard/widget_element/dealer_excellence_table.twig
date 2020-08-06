@@ -21,11 +21,11 @@
                 <p class="tw">
                     {% if not dashboardMenuOnly %}
                         {% if user.position == 'M' %}
-                        {% set param = '/api?role=' ~ user.position ~ '&code=' ~ user.company_code %}
+                            {% set param = '/api?role=' ~ user.position ~ '&code=' ~ user.company_code %}
                         {% else %}
-                        {% set param = '/api?role=AP'%}
+                            {% set param = '/api?role=AP'%}
                         {% endif %}
-                        <a target="_blank" href="{{ env('dealExcellenceOverviewUrl') ~ param }}">View FY20 Rankings</a>
+                        <a href="#" onclick="window.open('{{ env('dealExcellenceOverviewUrl') ~ param }}')">View FY20 Rankings</a>
                     {% endif %}
                 </p>
             </td>
