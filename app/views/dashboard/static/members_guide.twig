@@ -51,13 +51,18 @@
                 <a href="{{  asset('files/MEMBERS_GUIDE_2020.pdf#page=47') }}" target="_blank">
                     <button type="button" class="btn btn-default btn-lg btn-block">Terms &amp; Conditions </button>
                 </a>
-                {# 
+                
                 <br>
                 <br>
-                <a href="{{  asset('files/ELITE_WEBSITE_HOW_TO_GUIDE_MEMBERS.pdf') }}" target="_blank">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Navigating the Site</button>
-                </a>
-                #}
+                {% if '@nissan.com.au' in user.email  %}
+                    <a href="{{  asset('files/ELITE_WEBSITE_HOW_TO_HEAD_OFFICE_REGION STAFF.pdf') }}" target="_blank">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Navigating the Site</button>
+                    </a>
+                {% else %}
+                    <a href="{{  asset('files/ELITE_WEBSITE_HOW_TO_GUIDE_MEMBERS.pdf') }}" target="_blank">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Navigating the Site</button>
+                    </a>
+                {% endif %}                
             </div>
         </div>
     </div>
