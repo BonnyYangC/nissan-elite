@@ -16,7 +16,7 @@ class PartsSalesRep extends BaseRole implements IRole
     public $name='parts_sales_rep';
 
     public $GENUINE_REPLACEMENT_PARTS = [
-        'label'=>'Genuine Raplacement Parts',
+        'label'=>'Genuine Replacement Parts',
         'backgroundColor' => IColor::SADDLE_BROWN,
         'data'=>[]
     ];
