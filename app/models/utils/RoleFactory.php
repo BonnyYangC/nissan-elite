@@ -12,6 +12,7 @@ use App\models\Company;
 use App\models\management\RegionTerritoryReport;
 use App\models\nissan\Credit;
 use App\models\nissan\Ranking;
+use App\models\nissan\History;
 use App\models\User;
 use App\models\role\FI;
 use App\models\role\FinanceController;
@@ -82,6 +83,8 @@ class RoleFactory
 
 
     /**
+     * Note: $roleAbbr this applies to nore than roles, e.g. Credit, Ranking, History etc.
+     *
      * @param $roleAbbr
      * @param User $user
      * @return BaseModel
@@ -140,6 +143,9 @@ class RoleFactory
                 break;
             case User::REGION_STAFF:
                 $role = new User();
+                break;
+            case History::TABLE_NAME:
+                $role = new History();
                 break;
             default:
                 break;
