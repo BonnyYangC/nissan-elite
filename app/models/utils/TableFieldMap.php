@@ -531,11 +531,25 @@ class TableFieldMap{
             'rank_state'    =>'state_rank',
         ];
         $notNecessaryFields = [
-            'region_code'           =>'rcode',//'r_code',  //it's in the company table
+            'region_code'   =>'rcode',//'r_code',  //it's in the company table
             'registered'    =>'registered',
-            'status'                =>'status', //active
+            'status'        =>'status', //active
         ];
         return array_merge($map, $notNecessaryFields);
+    }
+
+    /**
+     * Get map for nissan history table
+     * @return array
+     */
+    public static function NissanHistoryTable(){
+        $map = [
+            'member_id' => 'regi#',
+            'period'    => 'period',
+            'amount'    => 'amount'
+        ];
+
+        return $map;
     }
 }
 
