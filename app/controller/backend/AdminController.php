@@ -100,6 +100,7 @@ class AdminController extends BaseController
             User::TABLE_NAME    =>'User Data',
             Company::TABLE_NAME =>'Dealer Data',
             User::REGION_STAFF  =>'Region Staff',
+            History::TABLE_NAME =>'Loyalty Historical'
         ];
         $this->render('backend/index');
         return;
@@ -430,7 +431,13 @@ class AdminController extends BaseController
                 // Call any method on an SplFileInfo instance
                 $reader = CsvTool::ReadFile($filePath);
 
+
+                if ($roleAbbr == 'nissan_history') {
+                    $reader = $this->_rejig_history_import($reader);
+                }
+
                 foreach ($reader as $index=>$row) {
+
                     if($index === 0){
                         $this->csvFileIndexes = $row;
                         $csvColHeaders = $row;
@@ -438,6 +445,7 @@ class AdminController extends BaseController
                         $map = $this->_matchDbFields($row, $tableName, $roleAbbr, true);
                         break;
                     }
+
                 }
 
                 /**
@@ -475,6 +483,7 @@ class AdminController extends BaseController
 //                            $model = $this->_getANewModel($roleAbbr, $user, $tableName);
 //                        }
                         $model = $this->_getANewModel($roleAbbr, $user, $tableName);
+
                         if($found){
 
                             $this->_lastFoundResultSet = $resultSet[0];
@@ -660,6 +669,40 @@ class AdminController extends BaseController
         }
     }
 
+    /** 
+    *   the history import is different to other imports, one row will correspond to many rows in the database, so we rejig it to fit our model
+    */
+    public function _rejig_history_import($reader) {
+
+        $new_reader[] = ['period','regi#','amount'];
+        $years = [];
+        $member_id_index = 1;
+        foreach ($reader as $index=>$row) {                   
+
+            if ($index==0) {
+                foreach($row as $key_index => $key) {
+                    if  (preg_match('/^yr_92_/i', $key, $matches)) {  // for the legacy years (before 2019 when program was called nissan-ac), the field will be called yr_92_18_t_loyaltyAC_
+                        $years['2018']=$key_index;
+                    } elseif  (preg_match('/^yr_(\d{4})_/i', $key, $matches))  {   // expecting a key to be yr_2019_, yr2020_, yr_2021_ etc
+                        $years[$matches[1]]=$key_index;
+                    } 
+
+                    if (preg_match('/^regi/', $key)) $member_id_index=$key_index;
+                }
+            } else {
+                foreach ($years as $year=>$year_index) {
+                    $new_reader[] = [
+                        "01-01-$year",
+                        $row[$member_id_index],
+                        $row[$year_index]
+                    ];
+                }
+            }
+        }
+
+        return $new_reader;
+    }
+
     private function _stringValueToInteger($stringValue)
     {
         $map = [
@@ -687,6 +730,7 @@ class AdminController extends BaseController
         if(in_array(DbMap::DEALER_CODE, array_keys($this->indexes)) && !is_null($row[$this->indexes[DbMap::DEALER_CODE]])){
             $where['AND'][DbMap::DEALER_CODE] = $row[$this->indexes[DbMap::DEALER_CODE]];
         }
+
         if(in_array(DbMap::MEMBER_ID, array_keys($this->indexes)) && !is_null($row[$this->indexes[DbMap::MEMBER_ID]])){
             $where['AND'][DbMap::MEMBER_ID] = $row[$this->indexes[DbMap::MEMBER_ID]];
         }
@@ -729,6 +773,7 @@ class AdminController extends BaseController
                 ];
             }
         }
+
         return $where;
     }
 
@@ -843,6 +888,9 @@ class AdminController extends BaseController
             case User::TABLE_NAME:
                 $map = DbMap::UserTable();
                 break;
+            case History::TABLE_NAME:
+                $map = DbMap::NissanHistoryTable();
+                break;                
             default:
                 $findMatch = false;
                 break;
@@ -857,7 +905,6 @@ class AdminController extends BaseController
         if ($getMap) return $map;
         foreach ($csvRowArray as $index => $rowName) {
             $rowName2 = preg_replace('/_$/', '', strtolower($rowName)); // replace _ at the end and change to lower case 
-
             if(isset($map[$rowName2])){
                 $this->indexes[$map[$rowName2]] = $index;
             }
