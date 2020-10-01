@@ -65,6 +65,8 @@ class DataSource extends BaseModel
         Company::TABLE_NAME                 => Company::TABLE_NAME ,
         User::TABLE_NAME                    => User::TABLE_NAME ,
         User::REGION_STAFF                  => User::TABLE_NAME ,
+        History::TABLE_NAME                 => History::TABLE_NAME,
+        
     ];
 
     /**
