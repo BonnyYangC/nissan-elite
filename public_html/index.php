@@ -123,6 +123,9 @@ ini_set('display_errors', env('DEV_MODE',false) ? true : false);
 \App\core\Route::Instance()
     ->post('/admin/usage', \App\controller\backend\AdminController::class,'usage')
     ->name('admin.usage');
+\App\core\Route::Instance()
+    ->get('/admin/historical/export', \App\controller\backend\AdminController::class,'historical')
+    ->name('admin.historical.export');
 
 /**
  * Routes for manage calendars
