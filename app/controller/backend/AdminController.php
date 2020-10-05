@@ -1177,4 +1177,48 @@ class AdminController extends BaseController
             return;
         }
     }
+
+   public function historical() {
+        $db = User::DB();
+
+        $users = $db->query( $q = "
+            SELECT 
+                r.member_id,
+                concat(u.firstname,' ',u.lastname) AS NAME,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period<'2019-01-01') AS loyaly2brand,
+                r.total AS this_year, 
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2019-01-01') AS fy19,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2020-01-01') AS fy20,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2021-01-01') AS fy21,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2022-01-01') AS fy22,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2023-01-01') AS fy23,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2023-01-01') AS fy23,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2024-01-01') AS fy24,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2025-01-01') AS fy25,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2026-01-01') AS fy26,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2027-01-01') AS fy27,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2028-01-01') AS fy28,
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id) AS total_points_hist
+                    FROM nissan_rankings r 
+                    left JOIN users u ON u.employee_code=r.member_id 
+                    WHERE r.period=(select max(period) FROM nissan_rankings)
+                ORDER BY convert(r.member_id, UNSIGNED)
+            "
+        )->fetchAll(2);
+
+        $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+        $filePath = env('APP_PATH').'storage'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'downloads'.DIRECTORY_SEPARATOR.'nissan_historical_'.$today->format('d_M_Y').'.csv';
+        $fileStream = fopen($filePath,'w');
+
+        $writer = Writer::createFromStream($fileStream);
+        $writer->insertOne('member id, name, loyaly2brand, this_year, fy19, fy20, fy21, fy22, fy23, fy24, fy25, fy26, fy27, fy28, total_points_hist');
+
+        $writer->insertAll($users);
+
+        fclose($fileStream);
+
+        $this->response->file($filePath,null,'csv');
+        return;
+    }
+
 }
