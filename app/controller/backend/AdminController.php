@@ -1198,7 +1198,7 @@ class AdminController extends BaseController
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2026-01-01') AS fy26,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2027-01-01') AS fy27,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id AND h.period='2028-01-01') AS fy28,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id) AS total_points_hist
+                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.member_id)+r.total AS total_points_hist
                     FROM nissan_rankings r 
                     left JOIN users u ON u.employee_code=r.member_id 
                     WHERE r.period=(select max(period) FROM nissan_rankings)
