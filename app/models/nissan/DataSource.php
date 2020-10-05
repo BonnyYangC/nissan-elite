@@ -23,7 +23,6 @@ class DataSource extends BaseModel
         'nissan_serviceadvisors'        => User::SERVICE_ADVISERS,
         'nissan_fi'                     => User::FI,
         'nissan_stockcontroller'        => User::STOCK_CONTROLLER,
-        'nissan_financialcontrollers'   => User::FINANCE_CONTROLLER,
         'nissan_partsmanager'           => User::PARTS_MANAGER,
         'nissan_partsrep'               => User::PARTS_SALES_REP,
         'nissan_servicemanagers'        => User::SERVICE_MANAGER,
