@@ -7,7 +7,7 @@ The routes are stored in /public/index.php
 
 Twig templating is used.
 
-Database ORM uses the Meedoo framework.
+Database ORM uses the Medoo framework.
 
 The templates are stored under /app/views.
 
