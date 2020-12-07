@@ -16,5 +16,6 @@ npm install is-obj
 npm install cross-env
 
 Settings are store in 
+
 /app/helpers/.env  
 /app/helpers/setting.php
