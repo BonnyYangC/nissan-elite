@@ -1,0 +1,450 @@
+{
+    "acls": {
+        "F": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "M": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "my_team"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "R": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "SC": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "I": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "PM": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "my_team"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "PS": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "SM": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "my_team"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "SA": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ],
+        "ADMIN": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "faq"
+            }
+        ]
+    }
+}

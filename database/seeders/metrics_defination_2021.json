@@ -1,0 +1,800 @@
+{
+    "metrics": {
+        "shared": [
+            {
+                "identifier": "excellence",
+                "label": "Dealer Excellence",
+                "color": "#e8e9e8",
+                "order": 1,
+                "title": "Excellence"
+            },
+            {
+                "identifier": "registration",
+                "label": "Registration",
+                "color": "#008000",
+                "order": 2,
+                "title": "Registration"
+            },
+            {
+                "identifier": "incentive",
+                "label": "Incentive",
+                "color": "#FFD700",
+                "order": 3,
+                "title": "Incentive"
+            }
+        ],
+        "custom": {
+            "F": [
+                {
+                "identifier": "new_vehicle",
+                "label": "New Vehicle Sales",
+                "color": "#8B4513",
+                "order": 1,
+                "title": "NEW VEHICLE SALES",
+                "guides": [{
+                    "title": "NEW VEHICLE SALES GUIDE",
+                    "top": ["Fleet Member", "Fleet", "Retail"],
+                    "rows": [["Category A&B", 80, 80], ["Category C", 160, 160]],
+                    "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 18 of member guide"
+                }]
+            },
+                {
+                "identifier": "new_vehicle_fleet",
+                "label": "Sales v Target",
+                "color": "#8C7853",
+                "order": 2,
+                "title": "New Vehicle Fleet Sales v Fleet Target",
+                "guides": [{
+                    "title": "New Vehicle Fleet Sales v Fleet Target GUIDE",
+                    "top": ["Sales Member", "≥100%", "≥110%", "≥120%", "≥140%"],
+                    "rows": [["Fleet Sales Executive", 440, 840, 1240, 1520]]
+                }]
+            },
+                {
+                "identifier": "volume",
+                "label": "Volume Growth",
+                "color": "#CCFF99",
+                "order": 3,
+                "title": "3. Fleet Sales Volume Growth - Quarterly",
+                "guides": [{
+                    "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
+                    "top": ["Sales Member", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
+                    "rows": [["Fleet Sales Executive", 160, 200, 320, 640, 840]],
+                    "note": "(metric measured Quarterly only)"
+                }]
+            },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 4,
+                    "title": "4. TRAINING",
+                    "guides": {
+                        "title": "TRAINING GUIDE - FLEET SALES EXECUTIVE",
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 19",
+                        "top": ["Competency Modules", "Points Quarterly"],
+                        "rows": [["Certified Fleet Sales Executive (O)", 250], ["Certified Fleet Sales Executive (I,O & VC)", 250]]
+                    }
+                }
+            ],
+            "M": [
+                {
+                    "identifier": "matched_ow",
+                    "label": "Matched OW",
+                    "color": "#8C7853",
+                    "order": 1,
+                    "title": "MATCHED ORDER WRITE",
+                    "guides": [{
+                        "title": "MATCHED ORDER WRITE GUIDE",
+                        "top": ["Sales Manager", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
+                        "rows": [["Category A", 310, 105, 105], ["Category B", 310, 105, 105], ["Category C", 310, 105, ""]]
+                    }]
+                },
+                {
+                    "identifier": "new_vehicle",
+                    "label": "New Vehicle Sales",
+                    "color": "#8B4513",
+                    "order": 2,
+                    "title": "NEW VEHICLE PERFORMANCE TO TARGET",
+                    "guides": [{
+                        "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
+                        "top": ["Sales Manager (% of Target)", "100%", "110%", "120%", "140%"],
+                        "rows": [["Category A", 820, 1020, 1220, 1620], ["Category B", 820, 920, 1020, 1220],
+                            ["Category C", 820, 920, 1020, 1220]],
+                        "note": "Category A: Each full percentage point (rounded down) over 100% target will earn an additional 20 points.<br>Category B & C: Each full percentage point (rounded down) over 100% target will earn an additional 10 points.<br>(capped to 200% of target achievement)."
+                    }]
+                },
+                {
+                    "identifier": "sos",
+                    "label": "Overall Sat",
+                    "color": "#999999",
+                    "order": 3,
+                    "title": "SALES OVERALL SATISFACTION - Dealership's NPS3",
+                    "guides": [{
+                        "title": "Sales overall satisfaction - Dealership's NPS3 GUIDE",
+                        "top": ["Sales Manager", "≥85", "≥89"],
+                        "rows": [["Category A", 350, 600], ["Category B", 350, 600], ["Category C", 350, 600]],
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target"
+                    }]
+                },
+                {
+                    "identifier": "booked_check",
+                    "label": "% Booked",
+                    "color": "#FFCC99",
+                    "order": 4,
+                    "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK",
+                    "guides": [{
+                        "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK GUIDE",
+                        "top": ["Sales Manager", "100% of Target"],
+                        "rows": [["Category A", 225], ["Category B", 225], ["Category C", 225]]
+                    }]
+                },
+                {
+                    "identifier": "follow_up",
+                    "label": "% Follow Up",
+                    "color": "#C0C0C0",
+                    "order": 5,
+                    "title": "PERCENTAGE FOLLOWED UP 3 MONTH ROLLING",
+                    "guides": [{
+                        "title": "PERCENTAGE FOLLOWED UP 3 MONTH ROLLING GUIDE",
+                        "top": ["Sales Manager", "100% of Target"],
+                        "rows": [["Category A", 175], ["Category B", 175], ["Category C", 175]]
+                    }]
+                },
+                {
+                    "identifier": "hot",
+                    "label": "Hot Alert",
+                    "color": "#BDB76B",
+                    "order": 6,
+                    "title": "HOT ALERTS",
+                    "guides": [{
+                        "title": "HOT ALERTS GUIDE",
+                        "top": ["Sales Manager", "0"],
+                        "rows": [["Category A", 125], ["Category B", 125], ["Category C", 125]]
+                    }]
+                },
+                {
+                    "identifier": "retail",
+                    "label": "Forecast",
+                    "color": "#333333",
+                    "order": 7,
+                    "title": "DEALER RETAIL FORECAST",
+                    "guides": [{
+                        "title": "DEALER RETAIL FORECAST GUIDE",
+                        "top": ["Sales Manager", "Yes"],
+                        "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]],
+                        "note": "Entered 2nd Monday of month in NISCOM"
+                    }]
+                },
+                {
+                    "identifier": "pmp",
+                    "label": "PMP",
+                    "color": "#ff0000",
+                    "order": 8,
+                    "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
+                    "guides": [{
+                        "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
+                        "top": ["Sales Manager", "Package sale"],
+                        "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]]
+                    }]
+                },
+                {
+                    "identifier": "apnur",
+                    "label": "APNUR",
+                    "color": "#CCFF99",
+                    "order": 9,
+                    "title": "APNUR PERFORMANCE",
+                    "guides": [{
+                            "title": "APNUR PERFORMANCE GUIDE",
+                            "colspan": "Navara APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        },
+                        {
+                            "colspan": "XTRAIL APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        },
+                        {
+                            "colspan": "QASHQAI APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 10,
+                    "title": "TRAINING",
+                    "ref": "Refer to the <a href=\"{url('dashboard/MembersGuide')}\"> ELITE22 Member Guide</a> for full details.",
+                    "guides": {
+                        "title": "TRAINING GUIDE",
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
+                        "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Certified Dealership Manager (VC,A & O)", "", 375, ""],
+                            ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
+                            ["Engagement", 100, "", ""], ["Bonus", "", "", 2000]]
+                    }
+                }
+            ],
+            "R": [
+                {
+                    "identifier": "new_vehicle",
+                    "label": "New Vehicle Sales",
+                    "color": "#8B4513",
+                    "order": 1,
+                    "title": "NEW VEHICLE SALES PERFORMANCE",
+                    "guides": [
+                        {
+                            "title": "NEW VEHICLE SALES PERFORMANCE GUIDE",
+                            "top": ["Retail Sales Consultant", "Retail", "Fleet"],
+                            "rows": [["Category A & B", 80, 80], ["Category C", 160, 160]]
+                            },
+                        {
+                            "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
+                            "top": ["Retail Sales Consultant", "100%", "110%", "120%", "140%"],
+                            "rows": [["Category A", 150, 200, 220, 240], ["Category B", 150, 180, 200, 220], ["Category C", 150, 180, 200, 220]],
+                            "note": "Status Sales earn points for Status level awards & end year Reward Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved\n\rRefer page 12 of member guide"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "pmp",
+                    "label": "PMP",
+                    "color": "#ff0000",
+                    "order": 2,
+                    "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
+                    "guides": [{
+                        "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
+                        "top": ["Retail Sales Consultant", "Package sale"],
+                        "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "satisfaction",
+                    "label": "Overall Sat",
+                    "color": "#999999",
+                    "order": 3,
+                    "title": "SALES OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
+                    "guides": [{
+                        "title": "Sales Overall satisfaction NPS 3 month rolling score GUIDE",
+                        "top": ["Retail Sales Consultant", "≥88", "≥92"],
+                        "rows": [["Category A", 450, 900], ["Category B", 450, 900], ["Category C", 450, 900]],
+                        "note": "Category A &amp; B: calculated on Individual score<br>Category C: calculated on Dealership score",
+                        "criteria": "CRITERIA: Refer to the ELIET22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target"
+                    }]
+                },
+                {
+                    "identifier": "kept_informed",
+                    "label": "Kept Informed",
+                    "color": "#FFCC99",
+                    "order": 4,
+                    "title": "Kept informed of delivery NPS 3 month rolling score",
+                    "guides": [{
+                        "title": "Kept informed of delivery NPS 3 month rolling score Guide",
+                        "top": ["Retail Sales Consultant", "100% of Target"],
+                        "rows": [["Category A", 305], ["Category B", 305], ["Category C", 305]],
+                        "note": "Category A & B: calculated on Individual score <br>Category C:  calculated on Dealership score"
+                    }]
+                },
+                {
+                    "identifier": "follow_up",
+                    "label": "Followed Up Satisfaction",
+                    "color": "#C0C0C0",
+                    "order": 5,
+                    "title": "FOLLOW UP SATISFACTION 3 MONTH ROLLING SCORE",
+                    "guides": [{
+                        "title": "FOLLOW UP SATISFACTION 3 MONTH ROLLING SCORE GUIDE",
+                        "top": ["Retail Sales Consultant", "100% of Target"],
+                        "rows": [["Category A & B", 175], ["Category C", 175]],
+                        "note": "Category A &amp; B: calculated on Individual score <br>Category C:  calculated on Dealership score"
+                    }]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 6,
+                    "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
+                    "guides": {
+                        "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
+                        "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""], ["Certified Sales Executive (VC & A)", "", 375, ""],
+                            ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250], ["Engagement", 100, "", ""]]
+                    }
+                }
+            ],
+            "SC": [
+                {
+                    "identifier": "stock_cover",
+                    "label": "Stock Cover",
+                    "color": "#c40030",
+                    "order": 1,
+                    "title": "Dealer Stock Cover",
+                    "guides": [{
+                        "title": "DEALER STOCK COVER (DAYS) GUIDE",
+                        "top": ["Stock Controller", "As per policy"],
+                        "rows": [["Category A & B", 425], ["Category C", 425]]
+                    }]
+                },
+                {
+                    "identifier": "ow",
+                    "label": "OW Data",
+                    "color": "#d2d2d2",
+                    "order": 2,
+                    "title": "OW DATA ENTRY COMPLIANCE",
+                    "guides": [{
+                        "title": "OW DATA ENTRY COMPLIANCE GUIDE",
+                        "top": ["Stock Controller", "≤ 1 Missed Day", "2-3 Missed Days"],
+                        "rows": [["Category A & B", 275, 100], ["Category C", 275, 100]]
+                    }]
+                },
+                {
+                    "identifier": "retail",
+                    "label": "Retail Forecast",
+                    "color": "#87CEEB",
+                    "order": 3,
+                    "title": "Dealer Retail Forecast",
+                    "guides": [{
+                        "title": "Dealer Retail Forecast GUIDE",
+                        "top": ["Stock Controller", "YES"],
+                        "rows": [["Category A & B", 150], ["Category C", 150]],
+                        "note": "Entered 2<sup>nd</sup> Monday of month in NISCOM"
+                    }]
+                },
+                {
+                    "identifier": "matched_ow",
+                    "label": "Matched OW",
+                    "color": "#8C7853",
+                    "order": 4,
+                    "title": "Matched OW Compliance",
+                    "guides": [{
+                        "title": "Matched Ow Compliance GUIDE",
+                        "top": ["Stock Controller", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
+                        "rows": [["Category A & B", 310, 105, 105], ["Category C", 310, 105, ""]]
+                    }]
+                },
+                {
+                    "identifier": "davo",
+                    "label": "DAVO",
+                    "color": "#333333",
+                    "order": 5,
+                    "title": "DAVO Orders - Limit % Acceptance",
+                    "guides": [{
+                        "title": "Davo Orders - Limit % acceptance GUIDE",
+                        "top": ["Stock Controller", "≥60%", "≥80%"],
+                        "rows": [["Category A & B", 275, 575], ["Category C", 275, 475]]
+                    }]
+                },
+                {
+                    "identifier": "reg_ret",
+                    "label": "Reg VS. Retail",
+                    "color": "#4682B4",
+                    "order": 6,
+                    "title": "Registration v Retails Compliance",
+                    "guides": [{
+                        "title": "Registration v Retails Compliance GUIDE",
+                        "top": ["Stock Controller", "≥90%"],
+                        "rows": [["Category A & B", 360], ["Category C", 360]],
+                        "note": "All Sales Types registered in same month as retailed."
+                    }]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 7,
+                    "title": "TRAINING",
+                    "guides": {
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points per Quarter"],
+                        "rows": [["Stock Controller Pathway (O & VC)", 450]],
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 24"
+                    }
+                }],
+            "I": [
+                {
+                    "identifier": "nfsa",
+                    "label": "NFSA Contracts",
+                    "color": "#C0C0C0",
+                    "order": 1,
+                    "title": "NFSA Contracts",
+                    "guides": [{
+                        "title": "NFSA Contracts GUIDE",
+                        "top": ["F&I Manager", "NFSA Finance Contract"],
+                        "rows": [["Category A, B, C", 100]]
+                    }]
+                },
+                {
+                    "identifier": "retention",
+                    "label": "Loyalty",
+                    "color": "#8B4513",
+                    "order": 2,
+                    "title": "Loyalty & Retention Bonus",
+                    "guides": [{
+                        "title": "Loyalty Retention Bonus Guide",
+                        "top": ["F&I Manager", "Loyalty & Retention Bonus"],
+                        "rows": [["Category A, B, C", 10]]
+                    }]
+                },
+                {
+                    "identifier": "insurance",
+                    "label": "Insurance",
+                    "color": "#4682B4",
+                    "order": 3,
+                    "title": "Insurance – MVI & MVI/NFSA pkg",
+                    "guides": [{
+                        "title": "Insurance Guide",
+                        "top": ["F&I Manager", "MVI Motor Vehicle Insurance", "Package"],
+                        "rows": [["Category A, B, C", 40, 10]]
+                    }]
+                },
+                {
+                    "identifier": "emw",
+                    "label": "EMW Genuine",
+                    "color": "#87CEEB",
+                    "order": 4,
+                    "title": "EMW Genuine",
+                    "guides": [{
+                        "title": "EMW Genuine Guide",
+                        "top": ["F&I Manager", "EMW Sale Genuine (NAPS)"],
+                        "rows": [["Category A, B, C", 40]]
+                    }]
+                },
+                {
+                    "identifier": "penetration",
+                    "label": "Penetration",
+                    "color": "#999999",
+                    "order": 5,
+                    "title": "Dealer Sales Penetration Rate",
+                    "guides": [{
+                        "title": "Dealer Sales Penetration Rate Guide",
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NEW 50% average = Sum(monthly Penetration %) / 12months",
+                        "top": ["F&I Manager", "≥50%", "≥55%", "≥65%", "≥75%"],
+                        "rows": [["Category A, B, C", 250, 500, 750, 1000]]
+                    }]
+                },
+                {
+                    "identifier": "pmp",
+                    "label": "PMP",
+                    "color": "#ff0000",
+                    "order": 6,
+                    "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE",
+                    "guides": [{
+                    "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE GUIDE",
+                    "top": ["F&I Manager", "Contract"],
+                    "rows": [["Category A, B, C", 100]]
+                    }]
+                },
+                {
+                    "identifier": "satisfaction",
+                    "label": "Satisfaction",
+                    "color": "#999999",
+                    "order": 7,
+                    "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3 MONTH ROLLING SCORE",
+                    "guides": [{
+                        "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3 MONTH ROLLING SCORE GUIDE",
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NPS6 month rolling target",
+                        "top": ["F&I Manager", "=86.0%", "≥86.1%", "≥90%"],
+                        "rows": [["Category A, B, C", 100, 300, 500]]
+                    }]
+                }],
+            "PM": [
+                {
+                    "identifier": "grp",
+                    "label": "Genuine Replacement Parts",
+                    "color": "#8B4513",
+                    "order": 1,
+                    "title": "Nissan Genuine replacement Parts (GRP)",
+                    "guides": [{
+                        "title": "NISSAN GENUINE REPLACEMENT PARTS (GRP) Guide",
+                        "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 300, 450, 600]]
+                    }]
+                },
+                {
+                    "identifier": "gas",
+                    "label": "Accessories",
+                    "color": "#C0C0C0",
+                    "order": 2,
+                    "title": "Nissan Genuine Accessories",
+                    "guides": [{
+                        "title": "Nissan Genuine Accessories GUIDE",
+                        "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 250, 350, 500]]
+                    }]
+                },
+                {
+                    "identifier": "apnur",
+                    "label": "APNUR",
+                    "color": "#CCFF99",
+                    "order": 3,
+                    "title": "APNUR PERFORMANCE",
+                    "ref": "Refer to the <a href=\"{url('dashboard/MembersGuide')}\"> ELITE22 Member Guide</a> for full details.",
+                    "guides": [{
+                        "title": "APNUR PERFORMANCE GUIDE",
+                        "colspan": "Navara",
+                        "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 220, 345, 550]]
+                        },
+                        {
+                            "colspan": "XTRAIL",
+                            "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 220, 345, 550]]
+                        },
+                        {
+                            "colspan": "QASHQAI",
+                            "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 220, 345, 550]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "brake_wiper",
+                    "label": "Brake/Wiper",
+                    "color": "#FF99CC",
+                    "order": 4,
+                    "title": "Brake and Wiper Parts Sales per CPRO",
+                    "guides": [{
+                        "title": "Brake and Wiper Parts Sales per CPRO GUIDE",
+                        "top": ["Parts Manager", "≥$10.00", "≥$20.00", "≥$30.00"],
+                        "rows": [["Category A, B, C", 155, 255, 355]]
+                    }]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 5,
+                    "title": "TRAINING",
+                    "guides": {
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Dealership Manager (O)", 200, ""], ["Certified Dealership Manager (VC,A & O)", 375, ""], ["Bonus", "", 2000]],
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
+                    }
+                }],
+            "PS": [
+                {
+                    "identifier": "grp",
+                    "label": "Genuine Replacement Parts",
+                    "color": "#8B4513",
+                    "order": 1,
+                    "title": "Nissan Genuine replacement Parts",
+                    "guides": [{
+                        "title": "Nissan Genuine Replacement Parts Guide",
+                        "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 475, 680, 880]]
+                    }]
+                },
+                {
+                    "identifier": "trade_sale",
+                    "label": "Trade Sales",
+                    "color": "#4682B4",
+                    "order": 2,
+                    "title": "Trade Parts Sales per unit in Operation",
+                    "guides": [{
+                            "title": "Trade Parts Sales per unit in Operation Guide",
+                            "colspan": "Quarterly Performance vs FY20 Total",
+                            "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 1900, 2400, 3520]]
+                        },
+                        {
+                            "colspan": "Quarterly Performace vs previous quarter",
+                            "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 2300, 2700, 3500]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 3,
+                    "title": "TRAINING",
+                    "guides": {
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Quarterly"],
+                        "rows": [["Certified Parts Advisor (O, A & VC)", 375]],
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
+                    }
+                }],
+            "SM": [
+                {
+                    "identifier": "satisfaction",
+                    "label": "Overall Sat",
+                    "color": "#999999",
+                    "order": 1,
+                    "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
+                    "guides": [{
+                        "title": "Service overall satisfaction NPS 3 month rolling score Guide",
+                        "top": ["Service Manager", "≥100% Target", "≥105% Target", "≥110% Target"],
+                        "rows": [["Category A, B, C", 225, 425, 625]],
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34<br>- Dealer Survey volume target"
+                    }]
+                },
+                {
+                    "identifier": "f1_nps",
+                    "label": "F1",
+                    "color": "#CCFF99",
+                    "order": 2,
+                    "title": "F1 (Fixed it right first time) %yes NPS R3M",
+                    "guides": [{
+                        "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
+                        "top": ["Service Manager", "≥100% Target", "≥105% Target"],
+                        "rows": [["Category A, B, C", 225, 425]]
+                    }]
+                },
+                {
+                    "identifier": "follow_up",
+                    "label": "% Follow Up",
+                    "color": "#C0C0C0",
+                    "order": 3,
+                    "title": "PERCENTAGE FOLLOWED UP R3M SCORE",
+                    "guides": [{
+                        "title": "PERCENTAGE FOLLOWED R3M SCORE GUIDE",
+                        "top": ["Service Manager", "≥100% Target", "≥105% Target"],
+                        "rows": [["Category A, B, C", 225, 425]]
+                    }
+                ]
+                },
+                {
+                    "identifier": "hot",
+                    "label": "Hot Alert",
+                    "color": "#BDB76B",
+                    "order": 4,
+                    "title": "HOT ALERTS",
+                    "guides": [{
+                        "title": "HOT ALERTS GUIDE",
+                        "top": ["Service Manager", 0],
+                        "rows": [["Category A, B & C", 125]]
+                    }]
+                },
+                {
+                    "identifier": "order_target",
+                    "label": "CPRO",
+                    "color": "#FFCC99",
+                    "order": 5,
+                    "title": "Customer Paid Repair Orders vs Target",
+                    "guides": [{
+                        "title": "Customer Paid Repair Orders vs Target GUIDE",
+                        "top": ["Service Manager", "≥100% Target", "≥110% Target", "≥120% Target"],
+                        "rows": [["Category A, B, C", 155, 255, 355]],
+                        "note": "(monthly target as shown in iNsight Portal (target 100%))"
+                    }]
+                },
+                {
+                    "identifier": "retention",
+                    "label": "Retention",
+                    "color": "#8B4513",
+                    "order": 6,
+                    "title": "Retention %",
+                    "guides": [{
+                        "title": "Retention % GUIDE",
+                        "top": ["Service Manager", "≥35%", "≥40%", "≥45%", "≥50%"],
+                        "rows": [["Category A, B, C", 120, 160, 200, 260]]
+                    }]
+                },
+                {
+                    "identifier": "brake_wiper",
+                    "label": "Brake/Wiper",
+                    "color": "#FF99CC",
+                    "order": 7,
+                    "title": "Brake and Wiper Parts Sales per CPRO",
+                    "guides": [{
+                    "title": "Brake and Wiper Parts Sales per CPRO GUIDE",
+                    "top": ["Service Manager", "≥$10.00", "≥$20.00", "≥$30.00"],
+                    "rows": [["Category A, B, C", 155, 255, 355]]
+                    }]
+                },
+                {
+                    "identifier": "loyalty",
+                    "label": "Loyalty",
+                    "color": "#c40030",
+                    "order": 8,
+                    "title": "Loyalty per Loyalty Sales",
+                    "guides": [{
+                        "title": "Loyalty GUIDE",
+                        "top": ["Service Manager", "per loyalty sale"],
+                        "rows": [["Category A, B, C", 80]]
+                    }]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 9,
+                    "title": "TRAINING",
+                    "guides": {
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Certified Dealership Manager (VC,A & O)", "", 375, ""],
+                            ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
+                            ["Engagement", 100, "", ""], ["Bonus", "", "", 2000]],
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
+                    }
+                }],
+            "SA": [
+                {
+                    "identifier": "satisfaction",
+                    "label": "Overall Sat",
+                    "color": "#999999",
+                    "order": 1,
+                    "title": "Overall satisfaction - Dealership's NPS R3M Score(Monthly)",
+                    "guides": [{
+                        "title": "Overall satisfaction - Dealership's NPS R3M Score(Monthly) Guide",
+                        "top": ["Service Advisor", "≥100% Target", "≥105% Target", "≥110% Target"],
+                        "rows": [["Category A, B, C", 225, 425, 625]],
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34<br>- Dealer Survey volume target"
+                    }]
+                },
+                {
+                    "identifier": "follow_up",
+                    "label": "Followed Up Satisfaction",
+                    "color": "#C0C0C0",
+                    "order": 2,
+                    "title": "FOLLOW UP SATISFACTION Dealership's NPS R3M SCORE(Monthly)",
+                    "guides": [{
+                        "title": "FOLLOW UP SATISFACTION Dealership's NPS R3M SCORE(Monthly) GUIDE",
+                        "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
+                        "rows": [["Category A, B, C", 225, 425]]
+                    }]
+                },
+                {
+                    "identifier": "explanation",
+                    "label": "Exp Costs",
+                    "color": "#CCFF99",
+                    "order": 3,
+                    "title": "Explanation of costs - Dealership's NPS R3M score(Monthly)",
+                    "guides": [{
+                        "title": "Explanation of costs - Dealership's NPS R3M score(Monthly) GUIDE",
+                        "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
+                        "rows": [["Category A, B, C", 260, 460]]
+                    }]
+                },
+                {
+                    "identifier": "brake_wiper",
+                    "label": "Brake/Wiper",
+                    "color": "#FF99CC",
+                    "order": 4,
+                    "title": "Brake and Wiper Parts Sales per CPRO",
+                    "guides": [{
+                        "title": "Brake and Wiper Parts Sales per CPRO",
+                        "top": ["Service Advisor", "≥$10.00", "≥$20.00", "≥$30.00"],
+                        "rows": [["Category A, B, C", 155, 255, 355]]
+                    }]
+                },
+                {
+                    "identifier": "loyalty",
+                    "label": "Loyalty",
+                    "color": "#c40030",
+                    "order": 5,
+                    "title": "Loyalty per Loyalty Sales",
+                    "guides": [{
+                        "title": "Loyalty GUIDE",
+                        "top": ["Service Advisor", "per loyalty sale"],
+                        "rows": [["Category A, B, C", 80]]
+                    }]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "color": "#FFFACD",
+                    "order": 6,
+                    "title": "TRAINING",
+                    "guides": {
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Service Advisor (O & VC)", "", 250, ""], ["Certified Service Executive  (VC & A)", "", 375, ""],
+                            ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
+                            ["Engagement", 100, "", ""]],
+                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
+                    }
+                }]
+        }
+    }
+}

@@ -1,0 +1,185 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePositionsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('positions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 50)->notnull()->unique();
+            $table->string('title');
+            $table->tinyInteger('platinum_ranking'); //indicate this role is eligiable to platinum ranking
+            $table->string('department', 50)->nullable();
+        });
+
+        DB::table('positions')->insert(array([
+                'code' => 'SYSTEM ADMIN',
+                'title' => 'System Admin',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'ADMIN',
+                'title' => 'Admin',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'F',
+                'title' => 'Fleet Sales Executives',
+                'platinum_ranking' => 1,
+                'department' => 'Sales'
+            ],
+            [
+                'code' => 'M',
+                'title' => 'Sales Manager',
+                'platinum_ranking' => 0,
+                'department' => 'Sales'
+            ],
+            [
+                'code' => 'R',
+                'title' => 'Retail Sales Consultants',
+                'platinum_ranking' => 1,
+                'department' => 'Sales'
+            ],
+            [
+                'code' => 'SC',
+                'title' => 'Stock Controller',
+                'platinum_ranking' => 0,
+                'department' => 'Administration'
+            ],
+            [
+                'code' => 'I',
+                'title' => 'F&I Manager',
+                'platinum_ranking' => 0,
+                'department' => 'Administration'
+            ],
+            [
+                'code' => 'PM',
+                'title' => 'Parts Manager',
+                'platinum_ranking' => 0,
+                'department' => 'Parts'
+            ],
+            [
+                'code' => 'PS',
+                'title' => 'Parts Sales Rep',
+                'platinum_ranking' => 0,
+                'department' => 'Parts'
+            ],
+            [
+                'code' => 'SM',
+                'title' => 'Service Manager',
+                'platinum_ranking' => 0,
+                'department' => 'Service'
+            ],
+            [
+                'code' => 'SA',
+                'title' => 'Service Adviser',
+                'platinum_ranking' => 0,
+                'department' => 'Service'
+            ],
+            [
+                'code' => 'D',
+                'title' => 'Dealer Principal',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'RSM',
+                'title' => 'Regional Sales Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'RSC',
+                'title' => 'Regional Sales Coordinator',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'ROM',
+                'title' => 'Regional Operations Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'ROA',
+                'title' => 'Regional Operations Analyst',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'RGM',
+                'title' => 'Regional General Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'RFM',
+                'title' => 'Regional Fleet Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'RAM',
+                'title' => 'Regional After Sales Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'FOM',
+                'title' => 'Field Operation Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'FDM',
+                'title' => 'Franchise Development Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'DTS',
+                'title' => 'Dealer Technical Specialist',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'DSM',
+                'title' => 'District Sales Manager',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'NFSA',
+                'title' => 'NFSA',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
+                'code' => 'HEAD OFFICE',
+                'title' => 'Head Office',
+                'platinum_ranking' => 0,
+                'department' => null
+            ]));
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('positions');
+    }
+}

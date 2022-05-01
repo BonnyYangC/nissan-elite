@@ -1,0 +1,32 @@
+.guild {
+    background-color: #ffffff;
+}
+.guild-header {
+    background-image: url(/images/md_guild/Nissan_Elite_Guild_bg.png?a=1);
+    background-position: top;
+    background-size: cover;
+}
+.guild-event-header {
+    background-image: url('/images/md_guild/Guild_events_header.png?a=1');
+    background-position: top;
+    background-size: cover;
+    height: 750px;
+}
+.guild-buttons {
+    display: flex !important;
+    justify-content: space-around;
+    width: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.guild h3 {
+    color: #c40030;
+    margin-bottom: 2%;
+    margin-top: 1%;
+}
+
+.edm-link {
+    text-decoration: underline;
+}
+

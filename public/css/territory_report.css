@@ -1,0 +1,33 @@
+.loading-text {
+    color: #c40030;
+}
+
+.txt-black {
+    color: #111111 !important;
+    font-weight: bold;
+}
+
+.txt-red {
+    color: #c40030 !important;
+    font-weight: bold;
+}
+
+.txt-gr {
+    color: #1aaf54 !important;
+    font-weight: bold;
+}
+
+.txt-black-tr td .cell {
+    color: black;
+}
+
+.dsm-table-header .is-leaf .cell {
+    font-size: 18px;
+}
+.el-table__header thead tr {
+    // background-color: #4c4c4c;
+    // color: white;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}

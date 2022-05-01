@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Services\DataMappingServices;
+
+use App\Helper\Defination;
+use App\Helper\Utility;
+use App\Models\Result;
+use Carbon\Carbon;
+
+abstract class MonthlyDataMapping {
+
+    /**
+     * Create a new service instance.
+     *
+     * @return void
+     */
+    public function __construct() { }
+
+
+    /**
+     * get primary key according to data file type
+     *
+     * @return array
+     */
+    public function getKeyForModel(): array {
+        $key = [];
+        $key['primary'] = 'regi#';
+        return $key;
+    }
+
+    /**
+     * get model according data file type
+     *
+     * @param $actionType
+     * @param $dataType
+     * @param $modelKey
+     * @param $record
+     * @return Result
+     */
+    public function getModel($actionType, $dataType, $modelKey, $record, $key) {
+        $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
+            ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
+        if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
+            $model = new Result();
+            $model->updated_at = Carbon::now();
+            $model->created_at = Carbon::now();
+        }
+        return $model;
+    }
+
+    /**
+     * built data map for data uploader
+     *
+     * @param $model
+     * @param [string] $dataType
+     * @param [array] $row
+     * @param [array] $modelKey
+     * @param [string] $key
+     * @return array
+     */
+    public function buildData($model, $dataType, $row, $modelKey, $key){
+        ini_set('max_execution_time', 180); //3 minutes
+        return [
+            'period'        => Utility::formatPeriod($row['mthyrg']),
+            'employee_code' =>$row['regi#'],
+            'metrics' => $this->metricsMapping($row),
+
+            'training'              =>$row['points_train_online'] !== '' ? $row['points_train_online'] : 0,
+            'training_competency'   =>$row['points_train_competency'] !== '' ? $row['points_train_competency'] : 0,
+            'train_mastery'         =>isset($row['points_train_mastery']) && $row['points_train_mastery'] !== '' ? $row['points_train_mastery'] : 0,
+            'training_pathway'      =>$row['points_train_pathway'] !== '' ? $row['points_train_pathway'] : 0,
+            'training_bonus'        =>isset($row['points_train_bonus']) && $row['points_train_bonus'] !== '' ? $row['points_train_bonus'] : 0,
+
+            'registration'          =>$row['points_registration'] !== '' ? $row['points_registration'] : 0,
+            'excellence'            =>$row['points_excellence'] !== '' ? $row['points_excellence'] : 0,
+            'incentive'             =>$row['points_incentive'] !== '' ? $row['points_incentive'] : 0,
+            'adjustment'            =>$row['points_adjust_'] !== '' ? $row['points_adjust_'] : 0,
+            'credit_mtd'            =>$row['POINTS_MTHLY_'] !== '' ? $row['POINTS_MTHLY_'] : 0,
+            'credit_ytd'            =>$row['POINTS_YTD'] !== '' ? $row['POINTS_YTD'] : 0,
+            'lifetime'              =>$row['POINTS_ytd_historical'] !== '' ? $row['POINTS_ytd_historical'] : 0,
+
+        ];
+    }
+
+    /**
+     * @param $row
+     * @return array
+     */
+    abstract protected function metricsMapping($row);
+
+    /**
+     * to see if this record is ignored
+     *
+     * @param $type
+     * @param $value
+     * @return bool
+     */
+    public static function isIgnored($type, $value) {
+        $result = false;
+        return $result;
+    }
+}

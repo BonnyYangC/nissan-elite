@@ -1,0 +1,15 @@
+.bg-site-image{
+    background-image: url('/images/nissan/Nissan_Elite_bg.jpg?a=1');
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    visibility: visible;
+}
+
+.tiles-img {
+    width: 100%;
+}

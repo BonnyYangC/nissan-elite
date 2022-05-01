@@ -1,0 +1,44 @@
+.product-challenge {
+    background-color: #ffffff;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.challenge-section {
+    width: 600px;
+    padding: 45px;
+    text-align: center;
+}
+
+.challenge-section .header-line {
+    font-size: 32px;
+    font-weight: bold;
+    color: #00258A;
+}
+
+.challenge-section .sub-header {
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0 0 10px;
+    color: #00258A;
+}
+
+.challenge-section .text-content {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: left;
+    margin: 0 0 10px;
+}
+
+.challenge-section .postponed-header {
+    font-size: 18px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #00258A;
+}
+.canceled-item {
+    color: #c40030;
+}
+.edm-link:hover {
+    color: #c40030;
+}

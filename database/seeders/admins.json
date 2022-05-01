@@ -1,0 +1,27 @@
+{
+    "admins": [
+        {
+            "firstname": "admin_name",
+            "lastname": "admin_name",
+            "email": "admin@admin.com",
+            "password": "Pamjo1",
+            "position_code": "SYSTEM ADMIN"
+        },
+        {
+            "firstname": "Pamela",
+            "lastname": "Small",
+            "email": "pamela@destination.com.au",
+            "password": "SMALL1",
+            "position_code": "ADMIN",
+            "mobile": "0407230157"
+        },
+        {
+            "firstname": "Joanne",
+            "lastname": "Copeland",
+            "email": "joanne@destination.com.au",
+            "password": "COPELAND1",
+            "position_code": "ADMIN"
+        }
+
+    ]
+}

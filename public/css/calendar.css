@@ -1,0 +1,34 @@
+.calendar table {
+    background-color: transparent !important;
+}
+
+.calendar th.month-title {
+    color: #c40030;
+    font-size: 24px !important;
+    font-weight: bold;
+}
+.calendar th.day-header {
+    background-color: #4c4c4c;
+    color: #FFFFFF;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+.calendar {
+    overflow-y: hidden;
+}
+
+.calendar .month-container {
+    min-width: 180px;
+    text-align: center;
+    height: 250px;
+    padding: 0;
+}
+
+.calendar .month-container.selected {
+    background-color: #FFF5F7;
+}
+
+.calendar table.month.highlighted td {
+    background-color: #FFD9E2;
+    color: #c40030;
+}

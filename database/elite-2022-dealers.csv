@@ -1,0 +1,246 @@
+id,parent_id,"code","name","address","suburb","state","postcode","country","phone","fax","region","region_code","category","category_code",active
+2596,1,"1586","Col Crawford Nissan","497 Pittwater Road","BROOKVALE","NSW","2100","Australia","(02) 9941 1200","299383691","E","E06","A","1",1
+2597,1,"2075","Leo Franco Nissan","Cnr Yambil & Ulong Streets","GRIFFITH","NSW","2680","Australia","02   69692800","02 69692860","E","E05","B","2",1
+2598,1,"2210","Ross Granata Motors","32 Sydney Road","MUDGEE","NSW","2850","Australia","02   63721766","02 6372 3735","E","E02","C","2",1
+2599,1,"2300","Kloster Nissan","Cnr. Tudor And Parry Streets","HAMILTON","NSW","2303","Australia","02   49220595","02 49610543","E","E03","A","2",1
+2600,1,"2402","Frank Spice Auto Repairs","22 Dowling Street","FORBES","NSW","2871","Australia","02   68519400","02 68524089","E","E02","C","1",1
+2601,1,"2455","Gaukroger Nissan","26-30 Vivian Street","INVERELL","NSW","2360","Australia","02   67222722","02 67221804","E","E03","C","1",1
+2602,1,"2509","J T Fossey Sales Pty Ltd","501 Peel Street","TAMWORTH","NSW","2340","Australia","02   67661466","02 67668566","E","E03","C","1",1
+2603,1,"2550","John Oxley Motors","130 Hastings River Drive","PORT MACQUARIE","NSW","2444","Australia","02   65888555","02 65840554","E","E01","B","2",1
+2604,1,"2696","National Capital Motors","Josephson Street","BELCONNEN","ACT","2617","Australia","02   62563300","02 62511901","E","E05","B","1",1
+2605,1,"3030","Werribee Nissan","14-26 Heaths Road","HOPPERS CROSSING","VIC","3029","Australia","03   99745800","03 99745825","S","S13","A","1",1
+2606,1,"3125","McRae Nissan","182 Melbourne Road","WODONGA","VIC","3690","Australia","02   60515555","02 60515568","S","S14","B","1",1
+2607,1,"3150","Ferntree Gully Nissan","1000 Burwood Highway","FERNTREE GULLY","VIC","3156","Australia","03   97584444","03 97585456","S","S12","A","1",1
+2608,1,"3376","Northern Nissan","429-439 Grimshaw Street","BUNDOORA","VIC","3083","Australia","03   94665888","03 94677463","S","S15","A","1",1
+2609,1,"3432","Blackburn Nissan","138 Whitehorse Road","BLACKBURN","VIC","3130","Australia","03   98942244","03 98942944","S","S13","A","1",1
+2610,1,"3483","Edney's Leongatha","1 Roughead Street","LEONGATHA","VIC","3953","Australia","03   56622327","03 56622642","S","S11","C","1",1
+2611,1,"3806","Berwick Nissan","6-10 Kangan Drive","BERWICK","VIC","3806","Australia","03   97961777","03 97073550","S","S15","A","1",1
+2612,1,"3814","Lieschke Nissan","63 Commercial Street","WALLA WALLA","NSW","2659","Australia","02   60292202","02 60292134","S","S15","C","2",1
+2613,1,"3936","Michaels Of Donald","15 McCulloch Street","DONALD","VIC","3480","Australia","03   54971203","03 54971626","S","S15","C","2",1
+2614,1,"4119","Rex Gorell Nissan","481a La Trobe Terrace","GEELONG","VIC","3220","Australia","03   52223411","03 52231968","S","S13","A","1",1
+2615,1,"4158","North Star Mildura Motors","19-29 Orange Avenue","MILDURA","VIC","3500","Australia","03   50213866","03 50213901","W","W05","B","2",1
+2616,1,"5010","Gatton Auto","67 Railway Street","GATTON","QLD","4343","Australia","07   54621633","07 54621980","N","N01","C","1",1
+2617,1,"5066","Cleveland Nissan","49-51 Shore Street","CLEVELAND","QLD","4163","Australia","07 32862501","732864193","N","N04","A","1",1
+2618,1,"5132","South West Nissan","50-56 Alfred Street","CHARLEVILLE","QLD","4470","Australia","07   46541477","07 46541609","N","N03","C","2",1
+2619,1,"5280","Chano Trentin's AWD Centre","Cnr Vernon and Louise Streets","ATHERTON","QLD","4883","Australia","07   40305400","07 40913061","N","N04","C","2",1
+2620,1,"5290","Westco Motors","347-359 Mulgrave Rd","CAIRNS","QLD","4870","Australia","07   40444111","07 40331522","N","N04","B","1",1
+2621,1,"5490","Westpoint Nissan","440 Moggill Road","INDOOROOPILLY","QLD","4068","Australia","07   38780440","07 32206754","N","N03","A","1",1
+2622,1,"5546","Rod Grittner Nissan","7 Mill Street","PROSERPINE","QLD","4800","Australia","07   49451209","07 49453593","N","N01","B","2",1
+2623,1,"5560","Crick's Nambour Nissan","952 Nambour Connection Road","NAMBOUR","QLD","4560","Australia","07   54419500","07 54416800","N","N03","C","1",1
+2624,1,"5610","Huston Nissan","Rogers Drive","KINGAROY","QLD","4610","Australia","07   41649300","07 41649333","N","N03","C","1",1
+2625,1,"5650","Maryborough Nissan","70 Ferry Street","MARYBOROUGH","QLD","4650","Australia","07   41230000","07 41223114","N","N04","C","2",1
+2626,1,"5915","Gladstone Nissan","231 Dawson Highway","GLADSTONE","QLD","4680","Australia","07   49707070","07 49722986","N","N02","B","2",1
+2627,1,"6221","John Page Motors","110 Morayfield Street         ","CABOOLTURE                              ","QLD","4510","Australia","07 54950555 ","754954121","N","N01","B","2",1
+2628,1,"6709","Dalby Nissan","36 Drayton Street","DALBY","QLD","4405","Australia","07   46622422","07 46624311","N","N01","C","1",1
+2629,1,"6880","Armstrong Auto Group","80-84 Neil Street","TOOWOOMBA CITY","QLD","4350","Australia","07   46385455","07 46392710","N","N01","B","1",1
+2630,1,"6998","Moorooka Nissan","917 Ipswich Road","MOOROOKA","QLD","4105","Australia","07   38487811","07 38488378","N","N02","A","1",1
+2631,1,"7080","Moora Nissan","89 Gardiner Street","MOORA","WA","6510","Australia","08   96511207","08 96511734","W","W01","C","2",1
+2632,1,"7108","Total Nissan","1251 Albany Highway","CANNINGTON","WA","6107","Australia","08   93514444","08 93505970","W","W01","A","1",1
+2633,1,"7345","Avon Valley Nissan","47 Fitzgerald Street","NORTHAM","WA","6401","Australia","08   96211311","08 96228306","W","W03","C","2",1
+2634,1,"7617","Magic Nissan","164 Leach Highway","MELVILLE","WA","6156","Australia","08 93306666","893304379","W","W01","B","1",1
+2635,1,"7849","Northside Nissan","14 Berriman Drive","WANGARA","WA","6065","Australia","08   94090000","08 94091759","W","W02","A","1",1
+2636,1,"7922","North West Autos","229 Robinson Street","CARNARVON","WA","6701","Australia","08   99411159","08 99411363","W","W02","C","2",1
+2637,1,"8200","Hobart Nissan","235 Argyle Street","HOBART","TAS","7000","Australia","03 62133300","03 62343144","S","S14","B","1",1
+2638,1,"30243","Lismore Nissan","76-80 Ballina Road","LISMORE","NSW","2480","Australia","02   66212599","02 66218999","N","N02","B","2",1
+2639,1,"30245","Muir Nissan","4-8 Bussell Highway","BUSSELTON","WA","6280","Australia","08   97811100","08 97524080","W","W02","C","2",1
+2640,1,"30246","Osborne Park Nissan","300 Scarborough Beach Road","OSBORNE PARK","WA","6017","Australia","08   94455666","08 94455600","W","W02","A","1",1
+2641,1,"30247","Pilbara Nissan","2 Hamilton Road","SOUTH HEDLAND","WA","6722","Australia","08   9174   2200","08 9174 2699","W","W02","C","2",1
+2642,1,"30250","Esperance Autos Nissan","36 Norseman Road","ESPERANCE","WA","6450","Australia","08   90711060","08 90712885","W","W01","C","2",1
+2643,1,"30252","Merredin Nissan","1 Mary Street","MERREDIN","WA","6415","Australia","08   90411577","08 90411426","W","W03","C","2",1
+2644,1,"30254","von Bibra Gold Coast Nissan","Expo Park  Nerang Road","SOUTHPORT","QLD","4215","Australia","07   55562900","07 55562903","N","N01","A","1",1
+2645,1,"30263","Morrow Nissan","33 Dimboola Road","HORSHAM","VIC","3400","Australia","03   53826163","03 53811388","S","S12","C","2",1
+2646,1,"30270","North Jacklin Nissan","49 Gordon Street","MACKAY","QLD","4740","Australia","07   49632200","07 49632288","N","N01","A","2",1
+2647,1,"30273","Macarthur Nissan","4 Mill Road","CAMPBELLTOWN","NSW","2560","Australia","02   46258344","02 46272667","E","E03","A","1",1
+2648,1,"30277","Crick's Noosa Nissan","Lot 4 Lionel Donovan Drive","NOOSAVILLE","QLD","4566","Australia","07   54403600","07 54730363","N","N03","C","1",1
+2649,1,"30278","Wickham Flower & Co","35 Macdonnell Street","NARACOORTE","SA","5271","Australia","08   87601900","08 87622363","W","W03","C","2",1
+2650,1,"30283","Burdekin Nissan","183 Queen Street","AYR","QLD","4807","Australia","07   47837077","07 47837044","N","N01","C","2",1
+2651,1,"30285","The Big Garage","628 Princes Highway","BAIRNSDALE","VIC","3875","Australia","03   51524131","03 51525313","S","S11","C","2",1
+2652,1,"30289","Rockingham Nissan","83 Dixon Road","ROCKINGHAM","WA","6168","Australia","08   95926666","08 95926688","W","W02","B","1",1
+2653,1,"30291","Tony Leahey Nissan","25 Cameron Place","ORANGE","NSW","2800","Australia","02   63937200","02 63937299","E","E02","C","1",1
+2654,1,"30301","Albany City Nissan","54 Aberdeen Street","ALBANY","WA","6330","Australia","08   98428111","08 98418623","W","W01","C","1",1
+2655,1,"30314","Burwood Nissan","101 Burwood Highway","BURWOOD","VIC","3125","Australia","03   92737222","03 92737277","S","S13","B","1",1
+2656,1,"30315","Bay City Nissan","Cnr. Boat Harbour & Nissen St","HERVEY BAY","QLD","4655","Australia","07   4124 0000","07 41245222","N","N04","C","1",1
+2657,1,"30317","Bundaberg Nissan","70 Johanna Boulevard","KENSINGTON","QLD","4670","Australia","07   4152 0000","07 47265566","N","N04","B","2",1
+2658,1,"30319","Alan Mance Nissan","2-3 Holland Drive","MELTON","VIC","3337","Australia","03   9971 4444","03 99714499","S","S13","B","1",1
+2659,1,"30327","Yarra Valley Nissan","460-462 Maroondah Highway","LILYDALE","VIC","3140","Australia","03   97355555","03 97353970","S","S14","A","1",1
+2660,1,"30328","Zupps Nissan","167-171 Brisbane Street","BEAUDESERT","QLD","4285","Australia","07   55421220","07 55413276","N","N03","C","1",1
+2661,1,"30329","Gunnedah Automotive","363 Conadilly Street","GUNNEDAH","NSW","2380","Australia","02   67422499","02 67422958","E","E03","C","1",1
+2662,1,"30332","Action Nissan","Cnr Clematis & Oak Streets","GYMPIE","QLD","4570","Australia","07   54821711","07 54822389","N","N02","C","2",1
+2663,1,"30334","Thompson Nissan","340 Midland Highway","SHEPPARTON","VIC","3630","Australia","03   58222666","03 58312507","S","S14","B","2",1
+2664,1,"30336","Metro Nissan","150 Lutwyche Road","WINDSOR","QLD","4030","Australia","07 38669701","738669781","N","N02","A","1",1
+2665,1,"30339","Essendon Nissan","288 Wirraway Road","ESSENDON FIELDS","VIC","3041","Australia","03 93796643 ","393741460","S","S13","A","1",1
+2666,1,"30341","Central Coast Nissan","354 Mann Street","GOSFORD","NSW","2250","Australia","02   43200966","02 43378088","E","E02","B","1",1
+2667,1,"30344","Sunshine Coast Nissan","1 Industrial Avenue","CALOUNDRA","QLD","4551","Australia","07   5436 7000","07 54367099","N","N03","B","1",1
+2668,1,"30349","Wyong Nissan","37 Amsterdam Circuit","WADALBA","NSW","2259","Australia","02   43139422","02 43532116","E","E02","B","1",1
+2669,1,"30351","Hardman Nissan","101 Marsh Street","ARMIDALE","NSW","2350","Australia","02   67728411","02 67721512","E","E03","C","2",1
+2670,1,"30354","Ceduna Nissan","54 Poynton Street","CEDUNA","SA","5690","Australia","08   86252616","08 86253201","W","W05","C","2",1
+2671,1,"30355","Great Lakes Nissan","33 - 37 Manning Street","TUNCURRY","NSW","2428","Australia","02   65547202","02 65554387","E","E01","C","1",1
+2672,1,"30357","Sale City Nissan","36-38 Foster Street","SALE","VIC","3850","Australia","03   51443944","03 51446289","S","S11","C","2",1
+2673,1,"30358","Goondiwindi Nissan","20 Mclean Street","GOONDIWINDI","QLD","4390","Australia","07   46713044","07 46713557","N","N01","C","2",1
+2674,1,"30361","Big River Nissan","1454 Old Sturt Highway","BERRI","SA","5343","Australia","08   85825200","08 85825300","W","W03","C","2",1
+2675,1,"30362","Bunbury Nissan","Cnr Robertson Dve & Bovell Sts","BUNBURY","WA","6230","Australia","08   97247700","08 97254301","W","W02","B","2",1
+2676,1,"30369","Warragul Nissan","4 - 6 Howitt Street","WARRAGUL","VIC","3820","Australia","03 56236212","03 56234846","S","S13","C","1",1
+2677,1,"30370","Mt Isa Nissan","59-65 West Street","MOUNT ISA","QLD","4825","Australia","07   47445000","07 47439163","N","N01","C","2",1
+2678,1,"30371","Lakeside Nissan","1195-1197 Main North Road","POORAKA","SA","5095","Australia","08   82006000","08 82006022","W","W04","A","1",1
+2679,1,"30378","Clarence Coast Nissan","40 Ryan Street","GRAFTON","NSW","2460","Australia","02   66435255","02 66435233","E","E01","C","2",1
+2680,1,"30381","Moss Vale Nissan","543 - 551 ARGYLE STREET","MOSS VALE","NSW","2577","Australia","02   48681055","02 48683330","E","E05","C","1",1
+2681,1,"30384","DC Motors Nissan","85 Derby Street","ROCKHAMPTON","QLD","4700","Australia","07   49991200","07 49226550","N","N02","B","1",1
+2682,1,"30390","Arandt Nissan","530 Cadell Street","HAY","NSW","2711","Australia","02   69931503","02 69932212","S","S15","C","2",1
+2683,1,"30393","Sutherland Nissan","509 Princes Highway","KIRRAWEE","NSW","2232","Australia","02   95457366","02 95424813","E","E01","A","1",1
+2684,1,"30394","Lander Nissan","37 Blacktown Road","BLACKTOWN","NSW","2148","Australia","02   88844477","02 88844838","E","E02","A","1",1
+2685,1,"30395","Augusta Nissan","2 Caroona road","PORT AUGUSTA","SA","5700","Australia","08   86423066","08 86423438","W","W03","C","2",1
+2686,1,"30396","Cardiff Nissan","367 Main Road","CARDIFF","NSW","2285","Australia","02   40149950","02 40149951","E","E03","A","2",1
+2687,1,"30397","Warrnambool Nissan","53 Princes Highway","WARRNAMBOOL","VIC","3280","Australia","03   55645999","03 5564 5988","S","S15","C","1",1
+2688,1,"30398","Keema Nissan","1550 Logan Road","MOUNT GRAVATT","QLD","4122","Australia","07   34261555","07 34261550","N","N04","A","1",1
+2689,1,"30399","MidWest Nissan","5 Phelps Street","GERALDTON","WA","6530","Australia","08   9938 0500","08 9938 0531","W","W01","C","2",1
+2690,1,"30400","Karratha Nissan","8 Corringer Avenue","KARRATHA","WA","6714","Australia","08   91446400","08 91852300","W","W02","C","2",1
+2691,1,"30408","Mustica Nissan","Murray Valley Highway","COBRAM","VIC","3644","Australia","03   58721666","03 58721920","S","S15","C","2",1
+2692,1,"30411","Liverpool Nissan","411 Hume Highway","LIVERPOOL","NSW","2170","Australia","02   84888641","02 96026546","E","E01","A","1",1
+2693,1,"30413","Goldfields Nissan","183-185 Boulder Road","KALGOORLIE","WA","6430","Australia","08   90926200","08 90926248","W","W03","C","2",1
+2694,1,"30418","Ron Doyle Motors Nissan","113 Princes Highway","EDEN","NSW","2551","Australia","02   64961420","02 64961467","E","E05","C","1",1
+2695,1,"30419","Penrith Nissan","2128 - 2140 Castlereagh Road","PENRITH","NSW","2750","Australia","02   47245555","02 47245566","E","E03","A","1",1
+2696,1,"30420","Parramatta Nissan","315 Church Street","GRANVILLE","NSW","2142","Australia","02   99122000","02 99122022","E","E02","A","1",1
+2697,1,"30421","Broken Hill Nissan","Cnr Galena & Rakow Street","BROKEN HILL","NSW","2880","Australia","08   80872463","08 80877971","W","W03","C","2",1
+2698,1,"30422","Moree Nissan","430-434 Frome Street","MOREE","NSW","2400","Australia","02   67507400","02 67521298","E","N02","C","2",1
+2699,1,"30424","Goulburn Nissan","126 Hume Street","GOULBURN","NSW","2580","Australia","02   48230800","02 48218202","E","E05","C","1",1
+2700,1,"30426","Rockdale Nissan","257 - 271 Princes Highway","ARNCLIFFE","NSW","2205","Australia","02 93359200","02 95974914","E","E02","A","1",1
+2701,1,"30428","Western Nissan","Cnr Western Hwy & Christies Rd","RAVENHALL","VIC","3023","Australia","03   83618255","03 83618266","S","S13","A","1",1
+2702,1,"30429","von Bibra Robina Nissan","16 Brabham Circuit","ROBINA","QLD","4226","Australia","07   55750500","07 55621072","N","N01","B","1",1
+2703,1,"30430","Mays Motors","444 River Street","BALLINA","NSW","2478","Australia","02   66862399","02 66868667","N","N02","C","1",1
+2704,1,"30431","Lennock Motors","150 Melrose Drive","PHILLIP","ACT","2606","Australia","02   62822022","02 62852688","E","E05","A","2",1
+2705,1,"30432","Cooma Nissan","66 Sharp Street","COOMA","NSW","2630","Australia","02 64521077","264521142","E","E04","C","2",1
+2706,1,"30433","Preston Nissan","605-633 High Street","PRESTON","VIC","3072","Australia","03   84700999","03 84700900","S","S13","B","1",1
+2707,1,"30434","City Nissan Parts and Service","21- 43 Hoddle Street","COLLINGWOOD","VIC","3066","Australia","03   83838800","03 83838899","S","S13","A","1",1
+2708,1,"30435","Muswellbrook Nissan","102-106 Sydney St","MUSWELLBROOK","NSW","2333","Australia","02 65432466","265434242","E","E06","C","2",1
+2709,1,"30436","Suttons Chullora Nissan","Cnr Hume Hwy & Waterloo Road","CHULLORA","NSW","2190","Australia","02   96420233","02 96427798","E","E05","A","1",1
+2710,1,"30437","Sunshine Coast Nissan","37 Wises Road","BUDERIM","QLD","4556","Australia","07   54568000","07 54420699","N","N03","A","2",1
+2711,1,"30439","Springwood Nissan","3468-3476 Pacific Highway","SPRINGWOOD","QLD","4127","Australia","07   34428200","07 32206754","N","N03","A","1",1
+2712,1,"30441","Wangaratta Nissan","45-47 Tone Road","WANGARATTA","VIC","3677","Australia","03   57222000","03 57219451","S","S14","C","1",1
+2713,1,"30442","Parry NQ Nissan","515-593 Sturt Street","TOWNSVILLE","QLD","4810","Australia","07   47262626","07 47262699","N","N01","A","2",1
+2714,1,"30443","Mantello Nissan","45 Reservoir Drive","COOLAROO","VIC","3048","Australia","03   83648888","03 83648899","S","S15","A","1",1
+2715,1,"30444","Martin's Garage","52-54 Chenery Street","MANSFIELD","VIC","3722","Australia","03   57331000","03 57751179","S","S14","C","1",1
+2716,1,"30446","Ringwood Nissan","399 Maroondah Highway","RINGWOOD","VIC","3134","Australia","03   88339999","03 88339955","S","S14","A","1",1
+2717,1,"30454","Frankston Nissan","130 Dandenong Road","FRANKSTON","VIC","3199","Australia","03   97822744","03 97815920","S","S12","A","1",1
+2718,1,"30455","Mornington Nissan","109 Mornington-Tyabb Road","MORNINGTON","VIC","3931","Australia","03   59710700","03 59757976","S","S12","B","1",1
+2719,1,"30457","Hamilton Nissan","63-67 Cox Street","HAMILTON","VIC","3300","Australia","03   55711700","03 55725999","S","S12","C","2",1
+2720,1,"30458","Ararat Nissan","182 High Street","Ararat","VIC","3377","Australia","03   53522168","03 53522330","S","S12","C","2",1
+2721,1,"30459","Muir Nissan Manjimup","Lot 26 Rose Street","MANJIMUP","WA","6258","Australia","08   97820000","08 97771242","W","W02","C","2",1
+2722,1,"30461","Motorama Nissan","90 Anzac Avenue","HILLCREST","QLD","4118","Australia","07   38099111","07 30540347","N","N04","B","1",1
+2723,1,"30462","Main North Nissan","75 Main North Road","NAILSWORTH","SA","5083","Australia","08   83095000","08 83095077","W","W03","A","1",1
+2724,1,"30463","Adrian Brien Nissan","1305C South Road","ST MARYS","SA","5042","Australia","08 83745444","08 83745499","W","W05","A","1",1
+2725,1,"30464","Grand Nissan","345 Main South Road","MORPHETT VALE","SA","5162","Australia","08 83263377","883263124","W","S17","B","1",1
+2726,1,"30466","Albion Park Nissan","11 Shandan Circuit","ALBION PARK RAIL","NSW","2527","Australia","02   42740685","02 42762363","E","E03","B","1",1
+2727,1,"30467","Castle Hill Nissan","2A Victoria Ave","CASTLE HILL","NSW","2154","Australia","02   90980668","02 98986899","E","E02","A","1",1
+2728,1,"30471","Clarkson Nissan","22 - 30 Pensacola Tce","CLARKSON","WA","6030","Australia","08   94087333","08 94086837","W","W02","B","2",1
+2729,1,"30472","Spencer Nissan","50 Main Road","PORT PIRIE","SA","5540","Australia","08   86323888","08 86326405","W","W03","C","2",1
+2730,1,"30473","Colac Nissan","333-339 Princes Highway","COLAC WEST","VIC","3250","Australia","03 52319616","352321632","S","S11","C","2",1
+2731,1,"30475","Ipswich Nissan","5 Brisbane Road","BUNDAMBA","QLD","4304","Australia","07   38173800","07 32826155","N","N02","A","1",1
+2732,1,"30476","Momsen Motors","106 - 108 Gipps Street","BEGA","NSW","2550","Australia","02   64921099","02 64923415","E","E04","C","1",1
+2733,1,"30478","Dandenong Nissan","46 Lonsdale Street","DANDENONG","VIC","3175","Australia","03 97929922","03 97929398","S","S12","A","1",1
+2734,1,"30481","Sydney City Nissan","93 O'Riordan Street","ALEXANDRIA","NSW","2015","Australia","02 93987666","293984621","E","E02","A","1",1
+2735,1,"30483","Maitland Nissan","173 - 187 Newcastle Road","EAST MAITLAND","NSW","2323","Australia","02   49313333","02 49313344","E","E01","A","2",1
+2736,1,"30484","Bendigo Nissan","185-195 High Street","BENDIGO","VIC","3550","Australia","03   54423111","03 54415518","S","S12","B","1",1
+2737,1,"30485","Riverina Nissan","44-52 Dobney Avenue","WAGGA WAGGA","NSW","2650","Australia","02   69326600","02 69326634","E","E05","B","1",1
+2738,1,"30486","Cessnock City Nissan","240 - 246 Maitland Road","CESSNOCK","NSW","2325","Australia","02   49936000","02 49936044","E","E01","C","1",1
+2739,1,"30488","Beer Nissan Seymour","49-51 Emily Street","SEYMOUR","VIC","3660","Australia","03   57922777","03 5792 1033","S","S14","C","1",1
+2740,1,"30489","Kempstar Nissan","118 Belgrave Street","KEMPSEY","NSW","2440","Australia","02   6562 1381","02 65621638","E","E01","C","2",1
+2741,1,"30491","Aspley Nissan","1454 Gympie Road","ASPLEY","QLD","4034","Australia","07   32468000","07 32468092","N","N02","A","1",1
+2742,1,"30494","Warwick Nissan","11-15 Albion Street","WARWICK","QLD","4370","Australia","07   46602000","07 46602011","N","N01","C","1",1
+2743,1,"30495","Dalwallinu Nissan","1 Dalwallinu West Road","DALWALLINU","WA","6609","Australia","08   96611105","08 96611357","W","W01","C","2",1
+2744,1,"30496","Moruya Nissan","68-76 Princes Highway","MORUYA","NSW","2537","Australia","02   44743444","02 44743503","E","E03","C","1",1
+2745,1,"30497","Taree Nissan","100 Manning River Drive","TAREE","NSW","2430","Australia","02   65926388","02 65510812","E","E01","C","1",1
+2746,1,"30499","Broome Nissan","2 Coghlan Street","BROOME","WA","6725","Australia","08   91945600","08 91945626","W","W02","C","2",1
+2747,1,"30500","Motors Nissan Launceston","170 Elizabeth Street","LAUNCESTON","TAS","7250","Australia","03   63329101","03 63329189","S","S13","B","1",1
+2748,1,"30501","Motors Nissan Devonport","1 Don Road","DEVONPORT","TAS","7310","Australia","03   64204500","03 64204536","S","S13","C","1",1
+2749,1,"30502","Motors Nissan Burnie","62 Marine Terrace","BURNIE","TAS","7320","Australia","03   64302483","03 64303101","S","S13","C","1",1
+2750,1,"30503","Innisfail Nissan","117-119 Edith Street","INNISFAIL","QLD","4860","Australia","07   40635800","07 40613963","N","N04","C","2",1
+2751,1,"30504","Swan Hill Nissan","7 Pritchard Street","SWAN HILL","VIC","3585","Australia","03   50331555","03 50331688","S","S12","C","2",1
+2752,1,"30505","Chatswood Nissan","555 Pacific Highway","ARTARMON","NSW","2064","Australia","02 94133355","294139133","E","E06","A","1",1
+2753,1,"30506","Perth City Nissan","501 Albany Highway","VICTORIA PARK","WA","6100","Australia","08   92620000","08 93614419","W","W03","B","2",1
+2754,1,"30507","Bathurst Nissan","10 Corporation Avenue","ROBIN HILL","NSW","2795","Australia","02   63382000","02 63382050","E","E02","C","1",1
+2755,1,"30508","Western Plains Nissan","59-71 Victoria Street","DUBBO","NSW","2830","Australia","02   68844577","02 68842277","E","E02","B","2",1
+2756,1,"30509","Brighton Nissan","931 Nepean Highway","BENTLEIGH","VIC","3204","Australia","041899965","395639903","S","S11","A","1",1
+2757,1,"30510","Singleton Nissan","1 Waddells Lane","SINGLETON","NSW","2330","Australia","02   65788700","02 65721102","E","E01","C","1",1
+2758,1,"30511","Bellbowrie Motors","Cnr Pacific H'Way & Halls Road","COFFS HARBOUR","NSW","2450","Australia","02   66568700","02 66512740","E","E01","B","2",1
+2759,1,"30512","Pilbara Nissan Newman","18 Pardoo Street","NEWMAN","WA","6753","Australia","08   91543600","08 91543699","W","W02","C","2",1
+2760,1,"30513","Windsor Nissan","130 Windsor Road","MCGRATHS HILL","NSW","2756","Australia","02 45770400","02 45877008","E","E01","C","1",1
+2761,1,"30514","Waverley Nissan","565-577 Springvale Road","MULGRAVE","VIC","3170","Australia","03   95505888","03 95505855","S","S12","A","1",1
+2762,1,"30515","Tweed Coast Nissan","141 Wharf Street","TWEED HEADS","NSW","2485","Australia","07   55069000","07 55369432","N","N04","B","1",1
+2763,1,"30516","Pennant Hills Nissan","343 Pennant Hills Road","PENNANT HILLS","NSW","2120","Australia","02   94737111","02 94873802","E","E03","A","1",1
+2764,1,"30517","Suttons Homebush Nissan","112-134 Parramatta Road","HOMEBUSH","NSW","2140","Australia","02   97464500","02 97464516","E","E05","A","1",1
+2765,1,"30518","Narrogin Nissan","12-14 Federal Street","NARROGIN","WA","6312","Australia","08   98811033","08 98811209","W","W02","C","2",1
+2766,1,"30519","Mandurah Nissan","53 Pinjarra Road","MANDURAH","WA","6210","Australia","08   95318989","08 95811144","W","W02","B","2",1
+2767,1,"30520","Peter Stevens Nissan","615 Creswick Road","BALLARAT","VIC","3350","Australia","03   53368777","03 53368779","S","S12","B","1",1
+2768,1,"30521","Traralgon Nissan","Lot 1 Princes Highway","TRARALGON","VIC","3844","Australia","03   51757777","03 51757799","S","S11","B","2",1
+2769,1,"30522","North Lakes Nissan","8 Stapylton Street","NORTH LAKES","QLD","4509","Australia","07   38830900","07 38830999","N","N03","A","1",1
+2770,1,"30523","Midland City Nissan","192 Great Eastern Highway","MIDLAND","WA","6056","Australia","08   92730000","08 92730011","W","W03","B","1",1
+2771,1,"30524","Morley City Nissan","104 Broun Avenue","MORLEY","WA","6062","Australia","08   92209240","08 92209267","W","W02","B","1",1
+2772,1,"30525","Barton's Wynnum Nissan","200 Tingal Road","WYNNUM","QLD","4178","Australia","07   33967777","07 3393 3593","N","N04","B","1",1
+2773,1,"30526","Thompson Nissan Echuca","75-77 Northern Highway","ECHUCA","VIC","3564","Australia","03   54831400","03 54831400","S","S14","C","1",1
+2774,1,"30527","South Nowra Nissan","128 Princes Highway","SOUTH NOWRA","NSW","2541","Australia","02   44288222","02 44288233","E","E03","B","2",1
+2775,1,"48320","Kerry Nissan","21-25 Stuart Hwy","STUART PARK","NT","820","Australia","08   89808080","08 89808081","W","W04","B","2",1
+2776,1,"48370","Peninsula Nissan","5 Taylor Street","KADINA","SA","5554","Australia","08   88211022","08 88212989","W","W03","C","2",1
+2777,1,"48635","Gove Nissan","Arnhem Road","NHULUNBUY","NT","880","Australia","08 89871911","889871227","W","W03","C","2",1
+2778,1,"48785","Jarrett Nissan","510 Mount Barker Road","BRIDGEWATER","SA","5155","Australia","08   83392700","08 83709895","W","W04","B","1",1
+2779,1,"48790","Whyalla Nissan","40 Playford Avenue","WHYALLA","SA","5600","Australia","08   86457388","08 86455512","W","W03","C","1",1
+2780,1,"49010","Duttons Nissan","7 Adelaide Road","MURRAY BRIDGE","SA","5253","Australia","08   85315600","08 85315680","W","W04","C","2",1
+2781,1,"49260","Kittles Nissan","46 Stuart Highway             ","ALICE SPRINGS                           ","NT ","870","Australia","08 89554200","889554292","S","S17","C","2",1
+2782,1,"49320","Barossa Nissan","30 Murray Street","NURIOOTPA","SA","5355","Australia","08   85622411","08 85622725","W","W04","C","1",1
+2783,1,"49502","O.G.R. Nissan","33 - 41 Penola Road","MOUNT GAMBIER","SA","5290","Australia","08   87241177","08 87231413","W","W03","C","1",1
+2784,1,"49640","City Motors","Cnr King & Porter Streets","PORT LINCOLN","SA","5606","Australia","08   86821100","08 86824734","W","W03","C","2",1
+2785,1,"49668","Wickham Flower & Co (Bordertown)","41 Binnie Street","BORDERTOWN","SA","5268","Australia","08   87521755","08 87522675","W","W03","C","2",1
+2786,1,"80172","Suspension File","","","","","Australia","","","W","","","",1
+9009,1,"30528","Essendon Nissan","288 Wirraway Road","ESSENDON FIELDS","VIC","3041",NULL,"03   93796643","03 93741460","S","S11","A","1",NULL
+9010,1,"30529","Brighton Nissan","931 Nepean Highway","BENTLEIGH","VIC","3204",NULL,"03   95639977","03 95639903","S","S14","A","1",NULL
+9011,1,"30530","Caboolture Nissan","29 Bribie Island Road","CABOOLTURE","QLD","4510",NULL,"07   54950555","07 54952839","N","N03","B","1",NULL
+9014,1,"30531","Southern Vales Nissan","345 Main South Road","MORPHETT VALE","SA","5162",NULL,"08   83263377","08 83263124","W","W03","B","1",NULL
+9015,1,"30532","Centralian Motors Nissan","Cr Nth Stuart Hwy & Dalgety Rd","ALICE SPRINGS","NT","870",NULL,"08   89597700","08 89522333","W","W04","C","2",NULL
+9016,1,"30535","Barton's Capalaba Nissan","115 Redland Bay Road","CAPALABA","QLD","4157",NULL,"07   31860554","07 32864193","N","N04","A","1",NULL
+9017,1,"30536","Eagers Newstead Nissan","95 Breakfast Creek Road","NEWSTEAD","QLD","4006",NULL,"07   36343373","07 36323400","N","N02","A","1",NULL
+9018,1,"30533","CKD Nissan Chatswood","586 Pacific Highway","CHATSWOOD","NSW","2067",NULL,"02   83293888","","E","E03","A","1",NULL
+9019,1,"30534","Brookvale Nissan","581 - 583 Pittwater Road","BROOKVALE","NSW","2100",NULL,"02   83293800","","E","E03","A","1",NULL
+9022,1,"30537","Melville Nissan","532-540 Canning Highway","ATTADALE","WA","6156",NULL,"08   93335393","08 93335300","W","W01","B","1",NULL
+9023,1,"30538","Suttons City Nissan","1 Link Road","ZETLAND","NSW","2017",NULL,"02   99313000","","E","E05","A","1",NULL
+9024,1,"30539","Muswellbrook Nissan","102-106 Sydney Street","MUSWELLBROOK","NSW","2333",NULL,"02   65432466","02 65434242","E","E01","C","1",NULL
+9035,1,"30540","Colac Nissan","333-339 Princes Highway","COLAC WEST","VIC","3250",NULL,"03   52319616","03 52325255","S","S15","C","2",NULL
+9046,1,"30541","Cooma Nissan","66 Sharp Street","COOMA","NSW","2630",NULL,"02   64521077","02 64521142","E","E05","C","2",NULL
+9047,1,"30543","Adrian Brien Nissan P & S","58 Maple Avenue","FORESTVILLE","SA","5035",NULL,"08   83745444","08 83745499","W","W04","A","1",NULL
+9048,1,"30544","Hobart Nissan","235 Argyle Street","HOBART","TAS","7000",NULL,"03   62133353","","S","S13","B","1",NULL
+9049,1,"30545","Suttons Arncliffe Nissan","85-93 Princes Highway","ARNCLIFFE","NSW","2205",NULL,"02   93359000","02 93359069","E","E05","A","1",NULL
+9050,1,"30546","Warragul Nissan","4 - 6 Howitt Street","WARRAGUL","VIC","3820",NULL,"03   56236212","03 56234846","S","S11","C","1",NULL
+9051,1,"55000","Test Nissan","1 Hardner Road","Mt Waverley","VIC","3149",NULL,"395449054","395449045","S","S25","A","1",NULL
+9052,1,"99999","Ineligible role","0","0","0","0",NULL,"0","0","0","0","0","0",NULL
+9053,1,"30542","Adrian Brien Nissan","1305C South Road","ST MARYS","SA","5042",NULL,"08   83745444","08 83745499","W","W03","B","1",NULL
+9054,1,"30547","Mentone Nissan","1 Nepean Highway","MENTONE","VIC","3194",NULL,"03   95639977","03 95639903","S","S14","B","2",NULL
+9055,1,"30551","Maddington Nissan","1974 Albany Highway","MADDINGTON","WA","6109",NULL,"08   94936777","08 94160899","W","W01","B","2",NULL
+9056,1,"30552","Gympie Nissan","Cnr Bruce Highway & Oak Street","GYMPIE","QLD","4570",NULL,"07   54804100","","N","N02","C","2",NULL
+9057,1,"30549","Dandenong Nissan","46 Lonsdale Street","DANDENONG","VIC","3175",NULL,"03   97929922","03 97929398","S","S12","A","1",NULL
+9058,1,"30556","Mornington Nissan","109 Mornington-Tyabb Road","MORNINGTON","VIC","3931",NULL,"03   59710700","03 59757976","S","S14","B","1",NULL
+9059,1,"30558","Frankston Nissan","140 Dandenong Road West","FRANKSTON","VIC","3199",NULL,"03   97844444","03 97815920","S","S12","A","1",NULL
+9060,1,"30548","Wollongong Nissan","188 Corrimal Street","WOLLONGONG","NSW","2500",NULL,"02   42542000","02 42762363","E","E03","B","2",NULL
+9061,1,"30555","Avon Valley Nissan","47 Fitzgerald Street","NORTHAM","WA","6401",NULL,"08   96211311","08 96228306","W","W01","C","2",NULL
+9062,1,"30557","Wangaratta Nissan","45 Tone Road","WANGARATTA","VIC","3677",NULL,"03   57222000","03 57219451","S","S14","C","1",NULL
+9063,1,"30559","Gosford Nissan","1 Racecourse Road","WEST GOSFORD","NSW","2250",NULL,"02   43465050","","E","E02","A","2",NULL
+9064,1,"30560","Bega Valley Nissan","106 - 108 Gipps Street","BEGA","NSW","2550",NULL,"02   6494 8900","02 64923415","E","E05","C","1",NULL
+9065,1,"30550","Mildura Nissan","19-29 Orange Avenue","MILDURA","VIC","3500",NULL,"03   50213866","03 50213901","W","W03","C","1",NULL
+9066,1,"30553","Cardiff Nissan","2 Sturt Road","CARDIFF","NSW","2285",NULL,"02   40149950","02 40149951","E","E01","A","2",NULL
+9067,1,"30554","Kloster Nissan","Cnr Tudor & Parry Streets","HAMILTON","NSW","2303",NULL,"02   49220595","02 49610543","E","E01","A","2",NULL
+9068,1,"30561","Morley City Nissan","104 Broun Avenue","MORLEY","WA","6062",NULL,"08   92209240","08 92209267","W","W01","B","1",NULL
+9069,1,"30562","Midland City Nissan","192 Great Eastern Highway","MIDLAND","WA","6056",NULL,"08   92730000","08 92730011","W","W01","B","1",NULL
+9070,1,"30563","Ryde Nissan","603 Victoria Road","RYDE","NSW","2112",NULL,"02   8198 1881","","E","E02","A","1",NULL
+9071,1,"30564","Cessnock City Nissan","240 - 246 Maitland Road","CESSNOCK","NSW","2325",NULL,"02   49936000","02 49936044","E","E01","C","1",NULL
+9072,1,"30565","Beaudesert Nissan","167-171 Brisbane Street","BEAUDESERT","QLD","4285",NULL,"07   55424900","07 55413276","N","N03","C","1",NULL
+9073,1,"30566","Footscray Nissan","462 Geelong Road","WEST FOOTSCRAY","VIC","3012",NULL,"03   92178693","","S","S13","B","1",NULL
+9074,1,"30567","Burwood Nissan","101 Burwood Highway","BURWOOD","VIC","3125",NULL,"03   92737222","03 92737277","S","S11","A","1",NULL
+9075,1,"30568","Blackburn Nissan","138 Whitehorse Road","BLACKBURN","VIC","3130",NULL,"03   98942244","03 98942944","S","S11","A","1",NULL
+9076,1,"30569","Young Nissan","30 Boorowa Street","YOUNG","NSW","2594",NULL,"02   63821155","02 63824673","E","E02","C","2",NULL
+9077,1,"30570","Ralph D'Silva Nissan","605-633 High Street","PRESTON","VIC","3072",NULL,"03   84700999","03 84700900","S","S11","B","1",NULL
+9078,1,"30571","Goondiwindi Nissan","31 Albert Street","GOONDIWINDI","QLD","4390",NULL,"07   46717300","07 46713557","N","N02","C","2",NULL
+9079,1,"30572","Orange Nissan","8-14 Gateway Crescent","ORANGE","NSW","2800",NULL,"02   63627169","02 63937299","E","E02","C","1",NULL
+9080,1,"30574","Bordertown Nissan","41 Binnie Street","BORDERTOWN","SA","5268",NULL,"08   87521755","08 87522675","W","W03","C","2",NULL
+9081,1,"30575","Naracoorte Nissan","35 Macdonnell Street","NARACOORTE","SA","5271",NULL,"08   87601900","08 87622363","W","W03","C","2",NULL
+9082,1,"30573","Huston Nissan","19 Rogers Drive","KINGAROY","QLD","4610",NULL,"07   41649300","07 41649333","N","N03","C","1",NULL
+9083,1,"30576","Bay City Nissan","Cnr. Boat Harbour & Nissen Sts","HERVEY BAY","QLD","4655",NULL,"07   4124 0000","07 41245222","N","N04","C","1",NULL
+9084,1,"30577","Maryborough Nissan","70 Ferry Street","MARYBOROUGH","QLD","4650",NULL,"07   41230000","07 41223114","N","N04","C","2",NULL
+9085,1,"30578","Barossa Nissan","30 Murray Street","NURIOOTPA","SA","5355",NULL,"08   85622411","08 85622725","W","W04","C","1",NULL
+9086,1,"30579","Armidale Nissan","101 Marsh Street","ARMIDALE","NSW","2350",NULL,"02   67728411","02 67728411","E","E03","C","2",NULL
