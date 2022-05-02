@@ -19,6 +19,13 @@ class HistoricalService {
      */
     public function getHistoricalData(): array {
         $currentUser = Auth::user();
+        if (!$currentUser->employee_code) {
+            return [
+                'all' => [],
+                'total' => 0,
+                'loyalty_to_brand' => 0
+            ];
+        }
         return [
             'all' => History::getAllHistoricalData($currentUser->employee_code)->pluck('amount', 'period')->all(),
             'total' => History::getTotalHistoricalData($currentUser->employee_code),

@@ -62,7 +62,6 @@ class AdminController extends Controller {
             'month' => $request->input('month'),
         ];
 
-            var_dump($parameter);
         if ($request->hasFile('file')) {
             $dataFile = $request->file->storeAS('file', $dataType.date('Y-m-d').'.csv', 'public');
             if($actonType == Defination::ACTION_TYPE_SYNC){

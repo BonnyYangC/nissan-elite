@@ -43,7 +43,7 @@ class GageController extends Controller {
         //$dataForView = $role->getDashboardViewData($this->dataForView, $ytd);
         $ytd = $this->serviceResolver->resultService()->getYearToDateData();
         $ytd = $ytd ? $ytd : '';
-        var_dump($ytd);
+        //var_dump($ytd);
         $dataForView['statusChart'] = array_merge([
             'ytd' => $ytd
         ], $this->serviceResolver->statusService()->buildStatusData($ytd));

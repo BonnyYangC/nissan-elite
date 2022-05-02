@@ -19,7 +19,7 @@
                         <h3>FY22 YTD : {{ number_format($ytd, 0) }} </h3>
 
                         <h3>FY21 YTD : {{ number_format(isset($historical['all']['2021-01-01']) ? $historical['all']['2021-01-01'] : 0, 0) }} </h3>
-                        <h3>FY20 YTD : {{ number_format($historical['all']['2020-01-01'], 0) }} </h3>
+                        <h3>FY20 YTD : {{ number_format(isset($historical['all']['2020-01-01']) ? $historical['all']['2020-01-01'] : 0, 0) }} </h3>
 
                         <h3>PRIOR HISTORY - Loyalty to the brand: {{ number_format($historical['loyalty_to_brand'], 0) }} </h3>
                     </div>
