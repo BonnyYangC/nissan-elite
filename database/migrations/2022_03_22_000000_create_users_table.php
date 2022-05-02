@@ -77,7 +77,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('position_code')->references('code')->on('positions');
             $table->foreign('dealer_code')->references('code')->on('dealers');
-            $table->foreign('region')->references('code')->on('regions');
+            $table->foreign('region_code')->references('code')->on('regions');
         });
 
         /*DB::table('users')->insert([
