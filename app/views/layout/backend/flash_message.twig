@@ -1,8 +1,0 @@
-{% set msg = session_flash('msg') %}
-{% if msg %}
-<div class="container">
-    <div class="notification mt-20 is-{{ msg.status }}">
-        {{ msg.content }}
-    </div>
-</div>
-{% endif %}
