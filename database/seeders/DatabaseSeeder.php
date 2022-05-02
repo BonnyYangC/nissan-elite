@@ -63,10 +63,10 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
-        //$this->seedCompanies();
-        //$this->seedAdmins();
+        $this->seedCompanies();
+        $this->seedAdmins();
         $this->seedAcls();
-        //$this->seedMetrics();
+        $this->seedMetrics();
     }
 
     /**
