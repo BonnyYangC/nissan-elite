@@ -24,7 +24,7 @@
             <tbody>
             @foreach( $region_staff as $user)
             <tr>
-                <th>{{ $user->region }}</td>
+                <th>{{ $user->region->title }}</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->mobile }}</td>

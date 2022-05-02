@@ -21,7 +21,7 @@ class UserService extends BaseService {
      * @return mixed
      */
     public function loadRegionStaff() {
-        return User::select('id', 'firstname', 'lastname', 'email', 'position_code', 'mobile', 'active', 'region')
+        return User::select('id', 'firstname', 'lastname', 'email', 'position_code', 'mobile', 'active', 'region_code')
             ->whereIn('position_code', $this->getRegionStaff())
             ->where('users.active', 1)->paginate();
     }
