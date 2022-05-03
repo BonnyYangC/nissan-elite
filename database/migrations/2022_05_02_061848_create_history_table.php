@@ -13,7 +13,7 @@ class CreateHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('history', function (Blueprint $table) {
+        Schema::create('nissan_history', function (Blueprint $table) {
             $table->increments('id');
             $table->string('member_id', 50);
             $table->date('period');
@@ -31,6 +31,6 @@ class CreateHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('history');
+        Schema::dropIfExists('nissan_history');
     }
 }
