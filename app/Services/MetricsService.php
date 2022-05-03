@@ -55,6 +55,14 @@ class MetricsService {
                 $r[] = data_get($val, $m->identifier, 0);
                 return $r;
             }, [date("M", strtotime($key))]);
+	}
+	if (!$result) {
+            foreach (Utility::MONTHS_SHORT as $month) {
+                $result[] = $metricsDefinations->reduce(function($r, $m) {
+                    $r[] = 0;
+                    return $r;
+                }, [$month]);
+            }
         }
         $metricsLegend = $metricsDefinations->reduce(function($r, $m) {
             $r[] = $m->label;

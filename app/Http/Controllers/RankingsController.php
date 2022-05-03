@@ -43,7 +43,7 @@ class RankingsController extends Controller {
         $this->dataForView['userGroups1'] = $this->service->getUsersGroupsArray1();
         $this->dataForView['userGroups2'] = $this->service->getUsersGroupsArray2();
         $this->dataForView['userGroups3'] = $this->service->getUsersGroupsArray3();
-var_dump($this->dataForView['userGroups1']);
+//var_dump($this->dataForView['userGroups1']);
         $this->dataForView['awardType'] = [Ranking::AWARD_STATUS, Ranking::AWARD_PLATINUM];
         return $this->render('pages.ranking');
     }

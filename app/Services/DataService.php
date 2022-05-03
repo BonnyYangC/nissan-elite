@@ -58,7 +58,7 @@ class DataService extends BaseService {
             $csvReader = Reader::createFromPath($filePath,'r');
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
-            var_dump($dataType);
+            //var_dump($dataType);
             $mappingService = $this->getMappingService($dataType);
             $modelKey = $mappingService->getKeyForModel();
 

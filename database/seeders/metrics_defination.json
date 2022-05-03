@@ -51,18 +51,18 @@
                     }]
                 },
                 {
-                "identifier": "volume",
-                "label": "Volume Growth",
-                "color": "#CCFF99",
-                "order": 3,
-                "title": "Fleet Sales Volume Growth - Quarterly",
-                "guides": [{
-                    "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
-                    "top": ["Fleet Sales Executive", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
-                    "rows": [["Category A&B", 160, 200, 320, 640, 840], ["Category C", 160, 200, 320, 640, 840]],
-                    "note": "(metric measured Quarterly only)"
-                }]
-            },
+                    "identifier": "volume",
+                    "label": "Volume Growth",
+                    "color": "#CCFF99",
+                    "order": 3,
+                    "title": "Fleet Sales Volume Growth - Quarterly",
+                    "guides": [{
+                        "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
+                        "top": ["Fleet Sales Executive", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
+                        "rows": [["Category A&B", 160, 200, 320, 640, 840], ["Category C", 160, 200, 320, 640, 840]],
+                        "note": "(metric measured Quarterly only)"
+                    }]
+                },
                 {
                     "identifier": "training",
                     "label": "Training",
@@ -73,7 +73,8 @@
                         "title": "TRAINING GUIDE - FLEET SALES EXECUTIVE",
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 19",
                         "top": ["Competency Modules", "Points Quarterly"],
-                        "rows": [["Certified Fleet Sales Executive (O)", 250], ["Certified Fleet Sales Executive (I,O & VC)", 250]]
+                        "rows": [["Certified Fleet Sales Executive (O)", 250], ["Employee Test Drive Experience (O)", 100],
+                            ["Advanced selling Skills (O)", 250]]
                     }
                 }
             ],
@@ -234,11 +235,11 @@
                     "order": 13,
                     "title": "APNUR PERFORMANCE",
                     "guides": [{
-                            "title": "APNUR PERFORMANCE GUIDE",
-                            "colspan": "Navara APNUR vs Target",
-                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
-                            "rows": [["Category A, B, C", 110, 175, 275]]
-                        },
+                        "title": "APNUR PERFORMANCE GUIDE",
+                        "colspan": "Navara APNUR vs Target",
+                        "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 110, 175, 275]]
+                    },
                         {
                             "colspan": "XTRAIL APNUR vs Target",
                             "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
@@ -255,14 +256,15 @@
                     "identifier": "training",
                     "label": "Training",
                     "color": "#FFFACD",
-                    "order": 10,
+                    "order": 14,
                     "title": "TRAINING",
                     "ref": "Refer to the <a href=\"{url('dashboard/MembersGuide')}\"> ELITE22 Member Guide</a> for full details.",
                     "guides": {
                         "title": "TRAINING GUIDE",
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
                         "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
-                        "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Certified Dealership Manager (VC,A & O)", "", 375, ""],
+                        "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
+                            ["Certified Dealership Manager (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""], ["Bonus", "", "", 2000]]
                     }
@@ -280,7 +282,7 @@
                             "title": "NEW VEHICLE SALES PERFORMANCE GUIDE",
                             "top": ["Retail Sales Consultant", "Retail", "Fleet"],
                             "rows": [["Category A & B", 80, 80], ["Category C", 160, 160]]
-                            },
+                        },
                         {
                             "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
                             "top": ["Retail Sales Consultant", "100%", "≥110%", "≥120%", "≥140%"],
@@ -335,7 +337,7 @@
                         "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
                         "top": ["Retail Sales Consultant", "Package sale"],
                         "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]]
-                        }
+                    }
                     ]
                 },
                 {
@@ -388,7 +390,8 @@
                         "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
                         "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
-                        "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""], ["Certified Sales Executive (VC & A)", "", 375, ""],
+                        "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
+                            ["Certified Sales Executive (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250], ["Engagement", 100, "", ""]]
                     }
                 }
@@ -550,9 +553,9 @@
                     "order": 5,
                     "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE",
                     "guides": [{
-                    "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE GUIDE",
-                    "top": ["F&I Manager", "Contract"],
-                    "rows": [["Category A, B, C", 100]]
+                        "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE GUIDE",
+                        "top": ["F&I Manager", "Contract"],
+                        "rows": [["Category A, B, C", 100]]
                     }]
                 },
                 {
@@ -641,7 +644,7 @@
                         "colspan": "Navara",
                         "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
                         "rows": [["Category A, B, C", 220, 345, 550]]
-                        },
+                    },
                         {
                             "colspan": "XTRAIL",
                             "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
@@ -688,7 +691,7 @@
                     "guides": {
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly", "Points Yearly"],
-                        "rows": [["Certified Dealership Manager (O)", 200, ""], ["Certified Dealership Manager (VC,A & O)", 375, ""], ["Bonus", "", 2000]],
+                        "rows": [["Certified Dealership Manager (O)", 200, ""], ["Employee Test Drive Experience (O)", 100, ""], ["Certified Dealership Manager (VC & A)", 375, ""], ["Bonus", "", 2000]],
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
                     }
                 }],
@@ -712,11 +715,11 @@
                     "order": 2,
                     "title": "Trade Parts Sales per unit in Operation",
                     "guides": [{
-                            "title": "Trade Parts Sales per unit in Operation Guide",
-                            "colspan": "Quarterly Performance vs FY21 Total",
-                            "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
-                            "rows": [["Category A, B, C", 1900, 2400, 3520]]
-                        },
+                        "title": "Trade Parts Sales per unit in Operation Guide",
+                        "colspan": "Quarterly Performance vs FY21 Total",
+                        "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 1900, 2400, 3520]]
+                    },
                         {
                             "colspan": "Quarterly Performace vs previous quarter",
                             "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
@@ -733,7 +736,7 @@
                     "guides": {
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly"],
-                        "rows": [["Certified Parts Advisor (O, A & VC)", 375]],
+                        "rows": [["Certified Parts Advisor (O & VC)", 375], ["Employee Test Drive Experience (O)", 100]],
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
                     }
                 }],
@@ -858,7 +861,8 @@
                     "guides": {
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
-                        "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Certified Dealership Manager (VC,A & O)", "", 375, ""],
+                        "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
+                            ["Certified Dealership Manager (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""], ["Bonus", "", "", 2000]],
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
@@ -961,7 +965,8 @@
                     "guides": {
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
-                        "rows": [["Certified Service Advisor (O & VC)", "", 250, ""], ["Certified Service Executive  (VC & A)", "", 375, ""],
+                        "rows": [["Certified Service Advisor (O & VC)", "", 250, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
+                            ["Certified Service Executive  (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""]],
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
