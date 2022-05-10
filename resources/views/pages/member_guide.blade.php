@@ -27,22 +27,22 @@
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">How to Register</button>
                 </a>
 
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=8') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=7') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Sales</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=16') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=15') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Fleet</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=22') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=21') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Stock Controller</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=26') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=25') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">F&amp;I Manager</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=31') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=30') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Service</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=38') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=37') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Parts</button>
                 </a>
                 <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=43') }}" target="_blank">
