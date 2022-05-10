@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 5.7.37, for Linux (x86_64)
+--
+-- Host: 192.168.10.19    Database: nissan_elite_prod_fy2021
+-- ------------------------------------------------------
+-- Server version	5.7.37-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `guild_members`
+--
+
+DROP TABLE IF EXISTS `guild_members`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `guild_members` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `member` varchar(50) DEFAULT NULL,
+  `dealer` varchar(50) DEFAULT NULL,
+  `type` tinyint(5) DEFAULT NULL,
+  `retired` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guild_members`
+--
+
+LOCK TABLES `guild_members` WRITE;
+/*!40000 ALTER TABLE `guild_members` DISABLE KEYS */;
+INSERT INTO `guild_members` VALUES (1,'Stephen Forrest','Ipswich Nissan',1,''),(2,'Fady Soliman','Ringwood Nissan',1,''),(3,'Ben Bilsborow','Jarrett Nissan',1,''),(4,'Tim Overall','North Jacklin Nissan',1,''),(5,'Emidio Tarzia','Lakeside Nissan',1,''),(6,'Josh Klein','Gatton Auto',1,''),(7,'Colin Wallace','Western Plains Nissan',1,''),(8,'Wayne Evans','Burwood Nissan',1,''),(9,'Maciek Finch','Macarthur Nissan',1,''),(10,'Richard Lefik','Barton\'s Wynnum Nissan',1,''),(11,'Ross Vella','Macarthur Nissan',1,''),(12,'Stephen Vassel','Muswellbrook Nissan',1,''),(13,'Russell Hodges','Bega Valley Nissan',1,''),(14,'Wayne Bultitude','Great Lakes Nissan',2,''),(15,'Jason Collins','Main North Nissan',2,''),(16,'Giuseppe Gentile','Hobart Nissan',2,''),(17,'Ben Maslen','Westpoint Nissan',2,''),(18,'Craig Scanlan','Warwick Nissan',2,''),(19,'Matt Shine','Parry NQ Nissan',2,''),(20,'Wayne Matau','Rockingham Nissan',2,''),(21,'Gary Gatehouse','Northern Nissan',2,''),(22,'Steve Rose','Total Nissan',2,''),(23,'Duncan Mclean','Lakeside Nissan',2,''),(24,'Braith Gartshore','Gaukroger Nissan',2,''),(25,'Simon Wise','Jarrett Nissan',2,''),(26,'Jeremy James','Burwood Nissan',2,''),(27,'Greg Dennis','Ferntree Gully Nissan',2,''),(28,'Jeanette Morgan','North Lakes Nissan',2,''),(29,'Jason Sarikakis','Parramatta Nissan',2,''),(31,'Mohit Arora','Ferntree Gully Nissan',2,''),(32,'Denis Chambers','Waverley Nissan',2,''),(33,'Stephen Threadingham','Innisfail Nissan',2,''),(34,'Paul Whitelaw','Thompson Nissan',2,''),(35,'Arthur Stamatogiannis','Lakeside Nissan',2,''),(36,'Christopher Hughes','Bay City Nissan',2,''),(37,'Adam Papuga','Berwick Nissan',2,''),(38,'Ben Fiorini','Lander Nissan',2,''),(39,'Geoff Cole','Fennessy Nissan',2,''),(40,'Con Spanos','Chano Trentin\'s AWD Centre',2,''),(41,'Nick Mcrae','Edney\'s Leongatha',2,''),(42,'Andrew Stafidas','Randwick Nissan',3,'2001'),(43,'Barry Angus','John Robinson Nissan',3,'2000'),(44,'Bill McEnally','Hornsby Nissan',3,'2005'),(45,'Bradley Loscher','Lennock Motors',3,'2011'),(46,'Brad Woodhouse','Steve Jarvin Nissan',3,'2004'),(47,'Charles Delaney','North Jacklin Nissan',3,'2000'),(48,'Claude Diab','Lander Nissan',3,'2014'),(49,'David Hocking','Northside Nissan',3,'2002'),(50,'David Kane','Bayside Nissan',3,'2013'),(51,'David Stopps','Castle Hill Nissan',3,'2016'),(52,'Davy Huang','Parramatta Nissan',3,'2012'),(53,'Doug Goss','D J Nissan',3,'2009'),(54,'Ed Staff','Moorooka Nissan',3,'2013'),(55,'Frank Caruana','North Jacklin Nissan',3,'2005'),(56,'Gary Larsen','Warragul Nissan',3,'2016'),(57,'Geoff Spratt','North Jacklin Nissan',3,'2006'),(58,'Graeme Drummond','Neil Beer Nissan',3,'2015'),(59,'Graham Reid','Bundaberg Nissan',3,'2014'),(60,'Graham Watson','Lennock Motors',3,'2015'),(61,'Greg Eckfeld','Ferntree Gully Nissan',3,'2007'),(62,'Ian Woolacott','Gatton Autos',3,'2009'),(63,'Jason Tan','Berwick Nissan',3,'2017'),(64,'Jim Cairns','Armstrong Auto Group',3,'2011'),(65,'Joe Lotorto','Robinson Nissan',3,'2007'),(66,'John Connolly','Ryde Nissan',3,'2008'),(67,'John Cooper','Bundaberg Nissan',3,'2016'),(68,'John Drake','Oakleigh Nissan',3,'2005'),(69,'John Gower','Ferntree Gully Nissan',3,'2002'),(70,'Keith McIntyre','D J Nissan',3,'2007'),(71,'Kevin Carney','D C Motors Nissan',3,'2006'),(72,'Luciano Capasso','Essendon Nissan',3,'2013'),(73,'Malcolm Bradshaw','John Page Motors',3,'2014'),(74,'Malcolm Douglas','Berwick Nissan',3,'2007'),(75,'Mark D’mello','Giant Nissan',3,'2007'),(76,'Mark Fait','Ferntree Gully Nissan',3,'2008'),(77,'Mark Horr','Moorooka Nissan',3,'2009'),(78,'Mark Madgwick','Lakeside Nissan',3,'2015'),(79,'Martin Smart','John Page Motors',3,'2011'),(80,'Martin Wood','Main North Nissan',3,'2016'),(81,'Michael Walton','Rod Grittner Nissan',3,'2018'),(82,'Nathan Witherow','Berwick Nissan',3,'2008'),(83,'Neil Burton','Armstrong Auto Group',3,'2008'),(84,'Neil Scott','Lismore Nissan',3,'2016'),(85,'Paul Bright','Cleveland Nissan',3,'2007'),(86,'Paul Downie','Wynnum Manly Nissan',3,'2015'),(87,'Paul Jones','Purnell Bros Nissan',3,'2000'),(88,'Paul Korteman','Werribee Nissan',3,'2016'),(89,'Peter Barrett','Bellbowie Motors',3,'2007'),(90,'Peter Taylor','Rex Gorell Nissan',3,'2015'),(91,'Phil Cullen','von Bibra Robina Nissan',3,'2007'),(92,'Ray Pannan','Metro Nissan',3,'2011'),(93,'Rob Dight','Alan Mance Nissan',3,'2005'),(94,'Robert Broemmer','John Robinson Nissan',3,'2004'),(95,'Ross Turner','Gladstone Nissan',3,'2015'),(96,'Roy McKinty','Ian Boettcher Nissan',3,'2004'),(97,'Sam Nicholls','National Capitol Motors',3,'2016'),(98,'Steve Grittner','Rod Grittner Nissan',3,'2007'),(99,'Steven Ogden','Hornsby Nissan',3,'2002'),(100,'Terry Clark','Chano Trentin’s AWD Centre',3,'2006'),(101,'Tom Young','The Big Garage',3,'2007'),(102,'Tony O’Neil','Macarthur Nissan',3,'2016'),(103,'Victor Kahill','Ryde Nissan',3,'2001'),(104,'Warren Richards','Lismore Nissan',3,'2009'),(105,'Will Quin','Ferntree Gully Nissan',3,'2016'),(106,'Ziad Azmarli','Main North Nissan',3,'2011');
+/*!40000 ALTER TABLE `guild_members` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-05-02 16:56:14

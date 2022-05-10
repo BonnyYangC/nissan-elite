@@ -1,0 +1,57 @@
+-- MySQL dump 10.13  Distrib 5.7.37, for Linux (x86_64)
+--
+-- Host: 192.168.10.19    Database: nissan_elite_prod_fy2021
+-- ------------------------------------------------------
+-- Server version	5.7.37-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `nissan_incentives`
+--
+
+DROP TABLE IF EXISTS `nissan_incentives`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `nissan_incentives` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `finish` date DEFAULT NULL,
+  `caption` text,
+  `image` varchar(255) DEFAULT NULL,
+  `pdf` varchar(255) DEFAULT NULL,
+  `region` varchar(255) DEFAULT 'All',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nissan_incentives`
+--
+
+LOCK TABLES `nissan_incentives` WRITE;
+/*!40000 ALTER TABLE `nissan_incentives` DISABLE KEYS */;
+INSERT INTO `nissan_incentives` VALUES (1,'Sales - June Bonus Points','2019-06-01','2019-06-30','','433a2bbe080947ec25aebc599dce997231e792cfd794fa86a146f65d49a02566.png','9f769a113bea6eba8db8f2c49bbd38fcc9e94e06f31c9754372af021b41bb388.pdf','All'),(2,'Fleet - Aug-Sep Qashqai Incentive','2019-08-01','2019-09-30','','4b84e4039bc113e94103fd413c84458d2498adb28d25bf83720de81b0cfb109c.jpg','2573e608c3dbc3451ce5449b1cb9f397d5755414cf3e9c827e967239816709b4.pdf','All'),(3,'Aftersales Bumper Incentive','2019-09-01','2019-10-31','','7a730dd026a1cde2a17988ae127cfdf84b34fac62c124fa1a5c6d309f6a55719.jpg','a422216f03a9a7b4a5a336191781bfe4b4075c809a98c7acbe5aad84b78f7e71.pdf','All'),(4,'Sales Manager & Retail Sales Consultant Accessories 4WD Study Tour','2019-09-01','2019-12-31','DOUBLE POINTS - SEPTEMBER & OCTOBER','7c460b267ab22627376957280c2d1a2487341adfcf2ee4e2a3c8badb67e72860.jpg','c8398a0b9ab76ecda12a7d8b0810d227b12f662d4bf49486843d2988957ba9a9.pdf','All'),(6,'Nissan Navarathon 4 Day ELITE incentive - Sales Managers','2019-09-20','2019-09-30','','2f6af9c1280cee1ef9e33081ee897f0ff29ca1a27f27f10de1fcab3bbf90603e.jpg','59e9c548b945e830be34ab1d71ced870f61488fda99c6334c587be2e2d901d6e.pdf','All'),(7,'Nissan Fleet Queenstown Explore & Wonder','2019-12-01','2020-03-31','','a17df6053285a5f98959b2f2fdbfb14b237f600078762745ba5c88a1ba7964a6.jpg','e7121f90370bd908f3763a82bb8366af72c9a4e14ea8b00d79c00bad6c2cd162.pdf','All'),(8,'Nissan Sales Queenstown Explore & Wonder','2019-12-01','2020-03-31','','e990fd9399920c0ef490e8cf3161152c2fd5beaaab7baae50bbcaf6f537a5c8b.jpg','369135106bc5521cfcefddf1064cfe083bb954cb33fbff8054b5c3f33aba3249.pdf','All'),(10,'Aftersales Team-based Trade Parts Incentive - Parts Manager and Team','2020-02-01','2020-03-31','','fe21fb2f671f291c4e2e18d22f4caf427d351a90071ac6df77f76e5bf518888b.jpg','4827fb1560707f708a8c863c538da77e17b1db223d0d018540f36b36b72fd724.pdf','All'),(11,'Nissan Navara N-TREK WARRIOR Walk Around Competition','2020-05-30','2020-06-17','','9bafe9fc2fe6b98ee7d824716778a71e49d5c81e0598bf170f0c560c0ca18b47.jpg','e655088b17e5486f5a9580e6d029d896d151d90a6e6c5dfc68c698009c21bc5a.pdf','All'),(12,'Nissan JUKE  Walk Around Competition','2020-07-01','2020-07-23','','e68d29867c9ae48009ad731038bfb8efe495fb93ec527d7bcd99c748be5b0ba2.jpg','4b889bdc09dcf278d745f85247b4a564033ae6b9f685c989a6ce00a80f646925.pdf','All'),(13,'Super Saturdays Sales','2020-06-01','2020-06-30','','2f99a4b34f4146c499679ac5cca62a0bb2ed52fd6983c9499a5da85c4eaeed42.jpg','6f4ce52fb3fc1258eae65863077b5567716d8536edf1ae03d5dce077fd785fbb.pdf','All'),(14,'Fleet  Fast Finish $500 - July-Sept','2020-07-01','2020-09-30','','8d7864bcc580a8f254ee0a7b4ffe35d5e7be504c77730e071df8119de5174485.jpg','a3b34b0132e238b79a29c694bcabfa8b539f98f5c614b625db31155e7cd5f598.pdf','All'),(15,'LEAF Bonus Points July-September','2020-07-01','2020-09-30','','980ab9dbb211acf61bdc447b6ca3246263093fee1ed1e5cabaf8ce7554787322.jpg','78ae6ebc771fcf37e64c63e2551755645835acabb26813dbad3b1a8f2391b432.pdf','All'),(26,'Keep Safe and Innovate Competition','2020-07-27','2020-08-31','','a34d72dbbedc24e21907405dad0b30c80c77a2c87bfe67dc6abb9f57e19ee75f.jpg','8c07da0582367106dd8e3cc34826d8faf5394ec39e878a203dde67dda5a5f44a.pdf','All'),(27,'Workshop Parts Sales & Customer Focus Competition - PARTS & SERVICE MANAGERS & SERVICE ADVISORS','2020-10-01','2020-12-31','','8666fadcc70e113190738ac99008d4692d09a69c2a91c3a2215aedcea5c97885.jpg','e1706e647a57d64e97c1c4edfa918f8d0ee9a402e25f5484d7222a84e4438a4e.pdf','All'),(28,'LEAF Electrify your Sales Process','2020-10-28','2020-12-07','','54afeae7b024ad4c50438a47deef5a556739691660cbaf2d635b278187f5440d.png','718531ca2239c11d4ca5b4ad37f5c399bfbe9fb46e80adc33a3705f56ef5dcf8.pdf','All'),(29,'Summer Cash Incentive - SALES MANAGERS','2020-11-01','2020-12-31','','5e6c794ba87eaaa610d502074aaba06a5e6f60a709f874568fe498d6a23cdbf2.png','f149dae1c86a8aaa438eded5d36d1a983322620f38054afb2c833c5975b48bcd.pdf','All'),(31,'GO JUKE INCENTIVE - SALES MANAGERS','2020-11-01','2020-12-31','','e227478e3bca696d8e29a88e6d5cc41de64a164208fc3196c36936b55e29c908.jpg','4e465c656940dbf7b654b8a7845ea51c29910da16840f111f8b64e665d243dbb.pdf','All'),(32,'JUKE TRIPLE ELITE POINTS - RETAIL SALES CONSULTANTS','2020-11-01','2020-12-31','','e07fb2efd0064740be457356c2b70e292dfd7eab5b4b139a33d4ba1e31f0007c.jpg','b17004b467f69608a2406e4023091113039e60d3d2c90ab171addb472dec8ce4.pdf','All'),(33,'Q4 JUKE Sprint Incentive - SALES MANAGERS','2021-01-01','2021-03-31','','9f05157385fed86d99b1865228b8b046a0d4020359a48868ff4b757741d3e58d.jpg','116e4d8f67a91e321a6372c86b22ab534e246bddc352d09b57385e4cdd5b289f.pdf','All'),(34,'Q4 JUKE TRIPLE ELITE POINTS - RETAIL SALES CONSULTANTS','2021-01-01','2021-03-31','','51dde9d7a2092cf3584bda819113fa84292cf32db44d3b0499f99a8bd48fef4b.jpg','5f56e10776bd3f02b9528dab9d51a5d6067478c99187578adc2222e6a688fab2.pdf','All'),(35,'Super Charged Settlements Incentive - FINANCE & INSURANCE MANAGERS','2021-02-01','2021-03-31','','58c25d3a468b313cb5c5cd32e518fce7e3aa6e9e6807404024e3b909b2ab9418.jpg','5e8724d91c3999fbb2dccec0b9fece8f55405525117f6ef78c4879c8ce4ece74.pdf','All'),(36,'Double Points Incentive - SALES MANAGERS & RETAIL SALES CONSULTANTS','2021-03-01','2021-03-31','','44b4bddcb6eb7faa54cdd48a58030e2cd60a2c75a4c249e57082aa8461d7aa65.png','fb0043f3d728b64cc442e96863a20351a8ca8da5c80cfb2b44f14939c9859595.pdf','All'),(37,'Fast Finish $500 Incentive  - FLEET SALES EXECUTIVES','2021-03-01','2021-03-31','','5067ec710d6d7d6560d22651b50078de715bbdb10151bad52de0a4e0815e212f.jpg','0c46058ed35b0ca5e3f7f7699815fac91bb6666d4bb10e9fd4fabb2878b917e2.pdf','All'),(38,'BOOST Follow up% AND BOOST i_ELITE points - SALES MANAGERS & RETAIL SALES CONSULTANTS','2021-03-01','2021-03-31','','8b1e820ddeea4e8097c03bbe0d8508caed32f89fe58c0069c3f1ec0064de5b28.png','1da9f8c5b0631f134ab360ad020b018f4c03f8517e1b4f0b6a7349a0c99e6bd4.pdf','All'),(39,'JUKE JUNE CASH & TRIPLE ELITE POINTS','2021-05-31','2021-07-31','','eb7247baebd34a9a758fe48e1e530ded6998058b9eecf93a05aeb9b972a3d1cc.jpg','1354167ac8cb8c9656e0272fe39703e76c730e84467ba11fb40f6be6a95998eb.pdf','All'),(40,'JUNE EPIC i_ELITE POINTS','2021-05-31','2021-06-30','','6231c0fd82e586ece7672d8c204d1fd795276c6b9a0d545bc63d5890b0999e50.png','e1fd69eebb66ff1f69289b507faead1d9158b7ca9970ea43143a30b1e135b5ff.pdf','All'),(41,'PRE-PAID MAINTENANCE \"KICK OFF\"','2021-05-31','2021-09-30','','0b56dea2bf539da2f316aca4a2d742f871d1834d6555e8cdcdc78a75fbaa4e58.png','8906bf0c7589962ad24f4e290c69528f7f648e457e564d3a7dd0323bcc69f321.pdf','All'),(42,'TURBO CHARGE YOUR STATUS','2021-08-31','2022-03-31','','ae5e7cd64b7d77db35a02d2f81461aa08cac3ada6a31b4c4a1fa14031c31f2e5.jpg','af2a7accc04f099f78c5599869a1fcac5707b8e8d9005a3891c925a435e19c9e.pdf','All'),(43,'NissanConnect Service Incentive','2021-10-31','2022-02-28','','ce09d720ac6fae544176c525cbe7211ba43a01d1dda5ac9c123220c09380b3e0.png','d220a949732d527bef2d8f5c22b1dfd530acc36212d034d948d69875d84c1cf5.pdf','All'),(44,'FUTURE SALES INCENTIVE','2021-11-30','2022-01-31','','2fedcb9a77e9e57709b126a72dc636c41e9dd7e14915c1008611e92cc6691ae9.jpg','dd56d4cf34b10e3de6e95cedcff45ef764d322197881eab3a4f29f1174c7846d.pdf','All'),(45,'Customer Experience FY21 Fast Finish & FY22 Fast Start - Service','2022-02-28','2022-03-31','','6ac6f428c316458f23b9b82e9a8ec2eee823d671aff5c4429eb4669e1f505f47.png','517409bf8df449a4c739a637affb11d5a91e5fa70de5042fc143eab094213a2f.pdf','All');
+/*!40000 ALTER TABLE `nissan_incentives` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-05-02 16:54:24
