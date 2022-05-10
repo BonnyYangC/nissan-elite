@@ -14,41 +14,41 @@
 
                 <br>
                 <br>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block">Download/View PDF</button>
                 </a>
             </div>
             <div class="page-widget col-3">
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=2') }}">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=2') }}">
                     <button type="button" class="btn elite-button elite-button-active btn-lg btn-block mb-1">Introduction</button>
                 </a>
 
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=5') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=5') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">How to Register</button>
                 </a>
 
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=8') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=8') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Sales</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=16') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=16') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Fleet</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=22') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=22') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Stock Controller</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=26') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=26') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">F&amp;I Manager</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=30') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=31') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Service</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=37') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=38') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Parts</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=42') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=43') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Recognition</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE_2021.pdf#page=49') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=50') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Terms &amp; Conditions </button>
                 </a>
 
