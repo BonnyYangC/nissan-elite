@@ -78,6 +78,12 @@
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <div class="row">
+                <iframe src="https://destination.com.au/nissan/ELITE/The_Guild/3695-NIS1018-Nissan_ELITE_Guild_2021.mp4" frameborder="0" allowfullscreen></iframe>
+                <a href="">NOOSA INDUCTEES and more…</a>
+                <a href="https://nissanevents.pixieset.com/nissantheguildnoosafy20/">View THE GUILD FY20 NOOSA PHOTOS</a>
+            </div>
+            <p>&nbsp;</p>
+            <div class="row">
                 <iframe src="https://www.youtube.com/embed/KaBL4Y18oco" frameborder="0" allowfullscreen></iframe>
                 <a href="https://mailchi.mp/35dc020024bd/nissan-dealer-excellence-fy18-results-3118361">HOBART INDUCTEES and more…</a>
             </div>
