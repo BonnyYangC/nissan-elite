@@ -140,15 +140,7 @@
                         "title": "NIC sale (mthly Cap 20 units) GUIDE",
                         "top": ["Sales Manager", "per unit"],
                         "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
-                    }]
-                },
-                {
-                    "identifier": "nic_sale_nfsa",
-                    "label": "NIC sale NFSA",
-                    "color": "#999999",
-                    "order": 6,
-                    "title": "NIC sale financed by NFSA(mthly Cap 20 units)",
-                    "guides": [{
+                    },{
                         "title": "NIC sale financed by NFSA(mthly Cap 20 units) GUIDE",
                         "top": ["Sales Manager", "per unit"],
                         "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
@@ -158,7 +150,7 @@
                     "identifier": "dealer_forecast",
                     "label": "Dealer Forecast",
                     "color": "#999999",
-                    "order": 7,
+                    "order": 6,
                     "title": "DEALER RETAIL FORECAST",
                     "guides": [{
                         "title": "DEALER RETAIL FORECAST GUIDE",
@@ -171,7 +163,7 @@
                     "identifier": "sos",
                     "label": "Overall Sat",
                     "color": "#999999",
-                    "order": 8,
+                    "order": 7,
                     "title": "SALES OVERALL SATISFACTION - Dealership's NPS3",
                     "guides": [{
                         "title": "Sales overall satisfaction - Dealership's NPS3 GUIDE",
@@ -184,7 +176,7 @@
                     "identifier": "booked_check",
                     "label": "% Booked",
                     "color": "#FFCC99",
-                    "order": 9,
+                    "order": 8,
                     "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK",
                     "guides": [{
                         "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK GUIDE",
@@ -196,7 +188,7 @@
                     "identifier": "follow_up",
                     "label": "% Follow Up",
                     "color": "#C0C0C0",
-                    "order": 10,
+                    "order": 9,
                     "title": "PERCENTAGE FOLLOWED UP NPS3 ROLLING score",
                     "guides": [{
                         "title": "PERCENTAGE FOLLOWED UP NPS3 ROLLING score GUIDE",
@@ -208,7 +200,7 @@
                     "identifier": "hot",
                     "label": "Hot Alert",
                     "color": "#BDB76B",
-                    "order": 11,
+                    "order": 10,
                     "title": "Abandoned HOT ALERTS",
                     "guides": [{
                         "title": "HOT ALERTS GUIDE",
@@ -220,7 +212,7 @@
                     "identifier": "pmp",
                     "label": "PMP",
                     "color": "#ff0000",
-                    "order": 12,
+                    "order": 11,
                     "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
                     "guides": [{
                         "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
@@ -232,7 +224,7 @@
                     "identifier": "apnur",
                     "label": "APNUR",
                     "color": "#CCFF99",
-                    "order": 13,
+                    "order": 12,
                     "title": "APNUR PERFORMANCE",
                     "guides": [{
                         "title": "APNUR PERFORMANCE GUIDE",
@@ -256,18 +248,18 @@
                     "identifier": "training",
                     "label": "Training",
                     "color": "#FFFACD",
-                    "order": 14,
+                    "order": 13,
                     "title": "TRAINING",
-                    "ref": "Refer to the <a href=\"{url('dashboard/MembersGuide')}\"> ELITE22 Member Guide</a> for full details.",
-                    "guides": {
+                    "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
+                    "guides": [{
                         "title": "TRAINING GUIDE",
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
-                        "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Dealership Manager (O)", "", 200, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
                             ["Certified Dealership Manager (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""], ["Bonus", "", "", 2000]]
-                    }
+                    }]
                 }
             ],
             "R": [
@@ -388,7 +380,7 @@
                     "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
                     "guides": {
                         "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
                         "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
                             ["Certified Sales Executive (VC & A)", "", 375, ""],
@@ -493,7 +485,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points per Quarter"],
                         "rows": [["Stock Controller Pathway (O & VC)", 450]],
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 24"
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 24"
                     }
                 }],
             "I": [
@@ -638,7 +630,7 @@
                     "color": "#CCFF99",
                     "order": 3,
                     "title": "APNUR PERFORMANCE",
-                    "ref": "Refer to the <a href=\"{url('dashboard/MembersGuide')}\"> ELITE22 Member Guide</a> for full details.",
+                    "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
                     "guides": [{
                         "title": "APNUR PERFORMANCE GUIDE",
                         "colspan": "Navara",
@@ -692,7 +684,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Dealership Manager (O)", 200, ""], ["Employee Test Drive Experience (O)", 100, ""], ["Certified Dealership Manager (VC & A)", 375, ""], ["Bonus", "", 2000]],
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
                     }
                 }],
             "PS": [
@@ -737,7 +729,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly"],
                         "rows": [["Certified Parts Advisor (O & VC)", 375], ["Employee Test Drive Experience (O)", 100]],
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 40"
                     }
                 }],
             "SM": [
@@ -865,7 +857,7 @@
                             ["Certified Dealership Manager (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""], ["Bonus", "", "", 2000]],
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
                     }
                 }],
             "SA": [
@@ -969,7 +961,7 @@
                             ["Certified Service Executive  (VC & A)", "", 375, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""]],
-                        "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
+                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 34"
                     }
                 }]
         }

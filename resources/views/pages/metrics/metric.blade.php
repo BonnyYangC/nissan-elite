@@ -20,7 +20,7 @@
         @endforeach
     </table>
     @if ($metricData->ref)
-        <p><em>{{ $metricData->ref }}</em></p>
+        <p><em>{!! $metricData->ref !!}</em></p>
     @endif
 </div>
 <div class="col-5 metric-guide">
@@ -47,13 +47,13 @@
         </table>
         @if (isset($guide['note']))
             <em>
-                {{ data_get($guide, 'note')}}
+                {!! data_get($guide, 'note') !!}
             </em>
         @endif
         <br><br>
         @if (isset($guide['criteria']))
             <em>
-                <span style="color:#c40030">{{ data_get($guide, 'criteria') }}</span>
+                <span style="color:#c40030">{!! data_get($guide, 'criteria') !!}</span>
             </em>
         @endif
     @endforeach

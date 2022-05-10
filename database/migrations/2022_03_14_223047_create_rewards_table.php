@@ -29,49 +29,49 @@ class CreateRewardsTable extends Migration {
         });
 
         DB::table('rewards')->insert(array([
+            'position' => 'M', // Sales Manager
+            'commendation' => '15000',
+            'commendation_reward' => '100',
+            'bronze' => '28000',
+            'bronze_reward' => '750',
+            'silver' => '38000',
+            'silver_reward' => '1500',
+            'gold' => '48000',
+            'gold_reward' => '2000',
+            'max' => '55000'
+        ],[
+            'position' => 'R', // Retail Sales Consultants
+            'commendation' => '15000',
+            'commendation_reward' => '100',
+            'bronze' => '25000',
+            'bronze_reward' => '750',
+            'silver' => '35000',
+            'silver_reward' => '1500',
+            'gold' => '45000',
+            'gold_reward' => '2000',
+            'max' => '50000'
+        ],[
             'position' => 'F', // Fleet Sales Executives
             'commendation' => '12000',
             'commendation_reward' => '100',
-            'bronze' => '18000',
+            'bronze' => '22000',
             'bronze_reward' => '750',
-            'silver' => '27000',
+            'silver' => '32000',
             'silver_reward' => '1500',
-            'gold' => '36000',
+            'gold' => '40000',
             'gold_reward' => '2000',
             'max' => '50000'
-        ],[
-            'position' => 'M', // Sales Manager
-            'commendation' => '12000',
-            'commendation_reward' => '100',
-            'bronze' => '18000',
-            'bronze_reward' => '750',
-            'silver' => '27000',
-            'silver_reward' => '1500',
-            'gold' => '36000',
-            'gold_reward' => '2000',
-            'max' => '50000'
-        ],[
-            'position' => 'R', // Retail Sales Consultants
-            'commendation' => '12000',
-            'commendation_reward' => '100',
-            'bronze' => '18000',
-            'bronze_reward' => '750',
-            'silver' => '27000',
-            'silver_reward' => '1500',
-            'gold' => '36000',
-            'gold_reward' => '2000',
-            'max' => '43000'
         ],[
             'position' => 'SC', // Stock Controller
-            'commendation' => '10000',
+            'commendation' => '12000',
             'commendation_reward' => '100',
-            'bronze' => '14000',
+            'bronze' => '22000',
             'bronze_reward' => '500',
-            'silver' => '18000',
+            'silver' => '32000',
             'silver_reward' => '850',
-            'gold' => '24000',
+            'gold' => '40000',
             'gold_reward' => '1000',
-            'max' => '30000'
+            'max' => '50000'
         ],[
             'position' => 'I', // F&I Manager
             'commendation' => '11000',
@@ -85,48 +85,48 @@ class CreateRewardsTable extends Migration {
             'max' => '50000'
         ],[
             'position' => 'PM', // Parts Manager
-            'commendation' => '9000',
+            'commendation' => '12000',
             'commendation_reward' => '100',
-            'bronze' => '14000',
+            'bronze' => '22000',
             'bronze_reward' => '500',
-            'silver' => '23000',
+            'silver' => '32000',
             'silver_reward' => '1000',
-            'gold' => '33000',
+            'gold' => '40000',
             'gold_reward' => '1500',
-            'max' => '34500'
+            'max' => '50000'
         ],[
             'position' => 'PS', // Parts Sales Rep
-            'commendation' => '9000',
+            'commendation' => '12000',
             'commendation_reward' => '100',
-            'bronze' => '14000',
+            'bronze' => '22000',
             'bronze_reward' => '500',
-            'silver' => '23000',
+            'silver' => '32000',
             'silver_reward' => '1000',
-            'gold' => '33000',
+            'gold' => '40000',
             'gold_reward' => '1500',
-            'max' => '34500'
+            'max' => '50000'
         ],[
             'position' => 'SM', // Service Manager
-            'commendation' => '9000',
+            'commendation' => '12000',
             'commendation_reward' => '100',
-            'bronze' => '14000',
+            'bronze' => '22000',
             'bronze_reward' => '500',
-            'silver' => '23000',
+            'silver' => '32000',
             'silver_reward' => '1000',
-            'gold' => '33000',
+            'gold' => '40000',
             'gold_reward' => '1500',
-            'max' => '34500'
+            'max' => '50000'
         ],[
             'position' => 'SA', // Service Adviser
-            'commendation' => '9000',
+            'commendation' => '12000',
             'commendation_reward' => '100',
-            'bronze' => '14000',
+            'bronze' => '22000',
             'bronze_reward' => '500',
-            'silver' => '23000',
+            'silver' => '32000',
             'silver_reward' => '1000',
-            'gold' => '33000',
+            'gold' => '40000',
             'gold_reward' => '1500',
-            'max' => '34500'
+            'max' => '50000'
         ]));
     }
 
