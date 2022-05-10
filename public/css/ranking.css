@@ -1,7 +1,5 @@
 .squarebutton {
     font-family: 'nissan_brandlight', Helvetica, Arial, sans-serif;
-    /*background-repeat: no-repeat;
-    background-position: center;*/
     text-align: left;
     padding: 100px 50px;
     font-size: 35px;
@@ -11,29 +9,37 @@
 
 .button-sales{
     background-image:url(../images/rankings/Sales.png);
-    /*background-repeat: no-repeat;
-    background-position: center;*/
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 }
 
 .button-fleet{
     background-image:url(../images/rankings/Fleet.png);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .button-service{
     background-image:url(../images/rankings/Service.png);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .button-parts{
     background-image:url(../images/rankings/Parts.png);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .button-admin{
     background-image:url(../images/rankings/Admin.png);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .ranking .accordion-header {
     border: none;
