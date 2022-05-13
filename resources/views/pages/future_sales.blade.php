@@ -27,9 +27,9 @@
                 <a href="{{ route('future_sales.postcard') }}">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">View and Order Postcards</button>
                 </a>
-                <a href="https://mailchi.mp/acee0061149c/nissan-dealer-business-development-group-meeting1-3121262?e=1dac1983c2" target="_blank">
+                <!--<a href="https://mailchi.mp/acee0061149c/nissan-dealer-business-development-group-meeting1-3121262?e=1dac1983c2" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Incentive – ELITE Bonus Points</button>
-                </a>
+                </a>-->
             </div>
         </div>
         <div class="page-section-wrap dashboard-section"></div>
