@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Helper\Color;
-use App\Helper\Utility;
-use App\Services\StatusServices\GageStatus;
+use App\Services\MetricsServices\SalesManager;
+use App\Helper\{Role, Utility};
 use Illuminate\Support\Facades\Auth;
 
 class MetricsService {
@@ -15,6 +14,33 @@ class MetricsService {
      * @return void
      */
     public function __construct() { }
+
+    public function getMetricsService() {
+        $currentUser = Auth::user();
+        switch ($currentUser->position->title) {
+            //case Role::FLEET_SALES_EXECUTIVES:
+            //    return new FleetSalesExecutives();
+            case Role::SALES_MANAGER:
+                return new SalesManager();
+            /*case Role::RETAIL_SALES_CONSULTANTS:
+                return new RetailSalesConsultants();
+            case Role::STOCK_CONTROLLER:
+                return new StockController();
+            case Role::FI:
+                return new FI();
+            case Role::PARTS_MANAGER:
+                return new PartsManager();
+            case Role::PARTS_SALES_REP:
+                return new PartsSalesRep();
+            case Role::SERVICE_MANAGER:
+                return new ServiceManager();
+            case Role::SERVICE_ADVISERS:
+                return new ServiceAdviser();*/
+
+            default:
+                break;
+        }
+    }
 
     /**
      * @param string $label
@@ -94,6 +120,7 @@ class MetricsService {
         $metricsDefinations = $currentUser->position->metrics->sortBy('order');
 
         $chartData = [];
+        $tableData = [];
         foreach(Utility::MONTHS_SHORT as $month) {
             $dateString = date('Y-m-01', strtotime($month));
             if(isset($metrics[$dateString])) {
@@ -101,20 +128,23 @@ class MetricsService {
                     if (!isset($chartData[$m->identifier])) $chartData[$m->identifier] = [['Month', 'Points']];
                     if (isset($metrics[$dateString][$m->identifier])) {
                         $chartData[$m->identifier][] = [$month, $metrics[$dateString][$m->identifier]];
+                        $tableData[$m->identifier][] = $metrics[$dateString][$m->identifier.'_result'];
                     } else {
                         $chartData[$m->identifier][] = [$month, 0];
+                        $tableData[$m->identifier][] = 0;
                     }
                 }
             } else {
                 foreach ($metricsDefinations as $m) {
                     if (!isset($chartData[$m->identifier])) $chartData[$m->identifier] = [['Month', 'Points']];
                     $chartData[$m->identifier][] = [$month, 0];
+                    $tableData[$m->identifier][] = 0;
                 }
             }
         }
-        $metricsDefinations->each(function($m) use ($chartData) {
+        $metricsDefinations->each(function($m) use ($chartData, $tableData) {
             $m->chart_data = json_encode($chartData[$m->identifier]);
-            $m->table_data = ['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100']];
+            $m->table_data = ['RESULT' => $tableData[$m->identifier]];//['100','100','100','100','100','100','100','100','100','100','100','100']
             $m->chart_name = 'chart_'.$m->identifier;
             // $m->guides = json_decode($m->guides);
         });
