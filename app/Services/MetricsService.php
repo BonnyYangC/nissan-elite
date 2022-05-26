@@ -17,7 +17,7 @@ class MetricsService {
 
     public function getMetricsService() {
         $currentUser = Auth::user();
-        switch ($currentUser->position->title) {
+        switch ($currentUser->position->code) {
             //case Role::FLEET_SALES_EXECUTIVES:
             //    return new FleetSalesExecutives();
             case Role::SALES_MANAGER:
@@ -109,45 +109,5 @@ class MetricsService {
             // $this->_buildMetricsChartData('Incentive', Colors::GOLD, $incentivesForDashboard)
         ], $this->getBaseMetrics($metrics)));
 
-    }
-
-    /**
-     * @param $metrics
-     * @return mixed
-     */
-    public function buildMetricsData($metrics) {
-        $currentUser = Auth::user();
-        $metricsDefinations = $currentUser->position->metrics->sortBy('order');
-
-        $chartData = [];
-        $tableData = [];
-        foreach(Utility::MONTHS_SHORT as $month) {
-            $dateString = date('Y-m-01', strtotime($month));
-            if(isset($metrics[$dateString])) {
-                foreach ($metricsDefinations as $m) {
-                    if (!isset($chartData[$m->identifier])) $chartData[$m->identifier] = [['Month', 'Points']];
-                    if (isset($metrics[$dateString][$m->identifier])) {
-                        $chartData[$m->identifier][] = [$month, $metrics[$dateString][$m->identifier]];
-                        $tableData[$m->identifier][] = $metrics[$dateString][$m->identifier.'_result'];
-                    } else {
-                        $chartData[$m->identifier][] = [$month, 0];
-                        $tableData[$m->identifier][] = 0;
-                    }
-                }
-            } else {
-                foreach ($metricsDefinations as $m) {
-                    if (!isset($chartData[$m->identifier])) $chartData[$m->identifier] = [['Month', 'Points']];
-                    $chartData[$m->identifier][] = [$month, 0];
-                    $tableData[$m->identifier][] = 0;
-                }
-            }
-        }
-        $metricsDefinations->each(function($m) use ($chartData, $tableData) {
-            $m->chart_data = json_encode($chartData[$m->identifier]);
-            $m->table_data = ['RESULT' => $tableData[$m->identifier]];//['100','100','100','100','100','100','100','100','100','100','100','100']
-            $m->chart_name = 'chart_'.$m->identifier;
-            // $m->guides = json_decode($m->guides);
-        });
-        return $metricsDefinations;
     }
 }

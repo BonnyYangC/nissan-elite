@@ -19,8 +19,8 @@ class CreateMetricsTable extends Migration
 
             $table->string('identifier');
             $table->string('type');   // shared or custom
-            $table->string('label');  // chart legend label
-            $table->string('color');  // chart legend color
+            $table->string('label')->nullable();  // chart legend label
+            $table->string('color')->nullable();  // chart legend color
             $table->unsignedInteger('order');
             $table->string('title');
             $table->json('guides')->nullable();
