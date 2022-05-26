@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Services\MetricsServices\RetailSalesConsultants;
 use App\Services\MetricsServices\SalesManager;
 use App\Helper\{Role, Utility};
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +23,9 @@ class MetricsService {
             //    return new FleetSalesExecutives();
             case Role::SALES_MANAGER:
                 return new SalesManager();
-            /*case Role::RETAIL_SALES_CONSULTANTS:
+            case Role::RETAIL_SALES_CONSULTANTS:
                 return new RetailSalesConsultants();
-            case Role::STOCK_CONTROLLER:
+            /*case Role::STOCK_CONTROLLER:
                 return new StockController();
             case Role::FI:
                 return new FI();
