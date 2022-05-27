@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\MetricsService;
-use App\Services\PagesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

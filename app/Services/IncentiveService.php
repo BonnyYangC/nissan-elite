@@ -22,6 +22,24 @@ class IncentiveService {
     }
 
     /**
+     * @param string $period
+     * @param string $region
+     * @return array
+     */
+    public function getIncentives(string $period, string $region) {
+        switch ($period) {
+            case 'current':
+                return $this->current([$region]);
+            case 'finished':
+                return $this->justFinished([$region]);
+            case 'past':
+                return $this->past([$region]);
+            case 'coming':
+                return $this->upComing([$region]);
+        }
+    }
+
+    /**
      * @param array $region
      * @return array
      */

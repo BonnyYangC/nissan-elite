@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PagesService;
+use App\Services\ServiceResolver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller {
 
-    /** @var PagesService  */
-    private $pagesService;
+    /** @var ServiceResolver  */
+    private $resolver;
 
     /**
      * Create a new controller instance.
-     * @param PagesService $pagesService
+     * @param ServiceResolver $resolver
      * @return void
      */
-    public function __construct(PagesService $pagesService, Request $request) {
+    public function __construct(ServiceResolver $resolver, Request $request) {
         parent::__construct($request);
-        $this->pagesService = $pagesService;
+        $this->resolver = $resolver;
     }
 
     /**
@@ -43,35 +43,35 @@ class PagesController extends Controller {
      */
     private function userDashboard() {
         //monthly points chart
-        $this->dataForView['monthlyPoints'] = $this->pagesService->getMonthlyPointsData();
+        $this->dataForView['monthlyPoints'] = $this->resolver->resultService()->buildResultsData();
 
         /**
          * @var array $rankings
          * @var array $rankingsPlatinum
          */
-        extract($this->pagesService->getLeadBoardData());
+        extract($this->resolver->rankingService()->getLeadBoardData());
         //leader board table
         $this->dataForView['rankings'] = $rankings;
         $this->dataForView['rankingsPlatinum'] = $rankingsPlatinum;
         //current status level
-        $ytd = $this->pagesService->getYearToDateData();
+        $ytd = $this->resolver->resultService()->getYearToDateData();
         $ytd = $ytd ? $ytd : '';
         $this->dataForView['status'] = (object)array_merge([
             'ytd' => $ytd
-        ], $this->pagesService->getStatusData($ytd));
+        ], $this->resolver->statusService()->buildStatusData($ytd));
         // dollar rewards
-        $this->dataForView['rewards'] = $this->pagesService->getRewardsData();
+        $this->dataForView['rewards'] = $this->resolver->rewardsService()->buildRewardsData();
         // metrics
-        $this->dataForView['metrics'] = $this->pagesService->getMetricsData(true);
+        $this->dataForView['metrics'] = $this->resolver->metricsService()->getMetricsData(true);
 
         // current ranking status
-        $this->dataForView['rankingStatus'] = $this->pagesService->getCurrentRanking();
+        $this->dataForView['rankingStatus'] = $this->resolver->rankingService()->getCurrentRanking();
 
         //year to date
         $this->dataForView['ytd'] = $ytd;
 
         //historical points
-        $this->dataForView['historical'] = $this->pagesService->getHistoricalData();
+        $this->dataForView['historical'] = $this->resolver->historicalService()->getHistoricalData();
         return $this->render('pages.dashboard');
     }
 
@@ -79,7 +79,7 @@ class PagesController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     private function regionStaffDashboard() {
-        $this->dataForView['regions'] = $this->pagesService->getRegions();
+        $this->dataForView['regions'] = $this->resolver->regionService()->load();
         return $this->render('pages.territory_report');
     }
 
@@ -92,7 +92,7 @@ class PagesController extends Controller {
         $this->dataForView['currentUser'] = $currentUser;
         $this->dataForView['menuName'] = 'metrics';
         //metrics
-        $this->dataForView['metrics'] = $this->pagesService->getMetricsData();
+        $this->dataForView['metrics'] = $this->service->getMetricsData();
 /*var_dump($currentUser->results()->pluck('metrics', 'period'));
 $this->dataForView['metricData'] = [
     'title' => '1. metrics test title',
@@ -117,11 +117,12 @@ $this->dataForView['metricData'] = [
      */
     public function loyalty() {
         $this->dataForView['menuName'] = 'loyalty';
+        $this->resolver->gageService()->loyalty_status_level();
         //year to date
-        $this->dataForView['ytd'] = $this->pagesService->getYearToDateData();
+        $this->dataForView['ytd'] = $this->resolver->resultService()->getYearToDateData();
 
         //historical points
-        $this->dataForView['historical'] = $this->pagesService->getHistoricalData();
+        $this->dataForView['historical'] = $this->resolver->historicalService()->getHistoricalData();
         return $this->render('pages.loyalty');
     }
 
@@ -134,9 +135,9 @@ $this->dataForView['metricData'] = [
         $this->dataForView['currentUser'] = $currentUser;
         $this->dataForView['menuName'] = 'incentives';
 
-        $this->dataForView['current'] = $this->pagesService->getIncentives('current', 'All');
-        $this->dataForView['finished'] = $this->pagesService->getIncentives('finished', 'All');
-        $this->dataForView['past'] = $this->pagesService->getIncentives('past', 'All');
+        $this->dataForView['current'] = $this->resolver->incentivesService()->getIncentives('current', 'All');
+        $this->dataForView['finished'] = $this->resolver->incentivesService()->getIncentives('finished', 'All');
+        $this->dataForView['past'] = $this->resolver->incentivesService()->getIncentives('past', 'All');
         return $this->render('pages.incentives');
     }
 
@@ -212,7 +213,7 @@ $this->dataForView['metricData'] = [
      */
     public function faq() {
         $this->dataForView['menuName'] = 'faq';
-        $this->dataForView['faqs'] = $this->pagesService->getFaqs();
+        $this->dataForView['faqs'] = $this->resolver->faqService()->load();
         return $this->render('pages.faq');
     }
 }

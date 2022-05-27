@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Auth;
 class RankingService extends BaseService {
 
     /**
+     * @return array
+     */
+    public function getLeadBoardData(): array {
+        // 获取了所有的 Rankings: Get all rankings
+        $rankings = $this->buildRankingData(Ranking::AWARD_STATUS);
+        $rankingsPlatinum = $this->buildRankingData(Ranking::AWARD_PLATINUM);
+
+        return compact('rankings', 'rankingsPlatinum');
+    }
+
+    /**
      * @param string $type
      * @return array
      */
