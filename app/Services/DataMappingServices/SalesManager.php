@@ -14,13 +14,13 @@ class SalesManager extends MonthlyDataMapping {
             'matched_ow_result' => $row['score_matchOW_'] !== '' ? intval($row['score_matchOW_']) : 0,
 
             'new_vehicle' => $row['points_SALES_STATUS_'] !== '' ? intval($row['points_SALES_STATUS_']) : 0,
-            'new_vehicle_result' => ($row['pcent_ACT_S_'] !== '' ? $row['pcent_ACT_S_'] : '0') . '%',
+            'new_vehicle_result' => ($row['pcent_ACT_S_'] !== '' ? number_format(floatval($row['pcent_ACT_S_'])*100) : '0') . '%',
 
             'fsp' => $row['points_FUTURE_P'] !== '' ? intval($row['points_FUTURE_P']) : 0,
             'fsp_result' => $row['SALES_FUTURE_P'] !== '' ? intval($row['SALES_FUTURE_P']) : 0,
 
             'nfv' => $row['points_NFV%'] !== '' ? intval($row['points_NFV%']) : 0,
-            'nfv_result' => ($row['pcent_NFV%'] !== '' ? $row['pcent_NFV%'] : '0') . '%',
+            'nfv_result' => ($row['pcent_NFV%'] !== '' ? number_format(floatval($row['pcent_NFV%'])*100) : '0') . '%',
 
             'nic_sale' => $row['points_NIC'] !== '' ? intval($row['points_NIC']) : 0,
             'nic_sale_result' => $row['sales_NIC'] !== '' ? intval($row['sales_NIC']) : 0,
@@ -46,11 +46,11 @@ class SalesManager extends MonthlyDataMapping {
             'pmp_result' => $row['sales_PMP'] !== '' ? intval($row['sales_PMP']) : 0,
 
             'apnur_n' => $row['points_APNUR_N_'] !== '' ? intval($row['points_APNUR_N_']) : 0,
-            'apnur_n_result' => ($row['pcent_APNUR_N_'] !== '' ? $row['pcent_APNUR_N_'] : '0') . '%',
+            'apnur_n_result' => ($row['pcent_APNUR_N_'] !== '' ? number_format(floatval($row['pcent_APNUR_N_'])*100) : '0') . '%',
             'apnur_x' => $row['points_APNUR_X_'] !== '' ? intval($row['points_APNUR_X_']) : 0,
-            'apnur_x_result' => ($row['pcent_APNUR_X_'] !== '' ? $row['pcent_APNUR_X_'] : '0') . '%',
+            'apnur_x_result' => ($row['pcent_APNUR_X_'] !== '' ? number_format(floatval($row['pcent_APNUR_X_'])*100) : '0') . '%',
             'apnur_p' => $row['points_APNUR_P'] !== '' ? intval($row['points_APNUR_P']) : 0,
-            'apnur_p_result' => ($row['pcent_APNUR_P'] !== '' ? $row['pcent_APNUR_P'] : '0') . '%',
+            'apnur_p_result' => ($row['pcent_APNUR_P'] !== '' ? number_format(floatval($row['pcent_APNUR_P'])*100) : '0') . '%',
         ];
     }
 }

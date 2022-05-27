@@ -27,41 +27,71 @@
             "F": [
                 {
                     "identifier": "new_vehicle",
-                    "label": "New Vehicle Sales",
-                    "color": "#8B4513",
                     "order": 1,
                     "title": "NEW VEHICLE SALES",
-                    "guides": [{
-                        "title": "NEW VEHICLE SALES GUIDE",
-                        "top": ["Fleet Sales Executive", "per sale"],
-                        "rows": [["Category A&B", 80], ["Category C", 160]],
-                        "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 18 of member guide"
-                    }]
+                    "metrics": {
+                        "new_vehicle":{
+                            "label": "New Vehicle Sales",
+                            "color": "#8B4513",
+                            "default": 0
+                        }
+                    },
+                    "guides": {
+                        "new_vehicle":{
+                            "label": "New Vehicle Sales",
+                            "color": "#8B4513",
+                            "default": 0,
+                            "title": "NEW VEHICLE SALES GUIDE",
+                            "top": ["Fleet Sales Executive", "per sale"],
+                            "rows": [["Category A&B", 80], ["Category C", 160]],
+                            "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 18 of member guide"
+                        }
+                    }
                 },
                 {
                     "identifier": "new_vehicle_fleet",
-                    "label": "Sales v Target",
-                    "color": "#8C7853",
                     "order": 2,
                     "title": "New Vehicle Fleet Sales v Fleet Target",
-                    "guides": [{
-                        "title": "New Vehicle Fleet Sales v Fleet Target GUIDE",
-                        "top": ["Fleet Sales Executive", "≥100%", "≥110%", "≥120%", "≥140%"],
-                        "rows": [["Category A&B", 440, 840, 1240, 1520], ["Category C", 440, 840, 1240, 1520]]
-                    }]
+                    "metrics": {
+                        "new_vehicle_fleet": {
+                            "label": "Sales v Target",
+                            "color": "#8C7853",
+                            "default": 0
+                        }
+                    },
+                    "guides": {
+                        "new_vehicle_fleet":{
+                            "label": "Sales v Target",
+                            "color": "#8C7853",
+                            "default": 0,
+                            "title": "New Vehicle Fleet Sales v Fleet Target GUIDE",
+                            "top": ["Fleet Sales Executive", "≥100%", "≥110%", "≥120%", "≥140%"],
+                            "rows": [["Category A&B", 440, 840, 1240, 1520], ["Category C", 440, 840, 1240, 1520]]
+                        }
+                    }
                 },
                 {
                     "identifier": "volume",
-                    "label": "Volume Growth",
-                    "color": "#CCFF99",
                     "order": 3,
                     "title": "Fleet Sales Volume Growth - Quarterly",
-                    "guides": [{
-                        "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
-                        "top": ["Fleet Sales Executive", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
-                        "rows": [["Category A&B", 160, 200, 320, 640, 840], ["Category C", 160, 200, 320, 640, 840]],
-                        "note": "(metric measured Quarterly only)"
-                    }]
+                    "metrics": {
+                        "volume":{
+                            "label": "Volume Growth",
+                            "color": "#CCFF99",
+                            "default": 0
+                        }
+                    },
+                    "guides": {
+                        "volume":{
+                            "label": "Volume Growth",
+                            "color": "#CCFF99",
+                            "default": 0,
+                            "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
+                            "top": ["Fleet Sales Executive", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
+                            "rows": [["Category A&B", 160, 200, 320, 640, 840], ["Category C", 160, 200, 320, 640, 840]],
+                            "note": "(metric measured Quarterly only)"
+                        }
+                    }
                 },
                 {
                     "identifier": "training",
