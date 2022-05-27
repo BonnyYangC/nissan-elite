@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']],function () {
 
 //pages
     Route::get('/dashboard', [App\Http\Controllers\PagesController::class, 'dashboard'])->name('dashboard');
-    Route::get('/metrics', [App\Http\Controllers\PagesController::class, 'metrics'])->name('metrics');
+    Route::get('/metrics', [App\Http\Controllers\MetricsController::class, 'metrics'])->name('metrics');
     Route::get('/my_team', [App\Http\Controllers\UsersController::class, 'my_team'])->name('my_team');
     Route::get('/ranking', [App\Http\Controllers\RankingsController::class, 'ranking'])->name('ranking');
     Route::get('/get_ranking', [App\Http\Controllers\RankingsController::class, 'get_ranking'])->name('get_ranking');

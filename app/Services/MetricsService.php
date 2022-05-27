@@ -43,6 +43,18 @@ class MetricsService {
         }
     }
 
+
+    /**
+     * @param bool $isStacked
+     * @return mixed|string
+     */
+    public function getMetricsData(bool $isStacked = false) {
+        $currentUser = Auth::user();
+        $metrics = $currentUser->results()->pluck('metrics', 'period');
+        $service = $this->getMetricsService();
+        return $isStacked ? $this->buildStackedMetricsData($metrics) : $service->buildMetricsData($metrics);
+    }
+
     /**
      * @param string $label
      * @param string $backgroundColor
