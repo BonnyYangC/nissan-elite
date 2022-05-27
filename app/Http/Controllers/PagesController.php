@@ -62,7 +62,7 @@ class PagesController extends Controller {
         // dollar rewards
         $this->dataForView['rewards'] = $this->resolver->rewardsService()->buildRewardsData();
         // metrics
-        $this->dataForView['metrics'] = $this->resolver->metricsService()->getMetricsData(true);
+        $this->dataForView['metrics'] = $this->resolver->metricsService()->getStackedMetricsData();
 
         // current ranking status
         $this->dataForView['rankingStatus'] = $this->resolver->rankingService()->getCurrentRanking();

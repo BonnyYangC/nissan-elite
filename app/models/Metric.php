@@ -12,6 +12,8 @@ class Metric extends Model
     const TYPE_SHARED = 'shared';
     const TYPE_CUSTOM = 'custom';
 
+    const METRIC_TRAINING = 'training';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +29,7 @@ class Metric extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'guides' => 'array'
+        'guides' => 'array',
+        'metrics' => 'array'
     ];
 }

@@ -2,8 +2,8 @@
 <script type="text/javascript">
     var chartEl = <?php echo json_encode($metricData->chart_name);?>;
     var metricData = <?php echo $metricData['chart_data']; ?>;
-    console.log(metricData);
-    console.log(chartEl); // not using this var to draw chart because it will be overwrited, so only last chart will be draw, leave it here just for debugging
+    //console.log(metricData);
+    //console.log(chartEl); // not using this var to draw chart because it will be overwrited, so only last chart will be draw, leave it here just for debugging
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -29,7 +29,7 @@
                 // leave room for y-axis labels
                 width: '89%'
             },
-            colors: ['#c40030'],
+            colors: ['#c40030', '#d4d4d4', "#CCFF99"],
             curveType: 'function',
             legend: { position: 'top' }
         };

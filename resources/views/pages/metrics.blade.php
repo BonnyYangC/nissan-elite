@@ -15,6 +15,12 @@
             </div>
         </div>
         @endforeach
+
+        <div class="row metrics-section mx-auto">
+            <div class="col-12 d-flex">
+                @include('pages.metrics.training', [$currentUser, $training])
+            </div>
+        </div>
     </div>
 </div>
 @endsection

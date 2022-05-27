@@ -31,21 +31,8 @@ class MetricsController extends Controller {
         $this->dataForView['menuName'] = 'metrics';
         //metrics
         $this->dataForView['metrics'] = $this->service->getMetricsData();
-/*var_dump($currentUser->results()->pluck('metrics', 'period'));
-$this->dataForView['metricData'] = [
-    'title' => '1. metrics test title',
-    'chart_name' => 'metric-chart',
-    'chart_data' => json_encode([['Month', 'Points'], ['Apr', 100], ['May', 100], ['Jun', 100], ['Jul', 100], ['Aug', 100], ['Sep', 100], ['Oct', 100], ['Nov', 100], ['Dec', 100]]),
-
-    'table_data' => ['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100']],
-    'extra_class' => '',
-    'ref' => 'test ref string',
-    'guides' => [[
-        'title' => 'MATCHED ORDER WRITE GUIDE',
-        'top' => ['Sales Manager', '0 or 1 unit Variation', '2 unit Variation', '3 unit Variation'],
-        'rows' => [['Category A', 310, 105, 105], ['Category B', 310, 105, 105], ['Category C', 310, 105, '']]
-    ]]
-];*/
+        //training
+        $this->dataForView['training'] = $this->service->getTrainingData();
         return $this->render('pages.metrics');
     }
 }

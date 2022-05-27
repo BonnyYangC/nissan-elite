@@ -3,19 +3,100 @@
 namespace App\Services\MetricsServices;
 
 use App\Helper\Utility;
+use App\Models\Metric;
+use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class Base {
+    /** @var User  */
     protected $currentUser;
+
+    /**
+     * Base constructor.
+     */
     public function __construct() {
         $this->currentUser = Auth::user();
     }
 
     /**
+     * @param string $position
      * @return mixed
      */
-    protected function getMetricsDefination() {
-        return $this->currentUser->position->metrics->sortBy('order');
+    private function getAllMetricsByPosition(string $position) {
+        //return $this->currentUser->position->metrics->sortBy('order');
+        return Metric::where('position', '=', $position)->orderBy('order')->get();
+    }
+
+    /**
+     * @param string $position
+     * @return Collection
+     */
+    public function getMetricsByPosition(string $position): Collection {
+        return Metric::where('position', '=', $position)->where('identifier', '!=', Metric::METRIC_TRAINING)->orderBy('order')->get();
+    }
+
+    /**
+     * @param string $position
+     * @return Metric
+     */
+    public function getTrainingMetricByPosition(string $position): Metric {
+        return Metric::where('position', '=', $position)->where('identifier', '=', Metric::METRIC_TRAINING)->first();
+    }
+
+    /**
+     * @param $trainingData
+     * @return Metric
+     */
+    public function buildTrainingData($trainingData) {
+        $trainingDefination = $this->getTrainingMetricByPosition($this->currentUser->position_code);
+        $trainingDefination->chart_data = json_encode($this->buildStackedTrainingData($trainingDefination, $trainingData));
+        $trainingDefination->chart_name = 'chart_'.$trainingDefination->identifier;
+        return $trainingDefination;
+    }
+
+    /**
+     * @param $trainingDefination
+     * @param $trainingData
+     * @return array
+     */
+    private function buildStackedTrainingData($trainingDefination, $trainingData) {
+        $legends = ['Genre'];
+        $points = [];
+        foreach($trainingDefination->metrics as $id => $cm) {
+            $legends[] = $cm['label'];
+        }
+        foreach(Utility::MONTHS_SHORT as $month) {
+            $dateString = date('Y-m-01', strtotime($month));
+            $p = [$month];
+            foreach($trainingDefination->metrics as $id => $cm) {
+                $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
+                $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
+            }
+            $points[] = $p;
+        }
+        return array_merge([$legends], $points);
+    }
+
+    /**
+     * @param $metrics
+     * @return mixed
+     */
+    public function buildMetricsData($metrics) {
+        $metricsDefinations = $this->getMetricsByPosition($this->currentUser->position_code);
+        $chartData = [];
+        $tableData = [];
+
+        foreach ($metricsDefinations as $m) {
+            list($chartData[$m->identifier], $tableData[$m->identifier]) = $this->buildMetricData($m, $metrics);
+        }
+
+        $metricsDefinations->each(function($m) use ($chartData, $tableData) {
+            $m->chart_data = json_encode($chartData[$m->identifier]);
+            $m->table_data = isset($tableData[$m->identifier]) ? $tableData[$m->identifier] : []; //['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100'], '2' => ['100','100','100','100','100','100','100','100','100','100','100','100']];
+            $m->chart_name = 'chart_'.$m->identifier;
+        });
+        return $metricsDefinations;
     }
 
     /**
@@ -23,13 +104,13 @@ class Base {
      * @param $metricsData
      * @return array
      */
-    protected function buildMetricData($metricDefination, $metricsData) {
-        $labels = ['Month'];
+    private function buildMetricData($metricDefination, $metricsData) {
+        $legends = ['Month'];
         $points = [];
         $scores = [];
         $childCount = count($metricDefination->guides);
         foreach($metricDefination->guides as $id => $cm) {
-            $labels[] = $childCount === 1 ? 'Points' : $cm['label'];
+            $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
         foreach(Utility::MONTHS_SHORT as $month) {
             $dateString = date('Y-m-01', strtotime($month));
@@ -42,51 +123,49 @@ class Base {
             }
             $points[] = $p;
         }
-        return array(array_merge([$labels], $points), $scores);
+        return array(array_merge([$legends], $points), $scores);
     }
 
     /**
      * @param $metrics
-     * @return mixed
+     * @param $trainingData
+     * @return false|string
      */
-    public function buildMetricsData($metrics) {
-        $metricsDefinations = $this->getMetricsDefination();
-
-        $chartData = [];
-        $tableData = [];
-
-        foreach ($metricsDefinations as $m) {
-            list($chartData[$m->identifier], $tableData[$m->identifier]) = $this->buildMetricData($m, $metrics);
-        }
-
-        $metricsDefinations->each(function($m) use ($chartData, $tableData) {
-            $m->chart_data = json_encode($chartData[$m->identifier]);
-            $m->table_data = $tableData[$m->identifier]; //['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100'], '2' => ['100','100','100','100','100','100','100','100','100','100','100','100']];
-            $m->chart_name = 'chart_'.$m->identifier;
-        });
-        return $metricsDefinations;
+    public function buildStackedMetricsData($metrics, $trainingData) {
+        $metricsDefinations = $this->getAllMetricsByPosition($this->currentUser->position_code);
+        return json_encode($this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData));
     }
 
     /**
-     * @param $metricDefination
+     * @param $metricsDefinations
      * @param $metricsData
+     * @param $trainingData
      * @return array
      */
-    private function buildStackedMetricData($metricDefination, $metricsData) {
-        $legends = ['genre'];
+    private function buildStackedMetricData($metricsDefinations, $metricsData, $trainingData) {
+        $legends = ['Genre'];
         $points = [];
-        foreach ($metricDefination as $m) {
-            foreach($m->guides as $id => $cm) {
-                $legends[] = isset($cm['label']) ? $cm['label'] : 'Test';
+        foreach ($metricsDefinations as $m) {
+            if($m->identifier === Metric::METRIC_TRAINING) {
+                $legends[] = $m->label;
+            } else {
+                foreach ($m->guides as $id => $cm) {
+                    $legends[] = isset($cm['label']) ? $cm['label'] : '';
+                }
             }
         };
         foreach(Utility::MONTHS_SHORT as $month) {
             $dateString = date('Y-m-01', strtotime($month));
             $p = [$month];
-            foreach ($metricDefination as $m) {
-                foreach($m->guides as $id => $cm) {
-                    $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
-                    $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
+            foreach ($metricsDefinations as $m) {
+                if($m->identifier === Metric::METRIC_TRAINING) {
+                    $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
+                    $p[] = $this->buildTrainingSummary($m, $value);
+                } else {
+                    foreach ($m->guides as $id => $cm) {
+                        $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
+                        $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
+                    }
                 }
             };
             $points[] = $p;
@@ -95,11 +174,16 @@ class Base {
     }
 
     /**
-     * @param $metrics
-     * @return false|string
+     * @param $trainingDefination
+     * @param $trainingData
+     * @return int|mixed
      */
-    public function buildStackedMetricsData($metrics) {
-        $metricsDefinations = $this->getMetricsDefination();
-        return json_encode($this->buildStackedMetricData($metricsDefinations, $metrics));
+    private function buildTrainingSummary($trainingDefination, $trainingData) {
+        $trainingPoints = 0;
+        if(!$trainingData) return $trainingPoints;
+        foreach($trainingDefination->metrics as $id => $cm) {
+            $trainingPoints += $trainingData[$id];
+        }
+        return $trainingPoints;
     }
 }

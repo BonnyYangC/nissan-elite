@@ -66,9 +66,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 4,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE - FLEET SALES EXECUTIVE",
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 20",
@@ -292,10 +313,31 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 13,
                     "title": "TRAINING",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
@@ -304,8 +346,7 @@
                         "rows": [["Certified Dealership Manager (O)", "", 200, "", ""],
                             ["Certified Dealership Manager (VC & A)", "", 375, "", ""], ["Employee Test Drive Experience (O)", "", 100, "", ""],
                             ["Mastery Goal Achievement", "", 250, "", ""], ["Mastery", "", "", "", 250],
-                            ["Engagement", 100, "", ""], ["Bonus", "", "", 500, ""]],
-                        "default": 0
+                            ["Engagement", 100, "", ""], ["Bonus", "", "", 500, ""]]
                     }]
                 }
             ],
@@ -438,17 +479,37 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 8,
                     "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
                         "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""],
                             ["Certified Sales Executive (VC & A)", "", 375, ""], ["Employee Test Drive Experience", "", 100, ""],
-                            ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250], ["Engagement", 100, "", ""]],
-                        "default": 0
+                            ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250], ["Engagement", 100, "", ""]]
                     }]
                 }
             ],
@@ -542,9 +603,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 8,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points per Quarter"],
@@ -658,9 +740,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 9,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points per Quarter"],
@@ -745,9 +848,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 6,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly", "Points H/yrly", "Points Yearly"],
@@ -791,9 +915,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 3,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly"],
@@ -921,9 +1066,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 10,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points H/yrly ","Points Yearly"],
@@ -1042,9 +1208,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#FFFACD",
                     "order": 8,
                     "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#CCFF99"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#CCFF99"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#CCFF99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#CCFF99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#CCFF99"
+                        }
+                    },
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],

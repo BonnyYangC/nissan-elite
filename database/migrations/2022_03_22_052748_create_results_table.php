@@ -18,11 +18,11 @@ class CreateResultsTable extends Migration
             $table->string('employee_code');
             $table->date('period');
             $table->json('metrics');
-            $table->unsignedBigInteger('training')->default(0);
-            $table->unsignedBigInteger('training_competency')->default(0);
+            $table->unsignedBigInteger('train_online')->default(0);
+            $table->unsignedBigInteger('train_competency')->default(0);
             $table->unsignedBigInteger('train_mastery')->default(0);
-            $table->unsignedBigInteger('training_bonus')->default(0);
-            $table->unsignedBigInteger('training_pathway')->default(0);
+            $table->unsignedBigInteger('train_bonus')->default(0);
+            $table->unsignedBigInteger('train_pathway')->default(0);
             $table->unsignedBigInteger('registration')->default(0);
             $table->unsignedBigInteger('excellence')->default(0);
             $table->unsignedBigInteger('incentive')->default(0);
