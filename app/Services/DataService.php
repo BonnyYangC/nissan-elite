@@ -275,6 +275,7 @@ class DataService extends BaseService {
 
     /**
      * @param Faq $faq
+     * @throws \Exception
      */
     public function deleteFaq(Faq $faq) {
         $this->serviceResolver->faqService()->delete($faq);

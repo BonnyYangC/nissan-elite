@@ -27,7 +27,7 @@
         var options = {
             chartArea: {
                 // leave room for y-axis labels
-                width: '92%'
+                width: '89%'
             },
             colors: ['#c40030'],
             curveType: 'function',

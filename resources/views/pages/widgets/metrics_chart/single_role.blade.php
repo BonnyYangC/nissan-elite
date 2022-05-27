@@ -9,7 +9,7 @@
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(monthlyMetricsData);
-        /*var data = google.visualization.arrayToDataTable([
+        /* var data = google.visualization.arrayToDataTable([
             ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
                 'Western', 'Literature', { role: 'annotation' } ],
             ['2010', 10, 24, 20, 32, 18, 5, ''],
@@ -26,6 +26,9 @@
             ['2090', 28, 19, 29, 30, 12, 13, '']
         ]);*/
         var options = {
+            chartArea: {
+                width: '92%'
+            },
             legend: { position: 'top', maxLines: 3 },
             isStacked: true,
         };
