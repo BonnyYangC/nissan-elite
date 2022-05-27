@@ -36,17 +36,12 @@
                             "default": 0
                         }
                     },
-                    "guides": {
-                        "new_vehicle":{
-                            "label": "New Vehicle Sales",
-                            "color": "#8B4513",
-                            "default": 0,
-                            "title": "NEW VEHICLE SALES GUIDE",
-                            "top": ["Fleet Sales Executive", "per sale"],
-                            "rows": [["Category A&B", 80], ["Category C", 160]],
-                            "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 18 of member guide"
-                        }
-                    }
+                    "guides": [{
+                        "title": "NEW VEHICLE SALES GUIDE",
+                        "top": ["Fleet Sales Executive", "per sale"],
+                        "rows": [["Category A&B", 80], ["Category C", 160]],
+                        "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 18 of member guide"
+                    }]
                 },
                 {
                     "identifier": "new_vehicle_fleet",
@@ -59,16 +54,13 @@
                             "default": 0
                         }
                     },
-                    "guides": {
-                        "new_vehicle_fleet":{
-                            "label": "Sales v Target",
-                            "color": "#8C7853",
-                            "default": 0,
+                    "guides": [
+                        {
                             "title": "New Vehicle Fleet Sales v Fleet Target GUIDE",
                             "top": ["Fleet Sales Executive", "≥100%", "≥110%", "≥120%", "≥140%"],
                             "rows": [["Category A&B", 440, 840, 1240, 1520], ["Category C", 440, 840, 1240, 1520]]
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "volume",
@@ -81,17 +73,14 @@
                             "default": 0
                         }
                     },
-                    "guides": {
-                        "volume":{
-                            "label": "Volume Growth",
-                            "color": "#CCFF99",
-                            "default": 0,
+                    "guides": [
+                        {
                             "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
                             "top": ["Fleet Sales Executive", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
                             "rows": [["Category A&B", 160, 200, 320, 640, 840], ["Category C", 160, 200, 320, 640, 840]],
                             "note": "(metric measured Quarterly only)"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "training",
@@ -134,211 +123,264 @@
                     "identifier": "matched_ow",
                     "order": 1,
                     "title": "MATCHED ORDER WRITE",
-                    "guides": {
+                    "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
                             "color": "#8C7853",
-                            "title": "MATCHED ORDER WRITE GUIDE",
-                            "top": ["Sales Manager", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
-                            "rows": [["Category A", 310, 105, 105], ["Category B", 310, 105, 105], ["Category C", 310, 105, ""]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "MATCHED ORDER WRITE GUIDE",
+                            "top": ["Sales Manager", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
+                            "rows": [["Category A", 310, 105, 105], ["Category B", 310, 105, 105], ["Category C", 310, 105, ""]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "new_vehicle",
                     "order": 2,
                     "title": "NEW VEHICLE PERFORMANCE TO TARGET",
-                    "guides": {
+                    "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
                             "color": "#8B4513",
+                            "default": "0%"
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
                             "top": ["Sales Manager (% of Target)", "100%", "≥110%", "≥120%", "≥140%"],
                             "rows": [["Category A", 820, 1020, 1220, 1620], ["Category B", 820, 920, 1020, 1220],
                                 ["Category C", 820, 920, 1020, 1220]],
-                            "note": "Category A: Each full percentage point (rounded down) over 100% target will earn an additional 20 points.<br>Category B & C: Each full percentage point (rounded down) over 100% target will earn an additional 10 points.<br>(capped to 140% of target achievement).",
-                            "default": "0%"
+                            "note": "Category A: Each full percentage point (rounded down) over 100% target will earn an additional 20 points.<br>Category B & C: Each full percentage point (rounded down) over 100% target will earn an additional 10 points.<br>(capped to 140% of target achievement)."
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "fsp",
                     "order": 3,
                     "title": "Future Sales Pipeline",
-                    "guides": {
+                    "metrics": {
                         "fsp":{
                             "label": "Future Sales Pipeline",
                             "color": "#999999",
+                            "default": 0
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "Future Sales Pipeline - Matched orders retailed in future months GUIDE",
                             "top": ["Sales Manager", "per vehicle when retailed"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]],
-                            "note": "Earn 15 points for every Matched Order Write vehicle retailed in the future month.",
-                            "default": 0
+                            "note": "Earn 15 points for every Matched Order Write vehicle retailed in the future month."
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "nfv",
                     "order": 4,
                     "title": "NFV% of Total NFSA eligible contracts",
-                    "guides": {
+                    "metrics": {
                         "nfv":{
                             "label": "NFV%",
                             "color": "#999999",
-                            "title": "NFV% of Total NFSA eligible contracts GUIDE",
-                            "top": ["Sales Manager", "≥15%", "≥25%"],
-                            "rows": [["Category A", 100, 200], ["Category B", 100, 200], ["Category C", 100, 200]],
                             "default": "0%"
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "NFV% of Total NFSA eligible contracts GUIDE",
+                            "top": ["Sales Manager", "≥15%", "≥25%"],
+                            "rows": [["Category A", 100, 200], ["Category B", 100, 200], ["Category C", 100, 200]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "nic_sale",
                     "order": 5,
                     "title": "NIC sale (mthly Cap 20 units)",
-                    "guides": {
+                    "metrics": {
                         "nic_sale": {
                             "label": "NIC sale",
                             "color": "#999999",
-                            "title": "NIC sale (mthly Cap 20 units) GUIDE",
-                            "top": ["Sales Manager", "per unit"],
-                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]],
                             "default": 0
                         },
                         "nic_sale_nfsa": {
                             "label": "NIC sale NFSA",
                             "color": "#999999",
-                            "title": "NIC sale financed by NFSA(mthly Cap 20 units) GUIDE",
-                            "top": ["Sales Manager", "per unit"],
-                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "NIC sale (mthly Cap 20 units) GUIDE",
+                            "top": ["Sales Manager", "per unit"],
+                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
+                        },
+                        {
+                            "title": "NIC sale financed by NFSA(mthly Cap 20 units) GUIDE",
+                            "top": ["Sales Manager", "per unit"],
+                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
+                            }
+                    ]
                 },
                 {
                     "identifier": "dealer_forecast",
                     "order": 6,
                     "title": "DEALER RETAIL FORECAST",
-                    "guides": {
+                    "metrics": {
                         "dealer_forecast":{
                             "label": "Dealer Forecast",
                             "color": "#999999",
+                            "default": "NO"
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "DEALER RETAIL FORECAST GUIDE",
                             "top": ["Sales Manager", "YES"],
                             "rows": [["Category A", 120], ["Category B", 120], ["Category C", 120]],
-                            "note": "Entered 2nd Monday of month in NISCOM",
-                            "default": "NO"
+                            "note": "Entered 2nd Monday of month in NISCOM"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "sos",
                     "order": 7,
                     "title": "SALES OVERALL SATISFACTION - Dealership's NPS3",
-                    "guides": {
+                    "metrics": {
                         "sos":{
                             "label": "Overall Sat",
                             "color": "#999999",
+                            "default": 0
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "Sales overall satisfaction - Dealership's NPS3 GUIDE",
                             "top": ["Sales Manager", "≥85", "≥89"],
                             "rows": [["Category A", 250, 600], ["Category B", 250, 600], ["Category C", 250, 600]],
-                            "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target",
-                            "default": 0
+                            "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "booked_check",
                     "order": 8,
                     "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK",
-                    "guides": {
+                    "metrics": {
                         "booked_check":{
                             "label": "% Booked",
                             "color": "#FFCC99",
-                            "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK GUIDE",
-                            "top": ["Sales Manager", "100% of Target"],
-                            "rows": [["Category A", 225], ["Category B", 225], ["Category C", 225]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "% BOOKED FOR 1,000KM COMPLIMENTARY CHECK GUIDE",
+                            "top": ["Sales Manager", "100% of Target"],
+                            "rows": [["Category A", 225], ["Category B", 225], ["Category C", 225]]
+                    }]
                 },
                 {
                     "identifier": "follow_up",
                     "order": 9,
                     "title": "PERCENTAGE FOLLOWED UP NPS3 ROLLING score",
-                    "guides": {
+                    "metrics": {
                         "follow_up":{
                             "label": "% Follow Up",
                             "color": "#C0C0C0",
-                            "title": "PERCENTAGE FOLLOWED UP NPS3 ROLLING score GUIDE",
-                            "top": ["Sales Manager", "100% of Target"],
-                            "rows": [["Category A", 175], ["Category B", 175], ["Category C", 175]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "PERCENTAGE FOLLOWED UP NPS3 ROLLING score GUIDE",
+                            "top": ["Sales Manager", "100% of Target"],
+                            "rows": [["Category A", 175], ["Category B", 175], ["Category C", 175]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "hot",
                     "order": 10,
                     "title": "Abandoned HOT ALERTS",
-                    "guides": {
+                    "metrics": {
                         "hot":{
                             "label": "Hot Alert",
                             "color": "#BDB76B",
-                            "title": "HOT ALERTS GUIDE",
-                            "top": ["Sales Manager", "Target 0"],
-                            "rows": [["Category A", 125], ["Category B", 125], ["Category C", 125]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "HOT ALERTS GUIDE",
+                            "top": ["Sales Manager", "Target 0"],
+                            "rows": [["Category A", 125], ["Category B", 125], ["Category C", 125]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "pmp",
                     "order": 11,
                     "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
-                    "guides": {
+                    "metrics": {
                         "pmp":{
                             "label": "PMP",
                             "color": "#ff0000",
-                            "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
-                            "top": ["Sales Manager", "Package sale"],
-                            "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
+                            "top": ["Sales Manager", "Package sale"],
+                            "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "apnur",
                     "order": 12,
                     "title": "APNUR PERFORMANCE",
-                    "guides": {
+                    "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
                             "color": "#CCFF99",
-                            "title": "APNUR PERFORMANCE GUIDE",
-                            "colspan": "Navara APNUR vs Target",
-                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
-                            "rows": [["Category A, B, C", 110, 175, 275]],
                             "default": "0%"
                         },
                         "apnur_x":{
                             "label": "XTRAIL",
                             "color": "#CCFF99",
-                            "colspan": "XTRAIL APNUR vs Target",
-                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
-                            "rows": [["Category A, B, C", 110, 175, 275]],
                             "default": "0%"
                         },
                         "apnur_p":{
                             "label": "PATROL",
                             "color": "#CCFF99",
-                            "colspan": "PATROL APNUR vs Target",
-                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
-                            "rows": [["Category A, B, C", 110, 175, 275]],
                             "default": "0%"
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "APNUR PERFORMANCE GUIDE",
+                            "colspan": "Navara APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        },
+                        {
+                            "colspan": "XTRAIL APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        },
+                        {
+                            "colspan": "PATROL APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "training",
@@ -385,126 +427,158 @@
                     "identifier": "new_vehicle",
                     "order": 1,
                     "title": "NEW VEHICLE SALES PERFORMANCE",
-                    "guides": {
+                    "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
                             "color": "#8B4513",
-                            "title": "NEW VEHICLE SALES PERFORMANCE GUIDE",
-                            "top": ["Retail Sales Consultant", "Retail", "Fleet"],
-                            "rows": [["Category A & B", 80, 80], ["Category C", 160, 160]],
                             "default": 0
                         },
                         "new_vehicle_performance":{
                             "label": "New Vehicle Performance",
                             "color": "#8B4513",
+                            "default": "0%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NEW VEHICLE SALES PERFORMANCE GUIDE",
+                            "top": ["Retail Sales Consultant", "Retail", "Fleet"],
+                            "rows": [["Category A & B", 80, 80], ["Category C", 160, 160]]
+                        },
+                        {
                             "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
                             "top": ["Retail Sales Consultant", "100%", "≥110%", "≥120%", "≥140%"],
                             "rows": [["Category A", 150, 200, 220, 240], ["Category B", 150, 180, 200, 220], ["Category C", 150, 180, 200, 220]],
-                            "note": "Status Sales earn points for Status level awards & end year Reward Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved\n\rRefer page 12 of member guide",
-                            "default": "0%"
+                            "note": "Status Sales earn points for Status level awards & end year Reward Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved\n\rRefer page 12 of member guide"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "nfv",
                     "order": 2,
                     "title": "NFV% of Total NFSA eligible contracts",
-                    "guides": {
+                    "metrics": {
                         "nfv":{
                             "label": "NFV%",
                             "color": "#999999",
-                            "title": "NFV% of Total NFSA eligible contracts GUIDE",
-                            "top": ["Retail Sales Consultant", "≥15%", "≥25%"],
-                            "rows": [["Category A", 100, 200], ["Category B", 100, 200], ["Category C", 100, 200]],
                             "default": "0%"
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "NFV% of Total NFSA eligible contracts GUIDE",
+                            "top": ["Retail Sales Consultant", "≥15%", "≥25%"],
+                            "rows": [["Category A", 100, 200], ["Category B", 100, 200], ["Category C", 100, 200]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "nic_sale",
                     "order": 3,
                     "title": "NIC sale (mthly Cap 20)",
-                    "guides": {
+                    "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
                             "color": "#999999",
-                            "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED (MTHLY CAP 20) ",
-                            "top": ["Retail Sales Consultant", "mthly"],
-                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]],
                             "default": 0
                         },
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
                             "color": "#999999",
-                            "top": ["Retail Sales Consultant", "per unit"],
-                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED (MTHLY CAP 20) ",
+                            "top": ["Retail Sales Consultant", "mthly"],
+                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
+                        },
+                        {
+                            "top": ["Retail Sales Consultant", "per unit"],
+                            "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "pmp",
                     "order": 4,
                     "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
-                    "guides": {
+                    "metrics": {
                         "pmp":{
                             "label": "PMP",
                             "color": "#ff0000",
-                            "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
-                            "top": ["Retail Sales Consultant", "Package sale"],
-                            "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]],
                             "default": 0
                         }
-                    }
+                    },
+                    "guides": [
+                        {
+                            "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
+                            "top": ["Retail Sales Consultant", "Package sale"],
+                            "rows": [["Category A", 100], ["Category B", 100], ["Category C", 100]]
+                        }
+                    ]
                 },
                 {
                     "identifier": "satisfaction",
                     "order": 5,
                     "title": "SALES OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
-                    "guides": {
+                    "metrics": {
                         "satisfaction":{
                             "label": "Overall Sat",
                             "color": "#999999",
+                            "default": 0
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "Sales Overall satisfaction NPS 3 month rolling score GUIDE",
                             "top": ["Retail Sales Consultant", "≥88", "≥92"],
                             "rows": [["Category A", 450, 900], ["Category B", 450, 900], ["Category C", 450, 900]],
                             "note": "Category A &amp; B: calculated on Individual score<br>Category C: calculated on Dealership score",
-                            "criteria": "CRITERIA: Refer to the ELIET22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target",
-                            "default": 0
+                            "criteria": "CRITERIA: Refer to the ELIET22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "kept_informed",
                     "order": 6,
                     "title": "Kept informed of delivery NPS 3 month rolling score",
-                    "guides": {
+                    "metrics": {
                         "kept_informed":{
                             "label": "Kept Informed",
                             "color": "#FFCC99",
+                            "default": 0
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "Kept informed of delivery NPS 3 month rolling score Guide",
                             "top": ["Retail Sales Consultant", "≥88", "100"],
                             "rows": [["Category A", 120, 250], ["Category B", 120, 250], ["Category C", 120, 250]],
-                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score",
-                            "default": 0
+                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "follow_up",
                     "order": 7,
                     "title": "FOLLOW UP SATISFACTION 3 MONTH ROLLING SCORE",
-                    "guides": {
+                    "metrics": {
                         "follow_up":{
                             "label": "Followed Up Satisfaction",
                             "color": "#C0C0C0",
+                            "default": 0
+                        }
+                    },
+                    "guides": [
+                        {
                             "title": "FOLLOW UP SATISFACTION 3 MONTH ROLLING SCORE GUIDE",
                             "top": ["Retail Sales Consultant", "100% of Target"],
                             "rows": [["Category A & B", 175], ["Category C", 175]],
-                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score",
-                            "default": 0
+                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score"
                         }
-                    }
+                    ]
                 },
                 {
                     "identifier": "training",

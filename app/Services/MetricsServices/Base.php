@@ -108,14 +108,14 @@ class Base {
         $legends = ['Month'];
         $points = [];
         $scores = [];
-        $childCount = count($metricDefination->guides);
-        foreach($metricDefination->guides as $id => $cm) {
+        $childCount = count($metricDefination->metrics);
+        foreach($metricDefination->metrics as $id => $cm) {
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
         foreach(Utility::MONTHS_SHORT as $month) {
             $dateString = date('Y-m-01', strtotime($month));
             $p = [$month];
-            foreach($metricDefination->guides as $id => $cm) {
+            foreach($metricDefination->metrics as $id => $cm) {
                 $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
                 $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
                 $l = $childCount === 1 ? 'RESULT' : $cm['label'];
@@ -149,7 +149,7 @@ class Base {
             if($m->identifier === Metric::METRIC_TRAINING) {
                 $legends[] = $m->label;
             } else {
-                foreach ($m->guides as $id => $cm) {
+                foreach ($m->metrics as $id => $cm) {
                     $legends[] = isset($cm['label']) ? $cm['label'] : '';
                 }
             }
@@ -162,7 +162,7 @@ class Base {
                     $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
                     $p[] = $this->buildTrainingSummary($m, $value);
                 } else {
-                    foreach ($m->guides as $id => $cm) {
+                    foreach ($m->metrics as $id => $cm) {
                         $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
                         $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
                     }
