@@ -27,8 +27,8 @@ class SalesManager extends MonthlyDataMapping {
             'nic_sale_nfsa' => $row['points_NIC_Fnfsa'] !== '' ? intval($row['points_NIC_Fnfsa']) : 0,
             'nic_sale_nfsa_result' => $row['sales_NIC_Fnfsa'] !== '' ? intval($row['sales_NIC_Fnfsa']) : 0,
 
-            'dealer_forecast' => $row['points_forecast_'] !== '' ? intval($row['points_forecast_']) : 0,
-            'dealer_forecast_result' => $row['ach_forecast_'] !== '' ? $row['ach_forecast_'] : 'NO',
+            'retail_forecast' => $row['points_forecast_'] !== '' ? intval($row['points_forecast_']) : 0,
+            'retail_forecast_result' => $row['ach_forecast_'] !== '' ? $row['ach_forecast_'] : 'NO',
 
             'sos' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
             'sos_result' => $row['score_ce_SOS3'] !== '' ? floatval($row['score_ce_SOS3']) : 0.0,

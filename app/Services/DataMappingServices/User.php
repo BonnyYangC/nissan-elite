@@ -25,7 +25,7 @@ class User {
     public function getKeyForModel(): array {
         $key = [];
         $key['primary'] = 'regi#_';
-        // $key = 'n_sname_trim_';  // this is for generate password
+        //$key['primary'] = 'employee_code'; // use this for import users from elite-2022-users.csv when elite 2022 system setup
         return $key;
     }
 
@@ -70,7 +70,6 @@ class User {
             'date_birth'=>$row['date_birth'] ? $row['date_birth'] : null,
             'mobile'=>$row['ph_mobile_'],
             'email'=>$row['addr_email'],
-            // 'password' => bcrypt(strtoupper($row['n_sname_trim_']).'1'),
             'date_created'=>$row['date_created'] ? $row['date_created'] : null,
             'dealer_code'=>$row['dcode'] ? $row['dcode'] : null,
             'position_code'=> !($row['sp_'] === 'N/A' || $row['sp_'] === '') ? $row['sp_'] : null,
@@ -81,6 +80,28 @@ class User {
             'met_criteria' => $row['criteria_met_EOY'] === 'No' ? 0 : 1,
             'excellence_eligible' => $row['excellence_eligible'] === 'YES' ? 1: 0
         ];
+
+        /*use this to import users from elite-2022-users.csv when elite 2022 system setup
+        return [
+            'employee_code'=>$row['employee_code'],
+            'salutation'=>$row['salutation'],
+            'firstname'=>$row['firstname'],
+            'lastname'=>$row['lastname'],
+            'date_birth'=>!($row['dob'] == '0000-00-00' || $row['dob'] == 'NULL') ? $row['dob'] : null,
+            'mobile'=>$row['mobile'],
+            'email'=>$row['email'],
+            'password' => Hash::make(strtoupper(trim($row['lastname'])).'1'),
+            'date_created'=>!($row['date_created'] == 'NULL') ? $row['date_created'] : null,
+            'dealer_code'=>!($row['company_code'] == 'NULL') ? $row['company_code'] : null,
+            'position_code'=> !($row['position'] === 'N/A' || $row['position'] === '') ? $row['position'] : null,
+            'dept'=>$row['dept'],
+            'active'=>$row['active'],
+            'registered'=>!($row['registered'] == 'NULL') ? $row['registered'] : 0,
+            'member'=>!($row['member'] == 'NULL') ? $row['member'] : 0,
+            'met_criteria' => !($row['met_criteria'] == 'NULL') ? $row['met_criteria'] : 0,
+            'excellence_eligible' => !($row['excellence_eligible'] == 'NULL') ? $row['excellence_eligible'] : 0
+        ];*/
+
     }
 
     /**

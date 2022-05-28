@@ -228,11 +228,11 @@
                     ]
                 },
                 {
-                    "identifier": "dealer_forecast",
+                    "identifier": "retail_forecast",
                     "order": 6,
                     "title": "DEALER RETAIL FORECAST",
                     "metrics": {
-                        "dealer_forecast":{
+                        "retail_forecast":{
                             "label": "Dealer Forecast",
                             "color": "#999999",
                             "default": "NO"
@@ -619,11 +619,16 @@
             ],
             "SC": [
                 {
-                    "identifier": "ow",
-                    "label": "OW Data",
-                    "color": "#d2d2d2",
+                    "identifier": "comp_ow",
                     "order": 1,
                     "title": "OW DATA ENTRY COMPLIANCE",
+                    "metrics": {
+                        "comp_ow":{
+                            "label": "OW Data",
+                            "color": "#d2d2d2",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "OW DATA ENTRY COMPLIANCE GUIDE",
                         "top": ["Stock Controller", "≤ 1 Missed Day", "2-3 Missed Days"],
@@ -631,11 +636,16 @@
                     }]
                 },
                 {
-                    "identifier": "retail",
-                    "label": "Retail Forecast",
-                    "color": "#87CEEB",
+                    "identifier": "retail_forecast",
                     "order": 2,
                     "title": "Dealer Retail Forecast",
+                    "metrics": {
+                        "retail_forecast":{
+                            "label": "Retail Forecast",
+                            "color": "#87CEEB",
+                            "default": "NO"
+                        }
+                    },
                     "guides": [{
                         "title": "Dealer Retail Forecast GUIDE",
                         "top": ["Stock Controller", "YES"],
@@ -645,10 +655,15 @@
                 },
                 {
                     "identifier": "matched_ow",
-                    "label": "Matched OW",
-                    "color": "#8C7853",
                     "order": 3,
                     "title": "MATCHED ORDER WRITE",
+                    "metrics": {
+                        "matched_ow":{
+                            "label": "Matched OW",
+                            "color": "#8C7853",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "MATCHED ORDER WRITE  GUIDE",
                         "top": ["Stock Controller", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
@@ -657,10 +672,15 @@
                 },
                 {
                     "identifier": "fsp",
-                    "label": "Future Sales",
-                    "color": "#333333",
                     "order": 4,
                     "title": "FUTURE SALES PIPELINE (MATHED ORDERS RETAILED IN FUTURE MONTHS)",
+                    "metrics": {
+                        "fsp":{
+                            "label": "Future Sales",
+                            "color": "#333333",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "FUTURE SALES PIPELINE (MATHED ORDERS RETAILED IN FUTURE MONTHS) GUIDE",
                         "top": ["Stock Controller", "per vehicle when retailed"],
@@ -669,10 +689,15 @@
                 },
                 {
                     "identifier": "nfv",
-                    "label": "NFV",
-                    "color": "#c40030",
                     "order": 5,
                     "title": "NFV TRADE-IN OR AUCTION URCHASED MARKED AS “NIC” IN NISCOM",
+                    "metrics": {
+                        "nfv":{
+                            "label": "NFV",
+                            "color": "#c40030",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "NFV TRADE-IN OR AUCTION URCHASED MARKED AS “NIC” IN NISCOM GUIDE",
                         "top": ["Stock Controller", "1-5", "6-10", "11-15", ">15"],
@@ -681,10 +706,15 @@
                 },
                 {
                     "identifier": "nic_sale",
-                    "label": "NIC sale",
-                    "color": "#999999",
                     "order": 6,
                     "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 20)",
+                    "metrics": {
+                        "nic_sale":{
+                            "label": "NIC sale",
+                            "color": "#999999",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 20) GUIDE",
                         "top": ["Stock Controller", "mthly"],
@@ -693,10 +723,15 @@
                 },
                 {
                     "identifier": "reg_ret",
-                    "label": "Reg VS. Retail",
-                    "color": "#4682B4",
                     "order": 7,
                     "title": "Registration v Retails Compliance",
+                    "metrics": {
+                        "reg_ret":{
+                            "label": "Reg VS. Retail",
+                            "color": "#4682B4",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "Registration v Retails Compliance GUIDE",
                         "top": ["Stock Controller", "≥90%"],
