@@ -776,10 +776,15 @@
             "I": [
                 {
                     "identifier": "nfsa",
-                    "label": "NFSA Contracts",
-                    "color": "#C0C0C0",
                     "order": 1,
                     "title": "NFSA Contracts",
+                    "metrics": {
+                        "nfsa":{
+                            "label": "NFSA Contracts",
+                            "color": "#C0C0C0",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "NFSA Contracts GUIDE",
                         "top": ["F&I Manager", "NFSA Finance Contract"],
@@ -787,11 +792,16 @@
                     }]
                 },
                 {
-                    "identifier": "loyalty",
-                    "label": "Loyalty",
-                    "color": "#8B4513",
+                    "identifier": "lrb",
                     "order": 2,
                     "title": "Loyalty & Retention Bonus",
+                    "metrics": {
+                        "lrb":{
+                            "label": "Loyalty",
+                            "color": "#8B4513",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "Loyalty Retention Bonus Guide",
                         "top": ["F&I Manager", "Loyalty & Retention Bonus"],
@@ -800,10 +810,20 @@
                 },
                 {
                     "identifier": "insurance",
-                    "label": "Insurance",
-                    "color": "#4682B4",
                     "order": 3,
                     "title": "Insurance – MVI & MVI/NFSA pkg",
+                    "metrics": {
+                        "insurance_mvi":{
+                            "label": "Insurance MVI",
+                            "color": "#4682B4",
+                            "default": "0"
+                        },
+                        "insurance_pkg":{
+                            "label": "Insurance PKG",
+                            "color": "#4682B4",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "Insurance Guide",
                         "top": ["F&I Manager", "MVI Motor Vehicle Insurance", "Package"],
@@ -812,10 +832,15 @@
                 },
                 {
                     "identifier": "penetration",
-                    "label": "Penetration",
-                    "color": "#999999",
                     "order": 4,
                     "title": "Dealer Sales Penetration Rate",
+                    "metrics": {
+                        "penetration":{
+                            "label": "Penetration",
+                            "color": "#999999",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "Dealer Sales Penetration Rate Guide",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NEW 50% average = Sum(monthly Penetration %) / 12months",
@@ -825,10 +850,15 @@
                 },
                 {
                     "identifier": "pmp",
-                    "label": "PMP",
-                    "color": "#ff0000",
                     "order": 5,
                     "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE",
+                    "metrics": {
+                        "pmp":{
+                            "label": "PMP",
+                            "color": "#ff0000",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE GUIDE",
                         "top": ["F&I Manager", "Contract"],
@@ -837,10 +867,20 @@
                 },
                 {
                     "identifier": "nfv",
-                    "label": "NFV contract",
-                    "color": "#87CEEB",
                     "order": 6,
                     "title": "NFV contract",
+                    "metrics": {
+                        "nfv":{
+                            "label": "NFV contract",
+                            "color": "#87CEEB",
+                            "default": "0"
+                        },
+                        "nfv_nfsa":{
+                            "label": "NFV%",
+                            "color": "#87CEEB",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "NFV contract Guide",
                         "top": ["F&I Manager", "per unit"],
@@ -853,10 +893,15 @@
                 },
                 {
                     "identifier": "nic_sale_nfsa",
-                    "label": "NIC sale NFSA",
-                    "color": "#999999",
                     "order": 7,
                     "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA (MTHLY CAP 20 UNITS)",
+                    "metrics": {
+                        "nic_sale_nfsa":{
+                            "label": "NIC sale NFSA",
+                            "color": "#999999",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA (MTHLY CAP 20 UNITS) GUIDE",
                         "top": ["F&I Manager", "per unit"],
@@ -865,10 +910,15 @@
                 },
                 {
                     "identifier": "satisfaction",
-                    "label": "Satisfaction",
-                    "color": "#999999",
                     "order": 8,
                     "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3 MONTH ROLLING SCORE",
+                    "metrics": {
+                        "satisfaction":{
+                            "label": "Satisfaction",
+                            "color": "#999999",
+                            "default": "0"
+                        }
+                    },
                     "guides": [{
                         "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3 MONTH ROLLING SCORE GUIDE",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NPS6 month rolling target",
