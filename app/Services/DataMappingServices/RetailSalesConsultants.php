@@ -27,8 +27,8 @@ class RetailSalesConsultants extends MonthlyDataMapping {
             'pmp' => $row['points_PMP'] !== '' ? intval($row['points_PMP']) : 0,
             'pmp_result' => $row['sales_PMP'] !== '' ? floatval($row['sales_PMP']) : 0,
 
-            'satisfaction' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
-            'satisfaction_result' => $row['score_ce_SOS3'] !== '' ? floatval($row['score_ce_SOS3']) : 0.0,
+            'sos' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
+            'sos_result' => $row['score_ce_SOS3'] !== '' ? floatval($row['score_ce_SOS3']) : 0.0,
 
             'kept_informed' => $row['points_ce_KID3_'] !== '' ? intval($row['points_ce_KID3_']) : 0,
             'kept_informed_result' => $row['score_ce_KID3_'] !== '' ? floatval($row['score_ce_KID3_']) : 0.0,
