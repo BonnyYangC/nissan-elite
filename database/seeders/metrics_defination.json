@@ -962,10 +962,15 @@
             "PM": [
                 {
                     "identifier": "grp",
-                    "label": "Genuine Replacement Parts",
-                    "color": "#8B4513",
                     "order": 1,
                     "title": "Nissan Genuine replacement Parts (GRP)",
+                    "metrics": {
+                        "grp":{
+                            "label": "Genuine Replacement Parts",
+                            "color": "#8B4513",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "NISSAN GENUINE REPLACEMENT PARTS (GRP) Guide",
                         "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
@@ -973,11 +978,16 @@
                     }]
                 },
                 {
-                    "identifier": "gas",
-                    "label": "Accessories",
-                    "color": "#C0C0C0",
+                    "identifier": "acc",
                     "order": 2,
                     "title": "Nissan Genuine Accessories",
+                    "metrics": {
+                        "acc":{
+                            "label": "Accessories",
+                            "color": "#C0C0C0",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "Nissan Genuine Accessories GUIDE",
                         "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
@@ -986,11 +996,26 @@
                 },
                 {
                     "identifier": "apnur",
-                    "label": "APNUR",
-                    "color": "#CCFF99",
                     "order": 3,
                     "title": "APNUR PERFORMANCE -  ALL MODELS, NAVARA, PATROL",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
+                    "metrics": {
+                        "apnur_n":{
+                            "label": "NAVARA",
+                            "color": "#CCFF99",
+                            "default": "0%"
+                        },
+                        "apnur_am":{
+                            "label": "ALL MODELS",
+                            "color": "#CCFF99",
+                            "default": "0%"
+                        },
+                        "apnur_p":{
+                            "label": "PATROL",
+                            "color": "#CCFF99",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "colspan": "APNUR PERFORMANCE - ALL MODELS",
                         "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
@@ -1010,10 +1035,15 @@
                 },
                 {
                     "identifier": "gp_cpro",
-                    "label": "Genuine Parts",
-                    "color": "#C0C0C0",
                     "order": 4,
                     "title": "•\tGENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
+                    "metrics": {
+                        "gp_cpro":{
+                            "label": "Genuine Parts",
+                            "color": "#C0C0C0",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "•\tGENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO GUIDE",
                         "top": ["Parts Manager", "≥$100.00", "≥$140.00", "≥$180.00"],
@@ -1023,10 +1053,15 @@
                 },
                 {
                     "identifier": "rim",
-                    "label": "RIM % Useage",
-                    "color": "#FF99CC",
                     "order": 5,
                     "title": "RIM % Useage",
+                    "metrics": {
+                        "rim":{
+                            "label": "RIM % Useage",
+                            "color": "#FF99CC",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "RIM % Useage GUIDE",
                         "top": ["Parts Manager", "45%", "55%", "65%"],
@@ -1072,10 +1107,15 @@
             "PS": [
                 {
                     "identifier": "grp",
-                    "label": "Genuine Replacement Parts",
-                    "color": "#8B4513",
                     "order": 1,
                     "title": "Nissan Genuine replacement Parts",
+                    "metrics": {
+                        "grp":{
+                            "label": "Genuine Replacement Parts",
+                            "color": "#8B4513",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "Nissan Genuine Replacement Parts Guide",
                         "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
@@ -1084,10 +1124,20 @@
                 },
                 {
                     "identifier": "trade_sale",
-                    "label": "Trade Sales",
-                    "color": "#4682B4",
                     "order": 2,
                     "title": "Trade Parts Sales per unit in Operation",
+                    "metrics": {
+                        "trade_sale_pvfy":{
+                            "label": "Trade Sales vs FY21",
+                            "color": "#4682B4",
+                            "default": "0%"
+                        },
+                        "trade_sale_pvlq":{
+                            "label": "Trade Sales vs previous",
+                            "color": "#4682B4",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "Trade Parts Sales per unit in Operation Guide",
                         "colspan": "Quarterly Performance vs FY21 Total",

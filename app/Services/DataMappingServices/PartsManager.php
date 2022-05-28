@@ -12,20 +12,23 @@ class PartsManager extends MonthlyDataMapping {
     protected function metricsMapping($row): array {
         return [
             'grp' => $row['points_GRP_'] !== '' ? intval($row['points_GRP_']) : 0,
-            'grp_result' => $row['pcent_GRP_'] !== '' ? floatval($row['pcent_GRP_']) : 0.0,
+            'grp_result' => ($row['pcent_GRP_'] !== '' ? number_format(floatval($row['pcent_GRP_'])*100) : '0') . '%',
 
-            'gas' => $row['points_ACC_'] !== '' ? intval($row['points_ACC_']) : 0,
-            'gas_result' => $row['pcent_ACC_'] !== '' ? floatval($row['pcent_ACC_']) : 0.0,
+            'acc' => $row['points_ACC_'] !== '' ? intval($row['points_ACC_']) : 0,
+            'acc_result' => ($row['pcent_ACC_'] !== '' ? number_format(floatval($row['pcent_ACC_'])*100) : '0') . '%',
 
             'apnur_n' => $row['points_APNUR_N_'] !== '' ? intval($row['points_APNUR_N_']) : 0,
-            'apnur_n_result' => $row['pcent_APNUR_N_'] !== '' ? floatval($row['pcent_APNUR_N_']) : 0.0,
-            'apnur_x' => $row['points_APNUR_X_'] !== '' ? intval($row['points_APNUR_X_']) : 0,
-            'apnur_x_result' => $row['pcent_APNUR_X_'] !== '' ? floatval($row['pcent_APNUR_X_']) : 0.0,
-            'apnur_q' => $row['points_APNUR_Q_'] !== '' ? intval($row['points_APNUR_Q_']) : 0,
-            'apnur_q_result' => $row['pcent_APNUR_Q_'] !== '' ? floatval($row['pcent_APNUR_Q_']) : 0.0,
+            'apnur_n_result' => ($row['pcent_APNUR_N_'] !== '' ? number_format(floatval($row['pcent_APNUR_N_'])*100) : '0') . '%',
+            'apnur_am' => $row['points_APNUR_AM_parts'] !== '' ? intval($row['points_APNUR_AM_parts']) : 0,
+            'apnur_am_result' => ($row['pcent_APNUR_AM_parts'] !== '' ? number_format(floatval($row['pcent_APNUR_AM_parts'])*100) : '0') . '%',
+            'apnur_p' => $row['points_APNUR_P'] !== '' ? intval($row['points_APNUR_P']) : 0,
+            'apnur_p_result' => ($row['pcent_APNUR_P'] !== '' ? number_format(floatval($row['pcent_APNUR_P'])*100) : '0') . '%',
 
-            'brake_wiper' => $row['points_BWP_'] !== '' ? intval($row['points_BWP_']) : 0,
-            'brake_wiper_result' => $row['sales_BWP'] !== '' ? intval($row['sales_BWP']) : 0,
+            'gp_cpro' => $row['points_GPVAL_'] !== '' ? intval($row['points_GPVAL_']) : 0,
+            'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? intval($row['score_GPVAL_']) : 0,
+
+            'rim' => $row['points_RIM'] !== '' ? intval($row['points_RIM']) : 0,
+            'rim_result' => ($row['pcent_RIM'] !== '' ? number_format(floatval($row['pcent_RIM'])*100) : '0') . '%',
         ];
     }
 }
