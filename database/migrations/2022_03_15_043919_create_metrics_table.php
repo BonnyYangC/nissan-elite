@@ -23,6 +23,7 @@ class CreateMetricsTable extends Migration
             $table->string('color')->nullable();  // chart legend color
             $table->unsignedInteger('order');
             $table->string('title');
+            $table->json('metrics')->nullable();
             $table->json('guides')->nullable();
             $table->string('ref')->nullable();
             $table->timestamps();

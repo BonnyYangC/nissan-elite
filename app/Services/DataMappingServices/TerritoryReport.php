@@ -67,9 +67,10 @@ class TerritoryReport {
             'dealer_cat'            =>'dcat',//'d_cat',  // dealer's category, metro or district ...
             'sp_code'               =>'sp_code',
             'n_fullname'            =>'n_fullname',
-            'position'              =>'position',
-            'registered'            =>'registered',*/
+            'position'              =>'position',*/
             'employee_code'         =>$row['regi#_'],
+            'award_status'          =>$row['award_status'],
+            'points_ytd_status'       =>$row['points_ytd_status_'] !== '' ? $row['points_ytd_status_'] : 0,
             'credits_monthly_04'    =>$row['elit~engi_regi#04mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#04mthyrg::POINTS_MTHLY_'] : 0,
             'credits_monthly_05'    =>$row['elit~engi_regi#05mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#05mthyrg::POINTS_MTHLY_'] : 0,
             'credits_monthly_06'    =>$row['elit~engi_regi#06mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#06mthyrg::POINTS_MTHLY_'] : 0,

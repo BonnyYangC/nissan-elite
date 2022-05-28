@@ -16,6 +16,8 @@ class CreateTerritoryReportsTable extends Migration
             $table->id();
             $table->string('employee_code');       //     =>'regi#',
 
+            $table->string('award_status', 50);
+            $table->unsignedBigInteger('points_ytd_status');
             $table->unsignedBigInteger('credits_monthly_04');       //=>'elit~engi_regi#04mthyrg::points_mthly',//'amba_stat_04_apr::credits_monthly',
             $table->unsignedBigInteger('credits_monthly_05');       //=>'elit~engi_regi#05mthyrg::points_mthly',//'amba_stat_05_may::credits_monthly',
             $table->unsignedBigInteger('credits_monthly_06');       //=>'elit~engi_regi#06mthyrg::points_mthly',//'amba_stat_06_jun::credits_monthly',
