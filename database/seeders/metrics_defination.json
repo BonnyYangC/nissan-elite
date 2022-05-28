@@ -1342,10 +1342,15 @@
             "SA": [
                 {
                     "identifier": "sos",
-                    "label": "Overall Sat",
-                    "color": "#999999",
                     "order": 1,
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – ALL MODELS",
+                    "metrics": {
+                        "sos":{
+                            "label": "Overall Sat",
+                            "color": "#999999",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "Service overall satisfaction NPS 3 month rolling score Guide",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target", "≥110% Target"],
@@ -1354,11 +1359,21 @@
                     }]
                 },
                 {
-                    "identifier": "sos_navara",
-                    "label": "Overall Sat Navara",
-                    "color": "#999999",
+                    "identifier": "sos_n_p",
                     "order": 2,
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
+                    "metrics": {
+                        "sos_navara":{
+                            "label": "Overall Sat Navara",
+                            "color": "#999999",
+                            "default": 0
+                        },
+                        "sos_patrol":{
+                            "label": "Overall Sat Patrol",
+                            "color": "#999999",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "SERVICE OVERALL SATISFACTION - NAVARA GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target", "≥110% Target"],
@@ -1372,10 +1387,15 @@
                 },
                 {
                     "identifier": "fft",
-                    "label": "F1",
-                    "color": "#CCFF99",
                     "order": 3,
                     "title": "F1 (Fixed it right first time) %yes NPS R3M",
+                    "metrics": {
+                        "fft":{
+                            "label": "F1",
+                            "color": "#CCFF99",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
@@ -1383,11 +1403,16 @@
                     }]
                 },
                 {
-                    "identifier": "car_washed",
-                    "label": "Car Washed %",
-                    "color": "#CCFF99",
+                    "identifier": "cwp",
                     "order": 4,
                     "title": "Car Washed %",
+                    "metrics": {
+                        "cwp":{
+                            "label": "Car Washed %",
+                            "color": "#CCFF99",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "Car Washed %",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
@@ -1395,11 +1420,16 @@
                     }]
                 },
                 {
-                    "identifier": "explanation",
-                    "label": "Exp Costs",
-                    "color": "#CCFF99",
+                    "identifier": "eoc",
                     "order": 5,
                     "title": "Explanation of costs - Dealership's NPS R3M score(Monthly)",
+                    "metrics": {
+                        "eoc":{
+                            "label": "Exp Costs",
+                            "color": "#CCFF99",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "Explanation of costs - Dealership's NPS R3M score(Monthly) GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
@@ -1407,11 +1437,16 @@
                     }]
                 },
                 {
-                    "identifier": "order_target",
-                    "label": "CPRO",
-                    "color": "#FFCC99",
+                    "identifier": "cpro_target",
                     "order": 6,
                     "title": "Customer Paid Repair Orders vs Target",
+                    "metrics": {
+                        "cpro_target":{
+                            "label": "CPRO",
+                            "color": "#FFCC99",
+                            "default": "0%"
+                        }
+                    },
                     "guides": [{
                         "title": "Customer Paid Repair Orders vs Target GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥110% Target", "≥120% Target"],
@@ -1421,10 +1456,15 @@
                 },
                 {
                     "identifier": "gp_cpro",
-                    "label": "Genuine Parts",
-                    "color": "#C0C0C0",
                     "order": 7,
                     "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
+                    "metrics": {
+                        "gp_cpro":{
+                            "label": "Genuine Parts",
+                            "color": "#C0C0C0",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "Genuine Parts per CPRO GUIDE",
                         "top": ["Service Advisor", "≥$100.00", "≥$140.00", "≥$180.00"],
@@ -1434,10 +1474,15 @@
                 },
                 {
                     "identifier": "loyalty",
-                    "label": "Loyalty",
-                    "color": "#c40030",
                     "order": 8,
                     "title": "Loyalty per Loyalty Sales",
+                    "metrics": {
+                        "loyalty":{
+                            "label": "Loyalty",
+                            "color": "#c40030",
+                            "default": 0
+                        }
+                    },
                     "guides": [{
                         "title": "Loyalty GUIDE",
                         "top": ["Service Advisor", "per loyalty sale"],

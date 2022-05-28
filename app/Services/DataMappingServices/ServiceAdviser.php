@@ -11,17 +11,28 @@ class ServiceAdviser extends MonthlyDataMapping {
      */
     protected function metricsMapping($row): array {
         return [
-            'satisfaction' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
-            'satisfaction_result' => $row['score_ce_SOS3'] !== '' ? floatval($row['score_ce_SOS3']) : 0.0,
+            'sos' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
+            'sos_result' => $row['score_ce_SOS3'] !== '' ? floatval($row['score_ce_SOS3']) : 0.0,
 
-            'follow_up' => $row['points_ce_FUS3_'] !== '' ? intval($row['points_ce_FUS3_']) : 0,
-            'follow_up_result' => $row['score_ce_PFU3_'] !== '' ? floatval($row['score_ce_PFU3_']) : 0.0,
+            'sos_navara' => $row['points_ce_SOS3_N'] !== '' ? intval($row['points_ce_SOS3_N']) : 0,
+            'sos_navara_result' => $row['score_ce_SOS3_N'] !== '' ? floatval($row['score_ce_SOS3_N']) : 0.0,
+            'sos_patrol' => $row['points_ce_SOS3_P'] !== '' ? intval($row['points_ce_SOS3_P']) : 0,
+            'sos_patrol_result' => $row['score_ce_SOS3_P'] !== '' ? floatval($row['score_ce_SOS3_P']) : 0.0,
 
-            'explanation' => $row['points_ce_EOC3_'] !== '' ? intval($row['points_ce_EOC3_']) : 0,
-            'explanation_result' => $row['score_ce_EOC3_'] !== '' ? intval($row['score_ce_EOC3_']) : 0,
+            'fft' => $row['points_ce_FFT3_'] !== '' ? intval($row['points_ce_FFT3_']) : 0,
+            'fft_result' => $row['score_ce_FFT3_'] !== '' ? floatval($row['score_ce_FFT3_']) : 0.0,
 
-            'brake_wiper' => $row['points_BWP_'] !== '' ? intval($row['points_BWP_']) : 0,
-            'brake_wiper_result' => $row['sales_BWP'] !== '' ? intval($row['sales_BWP']) : 0,
+            'cwp' => $row['points_ce_cwp3'] !== '' ? intval($row['points_ce_cwp3']) : 0,
+            'cwp_result' => $row['score_ce_cwp3'] !== '' ? intval($row['score_ce_cwp3']) : 0,
+
+            'eoc' => $row['points_ce_EOC3_'] !== '' ? intval($row['points_ce_EOC3_']) : 0,
+            'eoc_result' => $row['score_ce_EOC3_'] !== '' ? intval($row['score_ce_EOC3_']) : 0,
+
+            'cpro_target' => $row['points_CPRO_'] !== '' ? intval($row['points_CPRO_']) : 0,
+            'cpro_target_result' => ($row['pcent_CPRO_'] !== '' ? number_format(floatval($row['pcent_CPRO_'])*100) : '0') . '%',
+
+            'gp_cpro' => $row['points_GPVAL_'] !== '' ? intval($row['points_GPVAL_']) : 0,
+            'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? intval($row['score_GPVAL_']) : 0,
 
             'loyalty' => $row['points_loyalty_'] !== '' ? intval($row['points_loyalty_']) : 0,
             'loyalty_result' => $row['sales_loyalty'] !== '' ? floatval($row['sales_loyalty']) : 0.0,
