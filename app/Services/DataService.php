@@ -63,7 +63,7 @@ class DataService extends BaseService {
             $modelKey = $mappingService->getKeyForModel();
 
             foreach ($records as $lineNumber => $record) {
-                if (empty($record[$modelKey['primary']])) {
+                if (empty($record[$modelKey['primary']]) || !$record[$modelKey['primary']]) {
                     $failCount++;
                     continue;
                 }
@@ -77,6 +77,10 @@ class DataService extends BaseService {
                     $keys = [$modelKey['primary']];
                 }
                 foreach($keys as $key) {
+                    if(!$mappingService->validate(trim($record[$modelKey['primary']]))) {
+                        $failCount++;
+                        continue;
+                    }
                     $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $dataType, $modelKey, $record, $key);
 
                     if ($model) {

@@ -4,6 +4,7 @@ namespace App\Services\DataMappingServices;
 
 use App\Helper\Defination;
 use App\Models\TerritoryReport as TerritoryReportModel;
+use App\Models\User;
 use Carbon\Carbon;
 
 class TerritoryReport {
@@ -37,6 +38,7 @@ class TerritoryReport {
      * @return TerritoryReportModel
      */
     public function getModel($actionType, $dataType, $modelKey, $record, $key) {
+        // $this->handleUser(trim($record[$modelKey['primary']]), $actionType);
         $model = TerritoryReportModel::where('employee_code', trim($record[$modelKey['primary']]))->first();
         if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
             $model = new TerritoryReportModel();
@@ -101,4 +103,21 @@ class TerritoryReport {
         return $result;
     }
 
+    /**
+     * @param string $employeeCode
+     * @return bool
+     */
+    public function validate(string $employeeCode) {
+        $model = User::where('employee_code', $employeeCode)->first();
+        return $model ? true : false;
+    }
+
+    private function handleUser(string $employeeCode, string $actionType) {
+        $model = User::where('employee_code', $employeeCode)->first();
+        if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
+            $model = new User();
+            $model->updated_at = Carbon::now();
+            $model->created_at = Carbon::now();
+        }
+    }
 }

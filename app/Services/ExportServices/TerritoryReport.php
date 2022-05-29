@@ -43,6 +43,7 @@ class TerritoryReport extends BaseService {
             'Member No.' => 'e',
             'Position' => 'p',
             'YTD' => 'y',
+            'Award Status' => 'as',
             'APR '.config('elite.YEAR') => 'c04',
             'MAY '.config('elite.YEAR') => 'c05',
             'JUN '.config('elite.YEAR') => 'c06',
@@ -55,6 +56,7 @@ class TerritoryReport extends BaseService {
             'JAN '.(config('elite.YEAR')+1) => 'c01',
             'FEB '.(config('elite.YEAR')+1) => 'c02',
             'MAR '.(config('elite.YEAR')+1) => 'c03',
+            'Point YTD Historical' => 'pys',
         ];
 
         return Utility::exportToFile('territory_report_'.$today->format('d_M_Y').'.csv', $report, $contentMap);

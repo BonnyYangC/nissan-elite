@@ -23,8 +23,8 @@ class Dealer {
      */
     public function getKeyForModel(): array {
         $key = [];
-        // $key['primary'] = 'code'; use this to import dealer when 2022 elite system set up
         $key['primary'] = 'dcode';
+        // $key['primary'] = 'code'; use this to import dealer when 2022 elite system set up
         return $key;
     }
 
@@ -78,7 +78,7 @@ class Dealer {
         ];
 
 
-/* use this to import dealer from elite-2022-dealer.csv when elite 2022 system setup
+/* use this to import dealer from elite-2021-dealer.csv when elite 2022 system setup
         return [
         'code' => $row['code'],
         'name' => $row['name'],
@@ -109,4 +109,11 @@ class Dealer {
         return $result;
     }
 
+    /**
+     * @param string $employeeCode
+     * @return bool
+     */
+    public function validate(string $employeeCode) {
+        return true;
+    }
 }

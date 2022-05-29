@@ -82,4 +82,11 @@ class LoyaltyHistorical {
         return $result;
     }
 
+    /**
+     * @param string $employeeCode
+     * @return bool
+     */
+    public function validate(string $employeeCode) {
+        return true;
+    }
 }

@@ -116,6 +116,10 @@
                 label="YTD" sortable width="100">
                 </el-table-column>
                 <el-table-column
+                    prop="as"
+                    label="AWARD STATUS" sortable width="200">
+                </el-table-column>
+                <el-table-column
                     prop="c04"
                     label="Apr" sortable width="86">
                 </el-table-column>
@@ -162,6 +166,10 @@
                 <el-table-column
                     prop="c03"
                     label="Mar" sortable width="86">
+                </el-table-column>
+                <el-table-column
+                    prop="pys"
+                    label="Point YTD Historical" sortable width="220">
                 </el-table-column>
             </el-table>
         </div>

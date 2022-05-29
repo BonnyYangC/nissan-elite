@@ -99,4 +99,12 @@ abstract class MonthlyDataMapping {
         $result = false;
         return $result;
     }
+
+    /**
+     * @param string $employeeCode
+     * @return bool
+     */
+    public function validate(string $employeeCode) {
+        return true;
+    }
 }

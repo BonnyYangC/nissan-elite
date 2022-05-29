@@ -6,6 +6,7 @@ use App\Helper\Defination;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 
 class RegionStaff {
 
@@ -28,6 +29,7 @@ class RegionStaff {
     public function getKeyForModel(): array {
         $key = [];
         $key['primary'] = 'Email';
+        //$key['primary'] = 'email'; /*use this for import regional staff from elite-2021-regional-staff.csv when elite 2022 system setup*/
         return $key;
     }
 
@@ -74,6 +76,30 @@ class RegionStaff {
             'mobile' => $row['Mobile'] ? $row['Mobile'] : null,
             'active' => $row['Active'] === 'YES' ? 1 : 0
         ];
+
+        /*use this for import regional staff from elite-2021-regional-staff.csv when elite 2022 system setup*/
+        /*$region = $this->regions->filter(function($r) use ($row) {return strtoupper($r->title) === $row['alt_position'];})->first();
+        return [
+            'salutation'=>$row['salutation'],
+            'firstname'=>$row['firstname'],
+            'lastname'=>$row['lastname'],
+
+            'position_code'=> !($row['position'] === 'N/A' || $row['position'] === '') ? $row['position'] : null,
+            'region_code' => $region && isset($region['code']) ? $region['code'] : null,
+
+            'date_birth'=>!($row['dob'] == '0000-00-00' || $row['dob'] == 'NULL') ? $row['dob'] : null,
+            'mobile'=>$row['mobile'],
+            'email'=>$row['email'],
+            'password' => Hash::make(strtoupper(trim($row['lastname'])).'1'),
+            'date_created'=>!($row['date_created'] == 'NULL') ? $row['date_created'] : null,
+            'dealer_code'=>!($row['company_code'] == 'NULL') ? $row['company_code'] : null,
+            'dept'=>$row['dept'],
+            'active'=>$row['active'],
+            'registered'=>!($row['registered'] == 'NULL') ? $row['registered'] : 0,
+            'member'=>!($row['member'] == 'NULL') ? $row['member'] : 0,
+            'met_criteria' => !($row['met_criteria'] == 'NULL') ? $row['met_criteria'] : 0,
+            'excellence_eligible' => !($row['excellence_eligible'] == 'NULL') ? $row['excellence_eligible'] : 0
+        ];*/
     }
 
     /**
@@ -88,4 +114,11 @@ class RegionStaff {
         return $result;
     }
 
+    /**
+     * @param string $employeeCode
+     * @return bool
+     */
+    public function validate(string $employeeCode) {
+        return true;
+    }
 }

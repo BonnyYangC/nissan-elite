@@ -81,8 +81,8 @@ class User {
             'excellence_eligible' => $row['excellence_eligible'] === 'YES' ? 1: 0
         ];
 
-        /*use this to import users from elite-2022-users.csv when elite 2022 system setup
-        return [
+        /*use this to import users from elite-2021-users.csv when elite 2022 system setup*/
+        /*return [
             'employee_code'=>$row['employee_code'],
             'salutation'=>$row['salutation'],
             'firstname'=>$row['firstname'],
@@ -114,5 +114,13 @@ class User {
     public static function isIgnored($type, $value) {
         $result = false;
         return $result;
+    }
+
+    /**
+     * @param string $employeeCode
+     * @return bool
+     */
+    public function validate(string $employeeCode) {
+        return true;
     }
 }
