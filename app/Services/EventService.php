@@ -14,6 +14,15 @@ class EventService {
      */
     public function __construct() { }
 
+    /**
+     * @return
+     */
+    public function load() {
+        return Event::select('id',
+            'title',
+            'datestamp',
+            'dateend')->get();
+    }
 
     /**
      * @param null $region

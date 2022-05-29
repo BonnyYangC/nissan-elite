@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "element-ui": "2.8.2"
+        "element-ui": "2.8.2",
+        "js-year-calendar": "^2.0.0"
     }
 }

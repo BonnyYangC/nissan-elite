@@ -32,3 +32,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Calendar from 'js-year-calendar';
+import 'js-year-calendar/dist/js-year-calendar.css';

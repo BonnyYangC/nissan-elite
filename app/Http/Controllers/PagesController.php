@@ -167,13 +167,15 @@ $this->dataForView['metricData'] = [
      */
     public function calendar() {
         $this->dataForView['menuName'] = 'calendar';
+        $events = $this->resolver->eventService()->load();
+
         $obj1 = [
             'id' => '30',
             'name' => 'LEAF i_ELITE BONUS POINTS',
-            'startDate' => strtotime('2020-07-01'),
-            'endDate' => strtotime('2020-09-30'),
+            'datestamp' => '2022-07-01',
+            'dateend' => '2022-09-30'
         ];
-        $this->dataForView['nissanEvents'] = json_encode([$obj1]);
+        $this->dataForView['nissanEvents'] = json_encode($events->all()); //[$obj1]
 
         return $this->render('pages.calendar');
     }
