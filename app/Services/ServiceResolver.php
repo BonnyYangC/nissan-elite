@@ -74,6 +74,14 @@ class ServiceResolver {
      * Create a new service instance.
      *
      */
+    public function gageService(): GageService {
+        return $this->make(GageService::class);
+    }
+
+    /**
+     * Create a new service instance.
+     *
+     */
     public function faqService(): FaqService {
         return $this->make(FaqService::class);
     }
