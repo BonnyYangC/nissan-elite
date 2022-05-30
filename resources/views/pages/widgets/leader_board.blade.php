@@ -2,10 +2,10 @@
 @if($currentUser->position->platinum_ranking)
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-status-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">STATUS</button>
+            <button class="btn-leader-board nav-link active" id="pills-status-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">STATUS</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-platinum-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">PLATINUM</button>
+            <button class="btn-leader-board nav-link" id="pills-platinum-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">PLATINUM</button>
         </li>
     </ul>
 @endif

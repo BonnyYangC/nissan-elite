@@ -8,6 +8,10 @@
     margin-bottom: 3%;
 }
 
+.btn-leader-board {
+    padding: 0.5rem;
+    font-size: 12px;
+}
 .leader-board-table tr td a.matched {
     font-family: 'nissan_brandregular', SansSerif, serif;
 }

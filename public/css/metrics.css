@@ -14,7 +14,9 @@
     padding-left: 1%;
     padding-right: 1%;
 }
-
+.metrics-table {
+    width: 95%;
+}
 .metrics-table .nissan-table-cell-grey {
     background: #c2c2c2;
     color: #000000;
@@ -34,4 +36,9 @@
     line-height: 13px;
     text-align: center;
 }
-
+.guide-table tr.nissan-table-header td:first-child{
+    text-align: left;
+}
+.guide-table tr.table-body td:first-child{
+    text-align: left;
+}
