@@ -4,6 +4,7 @@ namespace App\Helper;
 
 
 class Color {
+    const WHITE     = '#000000';
     const BLACK     = '#111111';
     const DARK_GREY = '#333333';
     const LIGHT_BLUE  = '#87CEEB';

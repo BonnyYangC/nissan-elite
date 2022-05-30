@@ -3,7 +3,6 @@
 namespace App\Helper;
 
 class Role {
-
     const FLEET_SALES_EXECUTIVES    = 'F';
     const SALES_MANAGER             = 'M';
     const RETAIL_SALES_CONSULTANTS  = 'R';

@@ -4,6 +4,7 @@ namespace App\Helper;
 
 
 class JsonBuilder {
+
     const CODE_SUCCESS      = 100;
     const CODE_SUCCESS_ALT  = 101;
     const CODE_ERROR = 99;

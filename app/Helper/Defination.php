@@ -3,7 +3,6 @@
 namespace App\Helper;
 
 class Defination {
-
     const PAGE_DASHBOARD = 'dashboard';
     const PAGE_METRICS = 'metrics';
     const PAGE_MY_TEAM = 'my_team';

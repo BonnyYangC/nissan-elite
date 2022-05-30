@@ -4,7 +4,6 @@ namespace App\Helper;
 
 
 class Loyalty {
-
     const STATUS_LEVEL_4       = 'Platinum';
     const STATUS_LEVEL_3    = 'Gold';
     const STATUS_LEVEL_2      = 'Silver';
