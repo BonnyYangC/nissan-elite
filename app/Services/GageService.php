@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\helper\Loyalty;
+use App\Helper\Loyalty;
 
 class GageService extends BaseService {
 
