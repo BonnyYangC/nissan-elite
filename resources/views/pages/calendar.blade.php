@@ -4,16 +4,14 @@
     var nissanEvents =  <?php echo $nissanEvents; ?>;
     var calendarEvents = [];
     nissanEvents.forEach((event, i) => {
-        console.log(event);
         calendarEvents.push({
             id:event.id,
-            name: event.name,
+            name: event.title,
             startDate: new Date(event.datestamp),
             endDate: new Date(event.dateend)
         });
     });
-
-    console.log('4444', calendarEvents);
+    //console.log(calendarEvents);
 </script>
 @section('content')
 <div class="d-flex justify-content-center">

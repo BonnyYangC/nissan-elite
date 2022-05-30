@@ -4,6 +4,37 @@ new Calendar('.calendar', {
     enableContextMenu: true,
     enableRangeSelection: true,
     dataSource: calendarEvents,
+
+    mouseOnDay: function(e) {
+        if(e.events.length > 0) {
+            var content = '';
+
+            for(var i in e.events) {
+                content += '<div class="event-tooltip-content">'
+                    + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                    + '</div>';
+            }
+            //console.log(content);
+            $(e.element).popover({
+                trigger: 'manual',
+                container: 'body',
+                html:true,
+                content: content
+            });
+
+            $(e.element).popover('show');
+        }
+    },
+    mouseOutDay: function(e) {
+        if(e.events.length > 0) {
+            $(e.element).popover('hide');
+        }
+    },
+    dayContextMenu: function(e) {
+        $(e.element).popover('hide');
+    },
+});
+
 /*[
 {
     id: 0,
@@ -76,32 +107,3 @@ new Calendar('.calendar', {
     endDate: new Date(currentYear, 10, 17)
 }
 ],*/
-mouseOnDay: function(e) {
-if(e.events.length > 0) {
-    var content = '';
-
-    for(var i in e.events) {
-        content += '<div class="event-tooltip-content">'
-            + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
-            + '</div>';
-    }
-
-    $(e.element).popover({
-        trigger: 'manual',
-        container: 'body',
-        html:true,
-        content: content
-    });
-
-    $(e.element).popover('show');
-}
-},
-mouseOutDay: function(e) {
-if(e.events.length > 0) {
-    $(e.element).popover('hide');
-}
-},
-dayContextMenu: function(e) {
-$(e.element).popover('hide');
-},
-});
