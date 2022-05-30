@@ -4,7 +4,7 @@ namespace App\Services\DataMappingServices;
 
 use App\Helper\Defination;
 use App\Helper\Utility;
-use App\Models\Result;
+use App\Models\{Result, User};
 use Carbon\Carbon;
 
 abstract class MonthlyDataMapping {
@@ -105,6 +105,7 @@ abstract class MonthlyDataMapping {
      * @return bool
      */
     public function validate(string $employeeCode) {
-        return true;
+        $model = User::where('employee_code', $employeeCode)->first();
+        return $model ? true : false;
     }
 }
