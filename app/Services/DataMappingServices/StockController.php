@@ -4,6 +4,29 @@ namespace App\Services\DataMappingServices;
 
 
 class StockController extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'comp_ow' => 'points_compOW_',
+        'comp_ow_result' => 'score_compOW_',
+
+        'retail_forecast' => 'points_forecast_',
+        'retail_forecast_result' => 'ach_forecast_',
+
+        'matched_ow' => 'points_matchOW_',
+        'matched_ow_result' => 'score_matchOW_',
+
+        'fsp' => 'points_FUTURE_P',
+        'fsp_result' => 'sales_FUTURE_P',
+
+        'nfv' => 'points_NIC_stock',
+        'nfv_result' => 'sales_NIC_stock',
+
+        'nic_sale' => 'points_NIC',
+        'nic_sale_result' => 'sales_NIC',
+
+        'reg_ret' => 'points_regvret_',
+        'reg_ret_result' => 'pcent_REGvRET_'
+    ];
 
     /**
      * @param $row

@@ -3,6 +3,50 @@
 namespace App\Services\DataMappingServices;
 
 class SalesManager extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'matched_ow' => 'points_matchOW_',
+        'matched_ow_result' => 'score_matchOW_',
+
+        'new_vehicle' => 'points_SALES_STATUS_',
+        'new_vehicle_result' => 'pcent_ACT_S_',
+
+        'fsp' => 'points_FUTURE_P',
+        'fsp_result' => 'SALES_FUTURE_P',
+
+        'nfv' => 'points_NFV%',
+        'nfv_result' => 'pcent_NFV%',
+
+        'nic_sale' => 'points_NIC',
+        'nic_sale_result' => 'sales_NIC',
+        'nic_sale_nfsa' => 'points_NIC_Fnfsa',
+        'nic_sale_nfsa_result' => 'sales_NIC_Fnfsa',
+
+        'retail_forecast' => 'points_forecast_',
+        'retail_forecast_result' => 'ach_forecast_',
+
+        'sos' => 'points_ce_SOS3_',
+        'sos_result' => 'score_ce_SOS3',
+
+        'booked_check' => 'points_ce_PBKD3_',
+        'booked_check_result' => 'score_ce_PBKD3',
+
+        'follow_up' => 'points_ce_PFU3_',
+        'follow_up_result' => 'score_ce_PFU3_',
+
+        'hot' => 'points_ce_HOTA_',
+        'hot_result' => 'score_ce_HOTA_',
+
+        'pmp' => 'points_PMP',
+        'pmp_result' => 'sales_PMP',
+
+        'apnur_n' => 'points_APNUR_N_',
+        'apnur_n_result' => 'pcent_APNUR_N_',
+        'apnur_x' => 'points_APNUR_X_',
+        'apnur_x_result' => 'pcent_APNUR_X_',
+        'apnur_p' => 'points_APNUR_P',
+        'apnur_p_result' => 'pcent_APNUR_P'
+        ];
 
     /**
      * @param $row

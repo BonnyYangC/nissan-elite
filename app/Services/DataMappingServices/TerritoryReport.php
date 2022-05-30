@@ -112,6 +112,29 @@ class TerritoryReport {
         return $model ? true : false;
     }
 
+    /**
+     * @param $field
+     * @param $oldValue
+     * @param $newValue
+     * @return bool
+     */
+    public function compareValue($field, $oldValue, $newValue) {
+        return $oldValue == $newValue ? true : false;
+    }
+
+    /**
+     * @param $field
+     * @param $oldValue
+     * @param $newValue
+     * @param $equal
+     * @return array
+     */
+    public function buildResultData($field, $oldValue, $newValue, $equal) {
+        $result = [];
+        $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        return $result;
+    }
+
     private function handleUser(string $employeeCode, string $actionType) {
         $model = User::where('employee_code', $employeeCode)->first();
         if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){

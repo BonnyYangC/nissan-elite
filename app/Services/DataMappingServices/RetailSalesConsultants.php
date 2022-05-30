@@ -4,6 +4,33 @@ namespace App\Services\DataMappingServices;
 
 
 class RetailSalesConsultants extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'new_vehicle' => 'points_SALES_STATUS_',
+        'new_vehicle_result' => 'sales_status_',
+        'new_vehicle_performance' => 'points_NVR_',
+        'new_vehicle_performance_result' => 'pcent_ACT_S_',
+
+        'nfv' => 'points_NFV%',
+        'nfv_result' => 'pcent_NFV%',
+
+        'nic_sale' => 'points_NIC',
+        'nic_sale_result' => 'sales_NIC',
+        'nic_sale_nfsa' => 'points_NIC_Fnfsa',
+        'nic_sale_nfsa_result' => 'sales_NIC_Fnfsa',
+
+        'pmp' => 'points_PMP',
+        'pmp_result' => 'sales_PMP',
+
+        'sos' => 'points_ce_SOS3_',
+        'sos_result' => 'score_ce_SOS3',
+
+        'kept_informed' => 'points_ce_KID3_',
+        'kept_informed_result' => 'score_ce_KID3_',
+
+        'follow_up' => 'points_ce_FUS3_',
+        'follow_up_result' => 'score_ce_FUS3_',
+    ];
 
     /**
      * @param $row

@@ -4,6 +4,37 @@ namespace App\Services\DataMappingServices;
 
 
 class ServiceManager extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'sos' => 'points_ce_SOS3_',
+        'sos_result' => 'score_ce_SOS3',
+
+        'sos_navara' => 'points_ce_SOS3_N',
+        'sos_navara_result' => 'score_ce_SOS3_N',
+        'sos_patrol' => 'points_ce_SOS3_P',
+        'sos_patrol_result' => 'score_ce_SOS3_P',
+
+        'fft' => 'points_ce_FFT3_',
+        'fft_result' => 'score_ce_FFT3_',
+
+        'cwp' => 'points_ce_cwp3',
+        'cwp_result' => 'score_ce_cwp3',
+
+        'hot' => 'points_ce_HOTA_',
+        'hot_result' => 'score_ce_HOTA_',
+
+        'cpro_target' => 'points_CPRO_',
+        'cpro_target_result' => 'pcent_CPRO_',
+
+        'gp_cpro' => 'points_GPVAL_',
+        'gp_cpro_result' => 'score_GPVAL_',
+
+        'retention' => 'points_Retent_',
+        'retention_result' => 'pcent_RETENT_',
+
+        'loyalty' => 'points_loyalty_',
+        'loyalty_result' => 'sales_loyalty',
+    ];
 
     /**
      * @param $row

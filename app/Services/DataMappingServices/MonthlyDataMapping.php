@@ -8,6 +8,27 @@ use App\Models\{Result, User};
 use Carbon\Carbon;
 
 abstract class MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [];
+    /** @var array  */
+    public $mappingArray = [
+        'period' => 'mthyrg',
+        'employee_code' => 'regi#',
+
+        'train_online' => 'points_train_online',
+        'train_competency' => 'points_train_competency',
+        'train_mastery' => 'points_train_mastery',
+        'train_pathway' => 'points_train_pathway',
+        'train_bonus' => 'points_train_bonus',
+
+        'registration' => 'points_registration',
+        'excellence' => 'points_excellence',
+        'incentive' => 'points_incentive',
+        'adjustment' => 'points_adjust_',
+        'credit_mtd' => 'POINTS_MTHLY_',
+        'credit_ytd' => 'POINTS_YTD',
+        'lifetime' => 'POINTS_ytd_historical',
+    ];
 
     /**
      * Create a new service instance.
@@ -97,6 +118,57 @@ abstract class MonthlyDataMapping {
      */
     public static function isIgnored($type, $value) {
         $result = false;
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @param $oldValue
+     * @param $newValue
+     * @return bool
+     */
+    public function compareValue($field, $oldValue, $newValue) {
+        if ($field == 'metrics') {
+            $result = empty(array_diff($oldValue, $newValue)) ? true : false;
+        } else {
+            $result = $oldValue == $newValue ? true : false;
+        }
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @param $oldValue
+     * @param $newValue
+     * @param $equal
+     * @return array
+     */
+    public function buildResultData($field, $oldValue, $newValue, $equal) {
+        $result = [];
+        if($field !== 'metrics') {
+            $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        } else {
+            foreach( array_keys($this->metricsMappingArray) as $field) {
+                $fieldName = $this->metricsMappingArray[$field];
+                $result[$fieldName] = $oldValue[$field] . ' / <span style="color:' . ($equal ? 'blue' : 'red') . ';">' . $newValue[$field] . '</span>';
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        if($field !== 'metrics') {
+            $result[] = $this->mappingArray[$field];
+        } else {
+            foreach(array_keys($this->metricsMappingArray) as $field) {
+                $result[] = $this->metricsMappingArray[$field];
+            }
+        }
         return $result;
     }
 

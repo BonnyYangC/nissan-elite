@@ -4,6 +4,16 @@ namespace App\Services\DataMappingServices;
 
 
 class PartsSalesRep extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'grp' => 'points_GRP_',
+        'grp_result' => 'pcent_GRP_',
+
+        'trade_sale_pvfy' => 'points_PvFY21_Q_',
+        'trade_sale_pvfy_result' => 'pcent_PvFY21_Q_',
+        'trade_sale_pvlq' => 'points_PvLQ_Q_',
+        'trade_sale_pvlq_result' => 'pcent_PvLQ_Q_',
+    ];
 
     /**
      * @param $row

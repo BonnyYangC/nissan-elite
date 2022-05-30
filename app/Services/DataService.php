@@ -4,24 +4,8 @@ namespace App\Services;
 
 use App\Helper\Defination;
 use App\Helper\Role;
-use App\Models\Event;
-use App\Models\Faq;
-use App\Models\Incentive;
-use App\Services\DataMappingServices\FI;
-use App\Services\DataMappingServices\FleetSalesExecutives;
-use App\Services\DataMappingServices\LoyaltyHistorical as LoyaltyHistoricalMapping;
-use App\Services\DataMappingServices\PartsManager;
-use App\Services\DataMappingServices\PartsSalesRep;
-use App\Services\DataMappingServices\RegionStaff;
-use App\Services\DataMappingServices\RetailSalesConsultants;
-use App\Services\DataMappingServices\SalesManager;
-use App\Services\DataMappingServices\ServiceAdviser;
-use App\Services\DataMappingServices\ServiceManager;
-use App\Services\DataMappingServices\StockController;
-use App\Services\DataMappingServices\User as UserMapping;
-use App\Services\DataMappingServices\Dealer as DealerMapping;
-use App\Services\DataMappingServices\Ranking as RankingMapping;
-use App\Services\DataMappingServices\TerritoryReport as TerritoryReportMapping;
+use App\Models\{Event, Faq, Incentive};
+use App\Services\DataMappingServices as DMS;
 use App\Services\ExportServices\Admin;
 use App\Services\ExportServices\LoyaltyHistorical;
 use App\Services\ExportServices\TerritoryReport;
@@ -58,12 +42,13 @@ class DataService extends BaseService {
             $csvReader = Reader::createFromPath($filePath,'r');
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
-            //var_dump($dataType);
+
             $mappingService = $this->getMappingService($dataType);
             $modelKey = $mappingService->getKeyForModel();
 
             foreach ($records as $lineNumber => $record) {
-                if (empty($record[$modelKey['primary']]) || !$record[$modelKey['primary']]) {
+
+                if(!isset($record[$modelKey['primary']]) || empty($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
                     $failCount++;
                     continue;
                 }
@@ -77,10 +62,6 @@ class DataService extends BaseService {
                     $keys = [$modelKey['primary']];
                 }
                 foreach($keys as $key) {
-                    if(!$mappingService->validate(trim($record[$modelKey['primary']]))) {
-                        $failCount++;
-                        continue;
-                    }
                     $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $dataType, $modelKey, $record, $key);
 
                     if ($model) {
@@ -110,41 +91,128 @@ class DataService extends BaseService {
     }
 
     /**
+     * @param $dataFile
+     * @param $dataType
+     * @return array
+     * @throws \League\Csv\Exception
+     * @throws \League\Csv\UnableToProcessCsv
+     */
+    public function validation($dataFile, $dataType) {
+        $resultValue = [];
+        $findCount = 0;
+        $findRows = [];
+        $newRowCount = 0;
+        $newRows = [];
+        $ignoredCount = 0;
+        $ignoredRows = [];
+        $wrongCount = 0;
+        $wrongRows = [];
+        $headerFields = [];
+
+        $filePath = storage_path('app/public/'.$dataFile);
+        if(file_exists($filePath)){
+            $csvReader = Reader::createFromPath($filePath,'r');
+
+            $headerFields = $csvReader->fetchOne(0);
+            $csvReader->setHeaderOffset(0);
+            $records = (new Statement())->process($csvReader);
+            $mappingService = $this->getMappingService($dataType);
+            $modelKey = $mappingService->getKeyForModel();
+
+            foreach ($records as $lineNumber => $record) {
+
+                if(!isset($record[$modelKey['primary']]) || empty($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
+                    $wrongCount++;
+                    $wrongRows[] = $record;
+                    continue;
+                }
+                if ($mappingService::isIgnored($dataType, $record[$modelKey['primary']])) {
+                    $ignoredCount++;
+                    $ignoredRows[] = $record;
+                    continue;
+                }
+                if (isset($modelKey['mapping'])) {
+                    $keys = array_keys($modelKey['mapping']);
+                } else {
+                    $keys = [$modelKey['primary']];
+                }
+                $row = [];
+                $headers = [];
+                foreach($keys as $key) {
+                    $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $dataType, $modelKey, $record, $key);
+                    if($model){
+                        $data = $mappingService->buildData($model, $dataType, $record, $modelKey, $key);
+                        foreach ($data as $fieldName => $value) {
+                            $equal = $mappingService->compareValue($fieldName, $model->$fieldName, $value);
+                            $row = array_merge($row, $mappingService->buildResultData($fieldName, $model->$fieldName, $value, $equal));
+                            $headers = array_merge($headers, $mappingService->buildHeaderForResultData($fieldName));
+                        }
+                        $findCount++;
+                        $findRows[] = $row;
+                    }else{
+                        $newRowCount++;
+                        $newRows[] = $record;
+                    }
+
+                }
+            }
+            $resultValue['type'] = Defination::ACTION_TYPE_VALIDATE;
+            $resultValue['new']['count'] = 'New : ' . $newRowCount;
+            $resultValue['new']['header'] = $newRowCount ? $headerFields : [];
+            $resultValue['new']['data'] = $newRows;
+            $resultValue['ignore']['count'] = 'Ignore : ' . $ignoredCount;
+            $resultValue['ignore']['header'] = $ignoredCount ? $headerFields : [];
+            $resultValue['ignore']['data'] = $ignoredRows;
+            $resultValue['wrong']['count'] = 'Wrong : ' . $wrongCount;
+            $resultValue['wrong']['header'] = $wrongCount ? $headerFields : [];
+            $resultValue['wrong']['data'] = $wrongRows;
+            $resultValue['find']['count'] = 'Find : ' . $findCount;
+            $resultValue['find']['header'] = $findCount ? $headers : [];
+            $resultValue['find']['data'] = $findRows;
+        }
+        else{
+            echo 'File is not exists.'.PHP_EOL;
+        }
+
+        return $resultValue;
+    }
+
+    /**
      * @param $type
-     * @return DealerMapping|FI|FleetSalesExecutives|LoyaltyHistoricalMapping|PartsManager|PartsSalesRep|RankingMapping|RegionStaff|RetailSalesConsultants|SalesManager|ServiceAdviser|ServiceManager|StockController|TerritoryReportMapping|UserMapping
+     * @return DMS\Dealer|DMS\FI|DMS\FleetSalesExecutives|DMS\LoyaltyHistorical|DMS\PartsManager|DMS\PartsSalesRep|DMS\Ranking|DMS\RegionStaff|DMS\RetailSalesConsultants|DMS\SalesManager|DMS\ServiceAdviser|DMS\ServiceManager|DMS\StockController|DMS\TerritoryReport|DMS\User
      */
     private function getMappingService($type) {
         switch ($type) {
             case Role::FLEET_SALES_EXECUTIVES:
-                return new FleetSalesExecutives();
+                return new DMS\FleetSalesExecutives();
             case Role::SALES_MANAGER:
-                return new SalesManager();
+                return new DMS\SalesManager();
             case Role::RETAIL_SALES_CONSULTANTS:
-                return new RetailSalesConsultants();
+                return new DMS\RetailSalesConsultants();
             case Role::STOCK_CONTROLLER:
-                return new StockController();
+                return new DMS\StockController();
             case Role::FI:
-                return new FI();
+                return new DMS\FI();
             case Role::PARTS_MANAGER:
-                return new PartsManager();
+                return new DMS\PartsManager();
             case Role::PARTS_SALES_REP:
-                return new PartsSalesRep();
+                return new DMS\PartsSalesRep();
             case Role::SERVICE_MANAGER:
-                return new ServiceManager();
+                return new DMS\ServiceManager();
             case Role::SERVICE_ADVISERS:
-                return new ServiceAdviser();
+                return new DMS\ServiceAdviser();
             case Defination::DATA_TYPE_USERS_INFO :
-                return new UserMapping();
+                return new DMS\User();
             case Defination::DATA_TYPE_DEALERS_INFO :
-                return new DealerMapping();
+                return new DMS\Dealer();
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                return new RegionStaff($this->serviceResolver->regionService()->load());
+                return new DMS\RegionStaff($this->serviceResolver->regionService()->load());
             case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
-                return new LoyaltyHistoricalMapping();
+                return new DMS\LoyaltyHistorical();
             case Defination::DATA_TYPE_RANKING :
-                return new RankingMapping();
+                return new DMS\Ranking();
             case Defination::DATA_TYPE_TERRITORY_REPORT:
-                return new TerritoryReportMapping();
+                return new DMS\TerritoryReport();
             default:
                 break;
         }

@@ -1,38 +1,48 @@
 @extends('layouts.backend')
 @section('content')
-
+<div class="px-5">
     <a href="{{ route('admin.dashboard') }}">Go Back</a>
     <a href="{{ route('admin.dashboard') }}" target="_blank">Go Back (new tab)</a>
     <hr>
 
     <div class="col-12 backend-home">
-        @if($result['type'] == App\Helper\Defination::ACTION_TYPE_SYNC)
-            <div class="card">
-                <div class="card-body">
-                    <p>Synced: {{ $result['update'] }}</p>
-                    <p>Failed: {{ $result['wrong'] }}</p>
-                    <p>Ignored: {{ $result['ignore'] }}</p>
-                </div>
-            </div>
-        @else
-            @foreach($result as $item => $data)
-                @if($item != 'type' && $data)
-                    <div>
-                        <h4>{{ $data['count'] }}</h4>
-                    </div>
-                    <table class="table table-bordered table-responsive display-table">
-                        <tbody>
-                            @foreach($data['data'] as $index => $row)
-                                <tr>
-                                    @foreach($row as $key => $value)
-                                        <td>{!! $value !!}</td>
+        <div class="card">
+            <div class="card-body">
+            @if($result['type'] == App\Helper\Defination::ACTION_TYPE_SYNC)
+                <p>Synced: {{ $result['update'] }}</p>
+                <p>Failed: {{ $result['wrong'] }}</p>
+                <p>Ignored: {{ $result['ignore'] }}</p>
+            @else
+                @foreach($result as $item => $data)
+                    @if($item != 'type' && $data)
+                        <div>
+                            <h3>{{ $data['count'] }}</h3>
+                        </div>
+                        <div style="overflow: scroll">
+                            <table class="table table-bordered mt-2" style="float-x: scroll">
+                                <thead>
+                                    <tr>
+                                        @foreach($data['header'] as $value)
+                                            <td>{!! $value !!}</td>
+                                        @endforeach
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data['data'] as $index => $row)
+                                        <tr>
+                                            @foreach($row as $key => $value)
+                                                <td>{!! $value !!}</td>
+                                            @endforeach
+                                        </tr>
                                     @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @endif
-            @endforeach
-        @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
+            </div>
+        </div>
     </div>
+</div>
 @endsection

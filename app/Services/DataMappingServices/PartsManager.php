@@ -4,6 +4,27 @@ namespace App\Services\DataMappingServices;
 
 
 class PartsManager extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'grp' => 'points_GRP_',
+        'grp_result' => 'pcent_GRP_',
+
+        'acc' => 'points_ACC_',
+        'acc_result' => 'pcent_ACC_',
+
+        'apnur_n' => 'points_APNUR_N_',
+        'apnur_n_result' => 'pcent_APNUR_N_',
+        'apnur_am' => 'points_APNUR_AM_parts',
+        'apnur_am_result' => 'pcent_APNUR_AM_parts',
+        'apnur_p' => 'points_APNUR_P',
+        'apnur_p_result' => 'pcent_APNUR_P',
+
+        'gp_cpro' => 'points_GPVAL_',
+        'gp_cpro_result' => 'score_GPVAL_',
+
+        'rim' => 'points_RIM',
+        'rim_result' => 'pcent_RIM',
+    ];
 
     /**
      * @param $row

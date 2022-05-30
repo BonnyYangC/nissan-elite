@@ -4,6 +4,17 @@ namespace App\Services\DataMappingServices;
 
 
 class FleetSalesExecutives extends MonthlyDataMapping {
+    /** @var array  */
+    public $metricsMappingArray = [
+        'new_vehicle' => 'points_SALES_STATUS_',
+        'new_vehicle_result' => 'sales_status_',
+
+        'new_vehicle_fleet' => 'points_ACT_F_',
+        'new_vehicle_fleet_result' => 'pcent_ACT_F_',
+
+        'volume' => 'points_ACT_FV_',
+        'volume_result' => 'pcent_ACT_FV_',
+    ];
 
     /**
      * @param $row

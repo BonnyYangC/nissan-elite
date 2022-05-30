@@ -67,7 +67,7 @@ class AdminController extends Controller {
             if($actonType == Defination::ACTION_TYPE_SYNC){
                 $this->dataForView['result'] = $this->dataService->importation($dataFile, $dataType);
             }else{
-                $this->dataForView['result'] = $this->dataService->validation($dataFile, $dataType, $parameter);
+                $this->dataForView['result'] = $this->dataService->validation($dataFile, $dataType);
             }
 
         }
