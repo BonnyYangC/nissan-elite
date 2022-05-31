@@ -9,7 +9,16 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class RegionStaff {
-
+    /** @var array  */
+    public $mappingArray = [
+        'firstname' => 'First Name',
+        'lastname' => 'Sur Name',
+        'position_code' => 'Position',
+        'region_code' => 'Region',
+        'email' => 'Email',
+        'mobile' => 'Mobile',
+        'active' => 'Active',
+    ];
     private $regions;
 
     /**
@@ -50,7 +59,8 @@ class RegionStaff {
             $model->updated_at = Carbon::now();
             $model->created_at = Carbon::now();
             $model->admin = 0;
-            $model->password = bcrypt(strtoupper(trim($record['sName'])).'1');
+            list($firstName, $surName) = explode(' ', $record['Name']);
+            $model->password = bcrypt(strtoupper(trim($surName)).'1');
         }
         return $model;
     }
@@ -67,9 +77,10 @@ class RegionStaff {
      */
     public function buildData($model, $dataType, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
+        list($firstName, $surName) = explode(' ', $row['Name']);
         return [
-            'firstname' => $row['fName'],
-            'lastname' => $row['sName'],
+            'firstname' => $firstName,
+            'lastname' => $surName,
             'position_code' => $row['Position'],
             'region_code' => $this->regions->filter(function($r) use ($row) {return strtoupper($r->title) === $row['Region'];})->first()->code,
             'email' => $row['Email'],
@@ -142,6 +153,16 @@ class RegionStaff {
     public function buildResultData($field, $oldValue, $newValue, $equal) {
         $result = [];
         $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        $result[] = $this->mappingArray[$field];
         return $result;
     }
 }

@@ -7,6 +7,21 @@ use App\Models\Dealer as DealerModel;
 use Carbon\Carbon;
 
 class Dealer {
+    /** @var array  */
+    public $mappingArray = [
+        'code' => 'dcode',
+        'name' => 'dname',
+        'address' => 'addr_street',
+        'suburb' => 'addr_city',
+        'state' => 'addr_state',
+        'postcode' => 'addr_pcode',
+        'phone' => 'ph_tel',
+        'fax' => 'ph_fax',
+        'region' => 'rname',
+        'region_code' => 'rcode',
+        'category' => 'dcat',
+        'category_code' => 'dcat#'
+    ];
 
     /**
      * Create a new service instance.
@@ -137,6 +152,16 @@ class Dealer {
     public function buildResultData($field, $oldValue, $newValue, $equal) {
         $result = [];
         $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        $result[] = $this->mappingArray[$field];
         return $result;
     }
 }

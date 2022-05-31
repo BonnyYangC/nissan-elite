@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Acl, Company, Faq, Metric, User};
+use App\Models\{Acl, Company, Faq, Metric, Position, User};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->loadData(__DIR__.'/metrics_defination.json');
         $this->loadData(__DIR__.'/companies_defination.json');
+        $this->loadData(__DIR__.'/positions.json');
+        $this->loadData(__DIR__.'/metrics_defination.json');
         $this->loadData(__DIR__.'/admins.json');
         $this->loadData(__DIR__.'/acls.json');
         $this->loadData(__DIR__.'/faqs.json');
@@ -60,11 +61,23 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
+        $this->seedPositions();
         //$this->seedCompanies();
         //$this->seedAdmins();
         //$this->seedAcls();
-        $this->seedMetrics();
-        $this->seedFaqs();
+        //$this->seedMetrics();
+        //$this->seedFaqs();
+    }
+
+    /**
+     *
+     */
+    private function seedPositions() {
+        $positions = $this->data['positions'];
+        foreach ($positions as $p) {
+            $ep = Position::where('code', '=', $p['code'])->first();
+            !$ep ? Position::create($p) : $ep->update();
+        }
     }
 
     /**

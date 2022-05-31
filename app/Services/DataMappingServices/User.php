@@ -8,6 +8,25 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class User {
+    /** @var array  */
+    public $mappingArray = [
+        'employee_code'=>'regi#_',
+        'salutation'=>'n_title_',
+        'firstname'=>'n_fname_trim_',
+        'lastname'=>'n_sname_trim_',
+        'date_birth'=>'date_birth',
+        'mobile'=>'ph_mobile_',
+        'email'=>'addr_email',
+        'date_created'=>'date_created',
+        'dealer_code'=>'dcode',
+        'position_code'=> 'sp_',
+        'dept'=>'dept_code',
+        'active'=>'status',
+        'registered'=>'registered_',
+        'member'=>'elite_mbr',
+        'met_criteria' => 'criteria_EOY_MET',
+        'excellence_eligible' => 'excellence_eligible',
+    ];
 
     /**
      * Create a new service instance.
@@ -77,7 +96,7 @@ class User {
             'active'=>$row['status'] === 'active' ? 1 : 0,
             'registered'=>$row['registered_'] === 'Registered' ? 1 : 0,
             'member'=>$row['elite_mbr'] === 'Y' ? 1: 0,
-            'met_criteria' => $row['criteria_met_EOY'] === 'No' ? 0 : 1,
+            'met_criteria' => $row['criteria_EOY_MET'] === 'No' ? 0 : 1,
             'excellence_eligible' => $row['excellence_eligible'] === 'YES' ? 1: 0
         ];
 
@@ -144,6 +163,16 @@ class User {
     public function buildResultData($field, $oldValue, $newValue, $equal) {
         $result = [];
         $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        $result[] = $this->mappingArray[$field];
         return $result;
     }
 }

@@ -166,6 +166,12 @@ class CreatePositionsTable extends Migration
                 'department' => null
             ],
             [
+                'code' => 'NDM',
+                'title' => 'NDM',
+                'platinum_ranking' => 0,
+                'department' => null
+            ],
+            [
                 'code' => 'HEAD OFFICE',
                 'title' => 'Head Office',
                 'platinum_ranking' => 0,
