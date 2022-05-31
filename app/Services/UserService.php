@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Helper\Role;
 use App\Helper\Utility;
+use App\Models\Position;
 use App\models\User;
 
 class UserService extends BaseService {
@@ -233,20 +234,6 @@ class UserService extends BaseService {
      * @return array
      */
     private function getRegionStaff(): array {
-        return [
-            Role::DISTRICT_SALES_MANAGER,
-            Role::DEALER_TECHNICAL_SPECIALIST,
-            Role::FRANCHISE_DEVELOPMENT_MANAGER,
-            Role::FIELD_OPERATION_MANAGER,
-            Role::REGIONAL_AFTER_SALES_MANAGER,
-            Role::REGIONAL_FLEET_MANAGER,
-            Role::REGIONAL_GENERAL_MANAGER,
-            Role::REGIONAL_OPERATIONS_ANALYST,
-            Role::REGIONAL_OPERATIONS_MANAGER,
-            Role::REGIONAL_SALES_COORDINATOR,
-            Role::REGIONAL_SALES_MANAGER,
-            Role::NFSA,
-            Role::HEAD_OFFICE
-        ];
+        return Position::REGION_STAFF_POSITIONS;
     }
 }
