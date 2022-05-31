@@ -42,17 +42,26 @@
     <div class="d-flex">
         <div class="col-8 offset-1">
             <h3>PAST EVENT</h3>
+            <h3>THE GUILD WEEKEND 2021 – NISSAN ELITE FY20</h3>
+
+            <p>THE GUILD ON CATCHUP!  After many postponements we finally arrived to celebrate our FY20 GUILD event.  A lovely weekend was spent in Noosa, Queensland enjoying the hospitality of the Sofitel Resort, Hastings Street in the midst of all Noosa has to offer.
+                 Our GUILD Dinner was enjoyed after a beautiful beach sunset, where we inducted both Gold and Platinum members for their excellent achievements with Nissan loyalty to the Brand.    Guests enjoyed Bistro C, Catalina and time to enjoy a break with fellow members.
+            </p>
+
+            <p>&nbsp;</p>
 
             <h3>THE GUILD WEEKEND 2020 – NISSAN ELITE FY19</h3>
 
             <p>With COVID-19 forcing the cancellation of our event, our FY19 GOLD and PLATINUM inductees have been congratulated and Trophies awarded along with a Travel Voucher for all eligible trip Lifetime members to celebrate at a destination of their choice.
-                Nissan ELITE providing EFTPOS funds to all dealerships for this outstanding Loyalty to the Brand to be recognised at a Celebratory Morning Tea with the whole team.</p>
+                Nissan ELITE providing EFTPOS funds to all dealerships for this outstanding Loyalty to the Brand to be recognised at a Celebratory Morning Tea with the whole team.
+            </p>
 
             <p>&nbsp;</p>
             <h3>Past Experiences</h3>
 
             <table>
                 <tbody>
+                <tr style="line-height: 2em;"><td width=13%>2021</td><td>NOOSA, QUEENSLAND – Sofitel Resort, sunset dinner at Bistro C and Catalina on the river.</td></tr>
                 <tr style="line-height: 2em;"><td width=13%>2020</td><td>CANCELLED – COVID19, Dealer Trophy presentation and complimentary Travel Voucher</td></tr>
                 <tr style="line-height: 2em;"><td>2019</td><td>HOBART TASMANIA – Hobart Grand Chancellor,  with Gala dinner at Frogmore Creek and MONA Cruise</td></tr>
                 <tr style="line-height: 2em;"><td>2018</td><td>PORT DOUGLAS - Sheraton Grand Mirage Resort with dinner at The Watergate Restaurant</td></tr>

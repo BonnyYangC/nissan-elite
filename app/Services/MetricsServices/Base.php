@@ -12,6 +12,10 @@ class Base {
     /** @var User  */
     protected $currentUser;
 
+    private $monthArray = [
+        'Apr'=>'04', 'May'=>'05', 'Jun'=>'06', 'Jul'=>'07', 'Aug'=>'08', 'Sep'=>'09', 'Oct'=>'10', 'Nov'=>'11', 'Dec'=>'12', 'Jan'=>'01', 'Feb'=>'02', 'Mar'=>'03'
+    ];
+
     /**
      * Base constructor.
      */
@@ -67,7 +71,7 @@ class Base {
             $legends[] = $cm['label'];
         }
         foreach(Utility::MONTHS_SHORT as $month) {
-            $dateString = date('Y-m-01', strtotime($month));
+            $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
             foreach($trainingDefination->metrics as $id => $cm) {
                 $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
@@ -113,7 +117,7 @@ class Base {
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
         foreach(Utility::MONTHS_SHORT as $month) {
-            $dateString = date('Y-m-01', strtotime($month));
+            $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
             foreach($metricDefination->metrics as $id => $cm) {
                 $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
@@ -155,7 +159,7 @@ class Base {
             }
         };
         foreach(Utility::MONTHS_SHORT as $month) {
-            $dateString = date('Y-m-01', strtotime($month));
+            $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
             foreach ($metricsDefinations as $m) {
                 if($m->identifier === Metric::METRIC_TRAINING) {
@@ -185,5 +189,9 @@ class Base {
             $trainingPoints += $trainingData[$id];
         }
         return $trainingPoints;
+    }
+
+    private function getDateString($month) {
+        return '2022-'.$this->monthArray[$month].'-01';
     }
 }

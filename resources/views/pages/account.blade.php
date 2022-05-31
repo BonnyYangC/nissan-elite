@@ -38,7 +38,7 @@
                             </tr>
                             <tr class="active">
                                 <td><strong>Date of Birth</strong></td>
-                                <td>{{ $currentUser->dob }}</td>
+                                <td>{{ $currentUser->date_birth }}</td>
                             </tr>
                             <tr class="">
                                 <td><strong>Date Created</strong></td>

@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Helper\Utility;
-use App\Models\Result;
+use App\Models\{Result, User};
 use Illuminate\Support\Facades\Auth;
 
 class ResultService {
@@ -19,6 +19,7 @@ class ResultService {
      * @return false|string
      */
     public function buildResultsData() {
+        /** @var User $currentUser */
         $currentUser = Auth::user();
 
         $resultsData = $currentUser->results()->reduce(function ($r, $result) {
@@ -40,6 +41,7 @@ class ResultService {
      * @return mixed
      */
     public function getYearToDateData() {
+        /** @var User $currentUser */
         $currentUser = Auth::user();
         return Result::where('employee_code', $currentUser->employee_code)->max('credit_ytd');
     }

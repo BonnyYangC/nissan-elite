@@ -56,7 +56,7 @@
                             </tr>
                             <tr class="active">
                                 <td>Brisbane</td>
-                                <td>Thursday 15 August</td>
+                                <td>Monday 15 August</td>
                                 <td>Hilton Brisbane</td>
                             </tr>
                             <tr class="active">
@@ -76,9 +76,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p><small>All awards are currently being distributed to Regional Offices and your DSM will be in contact soon.
-
-                            Another difficult year with COVID-19 but we are now securing dates for 2022 to run Product Challenges Nationally.</small></p>
+                    <p><small>After a long list of postponed events, we are excited to be on the road again.
+                            Check your region date and make sure you book your seat early.  Awards are currently being prepared and we look forward to recognising our Award winners at each event.
+                            </small></p>
                     <br>
 
                     <a class="edm-link" target="_blank" href="#">

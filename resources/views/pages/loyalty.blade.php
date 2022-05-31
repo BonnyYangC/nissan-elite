@@ -13,13 +13,13 @@
                 <div>
                     <h3>Current Status Level</h3>
                     <div class="mt-2">
-                        <img src="loyalty_status.png" height=300 width=700 />
+                        <img src="loyalty_status.png" height=350 />
                     </div>
                     <div class="historical-data">
                         <h3>FY22 YTD : {{ number_format($ytd, 0) }} </h3>
-
                         <h3>FY21 YTD : {{ number_format(isset($historical['all']['2021-01-01']) ? $historical['all']['2021-01-01'] : 0, 0) }} </h3>
                         <h3>FY20 YTD : {{ number_format(isset($historical['all']['2020-01-01']) ? $historical['all']['2020-01-01'] : 0, 0) }} </h3>
+                        <h3>FY19 YTD : {{ number_format(isset($historical['all']['2019-01-01']) ? $historical['all']['2019-01-01'] : 0, 0) }} </h3>
 
                         <h3>PRIOR HISTORY - Loyalty to the brand: {{ number_format($historical['loyalty_to_brand'], 0) }} </h3>
                     </div>

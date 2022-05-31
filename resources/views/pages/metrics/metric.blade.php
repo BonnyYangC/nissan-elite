@@ -11,7 +11,7 @@
             </tr>
         </thead>
         @foreach ($metricData->table_data as $label => $data)
-        <tr class="custom-width" style="text-align: center">
+        <tr class="table-body" style="text-align: center">
             <td class="nissan-table-cell-grey">{{ $label }}</td>
             @foreach ($data as $index => $points)
             <td class="{{ $index%2 == 0 ? 'nissan-table-cell-light-grey' : 'nissan-table-cell-grey' }}">{{ $points }}</td>

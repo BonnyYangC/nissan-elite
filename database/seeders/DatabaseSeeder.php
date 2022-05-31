@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Acl;
-use App\Models\Company;
-use App\Models\Metric;
-use App\Models\Position;
-use App\Models\User;
+use App\Models\{Acl, Company, Faq, Metric, User};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->loadData(__DIR__.'/companies_defination.json');
         $this->loadData(__DIR__.'/admins.json');
         $this->loadData(__DIR__.'/acls.json');
+        $this->loadData(__DIR__.'/faqs.json');
 
         try {
             Model::unguard();
@@ -67,6 +64,7 @@ class DatabaseSeeder extends Seeder
         //$this->seedAdmins();
         //$this->seedAcls();
         $this->seedMetrics();
+        $this->seedFaqs();
     }
 
     /**
@@ -78,6 +76,9 @@ class DatabaseSeeder extends Seeder
         $this->seedCustomMetrics(data_get($metrics, Metric::TYPE_CUSTOM, []));
     }
 
+    /**
+     * @param array $metrics
+     */
     private function seedSharedMetrics(array $metrics) {
         foreach ($metrics as $m) {
             $m['type'] = Metric::TYPE_SHARED;
@@ -85,6 +86,9 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    /**
+     * @param array $metrics
+     */
     private function seedCustomMetrics(array $metrics) {
         // $positions = Position::get()->keyBy('code');
         foreach ($metrics as $position => $ms) {
@@ -96,6 +100,9 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    /**
+     *
+     */
     private function seedCompanies() {
         $companies = $this->data['companies'];
         foreach ($companies as $m) {
@@ -103,6 +110,9 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    /**
+     *
+     */
     private function seedAdmins() {
         $admins = $this->data['admins'];
         foreach ($admins as $a) {
@@ -112,6 +122,9 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    /**
+     *
+     */
     private function seedAcls() {
         $acls = $this->data['acls'];
         foreach ($acls as $position => $as) {
@@ -119,6 +132,16 @@ class DatabaseSeeder extends Seeder
                 $a['position'] = $position;
                 Acl::create($a);
             }
+        }
+    }
+
+    /**
+     *
+     */
+    private function seedFaqs() {
+        $faqs = $this->data['faqs'];
+        foreach ($faqs as $f) {
+            Faq::create($f);
         }
     }
 }

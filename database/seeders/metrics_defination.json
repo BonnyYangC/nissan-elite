@@ -172,7 +172,7 @@
                     },
                     "guides": [
                         {
-                            "title": "Future Sales Pipeline - Matched orders retailed in future months GUIDE",
+                            "title": "Future Sales Pipeline GUIDE",
                             "top": ["Sales Manager", "per vehicle when retailed"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]],
                             "note": "Earn 15 points for every Matched Order Write vehicle retailed in the future month."
@@ -201,7 +201,7 @@
                 {
                     "identifier": "nic_sale",
                     "order": 5,
-                    "title": "NIC sale (mthly Cap 20 units)",
+                    "title": "NIC sale (mthly Cap 23 units)",
                     "metrics": {
                         "nic_sale": {
                             "label": "NIC sale",
@@ -209,19 +209,19 @@
                             "default": 0
                         },
                         "nic_sale_nfsa": {
-                            "label": "NIC sale NFSA",
+                            "label": "NIC Financed",
                             "color": "#999999",
                             "default": 0
                         }
                     },
                     "guides": [
                         {
-                            "title": "NIC sale (mthly Cap 20 units) GUIDE",
+                            "title": "NIC sale (mthly Cap 23 units) GUIDE",
                             "top": ["Sales Manager", "per unit"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
                         },
                         {
-                            "title": "NIC sale financed by NFSA(mthly Cap 20 units) GUIDE",
+                            "title": "NIC sale financed by NFSA(mthly Cap 23 units) GUIDE",
                             "top": ["Sales Manager", "per unit"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
                             }
@@ -371,12 +371,12 @@
                             "rows": [["Category A, B, C", 110, 175, 275]]
                         },
                         {
-                            "colspan": "XTRAIL APNUR vs Target",
+                            "colspan": "PATROL APNUR vs Target",
                             "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
                             "rows": [["Category A, B, C", 110, 175, 275]]
                         },
                         {
-                            "colspan": "PATROL APNUR vs Target",
+                            "colspan": "XTRAIL APNUR vs Target",
                             "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
                             "rows": [["Category A, B, C", 110, 175, 275]]
                         }
@@ -429,12 +429,12 @@
                     "title": "NEW VEHICLE SALES PERFORMANCE",
                     "metrics": {
                         "new_vehicle":{
-                            "label": "New Vehicle Sales",
+                            "label": "Sales",
                             "color": "#8B4513",
                             "default": 0
                         },
                         "new_vehicle_performance":{
-                            "label": "New Vehicle Performance",
+                            "label": "DLR%",
                             "color": "#8B4513",
                             "default": "0%"
                         }
@@ -475,7 +475,7 @@
                 {
                     "identifier": "nic_sale",
                     "order": 3,
-                    "title": "NIC sale (mthly Cap 20)",
+                    "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED (MTHLY CAP 23)",
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
@@ -490,11 +490,12 @@
                     },
                     "guides": [
                         {
-                            "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED (MTHLY CAP 20) ",
+                            "title": "NIC SALES GUIDE – (MTHLY CAP 23)",
                             "top": ["Retail Sales Consultant", "mthly"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
                         },
                         {
+                            "title": "NIC SALES FINANCED BY NFSA – (MTHLY CAP 23)",
                             "top": ["Retail Sales Consultant", "per unit"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
                         }
@@ -556,7 +557,7 @@
                             "title": "Kept informed of delivery NPS 3 month rolling score Guide",
                             "top": ["Retail Sales Consultant", "≥88", "100"],
                             "rows": [["Category A", 120, 250], ["Category B", 120, 250], ["Category C", 120, 250]],
-                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score"
+                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score <br>-NPS R3M target"
                         }
                     ]
                 },
@@ -576,7 +577,7 @@
                             "title": "FOLLOW UP SATISFACTION 3 MONTH ROLLING SCORE GUIDE",
                             "top": ["Retail Sales Consultant", "100% of Target"],
                             "rows": [["Category A & B", 175], ["Category C", 175]],
-                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score"
+                            "note": "Category A & B: calculated on Individual score <br>Category C: calculated on Dealership score <br>-NPS R3M target"
                         }
                     ]
                 },
@@ -673,7 +674,7 @@
                 {
                     "identifier": "fsp",
                     "order": 4,
-                    "title": "FUTURE SALES PIPELINE (MATHED ORDERS RETAILED IN FUTURE MONTHS)",
+                    "title": "FUTURE SALES PIPELINE (MATCHED ORDERS RETAILED IN FUTURE MONTHS)",
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales",
@@ -682,7 +683,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "FUTURE SALES PIPELINE (MATHED ORDERS RETAILED IN FUTURE MONTHS) GUIDE",
+                        "title": "FUTURE SALES PIPELINE (MATCHED ORDERS RETAILED IN FUTURE MONTHS) GUIDE",
                         "top": ["Stock Controller", "per vehicle when retailed"],
                         "rows": [["Category A & B", 15], ["Category C", 15]]
                     }]
@@ -690,7 +691,7 @@
                 {
                     "identifier": "nfv",
                     "order": 5,
-                    "title": "NFV TRADE-IN OR AUCTION URCHASED MARKED AS “NIC” IN NISCOM",
+                    "title": "NFV TRADE-IN OR AUCTION PURCHASED MARKED AS “NIC” IN NISCOM",
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
@@ -699,7 +700,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "NFV TRADE-IN OR AUCTION URCHASED MARKED AS “NIC” IN NISCOM GUIDE",
+                        "title": "NFV TRADE-IN OR AUCTION PURCHASED MARKED AS “NIC” IN NISCOM GUIDE",
                         "top": ["Stock Controller", "1-5", "6-10", "11-15", ">15"],
                         "rows": [["Category A & B", 50, 100, 150, 200], ["Category C", 50, 100, 150, 200]]
                     }]
@@ -707,7 +708,7 @@
                 {
                     "identifier": "nic_sale",
                     "order": 6,
-                    "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 20)",
+                    "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 23)",
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
@@ -716,7 +717,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 20) GUIDE",
+                        "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 23) GUIDE",
                         "top": ["Stock Controller", "mthly"],
                         "rows": [["Category A & B", 15], ["Category C", 15]]
                     }]
@@ -814,18 +815,18 @@
                     "title": "Insurance – MVI & MVI/NFSA pkg",
                     "metrics": {
                         "insurance_mvi":{
-                            "label": "Insurance MVI",
+                            "label": "MVI",
                             "color": "#4682B4",
                             "default": "0"
                         },
                         "insurance_pkg":{
-                            "label": "Insurance PKG",
+                            "label": "PKG",
                             "color": "#4682B4",
                             "default": "0"
                         }
                     },
                     "guides": [{
-                        "title": "Insurance Guide",
+                        "title": "INSURANCE – MVI & MVI/NFSA PKG Guide",
                         "top": ["F&I Manager", "MVI Motor Vehicle Insurance", "Package"],
                         "rows": [["Category A, B, C", 40, 10]]
                     }]
@@ -844,7 +845,7 @@
                     "guides": [{
                         "title": "Dealer Sales Penetration Rate Guide",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NEW 50% average = Sum(monthly Penetration %) / 12months",
-                        "top": ["F&I Manager", "≥50%", "≥55%", "≥65%", "≥75%"],
+                        "top": ["F&I Manager", "≥30%", "≥40%", "≥50%", "≥60%"],
                         "rows": [["Category A, B, C", 250, 500, 750, 1000]]
                     }]
                 },
@@ -868,10 +869,10 @@
                 {
                     "identifier": "nfv",
                     "order": 6,
-                    "title": "NFV contract",
+                    "title": "NFV CONTRACTS & NFV%",
                     "metrics": {
                         "nfv":{
-                            "label": "NFV contract",
+                            "label": "NFV",
                             "color": "#87CEEB",
                             "default": "0"
                         },
@@ -882,7 +883,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "NFV contract Guide",
+                        "title": "NFV CONTRACTS & NFV% Guide",
                         "top": ["F&I Manager", "per unit"],
                         "rows": [["Category A, B, C", 15]]
                     },{
@@ -894,7 +895,7 @@
                 {
                     "identifier": "nic_sale_nfsa",
                     "order": 7,
-                    "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA (MTHLY CAP 20 UNITS)",
+                    "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA (MTHLY CAP 23 UNITS)",
                     "metrics": {
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
@@ -903,7 +904,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA (MTHLY CAP 20 UNITS) GUIDE",
+                        "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA (MTHLY CAP 23 UNITS) GUIDE",
                         "top": ["F&I Manager", "per unit"],
                         "rows": [["Category A, B, C", 15]]
                     }]
@@ -911,7 +912,7 @@
                 {
                     "identifier": "satisfaction",
                     "order": 8,
-                    "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3 MONTH ROLLING SCORE",
+                    "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3MR SCORE",
                     "metrics": {
                         "satisfaction":{
                             "label": "Satisfaction",
@@ -920,7 +921,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3 MONTH ROLLING SCORE GUIDE",
+                        "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3MR SCORE GUIDE",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NPS6 month rolling target",
                         "top": ["F&I Manager", "86%", "≥86.1%", "≥90%"],
                         "rows": [["Category A, B, C", 100, 300, 500]]
@@ -1005,29 +1006,31 @@
                             "color": "#CCFF99",
                             "default": "0%"
                         },
-                        "apnur_am":{
-                            "label": "ALL MODELS",
-                            "color": "#CCFF99",
-                            "default": "0%"
-                        },
                         "apnur_p":{
                             "label": "PATROL",
                             "color": "#CCFF99",
                             "default": "0%"
+                        },
+                        "apnur_am":{
+                            "label": "ALL MODELS",
+                            "color": "#CCFF99",
+                            "default": "0%"
                         }
                     },
-                    "guides": [{
-                        "colspan": "APNUR PERFORMANCE - ALL MODELS",
-                        "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
-                        "rows": [["Category A, B, C", 220, 345, 550]]
-                    },
+                    "guides": [
                         {
+                            "title": "APNUR PERFORMANCE – NAVARA, PATROL, ALL MODELS GUIDE",
                             "colspan": "APNUR PERFORMANCE - NAVARA",
                             "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
                             "rows": [["Category A, B, C", 220, 345, 550]]
                         },
                         {
                             "colspan": "APNUR PERFORMANCE – PATROL",
+                            "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 220, 345, 550]]
+                        },
+                        {
+                            "colspan": "APNUR PERFORMANCE - ALL MODELS",
                             "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
                             "rows": [["Category A, B, C", 220, 345, 550]]
                         }
@@ -1066,7 +1069,7 @@
                         "title": "RIM % Useage GUIDE",
                         "top": ["Parts Manager", "45%", "55%", "65%"],
                         "rows": [["Category A, B, C", 220, 345, 550]],
-                        "note": "1. RIM Item Compliance - must achieve minimum of 80% to qualify to earn any points\n2. RIM Order Line Compliance - points awarded based on performance bands\n"
+                        "note": "1. RIM Item Compliance - must achieve minimum of 80% to qualify to earn any points.<br>2. RIM Order Line Compliance - points awarded based on performance bands."
                     }]
                 },
                 {
@@ -1210,12 +1213,12 @@
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
                     "metrics": {
                         "sos_navara":{
-                            "label": "Overall Sat Navara",
+                            "label": "Navara",
                             "color": "#999999",
                             "default": 0
                         },
                         "sos_patrol":{
-                            "label": "Overall Sat Patrol",
+                            "label": "Patrol",
                             "color": "#999999",
                             "default": 0
                         }
@@ -1227,8 +1230,7 @@
                     },{
                         "title": "SERVICE OVERALL SATISFACTION - PATROL GUIDE",
                         "top": ["Service Manager", "≥100% Target", "≥105% Target", "≥110% Target"],
-                        "rows": [["Category A & B", 75, 125, 185], ["Category C", 75, 125, 185]],
-                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 35<br>- Dealer Survey volume target"
+                        "rows": [["Category A & B", 75, 125, 185], ["Category C", 75, 125, 185]]
                     }]
                 },
                 {
@@ -1414,12 +1416,12 @@
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
                     "metrics": {
                         "sos_navara":{
-                            "label": "Overall Sat Navara",
+                            "label": "Navara",
                             "color": "#999999",
                             "default": 0
                         },
                         "sos_patrol":{
-                            "label": "Overall Sat Patrol",
+                            "label": "Patrol",
                             "color": "#999999",
                             "default": 0
                         }
@@ -1431,8 +1433,7 @@
                     },{
                         "title": "SERVICE OVERALL SATISFACTION - PATROL GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target", "≥110% Target"],
-                        "rows": [["Category A & B", 75, 125, 185], ["Category C", 75, 125, 185]],
-                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 35<br>- Dealer Survey volume target"
+                        "rows": [["Category A & B", 75, 125, 185], ["Category C", 75, 125, 185]]
                     }]
                 },
                 {

@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 class Faq extends Model {
     use HasFactory;
 
-    public $table = 'nissan_faq';
+    //public $table = 'nissan_faq';
 }

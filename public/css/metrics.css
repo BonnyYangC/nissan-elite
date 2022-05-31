@@ -17,6 +17,9 @@
 .metrics-table {
     width: 95%;
 }
+.metrics-table tr.table-body td:first-child{
+    text-align: left;
+}
 .metrics-table .nissan-table-cell-grey {
     background: #c2c2c2;
     color: #000000;

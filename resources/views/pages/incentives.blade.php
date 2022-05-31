@@ -49,7 +49,7 @@
                     @foreach($finished as $item)
                     <div class="col-4">
                         <a href="{{ asset('/images/incentives/images/pdf/'.$item->pdf) }}" target="_blank">
-                            <img style="height: 280px" src="{{ asset('/images/incentives/images/'.$item->image) }}" alt="{{ $item->title }}">
+                            <img style="height: 280px;max-width: 100%;" src="{{ asset('/images/incentives/images/'.$item->image) }}" alt="{{ $item->title }}">
                         </a>
                         <p>{{ $item->start }} to {{ $item->finish }}<br>{{ $item->title }}<br></p><br>
                     </div>

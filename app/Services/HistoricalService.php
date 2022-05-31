@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\History;
+use App\Models\{History, User};
 use Illuminate\Support\Facades\Auth;
 
 class HistoricalService {
@@ -18,6 +18,7 @@ class HistoricalService {
      * @return array
      */
     public function getHistoricalData(): array {
+        /** @var User $currentUser */
         $currentUser = Auth::user();
         if (!$currentUser->employee_code) {
             return [
