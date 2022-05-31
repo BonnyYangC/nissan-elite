@@ -40,7 +40,7 @@ class History extends Model {
      * @return mixed
      */
     public static function getLoyaltyToTheBrandData(string $employeeCode) {
-        return History::where('period', '<', '2020-01-01')
+        return History::where('period', '<', '2019-01-01')
             ->where('member_id', $employeeCode)
             ->sum('amount');
     }
