@@ -34,6 +34,7 @@ class Role {
     const REGIONAL_SALES_COORDINATOR = 'RSC';
     const REGIONAL_SALES_MANAGER = 'RSM';
 
+    const NDM = 'NDM';
     const NFSA = 'NFSA';
     const TRAINING = 'TRAINING';
     const NISSAN_SUPER = 'NISSAN_SUPER';
