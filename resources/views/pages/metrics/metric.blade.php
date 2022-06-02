@@ -1,11 +1,11 @@
-<div class="col-7 metric-chart">
+<div class=" col-md-7 metric-chart">
     <h3>{{$metricData->order. '. ' .$metricData->title}}</h3>
     <div id="{{$metricData->chart_name}}" style="height: 400px"></div>
-    <table class="table metrics-table">
+    <table class="table metrics-table {{$metricData->identifier}}">
         <thead class="nissan-table-header">
             <tr align="center">
                 <td></td>
-                @foreach (\App\Helper\Utility::MONTHS_SHORT as $month)
+                @foreach ($metricData->table_header as $month)
                 <td>{{ $month }}</td>
                 @endforeach
             </tr>
@@ -23,7 +23,7 @@
         <p><em>{!! $metricData->ref !!}</em></p>
     @endif
 </div>
-<div class="col-5 metric-guide">
+<div class=" col-md-5 metric-guide">
     @foreach (data_get($metricData, 'guides', []) as $guide)
         <h3>{{ data_get($guide, 'title', '') }}</h3>
         <table class="table guide-table mt-2">
