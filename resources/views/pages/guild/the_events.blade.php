@@ -48,14 +48,6 @@
             </p>
 
             <p>&nbsp;</p>
-
-            <h3>THE GUILD WEEKEND 2020 – NISSAN ELITE FY19</h3>
-
-            <p>With COVID-19 forcing the cancellation of our event, our FY19 GOLD and PLATINUM inductees have been congratulated and Trophies awarded along with a Travel Voucher for all eligible trip Lifetime members to celebrate at a destination of their choice.
-                Nissan ELITE providing EFTPOS funds to all dealerships for this outstanding Loyalty to the Brand to be recognised at a Celebratory Morning Tea with the whole team.
-            </p>
-
-            <p>&nbsp;</p>
             <h3>Past Experiences</h3>
 
             <table>
