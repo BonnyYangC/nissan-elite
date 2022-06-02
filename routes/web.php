@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']],function () {
     Route::get('/elite_individual', [App\Http\Controllers\HomeController::class, 'index'])->name('elite_individual');
 
 //pages
-    Route::get('/dashboard', [App\Http\Controllers\PagesController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/metrics', [App\Http\Controllers\MetricsController::class, 'metrics'])->name('metrics');
     Route::get('/my_team', [App\Http\Controllers\UsersController::class, 'my_team'])->name('my_team');
     Route::get('/ranking', [App\Http\Controllers\RankingsController::class, 'ranking'])->name('ranking');
