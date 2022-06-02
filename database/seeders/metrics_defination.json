@@ -691,7 +691,7 @@
                 {
                     "identifier": "nfv",
                     "order": 5,
-                    "title": "NFV TRADE-IN OR AUCTION PURCHASED MARKED AS “NIC” IN NISCOM",
+                    "title": "USED NISSAN VEHICLE MARKED AS “NIC” IN NISCOM",
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
@@ -700,7 +700,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "NFV TRADE-IN OR AUCTION PURCHASED MARKED AS “NIC” IN NISCOM GUIDE",
+                        "title": "USED NISSAN VEHICLE MARKED AS “NIC” IN NISCOM GUIDE",
                         "top": ["Stock Controller", "1-5", "6-10", "11-15", ">15"],
                         "rows": [["Category A & B", 50, 100, 150, 200], ["Category C", 50, 100, 150, 200]]
                     }]
@@ -834,7 +834,7 @@
                 {
                     "identifier": "penetration",
                     "order": 4,
-                    "title": "Dealer Sales Penetration Rate",
+                    "title": "NFSA FINANCE PENETRATION",
                     "metrics": {
                         "penetration":{
                             "label": "Penetration",
@@ -843,7 +843,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "Dealer Sales Penetration Rate Guide",
+                        "title": "NFSA FINANCE PENETRATION Guide",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 27<br>– NEW 50% average = Sum(monthly Penetration %) / 12months",
                         "top": ["F&I Manager", "≥30%", "≥40%", "≥50%", "≥60%"],
                         "rows": [["Category A, B, C", 250, 500, 750, 1000]]
@@ -869,7 +869,7 @@
                 {
                     "identifier": "nfv",
                     "order": 6,
-                    "title": "NFV CONTRACTS & NFV%",
+                    "title": "NFV CONTRACTS & NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS",
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
@@ -883,11 +883,11 @@
                         }
                     },
                     "guides": [{
-                        "title": "NFV CONTRACTS & NFV% Guide",
+                        "title": "NFV CONTRACTS Guide",
                         "top": ["F&I Manager", "per unit"],
                         "rows": [["Category A, B, C", 15]]
                     },{
-                        "title": "NFV% of total NFSA Eligible contracts Guide",
+                        "title": "NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS GUIDE",
                         "top": ["F&I Manager", "≥15%", "≥25%"],
                         "rows": [["Category A, B, C", 100, 200]]
                     }]
@@ -998,7 +998,7 @@
                 {
                     "identifier": "apnur",
                     "order": 3,
-                    "title": "APNUR PERFORMANCE -  ALL MODELS, NAVARA, PATROL",
+                    "title": "APNUR PERFORMANCE -  NAVARA, PATROL, ALL MODELS",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
                     "metrics": {
                         "apnur_n":{
@@ -1473,7 +1473,7 @@
                 {
                     "identifier": "eoc",
                     "order": 5,
-                    "title": "Explanation of costs - Dealership's NPS R3M score(Monthly)",
+                    "title": "Explanation of costs - Dealership's NPS R3M score",
                     "metrics": {
                         "eoc":{
                             "label": "Exp Costs",
@@ -1482,7 +1482,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "Explanation of costs - Dealership's NPS R3M score(Monthly) GUIDE",
+                        "title": "Explanation of costs - Dealership's NPS R3M score GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
                         "rows": [["Category A & B", 100, 250], ["Category C", 100, 250]]
                     }]
