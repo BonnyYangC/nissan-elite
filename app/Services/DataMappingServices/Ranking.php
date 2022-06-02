@@ -74,10 +74,10 @@ class Ranking {
         return [
             'period'        => Utility::formatPeriod($row['mthyr_g_']),
             'employee_code' =>$row['regi#_'],
-            'rank'          =>isset($row['rank_STATUS_']) ? $row['rank_STATUS_'] : $model->rank,
-            'total'         =>isset($row['yr_2021']) ? $row['yr_2021'] : $model->total,
-            'rank_platinum' =>isset($row['rank_PLATINUM_']) ? $row['rank_PLATINUM_'] : $model->rank_platinum,
-            'total_platinum'=>isset($row['yr_2022_platinum_']) ? $row['yr_2022_platinum_'] : $model->total_platinum,
+            'rank'          =>isset($row['rank_STATUS_']) && !empty($row['rank_STATUS_']) ? $row['rank_STATUS_'] : $model->rank,
+            'total'         =>isset($row['yr_2021']) && !empty($row['yr_2021']) ? $row['yr_2021'] : $model->total,
+            'rank_platinum' =>isset($row['rank_PLATINUM_']) && !empty($row['rank_PLATINUM_']) ? $row['rank_PLATINUM_'] : $model->rank_platinum,
+            'total_platinum'=>isset($row['yr_2022_platinum_']) && !empty($row['yr_2022_platinum_']) ? $row['yr_2022_platinum_'] : $model->total_platinum,
             'rank_state'    =>$row['state_rank_'],
             'position'      =>$row['sp_'],
 

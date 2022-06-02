@@ -69,7 +69,6 @@ class DataService extends BaseService {
                         foreach ($data as $fieldName => $value) {
                             $model->$fieldName = $value == '-' ? 0 : $value;
                         }
-
                         if ($model->save()) {
                             $updateCount++;
                         } else {
