@@ -169,7 +169,7 @@ class GageService extends BaseService {
         imagefilledpolygon($this->image, [$x1,     $y1 = $y1 + 80,   $x2,     $y2 = $y2 + 80, $x4,     $y4 = $y4 + 80, $x3,       $y3 = $y4],   $no_of_points = 4, $statusLevel1ArcColor);
 
         // Set type of image and send the output
-        header("Content-type: image/png");
+        //header("Content-type: image/png");
         //imagePng($this->image);
         imagePng($this->image, $fileName);
         //imageDestroy($this->image);

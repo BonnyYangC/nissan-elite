@@ -64,8 +64,6 @@ class DashboardController extends Controller {
         ], $this->resolver->statusService()->buildStatusData($ytd));
         // dollar rewards
         $this->dataForView['rewards'] = $this->resolver->rewardsService()->buildRewardsData();
-        // metrics
-        $this->dataForView['metrics'] = $this->resolver->metricsService()->getStackedMetricsData();
 
         // current ranking status
         $this->dataForView['rankingStatus'] = $this->resolver->rankingService()->getCurrentRanking();
@@ -74,6 +72,8 @@ class DashboardController extends Controller {
         //year to date
         $this->dataForView['ytd'] = $ytd;
 
+        // metrics
+        $this->dataForView['stackedMetrics'] = $this->resolver->metricsService()->getStackedMetricsData();
         //historical points
         $this->dataForView['historical'] = $this->resolver->historicalService()->getHistoricalData();
         return $this->render('pages.dashboard');

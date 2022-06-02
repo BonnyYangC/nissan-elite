@@ -45,7 +45,7 @@
                         </button>
                     </a>
                 </h3>
-                @include('pages.widgets.metrics_chart.single_role', [$currentUser, $metrics])
+                @include('pages.widgets.metrics_chart.single_role', [$currentUser, $stackedMetrics])
             </div>
         </div>
     </div>

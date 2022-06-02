@@ -61,11 +61,11 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
-        $this->seedPositions();
+        //$this->seedPositions();
         //$this->seedCompanies();
         //$this->seedAdmins();
         //$this->seedAcls();
-        //$this->seedMetrics();
+        $this->seedMetrics();
         //$this->seedFaqs();
     }
 

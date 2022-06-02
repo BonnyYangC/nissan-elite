@@ -32,7 +32,7 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
-                            "color": "#8B4513",
+                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -50,7 +50,7 @@
                     "metrics": {
                         "new_vehicle_fleet": {
                             "label": "Sales v Target",
-                            "color": "#8C7853",
+                            "color": "#DC3912",
                             "default": 0
                         }
                     },
@@ -69,7 +69,7 @@
                     "metrics": {
                         "volume":{
                             "label": "Volume Growth",
-                            "color": "#CCFF99",
+                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -90,23 +90,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -126,7 +126,7 @@
                     "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
-                            "color": "#8C7853",
+                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -145,7 +145,7 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
-                            "color": "#8B4513",
+                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -166,7 +166,7 @@
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales Pipeline",
-                            "color": "#999999",
+                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -186,7 +186,7 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "color": "#999999",
+                            "color": "#109618",
                             "default": "0%"
                         }
                     },
@@ -200,17 +200,19 @@
                 },
                 {
                     "identifier": "nic_sale",
+                    "label": "NIC sale",
+                    "color": "#990099",
                     "order": 5,
                     "title": "NIC sale (mthly Cap 23 units)",
                     "metrics": {
                         "nic_sale": {
                             "label": "NIC sale",
-                            "color": "#999999",
+                            "color": "#990099",
                             "default": 0
                         },
                         "nic_sale_nfsa": {
                             "label": "NIC Financed",
-                            "color": "#999999",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -234,7 +236,7 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Dealer Forecast",
-                            "color": "#999999",
+                            "color": "#0099C6",
                             "default": "NO"
                         }
                     },
@@ -254,7 +256,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#999999",
+                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -274,7 +276,7 @@
                     "metrics": {
                         "booked_check":{
                             "label": "% Booked",
-                            "color": "#FFCC99",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -292,7 +294,7 @@
                     "metrics": {
                         "follow_up":{
                             "label": "% Follow Up",
-                            "color": "#C0C0C0",
+                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -311,7 +313,7 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#BDB76B",
+                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -330,7 +332,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#ff0000",
+                            "color": "#994499",
                             "default": 0
                         }
                     },
@@ -344,22 +346,24 @@
                 },
                 {
                     "identifier": "apnur",
+                    "label": "APNUR",
+                    "color": "#22AA99",
                     "order": 12,
                     "title": "APNUR PERFORMANCE",
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "color": "#CCFF99",
+                            "color": "#AAAA11",
                             "default": "0%"
                         },
                         "apnur_x":{
                             "label": "XTRAIL",
-                            "color": "#CCFF99",
+                            "color": "#6633CC",
                             "default": "0%"
                         },
                         "apnur_p":{
                             "label": "PATROL",
-                            "color": "#CCFF99",
+                            "color": "#E67300",
                             "default": "0%"
                         }
                     },
@@ -385,29 +389,30 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#CCFF99",
                     "order": 13,
                     "title": "TRAINING",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -430,12 +435,12 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "Sales",
-                            "color": "#8B4513",
+                            "color": "#3366CC",
                             "default": 0
                         },
                         "new_vehicle_performance":{
                             "label": "DLR%",
-                            "color": "#8B4513",
+                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -460,7 +465,7 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "color": "#999999",
+                            "color": "#FF9900",
                             "default": "0%"
                         }
                     },
@@ -479,12 +484,12 @@
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
-                            "color": "#999999",
+                            "color": "#109618",
                             "default": 0
                         },
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "color": "#999999",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -508,7 +513,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#ff0000",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -527,7 +532,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#999999",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -548,7 +553,7 @@
                     "metrics": {
                         "kept_informed":{
                             "label": "Kept Informed",
-                            "color": "#FFCC99",
+                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -568,7 +573,7 @@
                     "metrics": {
                         "follow_up":{
                             "label": "Followed Up Satisfaction",
-                            "color": "#C0C0C0",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -589,23 +594,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -626,7 +631,7 @@
                     "metrics": {
                         "comp_ow":{
                             "label": "OW Data",
-                            "color": "#d2d2d2",
+                            "color": "#3366CC",
                             "default": "0"
                         }
                     },
@@ -643,7 +648,7 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Retail Forecast",
-                            "color": "#87CEEB",
+                            "color": "#DC3912",
                             "default": "NO"
                         }
                     },
@@ -661,7 +666,7 @@
                     "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
-                            "color": "#8C7853",
+                            "color": "#FF9900",
                             "default": "0"
                         }
                     },
@@ -678,7 +683,7 @@
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales",
-                            "color": "#333333",
+                            "color": "#109618",
                             "default": "0"
                         }
                     },
@@ -695,7 +700,7 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
-                            "color": "#c40030",
+                            "color": "#990099",
                             "default": "0"
                         }
                     },
@@ -712,7 +717,7 @@
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
-                            "color": "#999999",
+                            "color": "#3B3EAC",
                             "default": "0"
                         }
                     },
@@ -729,7 +734,7 @@
                     "metrics": {
                         "reg_ret":{
                             "label": "Reg VS. Retail",
-                            "color": "#4682B4",
+                            "color": "#0099C6",
                             "default": "0%"
                         }
                     },
@@ -748,23 +753,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -782,7 +787,7 @@
                     "metrics": {
                         "nfsa":{
                             "label": "NFSA Contracts",
-                            "color": "#C0C0C0",
+                            "color": "#3366CC",
                             "default": "0"
                         }
                     },
@@ -799,7 +804,7 @@
                     "metrics": {
                         "lrb":{
                             "label": "Loyalty",
-                            "color": "#8B4513",
+                            "color": "#DC3912",
                             "default": "0"
                         }
                     },
@@ -811,17 +816,19 @@
                 },
                 {
                     "identifier": "insurance",
+                    "label": "Insurance",
+                    "color": "#FF9900",
                     "order": 3,
                     "title": "Insurance – MVI & MVI/NFSA pkg",
                     "metrics": {
                         "insurance_mvi":{
                             "label": "MVI",
-                            "color": "#4682B4",
+                            "color": "#109618",
                             "default": "0"
                         },
                         "insurance_pkg":{
                             "label": "PKG",
-                            "color": "#4682B4",
+                            "color": "#990099",
                             "default": "0"
                         }
                     },
@@ -838,7 +845,7 @@
                     "metrics": {
                         "penetration":{
                             "label": "Penetration",
-                            "color": "#999999",
+                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -856,7 +863,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#ff0000",
+                            "color": "#0099C6",
                             "default": "0"
                         }
                     },
@@ -868,17 +875,19 @@
                 },
                 {
                     "identifier": "nfv",
+                    "label": "NFV",
+                    "color": "#DD4477",
                     "order": 6,
                     "title": "NFV CONTRACTS & NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS",
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
-                            "color": "#87CEEB",
+                            "color": "#66AA00",
                             "default": "0"
                         },
                         "nfv_nfsa":{
                             "label": "NFV%",
-                            "color": "#87CEEB",
+                            "color": "#B82E2E",
                             "default": "0%"
                         }
                     },
@@ -899,7 +908,7 @@
                     "metrics": {
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "color": "#999999",
+                            "color": "#316395",
                             "default": "0"
                         }
                     },
@@ -916,7 +925,7 @@
                     "metrics": {
                         "satisfaction":{
                             "label": "Satisfaction",
-                            "color": "#999999",
+                            "color": "#994499",
                             "default": "0"
                         }
                     },
@@ -935,23 +944,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -968,7 +977,7 @@
                     "metrics": {
                         "grp":{
                             "label": "Genuine Replacement Parts",
-                            "color": "#8B4513",
+                            "color": "#3366CC",
                             "default": "0%"
                         }
                     },
@@ -985,7 +994,7 @@
                     "metrics": {
                         "acc":{
                             "label": "Accessories",
-                            "color": "#C0C0C0",
+                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -997,23 +1006,25 @@
                 },
                 {
                     "identifier": "apnur",
+                    "label": "APNUR",
+                    "color": "#FF9900",
                     "order": 3,
                     "title": "APNUR PERFORMANCE -  NAVARA, PATROL, ALL MODELS",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "color": "#CCFF99",
+                            "color": "#109618",
                             "default": "0%"
                         },
                         "apnur_p":{
                             "label": "PATROL",
-                            "color": "#CCFF99",
+                            "color": "#990099",
                             "default": "0%"
                         },
                         "apnur_am":{
                             "label": "ALL MODELS",
-                            "color": "#CCFF99",
+                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1043,7 +1054,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#C0C0C0",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1061,7 +1072,7 @@
                     "metrics": {
                         "rim":{
                             "label": "RIM % Useage",
-                            "color": "#FF99CC",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1080,23 +1091,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -1115,7 +1126,7 @@
                     "metrics": {
                         "grp":{
                             "label": "Genuine Replacement Parts",
-                            "color": "#8B4513",
+                            "color": "#3366CC",
                             "default": "0%"
                         }
                     },
@@ -1127,17 +1138,19 @@
                 },
                 {
                     "identifier": "trade_sale",
+                    "label": "Trade Sales",
+                    "color": "#DC3912",
                     "order": 2,
                     "title": "Trade Parts Sales per unit in Operation",
                     "metrics": {
                         "trade_sale_pvfy":{
                             "label": "Trade Sales vs FY21",
-                            "color": "#4682B4",
+                            "color": "#FF9900",
                             "default": "0%"
                         },
                         "trade_sale_pvlq":{
                             "label": "Trade Sales vs previous",
-                            "color": "#4682B4",
+                            "color": "#109618",
                             "default": "0%"
                         }
                     },
@@ -1162,23 +1175,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -1196,7 +1209,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#999999",
+                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -1209,17 +1222,19 @@
                 },
                 {
                     "identifier": "sos_n_p",
+                    "label": "SOS",
+                    "color": "#DC3912",
                     "order": 2,
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "color": "#999999",
+                            "color": "#FF9900",
                             "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "color": "#999999",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1240,7 +1255,7 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#CCFF99",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1257,7 +1272,7 @@
                     "metrics": {
                         "cwp":{
                             "label": "Car Washed %",
-                            "color": "#CCFF99",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -1274,7 +1289,7 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#BDB76B",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1291,7 +1306,7 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#FFCC99",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1309,7 +1324,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#C0C0C0",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -1327,7 +1342,7 @@
                     "metrics": {
                         "retention":{
                             "label": "Retention",
-                            "color": "#8B4513",
+                            "color": "#B82E2E",
                             "default": "0%"
                         }
                     },
@@ -1344,7 +1359,7 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#c40030",
+                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1362,23 +1377,23 @@
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{
@@ -1399,7 +1414,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#999999",
+                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -1412,17 +1427,19 @@
                 },
                 {
                     "identifier": "sos_n_p",
+                    "label": "SOS",
+                    "color": "#DC3912",
                     "order": 2,
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "color": "#999999",
+                            "color": "#FF9900",
                             "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "color": "#999999",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1443,7 +1460,7 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#CCFF99",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1460,7 +1477,7 @@
                     "metrics": {
                         "cwp":{
                             "label": "Car Washed %",
-                            "color": "#CCFF99",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -1477,7 +1494,7 @@
                     "metrics": {
                         "eoc":{
                             "label": "Exp Costs",
-                            "color": "#CCFF99",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1494,7 +1511,7 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#FFCC99",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1512,7 +1529,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#C0C0C0",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -1530,7 +1547,7 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#c40030",
+                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -1543,28 +1560,29 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 8,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
                             "label": "Online",
-                            "color": "#CCFF99"
+                            "color": "#994499"
                         },
                         "train_pathway": {
                             "label": "Pathway",
-                            "color": "#CCFF99"
+                            "color": "#22AA99"
                         },
                         "train_competency": {
                             "label": "Competency",
-                            "color": "#CCFF99"
+                            "color": "#AAAA11"
                         },
                         "train_bonus": {
                             "label": "Bonus",
-                            "color": "#CCFF99"
+                            "color": "#6633CC"
                         },
                         "train_mastery": {
                             "label": "Mastery",
-                            "color": "#CCFF99"
+                            "color": "#E67300"
                         }
                     },
                     "guides": [{

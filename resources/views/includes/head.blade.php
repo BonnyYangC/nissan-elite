@@ -48,5 +48,6 @@
 
 <script src="{{ mix('/js/app.js') }}"></script>
 <script src="{{ asset('js/dsm_utils.js') }}" defer></script>
+<script src="{{ asset('js/dashboard_utils.js') }}" defer></script>
 <script src="{{ asset('js/ranking.js') }}" defer></script>
 <script src="{{ asset('js/calendar.js') }}" defer></script>

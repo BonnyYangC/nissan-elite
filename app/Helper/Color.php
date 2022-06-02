@@ -4,27 +4,24 @@ namespace App\Helper;
 
 
 class Color {
-    const WHITE     = '#000000';
-    const BLACK     = '#111111';
-    const DARK_GREY = '#333333';
-    const LIGHT_BLUE  = '#87CEEB';
-    const LIGHT_GREY= '#d2d2d2';
-    const LOW_RED   = '#999999';
-    const LEMON_CHIFFON = '#FFFACD';
-    const GAINS_BORO = '#e8e9e8';
-    const RED = '#c40030';
-    const LIGHT_GREEN = '#CCFF99'; //
-    const DARK_GREEN = '#008000';
-    const LIGHT_PINK = '#FF99CC'; //
-    const LIGHT_PERU = '#FFCC99'; //
-    const GOLD = '#FFD700'; //
-    const SADDLE_BROWN = '#8B4513';
-    const STEEL_BLUE = '#4682B4';
-    const DARK_KHAKI = '#BDB76B';
-
-    const Platinum = '#545454';
-    const Gold = '#CD7F32';
-    const SILVER = '#C0C0C0';
-    const BRONZE = '#8C7853';
-    const BasicLifetime = '#ff0000';
+    const COLOR_1 = "#3366CC";
+    const COLOR_2 = "#DC3912";
+    const COLOR_3 = "#FF9900";
+    const COLOR_4 = "#109618";
+    const COLOR_5 = "#990099";
+    const COLOR_6 = "#3B3EAC";
+    const COLOR_7 = "#0099C6";
+    const COLOR_8 = "#DD4477";
+    const COLOR_9 = "#66AA00";
+    const COLOR_10 = "#B82E2E";
+    const COLOR_11 = "#316395";
+    const COLOR_12 = "#994499";
+    const COLOR_13 = "#22AA99";
+    const COLOR_14 = "#AAAA11";
+    const COLOR_15 = "#6633CC";
+    const COLOR_16 = "#E67300";
+    const COLOR_17 = "#8B0707";
+    const COLOR_18 = "#329262";
+    const COLOR_19 = "#5574A6";
+    const COLOR_20 = "#3B3EAC";
 }
