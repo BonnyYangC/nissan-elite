@@ -139,7 +139,7 @@ class DataService extends BaseService {
                 $row = [];
                 $headers = [];
                 foreach($keys as $key) {
-                    $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $dataType, $modelKey, $record, $key);
+                    $model = $mappingService->getModel(Defination::ACTION_TYPE_VALIDATE, $dataType, $modelKey, $record, $key);
                     if($model){
                         $data = $mappingService->buildData($model, $dataType, $record, $modelKey, $key);
                         foreach ($data as $fieldName => $value) {
