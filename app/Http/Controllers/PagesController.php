@@ -91,20 +91,6 @@ class PagesController extends Controller {
      * entry point
      *
      */
-    public function metrics() {
-        $currentUser = Auth::user();
-        $this->dataForView['currentUser'] = $currentUser;
-        $this->dataForView['menuName'] = 'metrics';
-        //metrics
-        $this->dataForView['metrics'] = $this->service->getMetricsData();
-
-        return $this->render('pages.metrics');
-    }
-
-    /**
-     * entry point
-     *
-     */
     public function loyalty() {
         $this->dataForView['menuName'] = 'loyalty';
         $this->resolver->gageService()->loyalty_status_level();
