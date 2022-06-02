@@ -4,21 +4,21 @@
             {
                 "identifier": "excellence",
                 "label": "Dealer Excellence",
-                "color": "#e8e9e8",
+                "color": "#329262",
                 "order": 1,
                 "title": "Excellence"
             },
             {
                 "identifier": "registration",
                 "label": "Registration",
-                "color": "#008000",
+                "color": "#5574A6",
                 "order": 2,
                 "title": "Registration"
             },
             {
                 "identifier": "incentive",
                 "label": "Incentive",
-                "color": "#FFD700",
+                "color": "#3B3EAC",
                 "order": 3,
                 "title": "Incentive"
             }
@@ -85,6 +85,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 4,
                     "title": "TRAINING",
                     "metrics": {
@@ -389,7 +390,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#CCFF99",
+                    "color": "#8B0707",
                     "order": 13,
                     "title": "TRAINING",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE22 Member Guide</a> for full details.",
@@ -589,6 +590,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 8,
                     "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
                     "metrics": {
@@ -748,6 +750,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 8,
                     "title": "TRAINING",
                     "metrics": {
@@ -939,6 +942,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 9,
                     "title": "TRAINING",
                     "metrics": {
@@ -1086,6 +1090,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 6,
                     "title": "TRAINING",
                     "metrics": {
@@ -1170,6 +1175,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 3,
                     "title": "TRAINING",
                     "metrics": {
@@ -1372,6 +1378,7 @@
                 {
                     "identifier": "training",
                     "label": "Training",
+                    "color": "#8B0707",
                     "order": 10,
                     "title": "TRAINING",
                     "metrics": {

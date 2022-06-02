@@ -31,6 +31,13 @@ class Base {
     }
 
     /**
+     * @return mixed
+     */
+    public function getSharedMetrics() {
+        return Metric::where('type', '=', Metric::TYPE_SHARED)->orderBy('order')->get();
+    }
+
+    /**
      * @param string $position
      * @return mixed
      */

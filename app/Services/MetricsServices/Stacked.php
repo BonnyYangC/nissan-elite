@@ -12,19 +12,6 @@ use Illuminate\Support\Facades\Auth;
 class Stacked extends Base {
 
     /**
-     * @var Carbon $startPoint
-     * To generate the array's key when iterate the MetricsService data
-     */
-    protected $startPoint = null;
-
-    protected $excellence = [];
-    protected $registration = [];
-
-
-        //$this->startPoint = Carbon::createFromDate(configuration('YEAR'),3,1,env('DEFAULT_TIMEZONE'));
-
-
-    /**
      * @param string $label
      * @param string $backgroundColor
      * @param array $data
@@ -39,16 +26,22 @@ class Stacked extends Base {
     }
 
     /**
-     * build MetricsService data for dashboard MetricsService chart
-     * @param array $excellence
-     * @param array $registration
+     * @param $trainingData
      * @return array
      */
-    public function getBaseMetrics() {
-        return [
-            $this->_buildDashboardMetricsChartData('Dealer Excellence', IColor::GAINS_BORO, $this->excellence),
-            $this->_buildDashboardMetricsChartData('Registration', IColor::DARK_GREEN, $this->registration),
-        ];
+    private function buildCommonMetricsData($trainingData) {
+        $result = [];
+        $shared = $this->getSharedMetrics();
+        foreach ($shared as $id => $m) {
+            $p = [];
+            foreach(Utility::MONTHS_SHORT as $month) {
+                $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
+                $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
+                $p[] = $value && isset($value[$m['identifier']]) ? $value[$m['identifier']] : 0;
+            }
+            $result[] = $this->_buildDashboardMetricsChartData($m['label'], $m['color'], $p);
+        }
+        return $result;
     }
 
 
@@ -61,7 +54,9 @@ class Stacked extends Base {
         /** @var User $currentUser */
         // $currentUser = Auth::user();
         $metricsDefinations = $this->getAllMetricsByPosition($this->currentUser->position_code);
-        return json_encode($this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData));
+        return json_encode(array_merge($this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData),
+            $this->buildCommonMetricsData($trainingData)
+        ));
     }
 
     /**
