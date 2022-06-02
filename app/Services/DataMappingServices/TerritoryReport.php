@@ -9,6 +9,28 @@ use Carbon\Carbon;
 
 class TerritoryReport {
 
+    /** @var array  */
+    public $mappingArray = [
+        'employee_code' => 'regi#_',
+        'award_status' => 'award_status',
+        'points_ytd_status' => 'points_ytd_status_',
+        'credits_monthly_04' => 'elit~engi_regi#04mthyrg::POINTS_MTHLY_',
+        'credits_monthly_05' => 'elit~engi_regi#05mthyrg::POINTS_MTHLY_',
+        'credits_monthly_06' => 'elit~engi_regi#06mthyrg::POINTS_MTHLY_',
+        'credits_monthly_07' => 'elit~engi_regi#07mthyrg::POINTS_MTHLY_',
+        'credits_monthly_08' => 'elit~engi_regi#08mthyrg::POINTS_MTHLY_',
+        'credits_monthly_09' => 'elit~engi_regi#09mthyrg::POINTS_MTHLY_',
+        'credits_monthly_10' => 'elit~engi_regi#10mthyrg::POINTS_MTHLY_',
+        'credits_monthly_11' => 'elit~engi_regi#11mthyrg::POINTS_MTHLY_',
+        'credits_monthly_12' => 'elit~engi_regi#12mthyrg::POINTS_MTHLY_',
+        'credits_monthly_01' => 'elit~engi_regi#01mthyrg::POINTS_MTHLY_',
+        'credits_monthly_02' => 'elit~engi_regi#02mthyrg::POINTS_MTHLY_',
+        'credits_monthly_03' => 'elit~engi_regi#03mthyrg::POINTS_MTHLY_',
+        'cr_ytd' => 'points_ytd_status_',
+        'cr_ytd_platinum' => 'points_ytd_platinum_',
+        'cr_ytd_lifetime' => 'points_ytd_lifetime_',
+    ];
+
     /**
      * Create a new service instance.
      *
@@ -132,6 +154,16 @@ class TerritoryReport {
     public function buildResultData($field, $oldValue, $newValue, $equal) {
         $result = [];
         $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        $result[] = $this->mappingArray[$field];
         return $result;
     }
 

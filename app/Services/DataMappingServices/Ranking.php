@@ -8,6 +8,17 @@ use App\Models\Ranking as RankingModel;
 use Carbon\Carbon;
 
 class Ranking {
+    /** @var array  */
+    public $mappingArray = [
+        'period'        => 'mthyr_g_',
+        'employee_code' =>'regi#_',
+        'rank'          =>'rank_STATUS_',
+        'total'         =>'yr_2021',
+        'rank_platinum' =>'rank_PLATINUM_',
+        'total_platinum'=>'yr_2022_platinum_',
+        'rank_state'    =>'state_rank_',
+        'position'      =>'sp_',
+    ];
 
     /**
      * Create a new service instance.
@@ -61,14 +72,14 @@ class Ranking {
     public function buildData($model, $dataType, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
         return [
-            'period'        => Utility::formatPeriod($row['mthyr_g']),
+            'period'        => Utility::formatPeriod($row['mthyr_g_']),
             'employee_code' =>$row['regi#_'],
-            'rank'          =>isset($row['rank_status']) ? $row['rank_status'] : $model->rank,
-            'total'         =>isset($row['yr_2022_status']) ? $row['yr_2021_status'] : $model->total,
-            'rank_platinum' =>isset($row['rank_platinum']) ? $row['rank_platinum'] : $model->rank_platinum,
-            'total_platinum'=>isset($row['yr_2022_platinum']) ? $row['yr_2021_platinum'] : $model->total_platinum,
-            'rank_state'    =>$row['state_rank'],
-            'position'      =>$row['sp'],
+            'rank'          =>isset($row['rank_STATUS_']) ? $row['rank_STATUS_'] : $model->rank,
+            'total'         =>isset($row['yr_2021']) ? $row['yr_2021'] : $model->total,
+            'rank_platinum' =>isset($row['rank_PLATINUM_']) ? $row['rank_PLATINUM_'] : $model->rank_platinum,
+            'total_platinum'=>isset($row['yr_2022_platinum_']) ? $row['yr_2022_platinum_'] : $model->total_platinum,
+            'rank_state'    =>$row['state_rank_'],
+            'position'      =>$row['sp_'],
 
             /*'dealer_code'   =>'dcode',//'d_code',
             'category'      =>'dcat',//'d_cat',
@@ -117,6 +128,16 @@ class Ranking {
     public function buildResultData($field, $oldValue, $newValue, $equal) {
         $result = [];
         $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        $result[] = $this->mappingArray[$field];
         return $result;
     }
 }
