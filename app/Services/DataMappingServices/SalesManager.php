@@ -20,7 +20,7 @@ class SalesManager extends MonthlyDataMapping {
         'nic_sale' => 'points_NIC',
         'nic_sale_result' => 'sales_NIC',
         'nic_sale_nfsa' => 'points_NIC_Fnfsa',
-        'nic_sale_nfsa_result' => 'sales_NIC_Fnfsa',
+        'nic_sale_nfsa_result' => 'sales_NIC_fina',
 
         'retail_forecast' => 'points_forecast_',
         'retail_forecast_result' => 'ach_forecast_',
@@ -61,7 +61,7 @@ class SalesManager extends MonthlyDataMapping {
             'new_vehicle_result' => ($row['pcent_ACT_S_'] !== '' ? number_format(floatval($row['pcent_ACT_S_'])*100) : '0') . '%',
 
             'fsp' => $row['points_FUTURE_P'] !== '' ? intval($row['points_FUTURE_P']) : 0,
-            'fsp_result' => $row['SALES_FUTURE_P'] !== '' ? intval($row['SALES_FUTURE_P']) : 0,
+            'fsp_result' => $row['sales_FUTURE_P'] !== '' ? intval($row['sales_FUTURE_P']) : 0,
 
             'nfv' => $row['points_NFV%'] !== '' ? intval($row['points_NFV%']) : 0,
             'nfv_result' => ($row['pcent_NFV%'] !== '' ? number_format(floatval($row['pcent_NFV%'])*100) : '0') . '%',
@@ -69,7 +69,7 @@ class SalesManager extends MonthlyDataMapping {
             'nic_sale' => $row['points_NIC'] !== '' ? intval($row['points_NIC']) : 0,
             'nic_sale_result' => $row['sales_NIC'] !== '' ? intval($row['sales_NIC']) : 0,
             'nic_sale_nfsa' => $row['points_NIC_Fnfsa'] !== '' ? intval($row['points_NIC_Fnfsa']) : 0,
-            'nic_sale_nfsa_result' => $row['sales_NIC_Fnfsa'] !== '' ? intval($row['sales_NIC_Fnfsa']) : 0,
+            'nic_sale_nfsa_result' => $row['sales_NIC_fina'] !== '' ? intval($row['sales_NIC_fina']) : 0,
 
             'retail_forecast' => $row['points_forecast_'] !== '' ? intval($row['points_forecast_']) : 0,
             'retail_forecast_result' => $row['ach_forecast_'] !== '' ? $row['ach_forecast_'] : 'NO',

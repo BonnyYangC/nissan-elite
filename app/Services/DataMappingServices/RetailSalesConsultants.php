@@ -17,7 +17,7 @@ class RetailSalesConsultants extends MonthlyDataMapping {
         'nic_sale' => 'points_NIC',
         'nic_sale_result' => 'sales_NIC',
         'nic_sale_nfsa' => 'points_NIC_Fnfsa',
-        'nic_sale_nfsa_result' => 'sales_NIC_Fnfsa',
+        'nic_sale_nfsa_result' => 'sales_NIC_fnfsa',
 
         'pmp' => 'points_PMP',
         'pmp_result' => 'sales_PMP',
@@ -49,7 +49,7 @@ class RetailSalesConsultants extends MonthlyDataMapping {
             'nic_sale' => $row['points_NIC'] !== '' ? intval($row['points_NIC']) : 0,
             'nic_sale_result' => $row['sales_NIC'] !== '' ? intval($row['sales_NIC']) : 0,
             'nic_sale_nfsa' => $row['points_NIC_Fnfsa'] !== '' ? intval($row['points_NIC_Fnfsa']) : 0,
-            'nic_sale_nfsa_result' => $row['sales_NIC_Fnfsa'] !== '' ? intval($row['sales_NIC_Fnfsa']) : 0,
+            'nic_sale_nfsa_result' => $row['sales_NIC_fnfsa'] !== '' ? intval($row['sales_NIC_fnfsa']) : 0,
 
             'pmp' => $row['points_PMP'] !== '' ? intval($row['points_PMP']) : 0,
             'pmp_result' => $row['sales_PMP'] !== '' ? floatval($row['sales_PMP']) : 0,
