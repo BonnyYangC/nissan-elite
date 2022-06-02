@@ -1150,6 +1150,7 @@
                     "label": "Trade Sales",
                     "color": "#DC3912",
                     "order": 2,
+                    "period": "quarterly",
                     "title": "Trade Parts Sales per unit in Operation",
                     "metrics": {
                         "trade_sale_pvfy":{

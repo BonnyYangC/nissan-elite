@@ -57,6 +57,7 @@ class Individual extends Base {
 
         $metricsDefinations->each(function($m) use ($chartData, $tableData) {
             $m->chart_data = json_encode($chartData[$m->identifier]);
+            $m->table_header = $m->period === 'quarterly' ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
             $m->table_data = isset($tableData[$m->identifier]) ? $tableData[$m->identifier] : []; //['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100'], '2' => ['100','100','100','100','100','100','100','100','100','100','100','100']];
             $m->chart_name = 'chart_'.$m->identifier;
         });
@@ -68,7 +69,7 @@ class Individual extends Base {
      * @param $metricsData
      * @return array
      */
-    private function buildMetricData($metricDefination, $metricsData) {
+    protected function buildMetricData($metricDefination, $metricsData) {
         $legends = ['Month'];
         $points = [];
         $scores = [];

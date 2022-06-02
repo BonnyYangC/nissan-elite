@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Utility {
     CONST MONTHS_SHORT = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+    CONST QUARTERLY_MONTHS_SHORT = ['Jun', 'Sep', 'Dec', 'Mar'];
 
     /**
      * @param $number

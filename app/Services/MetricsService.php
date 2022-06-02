@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Metric;
-use App\Models\User;
+use App\Helper\Role;
+use App\Models\{Metric, User};
+use App\Services\MetricsServices as MS;
 use Illuminate\Support\Facades\Auth;
 
 class MetricsService {
@@ -15,6 +16,15 @@ class MetricsService {
      */
     public function __construct() { }
 
+    public function getMetricsService($positon) {
+        switch ($positon) {
+            case Role::PARTS_SALES_REP:
+                return new MS\PartsSalesRep();
+            default:
+                return new MS\Individual();
+        }
+    }
+
     /**
      * @return mixed|string
      */
@@ -22,7 +32,7 @@ class MetricsService {
         /** @var User $currentUser */
         $currentUser = Auth::user();
         $metrics = $currentUser->results()->pluck('metrics', 'period');
-        $service = new MetricsServices\Individual();
+        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
         return $service->buildMetricsData($metrics);
     }
 
@@ -33,7 +43,7 @@ class MetricsService {
         /** @var User $currentUser */
         $currentUser = Auth::user();
         $trainingData = $currentUser->results()->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
-        $service = new MetricsServices\Individual();
+        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
         return $service->buildTrainingData($trainingData);
     }
 

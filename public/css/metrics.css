@@ -45,3 +45,7 @@
 .guide-table tr.table-body td:first-child{
     text-align: left;
 }
+/*for PS #2 metric*/
+.trade_sale tr.table-body td:first-child{
+    width: 27%;
+}
