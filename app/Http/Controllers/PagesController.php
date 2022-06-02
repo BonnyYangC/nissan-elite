@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\{Position, User};
 use App\Services\ServiceResolver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,10 +27,11 @@ class PagesController extends Controller {
      *
      */
     public function dashboard() {
+        /** @var User $currentUser */
         $currentUser = Auth::user();
         $this->dataForView['menuName'] = 'dashboard';
         $this->dataForView['currentUser'] = $currentUser;
-        if ($currentUser->position_code === 'ADMIN') {
+        if ($currentUser->position_code === 'ADMIN' || in_array($currentUser->position_code, Position::REGION_STAFF_POSITIONS)) {
             $this->dataForView['userRole'] = 'region_staff';
             return $this->regionStaffDashboard();
         } else {

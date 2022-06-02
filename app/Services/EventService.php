@@ -64,7 +64,7 @@ class EventService {
         $event->region = $newData['region'];
         $event->description = $newData['description'];
         $event->incentive_id = intval($newData['incentive_id']);
-        $event->incentive_name = $newData['incentive_name'];
+        $event->incentive_name = isset($newData['incentive_name']) ? $newData['incentive_name'] : null;
 
         return $event->save();
     }

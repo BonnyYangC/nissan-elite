@@ -270,9 +270,11 @@ class DataService extends BaseService {
      */
     public function updateEvent(array $input) {
         $incentives = $this->loadIncentives();
-        $input['incentive_name'] = $incentives->filter(function($f) use ($input) {
-            return $f->id === intval($input['incentive_id']);
-        })->first()->title;
+        if(isset($input['incentive_name'])) {
+            $input['incentive_name'] = $incentives->filter(function ($f) use ($input) {
+                return $f->id === intval($input['incentive_id']);
+            })->first()->title;
+        }
         $this->serviceResolver->eventService()->update($input);
     }
 
