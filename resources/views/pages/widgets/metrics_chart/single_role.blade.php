@@ -31,6 +31,8 @@
             },
             legend: { position: 'top', maxLines: 3 },
             isStacked: true,
+            // This line makes the entire category's tooltip active.
+            focusTarget: 'category',
         };
         var chart = new google.visualization.ColumnChart(document.getElementById('metrics-chart'));
         chart.draw(data, options);
