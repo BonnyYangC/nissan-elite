@@ -86,11 +86,11 @@ abstract class MonthlyDataMapping {
             'employee_code' =>$row['regi#'],
             'metrics' => $this->metricsMapping($row),
 
-            'train_online'              =>$row['points_train_online'] !== '' ? $row['points_train_online'] : 0,
-            'train_competency'   =>$row['points_train_competency'] !== '' ? $row['points_train_competency'] : 0,
-            'train_mastery'         =>isset($row['points_train_mastery']) && $row['points_train_mastery'] !== '' ? $row['points_train_mastery'] : 0,
-            'train_pathway'      =>$row['points_train_pathway'] !== '' ? $row['points_train_pathway'] : 0,
-            'train_bonus'        =>isset($row['points_train_bonus']) && $row['points_train_bonus'] !== '' ? $row['points_train_bonus'] : 0,
+            'train_online' => isset($row['points_train_online']) && $row['points_train_online'] !== '' ? $row['points_train_online'] : 0,
+            'train_competency' => isset($row['points_train_competency']) && $row['points_train_competency'] !== '' ? $row['points_train_competency'] : 0,
+            'train_mastery' => isset($row['points_train_mastery']) && $row['points_train_mastery'] !== '' ? $row['points_train_mastery'] : 0,
+            'train_pathway' => isset($row['points_train_pathway']) && $row['points_train_pathway'] !== '' ? $row['points_train_pathway'] : 0,
+            'train_bonus' => isset($row['points_train_bonus']) && $row['points_train_bonus'] !== '' ? $row['points_train_bonus'] : 0,
 
             'registration'          =>$row['points_registration'] !== '' ? $row['points_registration'] : 0,
             'excellence'            =>$row['points_excellence'] !== '' ? $row['points_excellence'] : 0,

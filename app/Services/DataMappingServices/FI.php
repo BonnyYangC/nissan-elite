@@ -29,7 +29,7 @@ class FI extends MonthlyDataMapping {
         'nfv_nfsa_result' => 'pcent_NFV%',
 
         'nic_sale_nfsa' => 'points_NIC_Fnfsa',
-        'nic_sale_nfsa_result' => 'sales_NIC_Fnfsa',
+        'nic_sale_nfsa_result' => 'sales_NIC_fnfsa',
 
         'satisfaction' => 'points_ce_EFI3_',
         'satisfaction_result' => 'score_ce_EFI3_',
@@ -64,10 +64,10 @@ class FI extends MonthlyDataMapping {
             'nfv_nfsa_result' => ($row['pcent_NFV%'] !== '' ? number_format(floatval($row['pcent_NFV%'])*100) : '0') . '%',
 
             'nic_sale_nfsa' => $row['points_NIC_Fnfsa'] !== '' ? intval($row['points_NIC_Fnfsa']) : 0,
-            'nic_sale_nfsa_result' => $row['sales_NIC_Fnfsa'] !== '' ? intval($row['sales_NIC_Fnfsa']) : 0,
+            'nic_sale_nfsa_result' => $row['sales_NIC_fnfsa'] !== '' ? intval($row['sales_NIC_fnfsa']) : 0,
 
             'satisfaction' => $row['points_ce_EFI3_'] !== '' ? intval($row['points_ce_EFI3_']) : 0,
-            'satisfaction_result' => $row['score_ce_EFI3_'] !== '' ? floatval($row['score_ce_EFI3_']) : 0.0,
+            'satisfaction_result' => $row['score_ce_EFI3_'] !== '' ? number_format(floatval($row['score_ce_EFI3_']), 1) : 0.0,
         ];
     }
 }
