@@ -204,7 +204,7 @@ class DataService extends BaseService {
             case Defination::DATA_TYPE_USERS_INFO :
                 return new DMS\User();
             case Defination::DATA_TYPE_DEALERS_INFO :
-                return new DMS\Dealer();
+                return new DMS\Dealer($this->serviceResolver->regionService()->load());
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
                 return new DMS\RegionStaff($this->serviceResolver->regionService()->load());
             case Defination::DATA_TYPE_LOYALTY_HISTORICAL:

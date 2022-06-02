@@ -5,6 +5,7 @@ namespace App\Services\DataMappingServices;
 use App\Helper\Defination;
 use App\Models\Dealer as DealerModel;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class Dealer {
     /** @var array  */
@@ -24,11 +25,12 @@ class Dealer {
     ];
 
     /**
-     * Create a new service instance.
-     *
-     * @return void
+     * Dealer constructor.
+     * @param Collection $regions
      */
-    public function __construct() { }
+    public function __construct(Collection $regions) {
+        $this->regions = $regions;
+    }
 
 
     /**
@@ -75,6 +77,7 @@ class Dealer {
      */
     public function buildData($model, $dataType, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
+        $region = explode(' Region', $row['rname']);
         return [
             'code' => $row['dcode'],
             'name' => $row['dname'],
@@ -85,7 +88,7 @@ class Dealer {
             // 'country' => $row['country'],
             'phone' => $row['ph_tel'],
             'fax' => $row['ph_fax'],
-            'region' => $row['rname'],
+            'region' => empty($region[0]) ? '' : $this->regions->filter(function($r) use ($row, $region) {return $r->title === $region[0];})->first()->code,
             'region_code' => $row['rcode'],
             'category' => $row['dcat'],
             'category_code' => $row['dcat#'],

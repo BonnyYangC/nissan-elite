@@ -6,7 +6,6 @@ use App\Helper\Defination;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Hash;
 
 class RegionStaff {
     /** @var array  */

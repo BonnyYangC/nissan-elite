@@ -3,6 +3,7 @@
 namespace App\Services\ExportServices;
 
 use App\Helper\Utility;
+use App\Models\User;
 use App\Services\BaseService;
 use App\Services\ServiceResolver;
 use Carbon\Carbon;
@@ -27,6 +28,7 @@ class TerritoryReport extends BaseService {
      */
     public function export() {
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
+        /** @var User $admin */
         $admin = Auth::user();
         $regions = ($admin->position_code === 'ADMIN' || $admin->region->code === 'H' || $admin->region->code === 'NFSA') ? [
             'E', 'N', 'S', 'W'
