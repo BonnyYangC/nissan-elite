@@ -129,7 +129,7 @@ abstract class MonthlyDataMapping {
      */
     public function compareValue($field, $oldValue, $newValue) {
         if ($field == 'metrics') {
-            $result = empty(array_diff($oldValue, $newValue)) ? true : false;
+            $result = !$oldValue || !empty(array_diff($oldValue, $newValue)) ? false : true;
         } else {
             $result = $oldValue == $newValue ? true : false;
         }
