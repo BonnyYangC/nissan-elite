@@ -7,11 +7,11 @@
 @section('guild_content')
     <div class="d-flex">
         <div class="col-10 offset-1">
-            <h3>THE GUILD TO CONVENE IN NOOSA</h3>
+            <h3>THE GUILD FY21 IS COMING!</h3>
             <p>
-                We have great pleasure in announcing that THE ELITE GUILD will convene in Noosa Heads on Queensland’s Sunshine Coast Friday 18 March till Sunday 20 March 2022. Luxurious accommodation has been reserved at the Sofitel Noosa Pacific Resort and a wonderful weekend is planned for those qualified members and new inductees that are listed below.
+                We are currently planning the FY21 GUILD event and will update you in coming months.  Where to you ask?  We have some great ideas in mind and many new Gold and Platinum inductees to recognise at our Mystery Destination.
             </p>
-            <a class="edm-link" target="_blank" href="https://mailchi.mp/7c6c496225fb/nissan-dealer-excellence-fy18-results-3120310?e=1dac1983c2">
+            <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/7c6c496225fb/nissan-dealer-excellence-fy18-results-3120310?e=1dac1983c2">
                 Click here to view edm content
             </a>
             <a style="margin-left: 50px" class="edm-link" target="_blank" href="https://mailchi.mp/cfe71f39c4e8/nissan-dealer-excellence-fy18-results-3121409?e=1dac1983c2">
@@ -19,7 +19,7 @@
             </a>
             <a style="margin-left: 50px" class="edm-link" target="_blank" href="http://www.destination.com.au/nissan/ELITE/The_Guild/3695-NIS1018-Nissan_ELITE_Guild_2021.mp4">
                 Click here to preview THE GUILD NOOSA
-            </a>
+            </a> -->
             <h3>Platinum Members (500,000+)</h3>
             <table class="table table-striped">
                 <tbody>
@@ -44,8 +44,7 @@
             <h3>PAST EVENT</h3>
             <h3>THE GUILD WEEKEND 2021 – NISSAN ELITE FY20</h3>
 
-            <p>THE GUILD ON CATCHUP!  After many postponements we finally arrived to celebrate our FY20 GUILD event.  A lovely weekend was spent in Noosa, Queensland enjoying the hospitality of the Sofitel Resort, Hastings Street in the midst of all Noosa has to offer.
-                 Our GUILD Dinner was enjoyed after a beautiful beach sunset, where we inducted both Gold and Platinum members for their excellent achievements with Nissan loyalty to the Brand.    Guests enjoyed Bistro C, Catalina and time to enjoy a break with fellow members.
+            <p>THE GUILD ON CATCHUP!  After many postponements we finally celebrated our FY20 GUILD event.  A lovely weekend in Noosa, Queensland enjoying the hospitality of the Sofitel Resort on Hastings Street in the midst of all Noosa has to offer.  Our GUILD Dinner enjoyed over a stunning beach sunset, where we inducted both Gold and Platinum members to THE GUILD in recognition of their Loyalty to the Nissan Brand over many years achieving excellence.    Guests enjoyed Bistro C, Catalina and time to enjoy a break with fellow members.
             </p>
 
             <p>&nbsp;</p>
@@ -61,7 +60,8 @@
 
             <table>
                 <tbody>
-                <tr style="line-height: 2em;"><td width=13%>2021</td><td>NOOSA, QUEENSLAND – Sofitel Resort, sunset dinner at Bistro C and Catalina on the river.</td></tr>
+                <tr style="line-height: 2em;"><td width=13%>2022</td><td>COMING SOON!</td></tr>
+                <tr style="line-height: 2em;"><td width=13%>2021</td><td>NOOSA QUEENSLAND - Sofitel Resort, gala dinner at Bistro C and Catalina Extravaganza.</td></tr>
                 <tr style="line-height: 2em;"><td width=13%>2020</td><td>CANCELLED – COVID19, Dealer Trophy presentation and complimentary Travel Voucher</td></tr>
                 <tr style="line-height: 2em;"><td>2019</td><td>HOBART TASMANIA – Hobart Grand Chancellor,  with Gala dinner at Frogmore Creek and MONA Cruise</td></tr>
                 <tr style="line-height: 2em;"><td>2018</td><td>PORT DOUGLAS - Sheraton Grand Mirage Resort with dinner at The Watergate Restaurant</td></tr>
