@@ -237,7 +237,7 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Dealer Forecast",
-                            "color": "#0099C6",
+                            "color": "#3B3EAC",
                             "default": "NO"
                         }
                     },
@@ -257,7 +257,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#DD4477",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -277,7 +277,7 @@
                     "metrics": {
                         "booked_check":{
                             "label": "% Booked",
-                            "color": "#66AA00",
+                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -295,7 +295,7 @@
                     "metrics": {
                         "follow_up":{
                             "label": "% Follow Up",
-                            "color": "#B82E2E",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -314,7 +314,7 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#316395",
+                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -333,7 +333,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#994499",
+                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -348,7 +348,7 @@
                 {
                     "identifier": "apnur",
                     "label": "APNUR",
-                    "color": "#22AA99",
+                    "color": "#994499",
                     "order": 12,
                     "title": "APNUR PERFORMANCE",
                     "metrics": {
@@ -431,6 +431,8 @@
             "R": [
                 {
                     "identifier": "new_vehicle",
+                    "label": "New Vehicle Sales",
+                    "color": "#3366CC",
                     "order": 1,
                     "title": "NEW VEHICLE SALES PERFORMANCE",
                     "metrics": {
@@ -466,7 +468,7 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "color": "#FF9900",
+                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -480,6 +482,8 @@
                 },
                 {
                     "identifier": "nic_sale",
+                    "label": "NIC sale",
+                    "color": "#FF9900",
                     "order": 3,
                     "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED (MTHLY CAP 23)",
                     "metrics": {
@@ -514,7 +518,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#3B3EAC",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -533,7 +537,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#0099C6",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -554,7 +558,7 @@
                     "metrics": {
                         "kept_informed":{
                             "label": "Kept Informed",
-                            "color": "#DD4477",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -574,7 +578,7 @@
                     "metrics": {
                         "follow_up":{
                             "label": "Followed Up Satisfaction",
-                            "color": "#66AA00",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -848,7 +852,7 @@
                     "metrics": {
                         "penetration":{
                             "label": "Penetration",
-                            "color": "#3B3EAC",
+                            "color": "#109618",
                             "default": "0%"
                         }
                     },
@@ -866,7 +870,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#0099C6",
+                            "color": "#990099",
                             "default": "0"
                         }
                     },
@@ -879,7 +883,7 @@
                 {
                     "identifier": "nfv",
                     "label": "NFV",
-                    "color": "#DD4477",
+                    "color": "#3B3EAC",
                     "order": 6,
                     "title": "NFV CONTRACTS & NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS",
                     "metrics": {
@@ -911,7 +915,7 @@
                     "metrics": {
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "color": "#316395",
+                            "color": "#0099C6",
                             "default": "0"
                         }
                     },
@@ -928,7 +932,7 @@
                     "metrics": {
                         "satisfaction":{
                             "label": "Satisfaction",
-                            "color": "#994499",
+                            "color": "#DD4477",
                             "default": "0"
                         }
                     },
@@ -1058,7 +1062,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#0099C6",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1076,7 +1080,7 @@
                     "metrics": {
                         "rim":{
                             "label": "RIM % Useage",
-                            "color": "#DD4477",
+                            "color": "#990099",
                             "default": "0%"
                         }
                     },
@@ -1261,7 +1265,7 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#990099",
+                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -1278,7 +1282,7 @@
                     "metrics": {
                         "cwp":{
                             "label": "Car Washed %",
-                            "color": "#3B3EAC",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1295,7 +1299,7 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#0099C6",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1312,7 +1316,7 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#DD4477",
+                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1330,7 +1334,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#66AA00",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1348,7 +1352,7 @@
                     "metrics": {
                         "retention":{
                             "label": "Retention",
-                            "color": "#B82E2E",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1365,7 +1369,7 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#316395",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -1467,7 +1471,7 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#990099",
+                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -1484,7 +1488,7 @@
                     "metrics": {
                         "cwp":{
                             "label": "Car Washed %",
-                            "color": "#3B3EAC",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1501,7 +1505,7 @@
                     "metrics": {
                         "eoc":{
                             "label": "Exp Costs",
-                            "color": "#0099C6",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1518,7 +1522,7 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#DD4477",
+                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1536,7 +1540,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#66AA00",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1554,7 +1558,7 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#B82E2E",
+                            "color": "#DD4477",
                             "default": 0
                         }
                     },
