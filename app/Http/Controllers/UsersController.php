@@ -155,6 +155,17 @@ class UsersController extends Controller {
 
     }
 
+    /**
+     * Jump to dealer site from regional staff dashboard
+     * @return mixed
+     */
+    public function jump_to_dealer(){
+        /** @var User $currentUser */
+        $currentUser = Auth::user();
+        Auth::logout();
+        //$this->render('user/dealership_coming_soon');
+        return redirect( env('dealExcellenceOverviewUrl') .'admin/mock/'. md5(rand()). '/'. base64_encode($currentUser->email));
+    }
 
     /**
      * @param Request $request

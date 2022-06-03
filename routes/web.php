@@ -53,6 +53,9 @@ Route::group(['middleware' => ['auth']],function () {
 Route::group(['prefix' => 'region', 'middleware' => ['auth']],function (){
     Route::get('/load_report', [App\Http\Controllers\RegionController::class, 'load_report'])->name('region.load_report');
 });
+Route::group(['prefix' => 'region', 'middleware' => ['auth']],function (){
+    Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'jump_to_dealer'])->name('region.jump_to_dealer');
+});
 
 //backend, admin only
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){

@@ -13,7 +13,7 @@
                 <p class="my-5 pr-1" style="float: right;">
                     <a href="http://learning.nissan.com.au" class="btn btn-default" target="_blank" style="background-color: #cccccc;">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Academy</a>&nbsp;
-                    <a href="{{ url('/admin/jump_to_dealer') }}" class="btn btn-danger">
+                    <a href="{{ route('region.jump_to_dealer') }}" class="btn btn-danger">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence</a>&nbsp;
                     <a href="#" v-on:click="handlerTerritoryReport($event,{{ $currentUser->id }})" class="btn btn-outline-dark">
                         <i class="fa fa-download"></i>Download Territory Report</a>
