@@ -19,4 +19,11 @@ class RegionService {
     public function load() {
         return Region::get();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTerritoryReportRegions() {
+        return Region::whereIn('code', ['E', 'N', 'S', 'W'])->get();
+    }
 }

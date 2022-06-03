@@ -83,7 +83,7 @@ class DashboardController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     private function regionStaffDashboard() {
-        $this->dataForView['regions'] = $this->resolver->regionService()->load();
+        $this->dataForView['regions'] = $this->resolver->regionService()->getTerritoryReportRegions();
         return $this->render('pages.territory_report');
     }
 
