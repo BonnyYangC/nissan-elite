@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Helper\Role;
-use App\Models\Ranking;
+use App\Models\{Ranking, User};
 use App\Services\StatusServices\GageStatus;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +26,7 @@ class RankingService extends BaseService {
      * @return array
      */
     public function buildRankingData(string $type): array {
+        /** @var User $currentUser */
         $currentUser = Auth::user();
         $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code);
         if (!$currentPeriod) {
@@ -33,8 +34,14 @@ class RankingService extends BaseService {
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
         }
-        $resultsData = Ranking::getRankingsBy($currentUser->position_code, $currentPeriod, $type, $currentUser->dealer->state);
+        $resultsData = Ranking::getRankingsBy($currentUser->position_code, $currentPeriod, $type, 5, $currentUser->dealer->state);
 
+        $rankingOfCurrentUser = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod, $type)->first();
+        // if rank of current user is out of 5, then replace 5th with current user's ranking
+        $rank = $type === Ranking::AWARD_STATUS ? $rankingOfCurrentUser->rank : $rankingOfCurrentUser->rank_platinum;
+        if($rank > 5) {
+            $resultsData[4] = $rankingOfCurrentUser;
+        }
         return $resultsData->all();
     }
 
@@ -42,17 +49,18 @@ class RankingService extends BaseService {
      * @return Ranking|null
      */
     public function getCurrentRanking() {
+        /** @var User $currentUser */
         $currentUser = Auth::user();
         $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code);
         if (!$currentPeriod) {
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
         }
-        $resultData = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod);
+        $resultData = Ranking::getRankByEmployeeCode($currentUser->employee_code, $currentPeriod);
         return $resultData->first();
     }
 
-
+//////////////////for ranking page////////////////////////////////////
     /**
      * Generate data array for column 1
      * @return array

@@ -27,7 +27,7 @@
                     <td>{{ $result->rank }}</td>
                     <td>
                         @if($result->employee_code === $currentUser->employee_code)
-                        <a href="{{ url('/dashboard/Leaderboards') }}" class="matched">
+                        <a href="{{ route('ranking') }}" class="matched">
                             {{ $result->firstname }} {{ $result->lastname }}
                         </a>
                         @else

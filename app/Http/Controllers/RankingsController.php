@@ -43,7 +43,7 @@ class RankingsController extends Controller {
         $this->dataForView['userGroups1'] = $this->service->getUsersGroupsArray1();
         $this->dataForView['userGroups2'] = $this->service->getUsersGroupsArray2();
         $this->dataForView['userGroups3'] = $this->service->getUsersGroupsArray3();
-//var_dump($this->dataForView['userGroups1']);
+
         $this->dataForView['awardType'] = [Ranking::AWARD_STATUS, Ranking::AWARD_PLATINUM];
         return $this->render('pages.ranking');
     }
@@ -56,11 +56,6 @@ class RankingsController extends Controller {
         $role = $request->input('role');
         $action = $request->input('action');
         $awardType = $request->input('type') ? $request->input('type') : Ranking::AWARD_STATUS;
-        /*
-         * 'role' => string 'M' (length=1)
-  'action' => string 'Current' (length=7)
-  'type' => string 'status' (length=6)
-         * */
 
         $modalTitle = 'YTD ';
         $thisPeriod = Ranking::getMaxPeriodByPositionAndCat($role);
