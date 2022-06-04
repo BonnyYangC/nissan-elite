@@ -1,6 +1,11 @@
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1600px) {
     .container {
-        width: 1170px;
+        min-width: 1580px;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    .container {
+        min-width: 1380px;
     }
 }
 html,body {
@@ -41,14 +46,6 @@ h4 {
 a, a:hover {
     color: #c0133c;
     text-decoration: none;
-}
-#main {
-    min-height: 100%;
-    background-image: url('/images/nissan/Nissan_Elite_bg.jpg');
-    background-size: cover;
-    /*position: absolute;*/
-    background-repeat: repeat-y;
-    background-attachment: fixed;
 }
 .fs-30 {
     font-size: 30px;

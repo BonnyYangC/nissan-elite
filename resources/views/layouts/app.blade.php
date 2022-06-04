@@ -4,19 +4,25 @@
         @include('includes.head')
     </head>
     <body class="h-100">
-        <div class="container-fluid" id="main">
+        <div class="bg-site-image">
             @if($header)
+            <div class="container">
                 <header class="d-flex flex-column justify-content-center">
                     @include('includes.header')
                 </header>
+            </div>
             @endif
-            <div class="row">
-                @yield('content')
+            <div class="container">
+                <div class="row">
+                    @yield('content')
+                </div>
             </div>
             @if($footer)
+            <div class="container">
                 <footer class="mx-auto">
                     @include('includes.footer')
                 </footer>
+            </div>
             @endif
         </div>
         @include('includes.js')

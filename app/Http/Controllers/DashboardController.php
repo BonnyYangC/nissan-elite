@@ -28,8 +28,6 @@ class DashboardController extends Controller {
      * @throws \ImagickException
      */
     public function dashboard() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
         $this->dataForView['menuName'] = 'dashboard';
         $currentUser = $this->dataForView['currentUser'];
         if ($currentUser->position_code === 'ADMIN' || in_array($currentUser->position_code, Position::REGION_STAFF_POSITIONS)) {

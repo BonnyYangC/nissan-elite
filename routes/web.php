@@ -47,14 +47,15 @@ Route::group(['middleware' => ['auth']],function () {
 
     Route::get('/dashboard/current-status-level', [App\Http\Controllers\GageController::class, 'current_status_level'])->name('current_status_level');
     Route::get('/dashboard/loyalty-status-level', [App\Http\Controllers\GageController::class, 'loyalty_status_level'])->name('loyalty_status_level');
+
+    Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'jump_to_dealer'])->name('jump_to_dealer');
 });
 
 //region staff only
 Route::group(['prefix' => 'region', 'middleware' => ['auth']],function (){
     Route::get('/load_report', [App\Http\Controllers\RegionController::class, 'load_report'])->name('region.load_report');
-});
-Route::group(['prefix' => 'region', 'middleware' => ['auth']],function (){
-    Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'jump_to_dealer'])->name('region.jump_to_dealer');
+
+    Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'region_jump_to_dealer'])->name('region.jump_to_dealer');
 });
 
 //backend, admin only

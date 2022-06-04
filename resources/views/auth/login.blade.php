@@ -13,7 +13,7 @@
         }
     </script>
 
-    <div class="container-fluid in_bg_img" align="center">
+    <div class="justify-content-center" align="center">
         <div class="row justify-content-center">
             <div class="col-lg-2 col-md-2 col-xs-3">
                 <a href="{{ url('/') }}">
@@ -26,7 +26,7 @@
                 <img class="nissan-logo" alt="" src="{{ asset('images/nissan/Nissan_ELITE_i_ELITE-Black.png?a=1') }}">
             </div>
         </div>
-        <div class="row justify-content-center" style="padding-bottom: 5%">
+        <div class="row justify-content-center" style="padding-bottom: 15%">
                 <div class="col-md-2 col-sm-4 mt-3">
                     <!--<form method="POST" action="{{ route('login') }}">
                     </form>-->
@@ -60,7 +60,8 @@
                     </div>
                 </div>
         </div>
-
+    </div>
+    <div class="justify-content-center" align="center">
         <div class="row justify-content-center">
             <section id="eligible" class="eligible-section">
                 <div>

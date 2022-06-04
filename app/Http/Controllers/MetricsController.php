@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\MetricsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class MetricsController extends Controller {
 
@@ -26,8 +25,6 @@ class MetricsController extends Controller {
      *
      */
     public function metrics() {
-        $currentUser = Auth::user();
-        $this->dataForView['currentUser'] = $currentUser;
         $this->dataForView['menuName'] = 'metrics';
         //metrics
         $this->dataForView['metrics'] = $this->service->getMetricsData();

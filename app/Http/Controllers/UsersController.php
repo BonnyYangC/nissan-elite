@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\JsonBuilder;
+use App\Helper\Role;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -159,12 +160,26 @@ class UsersController extends Controller {
      * Jump to dealer site from regional staff dashboard
      * @return mixed
      */
-    public function jump_to_dealer(){
+    public function region_jump_to_dealer(){
         /** @var User $currentUser */
         $currentUser = Auth::user();
         Auth::logout();
         //$this->render('user/dealership_coming_soon');
         return redirect( env('dealExcellenceOverviewUrl') .'admin/mock/'. md5(rand()). '/'. base64_encode($currentUser->email));
+    }
+
+    /**
+     * Jump to dealer site from tiles page
+     * @return mixed
+     */
+    public function jump_to_dealer(){
+        /** @var User $currentUser */
+        $currentUser = Auth::user();
+        if ($currentUser->position_code === Role::SALES_MANAGER) {
+            return redirect( env('dealExcellenceOverviewUrl') .'api?role='. $currentUser->position_code . '&code='. $currentUser->dealer_code);
+        } else {
+            return redirect( env('dealExcellenceOverviewUrl') .'api?role=AP');
+        }
     }
 
     /**

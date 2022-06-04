@@ -25,8 +25,9 @@ class MetricsService extends BaseService {
      * @return mixed|string
      */
     public function getMetricsData() {
-        $metrics = $this->currentUser->results()->pluck('metrics', 'period');
-        $service = $this->getMetricsService($this->currentUser->position_code); //new MetricsServices\Individual();
+        $currentUser = $this->getCurrentUser();
+        $metrics = $currentUser->results()->pluck('metrics', 'period');
+        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
         return $service->buildMetricsData($metrics);
     }
 
@@ -34,8 +35,9 @@ class MetricsService extends BaseService {
      * @return Metric|void
      */
     public function getTrainingData() {
-        $trainingData = $this->currentUser->results()->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
-        $service = $this->getMetricsService($this->currentUser->position_code); //new MetricsServices\Individual();
+        $currentUser = $this->getCurrentUser();
+        $trainingData = $currentUser->results()->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
+        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
         return $service->buildTrainingData($trainingData);
     }
 
