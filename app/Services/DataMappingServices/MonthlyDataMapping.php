@@ -53,12 +53,11 @@ abstract class MonthlyDataMapping {
      * get model according data file type
      *
      * @param $actionType
-     * @param $dataType
      * @param $modelKey
      * @param $record
      * @return Result
      */
-    public function getModel($actionType, $dataType, $modelKey, $record, $key) {
+    public function getModel($actionType, $modelKey, $record, $key) {
         $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
             ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
         if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
@@ -73,13 +72,12 @@ abstract class MonthlyDataMapping {
      * built data map for data uploader
      *
      * @param $model
-     * @param [string] $dataType
      * @param [array] $row
      * @param [array] $modelKey
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $dataType, $row, $modelKey, $key){
+    public function buildData($model, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
         return [
             'period'        => Utility::formatPeriod($row['mthyrg']),
@@ -112,11 +110,10 @@ abstract class MonthlyDataMapping {
     /**
      * to see if this record is ignored
      *
-     * @param $type
      * @param $value
      * @return bool
      */
-    public static function isIgnored($type, $value) {
+    public static function isIgnored($value) {
         $result = false;
         return $result;
     }

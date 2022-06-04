@@ -44,13 +44,14 @@ class Ranking extends Model {
      */
     public static function getRankingsBy(string $position, string $period, string $type, int $take = null, string $state = null) {
         $query = self::join('users','rankings.employee_code', '=', 'users.employee_code')
-            ->join('dealers', 'users.dealer_code', '=', 'dealers.code');
+            ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
-            $query = $query->select('users.employee_code', 'users.firstname', 'users.lastname', 'rankings.rank_state', 'rankings.rank', 'rankings.total', 'dealers.name', 'dealers.category');
+            $query = $query->addSelect('rankings.rank', 'rankings.total');
         } else {
             $orderBy = 'rank_platinum';
-            $query = $query->select('users.employee_code', 'users.firstname', 'users.lastname', 'rankings.rank_state', 'rankings.rank_platinum as rank', 'rankings.total_platinum as total', 'dealers.name', 'dealers.category');
+            $query = $query->addSelect('rankings.rank_platinum as rank', 'rankings.total_platinum as total');
         }
         $query = $query->where('rankings.position', $position)
             ->where('period', $period)
@@ -71,13 +72,14 @@ class Ranking extends Model {
      */
     public static function getRankingByEmployeeCode(string $employeeCode, string $period, $type) {
         $query = self::join('users','rankings.employee_code', '=', 'users.employee_code')
-            ->join('dealers', 'users.dealer_code', '=', 'dealers.code');
+            ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
-            $query = $query->select('users.employee_code', 'users.firstname', 'users.lastname', 'rankings.rank_state', 'rankings.rank', 'rankings.total', 'dealers.name', 'dealers.category');
+            $query = $query->select('rankings.rank', 'rankings.total');
         } else {
             $orderBy = 'rank_platinum';
-            $query = $query->select('users.employee_code', 'users.firstname', 'users.lastname', 'rankings.rank_state', 'rankings.rank_platinum as rank', 'rankings.total_platinum as total', 'dealers.name', 'dealers.category');
+            $query = $query->select('rankings.rank_platinum as rank', 'rankings.total_platinum as total');
         }
         return $query->where('users.employee_code', $employeeCode)
             ->where('period', $period)->orderBy($orderBy)

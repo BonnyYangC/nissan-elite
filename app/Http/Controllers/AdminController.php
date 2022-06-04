@@ -51,6 +51,7 @@ class AdminController extends Controller {
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      * @throws \League\Csv\Exception
+     * @throws \League\Csv\UnableToProcessCsv
      */
     public function data_process(Request $request) {
 

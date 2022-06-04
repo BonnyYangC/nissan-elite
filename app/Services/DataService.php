@@ -29,6 +29,7 @@ class DataService extends BaseService {
      * @param $dataType
      * @return array
      * @throws \League\Csv\Exception
+     * @throws \League\Csv\UnableToProcessCsv
      */
     public function importation($dataFile, $dataType) {
 
@@ -48,11 +49,11 @@ class DataService extends BaseService {
 
             foreach ($records as $lineNumber => $record) {
 
-                if(!isset($record[$modelKey['primary']]) || empty($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
+                if(!isset($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
                     $failCount++;
                     continue;
                 }
-                if ($mappingService::isIgnored($dataType, $record[$modelKey['primary']])) {
+                if ($mappingService::isIgnored($record[$modelKey['primary']])) {
                     $ignoredCount++;
                     continue;
                 }
@@ -62,10 +63,10 @@ class DataService extends BaseService {
                     $keys = [$modelKey['primary']];
                 }
                 foreach($keys as $key) {
-                    $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $dataType, $modelKey, $record, $key);
+                    $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $modelKey, $record, $key);
 
                     if ($model) {
-                        $data = $mappingService->buildData($model, $dataType, $record, $modelKey, $key);
+                        $data = $mappingService->buildData($model, $record, $modelKey, $key);
                         foreach ($data as $fieldName => $value) {
                             $model->$fieldName = $value == '-' ? 0 : $value;
                         }
@@ -120,12 +121,12 @@ class DataService extends BaseService {
 
             foreach ($records as $lineNumber => $record) {
 
-                if(!isset($record[$modelKey['primary']]) || empty($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
+                if(!isset($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
                     $wrongCount++;
                     $wrongRows[] = $record;
                     continue;
                 }
-                if ($mappingService::isIgnored($dataType, $record[$modelKey['primary']])) {
+                if ($mappingService::isIgnored($record[$modelKey['primary']])) {
                     $ignoredCount++;
                     $ignoredRows[] = $record;
                     continue;
@@ -138,9 +139,9 @@ class DataService extends BaseService {
                 $row = [];
                 $headers = [];
                 foreach($keys as $key) {
-                    $model = $mappingService->getModel(Defination::ACTION_TYPE_VALIDATE, $dataType, $modelKey, $record, $key);
+                    $model = $mappingService->getModel(Defination::ACTION_TYPE_VALIDATE, $modelKey, $record, $key);
                     if($model){
-                        $data = $mappingService->buildData($model, $dataType, $record, $modelKey, $key);
+                        $data = $mappingService->buildData($model, $record, $modelKey, $key);
                         foreach ($data as $fieldName => $value) {
                             $equal = $mappingService->compareValue($fieldName, $model->$fieldName, $value);
                             $row = array_merge($row, $mappingService->buildResultData($fieldName, $model->$fieldName, $value, $equal));

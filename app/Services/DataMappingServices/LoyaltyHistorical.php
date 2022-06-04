@@ -5,15 +5,12 @@ namespace App\Services\DataMappingServices;
 use App\Helper\Defination;
 use App\Models\History;
 
-class LoyaltyHistorical {
+class LoyaltyHistorical extends Base {
 
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
-
+    /** @var array  */
+    public $mappingArray = [
+        'member_id' => 'regi#_',
+    ];
 
     /**
      * get primary key according to data file type
@@ -37,12 +34,11 @@ class LoyaltyHistorical {
      * get model according data file type
      *
      * @param $actionType
-     * @param $dataType
      * @param $modelKey
      * @param $record
      * @return History
      */
-    public function getModel($actionType, $dataType, $modelKey, $record, $key) {
+    public function getModel($actionType, $modelKey, $record, $key) {
         $model = History::where('member_id', trim($record[$modelKey['primary']]))
             ->where('period', trim($modelKey['mapping'][$key]))->first();
         if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
@@ -55,61 +51,17 @@ class LoyaltyHistorical {
      * built data map for data uploader
      *
      * @param $model
-     * @param [string] $dataType
      * @param [array] $row
      * @param [array] $modelKey
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $dataType, $row, $modelKey, $key){
+    public function buildData($model, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
         return [
             'member_id' => $row['regi#_'],
             'period'    => $modelKey['mapping'][$key],
             'amount'    => isset($row[$key]) && $row[$key] !== '' ? $row[$key] : 0.0
         ];
-    }
-
-    /**
-     * to see if this record is ignored
-     *
-     * @param $type
-     * @param $value
-     * @return bool
-     */
-    public static function isIgnored($type, $value) {
-        $result = false;
-        return $result;
-    }
-
-    /**
-     * @param string $employeeCode
-     * @return bool
-     */
-    public function validate(string $employeeCode) {
-        return true;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @return bool
-     */
-    public function compareValue($field, $oldValue, $newValue) {
-        return $oldValue == $newValue ? true : false;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @param $equal
-     * @return array
-     */
-    public function buildResultData($field, $oldValue, $newValue, $equal) {
-        $result = [];
-        $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
-        return $result;
     }
 }

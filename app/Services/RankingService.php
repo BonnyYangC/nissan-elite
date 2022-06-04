@@ -222,17 +222,6 @@ class RankingService extends BaseService {
      * @return array
      */
     private function _convertRankingRowForFrontendJson($item, $role){
-
-        //registered
-        $re = null;
-        if(in_array($item['registered'],['NO', '0']) || empty($item['registered'])){
-            $re = 'NO';
-        }
-
-        if(in_array($item['registered'],['YES', 'registered', 'Registered'])){
-            $re = 'YES';
-        }
-
         return [
             'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
             'r' =>  $item['rank'], // status/platinum rank
@@ -243,7 +232,7 @@ class RankingService extends BaseService {
             'p' =>  number_format($item['total']), // status/platinum points
             'c' =>  $item['category'], // category
             //'cp' =>  number_format($item['total_platinum']), // platinum points
-            're'=>  $re, // registered
+            're'=>  $item['registered'] ? 'YES' : 'NO', // registered
         ];
     }
 

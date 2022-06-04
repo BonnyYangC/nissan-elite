@@ -7,7 +7,7 @@ use App\Models\TerritoryReport as TerritoryReportModel;
 use App\Models\User;
 use Carbon\Carbon;
 
-class TerritoryReport {
+class TerritoryReport extends Base {
 
     /** @var array  */
     public $mappingArray = [
@@ -31,13 +31,6 @@ class TerritoryReport {
         'cr_ytd_lifetime' => 'points_ytd_lifetime_',
     ];
 
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
-
 
     /**
      * get primary key according to data file type
@@ -54,12 +47,11 @@ class TerritoryReport {
      * get model according data file type
      *
      * @param $actionType
-     * @param $dataType
      * @param $modelKey
      * @param $record
      * @return TerritoryReportModel
      */
-    public function getModel($actionType, $dataType, $modelKey, $record, $key) {
+    public function getModel($actionType, $modelKey, $record, $key) {
         // $this->handleUser(trim($record[$modelKey['primary']]), $actionType);
         $model = TerritoryReportModel::where('employee_code', trim($record[$modelKey['primary']]))->first();
         if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
@@ -74,13 +66,12 @@ class TerritoryReport {
      * built data map for data uploader
      *
      * @param $model
-     * @param [string] $dataType
      * @param [array] $row
      * @param [array] $modelKey
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $dataType, $row, $modelKey, $key){
+    public function buildData($model, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
         return [
             /*'dsm_full_name'         =>'elit~dreg_dcode::n_fullname',//'amba_deal~regi_rcode::n_fullname',
@@ -111,60 +102,6 @@ class TerritoryReport {
             'cr_ytd_platinum'       =>$row['points_ytd_platinum_'] !== '' ? $row['points_ytd_platinum_'] : 0,
             'cr_ytd_lifetime'       =>$row['points_ytd_lifetime_'] !== '' ? $row['points_ytd_lifetime_'] : 0,
         ];
-    }
-
-    /**
-     * to see if this record is ignored
-     *
-     * @param $type
-     * @param $value
-     * @return bool
-     */
-    public static function isIgnored($type, $value) {
-        $result = false;
-        return $result;
-    }
-
-    /**
-     * @param string $employeeCode
-     * @return bool
-     */
-    public function validate(string $employeeCode) {
-        $model = User::where('employee_code', $employeeCode)->first();
-        return $model ? true : false;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @return bool
-     */
-    public function compareValue($field, $oldValue, $newValue) {
-        return $oldValue == $newValue ? true : false;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @param $equal
-     * @return array
-     */
-    public function buildResultData($field, $oldValue, $newValue, $equal) {
-        $result = [];
-        $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
-        return $result;
-    }
-
-    /**
-     * @param $field
-     * @return array
-     */
-    public function buildHeaderForResultData($field) {
-        $result = [];
-        $result[] = $this->mappingArray[$field];
-        return $result;
     }
 
     private function handleUser(string $employeeCode, string $actionType) {
