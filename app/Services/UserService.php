@@ -161,6 +161,7 @@ class UserService extends BaseService {
     /**
      * @param User $user
      * @return bool|int|null
+     * @throws \Exception
      */
     public function delete(User $user) {
         return $user->delete();

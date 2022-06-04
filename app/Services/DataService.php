@@ -4,14 +4,12 @@ namespace App\Services;
 
 use App\Helper\Defination;
 use App\Helper\Role;
-use App\Models\{Event, Faq, Incentive};
 use App\Services\DataMappingServices as DMS;
 use App\Services\ExportServices\Admin;
 use App\Services\ExportServices\LoyaltyHistorical;
 use App\Services\ExportServices\TerritoryReport;
 use App\Services\ExportServices\User;
 use App\Services\ExportServices\Ranking;
-use Illuminate\Http\Request;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
@@ -246,112 +244,5 @@ class DataService extends BaseService {
             default:
                 break;
         }
-    }
-
-    /**
-     * @param array $regions
-     * @param string $dept
-     * @param null $dealerNameKeyword
-     * @return mixed
-     */
-    public function loadTerritoryReport(array $regions, $dept = 'All', $dealerNameKeyword = null){
-        return $this->serviceResolver->territoryReportService()->load($regions,$dept,$dealerNameKeyword);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function loadEvents() {
-        return $this->serviceResolver->eventService()->getEvents();
-    }
-
-    /**
-     * @param array $input
-     */
-    public function updateEvent(array $input) {
-        $incentives = $this->loadIncentives();
-        if(isset($input['incentive_name'])) {
-            $input['incentive_name'] = $incentives->filter(function ($f) use ($input) {
-                return $f->id === intval($input['incentive_id']);
-            })->first()->title;
-        }
-        $this->serviceResolver->eventService()->update($input);
-    }
-
-    /**
-     * @param Event $event
-     * @throws \Exception
-     */
-    public function deleteEvent(Event $event) {
-        $this->serviceResolver->eventService()->delete($event);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function loadIncentives() {
-        return $this->serviceResolver->incentivesService()->load();
-    }
-
-    /**
-     * @return array
-     */
-    public function loadIncentivesByPeriod() {
-        return [
-            'current' => $this->serviceResolver->incentivesService()->current(),
-            'past' => $this->serviceResolver->incentivesService()->past(),
-            'just_finished' => $this->serviceResolver->incentivesService()->justFinished()
-        ];
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function updateIncentive(Request $request) {
-        $input = $request->input();
-        if ($request->hasFile('image')) {
-            $imagefileName = $request->file('image')->getClientOriginalName();
-            $imageFile = $request->file('image')->storeAS('image', $imagefileName, 'public');
-            rename(storage_path('app/public/'.$imageFile), public_path('images/incentives/images/'.$imagefileName));
-            $input['image'] = $imagefileName;
-        }
-        if ($request->hasFile('pdf')) {
-            $pdffileName = $request->file('pdf')->getClientOriginalName();
-            $pdfFile = $request->file('pdf')->storeAS('image', $pdffileName, 'public');
-            rename(storage_path('app/public/'.$pdfFile), public_path('images/incentives/images/pdf/'.$pdffileName));
-            $input['pdf'] = $pdffileName;
-        }
-        $this->serviceResolver->incentivesService()->update($input);
-    }
-
-    /**
-     * @param Incentive $incentive
-     * @throws \Exception
-     */
-    public function deleteIncentive(Incentive $incentive) {
-        $this->serviceResolver->incentivesService()->delete($incentive);
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function loadFaqs() {
-        return $this->serviceResolver->faqService()->load();
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function updateFaq(Request $request) {
-        $this->serviceResolver->faqService()->update($request->input());
-    }
-
-    /**
-     * @param Faq $faq
-     * @throws \Exception
-     */
-    public function deleteFaq(Faq $faq) {
-        $this->serviceResolver->faqService()->delete($faq);
     }
 }

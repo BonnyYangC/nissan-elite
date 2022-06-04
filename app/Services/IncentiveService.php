@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Incentive;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class IncentiveService {
 
@@ -13,6 +14,37 @@ class IncentiveService {
      * @return void
      */
     public function __construct() { }
+
+    /**
+     * @return array
+     */
+    public function loadIncentivesByPeriod() {
+        return [
+            'current' => $this->current(),
+            'past' => $this->past(),
+            'just_finished' => $this->justFinished()
+        ];
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function updateIncentive(Request $request) {
+        $input = $request->input();
+        if ($request->hasFile('image')) {
+            $imagefileName = $request->file('image')->getClientOriginalName();
+            $imageFile = $request->file('image')->storeAS('image', $imagefileName, 'public');
+            rename(storage_path('app/public/'.$imageFile), public_path('images/incentives/images/'.$imagefileName));
+            $input['image'] = $imagefileName;
+        }
+        if ($request->hasFile('pdf')) {
+            $pdffileName = $request->file('pdf')->getClientOriginalName();
+            $pdfFile = $request->file('pdf')->storeAS('image', $pdffileName, 'public');
+            rename(storage_path('app/public/'.$pdfFile), public_path('images/incentives/images/pdf/'.$pdffileName));
+            $input['pdf'] = $pdffileName;
+        }
+        $this->update($input);
+    }
 
     /**
      * @return mixed

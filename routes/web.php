@@ -87,20 +87,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){
     Route::get('/usage', [App\Http\Controllers\AdminController::class, 'usage'])->name('admin.usage');
     Route::get('/historical_export', [App\Http\Controllers\AdminController::class, 'historical_export'])->name('admin.historical_export');
 
-    Route::get('/calendars', [App\Http\Controllers\AdminController::class, 'calendars'])->name('admin.calendars');
-    Route::get('/events/info/{event?}', [App\Http\Controllers\AdminController::class, 'event_info'])->name('admin.event.info');
-    Route::post('/event/edit', [App\Http\Controllers\AdminController::class, 'event_edit'])->name('admin.event.edit');
-    Route::get('/events/delete/{event}', [App\Http\Controllers\AdminController::class, 'event_delete'])->name('admin.event.delete');
+    Route::get('/calendars', [App\Http\Controllers\EventController::class, 'calendars'])->name('admin.calendars');
+    Route::get('/events/info/{event?}', [App\Http\Controllers\EventController::class, 'event_info'])->name('admin.event.info');
+    Route::post('/event/edit', [App\Http\Controllers\EventController::class, 'event_edit'])->name('admin.event.edit');
+    Route::get('/events/delete/{event}', [App\Http\Controllers\EventController::class, 'event_delete'])->name('admin.event.delete');
 
-    Route::get('/incentives', [App\Http\Controllers\AdminController::class, 'incentives'])->name('admin.incentives');
-    Route::get('/incentives/info/{incentive?}', [App\Http\Controllers\AdminController::class, 'incentive_info'])->name('admin.incentive.info');
-    Route::post('/incentive/edit', [App\Http\Controllers\AdminController::class, 'incentive_edit'])->name('admin.incentive.edit');
-    Route::get('/incentives/delete/{incentive}', [App\Http\Controllers\AdminController::class, 'incentive_delete'])->name('admin.incentive.delete');
+    Route::get('/incentives', [App\Http\Controllers\IncentiveController::class, 'incentives'])->name('admin.incentives');
+    Route::get('/incentives/info/{incentive?}', [App\Http\Controllers\IncentiveController::class, 'incentive_info'])->name('admin.incentive.info');
+    Route::post('/incentive/edit', [App\Http\Controllers\IncentiveController::class, 'incentive_edit'])->name('admin.incentive.edit');
+    Route::get('/incentives/delete/{incentive}', [App\Http\Controllers\IncentiveController::class, 'incentive_delete'])->name('admin.incentive.delete');
 
-    Route::get('/faqs', [App\Http\Controllers\AdminController::class, 'faqs'])->name('admin.faqs');
-    Route::get('/faqs/info/{faq?}', [App\Http\Controllers\AdminController::class, 'faq_info'])->name('admin.faq.info');
-    Route::post('/faq/edit', [App\Http\Controllers\AdminController::class, 'faq_edit'])->name('admin.faq.edit');
-    Route::get('/faqs/delete/{faq}', [App\Http\Controllers\AdminController::class, 'faq_delete'])->name('admin.faq.delete');
+    Route::get('/faqs', [App\Http\Controllers\FaqController::class, 'faqs'])->name('admin.faqs');
+    Route::get('/faqs/info/{faq?}', [App\Http\Controllers\FaqController::class, 'faq_info'])->name('admin.faq.info');
+    Route::post('/faq/edit', [App\Http\Controllers\FaqController::class, 'faq_edit'])->name('admin.faq.edit');
+    Route::get('/faqs/delete/{faq}', [App\Http\Controllers\FaqController::class, 'faq_delete'])->name('admin.faq.delete');
 
     Route::post('/system_config', [App\Http\Controllers\AdminController::class, 'system_config'])->name('admin.system_config');
 });

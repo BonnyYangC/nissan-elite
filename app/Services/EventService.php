@@ -5,14 +5,20 @@ namespace App\Services;
 use App\Models\Event;
 use App\Models\Region;
 
-class EventService {
+class EventService extends BaseService {
 
     /**
-     * Create a new service instance.
-     *
-     * @return void
+     * @param array $input
      */
-    public function __construct() { }
+    public function updateEvent(array $input) {
+        $incentives = $this->serviceResolver->incentivesService()->load();
+        if(isset($input['incentive_name'])) {
+            $input['incentive_name'] = $incentives->filter(function ($f) use ($input) {
+                return $f->id === intval($input['incentive_id']);
+            })->first()->title;
+        }
+        $this->update($input);
+    }
 
     /**
      * @return
@@ -28,7 +34,7 @@ class EventService {
      * @param null $region
      * @return mixed
      */
-    public static function getEvents($region = null) {
+    public static function getEventsByRegion($region = null) {
         $region = self::getRegion($region);
         return Event::whereIn('region', $region)
             ->orderBy('id', 'DESC')

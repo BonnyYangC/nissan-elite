@@ -4,26 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Helper\JsonBuilder;
 use App\Services\DataService;
+use App\Services\ServiceResolver;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller {
 
-    /** @var DataService  */
-    private $dataService;
+    /** @var ServiceResolver  */
+    private $resolver;
 
     /**
-     * Create a new controller instance.
-     * @param DataService $dataService
-     * @return void
+     * DashboardController constructor.
+     * @param ServiceResolver $resolver
+     * @param Request $request
      */
-    public function __construct(DataService $dataService, Request $request) {
+    public function __construct(ServiceResolver $resolver, Request $request) {
         parent::__construct($request);
-        $this->dataService = $dataService;
+        $this->resolver = $resolver;
     }
 
+    /**
+     * @param Request $request
+     */
     public function load_report(Request $request) {
         $region = $request->input('region');
-        $rows = $this->dataService->loadTerritoryReport([$region]);
+        $rows = $this->resolver->territoryReportService()->load([$region]);
        echo JsonBuilder::Success($rows);
     }
 }
+
