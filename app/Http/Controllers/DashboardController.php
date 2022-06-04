@@ -13,9 +13,9 @@ class DashboardController extends Controller {
     private $resolver;
 
     /**
-     * Create a new controller instance.
+     * DashboardController constructor.
      * @param ServiceResolver $resolver
-     * @return void
+     * @param Request $request
      */
     public function __construct(ServiceResolver $resolver, Request $request) {
         parent::__construct($request);
@@ -23,14 +23,15 @@ class DashboardController extends Controller {
     }
 
     /**
-     * entry point
-     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ImagickException
      */
     public function dashboard() {
         /** @var User $currentUser */
         $currentUser = Auth::user();
         $this->dataForView['menuName'] = 'dashboard';
-        $this->dataForView['currentUser'] = $currentUser;
+        $currentUser = $this->dataForView['currentUser'];
         if ($currentUser->position_code === 'ADMIN' || in_array($currentUser->position_code, Position::REGION_STAFF_POSITIONS)) {
             $this->dataForView['userRole'] = 'region_staff';
             return $this->regionStaffDashboard();
@@ -42,6 +43,7 @@ class DashboardController extends Controller {
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ImagickException
      */
     private function userDashboard() {

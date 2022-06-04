@@ -39,11 +39,13 @@
         <div class="page-section-wrap">
             <div class="metrics-chart dashboard-section">
                 <h3>{{ config('elite.PROGRAM_AWARD_UNIT') }} earned per Month
+                    @if(!$mock)
                     <a href="{{ url('/metrics') }}">
                         <button style="background-color:#4169E1; color: #FFFFFF; font-weight: lighter; font-size:10px;" type="button" class="btn">
                             VIEW METRICS PAGE
                         </button>
                     </a>
+                    @endif
                 </h3>
                 @include('pages.widgets.metrics_chart.single_role', [$currentUser, $stackedMetrics])
             </div>

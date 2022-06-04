@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Helper\Role;
-use App\Helper\Utility;
-use App\Models\Position;
-use App\models\User;
+use App\Helper\{Role, Utility};
+use App\Models\{Position, User};
 
 class UserService extends BaseService {
 
@@ -43,7 +41,7 @@ class UserService extends BaseService {
      * @return mixed
      */
     public function loadActiveMember(array $regions, $dept = 'All', $dealerNameKeyword = null){
-        $query = User::select('regions.title as region', 'dealers.name as dealer', 'users.employee_code',
+        $query = User::select('regions.title as region', 'dealers.code as dealer_code','dealers.name as dealer', 'users.employee_code',
             'users.firstname', 'users.lastname', 'positions.department as dept', 'positions.title as position',
             'users.registered', 'users.email', 'users.mobile')
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')

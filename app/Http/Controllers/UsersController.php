@@ -172,10 +172,12 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function mock(Request $request, User $user) {
+
         $parameter = $request->input();
         $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
-        //Auth::logout();
-        Auth::login($user, true);
-        return redirect()->route($redirect);
+        // mark as mock
+        session(['mock' => true, 'mock-user' => $user]);
+
+        return redirect()->route($redirect, ['user' => $user]);
     }
 }

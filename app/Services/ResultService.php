@@ -3,26 +3,15 @@
 namespace App\Services;
 
 use App\Helper\Utility;
-use App\Models\{Result, User};
-use Illuminate\Support\Facades\Auth;
+use App\Models\Result;
 
-class ResultService {
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+class ResultService extends BaseService {
 
     /**
      * @return false|string
      */
     public function buildResultsData() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
-
-        $resultsData = $currentUser->results()->reduce(function ($r, $result) {
+        $resultsData = $this->currentUser->results()->reduce(function ($r, $result) {
             $r[date("M", strtotime($result->period))] = $result->credit_mtd;
             return $r;
         }, array_reduce(Utility::MONTHS_SHORT, function ($r, $key) {
@@ -41,8 +30,6 @@ class ResultService {
      * @return mixed
      */
     public function getYearToDateData() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
-        return Result::where('employee_code', $currentUser->employee_code)->max('credit_ytd');
+        return Result::where('employee_code', $this->currentUser->employee_code)->max('credit_ytd');
     }
 }

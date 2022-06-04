@@ -3,25 +3,21 @@
 namespace App\Services;
 
 use App\Helper\Role;
-use App\Models\{Metric, User};
+use App\Models\Metric;
 use App\Services\MetricsServices as MS;
-use Illuminate\Support\Facades\Auth;
 
-class MetricsService {
+class MetricsService extends BaseService {
 
     /**
-     * Create a new service instance.
-     *
-     * @return void
+     * @param string $position
+     * @return MS\Individual|MS\PartsSalesRep
      */
-    public function __construct() { }
-
-    public function getMetricsService($positon) {
-        switch ($positon) {
+    public function getMetricsService(string $position) {
+        switch ($position) {
             case Role::PARTS_SALES_REP:
-                return new MS\PartsSalesRep();
+                return new MS\PartsSalesRep($this->serviceResolver);
             default:
-                return new MS\Individual();
+                return new MS\Individual($this->serviceResolver);
         }
     }
 
@@ -29,10 +25,8 @@ class MetricsService {
      * @return mixed|string
      */
     public function getMetricsData() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
-        $metrics = $currentUser->results()->pluck('metrics', 'period');
-        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
+        $metrics = $this->currentUser->results()->pluck('metrics', 'period');
+        $service = $this->getMetricsService($this->currentUser->position_code); //new MetricsServices\Individual();
         return $service->buildMetricsData($metrics);
     }
 
@@ -40,10 +34,8 @@ class MetricsService {
      * @return Metric|void
      */
     public function getTrainingData() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
-        $trainingData = $currentUser->results()->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
-        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
+        $trainingData = $this->currentUser->results()->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
+        $service = $this->getMetricsService($this->currentUser->position_code); //new MetricsServices\Individual();
         return $service->buildTrainingData($trainingData);
     }
 
@@ -51,11 +43,9 @@ class MetricsService {
      * @return false|string
      */
     public function getStackedMetricsData() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
-        $metrics = $currentUser->results()->pluck('metrics', 'period');
-        $trainingData = $currentUser->results()->keyBy('period');
-        $service = new MetricsServices\Stacked();
+        $metrics = $this->currentUser->results()->pluck('metrics', 'period');
+        $trainingData = $this->currentUser->results()->keyBy('period');
+        $service = new MetricsServices\Stacked($this->serviceResolver);
         return $service->buildStackedMetricsData($metrics, $trainingData);
     }
 }

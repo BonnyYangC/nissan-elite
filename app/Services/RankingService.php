@@ -6,7 +6,6 @@ use App\Helper\Role;
 use App\Models\{Ranking, User};
 use App\Services\StatusServices\GageStatus;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class RankingService extends BaseService {
 
@@ -27,7 +26,7 @@ class RankingService extends BaseService {
      */
     public function buildRankingData(string $type): array {
         /** @var User $currentUser */
-        $currentUser = Auth::user();
+        $currentUser = $this->getCurrentUser();
         $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code);
         if (!$currentPeriod) {
 
@@ -51,14 +50,12 @@ class RankingService extends BaseService {
      * @return Ranking|null
      */
     public function getCurrentRanking() {
-        /** @var User $currentUser */
-        $currentUser = Auth::user();
-        $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code);
+        $currentPeriod = Ranking::getMaxPeriod($this->currentUser->employee_code);
         if (!$currentPeriod) {
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
         }
-        $resultData = Ranking::getRankByEmployeeCode($currentUser->employee_code, $currentPeriod);
+        $resultData = Ranking::getRankByEmployeeCode($this->currentUser->employee_code, $currentPeriod);
         return $resultData->first();
     }
 

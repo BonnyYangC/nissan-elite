@@ -4,16 +4,8 @@ namespace App\Services;
 
 use App\Models\Reward;
 use App\Services\StatusServices\GageStatus;
-use Illuminate\Support\Facades\Auth;
 
-class StatusService {
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+class StatusService extends BaseService {
 
     /**
      * @param string $ytd
@@ -22,8 +14,7 @@ class StatusService {
      */
     public function getStatus(string $ytd, string $position = null) {
         if (!$position) {
-            $currentUser = Auth::user();
-            $rewards = $currentUser->position->rewards;
+            $rewards = $this->currentUser->position->rewards;
         } else {
             $rewards = Reward::where('position', $position)->first();
         }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Acl;
+use App\Models\{Acl, User};
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -16,7 +16,8 @@ class Controller extends BaseController
 
 
     public $dataForView = [
-        'menuName'=>null
+        'menuName'=>null,
+        'mock' => false
     ];
 
     /**
@@ -28,14 +29,25 @@ class Controller extends BaseController
 
         //check api user
         $this->dataForView['fromApi'] = strstr($request, '/api');
-        $this->dataForView['dashboardMenuOnly'] = false;  //TBD
         $this->dataForView['viewLastYear'] = false;  //TBD
 
         /**prepare login information which used by whole site after middleware */
         $this->middleware(function ($request, $next) {
 
-            $currentUser = Auth::user();
-            $this->dataForView['currentUser'] = $currentUser;
+            if (!$request->input('user')) {
+                session(['mock-user' => null]);
+                session(['mock' => false]);
+            }
+            if (session('mock')) {
+                $this->dataForView['mock'] = true;
+                $this->dataForView['currentUser'] = session('mock-user');
+                $this->dataForView['acls'] = [];
+            } else {
+                /** @var User $currentUser */
+                $currentUser = Auth::user();
+                $this->dataForView['currentUser'] = $currentUser;
+                $this->dataForView['acls'] = $currentUser ? Acl::getAllByPosition($currentUser->position_code) : [];
+            }
 
             //get acl
             if($this->dataForView['fromApi'])

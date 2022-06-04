@@ -7,8 +7,8 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 class ServiceResolver {
 
     /**
-     * Create a new service instance.
-     *
+     * @return RankingService
+     * @throws BindingResolutionException
      */
     public function rankingService(): RankingService {
         return $this->make(RankingService::class);

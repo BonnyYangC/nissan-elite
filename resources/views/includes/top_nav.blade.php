@@ -9,7 +9,7 @@
             <span style="padding-right:40px">
                 <a href="{{ url('/api/close') }}" onclick="window.close();return false;">BACK TO SEARCH</a>
             </span>
-            @elseif ($dashboardMenuOnly)
+            @elseif ($mock)
             <span style="padding-right:40px">
                 <a href="#" onclick="window.close();return false;">BACK TO SEARCH</a>
             </span>
