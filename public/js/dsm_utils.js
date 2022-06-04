@@ -4,6 +4,7 @@ if(dsmEl){
         el:'#dsm-app',
         delimiters: ['${', '}'],
         data:{
+            window: window,
             employeeCode: null,
             regions:[],
             regionCodes:'',
