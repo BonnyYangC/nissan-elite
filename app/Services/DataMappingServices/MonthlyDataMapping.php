@@ -14,6 +14,7 @@ abstract class MonthlyDataMapping {
     public $mappingArray = [
         'period' => 'mthyrg',
         'employee_code' => 'regi#',
+        'position' => 'sp',
 
         'train_online' => 'points_train_online',
         'train_competency' => 'points_train_competency',
@@ -82,6 +83,7 @@ abstract class MonthlyDataMapping {
         return [
             'period'        => Utility::formatPeriod($row['mthyrg']),
             'employee_code' =>$row['regi#'],
+            'position'      =>$row['sp'],
             'metrics' => $this->metricsMapping($row),
 
             'train_online' => isset($row['points_train_online']) && $row['points_train_online'] !== '' ? $row['points_train_online'] : 0,
