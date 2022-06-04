@@ -36,8 +36,9 @@ class User extends BaseService {
         $users = $this->serviceResolver->userService()->loadActiveMember($regions, $dept, $dealer);
         $contentMap = [
             'Region Code' => 'region',
+            'Dealer Code' => 'dealer_code',
             'Dealer' => 'dealer',
-            'Member No.' => 'employee_code',
+            'Registration No.' => 'employee_code',
             'Name' => 'name',
             'Dept' => 'dept',
             'Position' => 'position',
