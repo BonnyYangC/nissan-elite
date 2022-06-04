@@ -64,4 +64,21 @@ class LoyaltyHistorical extends Base {
             'amount'    => isset($row[$key]) && $row[$key] !== '' ? $row[$key] : 0.0
         ];
     }
+
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        /*if($field !== 'metrics') {
+            $result[] = $this->$mappingArray[$field];
+        } else {
+            foreach(array_keys($this->metricsMappingArray) as $field) {
+                $result[] = $this->metricsMappingArray[$field];
+            }
+        }*/
+        return $result;
+    }
 }
