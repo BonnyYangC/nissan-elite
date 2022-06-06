@@ -66,6 +66,7 @@
                     "identifier": "volume",
                     "order": 3,
                     "title": "Fleet Sales Volume Growth - Quarterly",
+                    "period": "quarterly",
                     "metrics": {
                         "volume":{
                             "label": "Volume Growth",
@@ -115,7 +116,7 @@
                         "note": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 20",
                         "top": ["Competency Modules", "Points Quarterly"],
                         "rows": [["Certified Fleet Sales Executive (O)", 250],
-                            ["Advanced selling Skills (O)", 250], ["Employee Test Drive Experience", "100 per quarter – online"]]
+                            ["Advanced selling Skills (O)", 250], ["Employee Test Drive Experience", "100"]]
                     }]
                 }
             ],
@@ -622,7 +623,7 @@
                     "guides": [{
                         "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
                         "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 14",
-                        "top": ["Competency Modules', 'Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""],
                             ["Certified Sales Executive (VC & A)", "", 375, ""], ["Employee Test Drive Experience", "", 100, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250], ["Engagement", 100, "", ""]]
@@ -1058,7 +1059,7 @@
                 {
                     "identifier": "gp_cpro",
                     "order": 4,
-                    "title": "•\tGENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
+                    "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
@@ -1067,7 +1068,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "•\tGENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO GUIDE",
+                        "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO GUIDE",
                         "top": ["Parts Manager", "≥$100.00", "≥$140.00", "≥$180.00"],
                         "rows": [["Category A, B, C", 155, 255, 355]]
                     }
@@ -1088,7 +1089,7 @@
                         "title": "RIM % Useage GUIDE",
                         "top": ["Parts Manager", "45%", "55%", "65%"],
                         "rows": [["Category A, B, C", 220, 345, 550]],
-                        "note": "1. RIM Item Compliance - must achieve minimum of 80% to qualify to earn any points.<br>2. RIM Order Line Compliance - points awarded based on performance bands."
+                        "note": "<span style='color:#c40030'>1. RIM Item Compliance - must achieve minimum of 80% to qualify to earn any points.</span><br>2. RIM Order Line Compliance - points awarded based on performance bands."
                     }]
                 },
                 {
@@ -1221,7 +1222,7 @@
                         "sos":{
                             "label": "Overall Sat",
                             "color": "#3366CC",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1241,12 +1242,12 @@
                         "sos_navara":{
                             "label": "Navara",
                             "color": "#FF9900",
-                            "default": 0
+                            "default": "00.0"
                         },
                         "sos_patrol":{
                             "label": "Patrol",
                             "color": "#109618",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1267,7 +1268,7 @@
                         "fft":{
                             "label": "F1",
                             "color": "#FF9900",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1284,7 +1285,7 @@
                         "cwp":{
                             "label": "Car Washed %",
                             "color": "#109618",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1427,7 +1428,7 @@
                         "sos":{
                             "label": "Overall Sat",
                             "color": "#3366CC",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1447,12 +1448,12 @@
                         "sos_navara":{
                             "label": "Navara",
                             "color": "#FF9900",
-                            "default": 0
+                            "default": "00.0"
                         },
                         "sos_patrol":{
                             "label": "Patrol",
                             "color": "#109618",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1473,7 +1474,7 @@
                         "fft":{
                             "label": "F1",
                             "color": "#FF9900",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1490,7 +1491,7 @@
                         "cwp":{
                             "label": "Car Washed %",
                             "color": "#109618",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1507,7 +1508,7 @@
                         "eoc":{
                             "label": "Exp Costs",
                             "color": "#990099",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{
@@ -1560,7 +1561,7 @@
                         "loyalty":{
                             "label": "Loyalty",
                             "color": "#DD4477",
-                            "default": 0
+                            "default": "00.0"
                         }
                     },
                     "guides": [{

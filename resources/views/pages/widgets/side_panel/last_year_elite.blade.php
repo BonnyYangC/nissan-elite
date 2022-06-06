@@ -2,7 +2,7 @@
     <table class="table">
         <thead class="nissan-table-header">
             <tr align="center">
-                <td>{{ env('FY_LAST_YEAR') . config('elite.PROGRAM_I_ELITE') }}</td>
+                <td>{{ env('FY_LAST_YEAR') . ' ' . config('elite.PROGRAM_I_ELITE') }}</td>
             </tr>
         </thead>
         <tbody class="nissan-table-body-grey">

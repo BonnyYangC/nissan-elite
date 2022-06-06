@@ -67,8 +67,8 @@ class DatabaseSeeder extends Seeder
         //$this->seedCompanies();
         //$this->seedAdmins();
         //$this->seedAcls();
-        $this->seedRewards();
-        //$this->seedMetrics();
+        //$this->seedRewards();
+        $this->seedMetrics();
         //$this->seedFaqs();
     }
 

@@ -87,7 +87,7 @@ class User extends Base {
             'active'=>$row['status'] === 'active' ? 1 : 0,
             'registered'=>$row['registered_'] === 'Registered' ? 1 : 0,
             'member'=>$row['elite_mbr'] === 'Y' ? 1: 0,
-            'met_criteria' => $row['criteria_EOY_MET'] === 'No' ? 0 : 1,
+            'met_criteria' => $row['criteria_EOY_MET'] === 'YES' ? 1 : 0,
             'excellence_eligible' => $row['excellence_eligible'] === 'YES' ? 1: 0
         ];
 
