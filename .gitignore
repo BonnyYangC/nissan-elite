@@ -12,4 +12,5 @@
 *.sql
 app/storage/log/usage_log
 /storage/app/public
+/public/*.png
 
