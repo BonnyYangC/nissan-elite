@@ -75,13 +75,13 @@ class SalesManager extends MonthlyDataMapping {
             'retail_forecast_result' => $row['ach_forecast_'] !== '' ? $row['ach_forecast_'] : 'NO',
 
             'sos' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
-            'sos_result' => $row['score_ce_SOS3'] !== '' ? number_format(floatval($row['score_ce_SOS3']), 1) : 0,
+            'sos_result' => $row['score_ce_SOS3'] !== '' ? number_format(floatval($row['score_ce_SOS3']), 1) : '0.0',
 
             'booked_check' => $row['points_ce_PBKD3_'] !== '' ? intval($row['points_ce_PBKD3_']) : 0,
-            'booked_check_result' => $row['score_ce_PBKD3'] !== '' ? number_format(floatval($row['score_ce_PBKD3']), 1) : 0,
+            'booked_check_result' => $row['score_ce_PBKD3'] !== '' ? number_format(floatval($row['score_ce_PBKD3']), 1) : '0.0',
 
             'follow_up' => $row['points_ce_PFU3_'] !== '' ? intval($row['points_ce_PFU3_']) : 0,
-            'follow_up_result' => $row['score_ce_PFU3_'] !== '' ? number_format(floatval($row['score_ce_PFU3_']), 1) : 0,
+            'follow_up_result' => $row['score_ce_PFU3_'] !== '' ? number_format(floatval($row['score_ce_PFU3_']), 1) : '0.0',
 
             'hot' => $row['points_ce_HOTA_'] !== '' ? intval($row['points_ce_HOTA_']) : 0,
             'hot_result' => $row['score_ce_HOTA_'] !== '' ? intval($row['score_ce_HOTA_']) : 0,
