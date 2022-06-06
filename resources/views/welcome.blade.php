@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div align="center" class="container-fluid bg_img">
+<div align="center">
     <div class="row justify-content-center">
         <div class="col-lg-2 col-md-2 col-xs-3">
             <a href="{{ url('/') }}">
