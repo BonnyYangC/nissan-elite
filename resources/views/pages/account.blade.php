@@ -54,11 +54,11 @@
                             </tr>
                             <tr class="active">
                                 <td><strong>Dealership</strong></td>
-                                <td>{{ $currentUser->dealer->name }}</td>
+                                <td>{{ $currentUser->dealer ? $currentUser->dealer->name : '' }}</td>
                             </tr>
                             <tr class="">
                                 <td><strong>Dealer Code</strong></td>
-                                <td>{{ $currentUser->dealer->code }}</td>
+                                <td>{{ $currentUser->dealer ? $currentUser->dealer->code : '' }}</td>
                             </tr>
                             <tr class="active">
                                 <td><strong>Department</strong></td>
