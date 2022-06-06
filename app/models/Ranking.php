@@ -56,7 +56,7 @@ class Ranking extends Model {
         }
         $query = $query->where('rankings.position', $position)
             ->where('period', $period)
-            ->orderBy($orderBy);
+            ->orderBy($orderBy)->orderBy('rank_state');
         if ($state) {
             $query = $query->where('rank_state', State::RANKING_STATE_MAPPING[$state]);
         }
