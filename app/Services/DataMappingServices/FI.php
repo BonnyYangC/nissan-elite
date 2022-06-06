@@ -67,7 +67,7 @@ class FI extends MonthlyDataMapping {
             'nic_sale_nfsa_result' => $row['sales_NIC_fnfsa'] !== '' ? intval($row['sales_NIC_fnfsa']) : 0,
 
             'satisfaction' => $row['points_ce_EFI3_'] !== '' ? intval($row['points_ce_EFI3_']) : 0,
-            'satisfaction_result' => $row['score_ce_EFI3_'] !== '' ? number_format(floatval($row['score_ce_EFI3_']), 1) : 0.0,
+            'satisfaction_result' => $row['score_ce_EFI3_'] !== '' ? number_format(floatval($row['score_ce_EFI3_']), 1) : 0,
         ];
     }
 }

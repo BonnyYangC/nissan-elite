@@ -55,13 +55,13 @@ class RetailSalesConsultants extends MonthlyDataMapping {
             'pmp_result' => $row['sales_PMP'] !== '' ? number_format(floatval($row['sales_PMP']), 1) : 0,
 
             'sos' => $row['points_ce_SOS3_'] !== '' ? intval($row['points_ce_SOS3_']) : 0,
-            'sos_result' => $row['score_ce_SOS3'] !== '' ? number_format(floatval($row['score_ce_SOS3']), 1) : 0.0,
+            'sos_result' => $row['score_ce_SOS3'] !== '' ? number_format(floatval($row['score_ce_SOS3']), 1) : 0,
 
             'kept_informed' => $row['points_ce_KID3_'] !== '' ? intval($row['points_ce_KID3_']) : 0,
-            'kept_informed_result' => $row['score_ce_KID3_'] !== '' ? number_format(floatval($row['score_ce_KID3_']), 1) : 0.0,
+            'kept_informed_result' => $row['score_ce_KID3_'] !== '' ? number_format(floatval($row['score_ce_KID3_']), 1) : 0,
 
             'follow_up' => $row['points_ce_FUS3_'] !== '' ? intval($row['points_ce_FUS3_']) : 0,
-            'follow_up_result' => $row['score_ce_FUS3_'] !== '' ? number_format(floatval($row['score_ce_FUS3_']), 1) : 0.0,
+            'follow_up_result' => $row['score_ce_FUS3_'] !== '' ? number_format(floatval($row['score_ce_FUS3_']), 1) : 0,
         ];
     }
 }

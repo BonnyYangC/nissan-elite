@@ -1222,7 +1222,7 @@
                         "sos":{
                             "label": "Overall Sat",
                             "color": "#3366CC",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1242,12 +1242,12 @@
                         "sos_navara":{
                             "label": "Navara",
                             "color": "#FF9900",
-                            "default": "00.0"
+                            "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
                             "color": "#109618",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1268,7 +1268,7 @@
                         "fft":{
                             "label": "F1",
                             "color": "#FF9900",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1285,7 +1285,7 @@
                         "cwp":{
                             "label": "Car Washed %",
                             "color": "#109618",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1428,7 +1428,7 @@
                         "sos":{
                             "label": "Overall Sat",
                             "color": "#3366CC",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1448,12 +1448,12 @@
                         "sos_navara":{
                             "label": "Navara",
                             "color": "#FF9900",
-                            "default": "00.0"
+                            "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
                             "color": "#109618",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1474,7 +1474,7 @@
                         "fft":{
                             "label": "F1",
                             "color": "#FF9900",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1491,7 +1491,7 @@
                         "cwp":{
                             "label": "Car Washed %",
                             "color": "#109618",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1508,7 +1508,7 @@
                         "eoc":{
                             "label": "Exp Costs",
                             "color": "#990099",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -1561,7 +1561,7 @@
                         "loyalty":{
                             "label": "Loyalty",
                             "color": "#DD4477",
-                            "default": "00.0"
+                            "default": 0
                         }
                     },
                     "guides": [{
