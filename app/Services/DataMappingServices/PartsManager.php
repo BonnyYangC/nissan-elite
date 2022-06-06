@@ -46,7 +46,7 @@ class PartsManager extends MonthlyDataMapping {
             'apnur_p_result' => ($row['pcent_APNUR_P'] !== '' ? number_format(floatval($row['pcent_APNUR_P'])*100) : '0') . '%',
 
             'gp_cpro' => $row['points_GPVAL_'] !== '' ? intval($row['points_GPVAL_']) : 0,
-            'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? intval($row['score_GPVAL_']) : 0,
+            'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? '$'.intval($row['score_GPVAL_']) : 0,
 
             'rim' => $row['points_RIM'] !== '' ? intval($row['points_RIM']) : 0,
             'rim_result' => ($row['pcent_RIM'] !== '' ? number_format(floatval($row['pcent_RIM'])*100) : '0') . '%',
