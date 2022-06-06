@@ -30,6 +30,7 @@ class UsersController extends Controller {
      */
     public function my_team(Request $request) {
         $this->dataForView['menuName'] = 'my_team';
+        /** @var User $currentUser */
         $currentUser = Auth::user();
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByRole($currentUser->dealer_code, $currentUser->position_code, $request->input());
         return $this->render('pages.my_team');

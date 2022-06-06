@@ -175,7 +175,7 @@ class UserService extends BaseService {
         $position = array_merge($this->getPositionsForSearch(), $this->getRegionStaff(), [Role::TRAINING]);
         $query = User::query();
 
-        $query = $query->join('dealers', 'dealer_code', '=', 'code')
+        $query = $query->leftJoin('dealers', 'dealer_code', '=', 'code')
             ->select(['users.id', 'employee_code', 'email', 'firstname', 'lastname', 'position_code', 'users.active', 'dealers.name'])
             ->whereIn('position_code', $position)->where('users.active', 1);
 

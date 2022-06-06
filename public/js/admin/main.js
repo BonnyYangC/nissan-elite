@@ -81,9 +81,9 @@ Zepto(function($){
                 },
                 mockHandler: function(){
                     this.dialogVisible = false;
-                    if(this.currentItem.company_id === '8'){
+                    if(!this.currentItem.dealer_code){
                         // nissan staff
-                        window.open('/admin/fake-region-staff?uid=' + this.currentItem.user_id, '_blank');
+                        window.open('/admin/region_staff/mock/' + this.currentItem.id, '_blank');
                     }else{
                         window.open('/admin/users/mock/' + this.currentItem.id, '_blank');
                     }
