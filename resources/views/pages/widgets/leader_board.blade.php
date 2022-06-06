@@ -35,7 +35,7 @@
                         @endif
                     </td>
                     <td>{{ $result->name }}</td>
-                    <td>{{ $result->rank_state }}</td>
+                    <td>{{ $result->state }}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -65,7 +65,7 @@
                         @endif
                     </td>
                     <td>{{ $result->name }}</td>
-                    <td>{{ $result->rank_state }}</td>
+                    <td>{{ $result->state }}</td>
                 </tr>
             @endforeach
             </tbody>

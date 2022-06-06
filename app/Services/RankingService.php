@@ -38,8 +38,7 @@ class RankingService extends BaseService {
         $rankingOfCurrentUser = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod, $type)->first();
         // if rank of current user is out of 5, then replace 5th with current user's ranking
         if ($rankingOfCurrentUser) {
-            $rank = $type === Ranking::AWARD_STATUS ? $rankingOfCurrentUser->rank : $rankingOfCurrentUser->rank_platinum;
-            if ($rank > 5) {
+            if ($rankingOfCurrentUser->rank > 5) {
                 $resultsData[4] = $rankingOfCurrentUser;
             }
         }
