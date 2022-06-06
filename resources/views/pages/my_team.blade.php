@@ -49,10 +49,10 @@
                                 {{ number_format($user->cr_ytd,0) }}
                             </td>
                             <td>
-                                <a href="{{ route('admin.users.mock', ['user' => $user->id, 'directTo' => 'dashboard']) }}" target="_blank">View Details</a>
+                                <a href="{{ route('users.mock', ['user' => $user->id, 'directTo' => 'dashboard']) }}" target="_blank">View Details</a>
                             </td>
                             <td>
-                                <a href="{{ route('admin.users.mock', ['user' => $user->id, 'directTo' => 'metrics']) }}" target="_blank">View Details</a>
+                                <a href="{{ route('users.mock', ['user' => $user->id, 'directTo' => 'metrics']) }}" target="_blank">View Details</a>
                             </td>
                         </tr>
                         @endforeach

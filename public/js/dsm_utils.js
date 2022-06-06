@@ -125,7 +125,7 @@ if(dsmEl){
                 );
             },
             getMockUserUrl: function(userId){
-                return '/admin/users/mock/'+userId;
+                return '/users/mock/'+userId;
             }
         }
     });

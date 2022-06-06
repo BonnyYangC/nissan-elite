@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']],function () {
     Route::get('/dashboard/loyalty-status-level', [App\Http\Controllers\GageController::class, 'loyalty_status_level'])->name('loyalty_status_level');
 
     Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'jump_to_dealer'])->name('jump_to_dealer');
+    Route::get('/users/mock/{user}', [App\Http\Controllers\UsersController::class, 'mock'])->name('users.mock');
 });
 
 //region staff only
@@ -66,7 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){
     Route::get('/data_export/{type}', [App\Http\Controllers\AdminController::class, 'data_export'])->name('admin.data_export');
 
     Route::get('/users/search', [App\Http\Controllers\UsersController::class, 'user_search'])->name('admin.users.search');
-    Route::get('/users/mock/{user}', [App\Http\Controllers\UsersController::class, 'mock'])->name('admin.users.mock');
+    Route::get('/users/mock/{user}', [App\Http\Controllers\UsersController::class, 'member_mock'])->name('admin.users.mock');
 
     Route::get('/dealers_users', [App\Http\Controllers\UsersController::class, 'dealers_users'])->name('admin.dealers_users');
     Route::get('/users/{user}', [App\Http\Controllers\UsersController::class, 'user_info'])->name('admin.user.info');
