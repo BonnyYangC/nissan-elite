@@ -81,7 +81,7 @@
                             </small></p>
                     <br>
 
-                    <a class="edm-link" target="_blank" href="https://mail.google.com/mail/u/0/?ui=2&view=btop&ver=ops2cvpehp6&msg=%23msg-f:1734848276036800156&attid=0.1">
+                    <a class="edm-link" target="_blank" href="https://mailchi.mp/41efcd5dda9b/nissan-dealer-business-development-group-meeting1-3122136?e=1dac1983c2">
                         Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY22
                     </a><span style="color:#c0133c">– SALES/SERVICE MANAGER ACCESS ONLY (1 Table per Dealer with Maximum seating 12)</span>
                 </div>
