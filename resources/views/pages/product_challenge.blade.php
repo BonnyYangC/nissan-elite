@@ -14,11 +14,11 @@
                     <p class="sub-header">- DATES AND VENUES LISTED BELOW</p>
                     <p class="sub-header">- REGISTRATIONS OPEN 1ST JUNE 2022</p>
                     <p class="sub-header">- Get your A-Team together!</p>
-                    <p class="text-content">After a challenging year dealing with COVID-19 we can't wait to resume and welcome back old and new faces to the much loved ELITE Product Challenge events.</p>
+                    <p class="text-content">After many disruptions encountered over the past two years we are excited to announce the dates for the 2022 Product Challenge events across Australia.</p>
 
-                    <p class="text-content">We have been fortunate enough to secure the superb venues used for the 2019 events and will work with each venue to ensure we follow all COVID protocols to ensure a safe and fun event for all.</p>
+                    <p class="text-content">We have once again secured superb venues in each state, and look forward to welcoming back both old and new faces. We will of course ensure COVID safe protocols are followed at all events, and do our very best to ensure all attendees have a great night with their colleagues and peers.</p>
 
-                    <p class="text-content">Ferntree Gully Nissan are our reigning Masters Champions and we know that there will be fierce competition amongst all Dealers to try and take this title from them!</p>
+                    <p class="text-content">With no Masters Champion in 2020 or 2021, Ferntree Gully Nissan are still our reigning Masters Champions. We know the competition will be at an all-time high, as each Dealer team attempts to take the title as their own.</p>
                     <p class="sub-header">Who will be your State Champion and who will take out the National Masters Title in 2022?</p>
                 </div>
             </div>
@@ -81,9 +81,9 @@
                             </small></p>
                     <br>
 
-                    <a class="edm-link" target="_blank" href="#">
-                        Click here to view edm content PRODUCT CHALLENGE FY22
-                    </a>
+                    <a class="edm-link" target="_blank" href="https://mail.google.com/mail/u/0/?ui=2&view=btop&ver=ops2cvpehp6&msg=%23msg-f:1734848276036800156&attid=0.1">
+                        Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY22
+                    </a><span style="color:#c0133c">– SALES/SERVICE MANAGER ACCESS ONLY (1 Table per Dealer with Maximum seating 12)</span>
                 </div>
             </div>
             <div class="page-section-wrap dashboard-section"></div>
