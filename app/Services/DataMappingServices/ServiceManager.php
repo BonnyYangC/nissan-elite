@@ -63,7 +63,7 @@ class ServiceManager extends MonthlyDataMapping {
             'cpro_target_result' => ($row['pcent_CPRO_'] !== '' ? number_format(floatval($row['pcent_CPRO_'])*100) : '0') . '%',
 
             'gp_cpro' => $row['points_GPVAL_'] !== '' ? intval($row['points_GPVAL_']) : 0,
-            'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? intval($row['score_GPVAL_']) : 0,
+            'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? '$'.intval($row['score_GPVAL_']) : 0,
 
             'retention' => $row['points_Retent_'] !== '' ? intval($row['points_Retent_']) : 0,
             'retention_result' => ($row['pcent_RETENT_'] !== '' ? number_format(floatval($row['pcent_RETENT_'])*100) : '0') . '%',
