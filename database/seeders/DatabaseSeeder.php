@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Acl, Company, Faq, Metric, Position, User};
+use App\Models\{Acl, Company, Faq, Metric, Position, Reward, User};
 use App\Helper\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->loadData(__DIR__.'/companies_defination.json');
         $this->loadData(__DIR__.'/positions.json');
+        $this->loadData(__DIR__.'/rewards.json');
         $this->loadData(__DIR__.'/metrics_defination.json');
         $this->loadData(__DIR__.'/admins.json');
         $this->loadData(__DIR__.'/acls.json');
@@ -65,7 +66,8 @@ class DatabaseSeeder extends Seeder
         //$this->seedPositions();
         //$this->seedCompanies();
         //$this->seedAdmins();
-        $this->seedAcls();
+        //$this->seedAcls();
+        $this->seedRewards();
         //$this->seedMetrics();
         //$this->seedFaqs();
     }
@@ -162,6 +164,16 @@ class DatabaseSeeder extends Seeder
                 $a['position'] = $position;
                 Acl::create($a);
             }
+        }
+    }
+
+    /**
+     *
+     */
+    private function seedRewards() {
+        $rewards = $this->data['rewards'];
+        foreach ($rewards as $r) {
+            Reward::create($r);
         }
     }
 

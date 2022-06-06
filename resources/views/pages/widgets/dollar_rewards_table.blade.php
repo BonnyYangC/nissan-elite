@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tr>
-            <td align="center">${{ $rewards->commendation_reward }}</td>
+            <td align="center">{{ $rewards->commendation_reward }}</td>
             <td align="center">${{ $rewards->bronze_reward }}</td>
             <td align="center">${{ $rewards->silver_reward }}</td>
             <td align="center">${{ $rewards->gold_reward }}</td>
