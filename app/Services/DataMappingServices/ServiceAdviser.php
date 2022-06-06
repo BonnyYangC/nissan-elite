@@ -63,7 +63,7 @@ class ServiceAdviser extends MonthlyDataMapping {
             'gp_cpro_result' => $row['score_GPVAL_'] !== '' ? '$'.intval($row['score_GPVAL_']) : 0,
 
             'loyalty' => $row['points_loyalty_'] !== '' ? intval($row['points_loyalty_']) : 0,
-            'loyalty_result' => $row['sales_loyalty'] !== '' ? number_format(floatval($row['sales_loyalty']), 1) : '0.0',
+            'loyalty_result' => $row['sales_loyalty'] !== '' ? intval($row['sales_loyalty']) : 0,
         ];
     }
 }
