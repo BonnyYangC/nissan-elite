@@ -405,7 +405,7 @@
                 "page": "faq"
             }
         ],
-        "ADMIN": [
+        "REGION_STAFF": [
             {
                 "page": "dashboard"
             },

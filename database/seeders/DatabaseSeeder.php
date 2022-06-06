@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\{Acl, Company, Faq, Metric, Position, User};
+use App\Helper\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -64,8 +65,8 @@ class DatabaseSeeder extends Seeder
         //$this->seedPositions();
         //$this->seedCompanies();
         //$this->seedAdmins();
-        //$this->seedAcls();
-        $this->seedMetrics();
+        $this->seedAcls();
+        //$this->seedMetrics();
         //$this->seedFaqs();
     }
 
@@ -141,7 +142,23 @@ class DatabaseSeeder extends Seeder
     private function seedAcls() {
         $acls = $this->data['acls'];
         foreach ($acls as $position => $as) {
+            if ($position === 'REGION_STAFF') {
+                $this->seedRegionStaffAcls($as);
+                continue;
+            }
             foreach ($as as $a) {
+                $a['position'] = $position;
+                Acl::create($a);
+            }
+        }
+    }
+
+    /**
+     * @param array $acls
+     */
+    private function seedRegionStaffAcls(array $acls) {
+        foreach (array_merge(Position::REGION_STAFF_POSITIONS, [Role::ADMIN]) as $position) {
+            foreach ($acls as $a) {
                 $a['position'] = $position;
                 Acl::create($a);
             }

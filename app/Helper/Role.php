@@ -37,7 +37,8 @@ class Role {
     const NDM = 'NDM';
     const NFSA = 'NFSA';
     const TRAINING = 'TRAINING';
-    const NISSAN_SUPER = 'NISSAN_SUPER';
+
+    const ADMIN = 'ADMIN';
 }
 /*
 D

@@ -195,4 +195,31 @@ class UsersController extends Controller {
 
         return redirect()->route($redirect, ['user' => $user]);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function region_staff_mock(Request $request, User $user) {
+
+        $parameter = $request->input();
+        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
+
+        Auth::login($user, false);
+        return redirect()->route($redirect);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function member_mock(Request $request, User $user) {
+
+        $parameter = $request->input();
+        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
+
+        Auth::login($user, false);
+
+        return redirect()->route($redirect);
+    }
 }
