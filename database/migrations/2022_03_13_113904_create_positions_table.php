@@ -19,7 +19,6 @@ class CreatePositionsTable extends Migration
             $table->string('title');
             $table->tinyInteger('platinum_ranking'); //indicate this role is eligiable to platinum ranking
             $table->string('department', 50)->nullable();
-            $table->timestamps();
         });
     }
 
