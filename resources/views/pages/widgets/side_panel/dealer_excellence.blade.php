@@ -15,7 +15,7 @@
                         <span class="fs-30 span-red">X</span>
                     @endif
                     <p class="txt-white">
-                        <a href="#" onclick="window.open('{{ env('dealExcellenceOverviewUrl') }}')">
+                        <a target="_blank" href="{{ route('jump_to_dealer') }}">
                             <button style="background-color:#4169E1; width:100%; margin:0 auto; font-size:11px;"
                                     type="button" class="btn btn-primary btn-block">
                                 View {{ env('FY_WITH_YEAR') }} Rankings
