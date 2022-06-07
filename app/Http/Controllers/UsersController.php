@@ -150,6 +150,7 @@ class UsersController extends Controller {
     /**
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function admin_user_delete(User $user) {
         $this->service->delete($user);
@@ -195,6 +196,22 @@ class UsersController extends Controller {
         session(['mock' => true, 'mock-user' => $user]);
 
         return redirect()->route($redirect, ['user' => $user]);
+    }
+
+    // should replace by region_staff_mock when fy22 dealer ship site set up
+    public function fake_region_staff(Request $request){
+        $userId = $request->input('uid');
+        /**
+         * 1. from elite dealer - with email base64_encode()
+         */
+        if(filter_var(base64_decode($userId), FILTER_VALIDATE_EMAIL)) {
+            $user = User::where('email', '=', base64_decode($userId))->first();
+        } else {
+            $user = User::find($userId);
+        }
+
+        Auth::login($user, false);
+        return redirect()->route('dashboard');
     }
 
     /**
