@@ -18,6 +18,8 @@ Route::get('login',[App\Http\Controllers\LoginController::class, 'index']);
 Route::post('login',[App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::get('logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
 
+Route::get('/admin/fake-region-staff', [App\Http\Controllers\UsersController::class,'fake_region_staff'])->name('admin.fake.region.staff');  //TBD, replace with admin.region_staff.mock
+
 //dealer users
 Route::group(['middleware' => ['auth']],function () {
     Route::get('/elite_individual', [App\Http\Controllers\HomeController::class, 'index'])->name('elite_individual');
@@ -78,8 +80,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){
     Route::post('/region_staff/edit', [App\Http\Controllers\UsersController::class, 'region_staff_edit'])->name('admin.region_staff.edit');
     Route::get('/region_staff/mock/{user}', [App\Http\Controllers\UsersController::class, 'region_staff_mock'])->name('admin.region_staff.mock');
     Route::get('/region_staff/delete/{user}', [App\Http\Controllers\UsersController::class, 'region_staff_delete'])->name('admin.region_staff.delete');
-
-    Route::get('/fake-region-staff', [App\Http\Controllers\UsersController::class,'fake_region_staff'])->name('admin.fake.region.staff');  //TBD, replace with admin.region_staff.mock
 
     Route::get('/admin_users', [App\Http\Controllers\UsersController::class, 'admin_users'])->name('admin.admin_users');
     Route::get('/admin_users/info/{user?}', [App\Http\Controllers\UsersController::class, 'admin_user_info'])->name('admin.admin_user.info');
