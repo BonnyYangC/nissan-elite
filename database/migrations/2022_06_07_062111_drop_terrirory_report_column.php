@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameTerriroryReportColumn extends Migration
+class DropTerriroryReportColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -25,8 +25,8 @@ class RenameTerriroryReportColumn extends Migration
      */
     public function down()
     {
-        //Schema::table('territory_reports', function (Blueprint $table) {
-        //    $table->addColumn('points_ytd_status');
-        //});
+        Schema::table('territory_reports', function (Blueprint $table) {
+            $table->addColumn('points_ytd_status');
+        });
     }
 }
