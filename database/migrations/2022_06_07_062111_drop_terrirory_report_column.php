@@ -25,8 +25,8 @@ class RenameTerriroryReportColumn extends Migration
      */
     public function down()
     {
-        Schema::table('territory_reports', function (Blueprint $table) {
-            $table->addColumn('points_ytd_status');
-        });
+        //Schema::table('territory_reports', function (Blueprint $table) {
+        //    $table->addColumn('points_ytd_status');
+        //});
     }
 }
