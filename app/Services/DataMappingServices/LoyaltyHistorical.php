@@ -20,12 +20,12 @@ class LoyaltyHistorical extends Base {
     public function getKeyForModel(): array {
         $key = [];
         $key['primary'] = 'regi#_';
-        //$key['secondary'] = ['yr_92_18_t_loyaltyAC_', 'yr_2019_', 'yr_2020_', 'yr_2021_'];
+        //$key['secondary'] = ['yr_92_18_t_loyaltyAC_', 'yr_2019_', 'yr_2020_', 'yr_2021'];
         $key['mapping'] = [
             'yr_92_18_t_loyaltyAC_' => '2018-01-01',
             'yr_2019_' => '2019-01-01',
             'yr_2020_' => '2020-01-01',
-            'yr_2021_' => '2021-01-01'
+            'yr_2021' => '2021-01-01'
         ];
         return $key;
     }
