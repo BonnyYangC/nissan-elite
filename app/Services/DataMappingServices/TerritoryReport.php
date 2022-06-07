@@ -13,7 +13,7 @@ class TerritoryReport extends Base {
     public $mappingArray = [
         'employee_code' => 'regi#_',
         'award_status' => 'award_status',
-        'points_ytd_status' => 'points_ytd_status_',
+        'points_ytd_status' => 'points_ytd_lifetime_',
         'credits_monthly_04' => 'elit~engi_regi#04mthyrg::POINTS_MTHLY_',
         'credits_monthly_05' => 'elit~engi_regi#05mthyrg::POINTS_MTHLY_',
         'credits_monthly_06' => 'elit~engi_regi#06mthyrg::POINTS_MTHLY_',
@@ -85,7 +85,7 @@ class TerritoryReport extends Base {
             'position'              =>'position',*/
             'employee_code'         =>$row['regi#_'],
             'award_status'          =>$row['award_status'],
-            'points_ytd_status'       =>$row['points_ytd_status_'] !== '' ? $row['points_ytd_status_'] : 0,
+            'points_ytd_status'       =>$row['points_ytd_lifetime_'] !== '' ? $row['points_ytd_lifetime_'] : 0,  //should name as points_ytd_historical
             'credits_monthly_04'    =>$row['elit~engi_regi#04mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#04mthyrg::POINTS_MTHLY_'] : 0,
             'credits_monthly_05'    =>$row['elit~engi_regi#05mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#05mthyrg::POINTS_MTHLY_'] : 0,
             'credits_monthly_06'    =>$row['elit~engi_regi#06mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#06mthyrg::POINTS_MTHLY_'] : 0,
