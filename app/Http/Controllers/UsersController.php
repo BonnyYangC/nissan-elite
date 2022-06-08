@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Helper\JsonBuilder;
 use App\Helper\Role;
+use App\Mail\PasswordEnquiry;
+use App\Mail\ResetPassword;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller {
 
@@ -34,6 +37,33 @@ class UsersController extends Controller {
         $currentUser = Auth::user();
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByRole($currentUser->dealer_code, $currentUser->position_code, $request->input());
         return $this->render('pages.my_team');
+    }
+
+
+    /**
+     * @param Request $request
+     */
+    public function reset_password(Request $request){
+        $email = $request->input('email');
+
+        if($email && filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $user = User::where('email', '=', $email)->firstOrFail();
+
+            if($user){
+                try {
+                    Mail::to($user->email)->send(new ResetPassword($user->firstname));
+                    Mail::to(config('elite.SUPPORT_EMAIL_ADDRESS'))->send(new PasswordEnquiry($user->email, $user->firstname));
+                    echo JsonBuilder::Success();
+                } catch (\Exception $exception) {
+                    $emailSent = false;
+                    echo JsonBuilder::Error($exception);
+                }
+            }else{
+                echo JsonBuilder::Error('email not found');
+            }
+        }else{
+            echo JsonBuilder::Error('email not valid');
+        }
     }
 
     /**
@@ -111,6 +141,7 @@ class UsersController extends Controller {
     /**
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function region_staff_delete(User $user) {
         $this->service->delete($user);

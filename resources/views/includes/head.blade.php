@@ -51,3 +51,4 @@
 <script src="{{ asset('js/dashboard_utils.js') }}" defer></script>
 <script src="{{ asset('js/ranking.js') }}" defer></script>
 <script src="{{ asset('js/calendar.js') }}" defer></script>
+<script src="{{ asset('js/login.js') }}" defer></script>

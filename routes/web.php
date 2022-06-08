@@ -20,6 +20,8 @@ Route::get('logout', [App\Http\Controllers\LoginController::class, 'logout'])->n
 
 Route::get('/admin/fake-region-staff', [App\Http\Controllers\UsersController::class,'fake_region_staff'])->name('admin.fake.region.staff');  //TBD, replace with admin.region_staff.mock
 
+Route::get('/reset_password', [App\Http\Controllers\UsersController::class,'reset_password'])->name('reset_password');
+
 //dealer users
 Route::group(['middleware' => ['auth']],function () {
     Route::get('/elite_individual', [App\Http\Controllers\HomeController::class, 'index'])->name('elite_individual');
