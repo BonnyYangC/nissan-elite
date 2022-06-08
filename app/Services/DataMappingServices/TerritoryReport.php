@@ -27,7 +27,7 @@ class TerritoryReport extends Base {
         'credits_monthly_03' => 'elit~engi_regi#03mthyrg::POINTS_MTHLY_',
         'cr_ytd' => 'points_ytd_status_',
         'cr_ytd_platinum' => 'points_ytd_platinum_',
-        'cr_ytd_lifetime' => 'points_ytd_lifetime_',
+        'cr_ytd_lifetime' => 'points_ytd_historical_',
     ];
 
 
@@ -98,7 +98,7 @@ class TerritoryReport extends Base {
             'credits_monthly_03'    =>$row['elit~engi_regi#03mthyrg::POINTS_MTHLY_'] !== '' ? $row['elit~engi_regi#03mthyrg::POINTS_MTHLY_'] : 0,
             'cr_ytd'                =>$row['points_ytd_status_'] !== '' ? $row['points_ytd_status_'] : 0,
             'cr_ytd_platinum'       =>$row['points_ytd_platinum_'] !== '' ? $row['points_ytd_platinum_'] : 0,
-            'cr_ytd_lifetime'       =>$row['points_ytd_lifetime_'] !== '' ? $row['points_ytd_lifetime_'] : 0,  //for Point YTD Historical
+            'cr_ytd_lifetime'       =>$row['points_ytd_historical_'] !== '' ? $row['points_ytd_historical_'] : 0,  //for Point YTD Historical
         ];
     }
 
