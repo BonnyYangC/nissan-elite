@@ -22,6 +22,7 @@ class State {
 
     const RANKING_STATE_MAPPING = [
         self::DEALER_STATE_NSW => self::RANKING_STATE_NSW,
+        self::DEALER_STATE_ACT => self::RANKING_STATE_NSW,
         self::DEALER_STATE_QLD => self::RANKING_STATE_QLD,
         self::DEALER_STATE_NT => self::RANKING_STATE_SA_NT,
         self::DEALER_STATE_SA => self::RANKING_STATE_SA_NT,
