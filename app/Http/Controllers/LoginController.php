@@ -26,7 +26,7 @@ class LoginController extends Controller {
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = array_merge($request->only('email', 'password'), ['active' => 1]); // add active=1 because there are duplicate email in db, so add to filter out inactive
         if (Auth::attempt($credentials)) {
             switch (Auth::user()->position_code) {
                 case 'SYSTEM ADMIN':
