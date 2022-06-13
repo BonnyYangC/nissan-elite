@@ -1,11 +1,28 @@
 @extends('layouts.backend')
 @section('content')
 
-    <div class="d-flex justify-content-center">
-        <div class="col-5 m-5">
-            {{ $region_staff->links() }}
+<div class="d-flex justify-content-center">
+    <div class="content col-10 mt-5" style="border-bottom: 2px solid #f5f5f5;">
+        <div class="columns">
+            <div class="column">
+                <h1>Region Staff Management</h1>
+            </div>
+            <div class="column">
+                <a href="{{ route('admin.region_staff.info') }}" class="button is-success is-pulled-right">
+                    <i class="fa fa-plus"></i>&nbsp;New Region Staff
+                </a>
+                <a href="{{ route('admin.data_export', ['type' => 'region_staff']) }}" class="button is-pulled-right" style="margin-right: 10px;">
+                    <i class="fa fa-download"></i>&nbsp;Export All
+                </a>
+            </div>
         </div>
     </div>
+</div>
+<div class="d-flex justify-content-center">
+    <div class="col-5 m-5">
+        {{ $region_staff->links() }}
+    </div>
+</div>
 <div class="d-flex justify-content-center">
     <div class="col-10">
         <table class="table">
@@ -15,7 +32,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
-                <th>Password</th>
                 <th>Position</th>
                 <th>Active</th>
                 <th></th>
@@ -24,11 +40,10 @@
             <tbody>
             @foreach( $region_staff as $user)
             <tr>
-                <th>{{ $user->region->title }}</td>
+                <td>{{ $user->region->title }}</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->mobile }}</td>
-                <td>{{ $user->password }}</td>
                 <td>{{ $user->position_code }}</td>
                 <td>
                     @if($user->active === 1)

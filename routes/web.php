@@ -78,7 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){
     Route::post('/user/edit', [App\Http\Controllers\UsersController::class, 'user_edit'])->name('admin.user.edit');
 
     Route::get('/region_staff', [App\Http\Controllers\UsersController::class, 'region_staff'])->name('admin.region_staff');
-    Route::get('/region_staff/{user}', [App\Http\Controllers\UsersController::class, 'region_staff_info'])->name('admin.region_staff.info');
+    Route::get('/region_staff/info/{user?}', [App\Http\Controllers\UsersController::class, 'region_staff_info'])->name('admin.region_staff.info');
     Route::post('/region_staff/edit', [App\Http\Controllers\UsersController::class, 'region_staff_edit'])->name('admin.region_staff.edit');
     Route::get('/region_staff/mock/{user}', [App\Http\Controllers\UsersController::class, 'region_staff_mock'])->name('admin.region_staff.mock');
     Route::get('/region_staff/delete/{user}', [App\Http\Controllers\UsersController::class, 'region_staff_delete'])->name('admin.region_staff.delete');

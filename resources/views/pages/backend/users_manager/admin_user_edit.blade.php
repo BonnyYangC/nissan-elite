@@ -67,7 +67,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="password" placeholder="Password" value="{{ $user ? $user->password : '' }}">
+                                            <input class="input" type="password" name="password" placeholder="Password" value="{{ '' }}">
                                         </div>
                                     </div>
                                 </div>
@@ -107,6 +107,19 @@
                             </div>
 
                             <hr>
+
+                            @if($errors->any())
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label"></label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <span style="color: #c0133c">{!! implode('', $errors->all('<div>:message</div>')) !!}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="field is-horizontal">
                                 <div class="field-label">
                                 </div>

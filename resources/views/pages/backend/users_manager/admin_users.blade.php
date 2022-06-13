@@ -30,18 +30,16 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
-                <th>Password</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             @foreach( $admin_users as $user)
             <tr>
-                <th>All Regions</td>
+                <td>All Regions</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->mobile }}</td>
-                <td>{{ $user->password }}</td>
                 <td>
                     <a class="button is-small is-link" href="{{ route('admin.admin_user.info', ['user' => $user->id]) }}">Edit</a>
                     <a href="{{ route('admin.admin_user.delete', ['user' => $user->id]) }}" title="Delete this user" class="button is-small is-danger btn-need-confirm">Delete</a>

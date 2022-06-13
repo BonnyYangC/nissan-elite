@@ -102,9 +102,11 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function user_edit(Request $request) {
-        $this->service->update($request->input());
+        $result = $this->service->update($request->input());
+        if(gettype($result) === 'string') {
+            return redirect()->back()->withErrors($result);
+        }
         return redirect()->back();
-
     }
 
     /**
@@ -133,7 +135,10 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function region_staff_edit(Request $request) {
-        $this->service->updateRegionStaff($request->input());
+        $result = $this->service->updateRegionStaff($request->input());
+        if(gettype($result) === 'string') {
+            return redirect()->back()->withErrors($result);
+        }
         return redirect()->back();
 
     }
@@ -173,7 +178,10 @@ class UsersController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function admin_user_edit(Request $request) {
-        $this->service->updateAdminUser($request->input());
+        $result = $this->service->updateAdminUser($request->input());
+        if(gettype($result) === 'string') {
+            return redirect()->back()->withErrors($result);
+        }
         return redirect()->back();
 
     }

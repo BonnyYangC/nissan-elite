@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Hash;
 use App\Helper\{Role, Utility};
 use App\Models\{Position, User};
 
@@ -101,12 +102,15 @@ class UserService extends BaseService {
         $user->email = $newData['email'];
         $user->mobile = $newData['mobile'];
         $user->active = intval($newData['active']);
-        if(isset($newData['password']) && Utility::validatePassword($newData['password'])){
-            $user->password = bcrypt($newData['password']);
-        }else{
-            return 'Invalidate Password';
+        switch (true) {
+            case !isset($newData['password']):
+                return $user->save();
+            case Utility::validatePassword($newData['password']):
+                $user->password = bcrypt($newData['password']);
+                return $user->save();
+            default:
+                return 'Invalidate Password';
         }
-        return $user->save();
     }
 
     /**
@@ -126,12 +130,15 @@ class UserService extends BaseService {
         $user->position_code = $newData['position'];
         $user->region_code = $newData['region'];
         $user->active = intval($newData['active']);
-        if(isset($newData['password']) && Utility::validatePassword($newData['password'])){
-            $user->password = bcrypt($newData['password']);
-        }else{
-            return 'Invalidate Password';
+        switch (true) {
+            case !isset($newData['password']):
+                return $user->save();
+            case Utility::validatePassword($newData['password']):
+                $user->password = bcrypt($newData['password']);
+                return $user->save();
+            default:
+                return 'Invalidate Password';
         }
-        return $user->save();
     }
 
     /**
@@ -150,12 +157,15 @@ class UserService extends BaseService {
         $user->email = $newData['email'];
         $user->mobile = $newData['mobile'];
         $user->active = intval($newData['active']);
-        if(isset($newData['password']) && Utility::validatePassword($newData['password'])){
-            $user->password = bcrypt($newData['password']);
-        }else{
-            return 'Invalidate Password';
+        switch (true) {
+            case !isset($newData['password']):
+                return $user->save();
+            case Utility::validatePassword($newData['password']):
+                $user->password = bcrypt($newData['password']);
+                return $user->save();
+            default:
+                return 'Invalidate Password';
         }
-        return $user->save();
     }
 
     /**

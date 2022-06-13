@@ -19,8 +19,10 @@
                     <div class="content">
                         <form action="{{ route('admin.region_staff.edit') }}" method="post" class="form" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $user->id }}">
+                            <input type="hidden" name="id" value="{{ $user ? $user->id : '' }}">
+                            @if($user)
                             <h2 class="m-4"> {{ $user->firstname }} {{ $user->lastname }}</h2>
+                            @endif
                             <hr>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal">
@@ -29,7 +31,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="firstname" placeholder="First Name" value="{{ $user->firstname }}" required>
+                                            <input class="input" type="text" name="firstname" placeholder="First Name" value="{{ $user ? $user->firstname : '' }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +44,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="lastname" placeholder="Surname" value="{{ $user->lastname }}" required>
+                                            <input class="input" type="text" name="lastname" placeholder="Surname" value="{{ $user ? $user->lastname : '' }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +57,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="email" name="email" placeholder="Email" value="{{ $user->email }}" required>
+                                            <input class="input" type="email" name="email" placeholder="Email" value="{{ $user ? $user->email : ''}}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +70,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="password" placeholder="Password" value="{{ $user->password }}">
+                                            <input class="input" type="password" name="password" placeholder="Password" value="{{ '' }}">
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +83,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" name="mobile" placeholder="Optional: mobile" value="{{ $user->mobile }}">
+                                            <input class="input" type="text" name="mobile" placeholder="Optional: mobile" value="{{ $user ? $user->mobile : '' }}">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +99,7 @@
                                             <div class="select is-fullwidth">
                                                 <select name="position">
                                                     @foreach($positions as $position)
-                                                    <option value="{{ $position->code }}" {{ $position->code==$user->position_code ? 'selected':null }}>{{ $position->code . ' -- ' . $position->title }}</option>
+                                                    <option value="{{ $position->code }}" {{ ($user && $position->code==$user->position_code) ? 'selected':null }}>{{ $position->code . ' -- ' . $position->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -116,7 +118,7 @@
                                             <div class="select is-fullwidth">
                                                 <select name="region">
                                                     @foreach($regions as $region)
-                                                    <option value="{{ $region->code }}" {{ ($user->region === $region->code) ? 'selected':null }}>{{ $region->title }}</option>
+                                                    <option value="{{ $region->code }}" {{ ($user && $user->region === $region->code) ? 'selected':null }}>{{ $region->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -133,11 +135,11 @@
                                     <div class="field is-narrow">
                                         <div class="control">
                                             <label class="radio">
-                                                <input value="1" type="radio" name="active" {{ $user->active==1 ? 'checked':null }}>
+                                                <input value="1" type="radio" name="active" {{ ($user && $user->active==1) ? 'checked':null }}>
                                                 Yes
                                             </label>
                                             <label class="radio">
-                                                <input value="0" type="radio" name="active" {{ $user->active!=1 ? 'checked':null }}>
+                                                <input value="0" type="radio" name="active" {{ ($user && $user->active!=1) ? 'checked':null }}>
                                                 No
                                             </label>
                                         </div>
@@ -146,6 +148,19 @@
                             </div>
 
                             <hr>
+
+                            @if($errors->any())
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label"></label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <span style="color: #c0133c">{!! implode('', $errors->all('<div>:message</div>')) !!}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="field is-horizontal">
                                 <div class="field-label">
                                 </div>

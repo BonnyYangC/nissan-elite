@@ -7,6 +7,7 @@ use App\Helper\Role;
 use App\Services\DataMappingServices as DMS;
 use App\Services\ExportServices\Admin;
 use App\Services\ExportServices\LoyaltyHistorical;
+use App\Services\ExportServices\RegionStaff;
 use App\Services\ExportServices\TerritoryReport;
 use App\Services\ExportServices\User;
 use App\Services\ExportServices\Ranking;
@@ -227,12 +228,14 @@ class DataService extends BaseService {
     /**
      * @param $type
      * @param $parameters
-     * @return Admin|LoyaltyHistorical|Ranking|TerritoryReport|User
+     * @return Admin|LoyaltyHistorical|Ranking|RegionStaff|TerritoryReport|User
      */
     private function getExportService($type, $parameters) {
         switch ($type) {
             case 'admin':
                 return new Admin();
+            case 'region_staff':
+                return new RegionStaff();
             case 'user':
                 return new User($this->serviceResolver, $parameters);
             case 'historical_export':

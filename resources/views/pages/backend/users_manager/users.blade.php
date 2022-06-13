@@ -15,7 +15,6 @@
                 <th>State</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Position</th>
                 <th>Active</th>
                 <th></th>
@@ -24,11 +23,10 @@
             <tbody>
             @foreach( $users as $user)
             <tr>
-                <th>{{ $user->name }}</th>
+                <td>{{ $user->name }}</td>
                 <td>{{ $user->state }}</td>
                 <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->password }}</td>
                 <td>{{ $user->position_code }}</td>
                 <td>
                     @if($user->active === 1)
