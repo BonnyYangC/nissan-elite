@@ -13,7 +13,7 @@
                 <div>
                     <h3>Current Status Level</h3>
                     <div class="mt-2">
-                        <img src="loyalty_status.png" height=350 />
+                        <img src="{{ asset('loyalty_status.png') }}" height=350 />
                     </div>
                     <div class="historical-data">
                         <h3>FY22 YTD : {{ number_format($ytd, 0) }} </h3>

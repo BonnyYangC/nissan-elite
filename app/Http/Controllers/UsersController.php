@@ -6,6 +6,7 @@ use App\Helper\JsonBuilder;
 use App\Helper\Role;
 use App\Mail\PasswordEnquiry;
 use App\Mail\ResetPassword;
+use App\Models\Dealer;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -237,6 +238,11 @@ class UsersController extends Controller {
         return redirect()->route($redirect, ['user' => $user]);
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     // should replace by region_staff_mock when fy22 dealer ship site set up
     public function fake_region_staff(Request $request){
         $userId = $request->input('uid');
@@ -248,7 +254,7 @@ class UsersController extends Controller {
         } else {
             $user = User::find($userId);
         }
-
+        if ($user == null || $user->position_code == 'SYSTEM ADMIN') { return redirect('/login');}
         Auth::login($user, false);
         return redirect()->route('dashboard');
     }
@@ -278,5 +284,20 @@ class UsersController extends Controller {
         Auth::login($user, false);
 
         return redirect()->route($redirect);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     */
+    public function fake_dealer_team(Request $request){
+        $dealerCode = $request->input('code');
+
+        $this->dataForView['fromApi'] = true;
+        $this->dataForView['dealer'] = Dealer::where('code', '=', $dealerCode)->first();
+
+        $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
+        var_dump($this->dataForView['mock']);
+        return $this->render('pages.my_team');
     }
 }

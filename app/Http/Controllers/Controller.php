@@ -27,14 +27,19 @@ class Controller extends BaseController
     public function __construct(Request $request)
     {
 
-        //check api user
-        $this->dataForView['fromApi'] = strstr($request, '/api');
         $this->dataForView['viewLastYear'] = false;  //TBD
 
         /**prepare login information which used by whole site after middleware */
         $this->middleware(function ($request, $next) {
 
-            if (!$request->input('user')) {
+            //check api user
+            $fromApi = strstr($request, '/api');
+            $this->dataForView['fromApi'] = $fromApi;
+
+            if(($fromApi && $request->input('user')) || (!$fromApi && $request->input('user'))) {
+                //keep session
+            } else //if (!$request->input('user') && !$fromApi)
+             {
                 session(['mock-user' => null]);
                 session(['mock' => false]);
             }
@@ -47,20 +52,6 @@ class Controller extends BaseController
                 $currentUser = Auth::user();
                 $this->dataForView['currentUser'] = $currentUser;
                 $this->dataForView['acls'] = $currentUser ? Acl::getAllByPosition($currentUser->position_code) : [];
-            }
-
-            //get acl
-            if($this->dataForView['fromApi'])
-            {
-                $role = Auth::guard('api')->getRoleCode();
-            }else{
-                if (isset($currentUser)) {
-                    $role = $currentUser->position_code;
-                }
-            }
-
-            if (isset($role)) {
-                $this->dataForView['acls'] = Acl::getAllByPosition($role);
             }
             return $next($request);
         });

@@ -2,12 +2,16 @@
     <div class="includes_list top_includes_list text-right text-nowrap">
         <p class="loggedin">
             @if($fromApi)
-            <span>
-                <a href="{{ url('/api/close') }}">BACK TO DEALER EXCELLENCE</a>
+            <span style="padding-right:40px">
+                @if(!$mock)
+                <a href="#" onclick="window.close();return false;">BACK TO DEALER EXCELLENCE</a>
+                @else
+                <a href="#" onclick="window.close();return false;">BACK TO SEARCH</a>
+                @endif
             </span>
             @elseif ($viewLastYear)
             <span style="padding-right:40px">
-                <a href="{{ url('/api/close') }}" onclick="window.close();return false;">BACK TO SEARCH</a>
+                <a href="#" onclick="window.close();return false;">BACK TO SEARCH</a>
             </span>
             @elseif ($mock)
             <span style="padding-right:40px">

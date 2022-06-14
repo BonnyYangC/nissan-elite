@@ -5,7 +5,11 @@
         <div class="elite-page team-member col-11">
             <div class="col-12 page-section-wrap">
                 <h1 class="page-header" >
+                    @if($fromApi)
+                    <span class='page-header-title'>Welcome {{ $dealer->name }}</span>
+                    @else
                     <span class='page-header-title'>Welcome {{ $currentUser->firstname }} - {{ $currentUser->position->title }} </span>
+                    @endif
                 </h1>
             </div>
             <div class="d-flex flex-column mx-5">
@@ -49,10 +53,18 @@
                                 {{ number_format($user->cr_ytd,0) }}
                             </td>
                             <td>
+                                @if($fromApi)
+                                <a href="{{ route('api.user.mock', ['user' => $user->id, 'directTo' => 'api.dashboard']) }}" target="_blank">View Details</a>
+                                @else
                                 <a href="{{ route('users.mock', ['user' => $user->id, 'directTo' => 'dashboard']) }}" target="_blank">View Details</a>
+                                @endif
                             </td>
                             <td>
+                                @if($fromApi)
+                                <a href="{{ route('api.user.mock', ['user' => $user->id, 'directTo' => 'api.metrics']) }}" target="_blank">View Details</a>
+                                @else
                                 <a href="{{ route('users.mock', ['user' => $user->id, 'directTo' => 'metrics']) }}" target="_blank">View Details</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

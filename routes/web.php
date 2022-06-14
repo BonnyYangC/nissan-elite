@@ -109,3 +109,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){
 
     Route::post('/system_config', [App\Http\Controllers\AdminController::class, 'system_config'])->name('admin.system_config');
 });
+
+//api only
+Route::group(['prefix' => 'api'],function (){
+    Route::get('/my-team', [App\Http\Controllers\UsersController::class,'fake_dealer_team'])->name('api.dealer_team');
+    Route::get('/mock/user/{user}', [App\Http\Controllers\UsersController::class, 'mock'])->name('api.user.mock');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('api.dashboard');
+    Route::get('/metrics', [App\Http\Controllers\MetricsController::class, 'metrics'])->name('api.metrics');
+});

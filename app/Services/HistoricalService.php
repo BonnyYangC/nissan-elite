@@ -5,21 +5,14 @@ namespace App\Services;
 use App\Models\{History, User};
 use Illuminate\Support\Facades\Auth;
 
-class HistoricalService {
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+class HistoricalService extends BaseService {
 
     /**
      * @return array
      */
     public function getHistoricalData(): array {
         /** @var User $currentUser */
-        $currentUser = Auth::user();
+        $currentUser = $this->getCurrentUser();
         if (!$currentUser->employee_code) {
             return [
                 'all' => [],

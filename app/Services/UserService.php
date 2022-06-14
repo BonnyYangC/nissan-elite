@@ -88,6 +88,26 @@ class UserService extends BaseService {
     }
 
     /**
+     * @param string $dealer
+     * @param array $parameters
+     * @return mixed
+     */
+    public function getTeamMembersByDealerCode(string $dealer, array $parameters = null) {
+        $parameters = $parameters ? $parameters : [
+            'sortby' => 'firstname',
+            'order' => 'asc'
+        ];
+        return User::select('users.id', 'firstname', 'lastname', 'positions.title', 'territory_reports.cr_ytd')
+            ->join('dealers', 'dealers.code', '=', 'users.dealer_code')
+            ->join('positions', 'positions.code', '=', 'users.position_code')
+            ->join('territory_reports', 'territory_reports.employee_code', '=', 'users.employee_code')
+            ->where('users.active', 1)
+            ->where('dealers.code', $dealer)
+            ->orderBy($parameters['sortby'], $parameters['order'])
+            ->get();
+    }
+
+    /**
      * @param $newData
      * @return \App\core\Model|bool|string
      */
