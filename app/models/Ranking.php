@@ -54,7 +54,7 @@ class Ranking extends Model {
             $orderBy = 'rank_platinum';
             $query = $query->addSelect('rankings.rank_platinum as rank', 'rankings.total_platinum as total');
         }
-        $query = $query->where('rankings.position', $position)
+        $query = $query->where('users.active', '=', 1)->where('rankings.position', $position)
             ->where('period', $period)
             ->orderBy($orderBy)->orderBy('rank_state');
         if ($state) {
