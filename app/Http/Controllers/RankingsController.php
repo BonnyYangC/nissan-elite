@@ -62,15 +62,14 @@ class RankingsController extends Controller {
         if (!$thisPeriod) {
             $thisPeriod = date('Y-m').'-01';
         }
-        //$thisPeriod = Carbon::createFromFormat('Y-m-d', $thisPeriod);
         if($action == Ranking::PREVIOUS){
             // 表示从查询到的 $thisPeriod 的上个月1号开始计算
             $thisPeriod->subMonth(1);
         }
-        $modalTitle .= Carbon::createFromFormat('Y-m-d', $thisPeriod)->format('F Y');
+        $modalTitle .= $thisPeriod->format('F Y');
         $modalTitle .= ' - '.$awardType;
 
-        $result = $this->service->get_ranking($role, $awardType, $thisPeriod);
+        $result = $this->service->get_ranking($role, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){
             echo JsonBuilder::Success([

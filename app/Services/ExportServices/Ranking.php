@@ -42,7 +42,7 @@ class Ranking extends BaseService {
             $thisPeriod->subMonth(1);
         }
 
-        $result = RankingModel::getRankingsBy($position, $thisPeriod, $awardType)->all();
+        $result = RankingModel::getRankingsBy($position, $thisPeriod->format('Y-m-d'), $awardType)->all();
         //$result = $this->serviceResolver->rankingService()->get_ranking($position, $awardType, $thisPeriod);
 
         $contentMap = [

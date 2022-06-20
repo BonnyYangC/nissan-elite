@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helper\State;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,10 +30,11 @@ class Ranking extends Model {
 
     /**
      * @param string $position
-     * @return mixed
+     * @return Carbon|false
      */
     public static function getMaxPeriodByPositionAndCat(string $position) {
-        return Ranking::where('position', $position)->max('period');
+        $result = Ranking::where('position', $position)->max('period');
+        return Carbon::createFromFormat('Y-m-d',$result);
     }
 
     /**
@@ -56,7 +58,7 @@ class Ranking extends Model {
         }
         $query = $query->where('users.active', '=', 1)->where('rankings.position', $position)
             ->where('period', $period)
-            ->orderBy($orderBy)->orderBy('rank_state');
+            ->orderBy('rank_state')->orderBy($orderBy);
         if ($state) {
             $query = $query->where('rank_state', State::RANKING_STATE_MAPPING[$state]);
         }

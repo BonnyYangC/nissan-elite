@@ -43,7 +43,7 @@
         },
         methods: {
             displayRankingForAll: function(role, type) {
-                console.log('test function:', role, type);
+                //console.log('test function:', role, type);
                 switch(role) {
                     case 'M':
                         if (type === 'status') {
@@ -79,7 +79,7 @@
                 ).then(function(res){
                     if(res.data.error_no === 100){
                         that.blocks = res.data.data.blocks;
-                        console.log('block:', that.blocks);
+                        //console.log('block:', that.blocks);
                         that.modalTitle = res.data.data.modalTitle;
                         that.dialogTableVisible = true;
                         that.tableTitle = that._getRoleNameText(role) + ': ' + action;
