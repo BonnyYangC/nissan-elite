@@ -80,11 +80,11 @@ class Dealer extends Base {
         ini_set('max_execution_time', 180); //3 minutes
         $region = explode(' Region', $row['rname']);
         return [
-            'code' => $row['dcode'],
+            'code' => trim($row['dcode']),
             'name' => $row['dname'],
             'address' => $row['addr_street'],
             'suburb' => $row['addr_city'],
-            'state' => $row['addr_state'],
+            'state' => trim($row['addr_state']),
             'postcode' => $row['addr_pcode'],
             // 'country' => $row['country'],
             'phone' => $row['ph_tel'],
