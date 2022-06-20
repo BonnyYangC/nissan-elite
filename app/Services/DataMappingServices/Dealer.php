@@ -93,6 +93,7 @@ class Dealer extends Base {
             'region_code' => $row['rcode'],
             'category' => $row['dcat'],
             'category_code' => $row['dcat#'],
+            'active' => 1  // as ie_dealer_data_xxx only contains active dealer
             // 'active' => $row['active'] !== 'NULL' ? $row['active'] : 0,
         ];
 
