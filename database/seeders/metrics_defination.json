@@ -1458,12 +1458,12 @@
                     },
                     "guides": [{
                         "title": "SERVICE OVERALL SATISFACTION - NAVARA GUIDE",
-                        "top": ["Service Advisor", "≥100% Target", "≥105% Target", "≥110% Target"],
-                        "rows": [["Category A & B", 75, 125, 185], ["Category C", 75, 125, 185]]
+                        "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
+                        "rows": [["Category A & B", 225, 425], ["Category C", 225, 425]]
                     },{
                         "title": "SERVICE OVERALL SATISFACTION - PATROL GUIDE",
-                        "top": ["Service Advisor", "≥100% Target", "≥105% Target", "≥110% Target"],
-                        "rows": [["Category A & B", 75, 125, 185], ["Category C", 75, 125, 185]]
+                        "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
+                        "rows": [["Category A & B", 225, 425], ["Category C", 225, 425]]
                     }]
                 },
                 {
