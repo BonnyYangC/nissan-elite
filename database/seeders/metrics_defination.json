@@ -154,7 +154,7 @@
                     "guides": [
                         {
                             "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
-                            "top": ["Sales Manager (% of Target)", "100%", "≥110%", "≥120%", "≥140%"],
+                            "top": ["Sales Manager (% of Target)", "100%", "110%", "120%", "≥140%"],
                             "rows": [["Category A", 820, 1020, 1220, 1620], ["Category B", 820, 920, 1020, 1220],
                                 ["Category C", 820, 920, 1020, 1220]],
                             "note": "Category A: Each full percentage point (rounded down) over 100% target will earn an additional 20 points.<br>Category B & C: Each full percentage point (rounded down) over 100% target will earn an additional 10 points.<br>(capped to 140% of target achievement)."
