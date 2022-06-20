@@ -116,4 +116,16 @@ class Dealer extends Base {
         'active' => $row['active'] !== 'NULL' ? $row['active'] : 0,
 ]; */
     }
+
+    /**
+     * @param $field
+     * @return array
+     */
+    public function buildHeaderForResultData($field) {
+        $result = [];
+        if ($field !== 'active') {
+            $result[] = $this->mappingArray[$field];
+        }
+        return $result;
+    }
 }
