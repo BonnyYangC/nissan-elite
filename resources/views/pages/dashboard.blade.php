@@ -40,7 +40,13 @@
             <div class="metrics-chart dashboard-section">
                 <h3>{{ config('elite.PROGRAM_AWARD_UNIT') }} earned per Month
                     @if(!$mock)
-                    <a href="{{ url('/metrics') }}">
+                    <a href="{{ route('metrics') }}">
+                        <button style="background-color:#4169E1; color: #FFFFFF; font-weight: lighter; font-size:10px;" type="button" class="btn">
+                            VIEW METRICS PAGE
+                        </button>
+                    </a>
+                    @else
+                    <a href="{{ route('metrics', ['user' => $currentUser]) }}">
                         <button style="background-color:#4169E1; color: #FFFFFF; font-weight: lighter; font-size:10px;" type="button" class="btn">
                             VIEW METRICS PAGE
                         </button>
