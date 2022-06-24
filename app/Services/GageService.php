@@ -14,29 +14,19 @@ class GageService extends BaseService {
     var $image;
 
     /**
+     * @param $ytd
      * @throws \ImagickException
      */
-    public function current_status_level() {
+    public function current_status_level($ytd, $statusChart) {
 
         $fileName = 'current_status.png';
         //ini_set('display_errors', 1);
-
-        //$role = RoleFactory::GetRole($pos = $this->request->param('position'), new User($this->request->param('id')));
-
-        //$ytd = env('YEAR');
-        //$dataForView = $role->getDashboardViewData($this->dataForView, $ytd);
-        $ytd = $this->serviceResolver->resultService()->getYearToDateData();
-        $ytd = $ytd ? $ytd : '';
-        //var_dump($ytd);
-        $dataForView['statusChart'] = array_merge([
-            'ytd' => $ytd
-        ], $this->serviceResolver->statusService()->buildStatusData($ytd));
 
         $fontpath = realpath('.'); //replace . with a different directory if needed
         putenv('GDFONTPATH='.$fontpath);
         $fontFile = 'arialbd.ttf';
 
-        $max = $dataForView['statusChart']['max'];
+        $max = $statusChart['max'];
 
         // Create an image with the specified dimensions
         $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
@@ -47,10 +37,10 @@ class GageService extends BaseService {
         $grey           = imageColorAllocate($this->image, 127, 127, 127);
         $black          = imageColorAllocate($this->image, 0, 0, 0);
 
-        $statusLevel1Color = $dataForView['statusChart']['gageArray'][0][1];
-        $statusLevel2Color = $dataForView['statusChart']['gageArray'][1][1];
-        $statusLevel3Color = $dataForView['statusChart']['gageArray'][2][1];
-        $statusLevel4Color = $dataForView['statusChart']['gageArray'][3][1];
+        $statusLevel1Color = $statusChart['gageArray'][0][1];
+        $statusLevel2Color = $statusChart['gageArray'][1][1];
+        $statusLevel3Color = $statusChart['gageArray'][2][1];
+        $statusLevel4Color = $statusChart['gageArray'][3][1];
 
         // create the colors from hex triplets
         $statusLevel1ArcColor =      imageColorAllocate($this->image, hexdec(substr($statusLevel1Color, 1, 2)), hexdec(substr($statusLevel1Color, 3, 2)), hexdec(substr($statusLevel1Color, 5, 2)));
@@ -61,10 +51,10 @@ class GageService extends BaseService {
         //background to white
         imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
 
-        $percent1 = round($dataForView['statusChart']['gageArray'][0][0]);
-        $percent2 = round($dataForView['statusChart']['gageArray'][1][0]);
-        $percent3 = round($dataForView['statusChart']['gageArray'][2][0]);
-        $percent4 = round($dataForView['statusChart']['gageArray'][3][0]);
+        $percent1 = round($statusChart['gageArray'][0][0]);
+        $percent2 = round($statusChart['gageArray'][1][0]);
+        $percent3 = round($statusChart['gageArray'][2][0]);
+        $percent4 = round($statusChart['gageArray'][3][0]);
 
         $complete        = floatval($ytd);
         $completePercent = round($complete / $max * 100);
@@ -130,10 +120,10 @@ class GageService extends BaseService {
         $this->image = imagecreatefrompng($fileName);
 
         // grey outer with text labels
-        $statusLevel1Text = $dataForView['statusChart']['gageArray'][0][2];
-        $statusLevel2Text = $dataForView['statusChart']['gageArray'][1][2];
-        $statusLevel3Text = $dataForView['statusChart']['gageArray'][2][2];
-        $statusLevel4Text = $dataForView['statusChart']['gageArray'][3][2];
+        $statusLevel1Text = $statusChart['gageArray'][0][2];
+        $statusLevel2Text = $statusChart['gageArray'][1][2];
+        $statusLevel3Text = $statusChart['gageArray'][2][2];
+        $statusLevel4Text = $statusChart['gageArray'][3][2];
 
         $s1 = round(180 + $percent1 * 1.788);
         $s2 = round(180 + $percent2 * 1.8);
@@ -179,7 +169,7 @@ class GageService extends BaseService {
     /**
      * @throws \ImagickException
      */
-    public function loyalty_status_level() {
+    public function loyalty_status_level($complete) {
 
         $fileName = 'loyalty_status.png';
         ini_set('display_errors', 1);
@@ -215,8 +205,8 @@ class GageService extends BaseService {
         $percent3 = round(Loyalty::PERCENTAGE_LEVEL_3);
         $percent4 = round(Loyalty::PERCENTAGE_LEVEL_4);
 
-        $complete        = floatval('281620'); // $this->request->param('complete');
-        $completePercent = round(floatval('281620') / $max * 100); // round($this->request->param('complete') / $max * 100);
+        $complete        = floatval($complete);
+        $completePercent = round(floatval($complete) / $max * 100);
         $completePercent = min(100, $completePercent);
 
         $this->drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $statusLevel1ArcColor,         $this->gageDia / 4,  $this->gageDia / 2);

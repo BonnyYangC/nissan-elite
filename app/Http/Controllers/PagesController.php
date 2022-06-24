@@ -22,17 +22,19 @@ class PagesController extends Controller {
     }
 
     /**
-     * entry point
-     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     * @throws \ImagickException
      */
     public function loyalty() {
         $this->dataForView['menuName'] = 'loyalty';
-        $this->resolver->gageService()->loyalty_status_level();
+        $ytd = $this->resolver->resultService()->getYearToDateData();
+        $historical = $this->resolver->historicalService()->getHistoricalData();
+        $this->resolver->gageService()->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
         //year to date
-        $this->dataForView['ytd'] = $this->resolver->resultService()->getYearToDateData();
+        $this->dataForView['ytd'] = $ytd;
 
         //historical points
-        $this->dataForView['historical'] = $this->resolver->historicalService()->getHistoricalData();
+        $this->dataForView['historical'] = $historical;
         return $this->render('pages.loyalty');
     }
 

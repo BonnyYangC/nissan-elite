@@ -56,21 +56,23 @@ class DashboardController extends Controller {
         //leader board table
         $this->dataForView['rankings'] = $rankings;
         $this->dataForView['rankingsPlatinum'] = $rankingsPlatinum;
-        //current status level
-        $ytd = $this->resolver->resultService()->getYearToDateData();
-        $ytd = $ytd ? $ytd : '';
-        $this->dataForView['status'] = (object)array_merge([
-            'ytd' => $ytd
-        ], $this->resolver->statusService()->buildStatusData($ytd));
+
         // dollar rewards
         $this->dataForView['rewards'] = $this->resolver->rewardsService()->buildRewardsData();
 
         // current ranking status
         $this->dataForView['rankingStatus'] = $this->resolver->rankingService()->getCurrentRanking();
-        // current status level
-        $this->resolver->gageService()->current_status_level();
+
         //year to date
+        $ytd = $this->resolver->resultService()->getYearToDateData();
+        $ytd = $ytd ? $ytd : '';
         $this->dataForView['ytd'] = $ytd;
+        //current status level
+        $statusChart = array_merge([
+            'ytd' => $ytd
+        ], $this->resolver->statusService()->buildStatusData($ytd));
+        $this->dataForView['status'] = (object)$statusChart;
+        $this->resolver->gageService()->current_status_level($ytd, $statusChart);
 
         // metrics
         $this->dataForView['stackedMetrics'] = $this->resolver->metricsService()->getStackedMetricsData();
