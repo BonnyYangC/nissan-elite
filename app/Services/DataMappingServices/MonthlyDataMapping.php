@@ -149,7 +149,7 @@ abstract class MonthlyDataMapping {
         } else {
             foreach( array_keys($this->metricsMappingArray) as $field) {
                 $fieldName = $this->metricsMappingArray[$field];
-                $result[$fieldName] = $oldValue[$field] . ' / <span style="color:' . ($equal ? 'blue' : 'red') . ';">' . $newValue[$field] . '</span>';
+                $result[$fieldName] = data_get($oldValue, $field, '') . ' / <span style="color:' . ($equal ? 'blue' : 'red') . ';">' . $newValue[$field] . '</span>';
             }
         }
         return $result;
