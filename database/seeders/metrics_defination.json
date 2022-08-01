@@ -222,7 +222,8 @@
                         {
                             "title": "NIC sale (mthly Cap 10 units) GUIDE",
                             "top": ["Sales Manager", "per unit"],
-                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]]
+                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]],
+                            "note": "Q1 = 15per unit, Q2,3,4 = 35per unit"
                         },
                         {
                             "title": "NIC sale financed by NFSA(mthly Cap 23 units) GUIDE",
@@ -503,7 +504,8 @@
                         {
                             "title": "NIC SALES GUIDE – (MTHLY CAP 10)",
                             "top": ["Retail Sales Consultant", "mthly"],
-                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]]
+                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]],
+                            "note": "Q1 = 15per unit, Q2,3,4 = 35per unit"
                         },
                         {
                             "title": "NIC SALES FINANCED BY NFSA – (MTHLY CAP 23)",
@@ -731,7 +733,8 @@
                     "guides": [{
                         "title": "NISSAN INTELLIGENT CHOICE SALE (MTHLY CAP 10) GUIDE",
                         "top": ["Stock Controller", "mthly"],
-                        "rows": [["Category A & B", 35], ["Category C", 35]]
+                        "rows": [["Category A & B", 35], ["Category C", 35]],
+                        "note": "Q1 = 15per unit, Q2,3,4 = 35per unit"
                     }]
                 },
                 {
@@ -1503,7 +1506,7 @@
                 {
                     "identifier": "fus",
                     "order": 4,
-                    "title": "FOLLOW UP SATISFACTION Dealership\\'s NPS R3M SCORE(Monthly)",
+                    "title": "FOLLOW UP SATISFACTION Dealership's NPS R3M SCORE(Monthly)",
                     "metrics": {
                         "cwp":{
                             "label": "% Follow Up",
@@ -1512,7 +1515,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "FOLLOW UP SATISFACTION Dealership\\'s NPS R3M SCORE(Monthly) GUIDE",
+                        "title": "FOLLOW UP SATISFACTION Dealership's NPS R3M SCORE(Monthly) GUIDE",
                         "top": ["Service Advisor", "≥100% Target", "≥105% Target"],
                         "rows": [["Category A, B, C", 225, 425]]
                     }]
