@@ -1285,7 +1285,7 @@
                     "order": 4,
                     "title": "PERCENTAGE FOLLOWED UP R3M SCORE",
                     "metrics": {
-                        "cwp":{
+                        "pfu":{
                             "label": "% Follow Up",
                             "color": "#109618",
                             "default": 0
@@ -1508,7 +1508,7 @@
                     "order": 4,
                     "title": "FOLLOW UP SATISFACTION Dealership's NPS R3M SCORE(Monthly)",
                     "metrics": {
-                        "cwp":{
+                        "fus":{
                             "label": "% Follow Up",
                             "color": "#109618",
                             "default": 0
