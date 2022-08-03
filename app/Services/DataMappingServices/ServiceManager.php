@@ -17,8 +17,8 @@ class ServiceManager extends MonthlyDataMapping {
         'fft' => 'points_ce_FFT3_',
         'fft_result' => 'score_ce_FFT3_',
 
-        'pfu' => 'points_ce_pfu3',
-        'pfu_result' => 'score_ce_pfu3',
+        'pfu' => 'points_ce_PFU3_',
+        'pfu_result' => 'score_ce_PFU3_',
 
         'cwp' => 'points_ce_cwp3',
         'cwp_result' => 'score_ce_cwp3',
@@ -56,8 +56,8 @@ class ServiceManager extends MonthlyDataMapping {
             'fft' => $row['points_ce_FFT3_'] !== '' ? intval($row['points_ce_FFT3_']) : 0,
             'fft_result' => $row['score_ce_FFT3_'] !== '' ? number_format(floatval($row['score_ce_FFT3_']), 1) : '0.0',
 
-            'pfu' => $row['points_ce_pfu3'] !== '' ? intval($row['points_ce_pfu3']) : 0,
-            'pfu_result' => $row['score_ce_pfu3'] !== '' ? number_format(floatval($row['score_ce_pfu3']), 1) : '0.0',
+            'pfu' => $row['points_ce_PFU3_'] !== '' ? intval($row['points_ce_PFU3_']) : 0,
+            'pfu_result' => $row['score_ce_PFU3_'] !== '' ? number_format(floatval($row['score_ce_PFU3_']), 1) : '0.0',
 
             'cwp' => $row['points_ce_cwp3'] !== '' ? intval($row['points_ce_cwp3']) : 0,
             'cwp_result' => $row['score_ce_cwp3'] !== '' ? number_format(floatval($row['score_ce_cwp3']), 1) : '0.0',
