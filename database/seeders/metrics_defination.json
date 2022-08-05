@@ -1509,7 +1509,7 @@
                     "title": "FOLLOW UP SATISFACTION Dealership's NPS R3M SCORE(Monthly)",
                     "metrics": {
                         "fus":{
-                            "label": "% Follow Up",
+                            "label": "Follow Up Sat",
                             "color": "#109618",
                             "default": 0
                         }
