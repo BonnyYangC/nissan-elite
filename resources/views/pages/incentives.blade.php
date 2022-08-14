@@ -17,7 +17,7 @@
                         <div class="fotorama" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-autoplay="true" data-allowfullscreen="true">
                         @foreach($current as $slide)
                             <img src="{{ asset('/images/incentives/images/'.$slide->image) }}">
-                                <!--<a href="{{ asset('/images/incentives/images/pdf/'.$slide->pdf) }}" target="_blank"></a>-->
+                                <a href="{{ asset('/images/incentives/images/pdf/'.$slide->pdf) }}" target="_blank"></a>
                             </img>
                         @endforeach
                         </div>
