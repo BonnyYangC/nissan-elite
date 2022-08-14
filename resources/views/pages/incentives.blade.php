@@ -12,20 +12,19 @@
             <div class="col-9 page-section-wrap">
                 <h3>CURRENT</h3>
                 <div class="d-flex justify-content-center p-5">
-                    @if (count($current))
-
-                        <div class="fotorama" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-autoplay="true" data-allowfullscreen="true">
-                        @foreach($current as $slide)
-                            <img src="{{ asset('/images/incentives/images/'.$slide->image) }}">
-                                <a href="{{ asset('/images/incentives/images/pdf/'.$slide->pdf) }}" target="_blank"></a>
-                            </img>
-                        @endforeach
+                @if (count($current))
+                    <div class="fotorama" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-max-width="100%" data-ratio="700/466">
+                    @foreach($current as $slide)
+                        <div data-img="{{ asset('/images/incentives/images/'.$slide->image) }}">
+                            <a href="{{ asset('/images/incentives/images/pdf/'.$slide->pdf) }}" target="_blank"></a>
                         </div>
-                    @else
+                    @endforeach
+                    </div>
+                @else
                     <div class="fotorama" data-click="true" data-autoplay="true" data-allowfullscreen="true">
                         <img src="{{ asset('/images/incentives/cover.png') }}"></img>
                     </div>
-                    @endif
+                @endif
                 </div>
             </div>
             <div class="page-widget col-3">
