@@ -49,12 +49,12 @@
                     <div class="form-footer" style="padding-left:0; padding-right:0">
                         <div class="row text-nowrap">
                             <div class="col-xs-12">
-                                <a class="txt-grey9 fs-12" href="#forgotpassword">
+                                <a style="color:black !important;" lass="txt-grey9 fs-12" href="#forgotpassword">
                                     Forgot password?
                                 </a>
                             </div>
                             <div class="col-xs-12">
-                                <a class="txt-grey9 fs-12" href="#eligible">New to Nissan?</a>
+                                <a class="txt-grey9 fs-12" href="#eligible" style="color:black !important;">How to Join Nissan i_ELITE?</a>
                             </div>
                         </div>
                     </div>
