@@ -7,7 +7,6 @@ use App\Models\Metric;
 
 class Individual extends Base {
 
-
     /**
      * @param $trainingData
      * @return Metric
@@ -57,7 +56,7 @@ class Individual extends Base {
 
         $metricsDefinations->each(function($m) use ($chartData, $tableData) {
             $m->chart_data = json_encode($chartData[$m->identifier]);
-            $m->table_header = $m->period === 'quarterly' ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
+            $m->table_header = $m->period === self::METRIC_PERIOD_QUARTERLY ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
             $m->table_data = isset($tableData[$m->identifier]) ? $tableData[$m->identifier] : []; //['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100'], '2' => ['100','100','100','100','100','100','100','100','100','100','100','100']];
             $m->chart_name = 'chart_'.$m->identifier;
         });

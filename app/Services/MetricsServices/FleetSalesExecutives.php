@@ -4,7 +4,7 @@ namespace App\Services\MetricsServices;
 
 use App\Helper\Utility;
 
-class PartsSalesRep extends Individual {
+class FleetSalesExecutives extends Individual {
 
     /**
      * @param $metricDefination
