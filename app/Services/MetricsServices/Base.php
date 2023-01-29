@@ -32,8 +32,7 @@ class Base extends BaseService {
      * @param string $position
      * @return mixed
      */
-    public function getAllMetricsByPosition(string $position) {
-        //return $this->currentUser->position->metrics->sortBy('order');
+    public function getMetricDefinationsByPosition(string $position) {
         return Metric::where('position', '=', $position)->orderBy('order')->get();
     }
 

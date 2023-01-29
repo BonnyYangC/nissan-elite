@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Helper\Role;
-use App\Models\Metric;
+use App\Models\{Metric, Result};
 use App\Services\MetricsServices as MS;
 
 class MetricsService extends BaseService {
@@ -26,30 +26,41 @@ class MetricsService extends BaseService {
     /**
      * @return mixed|string
      */
-    public function getMetricsData() {
+    public function getMetricsData(string $positionCode) {
         $currentUser = $this->getCurrentUser();
-        $metrics = $currentUser->results()->pluck('metrics', 'period');
-        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
-        return $service->buildMetricsData($metrics);
+        $results = $this->getMetricsByPosition($currentUser->employee_code, $positionCode);
+        $metrics = $results->pluck('metrics', 'period');
+        $service = $this->getMetricsService($positionCode); //new MetricsServices\Individual();
+        return $service->buildMetricsData($positionCode, $metrics);
     }
 
     /**
      * @return Metric|void
      */
-    public function getTrainingData() {
+    public function getTrainingData(string $positionCode) {
         $currentUser = $this->getCurrentUser();
-        $trainingData = $currentUser->results()->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
-        $service = $this->getMetricsService($currentUser->position_code); //new MetricsServices\Individual();
-        return $service->buildTrainingData($trainingData);
+        $results = $this->getMetricsByPosition($currentUser->employee_code, $positionCode);
+        $trainingData = $results->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
+        $service = $this->getMetricsService($positionCode); //new MetricsServices\Individual();
+        return $service->buildTrainingData($positionCode, $trainingData);
     }
 
     /**
      * @return false|string
      */
-    public function getStackedMetricsData() {
-        $metrics = $this->currentUser->results()->pluck('metrics', 'period');
-        $trainingData = $this->currentUser->results()->keyBy('period');
+    public function getStackedMetricsData(string $positionCode) {
+        $results = $this->getMetricsByPosition($this->currentUser->employee_code, $positionCode);
+        $metrics = $results->pluck('metrics', 'period');
+        $trainingData = $results->keyBy('period');
         $service = new MetricsServices\Stacked($this->serviceResolver);
-        return $service->buildStackedMetricsData($metrics, $trainingData);
+        return $service->buildStackedMetricsData($positionCode, $metrics, $trainingData);
+    }
+
+
+    // should use repository patten
+    private function getMetricsByPosition(string $employeeCode, string $positionCode) {
+        return Result::where('employee_code', $employeeCode)
+            ->where('position', $positionCode)
+            ->get();
     }
 }

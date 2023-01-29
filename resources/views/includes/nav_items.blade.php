@@ -6,9 +6,26 @@
         </li>
         @endif
         @if (in_array(\App\Helper\Defination::PAGE_METRICS, $acls))
-        <li class="nav-item {{ isset($menuName) && $menuName=='metrics'?'current':null }}">
-            <a class="nav-link" href="{{ route('metrics') }}">Metrics</a>
-        </li>
+            @if ($currentUser->hasMultipleRoles && $allowDropdown)
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Metrics</a>
+                <ul class="dropdown-menu">
+                    @foreach ( $currentUser->positions() as $code => $title)
+                    <li><a class="dropdown-item" href="{{ route('metrics', ['asPosition' => $code]) }}">
+                        @if ($selectedPosition->get('code') == $code)
+                        <span class="text-danger"><i class="fa fa-check-circle"></i>&nbsp;{{ $title }}</span>
+                        @else
+                        <span>{{ $title }}</span>
+                        @endif
+                    </a></li>
+                    @endforeach
+                </ul>
+            </li>
+            @else
+            <li class="nav-item {{ isset($menuName) && $menuName=='metrics'?'current':null }}">
+                <a class="nav-link" href="{{ route('metrics') }}">Metrics</a>
+            </li>
+            @endif
         @endif
         @if (in_array(\App\Helper\Defination::PAGE_MY_TEAM, $acls))
         <li class="nav-item {{ isset($menuName) && $menuName=='my_tem'?'current':null }}">

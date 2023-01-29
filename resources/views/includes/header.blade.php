@@ -25,7 +25,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            @include('includes.nav_items')
+            @include('includes.nav_items', ['allowDropdown' => true])
         </nav>
     </div>
 </div>

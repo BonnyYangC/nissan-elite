@@ -27,7 +27,8 @@ class PagesController extends Controller {
      */
     public function loyalty() {
         $this->dataForView['menuName'] = 'loyalty';
-        $ytd = $this->resolver->resultService()->getYearToDateData();
+        $selectedPosition = $this->dataForView['selectedPosition']->get('code');
+        $ytd = $this->resolver->resultService()->getYearToDateData($selectedPosition);
         $historical = $this->resolver->historicalService()->getHistoricalData();
         $this->resolver->gageService()->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
         //year to date

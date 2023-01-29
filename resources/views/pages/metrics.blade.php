@@ -5,7 +5,7 @@
     <div class="elite-page metrics col-11">
         <div class="page-section-wrap">
             <h1 class="page-header" >
-                <span class='page-header-title'>MY Metrics - {{ $currentUser->position->title }} </span>
+                <span class='page-header-title'>MY Metrics - {{ $selectedPosition->get('title') }} </span>
             </h1>
         </div>
         @foreach ($metrics as $metricData)

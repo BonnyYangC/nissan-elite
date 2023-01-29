@@ -9,7 +9,12 @@ class RewardsService extends BaseService {
     /**
      * @return Reward
      */
-    public function buildRewardsData(): Reward {
-        return $this->currentUser->position->rewards;
+    public function buildRewardsData(string $position): Reward {
+        return $this->getRewardsByPosition($position);
+    }
+
+    // should use repository patten
+    private function getRewardsByPosition(string $position) {
+        return Reward::where('position', $position)->first();
     }
 }

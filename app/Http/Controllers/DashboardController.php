@@ -45,26 +45,27 @@ class DashboardController extends Controller {
      * @throws \ImagickException
      */
     private function userDashboard() {
+        $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         //monthly points chart
-        $this->dataForView['monthlyPoints'] = $this->resolver->resultService()->buildResultsData();
+        $this->dataForView['monthlyPoints'] = $this->resolver->resultService()->buildMonthlyData($selectedPosition);
 
         /**
          * @var array $rankings
          * @var array $rankingsPlatinum
          */
-        extract($this->resolver->rankingService()->getLeadBoardData());
+        extract($this->resolver->rankingService()->getLeadBoardData($selectedPosition));
         //leader board table
         $this->dataForView['rankings'] = $rankings;
         $this->dataForView['rankingsPlatinum'] = $rankingsPlatinum;
 
         // dollar rewards
-        $this->dataForView['rewards'] = $this->resolver->rewardsService()->buildRewardsData();
+        $this->dataForView['rewards'] = $this->resolver->rewardsService()->buildRewardsData($selectedPosition);
 
         // current ranking status
-        $this->dataForView['rankingStatus'] = $this->resolver->rankingService()->getCurrentRanking();
+        $this->dataForView['rankingStatus'] = $this->resolver->rankingService()->getCurrentRanking($selectedPosition);
 
         //year to date
-        $ytd = $this->resolver->resultService()->getYearToDateData();
+        $ytd = $this->resolver->resultService()->getYearToDateData($selectedPosition);
         $ytd = $ytd ? $ytd : '';
         $this->dataForView['ytd'] = $ytd;
         //current status level
@@ -75,7 +76,7 @@ class DashboardController extends Controller {
         $this->resolver->gageService()->current_status_level($ytd, $statusChart);
 
         // metrics
-        $this->dataForView['stackedMetrics'] = $this->resolver->metricsService()->getStackedMetricsData();
+        $this->dataForView['stackedMetrics'] = $this->resolver->metricsService()->getStackedMetricsData($selectedPosition);
         //historical points
         $this->dataForView['historical'] = $this->resolver->historicalService()->getHistoricalData();
         return $this->render('pages.dashboard');

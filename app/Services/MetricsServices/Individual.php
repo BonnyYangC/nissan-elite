@@ -11,8 +11,8 @@ class Individual extends Base {
      * @param $trainingData
      * @return Metric
      */
-    public function buildTrainingData($trainingData) {
-        $trainingDefination = $this->getTrainingMetricByPosition($this->currentUser->position_code);
+    public function buildTrainingData(string $positionCode, $trainingData) {
+        $trainingDefination = $this->getTrainingMetricByPosition($positionCode);
         $trainingDefination->chart_data = json_encode($this->buildStackedTrainingData($trainingDefination, $trainingData));
         $trainingDefination->chart_name = 'chart_'.$trainingDefination->identifier;
         return $trainingDefination;
@@ -45,8 +45,8 @@ class Individual extends Base {
      * @param $metrics
      * @return mixed
      */
-    public function buildMetricsData($metrics) {
-        $metricsDefinations = $this->getMetricsByPosition($this->currentUser->position_code);
+    public function buildMetricsData(string $positionCode, $metrics) {
+        $metricsDefinations = $this->getMetricsByPosition($positionCode);
         $chartData = [];
         $tableData = [];
 

@@ -66,6 +66,22 @@ class User extends Authenticatable
     }
 
     /**
+     * @return Collect
+     */
+    public function positions() {
+        // return $this->hasMany(Result::class, 'employee_code', 'employee_code')->pluck('position')->unique();
+        $positions = $this->hasMany(Result::class, 'employee_code', 'employee_code')->pluck('position')->unique();
+        return Position::whereIn('code', $positions)->pluck('title', 'code');
+    }
+
+    /**
+     * @return Bool
+     */
+    public function getHasMultipleRolesAttribute() {
+        return 0 < $this->positions()->count();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function dealer() {
