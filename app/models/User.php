@@ -78,7 +78,7 @@ class User extends Authenticatable
      * @return Bool
      */
     public function getHasMultipleRolesAttribute() {
-        return 0 < $this->positions()->count();
+        return 1 < $this->positions()->count();
     }
 
     /**
