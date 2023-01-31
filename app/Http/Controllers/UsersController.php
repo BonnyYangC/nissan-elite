@@ -269,6 +269,7 @@ class UsersController extends Controller {
         $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
 
         Auth::login($user, false);
+        session(['selected_position' => null]);
         return redirect()->route($redirect);
     }
 
@@ -282,7 +283,7 @@ class UsersController extends Controller {
         $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
 
         Auth::login($user, false);
-
+        session(['selected_position' => null]);
         return redirect()->route($redirect);
     }
 

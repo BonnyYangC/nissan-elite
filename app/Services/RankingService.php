@@ -12,10 +12,10 @@ class RankingService extends BaseService {
     /**
      * @return array
      */
-    public function getLeadBoardData(): array {
+    public function getLeadBoardData(string $positionCode): array {
         // 获取了所有的 Rankings: Get all rankings
-        $rankings = $this->buildRankingData(Ranking::AWARD_STATUS);
-        $rankingsPlatinum = $this->buildRankingData(Ranking::AWARD_PLATINUM);
+        $rankings = $this->buildRankingData($positionCode, Ranking::AWARD_STATUS);
+        $rankingsPlatinum = $this->buildRankingData($positionCode, Ranking::AWARD_PLATINUM);
 
         return compact('rankings', 'rankingsPlatinum');
     }
@@ -24,16 +24,16 @@ class RankingService extends BaseService {
      * @param string $type
      * @return array
      */
-    public function buildRankingData(string $type): array {
+    private function buildRankingData(string $positionCode, string $type): array {
         /** @var User $currentUser */
         $currentUser = $this->getCurrentUser();
-        $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code);
+        $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code, $positionCode);
         if (!$currentPeriod) {
 
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
         }
-        $resultsData = Ranking::getRankingsBy($currentUser->position_code, $currentPeriod, $type, 5, $currentUser->dealer->state);
+        $resultsData = Ranking::getRankingsBy($positionCode, $currentPeriod, $type, 5, $currentUser->dealer->state);
 
         $rankingOfCurrentUser = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod, $type)->first();
         // if rank of current user is out of 5, then replace 5th with current user's ranking
@@ -48,8 +48,8 @@ class RankingService extends BaseService {
     /**
      * @return Ranking|null
      */
-    public function getCurrentRanking() {
-        $currentPeriod = Ranking::getMaxPeriod($this->currentUser->employee_code);
+    public function getCurrentRanking(string $positionCode) {
+        $currentPeriod = Ranking::getMaxPeriod($this->currentUser->employee_code, $positionCode);
         if (!$currentPeriod) {
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);

@@ -5,7 +5,7 @@
     <div class="elite-page dashboard col-11">
         <div class="col-9 page-section-wrap">
             <h1 class="page-header" >
-                <span class='page-header-title'>Welcome {{ $currentUser->firstname }} - {{ $currentUser->position->title }} </span>
+                <span class='page-header-title'>Welcome {{ $currentUser->firstname }} - {{ $selectedPosition->get('title') }} </span>
             </h1>
         </div>
         <div class="d-flex">
@@ -53,7 +53,12 @@
                     </a>
                     @endif
                 </h3>
-                @include('pages.widgets.metrics_chart.single_role', [$currentUser, $stackedMetrics])
+                
+                @if ($currentUser->hasMultipleRoles)
+                    @include('pages.widgets.metrics_chart.multiple_roles', [$currentUser, $stackedMetrics])
+                @else
+                    @include('pages.widgets.metrics_chart.single_role', [$currentUser, $stackedMetrics])
+                @endif
             </div>
         </div>
     </div>

@@ -10,8 +10,9 @@ class ResultService extends BaseService {
     /**
      * @return false|string
      */
-    public function buildResultsData() {
-        $resultsData = $this->currentUser->results()->reduce(function ($r, $result) {
+    public function buildMonthlyData(string $positionCode) {
+        $results = $this->getResultsByPosition($this->currentUser->employee_code, $positionCode);
+        $resultsData = $results->reduce(function ($r, $result) {
             $r[date("M", strtotime($result->period))] = $result->credit_mtd;
             return $r;
         }, array_reduce(Utility::MONTHS_SHORT, function ($r, $key) {
@@ -26,10 +27,19 @@ class ResultService extends BaseService {
 
     }
 
+    // should use repository patten
+    private function getResultsByPosition(string $employeeCode, string $position) {
+        return Result::where('employee_code', $employeeCode)
+            ->where('position', $position)
+            ->get();
+    }
+
     /**
      * @return mixed
      */
-    public function getYearToDateData() {
-        return Result::where('employee_code', $this->currentUser->employee_code)->max('credit_ytd');
+    public function getYearToDateData(string $position) {
+        return Result::where('employee_code', $this->currentUser->employee_code)
+            ->where('position', $position)
+            ->max('credit_ytd');
     }
 }

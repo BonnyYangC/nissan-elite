@@ -50,10 +50,10 @@ class Stacked extends Base {
      * @param $trainingData
      * @return false|string
      */
-    public function buildStackedMetricsData($metrics, $trainingData) {
+    public function buildStackedMetricsData(string $positionCode, $metrics, $trainingData) {
         /** @var User $currentUser */
         // $currentUser = Auth::user();
-        $metricsDefinations = $this->getAllMetricsByPosition($this->currentUser->position_code);
+        $metricsDefinations = $this->getMetricDefinationsByPosition($positionCode);
         return json_encode(array_merge($this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData),
             $this->buildCommonMetricsData($trainingData)
         ));
@@ -101,7 +101,7 @@ class Stacked extends Base {
         $trainingPoints = 0;
         if(!$trainingData) return $trainingPoints;
         foreach($trainingDefination->metrics as $id => $cm) {
-            $trainingPoints += $trainingData[$id];
+            $trainingPoints += isset($trainingData[$id]) ? $trainingData[$id] : 0;
         }
         return $trainingPoints;
     }

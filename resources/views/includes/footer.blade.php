@@ -15,7 +15,7 @@
         <div class="col-6">
             <nav class="navbar navbar-expand nav-footer">
 
-                @include('includes.nav_items')
+                @include('includes.nav_items', ['allowDropdown' => false])
 
             </nav>
         </div>

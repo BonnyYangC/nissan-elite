@@ -41,7 +41,8 @@ class GageController extends Controller {
 
         //$ytd = env('YEAR');
         //$dataForView = $role->getDashboardViewData($this->dataForView, $ytd);
-        $ytd = $this->serviceResolver->resultService()->getYearToDateData();
+        $selectedPosition = $this->dataForView['selectedPosition']->get('code');
+        $ytd = $this->serviceResolver->resultService()->getYearToDateData($selectedPosition);
         $ytd = $ytd ? $ytd : '';
         //var_dump($ytd);
         $dataForView['statusChart'] = array_merge([

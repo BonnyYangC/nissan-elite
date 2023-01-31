@@ -24,8 +24,10 @@ class Ranking extends Model {
      * @param string $employeeCode
      * @return mixed
      */
-    public static function getMaxPeriod(string $employeeCode) {
-        return Ranking::where('employee_code', $employeeCode)->max('period');
+    public static function getMaxPeriod(string $employeeCode, string $positionCode) {
+        return Ranking::where('employee_code', $employeeCode)
+            ->where('position', $positionCode)
+            ->max('period');
     }
 
     /**

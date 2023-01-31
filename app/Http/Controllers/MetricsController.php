@@ -26,10 +26,11 @@ class MetricsController extends Controller {
      */
     public function metrics() {
         $this->dataForView['menuName'] = 'metrics';
+        $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         //metrics
-        $this->dataForView['metrics'] = $this->service->getMetricsData();
+        $this->dataForView['metrics'] = $this->service->getMetricsData($selectedPosition);
         //training
-        $this->dataForView['training'] = $this->service->getTrainingData();
+        $this->dataForView['training'] = $this->service->getTrainingData($selectedPosition);
         return $this->render('pages.metrics');
     }
 }
