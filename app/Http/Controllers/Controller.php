@@ -52,17 +52,13 @@ class Controller extends BaseController
                 $this->dataForView['acls'] = $currentUser ? Acl::getAllByPosition($currentUser->position_code) : [];
 
             }
-
-            //check if specified a role
-            if (!session('selected_position') && $currentUser) {
+            //check if specified a role, cover both mock user and auth user
+            if ($currentUser) {
                 session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
             }
             if ($role = $request->query('asPosition')) {
                 session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
             }
-
-            //var_dump(session('selected_position'));
-            //if ($currentUser) var_dump($currentUser->position_code);
             
             $this->dataForView['selectedPosition'] = session('selected_position');
             $this->dataForView['currentUser'] = $currentUser;
