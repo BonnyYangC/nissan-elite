@@ -18,7 +18,8 @@ class Base extends BaseService {
      * @return string
      */
     protected function getDateString($month) {
-        return '2022-'.$this->monthArray[$month].'-01';
+        $monthNum = $this->monthArray[$month];
+        return intval($monthNum) <= 3 ? '2023-'.$monthNum.'-01' : '2022-'.$monthNum.'-01';
     }
 
     /**
