@@ -175,7 +175,7 @@
                             <el-table-column align="center" property="c" label="Category" width="90"></el-table-column>
                             <el-table-column align="center" property="s" label="State" width="100"></el-table-column>
                             <el-table-column align="center" v-if="type == 'status'" property="p" label="Points"></el-table-column>
-                            <el-table-column align="center" v-if="type == 'platinum'" property="p" label="Points Platinum" width="150"></el-table-column>
+                            <el-table-column align="center" v-if="type == 'platinum'" property="p" label="Points Platinum"></el-table-column>
                             <el-table-column align="center" class-name="reg" property="re" label="Registered" width="100" ></el-table-column>
                         </el-table>
                     </div>

@@ -41,28 +41,26 @@ class Controller extends BaseController
              {
                 session(['mock-user' => null]);
                 session(['mock' => false]);
+                session(['selected_position' => null]);
             }
             if (session('mock')) {
                 $this->dataForView['mock'] = true;
                 $currentUser = session('mock-user');
                 $this->dataForView['acls'] = [];
+                session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
             } else {
                 /** @var User $currentUser */
                 $currentUser = Auth::user();
                 $this->dataForView['acls'] = $currentUser ? Acl::getAllByPosition($currentUser->position_code) : [];
 
-            }
-
-            //check if specified a role
-            if (!session('selected_position') && $currentUser) {
-                session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
+                //check if specified a role by asPosition
+                if (!session('selected_position') && $currentUser) {
+                    session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
+                }
             }
             if ($role = $request->query('asPosition')) {
                 session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
             }
-
-            //var_dump(session('selected_position'));
-            //if ($currentUser) var_dump($currentUser->position_code);
             
             $this->dataForView['selectedPosition'] = session('selected_position');
             $this->dataForView['currentUser'] = $currentUser;
