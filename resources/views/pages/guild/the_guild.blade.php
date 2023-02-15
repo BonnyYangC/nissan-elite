@@ -17,7 +17,7 @@
             <p>To be invited to annual events members must achieve each program year, the nominated Status Award Level OR  equivalent ELITE Status Average (lifetime points/years of service). Refer Member Guide for full details.</p>
             <p>
                 THE GUILD was introduced back in 2000 to award our best of the best with membership steadily growing year after year. Members and their partners are invited to join members of the MOC each year for a Gala weekend. Over the years THE GUILD has formed many a true friendship amongst members!</p>
-            <p>See where THE GUILD members have celebrated along with news on our next trip click <a href="{{ url('/dashboard/MDguild-events') }}" style="color: #c71444; font-weight : bold;">EVENTS</a> tab.</p>
+            <p>See where THE GUILD members have celebrated along with news on our next trip click <a href="https://www.nissanelite.com.au/guild" style="color: #c71444; font-weight : bold;">EVENTS</a> tab.</p>
         </div>
     </div>
 @endsection
