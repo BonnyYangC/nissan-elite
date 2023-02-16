@@ -67,8 +67,8 @@ class DatabaseSeeder extends Seeder
         //$this->seedCompanies();
         //$this->seedAdmins();
         //$this->seedAcls();
-        $this->seedRewards();
-        //$this->seedMetrics();
+        //$this->seedRewards();
+        $this->seedMetrics();
         //$this->seedFaqs();
     }
 
@@ -87,6 +87,7 @@ class DatabaseSeeder extends Seeder
      *
      */
     private function seedMetrics() {
+        DB::table('metrics')->truncate();
         $metrics = $this->data['metrics'];
         $this->seedSharedMetrics(data_get($metrics, Metric::TYPE_SHARED, []));
         $this->seedCustomMetrics(data_get($metrics, Metric::TYPE_CUSTOM, []));

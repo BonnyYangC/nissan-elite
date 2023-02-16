@@ -36,18 +36,18 @@ class Controller extends BaseController
             $this->dataForView['fromApi'] = $fromApi;
 
             if(($fromApi && $request->input('user')) || (!$fromApi && $request->input('user'))) {
-                //keep session
-            } else //if (!$request->input('user') && !$fromApi)
+                //keep session as mock user
+            } else
              {
                 session(['mock-user' => null]);
                 session(['mock' => false]);
-                session(['selected_position' => null]);
             }
+            
             if (session('mock')) {
                 $this->dataForView['mock'] = true;
                 $currentUser = session('mock-user');
                 $this->dataForView['acls'] = [];
-                session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
+                $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)]);
             } else {
                 /** @var User $currentUser */
                 $currentUser = Auth::user();
@@ -57,12 +57,14 @@ class Controller extends BaseController
                 if (!session('selected_position') && $currentUser) {
                     session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
                 }
-            }
-            if ($role = $request->query('asPosition')) {
-                session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
+
+                if ($role = $request->query('asPosition')) {
+                    session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
+                }
+
+                $this->dataForView['selectedPosition'] = session('selected_position');
             }
             
-            $this->dataForView['selectedPosition'] = session('selected_position');
             $this->dataForView['currentUser'] = $currentUser;
             return $next($request);
         });
