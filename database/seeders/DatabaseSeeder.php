@@ -67,8 +67,8 @@ class DatabaseSeeder extends Seeder
         //$this->seedCompanies();
         //$this->seedAdmins();
         //$this->seedAcls();
-        //$this->seedRewards();
-        $this->seedMetrics();
+        $this->seedRewards();
+        //$this->seedMetrics();
         //$this->seedFaqs();
     }
 
@@ -171,6 +171,7 @@ class DatabaseSeeder extends Seeder
      *
      */
     private function seedRewards() {
+        DB::table('rewards')->truncate();
         $rewards = $this->data['rewards'];
         foreach ($rewards as $r) {
             Reward::create($r);
