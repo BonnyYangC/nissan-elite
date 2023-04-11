@@ -26,13 +26,13 @@
             <div class="page-widget col-3">
                 <h1 style="font-size: 100px;">{{ env('FY_WITH_YEAR') }}</h1>
                 <h3>RANKINGS &amp; {{ config('elite.PROGRAM_AWARD_UNIT') }}</h3>
-                @include('pages.widgets.side_panel.current_ranking', [$currentUser, $rankingStatus])
-                @include('pages.widgets.side_panel.year_to_date', [$ytd])
                 @include('pages.widgets.side_panel.loyalty_points', [$ytd, $historical])
-                @include('pages.widgets.side_panel.dealer_excellence', [$currentUser])
-                @include('pages.widgets.side_panel.registered', [$currentUser])
-                @include('pages.widgets.side_panel.training_on_track')
+                @include('pages.widgets.side_panel.year_to_date', [$ytd])
+                @include('pages.widgets.side_panel.current_ranking', [$currentUser, $rankingStatus])
                 @include('pages.widgets.side_panel.criteria', [$currentUser])
+                @include('pages.widgets.side_panel.registered', [$currentUser])
+                @include('pages.widgets.side_panel.dealer_excellence', [$currentUser])
+                @include('pages.widgets.side_panel.training_on_track')
                 @include('pages.widgets.side_panel.last_year_elite', [$currentUser])
             </div>
         </div>

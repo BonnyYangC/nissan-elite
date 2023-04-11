@@ -40,64 +40,48 @@
                         </thead>
                         <tbody class="nissan-table-body-light-grey" align="left">
                             <tr class="active">
-                                <td>Sydney</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Wednesday 20 July</td>
-                                <td>Aqua Luna</td>-->
-                            </tr>
-                            <tr class="active">
-                                <td>Launceston</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Friday 22 July</td>
-                                <td>Peppers Silo</td>-->
+                                <td>Brisbane</td>
+                                <td>Wednesday 9 August</td>
+                                <td>Hilton Brisbane</td>
                             </tr>
                             <tr class="active">
                                 <td>Townsville</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Saturday 13 August</td>
-                                <td>The Ville</td>-->
-                            </tr>
-                            <tr class="active">
-                                <td>Brisbane</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Monday 15 August</td>
-                                <td>Hilton Brisbane</td>-->
+                                <td>Saturday 12 August</td>
+                                <td>The Ville</td>
                             </tr>
                             <tr class="active">
                                 <td>Adelaide</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Wednesday 17 August</td>
-                                <td>Adelaide Oval</td>-->
+                                <td>Wednesday 16 August</td>
+                                <td>The Playford</td>
                             </tr>
                             <tr class="active">
                                 <td>Perth</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Friday 19 August</td>
-                                <td>Crown Towers</td>-->
+                                <td>Friday 18 August</td>
+                                <td>Crown Promenade</td>
                             </tr>
                             <tr class="active">
                                 <td>Melbourne</td>
-                                <td>TBA</td>
-                                <td>TBA</td>
-                                <!--<td>Thursday 25 August</td>
-                                <td>Grand Hyatt</td>-->
+                                <td>Wednesday 23 August</td>
+                                <td>Grand Hyatt</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Sydney</td>
+                                <td>Wednesday 6 September</td>
+                                <td>Aqua Luna</td>
+                            </tr>
+                            <tr class="active">
+                                <td>Launceston</td>
+                                <td>Friday 8 September</td>
+                                <td>Peppers Silo</td>
                             </tr>
                         </tbody>
                     </table>
                     <p><small>We are excited to be on the road again. Stay tuned for your region dates coming soon. Awards are currently being prepared and we look forward to recognising our Award winners at each event.</small></p>
                     <br>
 
-                    <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/41efcd5dda9b/nissan-dealer-business-development-group-meeting1-3122136?e=1dac1983c2">
+                    <a class="edm-link" target="_blank" href="https://mailchi.mp/41efcd5dda9b/nissan-dealer-business-development-group-meeting1-3122136?e=1dac1983c2">
                         Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY23
-                    </a>-->
-                    <span style="color:#c0133c">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY23</span>
-                    <span style="color:#c0133c">– SALES/SERVICE MANAGER ACCESS ONLY (1 Table per Dealer with Maximum seating 12)</span>
+                    </a><span style="color:#c0133c">– SALES/SERVICE MANAGER ACCESS ONLY (1 Table per Dealer with Maximum seating 12)</span>
                 </div>
             </div>
             <div class="page-section-wrap dashboard-section"></div>

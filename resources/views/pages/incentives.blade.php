@@ -37,6 +37,11 @@
                 <a href="#Past">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Past</button>
                 </a>
+                <br><br>
+                <a href="#News">
+                    <button type="button" class="btn elite-button elite-button-active btn-lg btn-block mb-1">News</button>
+                </a>
+                <br><br>
                 @include('pages.widgets.side_panel.registered', [$currentUser])
             </div>
         </div>
