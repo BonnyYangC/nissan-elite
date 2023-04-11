@@ -31,8 +31,8 @@
                 @include('pages.widgets.side_panel.current_ranking', [$currentUser, $rankingStatus])
                 @include('pages.widgets.side_panel.criteria', [$currentUser])
                 @include('pages.widgets.side_panel.registered', [$currentUser])
-                @include('pages.widgets.side_panel.dealer_excellence', [$currentUser])
                 @include('pages.widgets.side_panel.training_on_track')
+                @include('pages.widgets.side_panel.dealer_excellence', [$currentUser])
                 @include('pages.widgets.side_panel.last_year_elite', [$currentUser])
             </div>
         </div>

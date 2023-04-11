@@ -238,7 +238,7 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Dealer Forecast",
-                            "color": "#3B3EAC",
+                            "color": "#0099C6",
                             "default": "NO"
                         }
                     },
@@ -258,7 +258,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#0099C6",
+                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -278,7 +278,7 @@
                     "metrics": {
                         "booked_check":{
                             "label": "% Booked",
-                            "color": "#DD4477",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -296,7 +296,7 @@
                     "metrics": {
                         "follow_up":{
                             "label": "% Follow Up",
-                            "color": "#66AA00",
+                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -315,7 +315,7 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#B82E2E",
+                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -334,7 +334,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#316395",
+                            "color": "#994499",
                             "default": 0
                         }
                     },
@@ -349,23 +349,23 @@
                 {
                     "identifier": "apnur",
                     "label": "APNUR",
-                    "color": "#994499",
+                    "color": "#22AA99",
                     "order": 12,
                     "title": "APNUR PERFORMANCE",
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "color": "#AAAA11",
+                            "color": "#22AA99",
                             "default": "0%"
                         },
                         "apnur_x":{
                             "label": "XTRAIL",
-                            "color": "#6633CC",
+                            "color": "#AAAA11",
                             "default": "0%"
                         },
                         "apnur_p":{
                             "label": "PATROL",
-                            "color": "#E67300",
+                            "color": "#6633CC",
                             "default": "0%"
                         }
                     },
@@ -469,7 +469,7 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "color": "#DC3912",
+                            "color": "#FF9900",
                             "default": "0%"
                         }
                     },
@@ -484,9 +484,9 @@
                 {
                     "identifier": "nic_sale",
                     "label": "NIC sale",
-                    "color": "#FF9900",
+                    "color": "#109618",
                     "order": 3,
-                    "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED (MTHLY CAP 10)",
+                    "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED",
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
@@ -501,13 +501,12 @@
                     },
                     "guides": [
                         {
-                            "title": "NIC SALES GUIDE – (MTHLY CAP 10)",
+                            "title": "NIC SALES GUIDE",
                             "top": ["Retail Sales Consultant", "mthly"],
-                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]],
-                            "note": "Q1 = 15per unit, Q2,3,4 = 35per unit"
+                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]]
                         },
                         {
-                            "title": "NIC SALES FINANCED BY NFSA – (MTHLY CAP 23)",
+                            "title": "NIC SALES FINANCED BY NFSA",
                             "top": ["Retail Sales Consultant", "per unit"],
                             "rows": [["Category A", 15], ["Category B", 15], ["Category C", 15]]
                         }
@@ -520,7 +519,7 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#109618",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -539,7 +538,7 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#990099",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -549,7 +548,7 @@
                             "top": ["Retail Sales Consultant", "≥88", "≥92"],
                             "rows": [["Category A", 450, 900], ["Category B", 450, 900], ["Category C", 450, 900]],
                             "note": "Category A &amp; B: calculated on Individual score<br>Category C: calculated on Dealership score",
-                            "criteria": "CRITERIA: Refer to the ELIET22 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target"
+                            "criteria": "CRITERIA: Refer to the ELIET23 Member Guide for full details to earn end-year Giftcard Reward – page 14<br> – NPS R3M target"
                         }
                     ]
                 },
@@ -560,7 +559,7 @@
                     "metrics": {
                         "kept_informed":{
                             "label": "Kept Informed",
-                            "color": "#3B3EAC",
+                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -580,7 +579,7 @@
                     "metrics": {
                         "follow_up":{
                             "label": "Followed Up Satisfaction",
-                            "color": "#0099C6",
+                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -832,12 +831,12 @@
                     "metrics": {
                         "insurance_mvi":{
                             "label": "MVI",
-                            "color": "#109618",
+                            "color": "#FF9900",
                             "default": "0"
                         },
                         "insurance_pkg":{
                             "label": "PKG",
-                            "color": "#990099",
+                            "color": "#109618",
                             "default": "0"
                         }
                     },
@@ -854,7 +853,7 @@
                     "metrics": {
                         "penetration":{
                             "label": "Penetration",
-                            "color": "#109618",
+                            "color": "#990099",
                             "default": "0%"
                         }
                     },
@@ -872,8 +871,8 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#990099",
-                            "default": "0"
+                            "color": "#3B3EAC",
+                            "default": 0
                         }
                     },
                     "guides": [{
@@ -885,18 +884,18 @@
                 {
                     "identifier": "nfv",
                     "label": "NFV",
-                    "color": "#3B3EAC",
+                    "color": "#0099C6",
                     "order": 6,
                     "title": "NFV CONTRACTS & NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS",
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
-                            "color": "#66AA00",
+                            "color": "#0099C6",
                             "default": "0"
                         },
                         "nfv_nfsa":{
                             "label": "NFV%",
-                            "color": "#B82E2E",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -917,7 +916,7 @@
                     "metrics": {
                         "nfv_retails":{
                             "label": "NFV of RETAILS",
-                            "color": "#0099C6",
+                            "color": "#66AA00",
                             "default": "0"
                         }
                     },
@@ -934,7 +933,7 @@
                     "metrics": {
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "color": "#0099C6",
+                            "color": "#B82E2E",
                             "default": "0"
                         }
                     },
@@ -951,7 +950,7 @@
                     "metrics": {
                         "satisfaction":{
                             "label": "Satisfaction",
-                            "color": "#DD4477",
+                            "color": "#316395",
                             "default": "0"
                         }
                     },
@@ -1018,6 +1017,7 @@
                     "identifier": "acc",
                     "order": 2,
                     "title": "Nissan Genuine Accessories",
+                    "period": "quarterly",
                     "metrics": {
                         "acc":{
                             "label": "Accessories",
@@ -1041,17 +1041,17 @@
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "color": "#109618",
+                            "color": "#FF9900",
                             "default": "0%"
                         },
-                        "apnur_p":{
-                            "label": "PATROL",
-                            "color": "#990099",
+                        "apnur_x":{
+                            "label": "X-TRAIL",
+                            "color": "#109618",
                             "default": "0%"
                         },
                         "apnur_am":{
                             "label": "ALL MODELS",
-                            "color": "#3B3EAC",
+                            "color": "#990099",
                             "default": "0%"
                         }
                     },
@@ -1063,7 +1063,7 @@
                             "rows": [["Category A, B, C", 220, 345, 550]]
                         },
                         {
-                            "colspan": "APNUR PERFORMANCE – PATROL",
+                            "colspan": "APNUR PERFORMANCE – X-TRAIL",
                             "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
                             "rows": [["Category A, B, C", 220, 345, 550]]
                         },
@@ -1081,7 +1081,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#109618",
+                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -1093,21 +1093,20 @@
                     ]
                 },
                 {
-                    "identifier": "CPRO",
+                    "identifier": "bw_cpro",
                     "order": 5,
                     "title": "BRAKE AND WIPER PARTS SALES PER CPRO",
                     "metrics": {
-                        "rim":{
-                            "label": "RIM % Useage",
-                            "color": "#990099",
-                            "default": "0%"
+                        "bw_cpro":{
+                            "label": "Brake & Wiper Parts",
+                            "color": "#0099C6",
+                            "default": 0
                         }
                     },
                     "guides": [{
                         "title": "BRAKE AND WIPER PARTS SALES PER CPRO GUIDE",
-                        "top": ["Parts Manager", "45%", "55%", "65%"],
-                        "rows": [["Category A, B, C", 220, 345, 550]],
-                        "note": "<span style='color:#c40030'>1. RIM Item Compliance - must achieve minimum of 80% to qualify to earn any points.</span><br>2. RIM Order Line Compliance - points awarded based on performance bands."
+                        "top": ["Parts Manager", "≥$10.00", "≥$20.00", "≥$30.00"],
+                        "rows": [["Category A, B, C", 155, 255, 355]]
                     }]
                 },
                 {
@@ -1117,7 +1116,7 @@
                     "metrics": {
                         "rim":{
                             "label": "RIM % Useage",
-                            "color": "#990099",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1192,12 +1191,12 @@
                     "metrics": {
                         "trade_sale_pvfy":{
                             "label": "Trade Sales vs FY22",
-                            "color": "#FF9900",
+                            "color": "#DC3912",
                             "default": "0%"
                         },
                         "trade_sale_pvlq":{
                             "label": "Trade Sales vs previous",
-                            "color": "#109618",
+                            "color": "#FF9900",
                             "default": "0%"
                         }
                     },
@@ -1206,7 +1205,7 @@
                         "colspan": "Quarterly Performance vs FY22 Total",
                         "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
                         "rows": [["Category A, B, C", 1900, 2400, 3520]]
-                    },
+                        },
                         {
                             "colspan": "Quarterly Performace vs previous quarter",
                             "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
@@ -1246,7 +1245,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly"],
                         "rows": [["Certified Parts Advisor (O & VC)", 375], ["Employee Test Drive Experience (O)", 100]],
-                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 41"
+                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 42"
                     }]
                 }],
             "SM": [
@@ -1277,12 +1276,12 @@
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "color": "#FF9900",
+                            "color": "#DC3912",
                             "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "color": "#109618",
+                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -1303,7 +1302,7 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#FF9900",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1313,7 +1312,6 @@
                         "rows": [["Category A & B", 225, 425], ["Category C", 225, 425]]
                     }]
                 },
-                
                 {
                     "identifier": "hot",
                     "order": 4,
@@ -1321,7 +1319,7 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#3B3EAC",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1338,7 +1336,7 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#0099C6",
+                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1356,7 +1354,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#DD4477",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1374,7 +1372,7 @@
                     "metrics": {
                         "retention":{
                             "label": "Retention",
-                            "color": "#66AA00",
+                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1385,37 +1383,37 @@
                     }]
                 },
                 {
-                    "identifier": "PMP",
+                    "identifier": "pmp",
                     "order": 8,
                     "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
                     "metrics": {
-                        "retention":{
-                            "label": "Retention",
+                        "pmp":{
+                            "label": "PMP",
                             "color": "#66AA00",
-                            "default": "0%"
+                            "default": 0
                         }
                     },
                     "guides": [{
                         "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
-                        "top": ["Service Manager", "≥35%", "≥40%", "≥45%", "≥50%"],
-                        "rows": [["Category A & B", 240, 320, 400, 520], ["Category C", 240, 320, 400, 520]]
+                        "top": ["Service Manager", "package sale"],
+                        "rows": [["Category A & B", 100], ["Category C", 100]]
                     }]
                 },
                 {
-                    "identifier": "Sretention",
+                    "identifier": "retention",
                     "order": 9,
                     "title": "SERVICE RETENTION",
                     "metrics": {
                         "retention":{
-                            "label": "SRetention",
-                            "color": "#66AA00",
+                            "label": "Retention",
+                            "color": "#B82E2E",
                             "default": "0%"
                         }
                     },
                     "guides": [{
                         "title": "SERVICE RETENTION GUIDE",
-                        "top": ["Service Manager", "≥35%", "≥40%", "≥45%", "≥50%"],
-                        "rows": [["Category A & B", 240, 320, 400, 520], ["Category C", 240, 320, 400, 520]]
+                        "top": ["Service Manager", "TBA"],
+                        "rows": [["Category A & B", "TBA"], ["Category C", "TBA"]]
                     }]
                 },
                 {
@@ -1425,7 +1423,7 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#B82E2E",
+                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1501,12 +1499,12 @@
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "color": "#FF9900",
+                            "color": "#DC3912",
                             "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "color": "#109618",
+                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -1527,7 +1525,7 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#FF9900",
+                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1537,7 +1535,6 @@
                         "rows": [["Category A & B", 260, 460], ["Category C", 260, 460]]
                     }]
                 },
-                
                 {
                     "identifier": "eoc",
                     "order": 4,
@@ -1545,7 +1542,7 @@
                     "metrics": {
                         "eoc":{
                             "label": "Exp Costs",
-                            "color": "#3B3EAC",
+                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1562,7 +1559,7 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#0099C6",
+                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1580,7 +1577,7 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#DD4477",
+                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1592,13 +1589,47 @@
                     ]
                 },
                 {
+                    "identifier": "pmp",
+                    "order": 7,
+                    "title": "PRE-PAID MAINTENANCE PLAN (PMP)",
+                    "metrics": {
+                        "pmp":{
+                            "label": "PMP",
+                            "color": "#DD4477",
+                            "default": 0
+                        }
+                    },
+                    "guides": [{
+                        "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
+                        "top": ["Service Manager", "package sale"],
+                        "rows": [["Category A & B", 100], ["Category C", 100]]
+                    }]
+                },
+                {
+                    "identifier": "retention",
+                    "order": 8,
+                    "title": "SERVICE RETENTION",
+                    "metrics": {
+                        "retention":{
+                            "label": "Retention",
+                            "color": "#66AA00",
+                            "default": "0%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "SERVICE RETENTION GUIDE",
+                        "top": ["Service Manager", "TBA"],
+                        "rows": [["Category A & B", "TBA"], ["Category C", "TBA"]]
+                    }]
+                },
+                {
                     "identifier": "loyalty",
                     "order": 9,
                     "title": "Loyalty per Loyalty Sales",
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#66AA00",
+                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -1643,7 +1674,7 @@
                             ["Certified Service Executive  (VC & A)", "", 375, ""], ["Employee Test Drive Experience (O)", "", 100, ""],
                             ["Mastery Goal Achievement", "", 250, ""], ["Mastery", "", "", 250],
                             ["Engagement", 100, "", ""]],
-                        "criteria": "CRITERIA: Refer to the ELITE22 Member Guide for full details to earn end-year Giftcard Reward – page 35"
+                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 35"
                     }]
                 }]
         }
