@@ -76,7 +76,8 @@ class Individual extends Base {
         foreach($metricDefination->metrics as $id => $cm) {
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
-        foreach(Utility::MONTHS_SHORT as $month) {
+        $months = $metricDefination->period === self::METRIC_PERIOD_QUARTERLY ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
+        foreach($months as $month) {
             $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
             foreach($metricDefination->metrics as $id => $cm) {

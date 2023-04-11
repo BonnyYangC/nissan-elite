@@ -61,7 +61,7 @@ class Controller extends BaseController
                 if ($role = $request->query('asPosition')) {
                     session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
                 }
-
+var_dump(session('selected_position'));
                 $this->dataForView['selectedPosition'] = session('selected_position');
             }
             
