@@ -222,8 +222,7 @@
                         {
                             "title": "NIC sale GUIDE",
                             "top": ["Sales Manager", "per unit"],
-                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]],
-                            //"note": "Q1 = 15per unit, Q2,3,4 = 35per unit"
+                            "rows": [["Category A", 35], ["Category B", 35], ["Category C", 35]]
                         },
                         {
                             "title": "NIC sale financed by NFSA GUIDE",
@@ -733,8 +732,7 @@
                     "guides": [{
                         "title": "NISSAN INTELLIGENT CHOICE SALE GUIDE",
                         "top": ["Stock Controller", "mthly"],
-                        "rows": [["Category A & B", 35], ["Category C", 35]],
-                        //"note": "Q1 = 15per unit, Q2,3,4 = 35per unit"
+                        "rows": [["Category A & B", 35], ["Category C", 35]]
                     }]
                 },
                 {
