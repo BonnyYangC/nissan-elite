@@ -57,6 +57,9 @@ class Controller extends BaseController
                 //check if specified a role by asPosition
                 if (!session('selected_position') && $currentUser) {
                     $position = $currentUser->positions()->get($currentUser->position->code);
+                    var_dump("position", $position);
+                    var_dump("title", $currentUser->position->title);
+                    var_dump("seeeion", $position ? $position : $currentUser->position->title);
                     session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title])]);
                 }
 
@@ -65,11 +68,6 @@ class Controller extends BaseController
                 }
                 $this->dataForView['selectedPosition'] = session('selected_position');
 
-                var_dump("title", $currentUser->position->title);
-                if ($currentUser) {
-                    var_dump("code", $currentUser->position->code);
-                    var_dump("multiple", $currentUser->positions()->get($currentUser->position->code));
-                }
                 var_dump($this->dataForView['selectedPosition']);
             }
             
