@@ -23,7 +23,7 @@ Route::get('/admin/fake-region-staff', [App\Http\Controllers\UsersController::cl
 Route::get('/reset_password', [App\Http\Controllers\UsersController::class,'reset_password'])->name('reset_password');
 
 //dealer users
-Route::group(['middleware' => ['auth']],function () {
+Route::group(['middleware' => 'auth'],function () {
     Route::get('/elite_individual', [App\Http\Controllers\HomeController::class, 'index'])->name('elite_individual');
 
 //pages
@@ -57,14 +57,14 @@ Route::group(['middleware' => ['auth']],function () {
 });
 
 //region staff only
-Route::group(['prefix' => 'region', 'middleware' => ['auth']],function (){
+Route::group(['prefix' => 'region', 'middleware' => 'auth'],function (){
     Route::get('/load_report', [App\Http\Controllers\RegionController::class, 'load_report'])->name('region.load_report');
 
     Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'region_jump_to_dealer'])->name('region.jump_to_dealer');
 });
 
 //backend, admin only
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     Route::post('/data_process', [App\Http\Controllers\AdminController::class, 'data_process'])->name('admin.data_process');
