@@ -63,7 +63,7 @@ class Controller extends BaseController
                 }
                 $this->dataForView['selectedPosition'] = session('selected_position');
 
-                var_dump($currentUser);
+                var_dump($currentUser->position());
                 if ($currentUser) {
                     var_dump($currentUser->position->code);
                     var_dump($currentUser->positions()->get($currentUser->position->code));
