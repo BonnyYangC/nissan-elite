@@ -66,7 +66,6 @@ class User extends Authenticatable
     }
 
     /**
-     * @return Collect
      */
     public function positions() {
         // return $this->hasMany(Result::class, 'employee_code', 'employee_code')->pluck('position')->unique();
@@ -75,7 +74,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return Bool
+     * @return bool
      */
     public function getHasMultipleRolesAttribute() {
         return 1 < $this->positions()->count();

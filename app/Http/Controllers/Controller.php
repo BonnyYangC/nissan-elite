@@ -62,8 +62,10 @@ class Controller extends BaseController
                     session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
                 }
                 $this->dataForView['selectedPosition'] = session('selected_position');
-                var_dump($currentUser->position->code);
-                var_dump($currentUser->positions()->get($currentUser->position->code));
+                if ($currentUser) {
+                    var_dump($currentUser->position->code);
+                    var_dump($currentUser->positions()->get($currentUser->position->code));
+                }
                 var_dump($this->dataForView['selectedPosition']);
             }
             
