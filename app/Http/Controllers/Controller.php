@@ -47,7 +47,7 @@ class Controller extends BaseController
                 $this->dataForView['mock'] = true;
                 $currentUser = session('mock-user');
                 $this->dataForView['acls'] = [];
-                $position = $currentUser->positions()->get($currentUser->position->code);
+                $position = $currentUser->positions()->get($currentUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
                 $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title]);
             } else {
                 /** @var User $currentUser */
@@ -56,10 +56,7 @@ class Controller extends BaseController
 
                 //check if specified a role by asPosition
                 if (!session('selected_position') && $currentUser) {
-                    $position = $currentUser->positions()->get($currentUser->position->code);
-                    var_dump("position", $position);
-                    var_dump("title", $currentUser->position->title);
-                    var_dump("seeeion", $position ? $position : $currentUser->position->title);
+                    $position = $currentUser->positions()->get($currentUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
                     session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title])]);
                 }
 
@@ -67,8 +64,6 @@ class Controller extends BaseController
                     session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
                 }
                 $this->dataForView['selectedPosition'] = session('selected_position');
-
-                var_dump($this->dataForView['selectedPosition']);
             }
             
             $this->dataForView['currentUser'] = $currentUser;
