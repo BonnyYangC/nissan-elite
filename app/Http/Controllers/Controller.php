@@ -47,7 +47,8 @@ class Controller extends BaseController
                 $this->dataForView['mock'] = true;
                 $currentUser = session('mock-user');
                 $this->dataForView['acls'] = [];
-                $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)]);
+                $position = $currentUser->positions()->get($currentUser->position->code);
+                $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title]);
             } else {
                 /** @var User $currentUser */
                 $currentUser = Auth::user();
@@ -55,7 +56,8 @@ class Controller extends BaseController
 
                 //check if specified a role by asPosition
                 if (!session('selected_position') && $currentUser) {
-                    session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $currentUser->positions()->get($currentUser->position->code)])]);
+                    $position = $currentUser->positions()->get($currentUser->position->code);
+                    session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title])]);
                 }
 
                 if ($role = $request->query('asPosition')) {
@@ -63,10 +65,10 @@ class Controller extends BaseController
                 }
                 $this->dataForView['selectedPosition'] = session('selected_position');
 
-                var_dump($currentUser->position->code);
+                var_dump("title", $currentUser->position->title);
                 if ($currentUser) {
-                    var_dump($currentUser->position->code);
-                    var_dump($currentUser->positions()->get($currentUser->position->code));
+                    var_dump("code", $currentUser->position->code);
+                    var_dump("multiple", $currentUser->positions()->get($currentUser->position->code));
                 }
                 var_dump($this->dataForView['selectedPosition']);
             }
