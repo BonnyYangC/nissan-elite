@@ -68,8 +68,8 @@ class User extends Authenticatable
     /**
      */
     public function positions() {
-        // return $this->hasMany(Result::class, 'employee_code', 'employee_code')->pluck('position')->unique();
         $positions = $this->hasMany(Result::class, 'employee_code', 'employee_code')->pluck('position')->unique();
+        // $positions = $this->hasMany(UserPositions::class, 'employee_code', 'employee_code')->pluck('position_code')->unique();
         return Position::whereIn('code', $positions)->pluck('title', 'code');
     }
 
