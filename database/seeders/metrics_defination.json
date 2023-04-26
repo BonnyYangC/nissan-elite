@@ -113,7 +113,7 @@
                     },
                     "guides": [{
                         "title": "TRAINING GUIDE - FLEET SALES EXECUTIVE",
-                        "note": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 20",
+                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 20",
                         "top": ["Competency Modules", "Points Quarterly"],
                         "rows": [["Certified Fleet Sales Executive (O)", 250],
                             ["Advanced selling Skills (O)", 250], ["Employee Test Drive Experience", "100"]]
@@ -597,7 +597,7 @@
                     "label": "Training",
                     "color": "#E67300",
                     "order": 8,
-                    "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
+                    "title": "TRAINING GUIDE",
                     "metrics": {
                         "train_online": {
                             "label": "Online",
@@ -621,7 +621,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "TRAINING GUIDE - RETAIL SALES CONSULTANT",
+                        "title": "TRAINING GUIDE",
                         "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 14",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Sales Consultant (O & VC)", "", 250, ""],
