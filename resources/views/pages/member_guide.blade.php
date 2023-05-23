@@ -30,25 +30,25 @@
                 <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=7') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Sales</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=15') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=17') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Fleet</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=21') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=23') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Stock Controller</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=25') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=27') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">F&amp;I Manager</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=30') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=32') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Service</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=37') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=41') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Parts</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=43') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=48') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Recognition</button>
                 </a>
-                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=50') }}" target="_blank">
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=58') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Terms &amp; Conditions </button>
                 </a>
 

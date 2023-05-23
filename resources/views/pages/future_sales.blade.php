@@ -10,7 +10,7 @@
         </div>
         <div class="d-flex">
             <div class="col-9 page-section-wrap">
-                <img src="../images/future_sales/cover.jpg" style="object-fit: fill; width:100%" />
+                <img src="../images/future_sales/cover.png" style="object-fit: fill; width:100%" />
             </div>
             <div class="page-widget col-3">
                 <a href="{{ route('future_sales.explanation') }}">

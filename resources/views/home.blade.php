@@ -61,7 +61,7 @@
         </div>
         <div class="col-2">
             <a href="{{ route('future_sales') }}">
-                <img class="tiles-img" src="{{ asset('images/tiles/future_sales_incentive.jpg') }}" style="margin-bottom:30px;" width="332">
+                <img class="tiles-img" src="{{ asset('images/tiles/future_sales_incentive.png') }}" style="margin-bottom:30px;" width="332">
             </a>
         </div>
         <div class="col-2">

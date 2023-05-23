@@ -21,7 +21,7 @@ class ImportGuildEvent extends Command
      *
      * @var string
      */
-    protected $description = 'Upload guild member from csv file';
+    protected $description = 'Upload guild events from csv file';
 
     /**
      * Create a new command instance.
