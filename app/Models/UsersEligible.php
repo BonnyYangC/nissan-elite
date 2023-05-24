@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model {
+class UsersEligible extends Model
+{
     use HasFactory;
-
+    protected $table = 'users_eligible';
 }

@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Incentive extends Model {
     use HasFactory;
 
-    public $table = 'nissan_incentives';
-
-
     /**
      * @param null $region
      * @return mixed

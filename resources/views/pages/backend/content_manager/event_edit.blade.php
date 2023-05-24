@@ -43,7 +43,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="date" name="datestamp" placeholder="Start at" value="{{ $event ? $event->datestamp : null }}">
+                                            <input class="input" type="date" name="start" placeholder="Start at" value="{{ $event ? $event->start : null }}">
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="date" name="dateend" placeholder="End at" value="{{ $event ? $event->dateend : null}}">
+                                            <input class="input" type="date" name="end" placeholder="End at" value="{{ $event ? $event->end : null}}">
                                         </div>
                                     </div>
                                 </div>

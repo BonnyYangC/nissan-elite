@@ -50,15 +50,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'excellence_eligible' => 'boolean'
-    ];
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function position() {
@@ -107,4 +98,12 @@ class User extends Authenticatable
     public function loyaltyPoints() {
         return $this->hasMany(History::class, 'member_id', 'employee_code')->get();
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function eligible() {
+        return $this->hasOne(UsersEligible::class, 'employee_code', 'employee_code');
+    }
+
 }

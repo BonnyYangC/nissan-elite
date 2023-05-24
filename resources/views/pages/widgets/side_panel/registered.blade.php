@@ -8,7 +8,7 @@
         <tbody class="nissan-table-body-grey">
             <tr align="center">
                 <td>
-                    @if ($currentUser->registered)
+                    @if ($currentUser->eligible->registered)
                         <span class="fs-30 span-red" title="You are eligible for the {{ config('elite.PROGRAM_SHORT_NAME') }}{{ config('elite.YEAR') }} Program">&#10004</span>
                         <p class="m-2 txt-white">250 {{ config('elite.PROGRAM_AWARD_UNIT') }} applied to Monthly points</p>
                     @else

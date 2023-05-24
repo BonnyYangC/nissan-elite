@@ -49,8 +49,9 @@ class Ranking extends Model {
      */
     public static function getRankingsBy(string $position, string $period, string $type, int $take = null, string $state = null) {
         $query = self::join('users','rankings.employee_code', '=', 'users.employee_code')
+            ->join('users_eligible','users_eligible.employee_code', '=', 'users.employee_code')
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category', 'dealers.state');
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category', 'dealers.state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');
@@ -78,8 +79,9 @@ class Ranking extends Model {
      */
     public static function getRankingByEmployeeCode(string $employeeCode, string $period, string $type) {
         $query = self::join('users','rankings.employee_code', '=', 'users.employee_code')
+        ->join('users_eligible','users_eligible.employee_code', '=', 'users.employee_code' )
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category', 'dealers.state');
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category', 'dealers.state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');

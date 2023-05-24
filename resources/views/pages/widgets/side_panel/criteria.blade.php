@@ -8,7 +8,7 @@
         <tbody class="nissan-table-body-grey">
             <tr align="center">
                 <td>
-                    @if ($currentUser->met_criteria)
+                    @if ($currentUser->eligible->met_criteria)
                         <span class="fs-30 span-red">&#10004</span>
                     @else
                         <a href="{{ route('member_guide') }}" target="_blank">

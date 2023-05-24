@@ -24,11 +24,12 @@ class CreateRewardsTable extends Migration {
             $table->string('gold');
             $table->string('gold_reward');
             $table->string('max');
+            $table->timestamps();
 
             // $table->foreign('position')->references('code')->on('positions');
         });
 
-        DB::table('rewards')->insert(array([
+        /*DB::table('rewards')->insert(array([
             'position' => 'M', // Sales Manager
             'commendation' => '15000',
             'commendation_reward' => '100',
@@ -127,7 +128,7 @@ class CreateRewardsTable extends Migration {
             'gold' => '40000',
             'gold_reward' => '1500',
             'max' => '50000'
-        ]));
+        ]));*/
     }
 
     /**
