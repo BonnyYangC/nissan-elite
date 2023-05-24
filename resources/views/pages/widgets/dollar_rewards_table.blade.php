@@ -24,8 +24,8 @@
     </table>
 </div>
 
-<p>
-    Status Awards are distributed to registered members on achieving each Level throughout the program year.<br/>
-    <strong>ELITE</strong> EFTPOS Rewards are distributed to registered members who have successfully completed their required criteria at 31 March.
+<p style="color: #c40030;">
+    <strong>Status Awards are distributed to registered members on achieving each Level throughout the program year.<br/>
+    ELITE EFTPOS Rewards are distributed to registered members who have successfully completed their required criteria at 31 March.</strong>
 </p>
 
