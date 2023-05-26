@@ -2,9 +2,6 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Helper\Defination;
-use App\Models\History;
-
 class LoyaltyHistorical extends Base {
 
     /** @var array  */
@@ -30,22 +27,7 @@ class LoyaltyHistorical extends Base {
         return $key;
     }
 
-    /**
-     * get model according data file type
-     *
-     * @param $actionType
-     * @param $modelKey
-     * @param $record
-     * @return History
-     */
-    public function getModel($actionType, $modelKey, $record, $key) {
-        $model = History::where('member_id', trim($record[$modelKey['primary']]))
-            ->where('period', trim($modelKey['mapping'][$key]))->first();
-        if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
-            $model = new History();
-        }
-        return $model;
-    }
+    
 
     /**
      * built data map for data uploader

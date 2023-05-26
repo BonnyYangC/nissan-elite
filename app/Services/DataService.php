@@ -192,7 +192,7 @@ class DataService extends BaseService {
             case Defination::DATA_TYPE_DEALERS_INFO :
                 $returnValue->add(new DMS\ImportationImpl\Dealer($this->serviceResolver->regionService()->load()));
                 break;
-            /*case Role::FLEET_SALES_EXECUTIVES:
+            case Role::FLEET_SALES_EXECUTIVES:
                 $returnValue->add(new DMS\FleetSalesExecutives());
                 break;
             case Role::SALES_MANAGER:
@@ -220,17 +220,17 @@ class DataService extends BaseService {
                 $returnValue->add(new DMS\ServiceAdviser());
                 break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                $returnValue->add(new DMS\RegionStaff($this->serviceResolver->regionService()->load()));
+                $returnValue->add(new DMS\ImportationImpl\RegionStaff($this->serviceResolver->regionService()->load()));
                 break;
             case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
-                $returnValue->add(new DMS\LoyaltyHistorical());
+                $returnValue->add(new DMS\ImportationImpl\LoyaltyHistorical());
                 break;
             case Defination::DATA_TYPE_RANKING :
                 $returnValue->add(new DMS\Ranking());
                 break;
             case Defination::DATA_TYPE_TERRITORY_REPORT:
                 $returnValue->add(new DMS\TerritoryReport());
-                break;*/
+                break;
             default:
                 break;
         }
@@ -249,7 +249,7 @@ class DataService extends BaseService {
             case Defination::DATA_TYPE_DEALERS_INFO :
                 $returnValue = new DMS\ValidationImpl\Dealer($this->serviceResolver->regionService()->load());
                 break;
-            /*case Role::FLEET_SALES_EXECUTIVES:
+            case Role::FLEET_SALES_EXECUTIVES:
                 $returnValue = new DMS\FleetSalesExecutives();
                 break;
             case Role::SALES_MANAGER:
@@ -277,17 +277,17 @@ class DataService extends BaseService {
                 $returnValue = new DMS\ServiceAdviser();
                 break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                $returnValue = new DMS\RegionStaff($this->serviceResolver->regionService()->load());
+                $returnValue = new DMS\ValidationImpl\RegionStaff($this->serviceResolver->regionService()->load());
                 break;
             case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
-                $returnValue = new DMS\LoyaltyHistorical();
+                $returnValue = new DMS\ValidationImpl\LoyaltyHistorical();
                 break;
             case Defination::DATA_TYPE_RANKING :
                 $returnValue = new DMS\Ranking();
                 break;
             case Defination::DATA_TYPE_TERRITORY_REPORT:
                 $returnValue = new DMS\TerritoryReport();
-                break;*/
+                break;
             default:
                 break;
         }
