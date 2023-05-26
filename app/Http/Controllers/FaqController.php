@@ -25,7 +25,7 @@ class FaqController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     public function faqs() {
-        $this->dataForView['faqs'] = $this->service->load();
+        $this->dataForView['faqs'] = $this->service->loadAll();
         return $this->render('pages.backend.content_manager.faqs');
     }
 
