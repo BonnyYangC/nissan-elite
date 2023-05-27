@@ -121,7 +121,7 @@ class PagesController extends Controller {
      */
     public function faq() {
         $this->dataForView['menuName'] = 'faq';
-        $this->dataForView['faqs'] = $this->resolver->faqService()->load();
+        $this->dataForView['faqs'] = $this->resolver->faqService()->loadPublished();
         return $this->render('pages.faq');
     }
 }

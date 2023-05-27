@@ -16,8 +16,14 @@ class FaqService {
     /**
      * @return
      */
-    public function load() {
+    public function loadAll() {
         return Faq::get();
+    }
+        /**
+     * @return
+     */
+    public function loadPublished() {
+        return Faq::where('status','=','1')->get();
     }
 
     /**
@@ -31,7 +37,11 @@ class FaqService {
             $faq = new Faq();
         }
         $faq->question = $newData['question'];
-        $faq->sorting = $newData['sorting'];
+        if (isset($newData['sorting']) && is_int($newData['sorting'])) {
+            $faq->sorting = $newData['sorting']; 
+        } else {
+            $faq->sorting = Faq::orderBy('sorting','desc')->value('sorting')+1;
+        }
         $faq->status = $newData['status'];
         $faq->answer = $newData['answer'];
 
