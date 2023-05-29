@@ -15,7 +15,6 @@ class Individual extends Base {
         $trainingDefination = $this->getTrainingMetricByPosition($positionCode);
         $trainingDefination->chart_data = json_encode($this->buildStackedTrainingData($trainingDefination, $data));
         $trainingDefination->chart_name = 'chart_'.$trainingDefination->identifier;
-        var_dump(json_encode($trainingDefination->toArray()));
         return $trainingDefination;
     }
 
