@@ -2,6 +2,7 @@
 
 namespace App\Services\MetricsServices;
 
+use App\Helper\Defination;
 use App\Models\Metric;
 use App\Services\BaseService;
 use Illuminate\Support\Collection;
@@ -33,7 +34,7 @@ class Base extends BaseService {
      * @param string $position
      * @return mixed
      */
-    public function getMetricDefinationsByPosition(string $position) {
+    public function getAllMetricsByPosition(string $position) {
         return Metric::where('position', '=', $position)->orderBy('order')->get();
     }
 
@@ -42,7 +43,7 @@ class Base extends BaseService {
      * @return Collection
      */
     public function getMetricsByPosition(string $position): Collection {
-        return Metric::where('position', '=', $position)->where('identifier', '!=', Metric::METRIC_TRAINING)->orderBy('order')->get();
+        return Metric::where('position', '=', $position)->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)->orderBy('order')->get();
     }
 
     /**
@@ -50,6 +51,6 @@ class Base extends BaseService {
      * @return Metric
      */
     public function getTrainingMetricByPosition(string $position): Metric {
-        return Metric::where('position', '=', $position)->where('identifier', '=', Metric::METRIC_TRAINING)->first();
+        return Metric::where('position', '=', $position)->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
     }
 }

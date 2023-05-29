@@ -9,11 +9,6 @@ class Metric extends Model
 {
     use HasFactory;
 
-    const TYPE_SHARED = 'shared';
-    const TYPE_CUSTOM = 'custom';
-
-    const METRIC_TRAINING = 'training';
-
     /**
      * The attributes that are mass assignable.
      *

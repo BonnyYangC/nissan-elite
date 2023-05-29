@@ -4,21 +4,18 @@
             {
                 "identifier": "excellence",
                 "label": "Dealer Excellence",
-                "color": "#8B0707",
                 "order": 1,
                 "title": "Excellence"
             },
             {
                 "identifier": "registration",
                 "label": "Registration",
-                "color": "#329262",
                 "order": 2,
                 "title": "Registration"
             },
             {
                 "identifier": "incentive",
                 "label": "Incentive",
-                "color": "#5574A6",
                 "order": 3,
                 "title": "Incentive"
             }
@@ -50,7 +47,6 @@
                     "metrics": {
                         "new_vehicle_fleet": {
                             "label": "Sales v Target",
-                            "color": "#DC3912",
                             "default": 0
                         }
                     },
@@ -70,7 +66,6 @@
                     "metrics": {
                         "volume":{
                             "label": "Volume Growth",
-                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -90,7 +85,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -106,7 +100,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 5,
                     "title": "TRAINING",
                     "metrics": {
@@ -148,7 +141,6 @@
                     "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
-                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -167,7 +159,6 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
-                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -188,7 +179,6 @@
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales Pipeline",
-                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -208,7 +198,6 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "color": "#109618",
                             "default": "0%"
                         }
                     },
@@ -223,18 +212,15 @@
                 {
                     "identifier": "nic_sale",
                     "label": "NIC sale",
-                    "color": "#990099",
                     "order": 5,
                     "title": "NIC sale",
                     "metrics": {
                         "nic_sale": {
                             "label": "NIC sale",
-                            "color": "#990099",
                             "default": 0
                         },
                         "nic_sale_nfsa": {
                             "label": "NIC Financed",
-                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -258,7 +244,6 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#994499",
                             "default": 0
                         }
                     },
@@ -273,23 +258,19 @@
                 {
                     "identifier": "apnur",
                     "label": "APNUR",
-                    "color": "#22AA99",
                     "order": 7,
                     "title": "APNUR PERFORMANCE",
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "color": "#22AA99",
                             "default": "0%"
                         },
                         "apnur_x":{
                             "label": "XTRAIL",
-                            "color": "#AAAA11",
                             "default": "0%"
                         },
                         "apnur_p":{
                             "label": "PATROL",
-                            "color": "#6633CC",
                             "default": "0%"
                         }
                     },
@@ -319,7 +300,6 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Dealer Forecast",
-                            "color": "#0099C6",
                             "default": "NO"
                         }
                     },
@@ -339,7 +319,6 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -359,7 +338,6 @@
                     "metrics": {
                         "booked_check":{
                             "label": "% Booked",
-                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -377,7 +355,6 @@
                     "metrics": {
                         "follow_up":{
                             "label": "% Follow Up",
-                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -396,7 +373,6 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -415,7 +391,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -431,7 +406,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 14,
                     "title": "TRAINING",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE23 Member Guide</a> for full details.",
@@ -473,18 +447,15 @@
                 {
                     "identifier": "new_vehicle",
                     "label": "New Vehicle Sales",
-                    "color": "#3366CC",
                     "order": 1,
                     "title": "NEW VEHICLE SALES PERFORMANCE",
                     "metrics": {
                         "new_vehicle":{
                             "label": "Sales",
-                            "color": "#3366CC",
                             "default": 0
                         },
                         "new_vehicle_performance":{
                             "label": "DLR%",
-                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -513,7 +484,6 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "color": "#FF9900",
                             "default": "0%"
                         }
                     },
@@ -528,18 +498,15 @@
                 {
                     "identifier": "nic_sale",
                     "label": "NIC sale",
-                    "color": "#109618",
                     "order": 3,
                     "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED",
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
-                            "color": "#109618",
                             "default": 0
                         },
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -563,7 +530,6 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -582,7 +548,6 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -603,7 +568,6 @@
                     "metrics": {
                         "kept_informed":{
                             "label": "Kept Informed",
-                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -623,7 +587,6 @@
                     "metrics": {
                         "follow_up":{
                             "label": "Followed Up Satisfaction",
-                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -643,7 +606,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -659,7 +621,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 9,
                     "title": "TRAINING GUIDE",
                     "metrics": {
@@ -703,7 +664,6 @@
                     "metrics": {
                         "comp_ow":{
                             "label": "OW Data",
-                            "color": "#3366CC",
                             "default": "0"
                         }
                     },
@@ -720,7 +680,6 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Retail Forecast",
-                            "color": "#DC3912",
                             "default": "NO"
                         }
                     },
@@ -738,7 +697,6 @@
                     "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
-                            "color": "#FF9900",
                             "default": "0"
                         }
                     },
@@ -755,7 +713,6 @@
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales",
-                            "color": "#109618",
                             "default": "0"
                         }
                     },
@@ -772,7 +729,6 @@
                     "metrics": {
                         "reg_ret":{
                             "label": "Reg VS. Retail",
-                            "color": "#0099C6",
                             "default": "0%"
                         }
                     },
@@ -790,7 +746,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -806,7 +761,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 7,
                     "title": "TRAINING",
                     "metrics": {
@@ -846,7 +800,6 @@
                     "metrics": {
                         "nfsa":{
                             "label": "NFSA Contracts",
-                            "color": "#3366CC",
                             "default": "0"
                         }
                     },
@@ -863,7 +816,6 @@
                     "metrics": {
                         "lrb":{
                             "label": "Loyalty",
-                            "color": "#DC3912",
                             "default": "0"
                         }
                     },
@@ -876,18 +828,15 @@
                 {
                     "identifier": "insurance",
                     "label": "Insurance",
-                    "color": "#FF9900",
                     "order": 3,
                     "title": "Insurance – MVI & MVI/NFSA pkg",
                     "metrics": {
                         "insurance_mvi":{
                             "label": "MVI",
-                            "color": "#FF9900",
                             "default": "0"
                         },
                         "insurance_pkg":{
                             "label": "PKG",
-                            "color": "#109618",
                             "default": "0"
                         }
                     },
@@ -904,7 +853,6 @@
                     "metrics": {
                         "penetration":{
                             "label": "Penetration",
-                            "color": "#990099",
                             "default": "0%"
                         }
                     },
@@ -922,7 +870,6 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -935,18 +882,15 @@
                 {
                     "identifier": "nfv",
                     "label": "NFV",
-                    "color": "#0099C6",
                     "order": 6,
                     "title": "NFV CONTRACTS & NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS",
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
-                            "color": "#0099C6",
                             "default": "0"
                         },
                         "nfv_nfsa":{
                             "label": "NFV%",
-                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -967,7 +911,6 @@
                     "metrics": {
                         "nfv_retails":{
                             "label": "NFV of RETAILS",
-                            "color": "#66AA00",
                             "default": "0"
                         }
                     },
@@ -984,7 +927,6 @@
                     "metrics": {
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "color": "#B82E2E",
                             "default": "0"
                         }
                     },
@@ -1001,7 +943,6 @@
                     "metrics": {
                         "satisfaction":{
                             "label": "Satisfaction",
-                            "color": "#316395",
                             "default": "0"
                         }
                     },
@@ -1019,7 +960,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1035,7 +975,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 11,
                     "title": "TRAINING",
                     "metrics": {
@@ -1074,7 +1013,6 @@
                     "metrics": {
                         "grp":{
                             "label": "Genuine Replacement Parts",
-                            "color": "#3366CC",
                             "default": "0%"
                         }
                     },
@@ -1092,7 +1030,6 @@
                     "metrics": {
                         "acc":{
                             "label": "Accessories",
-                            "color": "#DC3912",
                             "default": "0%"
                         }
                     },
@@ -1105,24 +1042,20 @@
                 {
                     "identifier": "apnur",
                     "label": "APNUR",
-                    "color": "#FF9900",
                     "order": 3,
                     "title": "APNUR PERFORMANCE -  NAVARA, X-TRAIL, ALL MODELS",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE23 Member Guide</a> for full details.",
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "color": "#FF9900",
                             "default": "0%"
                         },
                         "apnur_x":{
                             "label": "X-TRAIL",
-                            "color": "#109618",
                             "default": "0%"
                         },
                         "apnur_am":{
                             "label": "ALL MODELS",
-                            "color": "#990099",
                             "default": "0%"
                         }
                     },
@@ -1152,7 +1085,6 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#3B3EAC",
                             "default": 0
                         }
                     },
@@ -1170,7 +1102,6 @@
                     "metrics": {
                         "bw_cpro":{
                             "label": "Brake & Wiper Parts",
-                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1187,7 +1118,11 @@
                     "metrics": {
                         "rim":{
                             "label": "RIM % Useage",
-                            "color": "#DD4477",
+                            "default": "0%"
+                        },
+                        "qualifier":{
+                            "label": "QUALIFIER",
+                            "color": "#990099",
                             "default": "0%"
                         }
                     },
@@ -1205,7 +1140,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1221,7 +1155,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 8,
                     "title": "TRAINING",
                     "metrics": {
@@ -1263,7 +1196,6 @@
                     "metrics": {
                         "grp":{
                             "label": "Genuine Replacement Parts",
-                            "color": "#3366CC",
                             "default": "0%"
                         }
                     },
@@ -1276,19 +1208,16 @@
                 {
                     "identifier": "trade_sale",
                     "label": "Trade Sales",
-                    "color": "#DC3912",
                     "order": 2,
                     "period": "quarterly",
                     "title": "Trade Parts Sales per unit in Operation",
                     "metrics": {
                         "trade_sale_pvfy":{
                             "label": "Trade Sales vs FY22",
-                            "color": "#DC3912",
                             "default": "0%"
                         },
                         "trade_sale_pvlq":{
                             "label": "Trade Sales vs previous",
-                            "color": "#FF9900",
                             "default": "0%"
                         }
                     },
@@ -1312,7 +1241,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1328,7 +1256,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 4,
                     "title": "TRAINING",
                     "metrics": {
@@ -1368,7 +1295,6 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -1382,18 +1308,15 @@
                 {
                     "identifier": "sos_n_p",
                     "label": "SOS",
-                    "color": "#DC3912",
                     "order": 2,
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "color": "#DC3912",
                             "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -1414,7 +1337,6 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1431,7 +1353,6 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1448,7 +1369,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1468,7 +1388,6 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1486,7 +1405,6 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1504,7 +1422,6 @@
                     "metrics": {
                         "retention":{
                             "label": "Retention",
-                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1521,7 +1438,6 @@
                     "metrics": {
                         "service_retention":{
                             "label": "Service Retention",
-                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1538,7 +1454,6 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#66AA00",
                             "default": 0
                         }
                     },
@@ -1555,7 +1470,6 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1568,7 +1482,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 12,
                     "title": "TRAINING",
                     "metrics": {
@@ -1611,7 +1524,6 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -1625,18 +1537,15 @@
                 {
                     "identifier": "sos_n_p",
                     "label": "SOS",
-                    "color": "#DC3912",
                     "order": 2,
                     "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE – NAVARA & PATROL",
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "color": "#DC3912",
                             "default": 0
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "color": "#FF9900",
                             "default": 0
                         }
                     },
@@ -1657,7 +1566,6 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "color": "#109618",
                             "default": 0
                         }
                     },
@@ -1674,7 +1582,6 @@
                     "metrics": {
                         "eoc":{
                             "label": "Exp Costs",
-                            "color": "#990099",
                             "default": 0
                         }
                     },
@@ -1691,7 +1598,6 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "color": "#316395",
                             "default": 0
                         }
                     },
@@ -1711,7 +1617,6 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "color": "#3B3EAC",
                             "default": "0%"
                         }
                     },
@@ -1729,7 +1634,6 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "color": "#0099C6",
                             "default": 0
                         }
                     },
@@ -1747,7 +1651,6 @@
                     "metrics": {
                         "service_retention":{
                             "label": "Service Retention",
-                            "color": "#DD4477",
                             "default": "0%"
                         }
                     },
@@ -1764,7 +1667,6 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "color": "#DD4477",
                             "default": 0
                         }
                     },
@@ -1781,7 +1683,6 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "color": "#B82E2E",
                             "default": 0
                         }
                     },
@@ -1794,7 +1695,6 @@
                 {
                     "identifier": "training",
                     "label": "Training",
-                    "color": "#E67300",
                     "order": 11,
                     "title": "TRAINING",
                     "metrics": {

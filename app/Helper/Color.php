@@ -20,8 +20,27 @@ class Color {
     const COLOR_14 = "#AAAA11";  //Competency
     const COLOR_15 = "#6633CC";  //Bonus
     const COLOR_16 = "#E67300";  //Mastery
-    const COLOR_17 = "#8B0707";  //training
+    const COLOR_17 = "#8B0707";  //training in stacked chart
     const COLOR_18 = "#329262";  //excellence
     const COLOR_19 = "#5574A6";  //registration
     const COLOR_20 = "#3B3EAC";  //incentive
+
+    const COLOR_PREFIX = 'COLOR_';
+    const TRAINING_COLOR_BASE = 17;
+    const SHARED_METRICS_COLOR_BASE = 17;
+    static function getColor(int $index, string $type) {
+        $color = null;
+        switch ($type) {
+            case Defination::METRICS_TYPE_SHARED:
+                $color = constant('self::' . self::COLOR_PREFIX . intVal($index+self::SHARED_METRICS_COLOR_BASE));
+                break;
+            case Defination::METRICS_TYPE_TRAINING:
+                $color = constant('self::' . self::COLOR_PREFIX . self::TRAINING_COLOR_BASE);
+                break;
+            default:
+                $color = constant('self::' . self::COLOR_PREFIX . $index);
+                break;
+        }
+        return $color;
+    }
 }

@@ -29,7 +29,7 @@ class MetricsService extends BaseService {
      */
     public function getMetricsData(string $positionCode) {
         $currentUser = $this->getCurrentUser();
-        $results = $this->getMetricsByPosition($currentUser->employee_code, $positionCode);
+        $results = $this->getMetricsPointsByPosition($currentUser->employee_code, $positionCode);
         $metrics = $results->pluck('metrics', 'period');
         $service = $this->getMetricsService($positionCode); //new MetricsServices\Individual();
         return $service->buildMetricsData($positionCode, $metrics);
@@ -40,7 +40,7 @@ class MetricsService extends BaseService {
      */
     public function getTrainingData(string $positionCode) {
         $currentUser = $this->getCurrentUser();
-        $results = $this->getMetricsByPosition($currentUser->employee_code, $positionCode);
+        $results = $this->getMetricsPointsByPosition($currentUser->employee_code, $positionCode);
         $trainingData = $results->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
         $service = $this->getMetricsService($positionCode); //new MetricsServices\Individual();
         return $service->buildTrainingData($positionCode, $trainingData);
@@ -50,7 +50,7 @@ class MetricsService extends BaseService {
      * @return false|string
      */
     public function getStackedMetricsData(string $positionCode) {
-        $results = $this->getMetricsByPosition($this->currentUser->employee_code, $positionCode);
+        $results = $this->getMetricsPointsByPosition($this->currentUser->employee_code, $positionCode);
         $metrics = $results->pluck('metrics', 'period');
         $trainingData = $results->keyBy('period');
         $service = new MetricsServices\Stacked($this->serviceResolver);
@@ -59,7 +59,7 @@ class MetricsService extends BaseService {
 
 
     // should use repository patten
-    private function getMetricsByPosition(string $employeeCode, string $positionCode) {
+    private function getMetricsPointsByPosition(string $employeeCode, string $positionCode) {
         return Result::where('employee_code', $employeeCode)
             ->where('position', $positionCode)
             ->get();

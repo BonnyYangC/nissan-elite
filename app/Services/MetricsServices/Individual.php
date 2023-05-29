@@ -8,32 +8,33 @@ use App\Models\Metric;
 class Individual extends Base {
 
     /**
-     * @param $trainingData
+     * @param $data
      * @return Metric
      */
-    public function buildTrainingData(string $positionCode, $trainingData) {
+    public function buildTrainingData(string $positionCode, $data) {
         $trainingDefination = $this->getTrainingMetricByPosition($positionCode);
-        $trainingDefination->chart_data = json_encode($this->buildStackedTrainingData($trainingDefination, $trainingData));
+        $trainingDefination->chart_data = json_encode($this->buildStackedTrainingData($trainingDefination, $data));
         $trainingDefination->chart_name = 'chart_'.$trainingDefination->identifier;
+        var_dump(json_encode($trainingDefination->toArray()));
         return $trainingDefination;
     }
 
     /**
-     * @param $trainingDefination
-     * @param $trainingData
+     * @param $defination
+     * @param $data
      * @return array
      */
-    private function buildStackedTrainingData($trainingDefination, $trainingData) {
+    private function buildStackedTrainingData($defination, $data) {
         $legends = ['Genre'];
         $points = [];
-        foreach($trainingDefination->metrics as $id => $cm) {
+        foreach($defination->metrics as $id => $cm) {
             $legends[] = $cm['label'];
         }
         foreach(Utility::MONTHS_SHORT as $month) {
             $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
-            foreach($trainingDefination->metrics as $id => $cm) {
-                $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
+            foreach($defination->metrics as $id => $cm) {
+                $value = isset($data[$dateString]) ? $data[$dateString] : null;
                 $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
             }
             $points[] = $p;

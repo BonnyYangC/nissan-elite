@@ -3,24 +3,20 @@
 namespace App\Services\MetricsServices;
 
 use App\Helper\Utility;
-use App\models\IColor;
-use App\Models\Metric;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Helper\{Color, Defination};
 
 class Stacked extends Base {
 
     /**
      * @param string $label
-     * @param string $backgroundColor
+     * @param string $index
      * @param array $data
      * @return array
      */
-    private function _buildDashboardMetricsChartData(string $label, string $backgroundColor, array $data) {
+    private function _buildDashboardMetricsChartData(string $type, string $index, string $label, array $data) {
         return [
             'label'=>$label,
-            'backgroundColor' => $backgroundColor,
+            'backgroundColor' => COLOR::getColor(intVal($index), $type),
             'data'=>$data
         ];
     }
@@ -29,7 +25,7 @@ class Stacked extends Base {
      * @param $trainingData
      * @return array
      */
-    private function buildCommonMetricsData($trainingData) {
+    private function buildSharedMetricsData($trainingData) {
         $result = [];
         $shared = $this->getSharedMetrics();
         foreach ($shared as $id => $m) {
@@ -39,7 +35,7 @@ class Stacked extends Base {
                 $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
                 $p[] = $value && isset($value[$m['identifier']]) ? $value[$m['identifier']] : 0;
             }
-            $result[] = $this->_buildDashboardMetricsChartData($m['label'], $m['color'], $p);
+            $result[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_SHARED, $m['order'], $m['label'], $p);
         }
         return $result;
     }
@@ -51,12 +47,12 @@ class Stacked extends Base {
      * @return false|string
      */
     public function buildStackedMetricsData(string $positionCode, $metrics, $trainingData) {
-        /** @var User $currentUser */
-        // $currentUser = Auth::user();
-        $metricsDefinations = $this->getMetricDefinationsByPosition($positionCode);
-        return json_encode(array_merge($this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData),
-            $this->buildCommonMetricsData($trainingData)
-        ));
+        $metricsDefinations = $this->getAllMetricsByPosition($positionCode);
+        $returnValue = array_merge(
+            $this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData),
+            $this->buildSharedMetricsData($trainingData)
+        );
+        return json_encode($returnValue);
     }
 
     /**
@@ -70,13 +66,13 @@ class Stacked extends Base {
         foreach ($metricsDefinations as $m) {
             if(count($m->metrics) > 1) {
                 $tp = [];
-                $data = $m->identifier === Metric::METRIC_TRAINING ? $trainingData : $metricsData;
+                $data = $m->identifier === Defination::METRICS_TYPE_TRAINING ? $trainingData : $metricsData;
                 foreach(Utility::MONTHS_SHORT as $month) {
                     $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
                     $value = isset($data[$dateString]) ? $data[$dateString] : null;
                     $tp[] = $this->buildMetricSummary($m, $value);
                 }
-                $points[] = $this->_buildDashboardMetricsChartData($m['label'], $m['color'], $tp);
+                $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
                 continue;
             }
             foreach ($m->metrics as $id => $cm) {
@@ -86,7 +82,7 @@ class Stacked extends Base {
                     $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
                     $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
                 }
-                $points[] = $this->_buildDashboardMetricsChartData($cm['label'], $cm['color'], $p);
+                $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $cm['label'], $p);
             }
         }
         return $points;
