@@ -29,7 +29,6 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
-                            "color": "#3366CC",
                             "default": 0
                         }
                     },
@@ -1113,6 +1112,7 @@
                 },
                 {
                     "identifier": "rim",
+                    "label": "RIM",
                     "order": 6,
                     "title": "RIM % Useage",
                     "metrics": {
@@ -1122,7 +1122,6 @@
                         },
                         "qualifier":{
                             "label": "QUALIFIER",
-                            "color": "#990099",
                             "default": "0%"
                         }
                     },

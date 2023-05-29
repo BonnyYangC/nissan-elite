@@ -27,7 +27,7 @@ class Base extends BaseService {
      * @return mixed
      */
     public function getSharedMetrics() {
-        return Metric::where('type', '=', Metric::TYPE_SHARED)->orderBy('order')->get();
+        return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)->orderBy('order')->get();
     }
 
     /**
