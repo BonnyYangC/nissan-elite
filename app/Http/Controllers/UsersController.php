@@ -298,7 +298,6 @@ class UsersController extends Controller {
         $this->dataForView['dealer'] = Dealer::where('code', '=', $dealerCode)->first();
 
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
-        var_dump($this->dataForView['mock']);
         return $this->render('pages.my_team');
     }
 }

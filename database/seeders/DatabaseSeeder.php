@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Helper\Defination;
 use App\Models\{Acl, Company, Faq, Metric, Position, Reward, User};
 use App\Helper\Role;
 use Illuminate\Database\Eloquent\Model;
@@ -69,7 +70,7 @@ class DatabaseSeeder extends Seeder
         //$this->seedAcls();
         //$this->seedRewards();
         $this->seedMetrics();
-        $this->seedFaqs();
+        //$this->seedFaqs();
     }
 
     /**
@@ -89,8 +90,8 @@ class DatabaseSeeder extends Seeder
     private function seedMetrics() {
         DB::table('metrics')->truncate();
         $metrics = $this->data['metrics'];
-        $this->seedSharedMetrics(data_get($metrics, Metric::TYPE_SHARED, []));
-        $this->seedCustomMetrics(data_get($metrics, Metric::TYPE_CUSTOM, []));
+        $this->seedSharedMetrics(data_get($metrics, Defination::METRICS_TYPE_SHARED, []));
+        $this->seedCustomMetrics(data_get($metrics, Defination::METRICS_TYPE_CUSTOM, []));
     }
 
     /**
@@ -98,7 +99,7 @@ class DatabaseSeeder extends Seeder
      */
     private function seedSharedMetrics(array $metrics) {
         foreach ($metrics as $m) {
-            $m['type'] = Metric::TYPE_SHARED;
+            $m['type'] = Defination::METRICS_TYPE_SHARED;
             Metric::create($m);
         }
     }
@@ -110,7 +111,7 @@ class DatabaseSeeder extends Seeder
         // $positions = Position::get()->keyBy('code');
         foreach ($metrics as $position => $ms) {
             foreach ($ms as $m) {
-                $m['type'] = Metric::TYPE_CUSTOM;
+                $m['type'] = Defination::METRICS_TYPE_CUSTOM;
                 $m['position'] = $position;
                 Metric::create($m);
             }
