@@ -35,7 +35,7 @@
                     "guides": [{
                         "title": "NEW VEHICLE SALES GUIDE",
                         "top": ["Fleet Sales Executive", "per sale"],
-                        "rows": [["Category A&B", 100], ["Category C", 100], ["Category C", 200]],
+                        "rows": [["Category A", 100], ["Category B", 100], ["Category C", 200]],
                         "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 18 of member guide"
                     }]
                 },
@@ -1688,7 +1688,7 @@
                     "guides": [{
                         "title": "Loyalty GUIDE",
                         "top": ["Service Advisor", "per loyalty sale"],
-                        "rows": [["Category A & B", 80], ["Category A & B", 160]]
+                        "rows": [["Category A & B", 80], ["Category C", 160]]
                     }]
                 },
                 {
