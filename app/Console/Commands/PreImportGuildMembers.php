@@ -7,21 +7,21 @@ use Illuminate\Console\Command;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
-class ImportGuildMember extends Command
+class PreImportGuildMembers extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'import:guild-member {filePath}';
+    protected $signature = 'pre-import:guild-members {filePath}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Upload guild member from csv file';
+    protected $description = 'Pre import guild member from csv file';
 
     /**
      * Create a new command instance.
@@ -69,6 +69,7 @@ class ImportGuildMember extends Command
                 $model->dealer = $record[1];
                 $model->retired = $record[2];
                 $model->save();
+                $successCount++;
             }
 
             echo 'Success: '.$successCount.PHP_EOL;
