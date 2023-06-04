@@ -23,7 +23,6 @@ class CreateEventsTable extends Migration
             $table->date('end')->nullable();
             $table->string('region', 50)->default('All'); //TBC: can be foreign key
 
-            $table->string('image', 255)->nullable();
             $table->unsignedInteger('incentive')->nullable();
             $table->timestamps();
 
