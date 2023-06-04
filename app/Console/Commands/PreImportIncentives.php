@@ -70,6 +70,7 @@ class PreImportIncentives extends Command
 
     private function buildData($row) {
         return [
+            'id' => $row['id'],
             'title' => $row['title'],
             'start' => $row['start'],// date('Y-m-d',$this->getStrtotime($row['start'])),
             'finish' => $row['finish'], //date('Y-m-d',$this->getStrtotime($row['finish'])),
