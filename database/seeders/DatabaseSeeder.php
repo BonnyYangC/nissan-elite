@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         $this->seedAcls();
         $this->seedRewards();
         $this->seedMetrics();
-        //$this->seedFaqs();
+        $this->seedFaqs();
     }
 
     /**

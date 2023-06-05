@@ -36,7 +36,7 @@ trait ValidationTrait {
     public function buildHeaderForResultData($field) {
         $result = [];
         if ($field) {
-            $result[] = $field;
+            $result[] = $this->getHeaderField($field); //$field;
         }
         return $result;
     }

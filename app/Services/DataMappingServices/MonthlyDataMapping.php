@@ -5,11 +5,14 @@ namespace App\Services\DataMappingServices;
 use App\Helper\Defination;
 use App\Helper\Utility;
 use App\Models\{Result, User};
-use Carbon\Carbon;
+use App\Services\DataMappingServices\MonthlyDataImpl\{MonthlyImportationTrait, MonthlyValidationTrait};
 
 abstract class MonthlyDataMapping {
+    use MonthlyValidationTrait, MonthlyImportationTrait;
+
     /** @var array  */
     public $metricsMappingArray = [];
+
     /** @var array  */
     public $mappingArray = [
         'period' => 'mthyrg',
@@ -25,18 +28,22 @@ abstract class MonthlyDataMapping {
         'registration' => 'points_registration',
         'excellence' => 'points_excellence',
         'incentive' => 'points_incentive',
-        'adjustment' => 'points_adjust_',
-        'credit_mtd' => 'POINTS_MTHLY_',
+        'adjustment' => 'points_adjust',
+        'credit_mtd' => 'POINTS_MTHLY',
         'credit_ytd' => 'POINTS_YTD',
         'lifetime' => 'POINTS_ytd_historical',
     ];
+
+    private $actionType = Defination::ACTION_TYPE_SYNC;
 
     /**
      * Create a new service instance.
      *
      * @return void
      */
-    public function __construct() { }
+    public function __construct(string $action) {
+        $this->actionType = $action;
+    }
 
 
     /**
@@ -53,20 +60,15 @@ abstract class MonthlyDataMapping {
     /**
      * get model according data file type
      *
-     * @param $actionType
+     * @param $key
      * @param $modelKey
      * @param $record
      * @return Result
      */
-    public function getModel($actionType, $modelKey, $record, $key) {
-        $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
-            ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
-        if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
-            $model = new Result();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
-        }
-        return $model;
+    public function getModel($modelKey, $record, $key) {
+        return $this->actionType == Defination::ACTION_TYPE_SYNC ?
+        $this->getModelForImportation($modelKey, $record, $key) :
+        $this->getModelForValidation($modelKey, $record, $key);
     }
 
     /**
@@ -95,8 +97,8 @@ abstract class MonthlyDataMapping {
             'registration'          =>$row['points_registration'] !== '' ? $row['points_registration'] : 0,
             'excellence'            =>$row['points_excellence'] !== '' ? $row['points_excellence'] : 0,
             'incentive'             =>$row['points_incentive'] !== '' ? $row['points_incentive'] : 0,
-            'adjustment'            =>$row['points_adjust_'] !== '' ? $row['points_adjust_'] : 0,
-            'credit_mtd'            =>$row['POINTS_MTHLY_'] !== '' ? $row['POINTS_MTHLY_'] : 0,
+            'adjustment'            =>$row['points_adjust'] !== '' ? $row['points_adjust'] : 0,
+            'credit_mtd'            =>$row['POINTS_MTHLY'] !== '' ? $row['POINTS_MTHLY'] : 0,
             'credit_ytd'            =>$row['POINTS_YTD'] !== '' ? $row['POINTS_YTD'] : 0,
             'lifetime'              =>$row['POINTS_ytd_historical'] !== '' ? $row['POINTS_ytd_historical'] : 0,
 
@@ -117,57 +119,6 @@ abstract class MonthlyDataMapping {
      */
     public static function isIgnored($value) {
         $result = false;
-        return $result;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @return bool
-     */
-    public function compareValue($field, $oldValue, $newValue) {
-        if ($field == 'metrics') {
-            $result = !$oldValue || !empty(array_diff($oldValue, $newValue)) ? false : true;
-        } else {
-            $result = $oldValue == $newValue ? true : false;
-        }
-        return $result;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @param $equal
-     * @return array
-     */
-    public function buildResultData($field, $oldValue, $newValue, $equal) {
-        $result = [];
-        if($field !== 'metrics') {
-            $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
-        } else {
-            foreach( array_keys($this->metricsMappingArray) as $field) {
-                $fieldName = $this->metricsMappingArray[$field];
-                $result[$fieldName] = data_get($oldValue, $field, '') . ' / <span style="color:' . ($equal ? 'blue' : 'red') . ';">' . $newValue[$field] . '</span>';
-            }
-        }
-        return $result;
-    }
-
-    /**
-     * @param $field
-     * @return array
-     */
-    public function buildHeaderForResultData($field) {
-        $result = [];
-        if($field !== 'metrics') {
-            $result[] = $this->mappingArray[$field];
-        } else {
-            foreach(array_keys($this->metricsMappingArray) as $field) {
-                $result[] = $this->metricsMappingArray[$field];
-            }
-        }
         return $result;
     }
 

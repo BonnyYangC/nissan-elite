@@ -15,6 +15,7 @@ class RegionStaff extends Base {
         'mobile' => 'Mobile',
         'active' => 'Active',
     ];
+    
     /** @var Collection */
     private $regions;
 

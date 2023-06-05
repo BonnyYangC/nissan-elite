@@ -147,8 +147,7 @@ class DataService extends BaseService {
                         foreach ($data as $fieldName => $value) {
                             $equal = $mappingService->compareValue($fieldName, $model, $value);
                             $row = array_merge($row, $mappingService->buildResultData($fieldName, $model, $value, $equal));
-                            $header = $mappingService->getHeaderField($fieldName);
-                            $headers = array_merge($headers, $mappingService->buildHeaderForResultData($header));
+                            $headers = array_merge($headers, $mappingService->buildHeaderForResultData($fieldName));
                         }
                         $findCount++;
                         $findRows[] = $row;
@@ -185,6 +184,7 @@ class DataService extends BaseService {
      * @return Collection
      */
     private function getImporationService($type) {
+        $actionType = Defination::ACTION_TYPE_SYNC;
         $returnValue = collect([]);
         switch ($type) {
             case Defination::DATA_TYPE_USERS_INFO :
@@ -193,33 +193,6 @@ class DataService extends BaseService {
             case Defination::DATA_TYPE_DEALERS_INFO :
                 $returnValue->add(new DMS\ImportationImpl\Dealer($this->serviceResolver->regionService()->load()));
                 break;
-            case Role::FLEET_SALES_EXECUTIVES:
-                $returnValue->add(new DMS\FleetSalesExecutives());
-                break;
-            case Role::SALES_MANAGER:
-                $returnValue->add(new DMS\SalesManager());
-                break;
-            case Role::RETAIL_SALES_CONSULTANTS:
-                $returnValue->add(new DMS\RetailSalesConsultants());
-                break;
-            case Role::STOCK_CONTROLLER:
-                $returnValue->add(new DMS\StockController());
-                break;
-            case Role::FI:
-                $returnValue->add(new DMS\FI());
-                break;
-            case Role::PARTS_MANAGER:
-                $returnValue->add(new DMS\PartsManager());
-                break;
-            case Role::PARTS_SALES_REP:
-                $returnValue->add(new DMS\PartsSalesRep());
-                break;
-            case Role::SERVICE_MANAGER:
-                $returnValue->add(new DMS\ServiceManager());
-                break;
-            case Role::SERVICE_ADVISERS:
-                $returnValue->add(new DMS\ServiceAdviser());
-                break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
                 $returnValue->add(new DMS\ImportationImpl\RegionStaff($this->serviceResolver->regionService()->load()));
                 break;
@@ -227,12 +200,13 @@ class DataService extends BaseService {
                 $returnValue->add(new DMS\ImportationImpl\LoyaltyHistorical());
                 break;
             case Defination::DATA_TYPE_RANKING :
-                $returnValue->add(new DMS\Ranking());
+                $returnValue->add(new DMS\ImportationImpl\Ranking());
                 break;
             case Defination::DATA_TYPE_TERRITORY_REPORT:
-                $returnValue->add(new DMS\TerritoryReport());
+                $returnValue->add(new DMS\ImportationImpl\TerritoryReport());
                 break;
             default:
+                $returnValue->add($this->getMonthlyDataService($type, $actionType));
                 break;
         }
         return $returnValue;
@@ -242,6 +216,7 @@ class DataService extends BaseService {
      * @param $type
      */
     private function getValidationService($type) {
+        $actionType = Defination::ACTION_TYPE_VALIDATE;
         $returnValue = null;
         switch ($type) {
             case Defination::DATA_TYPE_USERS_INFO :
@@ -250,33 +225,6 @@ class DataService extends BaseService {
             case Defination::DATA_TYPE_DEALERS_INFO :
                 $returnValue = new DMS\ValidationImpl\Dealer($this->serviceResolver->regionService()->load());
                 break;
-            case Role::FLEET_SALES_EXECUTIVES:
-                $returnValue = new DMS\FleetSalesExecutives();
-                break;
-            case Role::SALES_MANAGER:
-                $returnValue = new DMS\SalesManager();
-                break;
-            case Role::RETAIL_SALES_CONSULTANTS:
-                $returnValue = new DMS\RetailSalesConsultants();
-                break;
-            case Role::STOCK_CONTROLLER:
-                $returnValue = new DMS\StockController();
-                break;
-            case Role::FI:
-                $returnValue = new DMS\FI();
-                break;
-            case Role::PARTS_MANAGER:
-                $returnValue = new DMS\PartsManager();
-                break;
-            case Role::PARTS_SALES_REP:
-                $returnValue = new DMS\PartsSalesRep();
-                break;
-            case Role::SERVICE_MANAGER:
-                $returnValue = new DMS\ServiceManager();
-                break;
-            case Role::SERVICE_ADVISERS:
-                $returnValue = new DMS\ServiceAdviser();
-                break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
                 $returnValue = new DMS\ValidationImpl\RegionStaff($this->serviceResolver->regionService()->load());
                 break;
@@ -284,10 +232,51 @@ class DataService extends BaseService {
                 $returnValue = new DMS\ValidationImpl\LoyaltyHistorical();
                 break;
             case Defination::DATA_TYPE_RANKING :
-                $returnValue = new DMS\Ranking();
+                $returnValue = new DMS\ValidationImpl\Ranking();
                 break;
             case Defination::DATA_TYPE_TERRITORY_REPORT:
-                $returnValue = new DMS\TerritoryReport();
+                $returnValue = new DMS\ValidationImpl\TerritoryReport();
+                break;
+            default:
+                $returnValue = $this->getMonthlyDataService($type, $actionType);
+                break;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * @param $type
+     * @param $actionType
+     */
+    private function getMonthlyDataService($type, $actionType) {
+        $returnValue = null;
+        switch ($type) {
+            case Role::FLEET_SALES_EXECUTIVES:
+                $returnValue = new DMS\MonthlyDataImpl\FleetSalesExecutives($actionType);
+                break;
+            case Role::SALES_MANAGER:
+                $returnValue = new DMS\MonthlyDataImpl\SalesManager($actionType);
+                break;
+            case Role::RETAIL_SALES_CONSULTANTS:
+                $returnValue = new DMS\MonthlyDataImpl\RetailSalesConsultants($actionType);
+                break;
+            case Role::STOCK_CONTROLLER:
+                $returnValue = new DMS\MonthlyDataImpl\StockController($actionType);
+                break;
+            case Role::FI:
+                $returnValue = new DMS\MonthlyDataImpl\FI($actionType);
+                break;
+            case Role::PARTS_MANAGER:
+                $returnValue = new DMS\MonthlyDataImpl\PartsManager($actionType);
+                break;
+            case Role::PARTS_SALES_REP:
+                $returnValue = new DMS\MonthlyDataImpl\PartsSalesRep($actionType);
+                break;
+            case Role::SERVICE_MANAGER:
+                $returnValue = new DMS\MonthlyDataImpl\ServiceManager($actionType);
+                break;
+            case Role::SERVICE_ADVISERS:
+                $returnValue = new DMS\MonthlyDataImpl\ServiceAdviser($actionType);
                 break;
             default:
                 break;
