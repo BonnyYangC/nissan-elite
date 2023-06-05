@@ -2,11 +2,6 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Helper\Defination;
-use App\Helper\Utility;
-use App\Models\Ranking as RankingModel;
-use Carbon\Carbon;
-
 class Base {
     /** @var array  */
     public $mappingArray = [];
@@ -36,37 +31,20 @@ class Base {
     public function validate(string $employeeCode) {
         return true;
     }
-
+    
     /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @return bool
-     */
-    public function compareValue($field, $oldValue, $newValue) {
-        return $oldValue && $oldValue == $newValue ? true : false;
-    }
-
-    /**
-     * @param $field
-     * @param $oldValue
-     * @param $newValue
-     * @param $equal
+     * get primary key according to data file type
+     *
      * @return array
      */
-    public function buildResultData($field, $oldValue, $newValue, $equal) {
-        $result = [];
-        $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
-        return $result;
+    public function getKeyForModel(): array {
+        $key = [];
+        $key['primary'] = 'regi#_';
+        //$key['primary'] = 'employee_code'; // use this for import users from elite-2022-users.csv when elite 2022 system setup
+        return $key;
     }
 
-    /**
-     * @param $field
-     * @return array
-     */
-    public function buildHeaderForResultData($field) {
-        $result = [];
-        $result[] = $this->mappingArray[$field];
-        return $result;
+    public function getHeaderField($field) {
+        return data_get($this->mappingArray, $field, null);
     }
 }

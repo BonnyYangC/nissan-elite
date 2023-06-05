@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Helper\Defination;
-use App\Helper\Role;
 use App\Services\DataMappingServices as DMS;
+use App\Helper\Role;
 use App\Services\ExportServices\Admin;
 use App\Services\ExportServices\LoyaltyHistorical;
 use App\Services\ExportServices\RegionStaff;
@@ -13,6 +13,7 @@ use App\Services\ExportServices\User;
 use App\Services\ExportServices\Ranking;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use Illuminate\Support\Collection;
 
 class DataService extends BaseService {
 
@@ -43,44 +44,46 @@ class DataService extends BaseService {
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
 
-            $mappingService = $this->getMappingService($dataType);
-            $modelKey = $mappingService->getKeyForModel();
+            $mappingServices = $this->getImporationService($dataType);
+            foreach($mappingServices as $service) {
+                $modelKey = $service->getKeyForModel();
+            
+                foreach ($records as $lineNumber => $record) {
 
-            foreach ($records as $lineNumber => $record) {
+                    if(!isset($record[$modelKey['primary']]) || !$service->validate(trim($record[$modelKey['primary']]))) {
+                        $failCount++;
+                        continue;
+                    }
+                    if ($service::isIgnored($record[$modelKey['primary']])) {
+                        $ignoredCount++;
+                        continue;
+                    }
+                    if (isset($modelKey['mapping'])) {
+                        $keys = array_keys($modelKey['mapping']);
+                    } else {
+                        $keys = [$modelKey['primary']];
+                    }
+                    foreach($keys as $key) {
+                        $model = $service->getModel($modelKey, $record, $key);
 
-                if(!isset($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
-                    $failCount++;
-                    continue;
-                }
-                if ($mappingService::isIgnored($record[$modelKey['primary']])) {
-                    $ignoredCount++;
-                    continue;
-                }
-                if (isset($modelKey['mapping'])) {
-                    $keys = array_keys($modelKey['mapping']);
-                } else {
-                    $keys = [$modelKey['primary']];
-                }
-                foreach($keys as $key) {
-                    $model = $mappingService->getModel(Defination::ACTION_TYPE_SYNC, $modelKey, $record, $key);
-
-                    if ($model) {
-                        $data = $mappingService->buildData($model, $record, $modelKey, $key);
-                        foreach ($data as $fieldName => $value) {
-                            $model->$fieldName = $value == '-' ? 0 : $value;
-                        }
-                        if ($model->save()) {
-                            $updateCount++;
-                        } else {
-                            $failCount++;
+                        if ($model) {
+                            $data = $service->buildData($model, $record, $modelKey, $key);
+                            foreach ($data as $fieldName => $value) {
+                                $model->$fieldName = $value == '-' ? 0 : $value;
+                            }
+                            if ($model->save()) {
+                                $updateCount++;
+                            } else {
+                                $failCount++;
+                            }
                         }
                     }
                 }
             }
             $resultValue['type'] = Defination::ACTION_TYPE_SYNC;
-            $resultValue['update'] = $updateCount;
-            $resultValue['ignore'] = $ignoredCount;
-            $resultValue['wrong'] = $failCount;
+            $resultValue['update'] = $updateCount / $mappingServices->count();
+            $resultValue['ignore'] = $ignoredCount / $mappingServices->count();
+            $resultValue['wrong'] = $failCount / $mappingServices->count();
         }
         else{
             echo 'File is not exists.'.PHP_EOL;
@@ -115,7 +118,7 @@ class DataService extends BaseService {
             $headerFields = $csvReader->fetchOne(0);
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
-            $mappingService = $this->getMappingService($dataType);
+            $mappingService = $this->getValidationService($dataType);
             $modelKey = $mappingService->getKeyForModel();
 
             foreach ($records as $lineNumber => $record) {
@@ -138,12 +141,12 @@ class DataService extends BaseService {
                 $row = [];
                 $headers = [];
                 foreach($keys as $key) {
-                    $model = $mappingService->getModel(Defination::ACTION_TYPE_VALIDATE, $modelKey, $record, $key);
+                    $model = $mappingService->getModel($modelKey, $record, $key);
                     if($model){
                         $data = $mappingService->buildData($model, $record, $modelKey, $key);
                         foreach ($data as $fieldName => $value) {
-                            $equal = $mappingService->compareValue($fieldName, $model->$fieldName, $value);
-                            $row = array_merge($row, $mappingService->buildResultData($fieldName, $model->$fieldName, $value, $equal));
+                            $equal = $mappingService->compareValue($fieldName, $model, $value);
+                            $row = array_merge($row, $mappingService->buildResultData($fieldName, $model, $value, $equal));
                             $headers = array_merge($headers, $mappingService->buildHeaderForResultData($fieldName));
                         }
                         $findCount++;
@@ -178,43 +181,107 @@ class DataService extends BaseService {
 
     /**
      * @param $type
-     * @return DMS\Dealer|DMS\FI|DMS\FleetSalesExecutives|DMS\LoyaltyHistorical|DMS\PartsManager|DMS\PartsSalesRep|DMS\Ranking|DMS\RegionStaff|DMS\RetailSalesConsultants|DMS\SalesManager|DMS\ServiceAdviser|DMS\ServiceManager|DMS\StockController|DMS\TerritoryReport|DMS\User
+     * @return Collection
      */
-    private function getMappingService($type) {
+    private function getImporationService($type) {
+        $actionType = Defination::ACTION_TYPE_SYNC;
+        $returnValue = collect([]);
+        switch ($type) {
+            case Defination::DATA_TYPE_USERS_INFO :
+                $returnValue = collect([new DMS\ImportationImpl\User(),new DMS\ImportationImpl\UsersEligible()]);
+                break;
+            case Defination::DATA_TYPE_DEALERS_INFO :
+                $returnValue->add(new DMS\ImportationImpl\Dealer($this->serviceResolver->regionService()->load()));
+                break;
+            case Defination::DATA_TYPE_REGION_STAFF_INFO :
+                $returnValue->add(new DMS\ImportationImpl\RegionStaff($this->serviceResolver->regionService()->load()));
+                break;
+            case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
+                $returnValue->add(new DMS\ImportationImpl\LoyaltyHistorical());
+                break;
+            case Defination::DATA_TYPE_RANKING :
+                $returnValue->add(new DMS\ImportationImpl\Ranking());
+                break;
+            case Defination::DATA_TYPE_TERRITORY_REPORT:
+                $returnValue->add(new DMS\ImportationImpl\TerritoryReport());
+                break;
+            default:
+                $returnValue->add($this->getMonthlyDataService($type, $actionType));
+                break;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * @param $type
+     */
+    private function getValidationService($type) {
+        $actionType = Defination::ACTION_TYPE_VALIDATE;
+        $returnValue = null;
+        switch ($type) {
+            case Defination::DATA_TYPE_USERS_INFO :
+                $returnValue = new DMS\ValidationImpl\User();
+                break;
+            case Defination::DATA_TYPE_DEALERS_INFO :
+                $returnValue = new DMS\ValidationImpl\Dealer($this->serviceResolver->regionService()->load());
+                break;
+            case Defination::DATA_TYPE_REGION_STAFF_INFO :
+                $returnValue = new DMS\ValidationImpl\RegionStaff($this->serviceResolver->regionService()->load());
+                break;
+            case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
+                $returnValue = new DMS\ValidationImpl\LoyaltyHistorical();
+                break;
+            case Defination::DATA_TYPE_RANKING :
+                $returnValue = new DMS\ValidationImpl\Ranking();
+                break;
+            case Defination::DATA_TYPE_TERRITORY_REPORT:
+                $returnValue = new DMS\ValidationImpl\TerritoryReport();
+                break;
+            default:
+                $returnValue = $this->getMonthlyDataService($type, $actionType);
+                break;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * @param $type
+     * @param $actionType
+     */
+    private function getMonthlyDataService($type, $actionType) {
+        $returnValue = null;
         switch ($type) {
             case Role::FLEET_SALES_EXECUTIVES:
-                return new DMS\FleetSalesExecutives();
+                $returnValue = new DMS\MonthlyDataImpl\FleetSalesExecutives($actionType);
+                break;
             case Role::SALES_MANAGER:
-                return new DMS\SalesManager();
+                $returnValue = new DMS\MonthlyDataImpl\SalesManager($actionType);
+                break;
             case Role::RETAIL_SALES_CONSULTANTS:
-                return new DMS\RetailSalesConsultants();
+                $returnValue = new DMS\MonthlyDataImpl\RetailSalesConsultants($actionType);
+                break;
             case Role::STOCK_CONTROLLER:
-                return new DMS\StockController();
+                $returnValue = new DMS\MonthlyDataImpl\StockController($actionType);
+                break;
             case Role::FI:
-                return new DMS\FI();
+                $returnValue = new DMS\MonthlyDataImpl\FI($actionType);
+                break;
             case Role::PARTS_MANAGER:
-                return new DMS\PartsManager();
+                $returnValue = new DMS\MonthlyDataImpl\PartsManager($actionType);
+                break;
             case Role::PARTS_SALES_REP:
-                return new DMS\PartsSalesRep();
+                $returnValue = new DMS\MonthlyDataImpl\PartsSalesRep($actionType);
+                break;
             case Role::SERVICE_MANAGER:
-                return new DMS\ServiceManager();
+                $returnValue = new DMS\MonthlyDataImpl\ServiceManager($actionType);
+                break;
             case Role::SERVICE_ADVISERS:
-                return new DMS\ServiceAdviser();
-            case Defination::DATA_TYPE_USERS_INFO :
-                return new DMS\User();
-            case Defination::DATA_TYPE_DEALERS_INFO :
-                return new DMS\Dealer($this->serviceResolver->regionService()->load());
-            case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                return new DMS\RegionStaff($this->serviceResolver->regionService()->load());
-            case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
-                return new DMS\LoyaltyHistorical();
-            case Defination::DATA_TYPE_RANKING :
-                return new DMS\Ranking();
-            case Defination::DATA_TYPE_TERRITORY_REPORT:
-                return new DMS\TerritoryReport();
+                $returnValue = new DMS\MonthlyDataImpl\ServiceAdviser($actionType);
+                break;
             default:
                 break;
         }
+        return $returnValue;
     }
 
     /**
@@ -231,21 +298,29 @@ class DataService extends BaseService {
      * @return Admin|LoyaltyHistorical|Ranking|RegionStaff|TerritoryReport|User
      */
     private function getExportService($type, $parameters) {
+        $ReturnValue = null;
         switch ($type) {
             case 'admin':
-                return new Admin();
+                $ReturnValue = new Admin();
+                break;
             case 'region_staff':
-                return new RegionStaff();
+                $ReturnValue = new RegionStaff();
+                break;
             case 'user':
-                return new User($this->serviceResolver, $parameters);
+                $ReturnValue = new User($this->serviceResolver, $parameters);
+                break;
             case 'historical_export':
-                return new LoyaltyHistorical();
+                $ReturnValue = new LoyaltyHistorical();
+                break;
             case 'territory_report':
-                return new TerritoryReport($this->serviceResolver, $parameters);
+                $ReturnValue = new TerritoryReport($this->serviceResolver, $parameters);
+                break;
             case 'ranking':
-                return new Ranking($this->serviceResolver, $parameters);
+                $ReturnValue = new Ranking($this->serviceResolver, $parameters);
+                break;
             default:
                 break;
         }
+        return $ReturnValue;
     }
 }

@@ -26,8 +26,8 @@ class EventService extends BaseService {
     public function load() {
         return Event::select('id',
             'title',
-            'datestamp',
-            'dateend')->get();
+            'start',
+            'end')->get();
     }
 
     /**
@@ -65,8 +65,8 @@ class EventService extends BaseService {
             $event = new Event();
         }
         $event->title = $newData['title'];
-        $event->datestamp = $newData['datestamp'];
-        $event->dateend = $newData['dateend'];
+        $event->start = $newData['start'];
+        $event->end = $newData['end'];
         $event->region = $newData['region'];
         $event->description = $newData['description'];
         $event->incentive_id = intval($newData['incentive_id']);

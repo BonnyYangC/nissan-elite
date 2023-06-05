@@ -36,7 +36,7 @@
             @foreach( $events as $event)
             <tr>
                 <th>{{ $event->title }}</td>
-                <td>{{ $event->datestamp }} {{ $event->dateend }}</td>
+                <td>{{ $event->start }} {{ $event->end }}</td>
                 <td>{{ $event->region }}</td>
                 <td>{{ $event->incentive_name }}</td>
                 <td>

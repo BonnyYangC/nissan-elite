@@ -7,8 +7,8 @@
         calendarEvents.push({
             id:event.id,
             name: event.title,
-            startDate: new Date(event.datestamp),
-            endDate: new Date(event.dateend)
+            startDate: new Date(event.start),
+            endDate: new Date(event.end)
         });
     });
     //console.log(calendarEvents);
