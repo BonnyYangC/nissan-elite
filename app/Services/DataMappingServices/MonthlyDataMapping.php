@@ -130,4 +130,9 @@ abstract class MonthlyDataMapping {
         $model = User::where('employee_code', $employeeCode)->first();
         return $model ? true : false;
     }
+
+    protected function getMetricsMappingField(string $metric) {
+        return data_get($this->metricsMappingArray, $metric);
+    }
+
 }

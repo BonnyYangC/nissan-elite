@@ -29,7 +29,8 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
@@ -46,7 +47,8 @@
                     "metrics": {
                         "new_vehicle_fleet": {
                             "label": "Sales v Target",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -65,7 +67,8 @@
                     "metrics": {
                         "volume":{
                             "label": "Volume Growth",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -84,7 +87,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -140,7 +146,8 @@
                     "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -158,7 +165,9 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "New Vehicle Sales",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -178,7 +187,8 @@
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales Pipeline",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -197,7 +207,9 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -216,11 +228,13 @@
                     "metrics": {
                         "nic_sale": {
                             "label": "NIC sale",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         },
                         "nic_sale_nfsa": {
                             "label": "NIC Financed",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -243,7 +257,8 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -262,15 +277,21 @@
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         },
                         "apnur_x":{
                             "label": "XTRAIL",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         },
                         "apnur_p":{
                             "label": "PATROL",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -299,7 +320,8 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Dealer Forecast",
-                            "default": "NO"
+                            "point_default": 0,
+                            "score_default": "NO"
                         }
                     },
                     "guides": [
@@ -318,7 +340,10 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -337,7 +362,10 @@
                     "metrics": {
                         "booked_check":{
                             "label": "% Booked",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -354,7 +382,10 @@
                     "metrics": {
                         "follow_up":{
                             "label": "% Follow Up",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -372,7 +403,8 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -390,7 +422,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -451,11 +486,14 @@
                     "metrics": {
                         "new_vehicle":{
                             "label": "Sales",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         },
                         "new_vehicle_performance":{
                             "label": "DLR%",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -483,7 +521,9 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV%",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -502,11 +542,13 @@
                     "metrics": {
                         "nic_sale":{
                             "label": "NIC sale",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         },
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [
@@ -529,7 +571,10 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -547,7 +592,10 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -567,7 +615,10 @@
                     "metrics": {
                         "kept_informed":{
                             "label": "Kept Informed",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -586,7 +637,10 @@
                     "metrics": {
                         "follow_up":{
                             "label": "Followed Up Satisfaction",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -605,7 +659,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -663,7 +720,8 @@
                     "metrics": {
                         "comp_ow":{
                             "label": "OW Data",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -679,7 +737,8 @@
                     "metrics": {
                         "retail_forecast":{
                             "label": "Retail Forecast",
-                            "default": "NO"
+                            "point_default": 0,
+                            "score_default": "NO"
                         }
                     },
                     "guides": [{
@@ -696,7 +755,8 @@
                     "metrics": {
                         "matched_ow":{
                             "label": "Matched OW",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -712,7 +772,8 @@
                     "metrics": {
                         "fsp":{
                             "label": "Future Sales",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -728,7 +789,9 @@
                     "metrics": {
                         "reg_ret":{
                             "label": "Reg VS. Retail",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -745,7 +808,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -799,7 +865,8 @@
                     "metrics": {
                         "nfsa":{
                             "label": "NFSA Contracts",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -815,7 +882,8 @@
                     "metrics": {
                         "lrb":{
                             "label": "Loyalty",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -832,11 +900,13 @@
                     "metrics": {
                         "insurance_mvi":{
                             "label": "MVI",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         },
                         "insurance_pkg":{
                             "label": "PKG",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -852,7 +922,9 @@
                     "metrics": {
                         "penetration":{
                             "label": "Penetration",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -869,7 +941,8 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
@@ -886,11 +959,14 @@
                     "metrics": {
                         "nfv":{
                             "label": "NFV",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         },
                         "nfv_nfsa":{
                             "label": "NFV%",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -910,7 +986,8 @@
                     "metrics": {
                         "nfv_retails":{
                             "label": "NFV of RETAILS",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -926,7 +1003,8 @@
                     "metrics": {
                         "nic_sale_nfsa":{
                             "label": "NIC sale NFSA",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0"
                         }
                     },
                     "guides": [{
@@ -942,7 +1020,10 @@
                     "metrics": {
                         "satisfaction":{
                             "label": "Satisfaction",
-                            "default": "0"
+                            "point_default": 0,
+                            "score_default": "0",
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -959,7 +1040,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1012,7 +1096,9 @@
                     "metrics": {
                         "grp":{
                             "label": "Genuine Replacement Parts",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1029,7 +1115,9 @@
                     "metrics": {
                         "acc":{
                             "label": "Accessories",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1047,15 +1135,21 @@
                     "metrics": {
                         "apnur_n":{
                             "label": "NAVARA",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         },
                         "apnur_x":{
                             "label": "X-TRAIL",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         },
                         "apnur_am":{
                             "label": "ALL MODELS",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -1084,7 +1178,9 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
                         }
                     },
                     "guides": [{
@@ -1101,7 +1197,9 @@
                     "metrics": {
                         "bw_cpro":{
                             "label": "Brake & Wiper Parts",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
                         }
                     },
                     "guides": [{
@@ -1118,11 +1216,15 @@
                     "metrics": {
                         "rim":{
                             "label": "RIM % Useage",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         },
-                        "qualifier":{
+                        "rim_qualifier":{
                             "label": "QUALIFIER",
-                            "default": "0%"
+                            "has_points": false,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1139,7 +1241,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1195,7 +1300,9 @@
                     "metrics": {
                         "grp":{
                             "label": "Genuine Replacement Parts",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1213,11 +1320,15 @@
                     "metrics": {
                         "trade_sale_pvfy":{
                             "label": "Trade Sales vs FY22",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         },
                         "trade_sale_pvlq":{
                             "label": "Trade Sales vs previous",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1240,7 +1351,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1294,7 +1408,10 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1312,11 +1429,17 @@
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1336,7 +1459,10 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1352,7 +1478,8 @@
                     "metrics": {
                         "hot":{
                             "label": "Hot Alert",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
@@ -1368,7 +1495,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1387,7 +1517,9 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1404,7 +1536,9 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
                         }
                     },
                     "guides": [{
@@ -1421,7 +1555,9 @@
                     "metrics": {
                         "retention":{
                             "label": "Retention",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1437,7 +1573,9 @@
                     "metrics": {
                         "service_retention":{
                             "label": "Service Retention",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1453,7 +1591,8 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
@@ -1469,7 +1608,8 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
@@ -1523,7 +1663,10 @@
                     "metrics": {
                         "sos":{
                             "label": "Overall Sat",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1541,11 +1684,17 @@
                     "metrics": {
                         "sos_navara":{
                             "label": "Navara",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         },
                         "sos_patrol":{
                             "label": "Patrol",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1565,7 +1714,10 @@
                     "metrics": {
                         "fft":{
                             "label": "F1",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1581,7 +1733,10 @@
                     "metrics": {
                         "eoc":{
                             "label": "Exp Costs",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1597,7 +1752,10 @@
                     "metrics": {
                         "sdr":{
                             "label": "Dealer Rating",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1616,7 +1774,9 @@
                     "metrics": {
                         "cpro_target":{
                             "label": "CPRO",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1633,7 +1793,9 @@
                     "metrics": {
                         "gp_cpro":{
                             "label": "Genuine Parts",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
                         }
                     },
                     "guides": [{
@@ -1650,12 +1812,14 @@
                     "metrics": {
                         "service_retention":{
                             "label": "Service Retention",
-                            "default": "0%"
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
                         "title": "1 YEAR SERVICE RETENTION % GUIDE",
-                        "top": ["Service Manager", "≥40%", "≥50%", "≥60%", "≥70%"],
+                        "top": ["Service Advisor", "≥40%", "≥50%", "≥60%", "≥70%"],
                         "rows": [["Category A & B", 100, 150, 200, 300], ["Category C", 100, 150, 200, 300]]
                     }]
                 },
@@ -1666,12 +1830,13 @@
                     "metrics": {
                         "pmp":{
                             "label": "PMP",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
                         "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
-                        "top": ["Service Manager", "5%", "10%", "20%"],
+                        "top": ["Service Advisor", "5%", "10%", "20%"],
                         "rows": [["Category A & B", 100, 200, 300], ["Category C", 100, 200, 300]]
                     }]
                 },
@@ -1682,7 +1847,8 @@
                     "metrics": {
                         "loyalty":{
                             "label": "Loyalty",
-                            "default": 0
+                            "point_default": 0,
+                            "score_default": 0
                         }
                     },
                     "guides": [{
