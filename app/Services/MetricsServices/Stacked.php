@@ -69,8 +69,8 @@ class Stacked extends Base {
                 $data = $m->identifier === Defination::METRICS_TYPE_TRAINING ? $trainingData : $metricsData;
                 foreach(Utility::MONTHS_SHORT as $month) {
                     $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
-                    $value = isset($data[$dateString]) ? $data[$dateString] : null;
-                    $tp[] = $this->buildMetricSummary($m, $value);
+                    $value = data_get($data, $dateString, null); //isset($data[$dateString]) ? $data[$dateString] : null;
+                    $tp[] = $this->buildMetricSummary($m->metrics, $value);
                 }
                 $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
                 continue;
@@ -89,17 +89,21 @@ class Stacked extends Base {
     }
 
     /**
-     * @param $trainingDefination
-     * @param $trainingData
+     * @param $metrics
+     * @param $metricPoints
      * @return int|mixed
      */
-    private function buildMetricSummary($trainingDefination, $trainingData) {
-        $trainingPoints = 0;
-        if(!$trainingData) return $trainingPoints;
-        foreach($trainingDefination->metrics as $id => $cm) {
-            $trainingPoints += isset($trainingData[$id]) ? $trainingData[$id] : 0;
+    private function buildMetricSummary($metrics, $metricPoints) {
+        $summaryPoints = 0;
+        if(!$metricPoints) return $summaryPoints;
+        foreach($metrics as $id => $cm) {
+            // if this metric has points
+            $hasPoints = data_get($cm, 'has_points', true);
+            if (!$hasPoints) continue;
+            // if points is empty, use default points from metric defination
+            $summaryPoints += $metricPoints[$id] !== '' ? $metricPoints[$id] : data_get($cm, 'point_default');
         }
-        return $trainingPoints;
+        return $summaryPoints;
     }
 
 }

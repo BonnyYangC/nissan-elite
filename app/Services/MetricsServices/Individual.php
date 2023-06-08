@@ -42,16 +42,16 @@ class Individual extends Base {
     }
 
     /**
-     * @param $metrics
+     * @param $metricsValue : points and scores
      * @return mixed
      */
-    public function buildMetricsData(string $positionCode, $metrics) {
+    public function buildMetricsData(string $positionCode, $metricsValue) {
         $metricsDefinations = $this->getMetricsByPosition($positionCode);
         $chartData = [];
         $tableData = [];
 
         foreach ($metricsDefinations as $m) {
-            list($chartData[$m->identifier], $tableData[$m->identifier]) = $this->buildMetricData($m, $metrics);
+            list($chartData[$m->identifier], $tableData[$m->identifier]) = $this->buildMetricData($m, $metricsValue);
         }
 
         $metricsDefinations->each(function($m) use ($chartData, $tableData) {
@@ -72,8 +72,10 @@ class Individual extends Base {
         $legends = ['Month'];
         $points = [];
         $scores = [];
+        // $metricsHasPoints = 
         $childCount = count($metricDefination->metrics);
         foreach($metricDefination->metrics as $id => $cm) {
+            if (!data_get($cm, 'has_points', true)) continue;
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
         $months = $metricDefination->period === self::METRIC_PERIOD_QUARTERLY ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
@@ -82,12 +84,41 @@ class Individual extends Base {
             $p = [$month];
             foreach($metricDefination->metrics as $id => $cm) {
                 $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
-                $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
+                if(data_get($cm, 'has_points', true)) {
+                    $p[] = $value && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
+                }
                 $l = $childCount === 1 ? 'RESULT' : $cm['label'];
-                $scores[$l][] = $value && isset($value[$id . '_result']) ? $value[$id . '_result'] : $cm['default'];
+                $scores[$l][] = $value ?
+                    $this->formatMetricScores($cm, $value[$id . '_result']) : $cm['score_default'];
             }
             $points[] = $p;
         }
         return array(array_merge([$legends], $points), $scores);
+    }
+
+    private function getMetricsHasPoints($metrics) {
+        return array_filter($metrics, function($v, $k) {
+            return data_get($v, 'has_points', true);
+        }, ARRAY_FILTER_USE_BOTH);
+    }
+
+    private function formatMetricScores($metric, $score) {
+        $formatted = 0;
+        $scoreDefault = data_get($metric, 'score_default', 0);
+        switch (data_get($metric, 'score_format', 'I')) {
+            case '%':
+                $formatted = $score !== '' ? number_format(floatval($score)*100) . '%' : $scoreDefault;
+                break;
+            case '$':
+                $formatted = $score !== '' ? '$'.intval($score) : $scoreDefault;
+                break;
+            case 'f':
+                $formatted = $score !== '' ? number_format(floatval($score), data_get($metric, 'score_decimals', 0)) : $scoreDefault;
+                break;
+            default:
+                $formatted = $score !== '' ? intval($score) : $scoreDefault;
+                break;
+        }
+        return $formatted;
     }
 }
