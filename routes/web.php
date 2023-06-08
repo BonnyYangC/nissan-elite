@@ -116,4 +116,5 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/mock/user/{user}', [App\Http\Controllers\UsersController::class, 'mock'])->name('api.user.mock');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('api.dashboard');
     Route::get('/metrics', [App\Http\Controllers\MetricsController::class, 'metrics'])->name('api.metrics');
+    Route::get('/view-last-year', [App\Http\Controllers\UsersController::class,'view_last_year'])->name('api.view_last_year');
 });
