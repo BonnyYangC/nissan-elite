@@ -72,18 +72,21 @@ class Individual extends Base {
         $legends = ['Month'];
         $points = [];
         $scores = [];
-        $metricsHasPoints = $this->getMetricsHasPoints($metricDefination->metrics);
-        $childCount = count($metricsHasPoints);
-        foreach($metricsHasPoints as $id => $cm) {
+        // $metricsHasPoints = 
+        $childCount = count($metricDefination->metrics);
+        foreach($metricDefination->metrics as $id => $cm) {
+            if (!data_get($cm, 'has_points', true)) continue;
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
         $months = $metricDefination->period === self::METRIC_PERIOD_QUARTERLY ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
         foreach($months as $month) {
             $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
-            foreach($metricsHasPoints as $id => $cm) {
+            foreach($metricDefination->metrics as $id => $cm) {
                 $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
-                $p[] = $value && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
+                if(data_get($cm, 'has_points', true)) {
+                    $p[] = $value && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
+                }
                 $l = $childCount === 1 ? 'RESULT' : $cm['label'];
                 $scores[$l][] = $value ?
                     $this->formatMetricScores($cm, $value[$id . '_result']) : $cm['score_default'];

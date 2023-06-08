@@ -64,13 +64,13 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
-        $this->seedPositions();
-        $this->seedCompanies();
-        $this->seedAdmins();
-        $this->seedAcls();
-        $this->seedRewards();
+        // $this->seedPositions();
+        // $this->seedCompanies();
+        // $this->seedAdmins();
+        // $this->seedAcls();
+        // $this->seedRewards();
         $this->seedMetrics();
-        $this->seedFaqs();
+        // $this->seedFaqs();
     }
 
     /**

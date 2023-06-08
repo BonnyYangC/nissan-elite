@@ -7,7 +7,7 @@ use App\Helper\Utility;
 use App\Models\{Result, User};
 use App\Services\DataMappingServices\MonthlyDataImpl\{MonthlyImportationTrait, MonthlyValidationTrait};
 
-abstract class MonthlyDataMapping {
+class MonthlyDataMapping {
     use MonthlyValidationTrait, MonthlyImportationTrait;
 
     /** @var array  */
@@ -109,7 +109,15 @@ abstract class MonthlyDataMapping {
      * @param $row
      * @return array
      */
-    abstract protected function metricsMapping($row);
+    protected function metricsMapping($row): array {
+        return array_reduce(array_keys($this->metricsMappingArray),
+            function ($result, $key) use ($row) {
+                $value = data_get($row, $this->getMetricsMappingField($key));
+                // TBD: if no value from csv file, set to null. which is $value !== '' ? $value : null; 
+                $result[$key] = $value; // retrive metric value from csv file, keep whatever it is
+                return $result;
+            }, []);
+    }
 
     /**
      * to see if this record is ignored

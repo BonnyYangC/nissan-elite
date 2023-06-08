@@ -34,18 +34,4 @@ class PartsManager extends MonthlyDataMapping {
         'sdr' => 'points_ce_5STAR',
         'sdr_result' => 'score_ce_5STAR',
     ];
-
-    /**
-     * @param $row
-     * @return array
-     */
-    protected function metricsMapping($row): array {
-        return array_reduce(array_keys($this->metricsMappingArray),
-            function ($result, $key) use ($row) {
-                $value = data_get($row, $this->getMetricsMappingField($key));
-                // TBD: if no value from csv file, set to null. which is $value !== '' ? $value : null; 
-                $result[$key] = $value; // retrive metric value from csv file, keep whatever it is
-                return $result;
-            }, []);
-    }
 }
