@@ -38,11 +38,11 @@
                 @endforeach
             </tr>
             @foreach (data_get($guide, 'rows', []) as $row)
-                <tr class="table-body">
-                    @foreach ($row as $item)
-                        <td>{{ $item }}</td>
-                    @endforeach
-                </tr>
+            <tr class="table-body">
+                @foreach ($row as $item)
+                    <td class="text-nowrap">{{ $item }}</td>
+                @endforeach
+            </tr>
             @endforeach
         </table>
         @if (isset($guide['note']))

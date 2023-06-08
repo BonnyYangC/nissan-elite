@@ -7,9 +7,15 @@
 @section('guild_content')
     <div class="d-flex">
         <div class="col-10 offset-1">
-            <h3>THE GUILD FY22 IS COMING!</h3>
+            <h3>THE GUILD FY22 IS TO CONVENE IN MELBOURNE – SATURDAY 5 AUGUST –
+                MONDAY 7 AUGUST 2023</h3>
             <p>
-                We are currently planning the FY22 GUILD event and will update you in coming months.  Where to you ask?  We have some great ideas in mind and many new Gold and Platinum inductees to recognise at our Mystery Destination.
+                Invitations have been emailed to eligible Foundation members, along with our new inductees in FY22. We have
+a great weekend in store for our eligible GUILD MEMBERS in August and below are our new inductees for FY22
+Platinum (500,000+) and new to Gold (325,000+).
+            </p>
+            <p>
+                Congratulations on the excellent achievement and Loyalty to the Brand shown here.
             </p>
             <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/7c6c496225fb/nissan-dealer-excellence-fy18-results-3120310?e=1dac1983c2">
                 Click here to view edm content
@@ -41,17 +47,24 @@
     </div>
     <div class="d-flex">
         <div class="col-8 offset-1">
+            <h3>THE GUILD WEEKEND 2023 – NISSAN ELITE FY22</h3>
+
+            <p>
+                Arriving in Melbourne on Saturday, our members will be welcomed in true Melbourne style as VIP guests at the
+                Hawthorn Presidents function to see the Hawthorn v Collingwood match at the MCG. On Sunday evening at a
+                wonderful restaurant in Melbourne we will induct our new members to ELITE GUILD hosted by Members of the
+                Nissan Management Operating Committee in honour of their fine achievement. With time on Sunday to roam
+                the city, shopping and a visit to THE LUME Melbourne.
+            </p>
+
+            <p>&nbsp;</p>
             <h3>PAST EVENT</h3>
-            <h3>THE GUILD WEEKEND 2022 – NISSAN ELITE FY21</h3>
-
-            <p>THE GUILD headed North to the Top End landing in Darwin for a true Aussie adventure.  Members and partners enjoyed a fun packed weekend with Jumping Crocodiles, Wildlife park and refreshing swim at Berry Springs.  The Gala Presentation Dinner inducting 12 new GOLD GUILD members and 3 GOLD members to PLATINUM GUILD was held at Pee Wee’s on the Point overlooking a true Darwin sunset.</p>
-
             <p>&nbsp;</p>
             <h3>Past Experiences</h3>
 
             <table>
                 <tbody>
-                    <tr style="line-height: 2em;"><td width=13%>2023</td><td>COMING SOON!</td></tr>
+                    <tr style="line-height: 2em;"><td width=13%>2023</td><td>MELBOURNE – Sheraton Hotel, VIP at MCG Hawthorns Presidents function, THE LUME and gala dinner</td></tr>
                     <tr style="line-height: 2em;"><td width=13%>2022</td><td>DARWIN NORTHERN TOP END – DoubleTree by Hilton, with gala dinner at Pee Wee’s at the Point</td></tr>
                     <tr style="line-height: 2em;"><td width=13%>2021</td><td>NOOSA QUEENSLAND - Sofitel Resort, gala dinner at Bistro C and Catalina Extravaganza</td></tr>
                     <tr style="line-height: 2em;"><td width=13%>2020</td><td>CANCELLED – COVID19, Dealer Trophy presentation and complimentary Travel Voucher</td></tr>
