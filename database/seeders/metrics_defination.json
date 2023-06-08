@@ -1224,7 +1224,8 @@
                             "label": "QUALIFIER",
                             "has_points": false,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_style": "text-red text-bold"
                         }
                     },
                     "guides": [{

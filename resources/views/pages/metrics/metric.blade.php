@@ -12,9 +12,9 @@
         </thead>
         @foreach ($metricData->table_data as $label => $data)
         <tr class="table-body" style="text-align: center">
-            <td class="nissan-table-cell-grey">{{ $label }}</td>
+            <td class="nissan-table-cell-grey {{data_get($metricData->table_style, $label, '')}}">{{ $label }}</td>
             @foreach ($data as $index => $points)
-            <td class="{{ $index%2 == 0 ? 'nissan-table-cell-light-grey' : 'nissan-table-cell-grey' }}">{{ $points }}</td>
+            <td class="{{ $index%2 == 0 ? 'nissan-table-cell-light-grey' : 'nissan-table-cell-grey' }} {{data_get($metricData->table_style, $label, '')}}">{{ $points }}</td>
             @endforeach
         </tr>
         @endforeach
