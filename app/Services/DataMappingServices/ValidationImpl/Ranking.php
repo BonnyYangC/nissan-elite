@@ -2,11 +2,9 @@
 
 namespace App\Services\DataMappingServices\ValidationImpl;
 
-use App\Helper\Defination;
 use App\Helper\Utility;
 use App\Services\DataMappingServices\Ranking as BaseRanking;
 use App\Models\Ranking as RankingModel;
-use Carbon\Carbon;
 
 class Ranking extends BaseRanking {
     use ValidationTrait;
