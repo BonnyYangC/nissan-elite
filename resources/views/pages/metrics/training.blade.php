@@ -22,7 +22,7 @@
             @foreach (data_get($guide, 'rows', []) as $row)
                 <tr class="align-center table-body">
                     @foreach ($row as $item)
-                        <td>{{ $item }}</td>
+                        <td class="text-nowrap">{{ $item }}</td>
                     @endforeach
                 </tr>
             @endforeach

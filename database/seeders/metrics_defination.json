@@ -554,7 +554,7 @@
                     "guides": [
                         {
                             "title": "NIC SALES GUIDE",
-                            "top": ["Retail Sales Consultant", "mthly"],
+                            "top": ["Retail Sales Consultant", "per unit"],
                             "rows": [["Category A", 55], ["Category B", 55], ["Category C", 55]]
                         },
                         {
@@ -1085,7 +1085,8 @@
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points per Quarter"],
-                        "rows": [["The Nissan Brand (O)", 125], ["Employee Test Drive Experience (O)", 125]]
+                        "rows": [["The Nissan Brand (O)", 125], ["Employee Test Drive Experience (O)", 125]],
+                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 30"
                     }]
                 }],
             "PM": [
@@ -1588,7 +1589,7 @@
                 {
                     "identifier": "pmp",
                     "order": 10,
-                    "title": "PRE-PAID MAINTENANCE PLAN % OF NEW CAR SALES (PMP)",
+                    "title": "PMP% OF NEW CAR SALES",
                     "metrics": {
                         "pmp":{
                             "label": "PMP%retails",
@@ -1597,7 +1598,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "PRE-PAID MAINTENANCE PLAN % OF NEW CAR SALES (PMP) GUIDE",
+                        "title": "PMP% OF NEW CAR SALES GUIDE",
                         "top": ["Service Manager", "5%", "10%", "20%"],
                         "rows": [["Category A", 100, 200, 300],["Category B", 100, 200, 300], ["Category C", 100, 200, 300]]
                     }]
@@ -1827,7 +1828,7 @@
                 {
                     "identifier": "pmp",
                     "order": 9,
-                    "title": "PRE-PAID MAINTENANCE PLAN % OF NEW CAR SALES (PMP)",
+                    "title": "PMP% OF NEW CAR SALES",
                     "metrics": {
                         "pmp":{
                             "label": "PMP%retails",
@@ -1836,7 +1837,7 @@
                         }
                     },
                     "guides": [{
-                        "title": "PPRE-PAID MAINTENANCE PLAN % OF NEW CAR SALES (PMP)",
+                        "title": "PMP% OF NEW CAR SALES",
                         "top": ["Service Advisor", "5%", "10%", "20%"],
                         "rows": [["Category A & B", 100, 200, 300], ["Category C", 100, 200, 300]]
                     }]
@@ -1889,7 +1890,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Service Advisor (O)", "", 450, ""],
-                            ["Certified Service Executive  (VC & A)", "", 400, ""], 
+                            ["Certified Service Executive  (VC & A)", "", 100, ""], 
                             ["e-POWER (O)", "", 100, ""],
                             ["Mastery Goal Achievement", 100, 250, 250]],
                         "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 39/40"
