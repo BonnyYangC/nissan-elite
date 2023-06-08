@@ -59,6 +59,12 @@ class Individual extends Base {
             $m->table_header = $m->period === self::METRIC_PERIOD_QUARTERLY ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
             $m->table_data = isset($tableData[$m->identifier]) ? $tableData[$m->identifier] : []; //['RESULT' => ['100','100','100','100','100','100','100','100','100','100','100','100'], '2' => ['100','100','100','100','100','100','100','100','100','100','100','100']];
             $m->chart_name = 'chart_'.$m->identifier;
+            $style = [];
+            foreach ($m->metrics as $key => $cm) {
+                if (!isset($cm['score_style'])) continue;
+                $style[$cm['label']] = $cm['score_style'];
+            }
+            $m->table_style = $style;
         });
         return $metricsDefinations;
     }

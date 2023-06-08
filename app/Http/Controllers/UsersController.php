@@ -300,4 +300,15 @@ class UsersController extends Controller {
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
         return $this->render('pages.my_team');
     }
+
+    public function view_last_year(Request $request, User $user) {
+
+        $parameter = $request->input();
+        $user = User::Where('employee_code', '=', $parameter['code'])->first();
+        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
+
+        Auth::login($user, false);
+        session(['selected_position' => null]);
+        return redirect()->route($redirect);
+    }
 }

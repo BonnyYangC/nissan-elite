@@ -28,6 +28,13 @@
     background: #d5d5d5;
     color: #000000;
 }
+.metrics-table .text-bold {
+    font-weight: bold;
+}
+
+.metrics-table .text-red {
+    color: #c0133c;
+}
 
 .metric-guide {
     padding-left: 1%;

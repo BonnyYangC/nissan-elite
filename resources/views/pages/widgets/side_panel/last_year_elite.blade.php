@@ -9,7 +9,7 @@
             <tr align="center">
                 <td>
                     <form target="_blank" action="{{ env('LAST_YEAR_EVENT_URL') }}/../api/view-last-year" method="get">
-                    <!--<form action="{{ env('LAST_YEAR_EVENT_URL') }}/../admin/fake-user" method="post">-->
+                        @csrf
                         <input type="hidden" name="code" value="{{ $currentUser->employee_code }}" />
 
                         <input type="hidden" name="mock" value="true" />

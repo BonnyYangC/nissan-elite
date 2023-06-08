@@ -4,8 +4,6 @@ namespace App\Services\DataMappingServices\ImportationImpl;
 
 use App\Services\DataMappingServices\LoyaltyHistorical as BaseLoyaltyHistorical;
 use App\Models\History;
-use Carbon\Carbon;
-
 
 class LoyaltyHistorical extends BaseLoyaltyHistorical {
 /**

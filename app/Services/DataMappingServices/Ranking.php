@@ -2,10 +2,7 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Helper\Defination;
 use App\Helper\Utility;
-use App\Models\Ranking as RankingModel;
-use Carbon\Carbon;
 
 class Ranking extends Base {
     /** @var array  */
@@ -13,9 +10,9 @@ class Ranking extends Base {
         'period'        => 'mthyr_g_',
         'employee_code' =>'regi#_',
         'rank'          =>'rank_STATUS_',
-        'total'         =>'yr_2022_status_',
+        'total'         =>'yr_2023_status',
         'rank_platinum' =>'rank_PLATINUM_',
-        'total_platinum'=>'yr_2022_platinum_',
+        'total_platinum'=>'yr_2023_platinum',
         'rank_state'    =>'state_rank_',
         'position'      =>'sp_',
     ];
@@ -31,8 +28,6 @@ class Ranking extends Base {
         return $key;
     }
 
-    
-
     /**
      * built data map for data uploader
      *
@@ -44,13 +39,13 @@ class Ranking extends Base {
      */
     public function buildData($model, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
-        $statusRank = isset($row['rank_STATUS_']) && isset($row['yr_2022_status_']) ? [
+        $statusRank = isset($row['rank_STATUS_']) && isset($row['yr_2023_status']) ? [
             'rank' => $row['rank_STATUS_'] && $row['rank_STATUS_'] !== '' ? $row['rank_STATUS_'] : null,
-            'total' => $row['yr_2022_status_'] && $row['yr_2022_status_'] !== '' ? $row['yr_2022_status_'] : 0,
+            'total' => $row['yr_2023_status'] && $row['yr_2023_status'] !== '' ? $row['yr_2023_status'] : 0,
         ] : [];
-        $platinumRank = isset($row['rank_PLATINUM_']) && isset($row['yr_2022_platinum_']) ? [
+        $platinumRank = isset($row['rank_PLATINUM_']) && isset($row['yr_2023_platinum']) ? [
             'rank_platinum' => $row['rank_PLATINUM_'] && $row['rank_PLATINUM_'] !== '' ? $row['rank_PLATINUM_'] : null,
-            'total_platinum' => $row['yr_2022_platinum_'] && $row['yr_2022_platinum_'] !== '' ? $row['yr_2022_platinum_'] : 0,
+            'total_platinum' => $row['yr_2023_platinum'] && $row['yr_2023_platinum'] !== '' ? $row['yr_2023_platinum'] : 0,
         ] : [];
         return array_merge([
             'period'        => Utility::formatPeriod($row['mthyr_g_']),
