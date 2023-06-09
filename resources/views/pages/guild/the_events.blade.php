@@ -6,7 +6,7 @@
 @endsection
 @section('guild_content')
     <div class="d-flex">
-        <div class="col-10 offset-1">
+        <div class="col-10 offset-1" style="padding-top: 2%">
             <h3>THE GUILD FY22 IS TO CONVENE IN MELBOURNE – SATURDAY 5 AUGUST –
                 MONDAY 7 AUGUST 2023</h3>
             <p>
@@ -46,7 +46,7 @@ Platinum (500,000+) and new to Gold (325,000+).
         </div>
     </div>
     <div class="d-flex">
-        <div class="col-8 offset-1">
+        <div class="col-8 offset-1" style="padding-right: 2%; padding-top: 2%">
             <h3>THE GUILD WEEKEND 2023 – NISSAN ELITE FY22</h3>
 
             <p>

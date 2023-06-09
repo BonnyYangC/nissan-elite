@@ -69,8 +69,8 @@ class EventService extends BaseService {
         $event->end = $newData['end'];
         $event->region = $newData['region'];
         $event->description = $newData['description'];
-        $event->incentive_id = intval($newData['incentive_id']);
-        $event->incentive_name = isset($newData['incentive_name']) ? $newData['incentive_name'] : null;
+        $event->incentive = intval($newData['incentive_id']) ?: null;
+     //   $event->incentive_name = isset($newData['incentive_name']) ? $newData['incentive_name'] : null;
 
         return $event->save();
     }

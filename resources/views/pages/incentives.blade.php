@@ -45,6 +45,13 @@
                 @include('pages.widgets.side_panel.registered', [$currentUser])
             </div>
         </div>
+
+        <div id="News" class="page-section-wrap">
+            <div class="incentive-section-wrap">
+                <h3 class="mb-2">News</h3>
+            </div>
+        </div>
+
         <div id="Finished" class="page-section-wrap">
             <div class="incentive-section-wrap">
                 <h3 class="mb-2">Just Finished</h3>

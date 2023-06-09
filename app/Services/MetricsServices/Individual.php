@@ -49,8 +49,8 @@ class Individual extends Base {
         $metricsDefinations = $this->getMetricsByPosition($positionCode);
         $chartData = [];
         $tableData = [];
-
         foreach ($metricsDefinations as $m) {
+            $m->metrics = (count($m->metrics) > 1) ? $this->sortingMetricsByOrder($m->metrics) : $m->metrics;
             list($chartData[$m->identifier], $tableData[$m->identifier]) = $this->buildMetricData($m, $metricsValue);
         }
 
@@ -78,8 +78,7 @@ class Individual extends Base {
         $legends = ['Month'];
         $points = [];
         $scores = [];
-        // $metricsHasPoints = 
-        $childCount = count($metricDefination->metrics);
+        $childCount = count($this->getMetricsHasPoints($metricDefination->metrics));
         foreach($metricDefination->metrics as $id => $cm) {
             if (!data_get($cm, 'has_points', true)) continue;
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
@@ -93,7 +92,7 @@ class Individual extends Base {
                 if(data_get($cm, 'has_points', true)) {
                     $p[] = $value && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
                 }
-                $l = $childCount === 1 ? 'RESULT' : $cm['label'];
+                $l = ($childCount === 1 && data_get($cm, 'has_points', true)) ? 'RESULT' : $cm['label'];
                 $scores[$l][] = $value ?
                     $this->formatMetricScores($cm, $value[$id . '_result']) : $cm['score_default'];
             }
@@ -106,6 +105,16 @@ class Individual extends Base {
         return array_filter($metrics, function($v, $k) {
             return data_get($v, 'has_points', true);
         }, ARRAY_FILTER_USE_BOTH);
+    }
+
+    private function sortingMetricsByOrder($metrics) {
+        uasort($metrics, function ($a, $b) {
+            if (intVal(data_get($a, 'score_order', 0)) == intVal(data_get($b, 'score_order', 0))) {
+                return 0;
+            }
+            return (intVal(data_get($a, 'score_order', 0)) < intVal(data_get($b, 'score_order', 0))) ? -1 : 1;
+        });
+        return $metrics;
     }
 
     private function formatMetricScores($metric, $score) {
@@ -121,6 +130,10 @@ class Individual extends Base {
             case 'f':
                 $formatted = $score !== '' ? number_format(floatval($score), data_get($metric, 'score_decimals', 0)) : $scoreDefault;
                 break;
+            case 'b':
+                $formatted = $score !== '' ? $score : $scoreDefault;
+                break;
+
             default:
                 $formatted = $score !== '' ? intval($score) : $scoreDefault;
                 break;

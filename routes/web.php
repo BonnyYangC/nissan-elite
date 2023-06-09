@@ -102,6 +102,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
     Route::post('/incentive/edit', [App\Http\Controllers\IncentiveController::class, 'incentive_edit'])->name('admin.incentive.edit');
     Route::get('/incentives/delete/{incentive}', [App\Http\Controllers\IncentiveController::class, 'incentive_delete'])->name('admin.incentive.delete');
 
+    Route::get('/news', [App\Http\Controllers\NewsController::class, 'news'])->name('admin.news');
+    Route::get('/news/info/{news?}', [App\Http\Controllers\NewsController::class, 'news_info'])->name('admin.news.info');
+    Route::post('/news/edit', [App\Http\Controllers\NewsController::class, 'news_edit'])->name('admin.news.edit');
+    Route::get('/news/delete/{news}', [App\Http\Controllers\NewsController::class, 'news_delete'])->name('admin.news.delete');
+
     Route::get('/faqs', [App\Http\Controllers\FaqController::class, 'faqs'])->name('admin.faqs');
     Route::get('/faqs/info/{faq?}', [App\Http\Controllers\FaqController::class, 'faq_info'])->name('admin.faq.info');
     Route::post('/faq/edit', [App\Http\Controllers\FaqController::class, 'faq_edit'])->name('admin.faq.edit');
