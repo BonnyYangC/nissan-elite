@@ -321,7 +321,8 @@
                         "retail_forecast":{
                             "label": "Dealer Forecast",
                             "point_default": 0,
-                            "score_default": "NO"
+                            "score_default": "NO",
+                            "score_format": "b"
                         }
                     },
                     "guides": [
@@ -738,7 +739,9 @@
                         "retail_forecast":{
                             "label": "Retail Forecast",
                             "point_default": 0,
-                            "score_default": "NO"
+                            "score_default": "NO",
+                            "score_format": "b"
+                            
                         }
                     },
                     "guides": [{
@@ -1028,7 +1031,8 @@
                     },
                     "guides": [{
                         "title": "SATISFACTION WITH EXPLANATION OF F&I NPS 3MR SCORE GUIDE",
-                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 30<br>– NPS R6M target achievement required –NPS3 month rolling target",
+                        "note":"–NPS3 month rolling target",
+                        "criteria": "CRITERIA: Refer to the ELITE23 Member Guide for full details to earn end-year Giftcard Reward – page 30<br>– NPS R6M target achievement required",
                         "top": ["F&I Manager", "86%", "≥86.1%", "≥90%"],
                         "rows": [["Category A, B, C", 100, 300, 500]]
                     }]

@@ -234,7 +234,7 @@
                 <p><em></em></p>
             </div>
             <div class="page-widget col-3">
-                <img src="{{ asset('images/awards/Gold_Pin.png') }}" class="w-100" alt="" />
+               <!-- <img src="{{ asset('images/awards/Gold_Pin.png') }}" class="w-100" alt="" />-->
             </div>
         </div>
         <div class="page-section-wrap dashboard-section"></div>

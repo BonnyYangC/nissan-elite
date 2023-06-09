@@ -130,6 +130,10 @@ class Individual extends Base {
             case 'f':
                 $formatted = $score !== '' ? number_format(floatval($score), data_get($metric, 'score_decimals', 0)) : $scoreDefault;
                 break;
+            case 'b':
+                $formatted = $score !== '' ? $score : $scoreDefault;
+                break;
+
             default:
                 $formatted = $score !== '' ? intval($score) : $scoreDefault;
                 break;

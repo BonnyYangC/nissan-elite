@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-center">
                 <div class="challenge-section">
                     <p class="header-line">NISSAN ELITE Product Challenge & Award Presentation Events ARE BACK IN 2023!</p>
-                    <p class="sub-header">- DATES AND VENUES COMING SOON</p>
+                    <p class="sub-header">- DATES AND VENUES ARE READY</p>
                     <p class="sub-header">- REGISTRATIONS OPEN SOON</p>
                     <p class="sub-header">- Get your A-Team together!</p>
                     <!--<p class="text-content">After many disruptions encountered over the past two years we are excited to announce the dates for the 2022 Product Challenge events across Australia.</p>-->
@@ -82,8 +82,9 @@
                     <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/41efcd5dda9b/nissan-dealer-business-development-group-meeting1-3122136?e=1dac1983c2">
                         Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY23
                     </a>-->
-                    <span style="color:#c0133c">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY23</span>
-                    <span style="color:#c0133c">– SALES/SERVICE MANAGER ACCESS ONLY (1 Table per Dealer with Maximum seating 12)</span>
+                    <span style="color:#c0133c">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY23</br>
+                    – SALES/SERVICE MANAGER ACCESS ONLY </br>
+                    (1 Table per Dealer with Maximum seating 12)</span>
                 </div>
             </div>
             <div class="page-section-wrap dashboard-section"></div>
