@@ -1223,7 +1223,7 @@
                             "score_format": "%"
                         },
                         "rim_qualifier":{
-                            "label": "QUALIFIER",
+                            "label": "Compliance",
                             "has_points": false,
                             "score_order": 1,
                             "score_default": "0%",
