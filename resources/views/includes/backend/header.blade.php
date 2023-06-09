@@ -49,6 +49,9 @@
                         <a class="navbar-item" href="{{ route('admin.incentives') }}">
                             Incentives
                         </a>
+                        <a class="navbar-item" href="{{ route('admin.news') }}">
+                            NEWS
+                        </a>
                         <a class="navbar-item" href="{{ route('admin.faqs') }}">
                             FAQ
                         </a>
