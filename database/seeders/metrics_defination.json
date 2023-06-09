@@ -1218,15 +1218,17 @@
                         "rim":{
                             "label": "RIM % Useage",
                             "point_default": 0,
+                            "score_order": 2,
                             "score_default": "0%",
                             "score_format": "%"
                         },
                         "rim_qualifier":{
                             "label": "QUALIFIER",
                             "has_points": false,
+                            "score_order": 1,
                             "score_default": "0%",
                             "score_format": "%",
-                            "score_style": "text-red text-bold"
+                            "score_style": "text-red"
                         }
                     },
                     "guides": [{
