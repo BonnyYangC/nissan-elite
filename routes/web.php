@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/ranking', [App\Http\Controllers\RankingsController::class, 'ranking'])->name('ranking');
     Route::get('/get_ranking', [App\Http\Controllers\RankingsController::class, 'get_ranking'])->name('get_ranking');
     Route::get('/incentives', [App\Http\Controllers\PagesController::class, 'incentives'])->name('incentives');
+    Route::get('/news', [App\Http\Controllers\PagesController::class, 'news'])->name('news');
     Route::get('/member_guide', [App\Http\Controllers\PagesController::class, 'member_guide'])->name('member_guide');
     Route::get('/future_sales', [App\Http\Controllers\FutureSalesController::class, 'future_sales'])->name('future_sales');
     Route::get('/future_sales/explanation', [App\Http\Controllers\FutureSalesController::class, 'future_sales_explanation'])->name('future_sales.explanation');
@@ -122,4 +123,5 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('api.dashboard');
     Route::get('/metrics', [App\Http\Controllers\MetricsController::class, 'metrics'])->name('api.metrics');
     Route::get('/view-last-year', [App\Http\Controllers\UsersController::class,'view_last_year'])->name('api.view_last_year');
+    Route::get('/back-to-current-year', [App\Http\Controllers\UsersController::class,'back_to_current_year'])->name('api.back_to_current_year');
 });

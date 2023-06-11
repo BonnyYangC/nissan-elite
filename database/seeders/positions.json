@@ -139,6 +139,12 @@
             "department": null
         },
         {
+            "code": "DGC",
+            "title": "DGC",
+            "platinum_ranking": 0,
+            "department": null
+        },
+        {
             "code": "NFSA",
             "title": "NFSA",
             "platinum_ranking": 0,

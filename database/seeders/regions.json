@@ -1,0 +1,26 @@
+{
+    "regions": [
+        {
+            "code" : "E",
+            "title" : "Eastern"
+        }, {
+            "code" : "N",
+            "title" : "Northern"
+        }, {
+            "code" : "S",
+            "title" : "Southern"
+        }, {
+            "code" : "W",
+            "title" : "Western & Central"
+        }, {
+            "code" : "H",
+            "title" : "HEAD OFFICE"
+        }, {
+            "code" : "NFSA",
+            "title" : "NFSA"
+        }, {
+            "code" : "DESTINATION",
+            "title" : "DESTINATION"
+        }
+    ]
+}

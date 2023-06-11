@@ -25,9 +25,6 @@ class Controller extends BaseController
      */
     public function __construct(Request $request)
     {
-
-        $this->dataForView['viewLastYear'] = false;  //TBD
-
         /**prepare login information which used by whole site after middleware */
         $this->middleware(function ($request, $next) {
 
@@ -66,6 +63,7 @@ class Controller extends BaseController
                 $this->dataForView['selectedPosition'] = session('selected_position');
             }
             
+            $this->dataForView['viewLastYear'] = session('view_last_year');
             $this->dataForView['currentUser'] = $currentUser;
             return $next($request);
         });

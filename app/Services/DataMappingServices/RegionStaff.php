@@ -54,15 +54,15 @@ class RegionStaff extends Base {
      */
     public function buildData($model, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
-        list($firstName, $surName) = explode(' ', $row['Name']);
+        // list($firstName, $surName) = explode(' ', $row['full name']);
         return [
-            'firstname' => $firstName,
-            'lastname' => $surName,
+            'firstname' => $row['first name'],
+            'lastname' => $row['last name'],
             'position_code' => $row['Position'],
             'region_code' => $this->regions->filter(function($r) use ($row) {return strtoupper($r->title) === $row['Region'];})->first()->code,
             'email' => $row['Email'],
-            'mobile' => $row['Mobile'] ? $row['Mobile'] : null,
-            'active' => $row['Active'] === 'YES' ? 1 : 0
+            'mobile' => data_get($row, 'Mobile', null),
+            'active' => $row['active'] === 'YES' ? 1 : 0
         ];
     }
 }

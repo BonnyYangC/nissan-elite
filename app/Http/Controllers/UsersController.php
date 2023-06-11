@@ -309,6 +309,13 @@ class UsersController extends Controller {
 
         Auth::login($user, false);
         session(['selected_position' => null]);
+        session(['view_last_year' => true]);
         return redirect()->route($redirect);
+    }
+
+    public function back_to_current_year(Request $request) {
+
+        session(['view_last_year' => false]);
+        echo("<script>window.close();</script>");
     }
 }

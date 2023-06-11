@@ -16,14 +16,14 @@ class RegionStaff extends BaseRegionStaff {
      * @return RegionStaffModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = RegionStaffModel::where('Email', trim($record[$modelKey['primary']]))->first();
+        $model = RegionStaffModel::where('email', trim($record[$modelKey['primary']]))->first();
         if(!$model){
             $model = new RegionStaffModel();
             $model->updated_at = Carbon::now();
             $model->created_at = Carbon::now();
             $model->admin = 0;
-            list($firstName, $surName) = explode(' ', $record['Name']);
-            $model->password = bcrypt(strtoupper(trim($surName)).'1');
+            // list($firstName, $surName) = explode(' ', $record['full name']);
+            $model->password = bcrypt(strtoupper(trim($record['last name'])).'1');
         }
         
         return $model;

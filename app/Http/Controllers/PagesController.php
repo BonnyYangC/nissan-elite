@@ -58,6 +58,18 @@ class PagesController extends Controller {
      * entry point
      *
      */
+    public function news() {
+        $currentUser = Auth::user();
+        $this->dataForView['currentUser'] = $currentUser;
+        $this->dataForView['menuName'] = 'incentives';
+        $this->dataForView['news'] = $this->resolver->newsService()->load();
+        return $this->render('pages.news');
+    }
+
+    /**
+     * entry point
+     *
+     */
     public function member_guide() {
         $currentUser = Auth::user();
         $this->dataForView['currentUser'] = $currentUser;
