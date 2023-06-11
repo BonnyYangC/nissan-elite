@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Helper\Defination;
 use App\Models\{Acl, Company, Faq, Metric, Position, Reward, User};
 use App\Helper\Role;
+use App\Models\Region;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->loadData(__DIR__.'/regions.json');
         $this->loadData(__DIR__.'/companies_defination.json');
         $this->loadData(__DIR__.'/positions.json');
         $this->loadData(__DIR__.'/rewards.json');
@@ -64,13 +66,25 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
-        // $this->seedPositions();
+        $this->seedRegions();
+        $this->seedPositions();
         // $this->seedCompanies();
         // $this->seedAdmins();
         // $this->seedAcls();
         // $this->seedRewards();
-        $this->seedMetrics();
+        // $this->seedMetrics();
         // $this->seedFaqs();
+    }
+
+    /**
+     *
+     */
+    private function seedRegions() {
+        $regions = $this->data['regions'];
+        foreach ($regions as $r) {
+            $ep = Region::where('code', '=', $r['code'])->first();
+            !$ep ? Region::create($r) : $ep->update();
+        }
     }
 
     /**

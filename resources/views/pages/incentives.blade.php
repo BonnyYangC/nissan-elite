@@ -38,17 +38,11 @@
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Past</button>
                 </a>
                 <br><br>
-                <a href="#News">
+                <a href="{{ route('news')}}">
                     <button type="button" class="btn elite-button elite-button-active btn-lg btn-block mb-1">News</button>
                 </a>
                 <br><br>
                 @include('pages.widgets.side_panel.registered', [$currentUser])
-            </div>
-        </div>
-
-        <div id="News" class="page-section-wrap">
-            <div class="incentive-section-wrap">
-                <h3 class="mb-2">News</h3>
             </div>
         </div>
 

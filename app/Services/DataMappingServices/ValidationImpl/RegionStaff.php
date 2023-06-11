@@ -15,7 +15,7 @@ class RegionStaff extends BaseRegionStaff {
      * @return RegionStaffModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = RegionStaffModel::where('Email', trim($record[$modelKey['primary']]))->first();
+        $model = RegionStaffModel::where('email', trim($record[$modelKey['primary']]))->first();
         return $model;
     }
 }
