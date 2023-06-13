@@ -66,11 +66,11 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
-        $this->seedRegions();
-        $this->seedPositions();
+        // $this->seedRegions();
+        // $this->seedPositions();
         // $this->seedCompanies();
         // $this->seedAdmins();
-        // $this->seedAcls();
+        $this->seedAcls();
         // $this->seedRewards();
         // $this->seedMetrics();
         // $this->seedFaqs();
@@ -158,6 +158,7 @@ class DatabaseSeeder extends Seeder
      *
      */
     private function seedAcls() {
+        DB::table('acls')->truncate();
         $acls = $this->data['acls'];
         foreach ($acls as $position => $as) {
             if ($position === 'REGION_STAFF') {

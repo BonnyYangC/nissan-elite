@@ -49,7 +49,8 @@ class Position extends Model {
         Role::REGIONAL_SALES_MANAGER,
         Role::NFSA,
         Role::HEAD_OFFICE,
-        Role::NDM
+        Role::NDM,
+        Role::DGC
     ];
 
     /**
