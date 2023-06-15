@@ -44,7 +44,8 @@ class UserService extends BaseService {
     public function loadActiveMember(array $regions, $dept = 'All', $dealerNameKeyword = null){
         $query = User::select('regions.title as region', 'dealers.code as dealer_code','dealers.name as dealer', 'users.employee_code',
             'users.firstname', 'users.lastname', 'positions.department as dept', 'positions.title as position',
-            'users.registered', 'users.email', 'users.mobile')
+            'users_eligible.registered', 'users.email', 'users.mobile')
+            ->join('users_eligible','users.employee_code','=','users_eligible.employee_code')
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
             ->join('positions', 'users.position_code', '=', 'positions.code')
             ->join('regions', 'regions.code', '=', 'dealers.region')

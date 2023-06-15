@@ -20,7 +20,7 @@ class TerritoryReportService {
      * @return mixed
      */
     public function load(array $regions, $dept = 'All', $dealerNameKeyword = null){
-        $query = TerritoryReport::select('users.id', 'dealers.name as d', 'users.registered as c', 'users.position_code', 'users.employee_code as e',
+        $query = TerritoryReport::select('users.id', 'dealers.name as d', 'users_eligible.registered as c', 'users.position_code', 'users.employee_code as e',
             'users.firstname', 'users.lastname', 'positions.title as p', 'positions.department as s', 'cr_ytd as y', 'regions.title as region',
             'award_status as as', 'cr_ytd_lifetime as pys',
             'credits_monthly_04 as c04','credits_monthly_05 as c05','credits_monthly_06 as c06','credits_monthly_07 as c07',
@@ -30,6 +30,7 @@ class TerritoryReportService {
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
             ->join('positions', 'users.position_code', '=', 'positions.code')
             ->join('regions', 'regions.code', '=', 'dealers.region')
+            ->join('users_eligible','users.employee_code','=','users_eligible.employee_code')
             ->whereIn('dealers.region', $regions);
 
         if ($dept !== 'All') {

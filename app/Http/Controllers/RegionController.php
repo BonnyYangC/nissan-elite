@@ -28,7 +28,7 @@ class RegionController extends Controller {
     public function load_report(Request $request) {
         $region = $request->input('region');
         $rows = $this->resolver->territoryReportService()->load([$region]);
-       echo JsonBuilder::Success($rows);
+        echo JsonBuilder::Success($rows);
     }
 }
 
