@@ -58,7 +58,7 @@ class RegionStaff extends Base {
         return [
             'firstname' => $row['first name'],
             'lastname' => $row['last name'],
-            'position_code' => $row['Position'],
+            'position_code' => strtoupper(trim($row['Position'])),
             'region_code' => $this->regions->filter(function($r) use ($row) {return strtoupper($r->title) === $row['Region'];})->first()->code,
             'email' => $row['Email'],
             'mobile' => data_get($row, 'Mobile', null),
