@@ -44,6 +44,11 @@ class PreImportGuildMembers extends Command
         $successCount = 0;
 
         if(file_exists($filePath)){
+            echo 'File is exists.Start to clear guild_members table'.PHP_EOL;
+            $model = new Members();
+            $model::truncate();
+            echo 'File has truncated.'.PHP_EOL;
+
             $csvReader = Reader::createFromPath($filePath,'r');
             $records = (new Statement())->process($csvReader);
             $type = 1;
@@ -72,7 +77,7 @@ class PreImportGuildMembers extends Command
                 $successCount++;
             }
 
-            echo 'Success: '.$successCount.PHP_EOL;
+            echo 'Guild_members table has updated Success: '.$successCount.PHP_EOL;
         }
         else{
             echo 'File is not exists.'.PHP_EOL;

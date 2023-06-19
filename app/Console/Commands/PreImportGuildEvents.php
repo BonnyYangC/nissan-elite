@@ -36,7 +36,7 @@ class PreImportGuildEvents extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @throws \League\Csv\Exception
      */
     public function handle()
     {
@@ -47,6 +47,11 @@ class PreImportGuildEvents extends Command
         $successCount = 0;
 
         if(file_exists($filePath)){
+            echo 'File is exists.Start to clear guild_Events table'.PHP_EOL;
+            $model = new Events();
+            $model::truncate();
+            echo 'File has truncated.'.PHP_EOL;
+
             $csvReader = Reader::createFromPath($filePath,'r');
             $records = (new Statement())->process($csvReader);
             $type = 1;
@@ -74,7 +79,7 @@ class PreImportGuildEvents extends Command
                 $successCount++;
             }
 
-            echo 'Success: '.$successCount.PHP_EOL;
+            echo 'Guild_events table has updated Success: '.$successCount.PHP_EOL;
         }
         else{
             echo 'File is not exists.'.PHP_EOL;
