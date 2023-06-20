@@ -12,7 +12,7 @@ class Ranking extends Base {
         'rank'          =>'rank_STATUS_',
         'total'         =>'yr_2023_status',
         'rank_platinum' =>'rank_PLATINUM_',
-        'total_platinum'=>'yr_2023_platinum',
+        'total_platinum'=>'yr_2023_platinum_',
         'rank_state'    =>'state_rank_',
         'position'      =>'sp_',
     ];
@@ -43,9 +43,9 @@ class Ranking extends Base {
             'rank' => $row['rank_STATUS_'] && $row['rank_STATUS_'] !== '' ? $row['rank_STATUS_'] : null,
             'total' => $row['yr_2023_status'] && $row['yr_2023_status'] !== '' ? $row['yr_2023_status'] : 0,
         ] : [];
-        $platinumRank = isset($row['rank_PLATINUM_']) && isset($row['yr_2023_platinum']) ? [
+        $platinumRank = isset($row['rank_PLATINUM_']) && isset($row['yr_2023_platinum_']) ? [
             'rank_platinum' => $row['rank_PLATINUM_'] && $row['rank_PLATINUM_'] !== '' ? $row['rank_PLATINUM_'] : null,
-            'total_platinum' => $row['yr_2023_platinum'] && $row['yr_2023_platinum'] !== '' ? $row['yr_2023_platinum'] : 0,
+            'total_platinum' => $row['yr_2023_platinum_'] && $row['yr_2023_platinum_'] !== '' ? $row['yr_2023_platinum_'] : 0,
         ] : [];
         return array_merge([
             'period'        => Utility::formatPeriod($row['mthyr_g_']),
