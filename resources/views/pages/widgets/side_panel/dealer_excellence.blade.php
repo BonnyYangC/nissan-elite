@@ -10,7 +10,7 @@
                 <td>
                     @if ($currentUser->eligible->excellence_eligible)
                         <span class="fs-30 span-red">&#10004</span>
-                        <p class="m-2 txt-white">2000 {{ config('elite.PROGRAM_AWARD_UNIT') }} applied to Monthly points</p>
+                        <p class="m-2 txt-white">1000 {{ config('elite.PROGRAM_AWARD_UNIT') }} applied to Monthly points</p>
                     @else
                         <span class="fs-30 span-red">X</span>
                     @endif
