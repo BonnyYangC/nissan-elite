@@ -44,11 +44,13 @@
                     "identifier": "new_vehicle_fleet",
                     "order": 2,
                     "title": "New Vehicle Fleet Sales v Fleet Target",
+                    "period": "quarterly",
                     "metrics": {
                         "new_vehicle_fleet": {
                             "label": "Sales v Target",
                             "point_default": 0,
-                            "score_default": 0
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -68,7 +70,8 @@
                         "volume":{
                             "label": "Volume Growth",
                             "point_default": 0,
-                            "score_default": 0
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [
@@ -990,7 +993,8 @@
                         "nfv_retails":{
                             "label": "NFV of RETAILS",
                             "point_default": 0,
-                            "score_default": "0"
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Helper\Defination;
 use App\Models\{Acl, Company, Faq, Metric, Position, Reward, User};
 use App\Helper\Role;
 use App\Models\Region;
@@ -27,7 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->loadData(__DIR__.'/companies_defination.json');
         $this->loadData(__DIR__.'/positions.json');
         $this->loadData(__DIR__.'/rewards.json');
-        $this->loadData(__DIR__.'/metrics_defination.json');
         $this->loadData(__DIR__.'/admins.json');
         $this->loadData(__DIR__.'/acls.json');
         $this->loadData(__DIR__.'/faqs.json');
@@ -66,14 +64,13 @@ class DatabaseSeeder extends Seeder
      *
      */
     protected function seed() {
-        // $this->seedRegions();
-        // $this->seedPositions();
-        // $this->seedCompanies();
-        // $this->seedAdmins();
+        $this->seedRegions();
+        $this->seedPositions();
+        $this->seedCompanies();
+        $this->seedAdmins();
         $this->seedAcls();
-        // $this->seedRewards();
-        // $this->seedMetrics();
-        // $this->seedFaqs();
+        $this->seedRewards();
+        $this->seedFaqs();
     }
 
     /**
@@ -95,40 +92,6 @@ class DatabaseSeeder extends Seeder
         foreach ($positions as $p) {
             $ep = Position::where('code', '=', $p['code'])->first();
             !$ep ? Position::create($p) : $ep->update();
-        }
-    }
-
-    /**
-     *
-     */
-    private function seedMetrics() {
-        DB::table('metrics')->truncate();
-        $metrics = $this->data['metrics'];
-        $this->seedSharedMetrics(data_get($metrics, Defination::METRICS_TYPE_SHARED, []));
-        $this->seedCustomMetrics(data_get($metrics, Defination::METRICS_TYPE_CUSTOM, []));
-    }
-
-    /**
-     * @param array $metrics
-     */
-    private function seedSharedMetrics(array $metrics) {
-        foreach ($metrics as $m) {
-            $m['type'] = Defination::METRICS_TYPE_SHARED;
-            Metric::create($m);
-        }
-    }
-
-    /**
-     * @param array $metrics
-     */
-    private function seedCustomMetrics(array $metrics) {
-        // $positions = Position::get()->keyBy('code');
-        foreach ($metrics as $position => $ms) {
-            foreach ($ms as $m) {
-                $m['type'] = Defination::METRICS_TYPE_CUSTOM;
-                $m['position'] = $position;
-                Metric::create($m);
-            }
         }
     }
 
