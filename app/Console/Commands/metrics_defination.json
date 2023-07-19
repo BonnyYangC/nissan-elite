@@ -1604,7 +1604,8 @@
                         "pmp":{
                             "label": "PMP%retails",
                             "point_default": 0,
-                            "score_default": 0
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
@@ -1843,7 +1844,8 @@
                         "pmp":{
                             "label": "PMP%retails",
                             "point_default": 0,
-                            "score_default": 0
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
