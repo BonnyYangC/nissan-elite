@@ -8,6 +8,7 @@
 /app/storage/public/downloads
 /app/helpers/.env
 /public/images/incentives/images
+/public/images/news
 .DS_Store
 *.sql
 app/storage/log/usage_log
