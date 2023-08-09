@@ -40,7 +40,7 @@ class IncentiveService {
         if ($request->hasFile('pdf')) {
             $pdffileName = $request->file('pdf')->getClientOriginalName();
             $pdfFile = $request->file('pdf')->storeAS('image', $pdffileName, 'public');
-            rename(storage_path('app/public/'.$pdfFile), public_path('images/incentives/images/pdf/'.$pdffileName));
+            rename(storage_path('app/public/'.$pdfFile), public_path('images/incentives/pdf/'.$pdffileName));
             $input['pdf'] = $pdffileName;
         }
         $this->update($input);
