@@ -157,7 +157,7 @@
                                     </div>
                                     <p>
                                         @if($incentive->pdf)
-                                        <a class="button is-link" href="{{ asset('/images/incentives/images/pdf/'.$incentive->pdf) }}" target="_blank">
+                                        <a class="button is-link" href="{{ asset('/images/incentives/pdf/'.$incentive->pdf) }}" target="_blank">
                                             View PDF
                                         </a>
                                         @endif

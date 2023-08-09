@@ -16,7 +16,7 @@
                     <div class="fotorama" data-nav="thumbs" data-thumbwidth="84" data-thumbheight="60" data-max-width="100%" data-ratio="700/466">
                     @foreach($current as $slide)
                         <div data-img="{{ asset('/images/incentives/images/'.$slide->image) }}">
-                            <a href="{{ asset('/images/incentives/images/pdf/'.$slide->pdf) }}" target="_blank"></a>
+                            <a href="{{ asset('/images/incentives/pdf/'.$slide->pdf) }}" target="_blank"></a>
                         </div>
                     @endforeach
                     </div>
@@ -53,7 +53,7 @@
                 <div class="row w-100">
                     @foreach($finished as $item)
                     <div class="col-4">
-                        <a href="{{ asset('/images/incentives/images/pdf/'.$item->pdf) }}" target="_blank">
+                        <a href="{{ asset('/images/incentives/pdf/'.$item->pdf) }}" target="_blank">
                             <img style="height: 280px;max-width: 100%;" src="{{ asset('/images/incentives/images/'.$item->image) }}" alt="{{ $item->title }}">
                         </a>
                         <p>{{ $item->start }} to {{ $item->finish }}<br>{{ $item->title }}<br></p><br>
@@ -71,7 +71,7 @@
                     <div class="row w-100">
                         @foreach($past as $item)
                             <div class="col-4">
-                                <a href="{{ asset('/images/incentives/images/pdf/'.$item->pdf) }}" target="_blank">
+                                <a href="{{ asset('/images/incentives/pdf/'.$item->pdf) }}" target="_blank">
                                     <img style="height: 280px;max-width: 100%;" src="{{ asset('/images/incentives/images/'.$item->image) }}" alt="{{ $item->title }}">
                                 </a>
                                 <p>{{ $item->start }} to {{ $item->finish }}<br>{{ $item->title }}<br></p><br>

@@ -45,7 +45,7 @@
                         <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/'.$incentive->image) }}" alt="">
                     </td>
                     <td>
-                        <a href="{{ asset('/images/incentives/images/pdf/'.$incentive->pdf) }}" target="_blank">View PDF</a>
+                        <a href="{{ asset('/images/incentives/pdf/'.$incentive->pdf) }}" target="_blank">View PDF</a>
                     </td>
                     <td>
                         <a class="button is-small is-link" href="{{ route('admin.incentive.info', ['incentive' => $incentive->id]) }}">
@@ -70,7 +70,7 @@
                         <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/'.$incentive->image) }}" alt="">
                     </td>
                     <td>
-                        <a href="{{ asset('/images/incentives/images/pdf/'.$incentive->pdf) }}" target="_blank">View PDF</a>
+                        <a href="{{ asset('/images/incentives/pdf/'.$incentive->pdf) }}" target="_blank">View PDF</a>
                     </td>
                     <td>
                         <a class="button is-small is-link" href="{{ route('admin.incentive.info', ['incentive' => $incentive->id]) }}">
@@ -95,7 +95,7 @@
                         <img width="120" class="thumbnail" src="{{ asset('/images/incentives/images/'.$incentive->image) }}" alt="">
                     </td>
                     <td>
-                        <a href="{{ asset('/images/incentives/images/pdf/'.$incentive->pdf) }}" target="_blank">View PDF</a>
+                        <a href="{{ asset('/images/incentives/pdf/'.$incentive->pdf) }}" target="_blank">View PDF</a>
                     </td>
                     <td>
                         <a class="button is-small is-link" href="{{ route('admin.incentive.info', ['incentive' => $incentive->id]) }}">
