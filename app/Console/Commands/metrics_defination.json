@@ -576,9 +576,7 @@
                         "pmp":{
                             "label": "PMP",
                             "point_default": 0,
-                            "score_default": 0,
-                            "score_format": "f",
-                            "score_decimals": 1
+                            "score_default": 0
                         }
                     },
                     "guides": [
