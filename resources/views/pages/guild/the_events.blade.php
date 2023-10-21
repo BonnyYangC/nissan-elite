@@ -53,8 +53,8 @@ Platinum (500,000+) and new to Gold (325,000+).
                 Arriving in Melbourne Saturday 5 August, our members were welcomed in true Melbourne style as VIP guests at the Hawthorn Presidents function to see the Hawthorn v Collingwood match at the MCG.  And, what a match it was with Hawthorn taking out an outstanding win over the reigning premiers Collingwood.  On Sunday evening hosted by Members of the Nissan Management Operating Committee, in honour of their fine achievement, we inducted our new GOLD inductees to THE GUILD.  Dining at St Telmo restaurant and entertained by Argentinian dancers throughout the night, our GUILD members and partners enjoyed long term catchups, new friendships, and much chatter about their day at THE LUME, shopping, site seeing in Melbourne, or putting the Patrol through its paces.
             </p>
 
-            <p>&nbsp;</p>
-            <h3>PAST EVENT</h3>
+            <!--<p>&nbsp;</p>
+            <h3>PAST EVENT</h3>-->
             <p>&nbsp;</p>
             <h3>Past Experiences</h3>
 
@@ -88,23 +88,26 @@ Platinum (500,000+) and new to Gold (325,000+).
             <p>&nbsp;</p>
             <div class="row">
                 <iframe src="https://destination.com.au/nissan/ELITE/Product%20Challenge/NIS1092%20-%20Nissan%20ELITE%20Product%20Challenge%20Guild%20Video%202023%20-%20Melbourne.mp4" frameborder="0" allowfullscreen></iframe>
-                <a href="https://nissanevents.pixieset.com/nissanelitetheguild2022copy/">View FY22/2023 MELBOURNE Photos & Video </a>
+                <p class="txt-red">FY22/2023 MELBOURNE</p>
+                <a href="https://nissanevents.pixieset.com/nissanelitetheguild2022copy/">View video above and click this link to view photos</a>
             </div>
             <p>&nbsp;</p>
             <div class="row">
                 <iframe src=" https://destination.com.au/nissan/ELITE/Product%20Challenge/Nissan%20Darwin%20Video.mp4" frameborder="0" allowfullscreen></iframe>
-                <a href="https://nissanevents.pixieset.com/nissanelitetheguild2022/">View FY21/2022 DARWIN Photos & Video</a>
+                <p class="txt-red">FY21/2022 DARWIN</p>
+                <a href="https://nissanevents.pixieset.com/nissanelitetheguild2022/">View video above and click this link to view photos</a>
             </div>
             <p>&nbsp;</p>
             <div class="row">
                 <iframe src="https://destination.com.au/nissan/ELITE/The_Guild/3695-NIS1018-Nissan_ELITE_Guild_2021.mp4" frameborder="0" allowfullscreen></iframe>
-                <!--<a href="">NOOSA INDUCTEES and more…</a>-->
-                <a href="https://nissanevents.pixieset.com/nissantheguildnoosafy20/">View FY20/2021 NOOSA Photos & Video</a>
+                <p class="txt-red">FY20/2021 NOOSA</p>
+                <a href="https://nissanevents.pixieset.com/nissantheguildnoosafy20/">View video above and click this link to view photos</a>
             </div>
             <p>&nbsp;</p>
             <div class="row">
                 <iframe src="https://www.youtube.com/embed/KaBL4Y18oco" frameborder="0" allowfullscreen></iframe>
-                <a href="https://nissanevents.pixieset.com/nissaneliteguildevent/">View FY18/2019 HOBART Photos & Video</a>
+                <p class="txt-red">FY18/2019 HOBART</p>
+                <a href="https://nissanevents.pixieset.com/nissaneliteguildevent/">View video above and click this link to view photos</a>
             </div>
         </div>
     </div>

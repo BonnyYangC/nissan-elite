@@ -65,7 +65,7 @@
     <div class="d-flex justify-content-center">
         <div class="col-11 elite-page pt-5">
             <div class=" loading-text py-3" v-show="isLoadingRemoteData">
-                <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom txt-red"></i>&nbsp;<span class="txt-red">Loading Data ... Please wait for a moment!</span>
+                <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom txt-red txt-bold"></i>&nbsp;<span class="txt-red txt-bold">Loading Data ... Please wait for a moment!</span>
             </div>
 
             <el-table
@@ -85,14 +85,14 @@
                     prop="f" fixed sortable
                     label="Name" width="180">
                     <template slot-scope="scope">
-                        <a class="txt-black" v-on:click="window.open(getMockUserUrl(scope.row.id))" target="_blank">${ scope.row.f }</a>
+                        <a class="txt-black txt-bold" v-on:click="window.open(getMockUserUrl(scope.row.id))" target="_blank">${ scope.row.f }</a>
                     </template>
                 </el-table-column>
                 <el-table-column
                     prop="c" fixed sortable
                     label="Registered" width="140">
                     <template slot-scope="scope">
-                        <p class="text-center" :class="{'txt-gr':scope.row.c=='YES','txt-red':scope.row.c=='NO'}">
+                        <p class="text-center txt-bold" :class="{'txt-gr':scope.row.c=='YES','txt-red':scope.row.c=='NO'}">
                             ${ scope.row.c }
                         </p>
                     </template>

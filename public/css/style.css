@@ -67,3 +67,18 @@ a, a:hover {
     color: #ffffff !important;
 }
 
+.txt-red {
+    color: #c0133c !important;
+}
+
+.txt-black {
+    color: #111111 !important;
+}
+
+.txt-gr {
+    color: #1aaf54 !important;
+}
+
+.txt-bold {
+    font-weight: bold;
+}
