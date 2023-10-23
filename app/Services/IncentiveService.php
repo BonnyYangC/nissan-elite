@@ -32,15 +32,23 @@ class IncentiveService {
     public function updateIncentive(Request $request) {
         $input = $request->input();
         if ($request->hasFile('image')) {
-            $imagefileName = $request->file('image')->getClientOriginalName();
-            $imageFile = $request->file('image')->storeAS('image', $imagefileName, 'public');
-            rename(storage_path('app/public/'.$imageFile), public_path('images/incentives/images/'.$imagefileName));
+            $destinationPath = 'images/incentives/images';
+            $imagefileName = $request->image->getClientOriginalName();
+            $request->image->move(public_path($destinationPath), $imagefileName);
+            //$imagefileName = $request->file('image')->getClientOriginalName();
+            //$imageFile = $request->file('image')->storeAS('image', $imagefileName, 'public');
+            //rename(storage_path('app/public/'.$imageFile), public_path('images/incentives/images/'.$imagefileName));
             $input['image'] = $imagefileName;
         }
         if ($request->hasFile('pdf')) {
-            $pdffileName = $request->file('pdf')->getClientOriginalName();
-            $pdfFile = $request->file('pdf')->storeAS('image', $pdffileName, 'public');
-            rename(storage_path('app/public/'.$pdfFile), public_path('images/incentives/pdf/'.$pdffileName));
+
+            $destinationPath = 'images/incentives/pdf';
+            $pdffileName = $request->pdf->getClientOriginalName();
+            $request->pdf->move(public_path($destinationPath), $pdffileName);
+
+            //$pdffileName = $request->file('pdf')->getClientOriginalName();
+            //$pdfFile = $request->file('pdf')->storeAS('image', $pdffileName, 'public');
+            //rename(storage_path('app/public/'.$pdfFile), public_path('images/incentives/pdf/'.$pdffileName));
             $input['pdf'] = $pdffileName;
         }
         $this->update($input);

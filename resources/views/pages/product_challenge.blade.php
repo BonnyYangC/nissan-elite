@@ -92,6 +92,9 @@ meeting1-3123420?e=1dac1983c2">
                     </br>
                     <span style="color:#c0133c">(1 Table per Dealer with Maximum seating 12)</br>
                     (ELITE Members first preference)</span>
+                    </br>
+                    <a class="edm-link" target="_blank" href="https://nissanevents.pixieset.com/nissanproductchallenge2023/">Click to VIEW PRODUCT CHALLENGE PHOTOS 
+                    </a>
                 </div>
             </div>
             <div class="page-section-wrap dashboard-section"></div>
