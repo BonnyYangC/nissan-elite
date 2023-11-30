@@ -48,7 +48,7 @@ class NewsService {
      * @return mixed
      */
     public function load() {
-        return News::get();
+        return News::orderBy('id', 'DESC')->get();
     }
 
     /**
