@@ -44,7 +44,6 @@
                     "identifier": "new_vehicle_fleet",
                     "order": 2,
                     "title": "New Vehicle Fleet Sales v Fleet Target",
-                    "period": "quarterly",
                     "metrics": {
                         "new_vehicle_fleet": {
                             "label": "Sales v Target",
