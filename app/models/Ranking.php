@@ -27,6 +27,7 @@ class Ranking extends Model {
     public static function getMaxPeriod(string $employeeCode, string $positionCode) {
         return Ranking::where('employee_code', $employeeCode)
             ->where('position', $positionCode)
+            ->where('year', config('elite.YEAR'))
             ->max('period');
     }
 
@@ -35,7 +36,9 @@ class Ranking extends Model {
      * @return Carbon|false
      */
     public static function getMaxPeriodByPositionAndCat(string $position) {
-        $result = Ranking::where('position', $position)->max('period');
+        $result = Ranking::where('position', $position)
+            ->where('year', config('elite.YEAR'))
+            ->max('period');
         return Carbon::createFromFormat('Y-m-d',$result);
     }
 

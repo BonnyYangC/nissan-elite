@@ -1,18 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Models\News;
 use Illuminate\Http\Request;
 
-class NewsService {
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+class NewsRepository {
 
     /**
      * @param Request $request

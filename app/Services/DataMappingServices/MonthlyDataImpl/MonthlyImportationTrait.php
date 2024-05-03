@@ -3,7 +3,6 @@
 namespace App\Services\DataMappingServices\MonthlyDataImpl;
 
 use App\Models\Result;
-use Carbon\Carbon;
 use App\Helper\Utility;
 
 trait MonthlyImportationTrait {
@@ -17,11 +16,10 @@ trait MonthlyImportationTrait {
      */
     public function getModelForImportation($modelKey, $record, $key) {
         $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
+            ->where('year', config('elite.YEAR'))
             ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
         if(!$model){
-            $model = new Result();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
+            $model = Result::factory()->make();
         }
         return $model;
     }

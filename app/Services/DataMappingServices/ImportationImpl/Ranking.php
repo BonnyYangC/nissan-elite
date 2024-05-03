@@ -20,9 +20,7 @@ class Ranking extends BaseRanking {
         $model = RankingModel::where('employee_code', trim($record[$modelKey['primary']]))
             ->where('period', Utility::formatPeriod($record['mthyr_g_']))->first();
         if(!$model){
-            $model = new RankingModel();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
+            $model = RankingModel::factory()->make();
         }
         return $model;
     }

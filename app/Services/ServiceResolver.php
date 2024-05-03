@@ -66,14 +66,6 @@ class ServiceResolver {
      * Create a new service instance.
      *
      */
-    public function newsService(): NewsService {
-        return $this->make(NewsService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
     public function guildService(): GuildService {
         return $this->make(GuildService::class);
     }
@@ -84,14 +76,6 @@ class ServiceResolver {
      */
     public function gageService(): GageService {
         return $this->make(GageService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
-    public function faqService(): FaqService {
-        return $this->make(FaqService::class);
     }
 
     /**

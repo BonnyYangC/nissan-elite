@@ -20,7 +20,9 @@ class Base extends BaseService {
      */
     protected function getDateString($month) {
         $monthNum = $this->monthArray[$month];
-        return intval($monthNum) <= 3 ? '2024-'.$monthNum.'-01' : '2023-'.$monthNum.'-01';
+        return intval($monthNum) <= 3 ? '2025-'.$monthNum.'-01' : '2024-'.$monthNum.'-01';
+        //  $test = intval($monthNum) <= 3 ? (intval(config('elite.YEAR'))+1).'-'.$monthNum.'-01' : config('elite.YEAR').'-'.$monthNum.'-01';
+        // var_dump($test);
     }
 
     /**

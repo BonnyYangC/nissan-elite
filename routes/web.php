@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/ranking', [App\Http\Controllers\RankingsController::class, 'ranking'])->name('ranking');
     Route::get('/get_ranking', [App\Http\Controllers\RankingsController::class, 'get_ranking'])->name('get_ranking');
     Route::get('/incentives', [App\Http\Controllers\PagesController::class, 'incentives'])->name('incentives');
-    Route::get('/news', [App\Http\Controllers\PagesController::class, 'news'])->name('news');
+    Route::get('/news', [App\Http\Controllers\NewsController::class, 'news'])->name('news');
     Route::get('/member_guide', [App\Http\Controllers\PagesController::class, 'member_guide'])->name('member_guide');
     Route::get('/future_sales', [App\Http\Controllers\FutureSalesController::class, 'future_sales'])->name('future_sales');
     Route::get('/future_sales/explanation', [App\Http\Controllers\FutureSalesController::class, 'future_sales_explanation'])->name('future_sales.explanation');
@@ -48,7 +49,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/guild/events', [App\Http\Controllers\GuildController::class, 'guild_events'])->name('guild.events');
     Route::get('/guild/members', [App\Http\Controllers\GuildController::class, 'guild_members'])->name('guild.members');
     Route::get('/account', [App\Http\Controllers\PagesController::class, 'account'])->name('account');
-    Route::get('/faq', [App\Http\Controllers\PagesController::class, 'faq'])->name('faq');
+    Route::get('/faq', [App\Http\Controllers\FaqController::class, 'published'])->name('faq');
 
     Route::get('/dashboard/current-status-level', [App\Http\Controllers\GageController::class, 'current_status_level'])->name('current_status_level');
     Route::get('/dashboard/loyalty-status-level', [App\Http\Controllers\GageController::class, 'loyalty_status_level'])->name('loyalty_status_level');
@@ -103,15 +104,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
     Route::post('/incentive/edit', [App\Http\Controllers\IncentiveController::class, 'incentive_edit'])->name('admin.incentive.edit');
     Route::get('/incentives/delete/{incentive}', [App\Http\Controllers\IncentiveController::class, 'incentive_delete'])->name('admin.incentive.delete');
 
-    Route::get('/news', [App\Http\Controllers\NewsController::class, 'news'])->name('admin.news');
+    Route::get('/news', [App\Http\Controllers\NewsController::class, 'index'])->name('admin.news');
     Route::get('/news/info/{news?}', [App\Http\Controllers\NewsController::class, 'news_info'])->name('admin.news.info');
     Route::post('/news/edit', [App\Http\Controllers\NewsController::class, 'news_edit'])->name('admin.news.edit');
     Route::get('/news/delete/{news}', [App\Http\Controllers\NewsController::class, 'news_delete'])->name('admin.news.delete');
 
-    Route::get('/faqs', [App\Http\Controllers\FaqController::class, 'faqs'])->name('admin.faqs');
-    Route::get('/faqs/info/{faq?}', [App\Http\Controllers\FaqController::class, 'faq_info'])->name('admin.faq.info');
-    Route::post('/faq/edit', [App\Http\Controllers\FaqController::class, 'faq_edit'])->name('admin.faq.edit');
-    Route::get('/faqs/delete/{faq}', [App\Http\Controllers\FaqController::class, 'faq_delete'])->name('admin.faq.delete');
+    Route::resource('faqs', FaqController::class);
+    Route::post('/faq/edit', [App\Http\Controllers\FaqController::class, 'update'])->name('admin.faq.edit');
+    Route::get('/faqs/delete/{faq}', [App\Http\Controllers\FaqController::class, 'destroy'])->name('faq.delete');
 
     Route::post('/system_config', [App\Http\Controllers\AdminController::class, 'system_config'])->name('admin.system_config');
 });

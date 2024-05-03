@@ -1,10 +1,10 @@
 <?php return array (
   'PROGRAM_NAME' => 'Nissan ELITE',
   'PROGRAM_SHORT_NAME' => 'ELITE',
-  'PROGRAM_SHORT_NAME_WITH_YEAR' => 'ELITE23',
+  'PROGRAM_SHORT_NAME_WITH_YEAR' => 'ELITE24',
   'PROGRAM_I_ELITE' => 'i_ELITE',
   'PROGRAM_DEALERSHIP' => 'ELITE Dealer Excellence',
-  'YEAR' => '2023',
+  'YEAR' => '2024',
   'PROGRAM_AWARD_UNIT' => 'Points',
   'PRODUCT_CHALLENGE_WINNER' => NULL,
   'PAGE_SIZE' => '12',

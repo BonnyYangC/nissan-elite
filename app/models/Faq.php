@@ -10,4 +10,13 @@ class Faq extends Model {
     use HasFactory;
 
     //public $table = 'nissan_faq';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'question', 'status', 'answer'
+    ];
 }

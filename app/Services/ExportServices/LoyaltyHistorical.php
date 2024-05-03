@@ -31,7 +31,6 @@ class LoyaltyHistorical {
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2021-01-01') AS fy21,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2022-01-01') AS fy22,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2023-01-01') AS fy23,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2023-01-01') AS fy23,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2024-01-01') AS fy24,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2025-01-01') AS fy25,
                 (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2026-01-01') AS fy26,

@@ -8,7 +8,7 @@
                 <h1>FAQ Content Management</h1>
             </div>
             <div class="column">
-                <a href="{{ route('admin.faq.info') }}" class="button is-success is-pulled-right">
+                <a href="{{ route('faqs.create') }}" class="button is-success is-pulled-right">
                     <i class="fa fa-plus"></i>&nbsp;New
                 </a>
             </div>
@@ -37,10 +37,10 @@
                     <td>{{ $faq->question }}</td>
                     <td>{{ $faq->status ? 'Published' : 'Draft' }}</td>
                     <td>
-                        <a class="button is-small is-link" href="{{ route('admin.faq.info', ['faq' => $faq->id]) }}">
+                        <a class="button is-small is-link" href="{{ route('faqs.show', ['faq' => $faq->id]) }}">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="{{ route('admin.faq.delete', ['faq' => $faq->id]) }}" title="Delete this incentive" class="button is-small is-danger btn-need-confirm">
+                        <a href="{{ route('faq.delete', ['faq' => $faq->id]) }}" title="Delete this incentive" class="button is-small is-danger btn-need-confirm">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>

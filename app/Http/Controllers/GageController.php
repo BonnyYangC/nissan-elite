@@ -393,8 +393,7 @@ class GageController extends Controller {
 
         for ($i = 0, $theta = deg2rad($startAngle); $i < $textLength; $i++) {
 
-            $character = $text{
-            $i};
+            $character = $text[$i];
 
             $tx = $xCenter + $radian * cos($theta);
 

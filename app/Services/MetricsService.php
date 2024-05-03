@@ -62,6 +62,7 @@ class MetricsService extends BaseService {
     private function getMetricsPointsByPosition(string $employeeCode, string $positionCode) {
         return Result::where('employee_code', $employeeCode)
             ->where('position', $positionCode)
+            ->where('year', config('elite.YEAR'))
             ->get();
     }
 }

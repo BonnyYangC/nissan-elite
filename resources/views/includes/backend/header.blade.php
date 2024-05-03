@@ -52,7 +52,7 @@
                         <a class="navbar-item" href="{{ route('admin.news') }}">
                             NEWS
                         </a>
-                        <a class="navbar-item" href="{{ route('admin.faqs') }}">
+                        <a class="navbar-item" href="{{ route('faqs.index') }}">
                             FAQ
                         </a>
                     </div>
