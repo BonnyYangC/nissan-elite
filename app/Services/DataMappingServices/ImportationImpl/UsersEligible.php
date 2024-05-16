@@ -25,11 +25,13 @@ class UsersEligible extends Base {
      * @return UsersEligibleModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = UsersEligibleModel::where('employee_code',trim($record[$modelKey['primary']]))->first();
+        $model = UsersEligibleModel::where('employee_code',trim($record[$modelKey['primary']]))
+            ->where('year', config('elite.YEAR'))
+            ->first();
         if(!$model){
-            $model = new UsersEligibleModel();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
+            $model = UsersEligibleModel::factory()->make();
+            //$model->updated_at = Carbon::now();
+            //$model->created_at = Carbon::now();
         }
         return $model;
     }

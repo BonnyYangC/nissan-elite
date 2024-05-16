@@ -14,10 +14,9 @@ class StatusService extends BaseService {
      */
     public function getStatus(string $ytd, string $position = null) {
         if (!$position) {
-            $rewards = $this->currentUser->position->rewards;
-        } else {
-            $rewards = Reward::where('position', $position)->first();
+            $position = $this->currentUser->position;
         }
+        $rewards = Reward::byPosition($position->code)->first();
         return new GageStatus($rewards->commendation, $rewards->bronze, $rewards->silver, $rewards->gold, $ytd, $rewards->max);
     }
 

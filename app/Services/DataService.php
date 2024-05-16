@@ -5,23 +5,28 @@ namespace App\Services;
 use App\Helper\Defination;
 use App\Services\DataMappingServices as DMS;
 use App\Helper\Role;
-use App\Services\ExportServices\Admin;
-use App\Services\ExportServices\LoyaltyHistorical;
-use App\Services\ExportServices\RegionStaff;
-use App\Services\ExportServices\TerritoryReport;
-use App\Services\ExportServices\User;
-use App\Services\ExportServices\Ranking;
+use App\Services\ExportServices\{Admin, LoyaltyHistorical, RegionStaff, TerritoryReport, User, Ranking};
+use App\Repositories\{PositionRepository, RegionRepository};
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Illuminate\Support\Collection;
 
 class DataService extends BaseService {
 
+    private $regionRepo;
+    private $positionRepo;
+
+    public function __construct(ServiceResolver $serviceResolver, RegionRepository $regionRepository, PositionRepository $positionRepository) {
+        parent::__construct($serviceResolver);
+        $this->regionRepo = $regionRepository;
+        $this->positionRepo = $positionRepository;
+    }
+
     /**
      * @return mixed
      */
     public function getPositions() {
-        return $this->serviceResolver->positionService()->load();
+        return $this->positionRepo->loadMembers();
     }
 
     /**
@@ -191,10 +196,10 @@ class DataService extends BaseService {
                 $returnValue = collect([new DMS\ImportationImpl\User(),new DMS\ImportationImpl\UsersEligible()]);
                 break;
             case Defination::DATA_TYPE_DEALERS_INFO :
-                $returnValue->add(new DMS\ImportationImpl\Dealer($this->serviceResolver->regionService()->load()));
+                $returnValue->add(new DMS\ImportationImpl\Dealer($this->regionRepo->load()));
                 break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                $returnValue->add(new DMS\ImportationImpl\RegionStaff($this->serviceResolver->regionService()->load()));
+                $returnValue->add(new DMS\ImportationImpl\RegionStaff($this->regionRepo->load()));
                 break;
             case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
                 $returnValue->add(new DMS\ImportationImpl\LoyaltyHistorical());
@@ -223,10 +228,10 @@ class DataService extends BaseService {
                 $returnValue = new DMS\ValidationImpl\User();
                 break;
             case Defination::DATA_TYPE_DEALERS_INFO :
-                $returnValue = new DMS\ValidationImpl\Dealer($this->serviceResolver->regionService()->load());
+                $returnValue = new DMS\ValidationImpl\Dealer($this->regionRepo->load());
                 break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                $returnValue = new DMS\ValidationImpl\RegionStaff($this->serviceResolver->regionService()->load());
+                $returnValue = new DMS\ValidationImpl\RegionStaff($this->regionRepo->load());
                 break;
             case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
                 $returnValue = new DMS\ValidationImpl\LoyaltyHistorical();

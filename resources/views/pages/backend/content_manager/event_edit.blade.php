@@ -94,7 +94,7 @@
                                                 <select name="incentive_id">
                                                     <option value="">NO NEED</option>
                                                     @foreach($incentives as $incentive)
-                                                    <option value="{{ $incentive->id }}" {{ $event->incentive_id==$incentive->id?'selected':null }}>{{ $incentive->title }}</option>
+                                                    <option value="{{ $incentive->id }}" {{ $event->incentive==$incentive->id?'selected':null }}>{{ $incentive->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

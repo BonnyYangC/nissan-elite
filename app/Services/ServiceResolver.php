@@ -58,14 +58,6 @@ class ServiceResolver {
      * Create a new service instance.
      *
      */
-    public function incentivesService(): IncentiveService {
-        return $this->make(IncentiveService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
     public function guildService(): GuildService {
         return $this->make(GuildService::class);
     }
@@ -82,40 +74,8 @@ class ServiceResolver {
      * Create a new service instance.
      *
      */
-    public function positionService(): PositionService {
-        return $this->make(PositionService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
-    public function regionService(): RegionService {
-        return $this->make(RegionService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
     public function userService(): UserService {
         return $this->make(UserService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
-    public function dealerService(): DealerService {
-        return $this->make(DealerService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
-    public function eventService(): EventService {
-        return $this->make(EventService::class);
     }
 
     /**

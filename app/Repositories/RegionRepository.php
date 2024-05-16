@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Models\Region;
 
-class RegionService {
+class RegionRepository {
 
     /**
      * Create a new service instance.
@@ -24,6 +24,6 @@ class RegionService {
      * @return mixed
      */
     public function getTerritoryReportRegions() {
-        return Region::whereIn('code', ['E', 'N', 'S', 'W'])->get();
+        return Region::territoryRegions()->get();
     }
 }

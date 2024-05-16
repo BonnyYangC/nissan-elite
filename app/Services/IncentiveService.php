@@ -3,17 +3,18 @@
 namespace App\Services;
 
 use App\Models\Incentive;
+use App\Repositories\IncentiveRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class IncentiveService {
 
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+    private $repository;
+
+    public function __construct(IncentiveRepository $incentiveRepository) {
+        $this->repository = $incentiveRepository;
+     }
 
     /**
      * @return array
@@ -83,30 +84,30 @@ class IncentiveService {
      * @param array $region
      * @return array
      */
-    public function current(array $region = []): array {
-        return Incentive::getCurrent($region)->all();
+    public function current(array $region = []): Collection {
+        return Incentive::current($region)->get();
     }
 
     /**
      * @param array $region
      * @return array
      */
-    public function justFinished(array $region = []): array {
-        return Incentive::getFinished($region)->each(function ($item) {
+    public function justFinished(array $region = []): Collection {
+        return Incentive::finished($region)->get()->each(function ($item) {
             $item->start = Carbon::createFromFormat('Y-m-d',$item->start)->format('d-M-Y');
             $item->finish = Carbon::createFromFormat('Y-m-d',$item->finish)->format('d-M-Y');
-        })->all();
+        });
     }
 
     /**
      * @param array $region
      * @return array
      */
-    public function past(array $region = []): array {
-        return Incentive::getPast($region)->each(function ($item) {
+    public function past(array $region = []): Collection {
+        return Incentive::past($region)->get()->each(function ($item) {
             $item->start = Carbon::createFromFormat('Y-m-d',$item->start)->format('d-M-Y');
             $item->finish = Carbon::createFromFormat('Y-m-d',$item->finish)->format('d-M-Y');
-        })->all();
+        });
     }
 
     /**

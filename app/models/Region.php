@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\RegionBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,4 +15,8 @@ class Region extends Model
     const REGION_NORTHERN = 'Northern';
     const REGION_SOUTHERN = 'Southern';
     const REGION_WESTERN = 'Western';
+
+    public function newEloquentBuilder($query): RegionBuilder {
+        return new RegionBuilder($query);
+    }
 }

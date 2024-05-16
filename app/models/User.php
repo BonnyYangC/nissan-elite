@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\UserBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -103,7 +104,10 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function eligible() {
-        return $this->hasOne(UsersEligible::class, 'employee_code', 'employee_code');
+        return $this->hasOne(UsersEligible::class, 'employee_code', 'employee_code')->where('year', config('elite.YEAR'));
     }
 
+    public function newEloquentBuilder($query): UserBuilder {
+        return new UserBuilder($query);
+    }
 }

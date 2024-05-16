@@ -38,7 +38,7 @@
                 <th>{{ $event->title }}</td>
                 <td>{{ $event->start }} {{ $event->end }}</td>
                 <td>{{ $event->region }}</td>
-                <td>{{ $event->incentive_name }}</td>
+                <td>{{ $event->incent ? $event->incent->title : '' }}</td>
                 <td>
                     <a class="button is-small is-link" href="{{ route('admin.event.info', ['event' => $event->id]) }}">
                         <i class="fa fa-edit"></i>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\ResultBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +25,8 @@ class Result extends Model
         'credit_mtd' => 'float',
         'metrics' => 'array'
     ];
+
+    public function newEloquentBuilder($query): ResultBuilder {
+        return new ResultBuilder($query);
+    }
 }

@@ -45,7 +45,11 @@ class Base extends BaseService {
      * @return Collection
      */
     public function getMetricsByPosition(string $position): Collection {
-        return Metric::where('position', '=', $position)->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)->orderBy('order')->get();
+        return Metric::where('position', '=', $position)
+            ->where('year', config('elite.YEAR'))
+        ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
+        ->orderBy('order')
+        ->get();
     }
 
     /**

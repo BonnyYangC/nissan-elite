@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\PositionBuilder;
 use App\Helper\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -53,6 +54,18 @@ class Position extends Model {
         Role::DGC
     ];
 
+    const SEARCHABLE_POSITIONS = [
+        Role::RETAIL_SALES_CONSULTANTS,
+        Role::FLEET_SALES_EXECUTIVES,
+        Role::SALES_MANAGER,
+        Role::SERVICE_ADVISERS,
+        Role::STOCK_CONTROLLER,
+        Role::PARTS_MANAGER,
+        Role::PARTS_SALES_REP,
+        Role::SERVICE_MANAGER,
+        Role::FI,
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -65,5 +78,9 @@ class Position extends Model {
      */
     public function metrics() {
         return $this->hasMany(Metric::class, 'position', 'code');
+    }
+
+    public function newEloquentBuilder($query): PositionBuilder {
+        return new PositionBuilder($query);
     }
 }

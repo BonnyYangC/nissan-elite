@@ -2,37 +2,46 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Hash;
+use App\Repositories\{PositionRepository, RegionRepository};
 use App\Helper\{Role, Utility};
 use App\Models\{Position, User};
 
 class UserService extends BaseService {
 
+    private $regionRepo;
+    private $positionRepo;
+
+    /**
+     * Create a new service instance.
+     *
+     * @param ServiceResolver $serviceResolver
+     * @return void
+     */
+    public function __construct(ServiceResolver $serviceResolver, RegionRepository $regionRepository, PositionRepository $positionRepository) {
+        parent::__construct($serviceResolver);
+        $this->regionRepo = $regionRepository;
+        $this->positionRepo = $positionRepository;
+    }
+
     /**
      * @return
      */
     public function load() {
-        return User::select('users.id', 'employee_code', 'firstname', 'lastname', 'email', 'position_code', 'users.active', 'dealers.name', 'dealers.state')
-            ->join('dealers', 'dealers.code', '=', 'users.dealer_code')
-            ->where('users.active', 1)->paginate();
+        return User::activeMember()->paginate();
     }
 
     /**
      * @return mixed
      */
     public function loadRegionStaff() {
-        return User::select('id', 'firstname', 'lastname', 'email', 'position_code', 'mobile', 'active', 'region_code')
-            ->whereIn('position_code', $this->getRegionStaff())
-            ->where('users.active', 1)->paginate();
+        return User::regionStaff()->paginate();
     }
 
     /**
      * @return mixed
      */
     public function loadAdminUsers() {
-        return User::select('id', 'firstname', 'lastname', 'email', 'mobile', 'region_code')
-            ->where('position_code', 'ADMIN')
-            ->where('users.active', 1)->paginate();
+        return User::admin()->paginate();
     }
 
     /**
@@ -76,7 +85,7 @@ class UserService extends BaseService {
             'sortby' => 'firstname',
                 'order' => 'asc'
             ];
-        $membersPosition = $this->serviceResolver->positionService()->getMemberRoles($position);
+        $membersPosition = $this->positionRepo->getMemberRoles($position);
         return User::select('users.id', 'firstname', 'lastname', 'positions.title', 'territory_reports.cr_ytd')
             ->join('dealers', 'dealers.code', '=', 'users.dealer_code')
             ->join('positions', 'positions.code', '=', 'users.position_code')
@@ -203,7 +212,7 @@ class UserService extends BaseService {
      * @return mixed
      */
     public function searchUser(string $keyWords) {
-        $position = array_merge($this->getPositionsForSearch(), $this->getRegionStaff(), [Role::TRAINING]);
+        $position = array_merge(Position::SEARCHABLE_POSITIONS, Position::REGION_STAFF_POSITIONS, [Role::TRAINING]);
         $query = User::query();
 
         $query = $query->leftJoin('dealers', 'dealer_code', '=', 'code')
@@ -229,41 +238,13 @@ class UserService extends BaseService {
      * @return mixed
      */
     public function getRegionStaffPositions() {
-        return $this->serviceResolver->positionService()->loadRegionStaff();
+        return $this->positionRepo->loadRegionStaff();
     }
 
     /**
      * @return mixed
      */
     public function getRegions() {
-        return $this->serviceResolver->regionService()->load();
-    }
-
-    /**
-     * Get user positions
-     *
-     * @return array
-     */
-    private function getPositionsForSearch(): array {
-        return [
-            Role::RETAIL_SALES_CONSULTANTS,
-            Role::FLEET_SALES_EXECUTIVES,
-            Role::SALES_MANAGER,
-            Role::SERVICE_ADVISERS,
-            Role::STOCK_CONTROLLER,
-            Role::PARTS_MANAGER,
-            Role::PARTS_SALES_REP,
-            Role::SERVICE_MANAGER,
-            Role::FI,
-        ];
-    }
-
-    /**
-     * Get region staff positions
-     *
-     * @return array
-     */
-    private function getRegionStaff(): array {
-        return Position::REGION_STAFF_POSITIONS;
+        return $this->regionRepo->load();
     }
 }

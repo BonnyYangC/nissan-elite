@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use App\Builders\FaqBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,4 +19,8 @@ class Faq extends Model {
     protected $fillable = [
         'question', 'status', 'answer'
     ];
+
+    public function newEloquentBuilder($query): FaqBuilder {
+        return new FaqBuilder($query);
+    }
 }

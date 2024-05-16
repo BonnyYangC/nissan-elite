@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Incentive;
 use App\Services\IncentiveService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IncentiveController extends Controller {
 
@@ -19,6 +20,21 @@ class IncentiveController extends Controller {
     public function __construct(IncentiveService $service, Request $request) {
         parent::__construct($request);
         $this->service = $service;
+    }
+
+    /**
+     * entry point
+     *
+     */
+    public function index() {
+        $currentUser = Auth::user();
+        $this->dataForView['currentUser'] = $currentUser;
+        $this->dataForView['menuName'] = 'incentives';
+
+        $this->dataForView['current'] = $this->service->getIncentives('current', 'All');
+        $this->dataForView['finished'] = $this->service->getIncentives('finished', 'All');
+        $this->dataForView['past'] = $this->service->getIncentives('past', 'All');
+        return $this->render('pages.incentives');
     }
 
     /**

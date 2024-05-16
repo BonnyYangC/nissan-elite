@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UserEligibleFactory extends Factory
+class UsersEligibleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class UserEligibleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'year' => config('elite.YEAR'),
         ];
     }
 }

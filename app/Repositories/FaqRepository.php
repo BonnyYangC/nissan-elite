@@ -10,14 +10,14 @@ class FaqRepository {
      * @return
      */
     public function loadAll() {
-        return Faq::where('year', config('elite.YEAR'))->get();
+        return Faq::every()->get();
     }
 
     /**
      * @return
      */
     public function loadPublished() {
-        return Faq::where('year', config('elite.YEAR'))->where('status','=','1')->get();
+        return Faq::published()->get();
     }
 
     /**

@@ -33,22 +33,22 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/my_team', [App\Http\Controllers\UsersController::class, 'my_team'])->name('my_team');
     Route::get('/ranking', [App\Http\Controllers\RankingsController::class, 'ranking'])->name('ranking');
     Route::get('/get_ranking', [App\Http\Controllers\RankingsController::class, 'get_ranking'])->name('get_ranking');
-    Route::get('/incentives', [App\Http\Controllers\PagesController::class, 'incentives'])->name('incentives');
+    Route::get('/incentives', [App\Http\Controllers\IncentiveController::class, 'index'])->name('incentives');
     Route::get('/news', [App\Http\Controllers\NewsController::class, 'news'])->name('news');
-    Route::get('/member_guide', [App\Http\Controllers\PagesController::class, 'member_guide'])->name('member_guide');
+    Route::get('/member_guide', App\Http\Controllers\MemberGuideController::class)->name('member_guide');
     Route::get('/future_sales', [App\Http\Controllers\FutureSalesController::class, 'future_sales'])->name('future_sales');
     Route::get('/future_sales/explanation', [App\Http\Controllers\FutureSalesController::class, 'future_sales_explanation'])->name('future_sales.explanation');
     Route::get('/future_sales/contact_schedule', [App\Http\Controllers\FutureSalesController::class, 'future_sales_contact_schedule'])->name('future_sales.contact_schedule');
     Route::get('/future_sales/postcard', [App\Http\Controllers\FutureSalesController::class, 'future_sales_postcard'])->name('future_sales.postcard');
-    Route::get('/program', [App\Http\Controllers\PagesController::class, 'program'])->name('program');
-    Route::get('/calendar', [App\Http\Controllers\PagesController::class, 'calendar'])->name('calendar');
-    Route::get('/product_challenge', [App\Http\Controllers\PagesController::class, 'product_challenge'])->name('product_challenge');
-    Route::get('/awards', [App\Http\Controllers\PagesController::class, 'awards'])->name('awards');
-    Route::get('/loyalty', [App\Http\Controllers\PagesController::class, 'loyalty'])->name('loyalty');
+    Route::get('/program', App\Http\Controllers\ProgramController::class)->name('program');
+    Route::get('/calendar', [App\Http\Controllers\EventController::class, 'calendar'])->name('calendar');
+    Route::get('/product_challenge', App\Http\Controllers\ProductChallengeController::class)->name('product_challenge');
+    Route::get('/awards', App\Http\Controllers\AwardsController::class)->name('awards');
+    Route::get('/loyalty', [App\Http\Controllers\LoyaltyController::class, 'loyalty'])->name('loyalty');
     Route::get('/guild', [App\Http\Controllers\GuildController::class, 'guild'])->name('guild');
     Route::get('/guild/events', [App\Http\Controllers\GuildController::class, 'guild_events'])->name('guild.events');
     Route::get('/guild/members', [App\Http\Controllers\GuildController::class, 'guild_members'])->name('guild.members');
-    Route::get('/account', [App\Http\Controllers\PagesController::class, 'account'])->name('account');
+    Route::get('/account', App\Http\Controllers\AccountController::class)->name('account');
     Route::get('/faq', [App\Http\Controllers\FaqController::class, 'published'])->name('faq');
 
     Route::get('/dashboard/current-status-level', [App\Http\Controllers\GageController::class, 'current_status_level'])->name('current_status_level');
@@ -94,7 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
     Route::get('/usage', [App\Http\Controllers\AdminController::class, 'usage'])->name('admin.usage');
     Route::get('/historical_export', [App\Http\Controllers\AdminController::class, 'historical_export'])->name('admin.historical_export');
 
-    Route::get('/calendars', [App\Http\Controllers\EventController::class, 'calendars'])->name('admin.calendars');
+    Route::get('/calendars', [App\Http\Controllers\EventController::class, 'index'])->name('admin.calendars');
     Route::get('/events/info/{event?}', [App\Http\Controllers\EventController::class, 'event_info'])->name('admin.event.info');
     Route::post('/event/edit', [App\Http\Controllers\EventController::class, 'event_edit'])->name('admin.event.edit');
     Route::get('/events/delete/{event}', [App\Http\Controllers\EventController::class, 'event_delete'])->name('admin.event.delete');

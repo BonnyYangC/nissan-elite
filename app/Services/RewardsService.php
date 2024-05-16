@@ -3,18 +3,20 @@
 namespace App\Services;
 
 use App\Models\Reward;
+use App\Repositories\RewardRepository;
 
-class RewardsService extends BaseService {
+class RewardsService {
+
+    private $repository;
+
+    public function __construct(RewardRepository $rewardRepository) {
+        $this->repository = $rewardRepository;
+     }
 
     /**
      * @return Reward
      */
     public function buildRewardsData(string $position): Reward {
-        return $this->getRewardsByPosition($position);
-    }
-
-    // should use repository patten
-    private function getRewardsByPosition(string $position) {
-        return Reward::where('position', $position)->first();
+        return $this->repository->getRewardsByPosition($position);
     }
 }

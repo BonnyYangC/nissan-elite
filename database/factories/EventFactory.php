@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TerritoryReportFactory extends Factory
+class EventFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class TerritoryReportFactory extends Factory
     public function definition()
     {
         return [
-            'year' => config('elite.YEAR'),
+            //
         ];
     }
 }

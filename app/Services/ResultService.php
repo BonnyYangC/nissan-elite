@@ -31,6 +31,7 @@ class ResultService extends BaseService {
     private function getResultsByPosition(string $employeeCode, string $position) {
         return Result::where('employee_code', $employeeCode)
             ->where('position', $position)
+            ->where('year', config('elite.YEAR'))
             ->get();
     }
 
@@ -38,8 +39,7 @@ class ResultService extends BaseService {
      * @return mixed
      */
     public function getYearToDateData(string $position) {
-        return Result::where('employee_code', $this->currentUser->employee_code)
-            ->where('position', $position)
+        return Result::yearToDate($this->currentUser->employee_code, $position)
             ->max('credit_ytd');
     }
 }

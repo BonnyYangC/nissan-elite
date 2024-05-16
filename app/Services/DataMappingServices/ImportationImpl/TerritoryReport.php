@@ -21,9 +21,10 @@ class TerritoryReport extends BaseTerritoryReport {
         // $this->handleUser(trim($record[$modelKey['primary']]), $actionType);
         $model = TerritoryReportModel::where('employee_code', trim($record[$modelKey['primary']]))->first();
         if(!$model){
-            $model = new TerritoryReportModel();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
+            $model = TerritoryReportModel::factory()->make();
+            // $model = new TerritoryReportModel();
+            // $model->updated_at = Carbon::now();
+            // $model->created_at = Carbon::now();
         }
         return $model;
     }
