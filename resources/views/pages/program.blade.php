@@ -55,6 +55,7 @@
                                 F&amp;I Manager<br>
                                 Service Manager<br>
                                 Service Advisor<br>
+                                Technician<br>
                                 Parts Manager<br>
                                 Parts Sales Rep<br>
                                 &nbsp;</p>

@@ -31,7 +31,8 @@ class TerritoryReportService {
             ->join('positions', 'users.position_code', '=', 'positions.code')
             ->join('regions', 'regions.code', '=', 'dealers.region')
             ->join('users_eligible','users.employee_code','=','users_eligible.employee_code')
-            ->whereIn('dealers.region', $regions);
+            ->whereIn('dealers.region', $regions)
+            ->where('territory_reports.year', config('elite.YEAR'));
 
         if ($dept !== 'All') {
             $query = $query->where('positions.department', $dept);

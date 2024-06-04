@@ -7,12 +7,14 @@
 @section('guild_content')
     <div class="d-flex">
         <div class="col-10 offset-1" style="padding-top: 2%">
-            <h3>THE GUILD FY22 IS TO CONVENE IN MELBOURNE – SATURDAY 5 AUGUST –
-                MONDAY 7 AUGUST 2023</h3>
+            <h3>
+                THE GUILD FY23 WILL CONVENE ON THE GOLD COAST – SATURDAY 14
+SEPTEMBER – MONDAY 16 SEPTEMBER 2024
+            </h3>
             <p>
-                Invitations have been emailed to eligible Foundation members, along with our new inductees in FY22. We have
-a great weekend in store for our eligible GUILD MEMBERS in August and below are our new inductees for FY22
-Platinum (500,000+) and new to Gold (325,000+).
+                Invitations have been emailed to eligible Foundation members, along with our new inductees in FY23. We have
+a great weekend in store for our eligible GUILD MEMBERS in September and below are our new inductees for
+FY23 Platinum (500,000+) and new to Gold (325,000+).
             </p>
             <p>
                 Congratulations on the excellent achievement and Loyalty to the Brand shown here.
@@ -47,14 +49,17 @@ Platinum (500,000+) and new to Gold (325,000+).
     </div>
     <div class="d-flex">
         <div class="col-8 offset-1" style="padding-right: 2%; padding-top: 2%">
-            <h3>THE GUILD WEEKEND 2023 – NISSAN ELITE FY22</h3>
+            <!--<h3>THE GUILD WEEKEND 2023 – NISSAN ELITE FY22</h3>
 
             <p>
                 Arriving in Melbourne Saturday 5 August, our members were welcomed in true Melbourne style as VIP guests at the Hawthorn Presidents function to see the Hawthorn v Collingwood match at the MCG.  And, what a match it was with Hawthorn taking out an outstanding win over the reigning premiers Collingwood.  On Sunday evening hosted by Members of the Nissan Management Operating Committee, in honour of their fine achievement, we inducted our new GOLD inductees to THE GUILD.  Dining at St Telmo restaurant and entertained by Argentinian dancers throughout the night, our GUILD members and partners enjoyed long term catchups, new friendships, and much chatter about their day at THE LUME, shopping, site seeing in Melbourne, or putting the Patrol through its paces.
-            </p>
+            </p>-->
 
-            <!--<p>&nbsp;</p>
-            <h3>PAST EVENT</h3>-->
+            <h3>THE GUILD WEEKEND 2024 – NISSAN ELITE FY23</h3>
+
+            <p>
+                Stay tuned for more on our upcoming GUILD event coming soon.
+            </p>
             <p>&nbsp;</p>
             <h3>Past Experiences</h3>
 

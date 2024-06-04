@@ -42,6 +42,9 @@
                 <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=32') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Service</button>
                 </a>
+                <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=32') }}" target="_blank">
+                    <button type="button" class="btn elite-button btn-lg btn-block mb-1">Technician</button>
+                </a>
                 <a href="{{  asset('files/MEMBERS_GUIDE.pdf#page=41') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block mb-1">Parts</button>
                 </a>

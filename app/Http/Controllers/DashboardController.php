@@ -35,7 +35,10 @@ class DashboardController extends Controller {
     private function userDashboard() {
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
 
-        $this->dataForView = array_merge($this->dataForView, $this->service->buildMemberDashboardData($selectedPosition));
+        $this->dataForView = array_merge(
+            $this->dataForView, 
+            $this->service->buildMemberDashboardData($selectedPosition)
+        );
         return $this->render('pages.dashboard');
     }
 

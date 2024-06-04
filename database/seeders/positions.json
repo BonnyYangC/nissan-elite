@@ -67,6 +67,12 @@
             "department": "Service"
         },
         {
+            "code": "T",
+            "title": "Technician",
+            "platinum_ranking": 0,
+            "department": "Service"
+        },
+        {
             "code": "D",
             "title": "Dealer Principal",
             "platinum_ranking": 0,

@@ -20,7 +20,8 @@ class Base extends BaseService {
      */
     protected function getDateString($month) {
         $monthNum = $this->monthArray[$month];
-        return intval($monthNum) <= 3 ? '2025-'.$monthNum.'-01' : '2024-'.$monthNum.'-01';
+        //dd((intval(config('elite.YEAR')) + 1));
+        return intval($monthNum) <= 3 ? (intval(config('elite.YEAR'))+1).'-'.$monthNum.'-01' : config('elite.YEAR').'-'.$monthNum.'-01';
         //  $test = intval($monthNum) <= 3 ? (intval(config('elite.YEAR'))+1).'-'.$monthNum.'-01' : config('elite.YEAR').'-'.$monthNum.'-01';
         // var_dump($test);
     }
@@ -29,7 +30,9 @@ class Base extends BaseService {
      * @return mixed
      */
     public function getSharedMetrics() {
-        return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)->orderBy('order')->get();
+        return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)
+            ->where('year', config('elite.YEAR'))
+            ->orderBy('order')->get();
     }
 
     /**
@@ -37,7 +40,9 @@ class Base extends BaseService {
      * @return mixed
      */
     public function getAllMetricsByPosition(string $position) {
-        return Metric::where('position', '=', $position)->orderBy('order')->get();
+        return Metric::where('position', '=', $position)
+            ->where('year', config('elite.YEAR'))
+            ->orderBy('order')->get();
     }
 
     /**
@@ -47,9 +52,9 @@ class Base extends BaseService {
     public function getMetricsByPosition(string $position): Collection {
         return Metric::where('position', '=', $position)
             ->where('year', config('elite.YEAR'))
-        ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
-        ->orderBy('order')
-        ->get();
+            ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
+            ->orderBy('order')
+            ->get();
     }
 
     /**
@@ -57,6 +62,8 @@ class Base extends BaseService {
      * @return Metric
      */
     public function getTrainingMetricByPosition(string $position): Metric {
-        return Metric::where('position', '=', $position)->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
+        return Metric::where('position', '=', $position)
+            ->where('year', config('elite.YEAR'))
+            ->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
     }
 }
