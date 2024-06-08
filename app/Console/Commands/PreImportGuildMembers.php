@@ -44,10 +44,7 @@ class PreImportGuildMembers extends Command
         $successCount = 0;
 
         if(file_exists($filePath)){
-            echo 'File is exists.Start to clear guild_members table'.PHP_EOL;
-            $model = new Members();
-            $model::truncate();
-            echo 'File has truncated.'.PHP_EOL;
+            \DB::table('guild_members')->where('year', '=', config('elite.YEAR'))->delete();
 
             $csvReader = Reader::createFromPath($filePath,'r');
             $records = (new Statement())->process($csvReader);
@@ -68,12 +65,12 @@ class PreImportGuildMembers extends Command
                 } else if (!$record[0]) {
                     continue;
                 }
-                $model = new Members();
-                $model->type = $type;
-                $model->member = $record[0];
-                $model->dealer = $record[1];
-                $model->retired = $record[2];
-                $model->save();
+                Members::factory()->create([
+                    'type' => $type,
+                    'member' => $record[0],
+                    'dealer' => $record[1],
+                    'retired' => $record[2]
+                ]);
                 $successCount++;
             }
 

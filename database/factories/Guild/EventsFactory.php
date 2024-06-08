@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Guild;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class EventFactory extends Factory
+class EventsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'year' => config('elite.YEAR'),
         ];
     }
 }

@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\GuildService;
+use App\Repositories\GuildRepository;
 use Illuminate\Http\Request;
 
 class GuildController extends Controller {
-    /** @var GuildService  */
-    private $service;
+    /** @var GuildRepository  */
+    private $repository;
 
     /**
      * GuildController constructor.
-     * @param GuildService $guildService
+     * @param GuildRepository $guildRepo
      * @param Request $request
      */
-    public function __construct(GuildService $guildService, Request $request) {
+    public function __construct(GuildRepository $guildRepo, Request $request) {
         parent::__construct($request);
-        $this->service = $guildService;
+        $this->repository = $guildRepo;
     }
 
     /**
@@ -36,7 +36,7 @@ class GuildController extends Controller {
     public function guild_events() {
         $this->dataForView['menuName'] = 'guild';
         $this->dataForView['currentUri_sub'] = 'MDguild_events';
-        $this->dataForView['results'] = $this->service->getEvents();
+        $this->dataForView['results'] = $this->repository->getEvents();
         return $this->render('pages.guild.the_events');
     }
 
@@ -47,7 +47,7 @@ class GuildController extends Controller {
     public function guild_members() {
         $this->dataForView['menuName'] = 'guild';
         $this->dataForView['currentUri_sub'] = 'MDguild_members';
-        $this->dataForView['results'] = $this->service->getMembers();
+        $this->dataForView['results'] = $this->repository->getMembers();
         return $this->render('pages.guild.the_members');
     }
 }

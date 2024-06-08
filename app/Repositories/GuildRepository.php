@@ -1,24 +1,17 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Models\Guild\Events;
 use App\Models\Guild\Members;
 
-class GuildService {
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+class GuildRepository {
 
     /**
      * @return
      */
     public function getEvents() {
-        return Events::get()->reduce(function($r, $m) {
+        return Events::currentYear()->get()->reduce(function($r, $m) {
             switch($m->type) {
                 case 1:
                     $r['PLATINUM'][] = $m;
@@ -42,7 +35,7 @@ class GuildService {
      * @return
      */
     public function getMembers() {
-        return Members::get()->reduce(function($r, $m) {
+        return Members::currentYear()->get()->reduce(function($r, $m) {
             switch($m->type) {
                 case 1:
                     $r['PLATINUM'][] = $m;
