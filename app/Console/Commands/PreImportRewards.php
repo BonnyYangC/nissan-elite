@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Reward;
 use Illuminate\Support\Facades\DB;
 
-class PreImportRewards extends PreImportCommand
+class PreImportRewards extends PreImportJson
 {
     /**
      * The name and signature of the console command.

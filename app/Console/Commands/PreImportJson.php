@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class PreImportCommand extends Command
+class PreImportJson extends Command
 {   
-    protected $signature = 'pre-import-stub';
+    protected $signature = 'pre-import-json-stub';
     protected $data;
     protected $fileName;
 
@@ -54,8 +54,5 @@ class PreImportCommand extends Command
         $this->data = is_array($this->data) ? array_merge($this->data, $data) : $data;
     }
 
-    /**
-     *
-     */
     protected function importData() { }
 }

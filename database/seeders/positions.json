@@ -14,7 +14,7 @@
         },
         {
             "code": "F",
-            "title": "Fleet Sales Executives",
+            "title": "Fleet Sales Executive",
             "platinum_ranking": 1,
             "department": "Sales"
         },
@@ -26,7 +26,7 @@
         },
         {
             "code": "R",
-            "title": "Retail Sales Consultants",
+            "title": "Retail Sales Consultant",
             "platinum_ranking": 1,
             "department": "Sales"
         },
@@ -38,7 +38,7 @@
         },
         {
             "code": "I",
-            "title": "F&I Manager",
+            "title": "F & I Manager",
             "platinum_ranking": 0,
             "department": "Administration"
         },
@@ -62,7 +62,7 @@
         },
         {
             "code": "SA",
-            "title": "Service Adviser",
+            "title": "Service Advisor",
             "platinum_ranking": 0,
             "department": "Service"
         },

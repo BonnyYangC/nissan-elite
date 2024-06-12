@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 use App\Models\Faq;
 use Illuminate\Support\Facades\DB;
 
-class PreImportFaqs extends PreImportCommand
+class PreImportFaqs extends PreImportJson
 {
     /**
      * The name and signature of the console command.

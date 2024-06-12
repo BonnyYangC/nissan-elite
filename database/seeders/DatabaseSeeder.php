@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Acl, Company, Faq, Metric, Position, Reward, User};
+use App\Models\{Acl, Company, Position, User};
 use App\Helper\Role;
 use App\Models\Region;
 use Illuminate\Database\Eloquent\Model;
@@ -25,10 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->loadData(__DIR__.'/regions.json');
         $this->loadData(__DIR__.'/companies_defination.json');
         $this->loadData(__DIR__.'/positions.json');
-        $this->loadData(__DIR__.'/rewards.json');
         $this->loadData(__DIR__.'/admins.json');
         $this->loadData(__DIR__.'/acls.json');
-        $this->loadData(__DIR__.'/faqs.json');
 
         try {
             Model::unguard();
@@ -69,8 +67,6 @@ class DatabaseSeeder extends Seeder
         $this->seedCompanies();
         $this->seedAdmins();
         $this->seedAcls();
-        $this->seedRewards();
-        $this->seedFaqs();
     }
 
     /**
@@ -91,7 +87,7 @@ class DatabaseSeeder extends Seeder
         $positions = $this->data['positions'];
         foreach ($positions as $p) {
             $ep = Position::where('code', '=', $p['code'])->first();
-            !$ep ? Position::create($p) : $ep->update();
+            !$ep ? Position::create($p) : $ep->update($p);
         }
     }
 
@@ -144,27 +140,6 @@ class DatabaseSeeder extends Seeder
                 $a['position'] = $position;
                 Acl::create($a);
             }
-        }
-    }
-
-    /**
-     *
-     */
-    private function seedRewards() {
-        DB::table('rewards')->truncate();
-        $rewards = $this->data['rewards'];
-        foreach ($rewards as $r) {
-            Reward::create($r);
-        }
-    }
-
-    /**
-     *
-     */
-    private function seedFaqs() {
-        $faqs = $this->data['faqs'];
-        foreach ($faqs as $f) {
-            Faq::create($f);
         }
     }
 }

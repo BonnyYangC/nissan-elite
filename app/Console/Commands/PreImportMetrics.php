@@ -6,7 +6,7 @@ use App\Helper\Defination;
 use App\Models\Metric;
 use Illuminate\Support\Facades\DB;
 
-class PreImportMetrics extends PreImportCommand
+class PreImportMetrics extends PreImportJson
 {
     /**
      * The name and signature of the console command.
