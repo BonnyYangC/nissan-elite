@@ -1229,7 +1229,7 @@
                             ["Certified Dealership Manager (VC & A)", "", 100, "", ""], 
                             ["Mastery Goal Achievement", 100, 250, "", 250], 
                             ["Bonus", "", "", 500, ""]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 39/40"
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 37/38"
                     }]
                 }],
             "SA": [
@@ -1358,7 +1358,7 @@
                             ["Certified Service Executive  (VC & A)", "", 100, ""], 
                             ["e-POWER (O)", "", 100, ""],
                             ["Mastery Goal Achievement", 100, 250, 250]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 39/40"
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 37/38"
                     }]
                 }],
             "T": [
@@ -1446,7 +1446,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Mastery Goal Achievement", 100, 250, 250]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 39/40"
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 41"
                     }]
                 }
             ]

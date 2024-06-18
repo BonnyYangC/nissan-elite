@@ -35,11 +35,5 @@ class FI extends MonthlyDataMapping {
 
         'nic_sale_nfsa' => 'points_NIC_Fnfsa',
         'nic_sale_nfsa_result' => 'sales_NIC_fnfsa',
-
-        'satisfaction' => 'points_ce_EFI3',
-        'satisfaction_result' => 'score_ce_EFI3',
-
-        'sdr' => 'points_ce_5STAR',
-        'sdr_result' => 'score_ce_5STAR',
     ];
 }

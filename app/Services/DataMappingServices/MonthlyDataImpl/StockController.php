@@ -21,11 +21,5 @@ class StockController extends MonthlyDataMapping {
 
         'reg_ret' => 'points_regvret',
         'reg_ret_result' => 'pcent_REGvRET',
-
-        'sdr' => 'points_ce_5STAR',
-        'sdr_result' => 'score_ce_5STAR',
-    
     ];
-
- 
 }

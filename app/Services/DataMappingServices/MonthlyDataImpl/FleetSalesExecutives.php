@@ -15,9 +15,5 @@ class FleetSalesExecutives extends MonthlyDataMapping {
 
         'volume' => 'points_ACT_FV',
         'volume_result' => 'pcent_ACT_FV',
-
-        'sdr' => 'points_ce_5STAR',
-        'sdr_result' => 'score_ce_5STAR',
-
     ];
 }

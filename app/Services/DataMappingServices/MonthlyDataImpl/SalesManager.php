@@ -36,24 +36,5 @@ class SalesManager extends MonthlyDataMapping {
 
         'retail_forecast' => 'points_forecast',
         'retail_forecast_result' => 'ach_forecast_',
-
-        'sos' => 'points_ce_SOS3',
-        'sos_result' => 'score_ce_SOS3',
-
-        'booked_check' => 'points_ce_PBKD3',
-        'booked_check_result' => 'score_ce_PBKD3',
-
-        'follow_up' => 'points_ce_PFU3',
-        'follow_up_result' => 'score_ce_PFU3',
-
-        'hot' => 'points_ce_HOTA',
-        'hot_result' => 'score_ce_HOTA',
-        
-        'sdr' => 'points_ce_5STAR',
-        'sdr_result' => 'score_ce_5STAR',
-
-
         ];
-
-  
 }

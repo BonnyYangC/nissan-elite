@@ -13,6 +13,7 @@ class Role {
     const PARTS_SALES_REP           = 'PS';
     const SERVICE_MANAGER           = 'SM';
     const SERVICE_ADVISERS          = 'SA';
+    const TECHNICIAN = 'T';
 
     const FINANCE_CONTROLLER        = 'C';
 

@@ -281,7 +281,10 @@ class DataService extends BaseService {
                 $returnValue = new DMS\MonthlyDataImpl\ServiceManager($actionType);
                 break;
             case Role::SERVICE_ADVISERS:
-                $returnValue = new DMS\MonthlyDataImpl\ServiceAdviser($actionType);
+                $returnValue = new DMS\MonthlyDataImpl\ServiceAdvisor($actionType);
+                break;
+            case Role::TECHNICIAN:
+                $returnValue = new DMS\MonthlyDataImpl\ServiceAdvisor($actionType);
                 break;
             default:
                 break;

@@ -79,7 +79,7 @@ class User extends BaseUser {
      * @return bool
      */
     public function compareValue($field, $oldModel, $newValue) {
-        $oldValue = $oldModel->$field ?: $oldModel->eligible->$field;
+        $oldValue = isset($oldModel->$field) ? $oldModel->$field : data_get($oldModel->eligible, $field, null);
         return $oldValue == $newValue ? true : false;
     }
 
@@ -93,7 +93,7 @@ class User extends BaseUser {
      */
     public function buildResultData($field, $oldModel, $newValue, $equal) {
         $result = [];
-        $oldValue = $oldModel->$field ?: $oldModel->eligible->$field;
+        $oldValue = isset($oldModel->$field) ? $oldModel->$field : data_get($oldModel->eligible, $field, null);
         $result[$field] = $oldValue . ' / <span style="color:' . ($equal?'blue':'red') . ';">' . $newValue . '</span>';
         return $result;
     }

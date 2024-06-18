@@ -131,6 +131,9 @@ class RankingService extends BaseService {
                     ],[
                         'name'=>'Service Advisor',
                         'role'=>Role::SERVICE_ADVISERS
+                    ],[
+                        'name'=>'Technician',
+                        'role'=>Role::TECHNICIAN
                     ]
                 ]
             ],

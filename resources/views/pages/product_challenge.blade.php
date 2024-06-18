@@ -41,7 +41,7 @@
                         <tbody class="nissan-table-body-light-grey" align="left">
                             <tr class="active">
                                 <td>Brisbane</td>
-                                <td>Wednesday 17 July</td>
+                                <td>Thursday 18 July</td>
                                 <td>Hilton Brisbane</td>
                             </tr>
                             <tr class="active">
@@ -79,15 +79,13 @@
                     <p><small>We are excited to be on the road again. Stay tuned for your region dates coming soon. Awards are currently being prepared and we look forward to recognising our Award winners at each event.</small></p>
                     <br>
 
-                    <a class="edm-link" target="_blank" href="https://mailchi.mp/c155094aed22/nissan-dealer-business-development-group-
-meeting1-3123420?e=1dac1983c2">
+                    <a class="edm-link" target="_blank" href="https://mailchi.mp/6c0806a3ca3c/nissan-dealer-business-development-group-meeting1-3124631?e=1dac1983c2">
                         Click to VIEW PRODUCT CHALLENGE INFORMATION
                     </a>
                     </br>
                     <span style="color:#c0133c">SALES/SERVICE MANAGER ACCESS ONLY -</span>
                     </br>
-                    <a class="edm-link" target="_blank" href="https://destination.eventsair.com/nissan-product-challenge-
-2023/registration/Site/Register">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY24
+                    <a class="edm-link" target="_blank" href="https://mailchi.mp/d6881ad6d055/nissan-dealer-business-development-group-meeting1-3124627?e=1dac1983c2">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY24
                     </a>
                     </br>
                     <span style="color:#c0133c">(1 Table per Dealer with Maximum seating 12)</br>

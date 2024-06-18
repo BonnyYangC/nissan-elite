@@ -78,6 +78,17 @@
       "gold_reward": "1500",
       "max": "50000"
     },{
+      "position": "T",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "22000",
+      "bronze_reward": "500",
+      "silver": "32000",
+      "silver_reward": "850",
+      "gold": "40000",
+      "gold_reward": "1500",
+      "max": "50000"
+    },{
       "position": "PM",
       "commendation": "12000",
       "commendation_reward": "GIFT",
