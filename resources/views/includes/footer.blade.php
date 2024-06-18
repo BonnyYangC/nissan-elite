@@ -10,7 +10,7 @@
             <br>
             All enquiries: <br>
             <a href="mailto:{{ config('elite.SUPPORT_EMAIL_ADDRESS') }}?subject={{ config('elite.PROGRAM_NAME') }} Online Enquiry">{{ config('elite.SUPPORT_EMAIL_ADDRESS') }}</a> <br>
-            <a href="{{ asset('files/MEMBERS_GUIDE.pdf#page=49') }}" target="_blank">Term & Conditions</a></p>
+            <a href="{{ asset('files/2024/MEMBERS_GUIDE.pdf#page=49') }}" target="_blank">Term & Conditions</a></p>
         </div>
         <div class="col-6">
             <nav class="navbar navbar-expand nav-footer">
