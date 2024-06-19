@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\RankingBuilder;
 use App\Helper\State;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,14 +21,18 @@ class Ranking extends Model {
     const AWARD_STATUS      = 'status';
     const AWARD_PLATINUM    = 'platinum';
 
+    public function newEloquentBuilder($query): RankingBuilder {
+        return new RankingBuilder($query);
+    }
+
     /**
      * @param string $employeeCode
      * @return mixed
      */
     public static function getMaxPeriod(string $employeeCode, string $positionCode) {
-        return Ranking::where('employee_code', $employeeCode)
+        return Ranking::currentYear()->where('employee_code', $employeeCode)
             ->where('position', $positionCode)
-            ->where('year', config('elite.YEAR'))
+           // ->where('year', config('elite.YEAR'))
             ->max('period');
     }
 
@@ -36,8 +41,8 @@ class Ranking extends Model {
      * @return Carbon|false
      */
     public static function getMaxPeriodByPositionAndCat(string $position) {
-        $result = Ranking::where('position', $position)
-            ->where('year', config('elite.YEAR'))
+        $result = Ranking::currentYear()->where('position', $position)
+            //->where('year', config('elite.YEAR'))
             ->max('period');
         return Carbon::createFromFormat('Y-m-d',$result);
     }
@@ -54,7 +59,8 @@ class Ranking extends Model {
         $query = self::join('users','rankings.employee_code', '=', 'users.employee_code')
             ->join('users_eligible','users_eligible.employee_code', '=', 'users.employee_code')
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category', 'dealers.state');
+            ->join('dealer_regions', 'dealer_regions.code', '=', 'dealers.code')
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealer_regions.category', 'dealers.state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');
@@ -84,7 +90,8 @@ class Ranking extends Model {
         $query = self::join('users','rankings.employee_code', '=', 'users.employee_code')
         ->join('users_eligible','users_eligible.employee_code', '=', 'users.employee_code' )
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealers.category', 'dealers.state');
+            ->join('dealer_regions', 'dealer_regions.code', '=', 'dealers.code')
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealer_regions.category', 'dealers.state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');

@@ -1111,7 +1111,7 @@
                     "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
                     "metrics": {
                         "gp_cpro":{
-                            "label": "Genuine Parts",
+                            "label": "GRP",
                             "point_default": 0,
                             "score_default": 0,
                             "score_format": "$"
@@ -1130,7 +1130,7 @@
                     "title": "5 YEAR SERVICE RETENTION % (as reported in iNsight Dealer Portal)",
                     "metrics": {
                         "retention":{
-                            "label": "Retention",
+                            "label": "5YR Retent",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -1138,7 +1138,7 @@
                     },
                     "guides": [{
                         "title": "5 YEAR SERVICE RETENTION % (as reported in iNsight Dealer Portal) GUIDE",
-                        "top": ["Service Manager", "≥35%", "≥40%", "≥45%", "≥50%"],
+                        "top": ["Service Manager", "≥45%", "≥55%", "≥65%", "≥75%"],
                         "rows": [["Category A", 408, 504, 600, 744],["Category B", 408, 504, 600, 744], ["Category C", 408, 504, 600, 744]]
                     }]
                 },
@@ -1148,7 +1148,7 @@
                     "title": "1 YEAR SERVICE RETENTION %",
                     "metrics": {
                         "service_retention":{
-                            "label": "Service Retention",
+                            "label": " 1yr Retent",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -1363,54 +1363,64 @@
                 }],
             "T": [
                 {
-                    "identifier": "f1",
+                    "identifier": "fft",
                     "order": 1,
-                    "title": "F1 @ DEALERSHIPS LEVEL ROLLING 3 MONTH",
+                    "title": "F1 (Fixed it right first time) %yes NPS R3M",
                     "metrics": {
-                        "f1":{
+                        "fft":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
-                        "title": "F1 @ DEALERSHIPS LEVEL ROLLING 3 MONTH GUIDE",
+                        "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
                         "top": ["Technician", "≥100% Target", "≥105% Target"],
                         "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
                     }]
-                },
-                {
-                    "identifier": "ce",
+                },{
+                    "identifier": "sos",
                     "order": 2,
-                    "title": "CE @ DEALERSHIPS LEVEL ROLLING 3 MONTH",
+                    "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
                     "metrics": {
-                        "f1":{
-                            "label": "CE",
+                        "sos":{
+                            "label": "Overall Sat",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
-                        "title": "CE @ DEALERSHIPS LEVEL ROLLING 3 MONTH GUIDE",
+                        "title": "Service overall satisfaction NPS 3 month rolling score Guide",
                         "top": ["Technician", "≥100% Target", "≥105% Target"],
-                        "rows": [["Master Technician", 150, 300], ["Advanced Technician", 150, 300]]
+                        "rows": [["Master Technician", 225, 425], ["Advanced Technician", 225, 425]],
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 40<br>- Dealer Survey volume target"
                     }]
                 },
                 {
                     "identifier": "quiz",
+                    "label": "Quiz",
                     "order": 3,
-                    "title": "PRODUCT / TECH QUIZ – BONUS POINTS",
+                    "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
                     "metrics": {
-                        "f1":{
-                            "label": "QUIZ",
+                        "train_partTech":{
+                            "label": "Part Tech",
                             "point_default": 0,
-                            "score_default": "0"
+                            "score_default": "NO",
+                            "score_format": "b"
+                        },
+                        "train_QuizTech":{
+                            "label": "Quiz Tech",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
                         }
                     },
                     "guides": [{
-                        "title": "PRODUCT / TECH QUIZ – BONUS POINTS GUIDE",
+                        "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS GUIDE",
                         "top": ["Technician", "Participation", "80 – 100%", "100+%"],
                         "rows": [["Master Technician", 55, 85, 105], ["Advanced Technician", 55, 85, 105]]
                     }]

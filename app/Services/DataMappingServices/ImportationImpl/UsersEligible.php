@@ -4,7 +4,6 @@ namespace App\Services\DataMappingServices\ImportationImpl;
 
 use App\Services\DataMappingServices\Base;
 use App\Models\UsersEligible as UsersEligibleModel;
-use Carbon\Carbon;
 
 
 class UsersEligible extends Base {
@@ -25,13 +24,11 @@ class UsersEligible extends Base {
      * @return UsersEligibleModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = UsersEligibleModel::where('employee_code',trim($record[$modelKey['primary']]))
-            ->where('year', config('elite.YEAR'))
+        $model = UsersEligibleModel::currentYear()
+            ->where('employee_code',trim($record[$modelKey['primary']]))
             ->first();
         if(!$model){
             $model = UsersEligibleModel::factory()->make();
-            //$model->updated_at = Carbon::now();
-            //$model->created_at = Carbon::now();
         }
         return $model;
     }

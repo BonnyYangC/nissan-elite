@@ -196,7 +196,7 @@ class DataService extends BaseService {
                 $returnValue = collect([new DMS\ImportationImpl\User(),new DMS\ImportationImpl\UsersEligible()]);
                 break;
             case Defination::DATA_TYPE_DEALERS_INFO :
-                $returnValue->add(new DMS\ImportationImpl\Dealer($this->regionRepo->load()));
+                $returnValue = collect([new DMS\ImportationImpl\Dealer(), new DMS\ImportationImpl\DealerRegion($this->regionRepo->load())]);
                 break;
             case Defination::DATA_TYPE_REGION_STAFF_INFO :
                 $returnValue->add(new DMS\ImportationImpl\RegionStaff($this->regionRepo->load()));
@@ -284,7 +284,7 @@ class DataService extends BaseService {
                 $returnValue = new DMS\MonthlyDataImpl\ServiceAdvisor($actionType);
                 break;
             case Role::TECHNICIAN:
-                $returnValue = new DMS\MonthlyDataImpl\ServiceAdvisor($actionType);
+                $returnValue = new DMS\MonthlyDataImpl\Technician($actionType);
                 break;
             default:
                 break;

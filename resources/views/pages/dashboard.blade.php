@@ -20,7 +20,7 @@
                     @include('pages.widgets.current_states_level', [$currentUser, $status])
                 </div>
                 <div class="dollar-rewards dashboard-section">
-                    @include('pages.widgets.dollar_rewards_table', [$rewards])
+                    @include('pages.widgets.dollar_rewards_table', [$currentUser, $rewards])
                 </div>
             </div>
             <div class="page-widget col-3">

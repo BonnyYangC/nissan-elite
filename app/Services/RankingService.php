@@ -124,7 +124,7 @@ class RankingService extends BaseService {
                 'forAll' => true,
                 'style'  => '',
                 'className'  => 'button-service',
-                'members'=>[
+                'members' => [
                     [
                         'name'=>'Service Manager',
                         'role'=>Role::SERVICE_MANAGER
