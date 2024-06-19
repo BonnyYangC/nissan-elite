@@ -8,35 +8,35 @@
 }
 
 .button-sales{
-    background-image:url(../images/rankings/Sales.png);
+    background-image:url(../images/rankings/2024/Sales.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .button-fleet{
-    background-image:url(../images/rankings/Fleet.png);
+    background-image:url(../images/rankings/2024/Fleet.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .button-service{
-    background-image:url(../images/rankings/Service.png);
+    background-image:url(../images/rankings/2024/Service.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .button-parts{
-    background-image:url(../images/rankings/Parts.png);
+    background-image:url(../images/rankings/2024/Parts.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .button-admin{
-    background-image:url(../images/rankings/Admin.png);
+    background-image:url(../images/rankings/2024/Admin.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

@@ -10,7 +10,7 @@
         </div>
         <div class="d-flex">
             <div class="col-9 page-section-wrap">
-                <img src="../images/member_guide/cover.jpg" style="object-fit: fill; width:100%" />
+                <img src="../images/member_guide/2024/cover.jpg" style="object-fit: fill; width:100%" />
 
                 <br>
                 <br>

@@ -5,7 +5,7 @@
         <div class="elite-page">
             <div class="col-12">
                 <a href="mailto:info@nissanelite.com.au?subject=Nissan%20Future%20Sales%20Postcard%20Order&body={{ $mailContent }}">
-                    <img src="../../images/future_sales/postcard_order.jpg" style="object-fit: fill; width:100%" />
+                    <img src="../../images/future_sales/2024/postcard_order.png" style="object-fit: fill; width:100%" />
                 </a>
             </div>
             <div class="page-section-wrap dashboard-section"></div>

@@ -22,7 +22,7 @@
                     </div>
                 @else
                     <div class="fotorama" data-click="true" data-autoplay="true" data-allowfullscreen="true">
-                        <img src="{{ asset('/images/incentives/cover.png') }}"></img>
+                        <img src="{{ asset('/images/incentives/2024/cover.png') }}"></img>
                     </div>
                 @endif
                 </div>
