@@ -55,7 +55,7 @@
 
     <div class="row justify-content-center" style="margin-top:3%;">
         <div class="col-2">
-            <a target="_blank" href="http://nissanlearningacademy.com.au/">
+            <a target="_blank" href="https://nmacorp.okta.com/app/UserHome">
                 <img class="tiles-img" src="{{ asset('images/tiles/2024/nissan_academy.png') }}" style="margin-bottom:30px;" width="332">
             </a>
         </div>

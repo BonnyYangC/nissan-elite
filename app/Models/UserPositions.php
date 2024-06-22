@@ -2,31 +2,19 @@
 
 namespace App\Models;
 
+use App\Builders\UserPositionsBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
  * @package App\Models
- * @property string $firstname
- * @property string $lastname
  * @property string $employee_code
  * @property string $position_code
- * @property string $region_code
- * @property boolean $excellence_eligible
- * @property-read Result[] $results
- * @property-read Dealer $dealer
- * @property-read Reward[] $rewards
- * @property-read History[] $loyaltyPoints
- * @property-read Region $region
  */
 class UserPositions extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'user_positions';
 
@@ -39,6 +27,10 @@ class UserPositions extends Model
         'employee_code',
         'position_code'
     ];
+
+    public function newEloquentBuilder($query): UserPositionsBuilder {
+        return new UserPositionsBuilder($query);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

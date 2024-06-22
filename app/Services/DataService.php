@@ -193,7 +193,7 @@ class DataService extends BaseService {
         $returnValue = collect([]);
         switch ($type) {
             case Defination::DATA_TYPE_USERS_INFO :
-                $returnValue = collect([new DMS\ImportationImpl\User(),new DMS\ImportationImpl\UsersEligible()]);
+                $returnValue = collect([new DMS\ImportationImpl\User(),new DMS\ImportationImpl\UsersEligible(), new DMS\ImportationImpl\UserPositions()]);
                 break;
             case Defination::DATA_TYPE_DEALERS_INFO :
                 $returnValue = collect([new DMS\ImportationImpl\Dealer(), new DMS\ImportationImpl\DealerRegion($this->regionRepo->load())]);
@@ -205,7 +205,7 @@ class DataService extends BaseService {
                 $returnValue->add(new DMS\ImportationImpl\LoyaltyHistorical());
                 break;
             case Defination::DATA_TYPE_RANKING :
-                $returnValue->add(new DMS\ImportationImpl\Ranking());
+                $returnValue = collect([new DMS\ImportationImpl\Ranking(), new DMS\ImportationImpl\UserPositions()]);
                 break;
             case Defination::DATA_TYPE_TERRITORY_REPORT:
                 $returnValue->add(new DMS\ImportationImpl\TerritoryReport());

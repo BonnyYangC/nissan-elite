@@ -45,16 +45,16 @@ class Controller extends BaseController
                 $currentUser = session('mock-user');
                 $this->dataForView['acls'] = [];
                 $position = $currentUser->positions()->get($currentUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
-                $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title]);
+                $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position->code, 'title' => $position ? $position : $currentUser->position->title]);
             } else {
                 /** @var User $currentUser */
                 $currentUser = Auth::user();
-                $this->dataForView['acls'] = $currentUser ? Acl::getAllByPosition($currentUser->position_code) : [];
+                $this->dataForView['acls'] = $currentUser ? Acl::getAllByPosition($currentUser->position->code) : [];
 
                 //check if specified a role by asPosition
                 if (!session('selected_position') && $currentUser) {
                     $position = $currentUser->positions()->get($currentUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
-                    session(['selected_position' => collect(['code' => $currentUser->position_code, 'title' => $position ? $position : $currentUser->position->title])]);
+                    session(['selected_position' => collect(['code' => $currentUser->position->code, 'title' => $position ? $position : $currentUser->position->title])]);
                 }
 
                 if ($role = $request->query('asPosition')) {

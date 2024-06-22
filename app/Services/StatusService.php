@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Helper\Role;
+use App\Models\Position;
 use App\Models\Reward;
 use App\Services\StatusServices\GageStatus;
 
@@ -17,7 +19,17 @@ class StatusService extends BaseService {
             $position = $this->currentUser->position;
             $position = $position->code;
         }
-        $rewards = Reward::byPosition($position)->first();
+        if (in_array($position, Position::TECHNICIAN_POSITIONS)) {
+            $rewards = Reward::factory()->make([
+                'commendation' => 1000,
+                'bronze' => 2000,
+                'silver' => 3000,
+                'gold' => 4000,
+                'max' => 5000
+            ]);
+        } else {
+            $rewards = Reward::byPosition($position)->first();
+        }
         return new GageStatus($rewards->commendation, $rewards->bronze, $rewards->silver, $rewards->gold, $ytd, $rewards->max);
     }
 

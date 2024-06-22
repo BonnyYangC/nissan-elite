@@ -73,6 +73,18 @@
             "department": "Service Tech"
         },
         {
+            "code": "TM",
+            "title": "Master Technician",
+            "platinum_ranking": 0,
+            "department": "Service Tech"
+        },
+        {
+            "code": "TA",
+            "title": "Advanced Technician",
+            "platinum_ranking": 0,
+            "department": "Service Tech"
+        },
+        {
             "code": "D",
             "title": "Dealer Principal",
             "platinum_ranking": 0,

@@ -82,7 +82,8 @@
                         //console.log('block:', that.blocks);
                         that.modalTitle = res.data.data.modalTitle;
                         that.dialogTableVisible = true;
-                        that.tableTitle = that._getRoleNameText(role) + ': ' + action;
+                        // that.tableTitle = that._getRoleNameText(role) + ': ' + action;
+                        that.tableTitle = res.data.data.tableTitle + ': ' + action;
                         that.type = type;
                     }else{
                         that.$notify.error({
@@ -94,6 +95,7 @@
             },
             _getRoleNameText: function(abbr){
                 var name = '';
+                console.log(abbr);
                 switch (abbr){
                     case 'PS':
                         name = 'PARTS SALES REPRESENTATIVE';
@@ -127,6 +129,9 @@
                         break;
                     case 'F':
                         name = 'FLEET SALES EXECUTIVE';
+                        break;
+                    case 'T':
+                        name = 'Technician Master/Advanced';
                         break;
                     default:
                         break;

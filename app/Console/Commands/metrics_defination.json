@@ -111,7 +111,7 @@
                     },
                     "guides": [{
                         "title": "TRAINING GUIDE - FLEET SALES EXECUTIVE",
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 22",
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 21-22",
                         "top": ["Competency Modules", "Points Quarterly"],
                         "rows": [["Certified Fleet Sales Executive (O)", 450],
                             ["Advanced selling Skills (O)", 250]]
@@ -344,7 +344,7 @@
                     },
                     "guides": [{
                         "title": "TRAINING GUIDE",
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 15",
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 15-16",
                         "note": "Sales Manager is eligible for 500 bonus points in September and March when 100% of Retail Team have completed their online pathway",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "h/yr", "Points Yearly"],
                         "rows": [["Certified Dealership Manager (O)", "", 400, "", ""],
@@ -489,7 +489,7 @@
                     },
                     "guides": [{
                         "title": "TRAINING GUIDE",
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 16",
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 15-16",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
                         "rows": [["Certified Sales Consultant (O & VC)", "", 450, ""],
                             ["Certified Sales Executive (VC & A)", "", 400, ""], 
@@ -513,7 +513,7 @@
                     "guides": [{
                         "title": "OW DATA ENTRY COMPLIANCE GUIDE",
                         "top": ["Stock Controller", "≤ 1 Missed Day", "2-3 Missed Days"],
-                        "rows": [["Category A", 675, 360], ["Category B", 575, 260], ["Category C", 575, 260]]
+                        "rows": [["Category A", 675, 360], ["Category B", 675, 360], ["Category C", 675, 360]]
                     }]
                 },
                 {
@@ -618,8 +618,9 @@
                     },
                     "guides": [{
                         "title": "TRAINING GUIDE",
-                        "top": ["Competency Modules", "Points per Quarter"],
-                        "rows": [["Stock Controller Pathway (O & VC)", 325]],
+                        "top": ["Competency Modules", "Delivery Method", "Points per Quarter"],
+                        "rows": [["Product Knowledge", 0, 250], ["The Nissan Brand", 0, 25], 
+                        ["Employee Test Drive Experience", 0, 25], ["Nissan Dealer Forward Order System Essential Training", 0, 25]],
                         "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 26"
                     }]
                 }],
@@ -821,7 +822,7 @@
                     "title": "Nissan Genuine replacement Parts (GRP)",
                     "metrics": {
                         "grp":{
-                            "label": "Genuine Replacement Parts",
+                            "label": "GRP",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -922,7 +923,7 @@
                     "title": "BRAKE AND WIPER PARTS SALES PER CPRO",
                     "metrics": {
                         "bw_cpro":{
-                            "label": "Brake & Wiper Parts",
+                            "label": "Brakes & Wipers",
                             "point_default": 0,
                             "score_default": 0,
                             "score_format": "$"
@@ -996,7 +997,7 @@
                         "rows": [["Certified Dealership Manager (O)", 325, "", ""], 
                         ["Certified Dealership Manager (VC & A)", 100, "", ""],
                         ["Bonus", "", 500, ""]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 46/47"
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 49-50"
                     }]
                 }],
             "PS": [
@@ -1006,7 +1007,7 @@
                     "title": "Nissan Genuine replacement Parts",
                     "metrics": {
                         "grp":{
-                            "label": "Genuine Replacement Parts",
+                            "label": "GRP",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -1023,7 +1024,7 @@
                     "label": "Trade Sales",
                     "order": 2,
                     "period": "quarterly",
-                    "title": "Trade Parts Sales per unit in Operation",
+                    "title": "Trade Parts Sales per unit in Operation - QUARTERLY",
                     "metrics": {
                         "trade_sale_pvfy":{
                             "label": "Trade Sales vs FY22",
@@ -1082,7 +1083,7 @@
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Quarterly"],
                         "rows": [["Certified Parts Advisor (O & VC)", 375]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 46/47"
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 49-50"
                     }]
                 }],
             "SM": [
@@ -1156,7 +1157,7 @@
                     },
                     "guides": [{
                         "title": "1 YEAR SERVICE RETENTION % GUIDE",
-                        "top": ["Service Manager", "≥40%", "≥50%", "≥60%", "≥70%"],
+                        "top": ["Service Manager", "≥50%", "≥60%", "≥70%", "≥80%"],
                         "rows": [["Category A", 440, 500, 560, 680],["Category B", 440, 500, 560, 680], ["Category C", 440, 500, 560, 680]]
                     }]
                 },
@@ -1174,7 +1175,7 @@
                     },
                     "guides": [{
                         "title": "PMP% OF NEW CAR SALES GUIDE",
-                        "top": ["Service Manager", "5%", "10%", "20%"],
+                        "top": ["Service Manager", "10%", "20%", "30%"],
                         "rows": [["Category A", 240, 360, 480],["Category B", 240, 360, 480], ["Category C", 240, 360, 480]]
                     }]
                 },
@@ -1285,7 +1286,7 @@
                     },
                     "guides": [{
                         "title": "1 YEAR SERVICE RETENTION % GUIDE",
-                        "top": ["Service Advisor", "≥40%", "≥50%", "≥60%", "≥70%"],
+                        "top": ["Service Advisor", "≥50%", "≥60%", "≥70%", "≥80%"],
                         "rows": [["Category A & B", 440, 500, 560, 680], ["Category C", 440, 500, 560, 680]]
                     }]
                 },
@@ -1303,7 +1304,7 @@
                     },
                     "guides": [{
                         "title": "PMP% OF NEW CAR SALES",
-                        "top": ["Service Advisor", "5%", "10%", "20%"],
+                        "top": ["Service Advisor", "10%", "20%", "30%"],
                         "rows": [["Category A & B", 240, 360, 480], ["Category C", 240, 360, 480]]
                     }]
                 },

@@ -28,7 +28,7 @@ class User extends BaseService {
     public function export() {
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $admin = Auth::user();
-        $regions = ($admin->position_code === 'ADMIN' || $admin->region->code === 'H' || $admin->region->code === 'NFSA') ? [
+        $regions = (in_array($admin->position_code, ['ADMIN']) || in_array($admin->region->code, ['H', 'NFSA', 'DESTINATION'])) ? [
             'E', 'N', 'S', 'W'
         ] : [$admin->region->code];
         $dept = isset($this->parameters['dept']) ? $this->parameters['dept'] : 'All';

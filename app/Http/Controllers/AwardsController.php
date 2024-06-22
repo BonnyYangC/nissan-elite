@@ -17,7 +17,6 @@ class AwardsController extends Controller
     public function __invoke() {
         $this->dataForView['menuName'] = 'awards';
         $this->dataForView['awards'] = $this->repository->loadAll();
-        // var_dump($this->dataForView['awards']);
         return $this->render('pages.awards');
     }
 }

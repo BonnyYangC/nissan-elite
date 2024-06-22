@@ -51,15 +51,16 @@ class UserService extends BaseService {
      * @return mixed
      */
     public function loadActiveMember(array $regions, $dept = 'All', $dealerNameKeyword = null){
-        $query = User::select('regions.title as region', 'dealers.code as dealer_code','dealers.name as dealer', 'users.employee_code',
-            'users.firstname', 'users.lastname', 'positions.department as dept', 'positions.title as position',
-            'users_eligible.registered', 'users.email', 'users.mobile')
-            ->join('users_eligible','users.employee_code','=','users_eligible.employee_code')
+        $query = User::where('users.active', 1)
+            ->joinUserEligible()
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
+            ->joinDealerRegions($regions)
             ->join('positions', 'users.position_code', '=', 'positions.code')
-            ->join('regions', 'regions.code', '=', 'dealers.region')
-            ->whereIn('dealers.region', $regions)
-            ->where('users.active', 1);
+            ->join('regions', 'regions.code', '=', 'dealer_regions.region')
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users.email', 'users.mobile', 'users_eligible.registered',
+        'dealers.code as dealer_code','dealers.name as dealer',
+        'positions.department as dept', 'positions.title as position',
+        'regions.title as region');
 
         if ($dept !== 'All') {
             $query = $query->where('positions.department', $dept);
@@ -67,7 +68,6 @@ class UserService extends BaseService {
         if ($dealerNameKeyword) {
             $query = $query->where('dealers.name', 'LIKE', '%'.trim($dealerNameKeyword).'%');
         }
-
         return $query->get()->each(function($r) {
             $r['name'] = $r['firstname'] . ' ' . $r['lastname'];
             $r['registered'] = $r['registered'] ? 'YES' : 'NO';

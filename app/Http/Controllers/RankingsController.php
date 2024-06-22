@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helper\JsonBuilder;
+use App\Helper\Role;
+use App\Models\Position;
 use App\Models\Ranking;
 use App\Services\RankingService;
 use Carbon\Carbon;
@@ -58,7 +60,8 @@ class RankingsController extends Controller {
         $awardType = $request->input('type') ? $request->input('type') : Ranking::AWARD_STATUS;
 
         $modalTitle = 'YTD ';
-        $thisPeriod = Ranking::getMaxPeriodByPositionAndCat($role);
+        $positions = $role === Role::TECHNICIAN ? [Role::MASTER_TECHNICIAN, Role::ADVANCED_TECHNICIAN] : [$role];
+        $thisPeriod = Ranking::getMaxPeriodByPositionAndCat($positions);
         if (!$thisPeriod) {
             $thisPeriod = date('Y-m').'-01';
         }
@@ -69,12 +72,13 @@ class RankingsController extends Controller {
         $modalTitle .= $thisPeriod->format('F Y');
         $modalTitle .= ' - '.$awardType;
 
-        $result = $this->service->get_ranking($role, $awardType, $thisPeriod->format('Y-m-d'));
+        $result = $this->service->get_ranking($positions, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){
             echo JsonBuilder::Success([
                 'blocks'=>array_values($result),
-                'modalTitle'=>$modalTitle
+                'modalTitle'=>$modalTitle,
+                'tableTitle' => Position::find('code', $role)->title
             ]);
         }else{
             echo JsonBuilder::Error();

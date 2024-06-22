@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 class PositionBuilder extends Builder
 {
   public function members(): self {
-    return $this->whereIn('department', ['Sales', 'Parts', 'Service', 'Service Tech', 'Administration']);
+    return $this->whereIn('code', Position::SEARCHABLE_POSITIONS);
+    // return $this->whereIn('department', ['Sales', 'Parts', 'Service', 'Service Tech', 'Administration']);
   }
   
   public function regionStaffs(): self {

@@ -14,6 +14,8 @@ class Role {
     const SERVICE_MANAGER           = 'SM';
     const SERVICE_ADVISERS          = 'SA';
     const TECHNICIAN = 'T';
+    const ADVANCED_TECHNICIAN = 'TA';
+    const MASTER_TECHNICIAN = 'TM';
 
     const FINANCE_CONTROLLER        = 'C';
 

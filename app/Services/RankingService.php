@@ -33,8 +33,7 @@ class RankingService extends BaseService {
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
         }
-        $resultsData = Ranking::getRankingsBy($positionCode, $currentPeriod, $type, 5, $currentUser->dealer->state);
-
+        $resultsData = Ranking::getRankingsBy([$positionCode], $currentPeriod, $type, 5, $currentUser->dealer->state);
         $rankingOfCurrentUser = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod, $type)->first();
         // if rank of current user is out of 5, then replace 5th with current user's ranking
         if ($rankingOfCurrentUser) {
@@ -132,7 +131,7 @@ class RankingService extends BaseService {
                         'name'=>'Service Advisor',
                         'role'=>Role::SERVICE_ADVISERS
                     ],[
-                        'name'=>'Technician',
+                        'name'=>'Technician Master/Advanced',
                         'role'=>Role::TECHNICIAN
                     ]
                 ]
@@ -188,11 +187,11 @@ class RankingService extends BaseService {
      * @param string $period
      * @return array
      */
-    public function get_ranking(string $position, string $type, string $period) {
+    public function get_ranking(array $positions, string $type, string $period) {
 
         $result = [];
-        $resultsData = Ranking::getRankingsBy($position, $period, $type)->all();
-
+        $resultsData = Ranking::getRankingsBy($positions, $period, $type)->all();
+        $position = count($positions) > 1 ? Role::TECHNICIAN : $positions[0];
         // Loop result set to convert array to new structure for frontend json
 
         $currentRankState = null;
