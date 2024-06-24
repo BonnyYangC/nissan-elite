@@ -2,7 +2,7 @@
 @section('guild_header')
     <div class="d-flex flex-column align-items-center guild-header">
         @include('pages.guild.buttons')
-        <div class="mb-5">
+        <div class="guild-banner">
             <img class="img-responsive center-block" alt="" src="{{ asset('images/md_guild/The_Guild.png') }}">
         </div>
     </div>

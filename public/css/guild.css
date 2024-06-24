@@ -5,13 +5,21 @@
     background-image: url(/images/md_guild/Nissan_Elite_Guild_bg.png?a=1);
     background-position: top;
     background-size: cover;
+    position:relative;
 }
+.guild-banner {
+    margin-top: 20%;
+    margin-bottom: 5%;
+}
+
 .guild-event-header {
     position: relative;
 }
+
 .guild-event-banner {
     width: 100%;
 }
+
 .guild-buttons {
     display: flex !important;
     justify-content: space-around;
