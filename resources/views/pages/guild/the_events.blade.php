@@ -1,6 +1,7 @@
 @extends('pages.guild')
 @section('guild_header')
     <div class="d-flex flex-column align-items-center guild-event-header">
+        <img class="guild-event-banner" src="/images/md_guild/2024/Guild_events_header.png"/>
         @include('pages.guild.buttons')
     </div>
 @endsection
