@@ -71,14 +71,14 @@ class RankingsController extends Controller {
         }
         $modalTitle .= $thisPeriod->format('F Y');
         $modalTitle .= ' - '.$awardType;
-
+        $tableTitle = $role === Role::TECHNICIAN ? "Technician Master/Advanced" : Position::where('code', $role)->title;
         $result = $this->service->get_ranking($positions, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){
             echo JsonBuilder::Success([
                 'blocks'=>array_values($result),
                 'modalTitle'=>$modalTitle,
-                'tableTitle' => Position::find('code', $role)->title
+                'tableTitle' => $tableTitle
             ]);
         }else{
             echo JsonBuilder::Error();

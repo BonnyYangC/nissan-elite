@@ -1362,7 +1362,105 @@
                         "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 37/38"
                     }]
                 }],
-            "T": [
+            "TM": [
+                {
+                    "identifier": "fft",
+                    "order": 1,
+                    "title": "F1 (Fixed it right first time) %yes NPS R3M",
+                    "metrics": {
+                        "fft":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [{
+                        "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
+                        "top": ["Technician", "≥100% Target", "≥105% Target"],
+                        "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
+                    }]
+                },{
+                    "identifier": "sos",
+                    "order": 2,
+                    "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
+                    "metrics": {
+                        "sos":{
+                            "label": "Overall Sat",
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [{
+                        "title": "Service overall satisfaction NPS 3 month rolling score Guide",
+                        "top": ["Technician", "≥100% Target", "≥105% Target"],
+                        "rows": [["Master Technician", 225, 425], ["Advanced Technician", 225, 425]],
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 40<br>- Dealer Survey volume target"
+                    }]
+                },
+                {
+                    "identifier": "quiz",
+                    "label": "Quiz",
+                    "order": 3,
+                    "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
+                    "metrics": {
+                        "train_partTech":{
+                            "label": "Part Tech",
+                            "point_default": 0,
+                            "score_default": "NO",
+                            "score_format": "b"
+                        },
+                        "train_QuizTech":{
+                            "label": "Quiz Tech",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS GUIDE",
+                        "top": ["Technician", "Participation", "80 – 100%", "100+%"],
+                        "rows": [["Master Technician", 55, 85, 105], ["Advanced Technician", 55, 85, 105]]
+                    }]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 4,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_pathway": {
+                            "label": "Pathway",
+                            "color": "#994499"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#22AA99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#AAAA11"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Mastery Goal Achievement", 100, 250, 250]],
+                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 41"
+                    }]
+                }
+            ],"TA": [
                 {
                     "identifier": "fft",
                     "order": 1,

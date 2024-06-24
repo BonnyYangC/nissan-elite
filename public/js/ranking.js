@@ -82,7 +82,6 @@
                         //console.log('block:', that.blocks);
                         that.modalTitle = res.data.data.modalTitle;
                         that.dialogTableVisible = true;
-                        // that.tableTitle = that._getRoleNameText(role) + ': ' + action;
                         that.tableTitle = res.data.data.tableTitle + ': ' + action;
                         that.type = type;
                     }else{
@@ -92,51 +91,6 @@
                         });
                     }
                 });
-            },
-            _getRoleNameText: function(abbr){
-                var name = '';
-                console.log(abbr);
-                switch (abbr){
-                    case 'PS':
-                        name = 'PARTS SALES REPRESENTATIVE';
-                        break;
-                    case 'PM':
-                        name = 'PARTS MANAGER';
-                        break;
-                    case 'SM':
-                        name = 'SERVICE MANAGER';
-                        break;
-                    case 'SA':
-                        name = 'SERVICE ADVISOR';
-                        break;
-                    case 'I':
-                        name = 'F&I MANAGER';
-                        break;
-                    case 'C':
-                        name = 'FINANCIAL CONTROLLER';
-                        break;
-                    case 'M':
-                        name = 'SALES MANAGER';
-                        break;
-                    case 'R':
-                        name = 'RETAIL SALES CONSULTANT';
-                        break;
-                    case 'SC':
-                        name = 'STOCK CONTROLLER';
-                        break;
-                    case 'FM+F':
-                        name = 'FLEET MANAGER/SALES CONSULTANT';
-                        break;
-                    case 'F':
-                        name = 'FLEET SALES EXECUTIVE';
-                        break;
-                    case 'T':
-                        name = 'Technician Master/Advanced';
-                        break;
-                    default:
-                        break;
-                }
-                return name;
             },
             printThis: function(){
                 if(this.lastSelectedAction && this.lastSelectedRole && this.lastSelectedType){

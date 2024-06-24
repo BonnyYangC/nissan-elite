@@ -66,7 +66,8 @@ class Position extends Model {
         Role::PARTS_SALES_REP,
         Role::SERVICE_MANAGER,
         Role::FI,
-        Role::TECHNICIAN
+        Role::ADVANCED_TECHNICIAN,
+        Role::MASTER_TECHNICIAN
     ];
 
     /**
