@@ -54,7 +54,7 @@ class Position extends Model {
         Role::DGC
     ];
 
-    const TECHNICIAN_POSITIONS = [Role::TECHNICIAN, Role::ADVANCED_TECHNICIAN, Role::MASTER_TECHNICIAN];
+    const TECHNICIAN_POSITIONS = [Role::ADVANCED_TECHNICIAN, Role::MASTER_TECHNICIAN];
     
     const SEARCHABLE_POSITIONS = [
         Role::RETAIL_SALES_CONSULTANTS,
@@ -66,8 +66,8 @@ class Position extends Model {
         Role::PARTS_SALES_REP,
         Role::SERVICE_MANAGER,
         Role::FI,
-        Role::ADVANCED_TECHNICIAN,
-        Role::MASTER_TECHNICIAN
+        //Role::ADVANCED_TECHNICIAN,
+        //Role::MASTER_TECHNICIAN
     ];
 
     /**

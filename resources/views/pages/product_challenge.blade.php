@@ -79,13 +79,13 @@
                     <p><small>We are excited to be on the road again. Stay tuned for your region dates coming soon. Awards are currently being prepared and we look forward to recognising our Award winners at each event.</small></p>
                     <br>
 
-                    <a class="edm-link" target="_blank" href="https://mailchi.mp/6c0806a3ca3c/nissan-dealer-business-development-group-meeting1-3124631?e=1dac1983c2">
+                    <a class="edm-link" target="_blank" href="https://mailchi.mp/a22a30e38fa1/nissan-dealer-business-development-group-meeting1-3124663?e=6d1ff96e61">
                         Click to VIEW PRODUCT CHALLENGE INFORMATION
                     </a>
                     </br>
                     <span style="color:#c0133c">SALES/SERVICE MANAGER ACCESS ONLY -</span>
                     </br>
-                    <a class="edm-link" target="_blank" href="https://mailchi.mp/d6881ad6d055/nissan-dealer-business-development-group-meeting1-3124627?e=1dac1983c2">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY24
+                    <a class="edm-link" target="_blank" href="https://mailchi.mp/7a024c21511e/nissan-dealer-business-development-group-meeting1-3124659?e=6d1ff96e61">Click to REGISTER YOUR PRODUCT CHALLENGE TABLE FOR FY24
                     </a>
                     </br>
                     <span style="color:#c0133c">(1 Table per Dealer with Maximum seating 12)</br>

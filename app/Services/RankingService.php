@@ -35,6 +35,7 @@ class RankingService extends BaseService {
         }
         $resultsData = Ranking::getRankingsBy([$positionCode], $currentPeriod, $type, 5, $currentUser->dealer->state);
         $rankingOfCurrentUser = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod, $type)->first();
+
         // if rank of current user is out of 5, then replace 5th with current user's ranking
         if ($rankingOfCurrentUser) {
             if ($rankingOfCurrentUser->rank > 5) {

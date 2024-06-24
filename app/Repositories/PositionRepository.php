@@ -14,6 +14,10 @@ class PositionRepository {
         return Position::members()->get();
     }
 
+    public function loadMembersWithT() {
+        return Position::membersWithT()->get();
+    }
+
     /**
      * @return
      */

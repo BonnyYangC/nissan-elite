@@ -212,7 +212,7 @@ class UserService extends BaseService {
      * @return mixed
      */
     public function searchUser(string $keyWords) {
-        $position = array_merge(Position::SEARCHABLE_POSITIONS, Position::REGION_STAFF_POSITIONS, [Role::TRAINING]);
+        $position = array_merge(Position::SEARCHABLE_POSITIONS, Position::TECHNICIAN_POSITIONS, Position::REGION_STAFF_POSITIONS, [Role::TRAINING]);
         $query = User::query();
 
         $query = $query->leftJoin('dealers', 'dealer_code', '=', 'code')

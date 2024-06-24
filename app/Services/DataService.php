@@ -29,6 +29,10 @@ class DataService extends BaseService {
         return $this->positionRepo->loadMembers();
     }
 
+    public function getPositionsWithT() {
+        return $this->positionRepo->loadMembersWithT();
+    }
+
     /**
      * @param $dataFile
      * @param $dataType

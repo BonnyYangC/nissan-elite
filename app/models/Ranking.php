@@ -92,7 +92,7 @@ class Ranking extends Model {
             ->joinUserEligible()
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
             ->joinDealerRegions()
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', /*'users_eligible.registered',*/ 'rankings.rank_state', /*'dealers.name', 'dealer_regions.category', 'dealers.state'*/);
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealer_regions.category', 'dealers.state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');

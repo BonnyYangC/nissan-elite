@@ -71,7 +71,7 @@ class RankingsController extends Controller {
         }
         $modalTitle .= $thisPeriod->format('F Y');
         $modalTitle .= ' - '.$awardType;
-        $tableTitle = $role === Role::TECHNICIAN ? "Technician Master/Advanced" : Position::where('code', $role)->title;
+        $tableTitle = $role === Role::TECHNICIAN ? "Technician Master/Advanced" : Position::where('code', $role)->first()->title;
         $result = $this->service->get_ranking($positions, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){

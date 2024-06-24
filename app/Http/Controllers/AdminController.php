@@ -27,7 +27,7 @@ class AdminController extends Controller {
      */
     public function dashboard() {
         $this->dataForView['menuName'] = 'dashboard';
-        $this->dataForView['positions'] = $this->dataService->getPositions();
+        $this->dataForView['positions'] = $this->dataService->getPositionsWithT();
         $this->dataForView['summary'] = [
             Defination::DATA_TYPE_RANKING => 'Nissan Rankings',
             Defination::DATA_TYPE_TERRITORY_REPORT =>'Region Territory Report'

@@ -87,8 +87,9 @@ footer {
 .loggedin > span {
     display: inline-block;
     padding: 0 8px;
+    color: #ffffff;
 }
 .loggedin a {
-    color: #000000;
+    color: #ffffff;
     font-weight: bold;
 }
