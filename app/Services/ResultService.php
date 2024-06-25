@@ -39,7 +39,8 @@ class ResultService extends BaseService {
      * @return mixed
      */
     public function getYearToDateData(string $position) {
-        return Result::yearToDate($this->currentUser->employee_code, $position)
-            ->max('credit_ytd');
+        $employeeCode = $this->currentUser->employee_code;
+        return $employeeCode ? Result::yearToDate($employeeCode, $position)
+            ->max('credit_ytd') : 0;
     }
 }
