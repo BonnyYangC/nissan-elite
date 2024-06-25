@@ -8,7 +8,7 @@
         <tbody class="nissan-table-body-grey">
             <tr align="center">
                 <td>
-                    <a href="http://learning.nissan.com.au/" target="_blank">
+                    <a href="https://nmacorp.okta.com/app/UserHome" target="_blank">
                         <button style="background-color:#4169E1; color: #FFFFFF; width:100%; margin:0 auto; font-weight: lighter; font-size:11px;" type="button" class="btn btn-primary btn-block">
                             Check Training Academy to secure <br>your Compulsory Criteria (refer Member guide)
                         </button>

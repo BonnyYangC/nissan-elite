@@ -19,7 +19,7 @@ class StatusService extends BaseService {
             $position = $this->currentUser->position;
             $position = $position->code;
         }
-        if (in_array($position, Position::TECHNICIAN_POSITIONS)) {
+        if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
             $rewards = Reward::factory()->make([
                 'commendation' => 1000,
                 'bronze' => 2000,

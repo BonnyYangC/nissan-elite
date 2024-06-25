@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helper\Role;
 use App\Models\{Position, Reward};
 use App\Repositories\RewardRepository;
 
@@ -17,7 +18,7 @@ class RewardsService {
      * @return Reward
      */
     public function buildRewardsData(string $position): Reward {
-        if (in_array($position, Position::TECHNICIAN_POSITIONS)) {
+        if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
             return Reward::factory()->make([
                 'commendation' => 1000,
                 'bronze' => 2000,

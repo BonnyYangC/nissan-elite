@@ -32,7 +32,7 @@ class UserBuilder extends Builder
   public function regionStaff(): self {
     return $this->select('id', 'firstname', 'lastname', 'email', 'position_code', 'mobile', 'active', 'region_code')
       ->whereIn('position_code', Position::REGION_STAFF_POSITIONS)
-      ->where('users.active', 1);
+      ->where('users.active', 1)->orderBy('firstname')->orderBy('lastname');
   }
 
   public function activeMember(): self {

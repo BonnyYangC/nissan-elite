@@ -20,7 +20,7 @@ class TerritoryReportService {
      * @return mixed
      */
     public function load(array $regions, $dept = 'All', $dealerNameKeyword = null){
-        $query = TerritoryReport::where('territory_reports.year', 2023)//config('elite.YEAR'))
+        $query = TerritoryReport::where('territory_reports.year', config('elite.YEAR'))
             ->join('users', 'territory_reports.employee_code', '=', 'users.employee_code')
             ->joinUserEligible()
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
