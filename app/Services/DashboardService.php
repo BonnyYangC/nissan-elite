@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Position;
 use App\Repositories\RegionRepository;
+use App\Services\GageServices\Current;
+use App\Services\GageServices\Techician;
 use App\Services\ServiceResolver;
 
 class DashboardService {
@@ -36,7 +39,11 @@ class DashboardService {
         $statusChart = array_merge([
             'ytd' => $ytd
         ], $this->resolver->statusService()->buildStatusData($ytd));
-        $this->resolver->gageService()->current_status_level($ytd, $statusChart);
+        if(in_array($selectedPosition, Position::TECHNICIAN_POSITIONS)){
+            (new Techician())->current_status_level($selectedPosition, 4, $ytd);
+        } else {
+            (new Current())->current_status_level($ytd, $statusChart);
+        }
 
         return [
             'monthlyPoints' => $this->resolver->resultService()->buildMonthlyData($selectedPosition),

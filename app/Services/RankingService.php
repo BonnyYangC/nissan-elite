@@ -243,7 +243,7 @@ class RankingService extends BaseService {
      */
     private function _convertRankingRowForFrontendJson($item, $role){
         return [
-            'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
+            // 'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
             'r' =>  $item['rank'], // status/platinum rank
             //'rp' =>  $rank ? $rank : $item['rank_platinum'], // rank platinum
             'n' =>  ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
@@ -263,11 +263,11 @@ class RankingService extends BaseService {
      * @param $role
      * @return string
      */
-    private function _parseUserStatusLevel($credits, $role){
-        /**
-         * @var GageStatus $status
-         */
-        $status = $this->serviceResolver->statusService()->getStatus($credits, $role);
-        return $status->getClassString();
-    }
+    // private function _parseUserStatusLevel($credits, $role){
+    //     /**
+    //      * @var GageStatus $status
+    //      */
+    //     $status = $this->serviceResolver->statusService()->getStatus($credits, $role);
+    //     return $status->getClassString();
+    // }
 }

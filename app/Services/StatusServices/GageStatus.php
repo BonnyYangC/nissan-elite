@@ -4,14 +4,6 @@ namespace App\Services\StatusServices;
 
 class GageStatus {
 
-    const STATUS_GOLD       = 'gold';
-    const STATUS_SILVER    = 'silver';
-    const STATUS_BRONZE      = 'bronze';
-    const STATUS_COMMENDATION        = 'commendation';
-
-
-
-
     const STATUS_LEVEL_4       = 'Gold';
     const STATUS_LEVEL_3    = 'Silver';
     const STATUS_LEVEL_2      = 'Bronze';
@@ -22,12 +14,6 @@ class GageStatus {
     const STATUS_LEVEL_2_COLOR      = '#8B4513'; //SaddleBrown
     const STATUS_LEVEL_1_COLOR        = '#525357';
     const STATUS_LEVEL_DEFAULT_COLOR       = '#000000';
-
-    const PREMIER_CLASS_STRING       = 'T-P';
-    const AMBASSADOR_CLASS_STRING     = 'T-A';
-    const DIPLOMAT_CLASS_STRING       = 'T-D';
-    const CONSUL_CLASS_STRING        = 'T-C';
-    const DEFAULT_CLASS_STRING        = '';
 
     private $consul = null;
     private $diplomat = null;
@@ -95,25 +81,6 @@ class GageStatus {
             $this->colorText = strtolower(config('elite.PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_1).' level';
             $this->toReach = $this->consul - $this->yearToDate;
         }
-    }
-
-    /**
-     * Return a string for different credits value
-     * @return string
-     */
-    public function getClassString(){
-        $classString = self::DEFAULT_CLASS_STRING;
-
-        if($this->_inBetween($this->premier)){
-            $classString = self::PREMIER_CLASS_STRING;
-        }elseif ($this->_inBetween($this->ambassador, $this->premier)){
-            $classString = self::DIPLOMAT_CLASS_STRING;
-        }elseif ( $this->_inBetween($this->diplomat, $this->ambassador) ){
-            $classString = self::AMBASSADOR_CLASS_STRING;
-        }elseif ( $this->_inBetween($this->consul, $this->diplomat) ){
-            $classString = self::CONSUL_CLASS_STRING;
-        }
-        return $classString;
     }
 
     /**
@@ -208,42 +175,6 @@ class GageStatus {
         return number_format($this->toReach,0);
     }
 
-    public function __get($name)
-    {
-        switch ($name) {
-            case self::STATUS_COMMENDATION:
-                return $this->consul;
-            case self::STATUS_BRONZE:
-                return $this->diplomat;
-            case self::STATUS_SILVER:
-                return $this->ambassador;
-            case self::STATUS_GOLD:
-                return $this->premier;
-            default:
-                return 0;
-        }
-    }
-
-    public function __set($key, $value)
-    {
-        switch ($key) {
-            case self::STATUS_COMMENDATION:
-                $this->consul = $value;
-                break;
-            case self::STATUS_BRONZE:
-                $this->diplomat = $value;
-                break;
-            case self::STATUS_SILVER:
-                $this->ambassador = $value;
-                break;
-            case self::STATUS_GOLD:
-                $this->premier = $value;
-                break;
-            default:
-                break;
-        }
-    }
-
     /**
      * @return null
      */
@@ -307,7 +238,4 @@ class GageStatus {
     {
         $this->premier = $premier;
     }
-
-
-
 }
