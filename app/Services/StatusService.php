@@ -19,17 +19,17 @@ class StatusService extends BaseService {
             $position = $this->currentUser->position;
             $position = $position->code;
         }
-        if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
-            $rewards = Reward::factory()->make([
-                'commendation' => 1000,
-                'bronze' => 2000,
-                'silver' => 3000,
-                'gold' => 4000,
-                'max' => 5000
-            ]);
-        } else {
-            $rewards = Reward::byPosition($position)->first();
-        }
+        // if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
+        //     $rewards = Reward::factory()->make([
+        //         'commendation' => 1000,
+        //         'bronze' => 2000,
+        //         'silver' => 3000,
+        //         'gold' => 4000,
+        //         'max' => 5000
+        //     ]);
+        // } else {
+             $rewards = Reward::byPosition($position)->first();
+        // }
         return new GageStatus($rewards->commendation, $rewards->bronze, $rewards->silver, $rewards->gold, $ytd, $rewards->max);
     }
 

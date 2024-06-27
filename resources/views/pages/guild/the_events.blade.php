@@ -2,7 +2,9 @@
 @section('guild_header')
     <div class="d-flex flex-column align-items-center guild-event-header">
         <img class="guild-event-banner" src="/images/md_guild/2024/Guild_events_header.png"/>
+        <div class="guild-buttons" style="margin-top: 4%;">
         @include('pages.guild.buttons')
+        </div>
     </div>
 @endsection
 @section('guild_content')

@@ -13,13 +13,13 @@
             <td align="left">Master Tech</td>
             <td align="center">GIFT</td>
             <td align="center"></td>
-            <td align="center">TOP 11 – 30</td>
-            <td align="center">TOP 10</td>
+            <td align="center">$850<br>TOP 11 – 30</td>
+            <td align="center">$1,500<br>TOP 1 - 10</td>
         </tr>
         <tr>
             <td align="left">Advanced Tech</td>
             <td align="center">GIFT</td>
-            <td align="center">TOP 20</td>
+            <td align="center">$500<br>TOP 1 - 20</td>
             <td align="center"></td>
             <td align="center"></td>
         </tr>

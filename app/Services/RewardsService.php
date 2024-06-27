@@ -18,16 +18,16 @@ class RewardsService {
      * @return Reward
      */
     public function buildRewardsData(string $position): Reward {
-        if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
-            return Reward::factory()->make([
-                'commendation' => 1000,
-                'bronze' => 2000,
-                'silver' => 3000,
-                'gold' => 4000,
-                'max' => 5000
-            ]);
-        } else {
+        // if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
+        //     return Reward::factory()->make([
+        //         'commendation' => 1000,
+        //         'bronze' => 2000,
+        //         'silver' => 3000,
+        //         'gold' => 4000,
+        //         'max' => 5000
+        //     ]);
+        // } else {
             return $this->repository->getRewardsByPosition($position);
-        }
+        // }
     }
 }

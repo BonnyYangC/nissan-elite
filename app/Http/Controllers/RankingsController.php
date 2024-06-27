@@ -7,7 +7,6 @@ use App\Helper\Role;
 use App\Models\Position;
 use App\Models\Ranking;
 use App\Services\RankingService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RankingsController extends Controller {
@@ -70,8 +69,8 @@ class RankingsController extends Controller {
             $thisPeriod->subMonth(1);
         }
         $modalTitle .= $thisPeriod->format('F Y');
-        $modalTitle .= ' - '.$awardType;
-        $tableTitle = $role === Role::TECHNICIAN ? "Technician Master/Advanced" : Position::where('code', $role)->first()->title;
+        $modalTitle .= ' - ' . ($role === Role::TECHNICIAN ? 'national ' : '') . $awardType;
+        $tableTitle = Position::where('code', $role)->first()->title;
         $result = $this->service->get_ranking($positions, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){

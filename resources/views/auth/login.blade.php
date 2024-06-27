@@ -85,6 +85,7 @@
                                     • F&amp;I Manager<br>
                                     • Service Manager<br>
                                     • Service Advisor<br>
+                                    • Master/Advanced Technician<br>
                                     • Stock Controller<br>
                                     • Parts Manager<br>
                                     • Parts Sales Representative<br>

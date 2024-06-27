@@ -1,7 +1,9 @@
 @extends('pages.guild')
 @section('guild_header')
     <div class="d-flex flex-column align-items-center guild-header">
+        <div class="guild-buttons" style="margin-top: 10%;">
         @include('pages.guild.buttons')
+        </div>
         <div class="guild-banner">
             <img class="img-responsive center-block" alt="" src="{{ asset('images/md_guild/The_Guild.png') }}">
         </div>
