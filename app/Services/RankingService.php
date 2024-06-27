@@ -4,10 +4,27 @@ namespace App\Services;
 
 use App\Helper\Role;
 use App\Models\{Ranking, User};
+use App\Services\RankingServices\Technician;
 use App\Services\StatusServices\GageStatus;
+use App\ValueObjects\RankingValueObject;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class RankingService extends BaseService {
+
+
+    public function getRankingService(Request $request) {
+        $role = $request->input('role');
+        $action = $request->input('action');
+        $awardType = $request->input('type');
+        $valueObject = new RankingValueObject($role, $action, $awardType);
+        switch($role) {
+            case Role::TECHNICIAN:
+                return new Technician($valueObject);
+            default:
+                return;
+        }
+    }
 
     /**
      * @return array
