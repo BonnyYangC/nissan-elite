@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Helper\Role;
 use App\Models\{Ranking, User};
+use App\Services\RankingServices\Individual;
 use App\Services\RankingServices\Technician;
 use App\Services\StatusServices\GageStatus;
 use App\ValueObjects\RankingValueObject;
@@ -22,7 +23,7 @@ class RankingService extends BaseService {
             case Role::TECHNICIAN:
                 return new Technician($valueObject);
             default:
-                return;
+                return new Individual($valueObject);
         }
     }
 
