@@ -27,11 +27,6 @@ class DashboardController extends Controller {
         }
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \ImagickException
-     */
     private function userDashboard() {
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
 

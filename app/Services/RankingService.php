@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Helper\Role;
 use App\Models\{Ranking, User};
+use App\Models\Position;
 use App\Services\RankingServices\Individual;
 use App\Services\RankingServices\Technician;
 use App\Services\StatusServices\GageStatus;
@@ -12,7 +13,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RankingService extends BaseService {
-
 
     public function getRankingService(Request $request) {
         $role = $request->input('role');
@@ -27,33 +27,67 @@ class RankingService extends BaseService {
         }
     }
 
-    /**
-     * @return array
-     */
-    public function getLeadBoardData(string $positionCode): array {
-        // 获取了所有的 Rankings: Get all rankings
-        $rankings = $this->buildRankingData($positionCode, Ranking::AWARD_STATUS);
-        $rankingsPlatinum = $this->buildRankingData($positionCode, Ranking::AWARD_PLATINUM);
-
-        return compact('rankings', 'rankingsPlatinum');
+    // get ranking of current user
+    // user may has multiple positions, so need $positionCode
+    public function getRankingOfCurrentUser(string $positionCode, string $awardType = Ranking::AWARD_STATUS) {
+        $currentPeriod = $this->getCurrentPeriod($positionCode);
+        return Ranking::getRankingByEmployeeCode($this->currentUser->employee_code, $currentPeriod, $awardType)->first();
     }
 
-    /**
-     * @param string $type
-     * @return array
-     */
-    private function buildRankingData(string $positionCode, string $type): array {
+    // user may has multiple positions, so need $positionCode
+    public function getCurrentPeriod(string $positionCode): string {
         /** @var User $currentUser */
         $currentUser = $this->getCurrentUser();
         $currentPeriod = Ranking::getMaxPeriod($currentUser->employee_code, $positionCode);
         if (!$currentPeriod) {
-
             $thisPeriod = date('Y-m').'-01';
-            $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
+            $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod)->format('Y-m-d');
         }
-        $resultsData = Ranking::getRankingsBy([$positionCode], $currentPeriod, $type, 5, $currentUser->dealer->state);
-        $rankingOfCurrentUser = Ranking::getRankingByEmployeeCode($currentUser->employee_code, $currentPeriod, $type)->first();
+        return $currentPeriod;
+    }
 
+    public function getRankingDataByPosition(string $positionCode): array {
+        // 获取了所有的 Rankings: Get all rankings
+        if(in_array($positionCode, Position::TECHNICIAN_POSITIONS)) {
+            return [
+                'rankings' => $this->buildNationalRankingData($positionCode),
+                'rankingsPlatinum' => null
+            ];
+        }else{
+            return [
+                'rankings' => $this->buildRankingData($positionCode, Ranking::AWARD_STATUS),
+                'rankingsPlatinum' => $this->buildRankingData($positionCode, Ranking::AWARD_PLATINUM)
+            ];
+        }
+    }
+
+    public function buildNationalRankingData(string $positionCode) {
+        $currentPeriod = $this->getCurrentPeriod($positionCode);
+
+        $resultsData = Ranking::getNationalRankingsBy([$positionCode], $currentPeriod, 5);
+
+        $rankingOfCurrentUser = $this->getRankingOfCurrentUser($positionCode);
+        // if rank of current user is out of 5, then replace 5th with current user's ranking
+        if ($rankingOfCurrentUser) {
+            if ($rankingOfCurrentUser->rank > 5) {
+                $resultsData[4] = $rankingOfCurrentUser;
+            }
+        }
+        return $resultsData->all();
+    }
+
+    /**
+     * @param string $awardType
+     * @return array
+     */
+    private function buildRankingData(string $positionCode, string $awardType): array {
+        /** @var User $currentUser */
+        $currentUser = $this->getCurrentUser();
+        $currentPeriod = $this->getCurrentPeriod($positionCode);
+
+        $resultsData = Ranking::getRankingsBy([$positionCode], $currentPeriod, $awardType, 5, $currentUser->dealer->state);
+
+        $rankingOfCurrentUser = $this->getRankingOfCurrentUser($positionCode, $awardType);
         // if rank of current user is out of 5, then replace 5th with current user's ranking
         if ($rankingOfCurrentUser) {
             if ($rankingOfCurrentUser->rank > 5) {
@@ -72,7 +106,7 @@ class RankingService extends BaseService {
             $thisPeriod = date('Y-m').'-01';
             $currentPeriod = Carbon::createFromFormat('Y-m-d',$thisPeriod);
         }
-        $resultData = Ranking::getRankByEmployeeCode($this->currentUser->employee_code, $currentPeriod);
+        $resultData = Ranking::getRankOnlyByEmployeeCode($this->currentUser->employee_code, $currentPeriod);
         return $resultData->first();
     }
 
@@ -209,27 +243,33 @@ class RankingService extends BaseService {
     public function get_ranking(array $positions, string $type, string $period) {
 
         $result = [];
-        $resultsData = Ranking::getRankingsBy($positions, $period, $type)->all();
+        $resultsData = Ranking::getRankingsBy($positions, $period, $type)->groupBy('state'); //group by rank state
         $position = count($positions) > 1 ? Role::TECHNICIAN : $positions[0];
         // Loop result set to convert array to new structure for frontend json
+        foreach($resultsData as $key => $items){
+            $result[$key] = [
+                    'title' => $key,
+                    'rows' => $items->map(function (object $item, int $key) use ($position) {
+                        return $this->_convertRankingRowForFrontendJson($item, 'total', $position);
+                    })
+                ];
+        }
+        return $result;
+    }
 
-        $currentRankState = null;
-        foreach($resultsData as $key => $item){
-            $item['total'] = floatval($item['total']);
-            if($currentRankState !== $item['rank_state']){
-                $currentRankState = $item['rank_state'];
-            }
-
-            if(!isset($result[$currentRankState])){
-                $result[$currentRankState] = [];
-                $result[$currentRankState]['rows'] = [];
-            }
-
-            $result[$currentRankState]['rank_state'] = $currentRankState;
-            $result[$currentRankState]['rows'][] = $this->_convertRankingRowForFrontendJson(
-                $item,
-                $position
-            );
+    public function getNationalRankings(array $positions, string $period) {
+        $result = [];
+        $resultsData = Ranking::getNationalRankingsBy($positions, $period)->groupBy(function (Object $item, int $key) {
+            return Position::where('code', $item->position)->first()->title;
+        });
+        // Loop result set to convert array to new structure for frontend json
+        foreach($resultsData as $key => $items) {
+            $result[$key] = [
+                    'title' => $key,
+                    'rows' => $items->map(function (object $item, int $key) {
+                        return $this->_convertRankingRowForFrontendJson($item, 'rank', $item->position);
+                    })
+                ];
         }
         return $result;
     }
@@ -238,17 +278,16 @@ class RankingService extends BaseService {
      * Convert database result row array to json array item.
      * It's for reduce the key name length, transfer less data across the internet.
      * @param $item
-     * @param $role
      * @return array
      */
-    private function _convertRankingRowForFrontendJson($item, $role){
+    private function _convertRankingRowForFrontendJson($item, string $key, string $role){
         return [
-            // 'cn'=>  $this->_parseUserStatusLevel($item['total'], $role),  //  The row's class name
+            'cn'=>  $this->_parseUserStatusLevel($item[$key], $role),  //  The row's class name
             'r' =>  $item['rank'], // status/platinum rank
             //'rp' =>  $rank ? $rank : $item['rank_platinum'], // rank platinum
             'n' =>  ucfirst($item['firstname']).' '.ucfirst($item['lastname']), // name
             'd' =>  $item['name'], // Dealership
-            's' =>  $item['rank_state'], // state
+            's' =>  $item['state'], // dealer state for national ranking, otherwise rank state
             'p' =>  number_format($item['total']), // status/platinum points
             'c' =>  $item['category'], // category
             //'cp' =>  number_format($item['total_platinum']), // platinum points
@@ -259,15 +298,15 @@ class RankingService extends BaseService {
 
     /**
      * Get a className for a given role for the style's control in the frontend
-     * @param $credits
+     * @param $completed
      * @param $role
      * @return string
      */
-    // private function _parseUserStatusLevel($credits, $role){
-    //     /**
-    //      * @var GageStatus $status
-    //      */
-    //     $status = $this->serviceResolver->statusService()->getStatus($credits, $role);
-    //     return $status->getClassString();
-    // }
+    private function _parseUserStatusLevel($completed, string $role){
+        /**
+         * @var GageStatus $status
+         */
+        $status = $this->serviceResolver->statusService()->getStatus($completed, $role);
+        return $status->getClassString();
+    }
 }

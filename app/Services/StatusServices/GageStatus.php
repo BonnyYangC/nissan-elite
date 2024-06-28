@@ -1,86 +1,41 @@
 <?php
 
 namespace App\Services\StatusServices;
+use App\Models\Reward;
 
 class GageStatus {
 
-    const STATUS_LEVEL_4       = 'Gold';
-    const STATUS_LEVEL_3    = 'Silver';
-    const STATUS_LEVEL_2      = 'Bronze';
-    const STATUS_LEVEL_1        = 'Commendation';
+    const PREMIER_CLASS_STRING       = 'T-P';
+    const AMBASSADOR_CLASS_STRING     = 'T-A';
+    const DIPLOMAT_CLASS_STRING       = 'T-D';
+    const CONSUL_CLASS_STRING        = 'T-C';
+    const DEFAULT_CLASS_STRING        = '';
 
-    const STATUS_LEVEL_4_COLOR       = '#FFD700'; //gold
-    const STATUS_LEVEL_3_COLOR    = '#C0C0C0'; //silver
-    const STATUS_LEVEL_2_COLOR      = '#8B4513'; //SaddleBrown
-    const STATUS_LEVEL_1_COLOR        = '#525357';
-    const STATUS_LEVEL_DEFAULT_COLOR       = '#000000';
+    protected $consul = null;
+    protected $diplomat = null;
+    protected $ambassador = null;
+    protected $premier = null;
 
-    private $consul = null;
-    private $diplomat = null;
-    private $ambassador = null;
-    private $premier = null;
+    protected $min = 0;
+    protected $max = 50000;
 
-    private $options = [];
+    protected $completed = 0;
 
-    private $min = 0;
-    private $max = 50000;
+    protected $color = null;
+    protected $colorText = null;
+    protected $toReach = 0;
+    protected $indicators = [];
 
-    private $yearToDate = 0;
+    public function __construct(Reward $rewards, $completed) {
 
-    private $color = null;
-    private $colorText = null;
-    private $toReach = 0;
-    private $indicators = [];
-
-    public function __construct($consul, $diplomat, $ambassador, $premier,$yearToDate, $max, $min = 0) {
-
-        $this->consul = $consul;
-        $this->diplomat = $diplomat;
-        $this->ambassador = $ambassador;
-        $this->premier = $premier;
-        $this->max = $max;
-        $this->min = $min;
-        $this->yearToDate = intval($yearToDate);
-        $this->setGageIndicators([
-            [
-                ($this->consul/$this->max) * 100, self::STATUS_LEVEL_1_COLOR, self::STATUS_LEVEL_1
-            ],
-            [
-                ($this->diplomat/$this->max) * 100, self::STATUS_LEVEL_2_COLOR, self::STATUS_LEVEL_2
-            ],
-            [
-                ($this->ambassador/$this->max) * 100, self::STATUS_LEVEL_3_COLOR, self::STATUS_LEVEL_3
-            ],
-            [
-                ($this->premier/$this->max) * 100, self::STATUS_LEVEL_4_COLOR, self::STATUS_LEVEL_4
-            ],
-        ]);
+        $this->consul = $rewards->commendation;
+        $this->diplomat = $rewards->bronze;
+        $this->ambassador = $rewards->silver;
+        $this->premier = $rewards->gold;
+        $this->max = $rewards->max;
+        $this->completed = intval($completed);
+        $this->setGageIndicators();
         $this->initColor();
-    }
-
-    /**
-     * Init the color's attributes
-     */
-    public function initColor(){
-        if($this->_inBetween($this->premier)){
-            $this->color = self::STATUS_LEVEL_4_COLOR;
-        }elseif($this->_inBetween($this->ambassador, $this->premier)){
-            $this->color = self::STATUS_LEVEL_3_COLOR;
-            $this->colorText = strtolower(config('elite.PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_4).' level';
-            $this->toReach = $this->premier - $this->yearToDate;
-        }elseif($this->_inBetween($this->diplomat, $this->ambassador)){
-            $this->color = self::STATUS_LEVEL_2_COLOR;
-            $this->colorText = strtolower(config('elite.PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_3).' level';
-            $this->toReach = $this->ambassador - $this->yearToDate;
-        }elseif($this->_inBetween($this->consul, $this->diplomat)){
-            $this->color = self::STATUS_LEVEL_1_COLOR;
-            $this->colorText = strtolower(config('elite.PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_2).' level';
-            $this->toReach = $this->diplomat - $this->yearToDate;
-        }else{
-            $this->color = self::STATUS_LEVEL_DEFAULT_COLOR;
-            $this->colorText = strtolower(config('elite.PROGRAM_AWARD_UNIT')) .' to reach '.ucfirst(self::STATUS_LEVEL_1).' level';
-            $this->toReach = $this->consul - $this->yearToDate;
-        }
     }
 
     /**
@@ -89,153 +44,62 @@ class GageStatus {
      * @param null $bigger
      * @return bool
      */
-    private function _inBetween($smaller, $bigger = null){
+    protected function _inBetween($smaller, $bigger = null){
         if(is_null($bigger)){
-            return $this->yearToDate >= $smaller;
+            return $this->completed >= $smaller;
         }else{
-            return $this->yearToDate >= $smaller && $this->yearToDate < $bigger;
+            return $this->completed >= $smaller && $this->completed < $bigger;
         }
     }
 
-    /**
-     * @deprecated No use any more
-     * @param string $id
-     * @return string
-     */
-    public function getGageIndicatorJsString($id='g1'){
-        $result = '';
-        foreach ($this->getGageIndicators() as $gageIndicator) {
-            $result .= 'generateGageIndicator("'.$id.'",'.$gageIndicator[0].',"'.$gageIndicator[1].'","'.$gageIndicator[2].'");';
+    public function __get($name) {
+        $value = null;
+        switch($name) {
+            case 'indicators':
+                $value = $this->indicators;
+                break;
+            case 'min':
+                $value = $this->min;
+                break;
+            case 'max':
+                $value = $this->max;
+                break;
+            case 'completed':
+                $value = $this->completed;
+                break;
+            case 'color':
+                $value = $this->color;
+                break;
+            case 'colorText':
+                $value = $this->colorText;
+                break;
+            case 'toReach':
+
+                if (!$this->toReach) {
+                    $value = '';
+                } else {
+                    $value = number_format($this->toReach,0);
+                }
+                break;
+            default:
+                break;
         }
-        return $result;
+        return $value;
     }
 
-    public function getGageIndicators(){
-        return $this->indicators;
-    }
-
-    public function setGageIndicators($indicators){
-        $this->indicators = $indicators;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMin()
-    {
-        return $this->min;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMax()
-    {
-        return $this->max;
-    }
-
-    /**
-     * @return int
-     */
-    public function getYearToDate()
-    {
-        return $this->yearToDate;
-    }
-
-    /**
-     * @return array
-     */
-    public function getIndicators()
-    {
-        return $this->indicators;
-    }
-
-    /**
-     * @return null
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * @return null
-     */
-    public function getColorText()
-    {
-        return $this->colorText;
-    }
-
-    /**
-     * @return int
-     */
-    public function getToReach()
-    {
-        if (!$this->toReach) return '';
-        return number_format($this->toReach,0);
-    }
-
-    /**
-     * @return null
-     */
-    public function getConsul()
-    {
-        return $this->consul;
-    }
-
-    /**
-     * @param null $consul
-     */
-    public function setConsul($consul)
-    {
-        $this->consul = $consul;
-    }
-
-    /**
-     * @return null
-     */
-    public function getDiplomat()
-    {
-        return $this->diplomat;
-    }
-
-    /**
-     * @param null $diplomat
-     */
-    public function setDiplomat($diplomat)
-    {
-        $this->diplomat = $diplomat;
-    }
-
-    /**
-     * @return null
-     */
-    public function getAmbassador()
-    {
-        return $this->ambassador;
-    }
-
-    /**
-     * @param null $ambassador
-     */
-    public function setAmbassador($ambassador)
-    {
-        $this->ambassador = $ambassador;
-    }
-
-    /**
-     * @return null
-     */
-    public function getPremier()
-    {
-        return $this->premier;
-    }
-
-    /**
-     * @param null $premier
-     */
-    public function setPremier($premier)
-    {
-        $this->premier = $premier;
+    public function __set($name, $value) {
+        switch($name) {
+            case 'indicators':
+                $this->indicators = $value;
+                break;
+            case 'min':
+                $this->min = $value;
+                break;
+            case 'max':
+                $this->max = $value;
+                break;
+            default:
+                break;
+        }
     }
 }

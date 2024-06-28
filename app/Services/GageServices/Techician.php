@@ -14,13 +14,13 @@ class Techician extends GageService
     var $yCenter = 1900;
     var $gageDia = 2200;
 
-    public function current_status_level($role, $rank, $ytd) {
+    public function current_status_level($role, $rank, $ytd, $statusChart) {
 
         $fileName = 'current_status.png';
 
         $fontFile = 'arialbd.ttf';
 
-        $max = TechicianStatus::MAX_LEVEL_5;
+        $max = $statusChart['max'];
 
         // Create an image with the specified dimensions
         $this->image = imagecreatetruecolor($this->xSize, $this->ySize);
@@ -30,10 +30,10 @@ class Techician extends GageService
         $grey           = imageColorAllocate($this->image, 127, 127, 127);
         $black          = imageColorAllocate($this->image, 0, 0, 0);
 
-        $statusLevel1Color = TechicianStatus::STATUS_LEVEL_1_COLOR;
-        $statusLevel2Color = TechicianStatus::STATUS_LEVEL_2_COLOR;
-        $statusLevel3Color = TechicianStatus::STATUS_LEVEL_3_COLOR;
-        $statusLevel4Color = TechicianStatus::STATUS_LEVEL_4_COLOR;
+        $statusLevel1Color = $statusChart['gageArray'][0][1];
+        $statusLevel2Color = $statusChart['gageArray'][1][1];
+        $statusLevel3Color = $statusChart['gageArray'][2][1];
+        $statusLevel4Color = $statusChart['gageArray'][3][1];
 
         // create the colors from hex triplets
         $statusLevel1ArcColor =      imageColorAllocate($this->image, hexdec(substr($statusLevel1Color, 1, 2)), hexdec(substr($statusLevel1Color, 3, 2)), hexdec(substr($statusLevel1Color, 5, 2)));
@@ -44,10 +44,10 @@ class Techician extends GageService
         //background to white
         imageFilledRectangle($this->image, 0, 0, $this->xSize, $this->ySize, $white);
 
-        $percent1 = round(TechicianStatus::PERCENTAGE_LEVEL_1);
-        $percent2 = round(TechicianStatus::PERCENTAGE_LEVEL_2);
-        $percent3 = round(TechicianStatus::PERCENTAGE_LEVEL_3);
-        $percent4 = round(TechicianStatus::PERCENTAGE_LEVEL_4);
+        $percent1 = round($statusChart['gageArray'][0][0]);
+        $percent2 = round($statusChart['gageArray'][1][0]);
+        $percent3 = round($statusChart['gageArray'][2][0]);
+        $percent4 = round($statusChart['gageArray'][3][0]);
 
         $complete        = floatval($ytd);
         $completePercent = $this->calculateCompletePercent($role, $rank);
@@ -151,8 +151,7 @@ class Techician extends GageService
     }
 
     private function calculateCompletePercent($role, $rank) {
-        var_dump($role);
-        var_dump($rank);
+
         $percent = 0;
         switch($role) {
             case Role::ADVANCED_TECHNICIAN:
@@ -174,7 +173,6 @@ class Techician extends GageService
             default:
                 break;
         }
-        var_dump($percent);
         return $percent;
     }
 }

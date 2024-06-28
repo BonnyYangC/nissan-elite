@@ -35,12 +35,14 @@
                         @endif
                     </td>
                     <td>{{ $result->name }}</td>
-                    <td>{{ $result->state }}</td>
+                    <td>{{ $result->dealer_state }}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+
+    @if($currentUser->position->platinum_ranking)
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-platinum-tab">
         <table class="table leader-board-table">
             <thead class="nissan-table-header">
@@ -65,10 +67,11 @@
                         @endif
                     </td>
                     <td>{{ $result->name }}</td>
-                    <td>{{ $result->state }}</td>
+                    <td>{{ $result->dealer_state }}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+    @endif
 </div>
