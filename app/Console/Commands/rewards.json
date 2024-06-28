@@ -121,6 +121,17 @@
       "gold": "4000",
       "gold_reward": "1500",
       "max": "5000"
+    },{
+      "position": "T",
+      "commendation": "1000",
+      "commendation_reward": "GIFT",
+      "bronze": "2000",
+      "bronze_reward": "500",
+      "silver": "3000",
+      "silver_reward": "850",
+      "gold": "4000",
+      "gold_reward": "1500",
+      "max": "5000"
     }
   ]
 }
