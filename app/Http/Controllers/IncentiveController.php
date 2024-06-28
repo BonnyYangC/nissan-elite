@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Models\Incentive;
 use App\Services\IncentiveService;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class IncentiveController extends Controller {
     public function index() {
         $currentUser = Auth::user();
         $this->dataForView['currentUser'] = $currentUser;
-        $this->dataForView['menuName'] = 'incentives';
+        $this->dataForView['menuName'] = Defination::PAGE_INCENTIVES;
 
         $this->dataForView['current'] = $this->service->getIncentives('current', 'All');
         $this->dataForView['finished'] = $this->service->getIncentives('finished', 'All');

@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/guild/events', [App\Http\Controllers\GuildController::class, 'guild_events'])->name('guild.events');
     Route::get('/guild/members', [App\Http\Controllers\GuildController::class, 'guild_members'])->name('guild.members');
     Route::get('/account', App\Http\Controllers\AccountController::class)->name('account');
-    Route::get('/faq', [App\Http\Controllers\FaqController::class, 'published'])->name('faq');
+    Route::get('/help', [App\Http\Controllers\FaqController::class, 'published'])->name('help');
 
     Route::get('/dashboard/current-status-level', [App\Http\Controllers\GageController::class, 'current_status_level'])->name('current_status_level');
     Route::get('/dashboard/loyalty-status-level', [App\Http\Controllers\GageController::class, 'loyalty_status_level'])->name('loyalty_status_level');

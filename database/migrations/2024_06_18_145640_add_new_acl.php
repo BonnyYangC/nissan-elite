@@ -27,7 +27,7 @@ class AddNewAcl extends Migration
             ['position' => 'TA', 'page' => 'loyalty'],
             ['position' => 'TA', 'page' => 'guild'],
             ['position' => 'TA', 'page' => 'account'],
-            ['position' => 'TA', 'page' => 'faq'],
+            ['position' => 'TA', 'page' => 'help'],
             ['position' => 'TM', 'page' => 'dashboard'],
             ['position' => 'TM', 'page' => 'metrics'],
             ['position' => 'TM', 'page' => 'ranking'],
@@ -41,7 +41,7 @@ class AddNewAcl extends Migration
             ['position' => 'TM', 'page' => 'loyalty'],
             ['position' => 'TM', 'page' => 'guild'],
             ['position' => 'TM', 'page' => 'account'],
-            ['position' => 'TM', 'page' => 'faq'],
+            ['position' => 'TM', 'page' => 'help'],
         ]);
     }
 
@@ -52,6 +52,6 @@ class AddNewAcl extends Migration
      */
     public function down()
     {
-        //
+        DB::table('acls')->whereIn('position', ['TM', 'TA'])->delete();
     }
 }

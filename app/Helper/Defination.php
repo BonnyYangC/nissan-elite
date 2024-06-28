@@ -17,7 +17,7 @@ class Defination {
     const PAGE_LOYALTY = 'loyalty';
     const PAGE_GUILD = 'guild';
     const PAGE_ACCOUNT = 'account';
-    const PAGE_FAQ = 'faq';
+    const PAGE_HELP = 'help';
 
     const ACTION_TYPE_VALIDATE = 'validate';
     const ACTION_TYPE_SYNC = 'sync';

@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\JsonBuilder;
-use App\Helper\Role;
-use App\Mail\PasswordEnquiry;
-use App\Mail\ResetPassword;
-use App\Models\Dealer;
-use App\Models\User;
+use App\Helper\{Defination, JsonBuilder, Role};
+use App\Mail\{PasswordEnquiry, ResetPassword};
+use App\Models\{Dealer, User};
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +30,7 @@ class UsersController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     public function my_team(Request $request) {
-        $this->dataForView['menuName'] = 'my_team';
+        $this->dataForView['menuName'] = Defination::PAGE_MY_TEAM;
         /** @var User $currentUser */
         $currentUser = Auth::user();
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByRole($currentUser->dealer_code, $currentUser->position_code, $request->input());

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Position};
+use App\Helper\Defination;
+use App\Models\Position;
 use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class DashboardController extends Controller {
     }
 
     public function dashboard() {
-        $this->dataForView['menuName'] = 'dashboard';
+        $this->dataForView['menuName'] = Defination::PAGE_DASHBOARD;
         $currentUser = $this->dataForView['currentUser'];
         if ($currentUser->position_code === 'ADMIN' || in_array($currentUser->position_code, Position::REGION_STAFF_POSITIONS)) {
             $this->dataForView['userRole'] = 'region_staff';

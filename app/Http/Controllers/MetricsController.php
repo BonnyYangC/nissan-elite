@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Services\MetricsService;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class MetricsController extends Controller {
      *
      */
     public function metrics() {
-        $this->dataForView['menuName'] = 'metrics';
+        $this->dataForView['menuName'] = Defination::PAGE_METRICS;
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         //metrics
         $this->dataForView['metrics'] = $this->service->getMetricsData($selectedPosition);

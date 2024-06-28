@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Services\ServiceResolver;
 use Illuminate\Http\Request;
 
@@ -20,12 +21,8 @@ class LoyaltyController extends Controller {
         $this->resolver = $resolver;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
-     * @throws \ImagickException
-     */
     public function loyalty() {
-        $this->dataForView['menuName'] = 'loyalty';
+        $this->dataForView['menuName'] = Defination::PAGE_LOYALTY;
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         $ytd = $this->resolver->resultService()->getYearToDateData($selectedPosition);
         $historical = $this->resolver->historicalService()->getHistoricalData();

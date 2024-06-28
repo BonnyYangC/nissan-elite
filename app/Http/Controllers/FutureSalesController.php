@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Helper\Defination;
 
 
 class FutureSalesController extends Controller {
@@ -10,7 +11,7 @@ class FutureSalesController extends Controller {
      *
      */
     public function future_sales() {
-        $this->dataForView['menuName'] = 'future_sales';
+        $this->dataForView['menuName'] = Defination::PAGE_FUTURE_SALES;
         return $this->render('pages.future_sales');
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Models\Faq;
 use App\Repositories\FaqRepository;
 use Illuminate\Http\Request;
@@ -90,8 +91,8 @@ class FaqController extends Controller
      *
      */
     public function published() {
-        $this->dataForView['menuName'] = 'faq';
+        $this->dataForView['menuName'] = Defination::PAGE_HELP;
         $this->dataForView['faqs'] = $this->repository->loadPublished();
-        return $this->render('pages.faq');
+        return $this->render('pages.help');
     }
 }

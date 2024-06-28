@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Repositories\AwardsRepository;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class AwardsController extends Controller
     }
 
     public function __invoke() {
-        $this->dataForView['menuName'] = 'awards';
+        $this->dataForView['menuName'] = Defination::PAGE_AWARDS;
         $this->dataForView['awards'] = $this->repository->loadAll();
         return $this->render('pages.awards');
     }

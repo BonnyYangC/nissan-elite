@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\JsonBuilder;
-use App\Helper\Role;
-use App\Models\Position;
-use App\Models\Ranking;
+use App\Helper\{Defination, JsonBuilder, Role};
+use App\Models\{Position, Ranking};
 use App\Services\RankingService;
 use Illuminate\Http\Request;
 
@@ -29,7 +27,7 @@ class RankingsController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     public function ranking() {
-        $this->dataForView['menuName'] = 'ranking';
+        $this->dataForView['menuName'] = Defination::PAGE_RANKING;
         //for Sales Manager, Retail Sales Consultant and Fleet Sales Executive
         $this->dataForView['rankingForAll'] = [
             Ranking::CURRENT,

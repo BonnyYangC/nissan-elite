@@ -4,7 +4,7 @@
             <tr align="center">
                 <td>
                     @if(!$mock)
-                    <a href="{{ $menuName=='dashboard' ? route('loyalty') : route('dashboard') }}">
+                    <a href="{{ $menuName==\App\Helper\Defination::PAGE_DASHBOARD ? route('loyalty') : route('dashboard') }}">
                         Loyalty {{ config('elite.PROGRAM_AWARD_UNIT') }}
                     </a>
                     @else
@@ -17,7 +17,7 @@
             <tr align="center">
                 <td>
                     @if(!$mock)
-                    <a href="{{ $menuName=='dashboard' ? route('loyalty') : route('dashboard') }}">
+                    <a href="{{ $menuName==\App\Helper\Defination::PAGE_DASHBOARD ? route('loyalty') : route('dashboard') }}">
                         <button style="background-color:#4169E1; color: #FFFFFF; width:100%; margin:0 auto; font-weight: lighter; font-size:20px;" type="button" class="btn btn-primary btn-block">
                             {{ number_format(floatval($historical['total']) + floatval($ytd), 0) }}
                         </button>

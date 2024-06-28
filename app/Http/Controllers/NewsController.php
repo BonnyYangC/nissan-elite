@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Models\News;
 use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class NewsController extends Controller {
     public function news() {
         $currentUser = Auth::user();
         $this->dataForView['currentUser'] = $currentUser;
-        $this->dataForView['menuName'] = 'incentives';
+        $this->dataForView['menuName'] = Defination::PAGE_INCENTIVES;
         $this->dataForView['news'] = $this->repository->load();
         return $this->render('pages.news');
     }

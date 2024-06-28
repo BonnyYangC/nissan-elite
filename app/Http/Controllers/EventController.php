@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Models\Event;
 use App\Services\EventService;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class EventController extends Controller {
     }
 
     public function calendar() {
-        $this->dataForView['menuName'] = 'calendar';
+        $this->dataForView['menuName'] = Defination::PAGE_CALENDAR;
         $events = $this->service->load();
         $this->dataForView['nissanEvents'] = json_encode($events);
 

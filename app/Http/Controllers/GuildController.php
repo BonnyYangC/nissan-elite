@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Defination;
 use App\Repositories\GuildRepository;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class GuildController extends Controller {
      *
      */
     public function guild() {
-        $this->dataForView['menuName'] = 'guild';
+        $this->dataForView['menuName'] = Defination::PAGE_GUILD;
         $this->dataForView['currentUri_sub'] = 'MDguild';
         return $this->render('pages.guild.the_guild');
     }
@@ -34,7 +35,7 @@ class GuildController extends Controller {
      *
      */
     public function guild_events() {
-        $this->dataForView['menuName'] = 'guild';
+        $this->dataForView['menuName'] = Defination::PAGE_GUILD;
         $this->dataForView['currentUri_sub'] = 'MDguild_events';
         $this->dataForView['results'] = $this->repository->getEvents();
         return $this->render('pages.guild.the_events');
@@ -45,7 +46,7 @@ class GuildController extends Controller {
      *
      */
     public function guild_members() {
-        $this->dataForView['menuName'] = 'guild';
+        $this->dataForView['menuName'] = Defination::PAGE_GUILD;
         $this->dataForView['currentUri_sub'] = 'MDguild_members';
         $this->dataForView['results'] = $this->repository->getMembers();
         return $this->render('pages.guild.the_members');
