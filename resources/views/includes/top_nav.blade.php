@@ -2,7 +2,7 @@
     <div class="includes_list top_includes_list text-right text-nowrap">
         <p class="loggedin">
             @if($fromApi)
-                <span style="padding-right:40px;color:#ffffff">
+                <span style="padding-right:40px">
                     @if(!$mock)
                     <a href="#" onclick="window.close();return false;">BACK TO DEALER EXCELLENCE</a>
                     @else
@@ -10,11 +10,11 @@
                     @endif
                 </span>
             @elseif ($viewLastYear)
-                <span style="padding-right:40px;color:#ffffff">
+                <span style="padding-right:40px">
                     <a href="{{route('api.back_to_current_year')}}">BACK TO FY24</a>
                 </span>
             @elseif ($mock)
-                <span style="padding-right:40px;color:#ffffff">
+                <span style="padding-right:40px">
                     <a href="#" onclick="window.close();return false;">BACK TO SEARCH</a>
                 </span>
             @else
@@ -23,11 +23,11 @@
                 @if($currentUser->dealer)
                 <span style="color:#ffffff">{{ $currentUser->dealer->name }}</span>
                 @endif
-                <span style="color:#ffffff">
+                <span>
                     <a href="{{ url('/elite_individual') }}">HOME</a>
                 </span>
 
-                <span style="color:#ffffff">
+                <span>
                     <a href="{{ route('logout') }}">LOGOUT</a>
                 </span>
             @endif
