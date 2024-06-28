@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Defination;
+use App\Services\GageServices\Loyalty;
 use App\Services\ServiceResolver;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class LoyaltyController extends Controller {
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         $ytd = $this->resolver->resultService()->getYearToDateData($selectedPosition);
         $historical = $this->resolver->historicalService()->getHistoricalData();
-        $this->resolver->gageService()->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
+        // $this->resolver->gageService()->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
+        (new Loyalty())->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
+
         //year to date
         $this->dataForView['ytd'] = $ytd;
 

@@ -36,23 +36,33 @@ class Ranking extends Model {
     }
 
     /**
-     * @param string $position
+     * @param string $positions
      * @return Carbon|false
      */
-    public static function getMaxPeriodByPositionAndCat(array $position) {
-        $result = Ranking::currentYear()->whereIn('position', $position)
+    public static function getMaxPeriodByPositionAndCat(array $positions) {
+        $result = Ranking::currentYear()->whereIn('position', $positions)
             ->max('period');
         return Carbon::createFromFormat('Y-m-d',$result);
     }
 
-    /**
-     * @param string $position
-     * @param string $period
-     * @param string $type
-     * @param int|null $take
-     * @param string|null $state
-     * @return mixed
-     */
+    public static function getNationalRankingsBy(array $positions, string $period, int $take = null) {
+
+        $query = self::where('period', $period)->whereIn('rankings.position', $positions);
+
+        $query = $query->join('users','rankings.employee_code', '=', 'users.employee_code')
+            ->joinUserEligible()
+            ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
+            ->joinDealerRegions()
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.position', 'dealers.state', 'dealers.name', 'dealer_regions.category', 'dealers.state as dealer_state');
+
+        $query = $query->addSelect('rankings.rank', 'rankings.total');
+
+        if ($take && $take > 0) {
+            $query = $query->take($take);
+        }
+        return $query->orderBy('position')->orderBy('rank')->get();
+    }
+
     public static function getRankingsBy(array $positions, string $period, string $type, int $take = null, string $state = null) {
 
         $query = self::where('users.active', '=', 1)->whereIn('rankings.position', $positions)
@@ -65,7 +75,7 @@ class Ranking extends Model {
             ->joinUserEligible()
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
             ->joinDealerRegions()
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.position', 'rankings.rank_state', 'dealers.name', 'dealer_regions.category', 'dealers.state');
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.position', 'rankings.rank_state as state', 'dealers.name', 'dealer_regions.category', 'dealers.state as dealer_state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');
@@ -76,7 +86,7 @@ class Ranking extends Model {
         if ($take && $take > 0) {
             $query = $query->take($take);
         }
-        return $query->orderBy('position')->orderBy('rank_state')->orderBy('rank')->get();
+        return $query->orderBy('position')->orderBy('state')->orderBy('rank')->get();
     }
 
     /**
@@ -85,14 +95,14 @@ class Ranking extends Model {
      * @param string $type
      * @return mixed
      */
-    public static function getRankingByEmployeeCode(string $employeeCode, string $period, string $type) {
+    public static function getRankingByEmployeeCode(string $employeeCode, string $period, string $type = Ranking::AWARD_STATUS) {
         $query = self::where('users.employee_code', $employeeCode)
             ->where('period', $period);
         $query = $query->join('users', 'rankings.employee_code', '=', 'users.employee_code')
             ->joinUserEligible()
             ->join('dealers', 'users.dealer_code', '=', 'dealers.code')
             ->joinDealerRegions()
-            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealer_regions.category', 'dealers.state');
+            ->select('users.employee_code', 'users.firstname', 'users.lastname', 'users_eligible.registered', 'rankings.rank_state', 'dealers.name', 'dealer_regions.category', 'dealers.state as dealer_state');
         if ($type === self::AWARD_STATUS) {
             $orderBy = 'rank';
             $query = $query->addSelect('rankings.rank', 'rankings.total');
@@ -109,7 +119,7 @@ class Ranking extends Model {
      * @param string $period
      * @return mixed
      */
-    public static function getRankByEmployeeCode(string $employeeCode, string $period) {
+    public static function getRankOnlyByEmployeeCode(string $employeeCode, string $period) {
         return self::select('rank', 'rank_platinum')
             ->where('employee_code', $employeeCode)
             ->where('period', $period)

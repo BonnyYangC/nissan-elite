@@ -167,7 +167,7 @@
                         <h3 class="text-center text-capitalize">${ modalTitle }</h3>
                     </div>
                     <div class="mb-3" v-for="(block, idx) in blocks" :key="idx">
-                        <h2 style="padding-left: 6%">${ block.rank_state }</h2>
+                        <h2 style="padding-left: 6%">${ block.title }</h2>
                         <el-table :data="block.rows" stripe :row-class-name="tableRowClassName">
                             <el-table-column align="center" property="r" label="Rank" width="60"></el-table-column>
                             <el-table-column class-name="bold-text sales-name" property="n" label="Name" width="300"></el-table-column>

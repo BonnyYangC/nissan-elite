@@ -51,8 +51,8 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/account', App\Http\Controllers\AccountController::class)->name('account');
     Route::get('/help', [App\Http\Controllers\FaqController::class, 'published'])->name('help');
 
-    Route::get('/dashboard/current-status-level', [App\Http\Controllers\GageController::class, 'current_status_level'])->name('current_status_level');
-    Route::get('/dashboard/loyalty-status-level', [App\Http\Controllers\GageController::class, 'loyalty_status_level'])->name('loyalty_status_level');
+    //Route::get('/dashboard/current-status-level', [App\Http\Controllers\GageController::class, 'current_status_level3'])->name('current_status_level2');
+    //Route::get('/dashboard/loyalty-status-level', [App\Http\Controllers\GageController::class, 'loyalty_status_level'])->name('loyalty_status_level');
 
     Route::get('/jump_to_dealer', [App\Http\Controllers\UsersController::class, 'jump_to_dealer'])->name('jump_to_dealer');
     Route::get('/users/mock/{user}', [App\Http\Controllers\UsersController::class, 'mock'])->name('users.mock');
