@@ -42,9 +42,11 @@ class Ranking extends BaseService {
             // 表示从查询到的 $thisPeriod 的上个月1号开始计算
             $thisPeriod->subMonth(1);
         }
-
-        $result = RankingModel::getRankingsBy($positions, $thisPeriod->format('Y-m-d'), $awardType)->all();
-        //$result = $this->serviceResolver->rankingService()->get_ranking($position, $awardType, $thisPeriod);
+        if($role === Role::TECHNICIAN) {
+            $result = RankingModel::getNationalRankingsBy($positions, $thisPeriod->format('Y-m-d'))->all();
+        } else {
+            $result = RankingModel::getRankingsBy($positions, $thisPeriod->format('Y-m-d'), $awardType)->all();
+        }
 
         $contentMap = [
             'Rank' => 'rank',
@@ -52,7 +54,7 @@ class Ranking extends BaseService {
             'Last Name' => 'lastname',
             'Dealer' => 'name',
             'Category' => 'category',
-            'State' => 'rank_state',
+            'State' => 'state', // if is national ranking, then use dealer state, otherwise use rank state
             $awardType == RankingModel::AWARD_STATUS ? 'Points' : 'Points Platinum' => 'total',
             'Registered' => 'registered',
         ];
