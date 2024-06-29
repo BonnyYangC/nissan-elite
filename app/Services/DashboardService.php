@@ -35,7 +35,7 @@ class DashboardService {
         ], $this->resolver->statusService()->buildStatusData($ytd));
         if(in_array($selectedPosition, Position::TECHNICIAN_POSITIONS)){
             $rankingOfCurrentUser = $this->resolver->rankingService()->getRankingOfCurrentUser($selectedPosition);
-            (new Techician())->current_status_level($selectedPosition, $rankingOfCurrentUser->rank, $ytd, $statusChart);
+            (new Techician())->current_status_level($selectedPosition, $rankingOfCurrentUser ? $rankingOfCurrentUser->rank : 0, $ytd, $statusChart);
         } else {
             (new Current())->current_status_level($ytd, $statusChart);
         }

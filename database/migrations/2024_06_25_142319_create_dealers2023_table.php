@@ -26,10 +26,6 @@ class CreateDealers2023Table extends Migration
             $table->string('country', 50)->nullable();
             $table->string('phone', 50)->nullable();
             $table->string('fax', 50)->nullable();
-            $table->string('category', 50);
-            $table->string('category_code', 50);
-            $table->string('region', 50);
-            $table->string('region_code', 50);
 
             $table->tinyInteger('active');
             $table->timestamps();

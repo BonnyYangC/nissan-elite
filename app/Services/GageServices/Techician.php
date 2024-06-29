@@ -151,20 +151,25 @@ class Techician extends GageService
     }
 
     private function calculateCompletePercent($role, $rank) {
-
+        $rankInt = intval($rank);
         $percent = 0;
         switch($role) {
             case Role::ADVANCED_TECHNICIAN:
-                if(intval($rank) <= 20){
+                if($rankInt === 0) {
+                    $percent = 0;
+                }
+                else if($rankInt <= 20 && $rankInt > 0){
                     $percent = 50;
                 }else{
                     $percent = 30;
                 }
                 break;
             case Role::MASTER_TECHNICIAN:
-                if(intval($rank) <= 10){
+                if($rankInt === 0) {
+                    $percent = 0;
+                } else if($rankInt <= 10 && $rankInt > 0){
                     $percent = 90;
-                }else if(intval($rank) <= 30){
+                }else if($rankInt <= 30){
                     $percent = 70;
                 }else{
                     $percent = 30;
