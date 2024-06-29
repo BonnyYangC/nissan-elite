@@ -60,7 +60,7 @@ class Ranking extends Model {
         if ($take && $take > 0) {
             $query = $query->take($take);
         }
-        return $query->orderBy('position')->orderBy('rank')->get();
+        return $query->orderBy('position', 'desc')->orderBy('rank')->orderBy('state')->get();
     }
 
     public static function getRankingsBy(array $positions, string $period, string $type, int $take = null, string $state = null) {
