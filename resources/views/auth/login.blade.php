@@ -49,12 +49,12 @@
                     <div class="form-footer" style="padding-left:0; padding-right:0">
                         <div class="row text-nowrap">
                             <div class="col-xs-12">
-                                <a style="color:black !important;" lass="txt-grey9 fs-12" href="#forgotpassword">
+                                <a style="color:white !important;" lass="txt-grey9 fs-12" href="#forgotpassword">
                                     Forgot password?
                                 </a>
                             </div>
                             <div class="col-xs-12">
-                                <a class="txt-grey9 fs-12" href="#eligible" style="font-size:14px;color:black !important;">How to Join Nissan i_ELITE?</a>
+                                <a class="txt-grey9 fs-12" href="#eligible" style="font-size:14px;color:white !important;">How to Join Nissan i_ELITE?</a>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                3. Further queries?
+                                3. CONTACT Nissan ELITE Service Centre
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
