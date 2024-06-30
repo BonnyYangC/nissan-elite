@@ -7,8 +7,8 @@ use Illuminate\Support\Collection;
 class RegionStaff extends Base {
     /** @var array  */
     public $mappingArray = [
-        'firstname' => 'First Name',
-        'lastname' => 'Sur Name',
+        'firstname' => 'Firstname',
+        'lastname' => 'Surname',
         'position_code' => 'Position',
         'region_code' => 'Region',
         'email' => 'Email',
@@ -56,13 +56,13 @@ class RegionStaff extends Base {
         ini_set('max_execution_time', 180); //3 minutes
         // list($firstName, $surName) = explode(' ', $row['full name']);
         return [
-            'firstname' => $row['first name'],
-            'lastname' => $row['last name'],
-            'position_code' => strtoupper(trim($row['Position'])),
-            'region_code' => $this->regions->filter(function($r) use ($row) {return strtoupper($r->title) === $row['Region'];})->first()->code,
-            'email' => $row['Email'],
-            'mobile' => data_get($row, 'Mobile', null),
-            'active' => $row['active'] === 'YES' ? 1 : 0
+            'firstname' => $row[$this->mappingArray['firstname']],
+            'lastname' => $row[$this->mappingArray['lastname']],
+            'position_code' => strtoupper(trim($row[$this->mappingArray['position_code']])),
+            'region_code' => $this->regions->first(function($r) use ($row) {return strtolower($r->title) === strtolower($row[$this->mappingArray['region_code']]);})->code,
+            'email' => $row[$this->mappingArray['email']],
+            'mobile' => data_get($row, $this->mappingArray['mobile'], null),
+            'active' => $row[$this->mappingArray['active']] === 'YES' ? 1 : 0
         ];
     }
 }

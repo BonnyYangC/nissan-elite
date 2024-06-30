@@ -23,7 +23,7 @@ class RegionStaff extends BaseRegionStaff {
             $model->created_at = Carbon::now();
             $model->admin = 0;
             // list($firstName, $surName) = explode(' ', $record['full name']);
-            $model->password = bcrypt(strtoupper(trim($record['last name'])).'1');
+            $model->password = bcrypt(strtoupper(trim($record['Surname'])).'1');
         }
         
         return $model;
