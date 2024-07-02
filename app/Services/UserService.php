@@ -93,6 +93,7 @@ class UserService extends BaseService {
             ->where('users.active', 1)
             ->where('dealers.code', $dealer)
             ->whereIn('position_code', $membersPosition)
+            ->where('territory_reports.year', config('elite.YEAR'))
             ->orderBy($parameters['sortby'], $parameters['order'])
             ->get();
     }
@@ -111,6 +112,7 @@ class UserService extends BaseService {
             ->join('dealers', 'dealers.code', '=', 'users.dealer_code')
             ->join('positions', 'positions.code', '=', 'users.position_code')
             ->join('territory_reports', 'territory_reports.employee_code', '=', 'users.employee_code')
+            ->where('territory_reports.year', config('elite.YEAR'))
             ->where('users.active', 1)
             ->where('dealers.code', $dealer)
             ->orderBy($parameters['sortby'], $parameters['order'])
