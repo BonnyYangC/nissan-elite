@@ -42,7 +42,7 @@ class User extends Base {
             'dealer_code'=>$row['dcode'] ? $row['dcode'] : null,
             'position_code'=> !($row['sp_'] === 'N/A' || $row['sp_'] === '') ? $row['sp_'] : null,
             'dept'=>$row['dept_code'],
-            'active'=>$row['status'] === 'active' ? 1 : 0
+            'active'=>$row['status'] === 'inactive' ? 0 : 1
         ];
     }
 }
