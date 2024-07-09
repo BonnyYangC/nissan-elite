@@ -14,7 +14,7 @@
 
                 <br>
                 <br>
-                <a href="{{  asset('files/2024/MEMBERS_GUIDE.pdf') }}" target="_blank">
+                <a href="{{  route('member_guide.pdf') }}" target="_blank">
                     <button type="button" class="btn elite-button btn-lg btn-block">Download/View PDF</button>
                 </a>
             </div>

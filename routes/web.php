@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('/incentives', [App\Http\Controllers\IncentiveController::class, 'index'])->name('incentives');
     Route::get('/news', [App\Http\Controllers\NewsController::class, 'news'])->name('news');
     Route::get('/member_guide', App\Http\Controllers\MemberGuideController::class)->name('member_guide');
+    Route::get('/member_guide/pdf', [App\Http\Controllers\MemberGuideController::class, 'pdf'])->name('member_guide.pdf');
     Route::get('/future_sales', [App\Http\Controllers\FutureSalesController::class, 'future_sales'])->name('future_sales');
     Route::get('/future_sales/explanation', [App\Http\Controllers\FutureSalesController::class, 'future_sales_explanation'])->name('future_sales.explanation');
     Route::get('/future_sales/contact_schedule', [App\Http\Controllers\FutureSalesController::class, 'future_sales_contact_schedule'])->name('future_sales.contact_schedule');
