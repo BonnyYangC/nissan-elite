@@ -31,7 +31,13 @@ class Controller extends BaseController
             //check api user
             $fromApi = strpos($request->url(), '/api/');
             $this->dataForView['fromApi'] = $fromApi !== false;
-            if(($fromApi && $request->input('user')) || (!$fromApi && $request->input('user'))) {
+            if($fromApi && $request->input('user')) {
+                //keep session as mock user
+                // check if fake dealer
+                if(!session('fake_dealer')) {
+                    return abort(401);
+                }
+            } else if(!$fromApi && $request->input('user')){
                 //keep session as mock user
             } else
              {

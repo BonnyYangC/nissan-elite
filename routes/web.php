@@ -117,6 +117,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
     Route::post('/system_config', [App\Http\Controllers\AdminController::class, 'system_config'])->name('admin.system_config');
 });
 
+Route::get('api-logout', [App\Http\Controllers\LoginController::class, 'api_logout'])->name('api.logout');
 //api only
 Route::group(['prefix' => 'api'],function (){
     Route::get('/my-team', [App\Http\Controllers\UsersController::class,'fake_dealer_team'])->name('api.dealer_team');

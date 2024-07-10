@@ -48,4 +48,12 @@ class LoginController extends Controller {
 
         return Redirect('login');
     }
+
+    public function api_logout() {
+        Session::flush();
+        Auth::logout();
+        // session(['fake_dealer' => false]);
+        echo("<script>window.close();</script>");
+    }
+
 }

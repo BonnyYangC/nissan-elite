@@ -298,6 +298,7 @@ class UsersController extends Controller {
 
         $user = User::where('email', '=', 'fakedealer@dealer.com')->firstOrFail();
         Auth::login($user, false);
+        session(['fake_dealer' => true]);
 
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
         return $this->render('pages.my_team');
