@@ -10,26 +10,26 @@ class AddNewPosition extends Migration
      * @return void
      */
     public function up()
-    {DB::table('positions')->insert([
-            
-        [
-            "code"=> "T",
-            "title"=> "Technician",
-            "platinum_ranking"=> 0,
-            "department"=> "Service Tech"
-        ],
-        [
-            "code"=> "TM",
-            "title"=> "Master Technician",
-            "platinum_ranking"=> 0,
-            "department"=> "Service Tech"
-        ],
-        [
-            "code"=> "TA",
-            "title"=> "Advanced Technician",
-            "platinum_ranking"=> 0,
-            "department"=> "Service Tech"
-        ]
+    {
+        DB::table('positions')->insert([
+            [
+                "code"=> "T",
+                "title"=> "Technician",
+                "platinum_ranking"=> 0,
+                "department"=> "Service Tech"
+            ],
+            [
+                "code"=> "TM",
+                "title"=> "Master Technician",
+                "platinum_ranking"=> 0,
+                "department"=> "Service Tech"
+            ],
+            [
+                "code"=> "TA",
+                "title"=> "Advanced Technician",
+                "platinum_ranking"=> 0,
+                "department"=> "Service Tech"
+            ]
         ]);
     }
 
@@ -40,6 +40,6 @@ class AddNewPosition extends Migration
      */
     public function down()
     {
-        DB::table('positions')->whereIn('position', ['TT', 'TM', 'TA'])->delete();
+        DB::table('positions')->whereIn('code', ['T', 'TM', 'TA'])->delete();
     }
 }

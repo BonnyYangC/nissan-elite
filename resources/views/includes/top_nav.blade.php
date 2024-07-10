@@ -4,7 +4,7 @@
             @if($fromApi)
                 <span style="padding-right:40px">
                     @if(!$mock)
-                    <a href="#" onclick="window.close();return false;">BACK TO DEALER EXCELLENCE</a>
+                    <a href="{{ route('logout') }}">BACK TO DEALER EXCELLENCE</a>
                     @else
                     <a href="#" onclick="window.close();return false;">BACK TO SEARCH</a>
                     @endif

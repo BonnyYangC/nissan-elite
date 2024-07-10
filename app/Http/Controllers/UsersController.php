@@ -222,6 +222,7 @@ class UsersController extends Controller {
     }
 
     /**
+     * Manager (Sales manager etc.) use this function to mock team member
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -235,6 +236,35 @@ class UsersController extends Controller {
         return redirect()->route($redirect, ['user' => $user]);
     }
 
+    /**
+     * Admin user use this function to mock region staff
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function region_staff_mock(Request $request, User $user) {
+
+        $parameter = $request->input();
+        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
+
+        Auth::login($user, false);
+        session(['selected_position' => null]);
+        return redirect()->route($redirect);
+    }
+
+    /**
+     * Admin user use this function to mock member
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function member_mock(Request $request, User $user) {
+
+        $parameter = $request->input();
+        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
+
+        Auth::login($user, false);
+        session(['selected_position' => null]);
+        return redirect()->route($redirect);
+    }
 
     /**
      * @param Request $request
@@ -258,41 +288,16 @@ class UsersController extends Controller {
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function region_staff_mock(Request $request, User $user) {
-
-        $parameter = $request->input();
-        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
-
-        Auth::login($user, false);
-        session(['selected_position' => null]);
-        return redirect()->route($redirect);
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function member_mock(Request $request, User $user) {
-
-        $parameter = $request->input();
-        $redirect = isset($parameter['directTo']) ? $parameter['directTo'] : 'dashboard';
-
-        Auth::login($user, false);
-        session(['selected_position' => null]);
-        return redirect()->route($redirect);
-    }
-
-    /**
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     public function fake_dealer_team(Request $request){
         $dealerCode = $request->input('code');
 
         $this->dataForView['fromApi'] = true;
-        $this->dataForView['dealer'] = Dealer::where('code', '=', $dealerCode)->first();
+        $this->dataForView['dealer'] = Dealer::where('code', '=', $dealerCode)->firstOrFail();
+
+        $user = User::where('email', '=', 'fakedealer@dealer.com')->firstOrFail();
+        Auth::login($user, false);
 
         $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
         return $this->render('pages.my_team');

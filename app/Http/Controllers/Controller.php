@@ -29,9 +29,8 @@ class Controller extends BaseController
         $this->middleware(function ($request, $next) {
 
             //check api user
-            $fromApi = strstr($request, '/api');
-            $this->dataForView['fromApi'] = $fromApi;
-
+            $fromApi = strpos($request->url(), '/api/');
+            $this->dataForView['fromApi'] = $fromApi !== false;
             if(($fromApi && $request->input('user')) || (!$fromApi && $request->input('user'))) {
                 //keep session as mock user
             } else
