@@ -42,6 +42,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'elite' => [
+            'driver' => 'local',
+            'root' => storage_path('app/files'),
+            'url' => env('APP_URL').'/elite',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -67,7 +73,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('elite') => storage_path('app/files'),
     ],
 
 ];

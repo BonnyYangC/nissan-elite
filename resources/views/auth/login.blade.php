@@ -54,7 +54,7 @@
                                 </a>
                             </div>
                             <div class="col-xs-12">
-                                <a class="txt-grey9 fs-12" href="#eligible" style="font-size:14px;color:white !important;">How to Join Nissan i_ELITE?</a>
+                                <a class="txt-grey9 fs-12" href="#eligible" style="font-size:14px;color:white !important;">How to Join Nissan {{ config('elite.PROGRAM_I_ELITE') }}?</a>
                             </div>
                         </div>
                     </div>
