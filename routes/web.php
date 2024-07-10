@@ -118,7 +118,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
 });
 
 //api only
-Route::group(['prefix' => 'api'],function (){
+Route::group(['prefix' => 'api', 'middleware' => 'auth'],function (){
     Route::get('/my-team', [App\Http\Controllers\UsersController::class,'fake_dealer_team'])->name('api.dealer_team');
     Route::get('/mock/user/{user}', [App\Http\Controllers\UsersController::class, 'mock'])->name('api.user.mock');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('api.dashboard');
