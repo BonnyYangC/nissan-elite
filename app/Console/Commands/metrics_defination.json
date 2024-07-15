@@ -245,7 +245,7 @@
                         {
                             "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
                             "top": ["Sales Manager", "Package sale"],
-                            "rows": [["Category A", 125], ["Category B", 125], ["Category C", 125]]
+                            "rows": [["Category A", 75], ["Category B", 75], ["Category C", 75]]
                         }
                     ]
                 },
@@ -456,7 +456,7 @@
                         {
                             "title": "PRE-PAID MAINTENANCE PLAN (PMP) GUIDE",
                             "top": ["Retail Sales Consultant", "Package sale"],
-                            "rows": [["Category A", 125], ["Category B", 125], ["Category C", 125]]
+                            "rows": [["Category A", 75], ["Category B", 75], ["Category C", 75]]
                         }
                     ]
                 },
@@ -715,7 +715,7 @@
                     "guides": [{
                         "title": "NFSA FINANCE CONTRACT ON NEW VEHICLE PLUS PMP PACKAGE GUIDE",
                         "top": ["F&I Manager", "Contract"],
-                        "rows": [["Category A, B, C", 125]]
+                        "rows": [["Category A, B, C", 75]]
                     }]
                 },
                 {
