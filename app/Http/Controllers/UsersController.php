@@ -273,14 +273,16 @@ class UsersController extends Controller {
     // should replace by region_staff_mock when fy22 dealer ship site set up
     public function fake_region_staff(Request $request){
         $userId = $request->input('uid');
+        $decodeUid = filter_var(base64_decode($userId), FILTER_VALIDATE_EMAIL);
         /**
          * 1. from elite dealer - with email base64_encode()
          */
-        if(filter_var(base64_decode($userId), FILTER_VALIDATE_EMAIL)) {
-            $user = User::where('email', '=', base64_decode($userId))->first();
+        if($decodeUid) {
+            $user = User::where('email', '=', $decodeUid)->first();
         } else {
             $user = User::find($userId);
         }
+
         if ($user == null || $user->position_code == 'SYSTEM ADMIN') { return redirect('/login');}
         Auth::login($user, false);
         return redirect()->route('dashboard');
@@ -294,14 +296,16 @@ class UsersController extends Controller {
         $dealerCode = $request->input('code');
 
         $this->dataForView['fromApi'] = true;
-        $this->dataForView['dealer'] = Dealer::where('code', '=', $dealerCode)->firstOrFail();
-
-        $user = User::where('email', '=', 'fakedealer@dealer.com')->firstOrFail();
-        Auth::login($user, false);
-        session(['fake_dealer' => true]);
-
-        $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
-        return $this->render('pages.my_team');
+        /** @var Dealer $dealer */
+        $dealer = Dealer::where('code', '=', $dealerCode)->firstOrFail();
+        $this->dataForView['dealer'] = $dealer;
+        if ($dealer){
+            $user = $dealer->getDp();
+            Auth::login($user, false);
+            session(['fake_dealer' => true]);
+            $this->dataForView['teamMembers'] = $this->service->getTeamMembersByDealerCode($dealerCode);
+            return $this->render('pages.my_team');
+        }
     }
 
     public function view_last_year(Request $request, User $user) {

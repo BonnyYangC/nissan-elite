@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Dealer
  * @package App\Models
  * @property $parent_id
+ * @property string code
  */
 class Dealer extends Model
 {
@@ -16,5 +17,10 @@ class Dealer extends Model
 
     public function regions() {
         return $this->hasOne(DealerRegion::class, 'code', 'code')->where('year', config('elite.YEAR'));
+    }
+
+    public function getDp(){
+        return User::where('dealer_code',$this->code)
+            ->where('position_code','D')->first();
     }
 }
