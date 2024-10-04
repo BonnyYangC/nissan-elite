@@ -118,7 +118,7 @@
                     "guides": [
                         {
                             "title": "Sales 5 Star Rating GUIDE",
-                            "top": ["Fleet Sales Executive", "4.7", "4.9+"],
+                            "top": ["Fleet Sales Executive", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -392,7 +392,7 @@
                     "guides": [
                         {
                             "title": "Sales 5 Star Rating GUIDE",
-                            "top": ["Sales Manager", "4.7", "4.9+"],
+                            "top": ["Sales Manager", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -580,7 +580,7 @@
                     "guides": [
                         {
                             "title": "Sales 5 Star Rating GUIDE",
-                            "top": ["Retail Sales Consultant", "4.7", "4.9+"],
+                            "top": ["Retail Sales Consultant", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -751,7 +751,7 @@
                     "guides": [
                         {
                             "title": "Sales 5 Star Rating GUIDE",
-                            "top": ["Stock Controller", "4.7", "4.9+"],
+                            "top": ["Stock Controller", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -985,7 +985,7 @@
                     "guides": [
                         {
                             "title": "Sales 5 Star Rating GUIDE",
-                            "top": ["F&I Manager", "4.7", "4.9+"],
+                            "top": ["F&I Manager", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1210,7 +1210,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Parts Manager", "4.3", "4.5+"],
+                            "top": ["Parts Manager", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1340,7 +1340,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Parts Sales Representative", "4.3", "4.5+"],
+                            "top": ["Parts Sales Representative", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1542,7 +1542,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Service Manager", "4.3", "4.5+"],
+                            "top": ["Service Manager", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1736,7 +1736,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Service Advisor", "4.3", "4.5+"],
+                            "top": ["Service Advisor", "≥4.7", "≥4.9"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1844,9 +1844,30 @@
                     }]
                 },
                 {
+                    "identifier": "5_star",
+                    "order": 4,
+                    "title": "Service 5 Star Rating",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "Service 5 Star Rating GUIDE",
+                            "top": ["Technician", "≥4.7", "≥4.9"],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
+                        }
+                    ]
+                },
+                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 4,
+                    "order": 5,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
@@ -1943,9 +1964,30 @@
                     }]
                 },
                 {
+                    "identifier": "5_star",
+                    "order": 4,
+                    "title": "Service 5 Star Rating",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "Service 5 Star Rating GUIDE",
+                            "top": ["Technician", "≥4.7", "≥4.9"],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
+                        }
+                    ]
+                },
+                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 4,
+                    "order": 5,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
