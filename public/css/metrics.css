@@ -56,3 +56,13 @@
 .trade_sale tr.table-body td:first-child{
     width: 27%;
 }
+
+.metrics {
+    position: relative;
+}
+
+.metrics .under_construction_tip {
+    position: absolute;
+    z-index: 1;
+    left: 40%;
+}

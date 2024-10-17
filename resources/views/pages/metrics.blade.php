@@ -3,6 +3,9 @@
 @section('content')
 <div class="d-flex justify-content-center">
     <div class="elite-page metrics col-11">
+        <div class="under_construction_tip">
+            <img src="{{ asset('images/under_construction.png') }}" width="50%"/>
+        </div>
         <div class="page-section-wrap">
             <h1 class="page-header" >
                 <span class='page-header-title'>MY Metrics - {{ $selectedPosition->get('title') }} </span>
