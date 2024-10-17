@@ -21,9 +21,9 @@
 <link rel="stylesheet" type="text/css" href="{{ url('/css/welcome.css?a=3') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url('/css/login.css?a=3') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url('/css/home.css?a=3') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url('/css/dashboard.css?a=3') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('/css/dashboard.css?v=100&a=3') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url('/css/ranking.css?a=3') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url('/css/metrics.css?a=3') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('/css/metrics.css?v=100&a=3') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url('/css/team_member.css?a=3') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url('/css/incentives.css?a=3') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url('/css/future_sales.css?a=3') }}" />
