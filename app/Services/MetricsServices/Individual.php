@@ -90,11 +90,11 @@ class Individual extends Base {
             foreach($metricDefination->metrics as $id => $cm) {
                 $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
                 if(data_get($cm, 'has_points', true)) {
-                    $p[] = $value && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
+                    $p[] = $value && isset($value[$id]) && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
                 }
                 $l = ($childCount === 1 && data_get($cm, 'has_points', true)) ? 'RESULT' : $cm['label'];
-                $scores[$l][] = $value ?
-                    $this->formatMetricScores($cm, $value[$id . '_result']) : $cm['score_default'];
+                $scores[$l][] = $value && isset($value[$id]) ?
+                    $this->formatMetricScores($cm, $value[$id . '_result']) : data_get($cm, 'score_default', 0);
             }
             $points[] = $p;
         }
