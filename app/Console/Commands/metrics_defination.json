@@ -1210,7 +1210,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Parts Manager", "≥4.7", "≥4.9"],
+                            "top": ["Parts Manager", "≥4.3", "≥4.5"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1340,7 +1340,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Parts Sales Representative", "≥4.7", "≥4.9"],
+                            "top": ["Parts Sales Representative", "≥4.3", "≥4.5"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1542,7 +1542,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Service Manager", "≥4.7", "≥4.9"],
+                            "top": ["Service Manager", "≥4.3", "≥4.5"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1736,7 +1736,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Service Advisor", "≥4.7", "≥4.9"],
+                            "top": ["Service Advisor", "≥4.3", "≥4.5"],
                             "rows": [["Category A", 175, 325], ["Category B", 175, 325], ["Category C", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1858,7 +1858,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Technician", "≥4.7", "≥4.9"],
+                            "top": ["Technician", "≥4.3", "≥4.5"],
                             "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1978,7 +1978,7 @@
                     "guides": [
                         {
                             "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Technician", "≥4.7", "≥4.9"],
+                            "top": ["Technician", "≥4.3", "≥4.5"],
                             "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
