@@ -399,9 +399,30 @@
                     ]
                 },
                 {
+                    "identifier": "ce",
+                    "order": 11,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE)",
+                    "metrics": {
+                        "ce":{
+                            "label": "Customer Experience",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE) GUIDE",
+                            "top": ["Sales Manager", "30-39.9%", "40-49.9%", "≥50%"],
+                            "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
+                            "note": "1 November 2024 to 31 March 2025 (Retail Sales Consultant based on individual surveys)"
+                        }
+                    ]
+                },
+                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 11,
+                    "order": 12,
                     "title": "TRAINING",
                     "ref": "Refer to the <a href=\"\\member_guide\"> ELITE24 Member Guide</a> for full details.",
                     "metrics": {
@@ -587,9 +608,30 @@
                     ]
                 },
                 {
+                    "identifier": "ce",
+                    "order": 7,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE)",
+                    "metrics": {
+                        "ce":{
+                            "label": "Customer Experience",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE) GUIDE",
+                            "top": ["Retail Sales Consultant", "30-39.9%", "40-49.9%", "≥50%"],
+                            "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
+                            "note": "1 November 2024 to 31 March 2025 (Retail Sales Consultant based on individual surveys)"
+                        }
+                    ]
+                },
+                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 7,
+                    "order": 8,
                     "title": "TRAINING GUIDE",
                     "metrics": {
                         "train_online": {
@@ -1549,9 +1591,30 @@
                     ]
                 },
                 {
+                    "identifier": "ce",
+                    "order": 9,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE)",
+                    "metrics": {
+                        "ce":{
+                            "label": "Customer Experience",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE) GUIDE",
+                            "top": ["Service Manager", "20-24.9%", "25-29.9%", "≥30%"],
+                            "rows": [["Category A", 100, 150, 175], ["Category B", 100, 150, 175], ["Category C", 100, 150, 175]],
+                            "note": "1 November 2024 to 31 March 2025 (based on total Dealer surveys)"
+                        }
+                    ]
+                },
+                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 9,
+                    "order": 10,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
@@ -1608,7 +1671,7 @@
                         {
                             "title": "Customer Paid Repair Orders vs Target GUIDE",
                             "top": ["Service Advisor", "≥100% Target", "≥110% Target", "≥120% Target"],
-                            "rows": [["Category A & B", 506, 426, 546], ["Category C", 506, 426, 546]],
+                            "rows": [["Category A & B", 306, 426, 546], ["Category C", 306, 426, 546]],
                             "note": "Points change effective 1 October – 31 March 2025"
                         }
                     ]
@@ -1743,9 +1806,30 @@
                     ]
                 },
                 {
+                    "identifier": "ce",
+                    "order": 8,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE)",
+                    "metrics": {
+                        "ce":{
+                            "label": "Customer Experience",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE) GUIDE",
+                            "top": ["Service Advisor", "20-24.9%", "25-29.9%", "≥30%"],
+                            "rows": [["Category A", 100, 150, 175], ["Category B", 100, 150, 175], ["Category C", 100, 150, 175]],
+                            "note": "1 November 2024 to 31 March 2025 (based on total Dealer surveys)"
+                        }
+                    ]
+                },
+                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 8,
+                    "order": 9,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
