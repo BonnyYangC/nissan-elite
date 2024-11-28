@@ -30,5 +30,11 @@ class PartsManager extends MonthlyDataMapping {
         'rim' => 'points_RIM',
         'rim_result' => 'pcent_RIM_order',
         'rim_qualifier_result' => 'pcent_RIM_Item',
+        
+        'f1' => 'points_ce_dlr_D1_AS',
+        'f1_result' => 'score_ce_dlr_D1_AS',
+
+        '5_star' => 'points_ce_dlr_5Star_AS',
+        '5_star_result' => 'score_ce_dlr_5Star_AS',
     ];
 }

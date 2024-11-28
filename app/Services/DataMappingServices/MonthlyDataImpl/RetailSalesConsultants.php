@@ -22,5 +22,14 @@ class RetailSalesConsultants extends MonthlyDataMapping {
 
         'pmp' => 'points_PMP',
         'pmp_result' => 'sales_PMP',
+
+        'd1' => 'points_ce_ind_D1_S',
+        'd1_result' => 'score_ce_ind_D1_S',
+
+        '5_star' => 'points_ce_ind_5star_S',
+        '5_star_result' => 'score_ce_ind_5star_S',
+
+        'ce' => 'points_ce_ind_survey_S',
+        'ce_result' => 'pcent_ce_ind_survey_S',
     ];
 }
