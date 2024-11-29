@@ -90,14 +90,14 @@
                         "d1":{
                             "label": "D1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "D1 / Delivered Right First Time GUIDE",
-                            "top": ["Fleet Sales Executive", "95%+"],
+                            "top": ["Fleet Sales Executive", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -364,14 +364,14 @@
                         "d1":{
                             "label": "D1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "D1 / Delivered Right First Time GUIDE",
-                            "top": ["Sales Manager", "95%+"],
+                            "top": ["Sales Manager", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -765,14 +765,14 @@
                         "d1":{
                             "label": "D1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "D1 / Delivered Right First Time GUIDE",
-                            "top": ["Stock Controller", "95%+"],
+                            "top": ["Stock Controller", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1224,14 +1224,14 @@
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "F1 / Fixed Right First Time GUIDE",
-                            "top": ["Parts Manager", "95%+"],
+                            "top": ["Parts Manager", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1354,14 +1354,14 @@
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "F1 / Fixed Right First Time GUIDE",
-                            "top": ["Parts Sales Representative", "95%+"],
+                            "top": ["Parts Sales Representative", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1556,14 +1556,14 @@
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "F1 / Fixed Right First Time GUIDE",
-                            "top": ["Service Manager", "95%+"],
+                            "top": ["Service Manager", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1771,14 +1771,14 @@
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "F1 / Fixed Right First Time GUIDE",
-                            "top": ["Service Advisor", "95%+"],
+                            "top": ["Service Advisor", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
@@ -1865,11 +1865,11 @@
                 }],
             "TM": [
                 {
-                    "identifier": "fft",
+                    "identifier": "f1",
                     "order": 1,
                     "title": "F1 (Fixed it right first time) %yes NPS R3M",
                     "metrics": {
-                        "fft":{
+                        "f1":{
                             "label": "F1",
                             "point_default": 0,
                             "score_default": 0,
@@ -1879,28 +1879,30 @@
                     },
                     "guides": [{
                         "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
-                        "top": ["Technician", "≥100% Target", "≥105% Target"],
+                        "top": ["Technician", "≥100 Target", "≥105 Target"],
                         "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
                     }]
-                },{
-                    "identifier": "sos",
+                },
+                {
+                    "identifier": "5_star",
                     "order": 2,
-                    "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
+                    "title": "Service 5 star rating 3 month rolling",
                     "metrics": {
-                        "sos":{
-                            "label": "Overall Sat",
+                        "5_star":{
+                            "label": "5 Star",
                             "point_default": 0,
-                            "score_default": 0,
                             "score_format": "f",
                             "score_decimals": 1
                         }
                     },
-                    "guides": [{
-                        "title": "Service overall satisfaction NPS 3 month rolling score Guide",
-                        "top": ["Technician", "≥100% Target", "≥105% Target"],
-                        "rows": [["Master Technician", 225, 425], ["Advanced Technician", 225, 425]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 40<br>- Dealer Survey volume target"
-                    }]
+                    "guides": [
+                        {
+                            "title": "Service 5 star rating 3 month rolling GUIDE",
+                            "top": ["Technician", "≥4.3", "≥4.5"],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
+                        }
+                    ]
                 },
                 {
                     "identifier": "quiz",
@@ -1928,30 +1930,9 @@
                     }]
                 },
                 {
-                    "identifier": "5_star",
-                    "order": 4,
-                    "title": "Service 5 Star Rating",
-                    "metrics": {
-                        "5_star":{
-                            "label": "5 Star",
-                            "point_default": 0,
-                            "score_format": "f",
-                            "score_decimals": 1
-                        }
-                    },
-                    "guides": [
-                        {
-                            "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Technician", "≥4.3", "≥4.5"],
-                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
-                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
-                        }
-                    ]
-                },
-                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 5,
+                    "order": 4,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
@@ -1985,11 +1966,11 @@
             ],
             "TA": [
                 {
-                    "identifier": "fft",
+                    "identifier": "f1",
                     "order": 1,
                     "title": "F1 (Fixed it right first time) %yes NPS R3M",
                     "metrics": {
-                        "fft":{
+                        "f1":{
                             "label": "F1",
                             "point_default": 0,
                             "score_default": 0,
@@ -1999,28 +1980,30 @@
                     },
                     "guides": [{
                         "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
-                        "top": ["Technician", "≥100% Target", "≥105% Target"],
+                        "top": ["Technician", "≥100 Target", "≥105 Target"],
                         "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
                     }]
-                },{
-                    "identifier": "sos",
+                },
+                {
+                    "identifier": "5_star",
                     "order": 2,
-                    "title": "SERVICE OVERALL SATISFACTION NPS 3 MONTH ROLLING SCORE",
+                    "title": "Service 5 star rating 3 month rolling",
                     "metrics": {
-                        "sos":{
-                            "label": "Overall Sat",
+                        "5_star":{
+                            "label": "5 Star",
                             "point_default": 0,
-                            "score_default": 0,
                             "score_format": "f",
                             "score_decimals": 1
                         }
                     },
-                    "guides": [{
-                        "title": "Service overall satisfaction NPS 3 month rolling score Guide",
-                        "top": ["Technician", "≥100% Target", "≥105% Target"],
-                        "rows": [["Master Technician", 225, 425], ["Advanced Technician", 225, 425]],
-                        "criteria": "CRITERIA: Refer to the ELITE24 Member Guide for full details to earn end-year Giftcard Reward – page 40<br>- Dealer Survey volume target"
-                    }]
+                    "guides": [
+                        {
+                            "title": "Service 5 star rating 3 month rolling GUIDE",
+                            "top": ["Technician", "≥4.3", "≥4.5"],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
+                        }
+                    ]
                 },
                 {
                     "identifier": "quiz",
@@ -2048,30 +2031,9 @@
                     }]
                 },
                 {
-                    "identifier": "5_star",
-                    "order": 4,
-                    "title": "Service 5 Star Rating",
-                    "metrics": {
-                        "5_star":{
-                            "label": "5 Star",
-                            "point_default": 0,
-                            "score_format": "f",
-                            "score_decimals": 1
-                        }
-                    },
-                    "guides": [
-                        {
-                            "title": "Service 5 Star Rating GUIDE",
-                            "top": ["Technician", "≥4.3", "≥4.5"],
-                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
-                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
-                        }
-                    ]
-                },
-                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 5,
+                    "order": 4,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {

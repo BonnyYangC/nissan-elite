@@ -49,6 +49,7 @@ class Individual extends Base {
         $metricsDefinations = $this->getMetricsByPosition($positionCode);
         $chartData = [];
         $tableData = [];
+
         foreach ($metricsDefinations as $m) {
             $m->metrics = (count($m->metrics) > 1) ? $this->sortingMetricsByOrder($m->metrics) : $m->metrics;
             list($chartData[$m->identifier], $tableData[$m->identifier]) = $this->buildMetricData($m, $metricsValue);
@@ -71,24 +72,26 @@ class Individual extends Base {
 
     /**
      * @param $metricDefination
-     * @param $metricsData
+     * @param $metricValue
      * @return array
      */
-    protected function buildMetricData($metricDefination, $metricsData) {
-        $legends = ['Month'];
+    protected function buildMetricData($metricDefination, $metricValue) {
+        $legends = ['Month']; // ['Month', 'Points'] or ['Month', 'NIC sale', 'NIC Financed']
         $points = [];
         $scores = [];
         $childCount = count($this->getMetricsHasPoints($metricDefination->metrics));
+
         foreach($metricDefination->metrics as $id => $cm) {
             if (!data_get($cm, 'has_points', true)) continue;
             $legends[] = $childCount === 1 ? 'Points' : $cm['label'];
         }
+
         $months = $metricDefination->period === self::METRIC_PERIOD_QUARTERLY ? Utility::QUARTERLY_MONTHS_SHORT : Utility::MONTHS_SHORT;
         foreach($months as $month) {
             $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
             $p = [$month];
             foreach($metricDefination->metrics as $id => $cm) {
-                $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
+                $value = isset($metricValue[$dateString]) ? $metricValue[$dateString] : null;
                 if(data_get($cm, 'has_points', true)) {
                     $p[] = $value && isset($value[$id]) && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
                 }
