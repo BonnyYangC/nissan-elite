@@ -999,14 +999,14 @@
                         "d1":{
                             "label": "D1",
                             "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "f",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
                         {
                             "title": "D1 / Delivered Right First Time GUIDE",
-                            "top": ["F&I Manager", "95%+"],
+                            "top": ["F&I Manager", "95+"],
                             "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
