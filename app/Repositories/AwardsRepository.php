@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Awards;
 use App\Models\AwardsType;
-use App\Models\Faq;
-use Illuminate\Support\Collection;
 
 class AwardsRepository {
 
