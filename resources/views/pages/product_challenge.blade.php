@@ -19,7 +19,8 @@
                     <p class="text-content">We have once again secured superb venues in each state, and look forward to welcoming back both old and new faces. We will of course ensure COVID safe protocols are followed at all events, and do our very best to ensure all attendees have a great night with their colleagues and peers.</p>
 
                     <p class="text-content">Ferntree Gully Nissan our 2023 Masters Champion holding tightly onto the Title and Trophy!  We know the competition will be at an all-time high, as each Dealer team attempts to take the title as their own.</p>
-                    <p class="sub-header">And our FY24 National Masters Champion - WAVERLEY NISSAN – Southern Region</p>
+                    <p class="sub-header">And our FY24 National Masters Champion - </p>
+                    <p class="sub-header">WAVERLEY NISSAN – Southern Region</p>
                     <p class="sub-header">Congratulations on a great win along with ALL our State Champions this year.</p>
                 </div>
             </div>
