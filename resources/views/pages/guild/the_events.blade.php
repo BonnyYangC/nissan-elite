@@ -84,7 +84,7 @@
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <div class="row">
-                <iframe src="https://destination.com.au/nissan/ELITE/Product%20Challenge/NIS1092%20-%20Nissan%20ELITE%20Product%20Challenge%20Guild%20Video%202023%20-%20Melbourne.mp4" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://destination.com.au/nissan/ELITE/NIS1117_NISSAN_Product_Challenge_-_Video_4_Guild_2.mp4" frameborder="0" allowfullscreen></iframe>
                 <p class="txt-red">FY23/2024 GOLD COAST</p>
                 <a href="https://nissanevents.pixieset.com/nissanguildgoldcoast/">View video above and click this link to view photos</a>
             </div>
