@@ -11,16 +11,10 @@
     <div class="d-flex">
         <div class="col-10 offset-1" style="padding-top: 2%">
             <h3>
-                THE GUILD FY23 WILL CONVENE ON THE GOLD COAST – SATURDAY 14
-SEPTEMBER – MONDAY 16 SEPTEMBER 2024
+                the guild fy23 – gold coast – Saturday 14 september – monday 16 september 2024
             </h3>
             <p>
-                Invitations have been emailed to eligible Foundation members, along with our new inductees in FY23. We have
-a great weekend in store for our eligible GUILD MEMBERS in September and below are our new inductees for
-FY23 Platinum (500,000+) and new to Gold (325,000+).
-            </p>
-            <p>
-                Congratulations on the excellent achievement and Loyalty to the Brand shown here.
+                Celebrating THE FY23 GUILD on the Gold Coast!  The biggest achievement since the GUILD inception in 2000!  And what a weekend was had by our new inductees joining with eligible Foundation members to see what this MOC hosted weekend is all about.  The enjoyment of having your partner along to share your achievements, meeting new people, forming new friendships, getting the adrenalin up on Jet Skis or enjoying sightseeing and shopping between dinners. This is THE GUILD!
             </p>
             <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/7c6c496225fb/nissan-dealer-excellence-fy18-results-3120310?e=1dac1983c2">
                 Click here to view edm content
@@ -52,13 +46,7 @@ FY23 Platinum (500,000+) and new to Gold (325,000+).
     </div>
     <div class="d-flex">
         <div class="col-8 offset-1" style="padding-right: 2%; padding-top: 2%">
-            <!--<h3>THE GUILD WEEKEND 2023 – NISSAN ELITE FY22</h3>
-
-            <p>
-                Arriving in Melbourne Saturday 5 August, our members were welcomed in true Melbourne style as VIP guests at the Hawthorn Presidents function to see the Hawthorn v Collingwood match at the MCG.  And, what a match it was with Hawthorn taking out an outstanding win over the reigning premiers Collingwood.  On Sunday evening hosted by Members of the Nissan Management Operating Committee, in honour of their fine achievement, we inducted our new GOLD inductees to THE GUILD.  Dining at St Telmo restaurant and entertained by Argentinian dancers throughout the night, our GUILD members and partners enjoyed long term catchups, new friendships, and much chatter about their day at THE LUME, shopping, site seeing in Melbourne, or putting the Patrol through its paces.
-            </p>-->
-
-            <h3>THE GUILD WEEKEND 2024 – NISSAN ELITE FY23</h3>
+            <h3>THE GUILD WEEKEND 2025 – NISSAN ELITE FY24</h3>
 
             <p>
                 Stay tuned for more on our upcoming GUILD event coming soon.
@@ -68,6 +56,7 @@ FY23 Platinum (500,000+) and new to Gold (325,000+).
 
             <table>
                 <tbody>
+                    <tr style="line-height: 2em;"><td width=13%>2024</td><td>GOLD COAST – QT Hotel, dinner at The Glasshouse, Jet Skiing experience and La Luna Beach Club </td></tr>
                     <tr style="line-height: 2em;"><td width=13%>2023</td><td>MELBOURNE – Sheraton Hotel, VIP at MCG Hawthorns Presidents function, THE LUME and gala dinner</td></tr>
                     <tr style="line-height: 2em;"><td width=13%>2022</td><td>DARWIN NORTHERN TOP END – DoubleTree by Hilton, with gala dinner at Pee Wee’s at the Point</td></tr>
                     <tr style="line-height: 2em;"><td width=13%>2021</td><td>NOOSA QUEENSLAND - Sofitel Resort, gala dinner at Bistro C and Catalina Extravaganza</td></tr>
@@ -93,6 +82,12 @@ FY23 Platinum (500,000+) and new to Gold (325,000+).
         </div>
         <div class="page-widget col-3">
             <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <div class="row">
+                <iframe src="https://destination.com.au/nissan/ELITE/NIS1117_NISSAN_Product_Challenge_-_Video_4_Guild_2.mp4" frameborder="0" allowfullscreen></iframe>
+                <p class="txt-red">FY23/2024 GOLD COAST</p>
+                <a href="https://nissanevents.pixieset.com/nissanguildgoldcoast/">View video above and click this link to view photos</a>
+            </div>
             <p>&nbsp;</p>
             <div class="row">
                 <iframe src="https://destination.com.au/nissan/ELITE/Product%20Challenge/NIS1092%20-%20Nissan%20ELITE%20Product%20Challenge%20Guild%20Video%202023%20-%20Melbourne.mp4" frameborder="0" allowfullscreen></iframe>
