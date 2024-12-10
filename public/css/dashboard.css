@@ -33,13 +33,3 @@
 .span-red {
     color: #c40030;
 }
-
-.dashboard {
-    position: relative;
-}
-
-.dashboard .under_construction_tip {
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-}
