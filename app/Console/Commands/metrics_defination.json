@@ -90,7 +90,7 @@
                         "d1":{
                             "label": "D1",
                             "point_default": 0,
-                            "score_format": "f",
+                            "score_format": "f.100",
                             "score_decimals": 1
                         }
                     },
