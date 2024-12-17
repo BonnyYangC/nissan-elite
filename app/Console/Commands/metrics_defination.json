@@ -1892,7 +1892,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1993,7 +1993,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
