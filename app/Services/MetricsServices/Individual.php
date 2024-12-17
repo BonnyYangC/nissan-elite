@@ -127,13 +127,16 @@ class Individual extends Base {
             case '%':
                 $formatted = $score !== '' ? number_format(floatval($score)*100) . '%' : $scoreDefault;
                 break;
+            case '%.100': // percent format but NO need to times 100
+                $formatted = $score !== '' ? number_format(floatval($score), data_get($metric, 'score_decimals', 0)) . '%' : $scoreDefault;
+                break;
             case '$':
                 $formatted = $score !== '' ? '$'.intval($score) : $scoreDefault;
                 break;
             case 'f':
                 $formatted = $score !== '' ? number_format(floatval($score), data_get($metric, 'score_decimals', 0)) : $scoreDefault;
                 break;
-            case 'f.100': // float format but need to times 100
+            case 'f.100': // float format but DO need to times 100
                 $formatted = $score !== '' ? number_format(floatval($score)*100, data_get($metric, 'score_decimals', 0)) : $scoreDefault;
                 break;
             case 'b':

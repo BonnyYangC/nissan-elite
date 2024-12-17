@@ -1872,14 +1872,14 @@
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": 0,
-                            "score_format": "f",
+                            "score_default": "0%",
+                            "score_format": "%.100",
                             "score_decimals": 1
                         }
                     },
                     "guides": [{
                         "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
-                        "top": ["Technician", "≥100 Target", "≥105 Target"],
+                        "top": ["Technician", "≥95.0%", "≥99.75%"],
                         "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
                     }]
                 },
@@ -1892,14 +1892,14 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
                         {
                             "title": "Service 5 star rating 3 month rolling GUIDE",
                             "top": ["Technician", "≥4.3", "≥4.5"],
-                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "rows": [["Master Technician", 150, 300], ["Advanced Technician", 150, 300]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
                     ]
@@ -1973,14 +1973,14 @@
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
-                            "score_default": 0,
-                            "score_format": "f",
+                            "score_default": "0%",
+                            "score_format": "%.100",
                             "score_decimals": 1
                         }
                     },
                     "guides": [{
                         "title": "F1 (Fixed it right first time) %Yes NPS 3 MONTH ROLLING SCORE GUIDE",
-                        "top": ["Technician", "≥100 Target", "≥105 Target"],
+                        "top": ["Technician", "≥95.0%", "≥99.75%"],
                         "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
                     }]
                 },
@@ -1993,14 +1993,14 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
                         {
                             "title": "Service 5 star rating 3 month rolling GUIDE",
                             "top": ["Technician", "≥4.3", "≥4.5"],
-                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "rows": [["Master Technician", 150, 300], ["Advanced Technician", 150, 300]],
                             "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
                         }
                     ]
