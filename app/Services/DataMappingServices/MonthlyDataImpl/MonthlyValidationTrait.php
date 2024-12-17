@@ -14,7 +14,7 @@ trait MonthlyValidationTrait {
      * @param $record
      * @return Result
      */
-    public function getModelForValidation($modelKey, $record, $key) {
+    public function getModelForValidation($modelKey, $record) {
         $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
             ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
         return $model;

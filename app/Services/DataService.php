@@ -142,30 +142,41 @@ class DataService extends BaseService {
                     $ignoredRows[] = $record;
                     continue;
                 }
-                if (isset($modelKey['mapping'])) {
-                    $keys = array_keys($modelKey['mapping']);
-                } else {
-                    $keys = [$modelKey['primary']];
-                }
                 $row = [];
                 $headers = [];
-                foreach($keys as $key) {
-                    $model = $mappingService->getModel($modelKey, $record, $key);
-                    if($model){
-                        $data = $mappingService->buildData($model, $record, $modelKey, $key);
-                        foreach ($data as $fieldName => $value) {
+                $model = $mappingService->getModel($modelKey, $record);
+                if($model){
+                    if ($dataType == Defination::DATA_TYPE_LOYALTY_HISTORICAL) {
+                        foreach (array_keys($modelKey['mapping']) as $key) {
+                            $newData = $mappingService->buildData($model, $record, $modelKey, $key);
+                            list($equal, $existingModel) = $mappingService->compareRow($model, $newData);
+                            if ($existingModel) {
+                                $row = array_merge($row, $mappingService->buildResultRow($existingModel, $newData, $equal));
+                                $findCount++;
+                                $findRows[] = $row;
+                            } else {
+                                $row = array_merge($row, $mappingService->buildResultRow($existingModel, $newData, $equal));
+                                $newRowCount++;
+                                $newRows[] = $row;
+                            }
+                        }
+                        $headers = array_merge($headers, $mappingService->buildHeaderForResultData($existingModel));
+                        $headerFields = $headers;
+                    } else {
+                        $newData = $mappingService->buildData($model, $record, $modelKey, $modelKey['primary']);
+                        foreach ($newData as $fieldName => $value) {
                             $equal = $mappingService->compareValue($fieldName, $model, $value);
                             $row = array_merge($row, $mappingService->buildResultData($fieldName, $model, $value, $equal));
                             $headers = array_merge($headers, $mappingService->buildHeaderForResultData($fieldName));
                         }
-                        $findCount++;
-                        $findRows[] = $row;
-                    }else{
-                        $newRowCount++;
-                        $newRows[] = $record;
+                    $findCount++;
+                    $findRows[] = $row;
                     }
-
+                }else{
+                    $newRowCount++;
+                    $newRows[] = $record;
                 }
+
             }
             $resultValue['type'] = Defination::ACTION_TYPE_VALIDATE;
             $resultValue['new']['count'] = 'New : ' . $newRowCount;

@@ -16,7 +16,7 @@ class Ranking extends BaseRanking {
      * @param $record
      * @return RankingModel
      */
-    public function getModel($modelKey, $record, $key) {
+    public function getModel($modelKey, $record) {
         $model = RankingModel::where('employee_code', trim($record[$modelKey['primary']]))
             ->where('period', Utility::formatPeriod($record['mthyr_g_']))->first();
         return $model;

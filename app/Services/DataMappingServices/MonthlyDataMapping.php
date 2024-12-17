@@ -65,10 +65,10 @@ class MonthlyDataMapping {
      * @param $record
      * @return Result
      */
-    public function getModel($modelKey, $record, $key) {
+    public function getModel($modelKey, $record) {
         return $this->actionType == Defination::ACTION_TYPE_SYNC ?
-        $this->getModelForImportation($modelKey, $record, $key) :
-        $this->getModelForValidation($modelKey, $record, $key);
+        $this->getModelForImportation($modelKey, $record) :
+        $this->getModelForValidation($modelKey, $record);
     }
 
     /**
