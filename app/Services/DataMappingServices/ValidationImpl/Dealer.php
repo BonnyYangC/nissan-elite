@@ -45,7 +45,7 @@ class Dealer extends BaseDealer {
      * @param $record
      * @return DealerModel
      */
-    public function getModel($modelKey, $record, $key) {
+    public function getModel($modelKey, $record) {
         return DealerModel::where('code', trim($record[$modelKey['primary']]))->with('regions')->first();
     }
 

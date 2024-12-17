@@ -36,7 +36,7 @@ class User extends BaseUser {
      * @param $record
      * @return UserModel
      */
-    public function getModel($modelKey, $record, $key) {
+    public function getModel($modelKey, $record) {
         return UserModel::where('employee_code',trim($record[$modelKey['primary']]))->with("eligible")->first();
     }
 

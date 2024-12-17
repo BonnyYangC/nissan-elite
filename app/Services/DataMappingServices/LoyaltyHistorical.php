@@ -19,11 +19,11 @@ class LoyaltyHistorical extends Base {
         $key['primary'] = 'regi#_';
         //$key['secondary'] = ['yr_92_18_t_loyaltyAC_', 'yr_2019_', 'yr_2020_', 'yr_2021'];
         $key['mapping'] = [
-            //'yr_92_18_t_loyaltyAC_' => '2018-01-01',
-            //'yr_2019_' => '2019-01-01',
-            //'yr_2020_' => '2020-01-01',
-            //'yr_2021' => '2021-01-01',
-            //'yr_2022' => '2022-01-01',
+            'yr_92_18_t_loyaltyAC_' => '2018-01-01',
+            'yr_2019_' => '2019-01-01',
+            'yr_2020_' => '2020-01-01',
+            'yr_2021' => '2021-01-01',
+            'yr_2022' => '2022-01-01',
             'yr_2023' => '2023-01-01'
         ];
         return $key;
@@ -49,20 +49,11 @@ class LoyaltyHistorical extends Base {
         ];
     }
 
-
     /**
      * @param $field
      * @return array
      */
     public function buildHeaderForResultData($field) {
-        $result = [];
-        /*if($field !== 'metrics') {
-            $result[] = $this->$mappingArray[$field];
-        } else {
-            foreach(array_keys($this->metricsMappingArray) as $field) {
-                $result[] = $this->metricsMappingArray[$field];
-            }
-        }*/
-        return $result;
+        return ['member_id', 'period', 'amount'];
     }
 }

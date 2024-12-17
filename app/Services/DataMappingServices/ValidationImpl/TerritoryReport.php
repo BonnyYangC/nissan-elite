@@ -18,7 +18,7 @@ class TerritoryReport extends BaseTerritoryReport {
      * @param $record
      * @return TerritoryReportModel
      */
-    public function getModel($modelKey, $record, $key) {
+    public function getModel($modelKey, $record) {
         // $this->handleUser(trim($record[$modelKey['primary']]), $actionType);
         $model = TerritoryReportModel::currentYear()->where('employee_code', trim($record[$modelKey['primary']]))->first();
         return $model;
