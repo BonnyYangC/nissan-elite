@@ -624,7 +624,7 @@
                             "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE) GUIDE",
                             "top": ["Retail Sales Consultant", "30-39.9%", "40-49.9%", "≥50%"],
                             "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
-                            "note": "1 November 2024 to 31 March 2025 (Retail Sales Consultant based on individual surveys)"
+                            "note": "1 November 2024 to 31 March 2025 (Retail Sales Consultant based on Dealership surveys)"
                         }
                     ]
                 },
