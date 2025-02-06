@@ -96,7 +96,8 @@ class Individual extends Base {
                     $p[] = $value && isset($value[$id]) && $value[$id] !== '' ? intVal($value[$id]) : data_get($cm, 'point_default', 0);
                 }
                 $l = ($childCount === 1 && data_get($cm, 'has_points', true)) ? 'RESULT' : $cm['label'];
-                $scores[$l][] = $value && isset($value[$id]) ?
+        
+                $scores[$l][] = $value && isset($value[$id . '_result']) ?
                     $this->formatMetricScores($cm, $value[$id . '_result']) : data_get($cm, 'score_default', 0);
             }
             $points[] = $p;
