@@ -31,7 +31,7 @@ class ServiceManager extends MonthlyDataMapping {
         '5_star' => 'points_ce_dlr_5Star_AS',
         '5_star_result' => 'score_ce_dlr_5Star_AS',
 
-        'ce' => 'points_ce_dlr_survey_AS',
-        'ce_result' => 'pcent_ce_dlr_survey_AS',
+        'ce' => 'points_ce_dlr_survey_SER',
+        'ce_result' => 'pcent_ce_dlr_survey_SER',
     ];
 }
