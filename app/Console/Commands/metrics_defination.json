@@ -1908,6 +1908,7 @@
                     "identifier": "quiz",
                     "label": "Quiz",
                     "order": 3,
+                    "period": "quarterly",
                     "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
                     "metrics": {
                         "train_partTech":{
@@ -2009,6 +2010,7 @@
                     "identifier": "quiz",
                     "label": "Quiz",
                     "order": 3,
+                    "period": "quarterly",
                     "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
                     "metrics": {
                         "train_partTech":{
