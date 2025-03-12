@@ -1908,6 +1908,7 @@
                     "identifier": "quiz",
                     "label": "Quiz",
                     "order": 3,
+                    "period": "quarterly",
                     "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
                     "metrics": {
                         "train_partTech":{
@@ -1920,7 +1921,7 @@
                             "label": "Quiz Tech",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [{
@@ -2009,6 +2010,7 @@
                     "identifier": "quiz",
                     "label": "Quiz",
                     "order": 3,
+                    "period": "quarterly",
                     "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
                     "metrics": {
                         "train_partTech":{
@@ -2021,7 +2023,7 @@
                             "label": "Quiz Tech",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [{
