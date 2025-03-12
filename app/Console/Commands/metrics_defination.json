@@ -1921,7 +1921,7 @@
                             "label": "Quiz Tech",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [{
@@ -2023,7 +2023,7 @@
                             "label": "Quiz Tech",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [{
