@@ -31,7 +31,7 @@ class ResultService extends BaseService {
     private function getResultsByPosition(string $employeeCode, string $position) {
         return Result::where('employee_code', $employeeCode)
             ->where('position', $position)
-            ->where('year', config('elite.YEAR'))
+            ->where('year', config('view.theme'))
             ->get();
     }
 

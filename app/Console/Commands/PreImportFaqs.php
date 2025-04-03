@@ -25,7 +25,7 @@ class PreImportFaqs extends PreImportJson
      *
      */
     protected function importData() {
-        DB::table('faqs')->where('year', '=', config('elite.YEAR'))->delete();
+        DB::table('faqs')->where('year', '=', config('view.theme'))->delete();
         $faqs = $this->data['faqs'];
         foreach ($faqs as $q) {
             Faq::factory()->create($q);

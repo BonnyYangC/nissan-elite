@@ -21,7 +21,7 @@
         {{--entry point for Nissan Elite Dealership --}}
         <div id="dealership" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-xs-6 pb-3">
             <!--<a href="http://dealership.nessanelite.com.au">-->
-            <a href="{{ env('dealExcellenceOverviewUrl','') }}" style="">
+            <a href="{{ config('elite.dealExcellenceOverviewUrl','') }}" style="">
                 <img id="dealership_static" class="img-fluid mx-auto img-static" src="{{ asset('images/nissan/ELITE_DE_button.png?a=1') }}">
                 <img id="dealership_active" class="img-fluid mx-auto img-active" src="{{ asset('images/nissan/ELITE_DE_button.png?a=1') }}" style="width:90%">
             </a>

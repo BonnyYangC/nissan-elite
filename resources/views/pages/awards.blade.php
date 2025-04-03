@@ -5,7 +5,7 @@
     <div class="elite-page loyalty col-11">
         <div class="col-12 page-section-wrap">
             <h1 class="page-header" >
-                <span class='page-header-title'>HIGH ACHIEVER AWARDS {{ env('FY_LAST_YEAR') }}</span>
+                <span class='page-header-title'>HIGH ACHIEVER AWARDS {{ config('theme.' . config('view.theme') . '.FY_LAST_YEAR') }}</span>
             </h1>
         </div>
         <div class="d-flex">

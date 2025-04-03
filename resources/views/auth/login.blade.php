@@ -102,9 +102,10 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>Go to
-                                    <a href="{{ env('eventRegisterUrl') }}" target="_blank">{{ env('eventRegisterUrl') }}</a>
+                                    <a href="{{ config('theme.' . config('view.theme') . '.eventRegisterUrl') }}" target="_blank">
+                                        {{ config('theme.'.config('view.theme') . '.eventRegisterUrl') }}</a>
                                     and successfully complete the
-                                    {{config('elite.YEAR')}}
+                                    {{config('view.theme')}}
                                     {{config('elite.PROGRAM_NAME')}}
                                     registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your {{config('elite.PROGRAM_NAME')}} registration.
                                 </p>

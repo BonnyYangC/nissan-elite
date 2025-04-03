@@ -104,7 +104,7 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function eligible() {
-        return $this->hasOne(UsersEligible::class, 'employee_code', 'employee_code')->where('year', config('elite.YEAR'));
+        return $this->hasOne(UsersEligible::class, 'employee_code', 'employee_code')->where('year', config('view.theme'));
     }
 
     public function newEloquentBuilder($query): UserBuilder {

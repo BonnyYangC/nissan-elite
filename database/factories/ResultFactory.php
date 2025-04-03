@@ -15,7 +15,7 @@ class ResultFactory extends Factory
     public function definition()
     {
         return [
-            'year' => config('elite.YEAR'),
+            'year' => config('view.theme'),
             //'updated_at' => Carbon::now(),
             //'created_at' => Carbon::now()
         ];

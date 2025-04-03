@@ -27,7 +27,7 @@ class PreImportMetrics extends PreImportJson
      *
      */
     protected function importData() {
-        DB::table('metrics')->where('year', '=', config('elite.YEAR'))->delete();
+        DB::table('metrics')->where('year', '=', config('view.theme'))->delete();
         $metrics = $this->data['metrics'];
         $this->seedSharedMetrics(data_get($metrics, Defination::METRICS_TYPE_SHARED, []));
         $this->seedCustomMetrics(data_get($metrics, Defination::METRICS_TYPE_CUSTOM, []));

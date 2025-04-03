@@ -78,10 +78,10 @@ class AdminController extends Controller {
         $content = [
             'PROGRAM_NAME' => $request->input('program_name'),
             'PROGRAM_SHORT_NAME' => $request->input('program_short_name'),
-            'PROGRAM_SHORT_NAME_WITH_YEAR' => $request->input('program_short_name_with_year'),
+            // 'PROGRAM_SHORT_NAME_WITH_YEAR' => $request->input('program_short_name_with_year'),
             'PROGRAM_I_ELITE' => $request->input('program_i_elite'),
             'PROGRAM_DEALERSHIP' => $request->input('program_dealership'),
-            'YEAR' => $request->input('year'),
+            // 'YEAR' => $request->input('year'),
             'PROGRAM_AWARD_UNIT' => $request->input('program_award_unit'),
             'PRODUCT_CHALLENGE_WINNER' => $request->input('product_challenge_winner'),
             'PAGE_SIZE' => $request->input('page_size'),
