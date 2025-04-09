@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Helper\Role;
 use App\Models\Metric;
 use App\Repositories\ResultRepository;
 use App\Services\MetricsServices as MS;
@@ -17,29 +16,13 @@ class MetricsService extends BaseService {
     }
 
     /**
-     * @param string $position
-     * @return MS\FleetSalesExecutives|MS\Individual|MS\PartsSalesRep
-     */
-    public function getMetricsService(string $position) {
-        // switch ($position) {
-        //     case Role::PARTS_SALES_REP:
-        //         return new MS\PartsSalesRep($this->serviceResolver);
-        //     case Role::FLEET_SALES_EXECUTIVES:
-        //         return new MS\FleetSalesExecutives($this->serviceResolver);
-        //     default:
-        //         return new MS\Individual($this->serviceResolver);
-        // }
-        return new MS\Individual($this->serviceResolver);
-    }
-
-    /**
      * @return mixed|string
      */
     public function getMetricsData(string $positionCode) {
         $currentUser = $this->getCurrentUser();
         $results = $this->repository->getMetricsPointsByPosition($currentUser->employee_code, $positionCode);
         $metrics = $results->pluck('metrics', 'period');
-        $service = $this->getMetricsService($positionCode); //new MetricsServices\Individual();
+        $service = (new MS\Metrics\Metrics())->get($this->serviceResolver);
         return $service->buildMetricsData($positionCode, $metrics);
     }
 
@@ -50,7 +33,7 @@ class MetricsService extends BaseService {
         $currentUser = $this->getCurrentUser();
         $results = $this->repository->getMetricsPointsByPosition($currentUser->employee_code, $positionCode);
         $trainingData = $results->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);
-        $service = $this->getMetricsService($positionCode); //new MetricsServices\Individual();
+        $service = (new MS\Metrics\Metrics())->get($this->serviceResolver);
         return $service->buildTrainingData($positionCode, $trainingData);
     }
 
@@ -61,7 +44,8 @@ class MetricsService extends BaseService {
         $results = $this->repository->getMetricsPointsByPosition($this->currentUser->employee_code, $positionCode);
         $metrics = $results->pluck('metrics', 'period');
         $trainingData = $results->keyBy('period');
-        $service = new MetricsServices\Stacked($this->serviceResolver);
+        
+        $service = (new MS\StackedMetrics\Stacked())->byPosition($positionCode)->get($this->serviceResolver);
         return $service->buildStackedMetricsData($positionCode, $metrics, $trainingData);
     }
 }

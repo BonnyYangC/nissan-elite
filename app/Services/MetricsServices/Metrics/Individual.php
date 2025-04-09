@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services\MetricsServices;
+namespace App\Services\MetricsServices\Metrics;
 
 use App\Helper\Utility;
 use App\Models\Metric;
+use App\Services\MetricsServices\Base;
 
 class Individual extends Base {
 
