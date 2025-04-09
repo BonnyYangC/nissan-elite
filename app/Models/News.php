@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model {
     use HasFactory;
+
+    protected $connection = 'mysql_nissan'; // Use the 'mysql_nissan' connection
 }
