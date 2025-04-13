@@ -20,7 +20,7 @@ class ThemeMiddleware
         $domain = $request->getHost();
         $theme = config("themes.{$domain}", config('themes.default'));
         // Set the theme in the config 
-        config(['view.theme' => $theme]);
+        config(['app.theme' => $theme]);
 
         // var_dump($domain, $theme);
         // switch ($domain) {

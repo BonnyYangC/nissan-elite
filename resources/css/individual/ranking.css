@@ -7,36 +7,7 @@
     border-radius: 5px 5px 0px 0px;
 }
 
-.button-sales{
-    background-image:url(../images/rankings/2024/Sales.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-.button-fleet{
-    background-image:url(../images/rankings/2024/Fleet.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.button-service{
-    background-image:url(../images/rankings/2024/Service.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.button-parts{
-    background-image:url(../images/rankings/2024/Parts.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.button-admin{
-    background-image:url(../images/rankings/2024/Admin.png);
+.button-sales, .button-fleet, .button-service, .button-parts, .button-admin{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

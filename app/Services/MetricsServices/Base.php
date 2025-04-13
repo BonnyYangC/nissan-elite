@@ -22,8 +22,8 @@ class Base extends BaseService {
      */
     protected function getDateString($month) {
         $monthNum = $this->monthArray[$month];
-        return intval($monthNum) <= 3 ? (intval(config('view.theme'))+1).'-'.$monthNum.'-01' : config('view.theme').'-'.$monthNum.'-01';
-        //  $test = intval($monthNum) <= 3 ? (intval(config('view.theme'))+1).'-'.$monthNum.'-01' : config('view.theme').'-'.$monthNum.'-01';
+        return intval($monthNum) <= 3 ? (intval(config('app.theme'))+1).'-'.$monthNum.'-01' : config('app.theme').'-'.$monthNum.'-01';
+        //  $test = intval($monthNum) <= 3 ? (intval(config('app.theme'))+1).'-'.$monthNum.'-01' : config('app.theme').'-'.$monthNum.'-01';
     }
 
     /**
@@ -83,7 +83,7 @@ class Base extends BaseService {
      */
     public function getSharedMetrics() {
         return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)
-            ->where('year', config('view.theme'))
+            ->where('year', config('app.theme'))
             ->orderBy('order')->get();
     }
 
@@ -93,7 +93,7 @@ class Base extends BaseService {
      */
     public function getAllMetricsByPosition(string $position) {
         return Metric::where('position', '=', $position)
-            ->where('year', config('view.theme'))
+            ->where('year', config('app.theme'))
             ->orderBy('order')->get();
     }
 
@@ -103,7 +103,7 @@ class Base extends BaseService {
      */
     public function getMetricsByPosition(string $position): Collection {
         return Metric::where('position', '=', $position)
-            ->where('year', config('view.theme'))
+            ->where('year', config('app.theme'))
             ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
             ->orderBy('order')
             ->get();
@@ -115,7 +115,7 @@ class Base extends BaseService {
      */
     public function getTrainingMetricByPosition(string $position): Metric {
         return Metric::where('position', '=', $position)
-            ->where('year', config('view.theme'))
+            ->where('year', config('app.theme'))
             ->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
     }
 }

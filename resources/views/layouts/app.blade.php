@@ -27,4 +27,9 @@
         </div>
         @include('includes.js')
     </body>
+    <style>
+        .bg-site-image {
+            background-image: url('{{ theme_image('Nissan_Elite_bg.jpg') }}');
+        }
+    </style>
 </html>

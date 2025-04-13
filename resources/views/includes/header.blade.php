@@ -2,13 +2,13 @@
 
         <div class="col-2">
             <a href="{{ route('elite_individual') }}">
-                <img class="d-block ml-5 nissan-logo-header" src="{{ asset('images/nissan/Nissan_logo.png') }}">
+                <img class="d-block ml-5 nissan-logo-header" src="{{ theme_image('nissan/Nissan_logo.png') }}">
             </a>
         </div>
 
         <div class="col-3">
             <a href="{{ route('elite_individual') }}">
-                <img class="d-block ml-5 w-75" src="{{ asset('images/nissan/Nissan_ELITE_i_ELITE-Black.png') }}">
+                <img class="d-block ml-5 w-75" src="{{ theme_image('nissan/Nissan_ELITE_i_ELITE-Black.png') }}">
             </a>
         </div>
 

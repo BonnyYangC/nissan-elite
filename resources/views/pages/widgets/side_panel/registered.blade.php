@@ -9,11 +9,11 @@
             <tr align="center">
                 <td>
                     @if ($currentUser->eligible && $currentUser->eligible->registered)
-                        <span class="fs-30 span-red" title="You are eligible for the {{ config('elite.PROGRAM_SHORT_NAME') }}{{ config('view.theme') }} Program">&#10004</span>
+                        <span class="fs-30 span-red" title="You are eligible for the {{ config('elite.PROGRAM_SHORT_NAME') }}{{ config('app.theme') }} Program">&#10004</span>
                         <p class="m-2 txt-white">250 {{ config('elite.PROGRAM_AWARD_UNIT') }} applied to Monthly points</p>
                     @else
                         <span class="fs-30 span-red">X</span>
-                        <a href="{{ config('theme.' . config('view.theme') . '.eventRegisterUrl') }}" target="_blank">
+                        <a href="{{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}" target="_blank">
                             <button style="background-color:#4169E1; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
                         </a>
                     @endif

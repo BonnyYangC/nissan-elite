@@ -37,6 +37,6 @@
 <link rel="stylesheet" href="{{ mix('css/admin.css') }}" />
 
 <!-- Load theme-specific CSS -->
-{{-- <link href="{{ asset('themes/' . config('view.theme') . '/css/admin/header.css') }}" rel="stylesheet"> --}}
+{{-- <link href="{{ asset('themes/' . config('app.theme') . '/css/admin/header.css') }}" rel="stylesheet"> --}}
 
 <script src="{{ asset('js/admin/main.js') }}"></script>

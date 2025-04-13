@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-2 col-md-2 col-xs-3">
             <a href="{{ url('/') }}">
-                <img class="img-responsive center-block nissan-logo" style=" margin-bottom: 30%" src="{{ asset('images/nissan/Nissan_logo.png') }}">
+                <img class="img-responsive center-block nissan-logo" style=" margin-bottom: 30%" src="{{ theme_image('nissan/Nissan_logo.png') }}">
             </a>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <!--<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 program_logo">-->
-            <img class="img-responsive center-block nissan-logo" alt="" src="{{ asset('images/nissan/Nissan_ELITE_Main-Black.png?a=1') }}">
+            <img class="img-responsive center-block nissan-logo" alt="" src="{{ theme_image('nissan/Nissan_ELITE_Main-Black.png') }}">
         </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -22,15 +22,15 @@
         <div id="dealership" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-xs-6 pb-3">
             <!--<a href="http://dealership.nessanelite.com.au">-->
             <a href="{{ config('elite.dealExcellenceOverviewUrl','') }}" style="">
-                <img id="dealership_static" class="img-fluid mx-auto img-static" src="{{ asset('images/nissan/ELITE_DE_button.png?a=1') }}">
-                <img id="dealership_active" class="img-fluid mx-auto img-active" src="{{ asset('images/nissan/ELITE_DE_button.png?a=1') }}" style="width:90%">
+                <img id="dealership_static" class="img-fluid mx-auto img-static" src="{{ theme_image('nissan/ELITE_DE_button.png') }}">
+                <img id="dealership_active" class="img-fluid mx-auto img-active" src="{{ theme_image('nissan/ELITE_DE_button.png') }}" style="width:90%">
             </a>
         </div>
         {{--entry point for Nissan Elite Individual --}}
         <div id="individule" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-xs-6">
             <a href="{{ route('elite_individual') }}">
-                <img id="individual_static" class="img-fluid mx-auto img-static" src="{{ asset('images/nissan/ELITE_iELITE_button.png?a=1') }}">
-                <img id="individual_active" class="img-fluid mx-auto img-active" src="{{ asset('images/nissan/ELITE_iELITE_button.png?a=1') }}" style="width:90%">
+                <img id="individual_static" class="img-fluid mx-auto img-static" src="{{ theme_image('nissan/ELITE_iELITE_button.png') }}">
+                <img id="individual_active" class="img-fluid mx-auto img-active" src="{{ theme_image('nissan/ELITE_iELITE_button.png') }}" style="width:90%">
             </a>
     </div>
 </div>

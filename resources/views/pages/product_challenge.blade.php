@@ -5,7 +5,7 @@
         <div class="product-challenge">
             <div class="d-flex justify-content-center">
                 <div class="program-section">
-                    <img class="w-100" alt="" src="{{ asset('images/product_challenge/cover.jpg') }}">
+                    <img class="w-100" alt="" src="{{ theme_image('product_challenge/cover.jpg') }}">
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -24,7 +24,7 @@
             </div>
             <div class="d-flex justify-content-center">
                 <div class="program-section">
-                    <img class="w-100" alt="" src="{{ asset('images/product_challenge/footer.jpg') }}">
+                    <img class="w-100" alt="" src="{{ theme_image('product_challenge/footer.jpg') }}">
                 </div>
             </div>
             <div class="d-flex justify-content-center">

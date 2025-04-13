@@ -3,7 +3,7 @@
 <p>Kind regards</p>
 <p>{{config('elite.PROGRAM_NAME')}} Service Centre</p>
 <p>TO REGISTER THIS YEAR go to:
-    <a href="{{ config('theme.' . config('view.theme') . '.eventRegisterUrl') }}" target="_blank">
+    <a href="{{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}" target="_blank">
         Register for {{config('elite.PROGRAM_I_ELITE')}} now
     </a>
 </p>

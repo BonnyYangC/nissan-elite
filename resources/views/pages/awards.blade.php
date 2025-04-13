@@ -5,7 +5,7 @@
     <div class="elite-page loyalty col-11">
         <div class="col-12 page-section-wrap">
             <h1 class="page-header" >
-                <span class='page-header-title'>HIGH ACHIEVER AWARDS {{ config('theme.' . config('view.theme') . '.FY_LAST_YEAR') }}</span>
+                <span class='page-header-title'>HIGH ACHIEVER AWARDS {{ config('theme.' . config('app.theme') . '.FY_LAST_YEAR') }}</span>
             </h1>
         </div>
         <div class="d-flex">
@@ -54,8 +54,8 @@
                 @endforeach
             </div>
             <div class="page-widget col-3">
-                <img src="{{ asset('images/awards/Elite_trophies_National.png') }}" class="w-100" alt="" />
-                <img src="{{ asset('images/awards/state_trophy.png') }}" class="w-100" alt="" />
+                <img src="{{ theme_image('awards/Elite_trophies_National.png') }}" class="w-100" alt="" />
+                <img src="{{ theme_image('awards/state_trophy.png') }}" class="w-100" alt="" />
             </div>
         </div>
         <div class="page-section-wrap dashboard-section"></div>

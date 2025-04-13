@@ -16,7 +16,7 @@ trait MonthlyImportationTrait {
      */
     public function getModelForImportation($modelKey, $record) {
         $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
-            ->where('year', config('view.theme'))
+            ->where('year', config('app.theme'))
             ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
         if(!$model){
             $model = Result::factory()->make();

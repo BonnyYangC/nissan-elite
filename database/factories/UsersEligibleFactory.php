@@ -14,7 +14,7 @@ class UsersEligibleFactory extends Factory
     public function definition()
     {
         return [
-            'year' => config('view.theme'),
+            'year' => config('app.theme'),
         ];
     }
 }

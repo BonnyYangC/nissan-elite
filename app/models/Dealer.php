@@ -16,7 +16,7 @@ class Dealer extends Model
     use HasFactory;
 
     public function regions() {
-        return $this->hasOne(DealerRegion::class, 'code', 'code')->where('year', config('view.theme'));
+        return $this->hasOne(DealerRegion::class, 'code', 'code')->where('year', config('app.theme'));
     }
 
     public function getDp(){

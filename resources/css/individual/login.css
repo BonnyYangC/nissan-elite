@@ -55,7 +55,6 @@
     font-family: "nissan_brandlight", Arial, serif;
     margin: 0;
     background: #101010;
-    background-image: url(../images/login/juke-background.jpg);
     background-position: top center;
 }
 
@@ -63,7 +62,6 @@
     font-family: "nissan_brandlight", Arial, serif;
     /*padding-bottom:100px;*/
     background: #101010;
-    background-image:url(../images/login/gtr-background.jpg);
     background-position:top center;
 
     height: 600px;
@@ -82,7 +80,6 @@
     margin:0;
     padding-top: 10%;
     background: #e31d3c;
-    background-image: url(../images/login/red-back.jpg);
     background-position: top center;
 }
 .fgp-wrap{

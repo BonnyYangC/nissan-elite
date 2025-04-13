@@ -17,13 +17,13 @@
         <div class="row justify-content-center">
             <div class="col-lg-2 col-md-2 col-xs-3">
                 <a href="{{ url('/') }}">
-                    <img class="img-responsive center-block nissan-logo" src="{{ asset('images/nissan/Nissan_logo.png') }}">
+                    <img class="img-responsive center-block nissan-logo" src="{{ theme_image('nissan/Nissan_logo.png') }}">
                 </a>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <img class="nissan-logo" alt="" src="{{ asset('images/nissan/Nissan_ELITE_i_ELITE-Black.png?a=1') }}">
+                <img class="nissan-logo" alt="" src="{{ theme_image('nissan/Nissan_ELITE_i_ELITE-Black.png') }}">
             </div>
         </div>
         <div class="row justify-content-center" style="padding-bottom: 15%">
@@ -102,10 +102,10 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>Go to
-                                    <a href="{{ config('theme.' . config('view.theme') . '.eventRegisterUrl') }}" target="_blank">
-                                        {{ config('theme.'.config('view.theme') . '.eventRegisterUrl') }}</a>
+                                    <a href="{{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}" target="_blank">
+                                        {{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}</a>
                                     and successfully complete the
-                                    {{config('view.theme')}}
+                                    {{config('app.theme')}}
                                     {{config('elite.PROGRAM_NAME')}}
                                     registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your {{config('elite.PROGRAM_NAME')}} registration.
                                 </p>
@@ -155,3 +155,17 @@
         </div>
     </div>
 @endsection
+
+<style>
+    #register {
+        background-image: url('{{ theme_image('login/juke-background.jpg') }}');
+    }
+
+    #eligible {
+        background-image: url('{{ theme_image('login/gtr-background.jpg') }}');
+    }
+
+    #forgotpassword {
+        background-image: url('{{ theme_image('login/red-back.jpg') }}');
+    }
+</style>

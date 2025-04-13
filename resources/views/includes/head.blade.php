@@ -36,4 +36,4 @@
 <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css?a=3') }}" />
 
 <link rel="stylesheet" href="{{ mix('css/individual.css') }}" />
-<link rel="stylesheet" href="{{ asset('themes/' . config('view.theme') . '/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('themes/' . config('app.theme') . '/css/style.css') }}">
