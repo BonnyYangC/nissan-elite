@@ -22,8 +22,7 @@ class UserPositions extends Base {
      * @return UserPositionsModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = UserPositionsModel::currentYear()
-            ->where('employee_code',trim($record[$modelKey['primary']]))
+        $model = UserPositionsModel::where('employee_code',trim($record[$modelKey['primary']]))
             ->where('position_code',trim($record['sp_']))
             ->first();
         if(!$model){

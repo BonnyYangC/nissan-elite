@@ -83,7 +83,6 @@ class Base extends BaseService {
      */
     public function getSharedMetrics() {
         return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)
-            ->where('year', config('app.theme'))
             ->orderBy('order')->get();
     }
 
@@ -93,7 +92,6 @@ class Base extends BaseService {
      */
     public function getAllMetricsByPosition(string $position) {
         return Metric::where('position', '=', $position)
-            ->where('year', config('app.theme'))
             ->orderBy('order')->get();
     }
 
@@ -103,7 +101,6 @@ class Base extends BaseService {
      */
     public function getMetricsByPosition(string $position): Collection {
         return Metric::where('position', '=', $position)
-            ->where('year', config('app.theme'))
             ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
             ->orderBy('order')
             ->get();
@@ -115,7 +112,6 @@ class Base extends BaseService {
      */
     public function getTrainingMetricByPosition(string $position): Metric {
         return Metric::where('position', '=', $position)
-            ->where('year', config('app.theme'))
             ->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
     }
 }

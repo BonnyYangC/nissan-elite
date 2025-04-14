@@ -47,7 +47,7 @@ class PreImportGuildEvents extends Command
         $successCount = 0;
 
         if(file_exists($filePath)){
-            \DB::table('guild_events')->where('year', '=', config('app.theme'))->delete();
+            \DB::table('guild_events')->delete();
 
             $csvReader = Reader::createFromPath($filePath,'r');
             $records = (new Statement())->process($csvReader);

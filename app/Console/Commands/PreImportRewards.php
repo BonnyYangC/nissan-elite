@@ -26,7 +26,7 @@ class PreImportRewards extends PreImportJson
      *
      */
     protected function importData() {
-        DB::table('rewards')->where('year', '=', config('app.theme'))->delete();
+        DB::table('rewards')->delete();
         $rewards = $this->data['rewards'];
         foreach ($rewards as $r) {
             Reward::factory()->create($r);

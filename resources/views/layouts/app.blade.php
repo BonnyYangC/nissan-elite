@@ -29,7 +29,7 @@
     </body>
     <style>
         .bg-site-image {
-            background-image: url('{{ theme_image('Nissan_Elite_bg.jpg') }}');
+            background-image: url('{{ theme_image('nissan/Nissan_Elite_bg.jpg') }}');
         }
     </style>
 </html>

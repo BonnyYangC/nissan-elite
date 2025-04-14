@@ -24,8 +24,7 @@ class UsersEligible extends Base {
      * @return UsersEligibleModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = UsersEligibleModel::currentYear()
-            ->where('employee_code',trim($record[$modelKey['primary']]))
+        $model = UsersEligibleModel::where('employee_code',trim($record[$modelKey['primary']]))
             ->first();
         if(!$model){
             $model = UsersEligibleModel::factory()->make();

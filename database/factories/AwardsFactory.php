@@ -14,7 +14,7 @@ class AwardsFactory extends Factory
     public function definition()
     {
         return [
-            'year' => config('app.theme'),
+            // 'year' => config('app.theme'),
         ];
     }
 }
