@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-center">
         <div class="elite-page col-11">
 
-            <img src="../../images/future_sales/2024/Eventbanner.png" style="object-fit: fill; width:100%" />
+            <img src="{{ theme_image('future_sales/Eventbanner.png') }}" style="object-fit: fill; width:100%" />
 
             <div class="w-75 mx-auto future-sales">
                 <h3>FUTURE SALES</h3>

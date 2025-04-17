@@ -1,0 +1,111 @@
+.in_bg_img {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    visibility: visible;
+}
+.login-white {
+    color: #ffffff;
+}
+.nissan-logo {
+    width: 75%;
+}
+
+.bt-login{
+    background-color: #bd0031;
+    color: #ffffff;
+    display: block;
+    width: 100%;
+    transition: background-color 300ms linear 0s;
+}
+
+.bt-login a{
+    color:#FFFFFF;
+}
+.form-signin .form-control{
+    position: relative;
+    height: 34px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus{
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-footer {
+    padding: 15px 40px;
+}
+/*////////////////////////////////////////////*/
+#register{
+    font-family: "nissan_brandlight", Arial, serif;
+    margin: 0;
+    background: #101010;
+    background-position: top center;
+}
+
+#eligible{
+    font-family: "nissan_brandlight", Arial, serif;
+    /*padding-bottom:100px;*/
+    background: #101010;
+    background-position:top center;
+
+    height: 600px;
+    padding-top: 10%;
+    margin: 0 0 200px;
+    z-index: 9999;
+}
+.eligible-section .card-title a, a:hover {
+    color: #333;
+}
+.eligible-section .card-title {
+    margin-bottom: 0;
+}
+#forgotpassword{
+    font-family: "nissan_brandlight", Arial, serif;
+    margin:0;
+    padding-top: 10%;
+    background: #e31d3c;
+    background-position: top center;
+}
+.fgp-wrap{
+    height: 600px;
+    width:50%;
+    text-align: center;
+    font-size:40px;
+    margin-bottom:100px;
+}
+.fgp-submit-btn{
+    background-color: #000000;
+    border: none;
+    width: 100%;
+    color: #999999;
+}
+.fgp-submit-btn:hover {
+    color: #409EFF;
+    border-color: #c6e2ff;
+    background-color: #ecf5ff;
+}
+
+.txt-white, .tw{
+    color: #ffffff !important;
+    text-decoration:none;
+}
+
+.login-faq  .accordion-button {
+    width: auto;
+}

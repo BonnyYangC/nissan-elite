@@ -44,7 +44,7 @@ class PreImportGuildMembers extends Command
         $successCount = 0;
 
         if(file_exists($filePath)){
-            \DB::table('guild_members')->where('year', '=', config('elite.YEAR'))->delete();
+            \DB::table('guild_members')->delete();
 
             $csvReader = Reader::createFromPath($filePath,'r');
             $records = (new Statement())->process($csvReader);

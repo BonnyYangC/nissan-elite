@@ -11,7 +11,7 @@ class GuildRepository {
      * @return
      */
     public function getEvents() {
-        return Events::currentYear()->get()->reduce(function($r, $m) {
+        return Events::get()->reduce(function($r, $m) {
             switch($m->type) {
                 case 1:
                     $r['PLATINUM'][] = $m;
@@ -35,7 +35,7 @@ class GuildRepository {
      * @return
      */
     public function getMembers() {
-        return Members::currentYear()->get()->reduce(function($r, $m) {
+        return Members::get()->reduce(function($r, $m) {
             switch($m->type) {
                 case 1:
                     $r['PLATINUM'][] = $m;

@@ -15,7 +15,7 @@ class CreateDealersTable extends Migration
     {
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('parent_id')->notnull();
+            // $table->unsignedBigInteger('parent_id')->notnull();
 
             $table->string('code', 50)->notnull()->unique();  //          =>'dcode',//'d_code',
             $table->string('name');  //          =>'dname',//'d_name',
@@ -26,15 +26,15 @@ class CreateDealersTable extends Migration
             $table->string('country', 50)->nullable();
             $table->string('phone', 50)->nullable();  //         =>'ph_tel',
             $table->string('fax', 50)->nullable();  //           =>'ph_fax',
-            $table->string('category', 50);  //              =>'dcat',//'d_cat',
-            $table->string('category_code', 50);  //         =>'dcat#',//'d_cat_#',
-            $table->string('region', 50);  //                =>'rname',//'r_name',
-            $table->string('region_code', 50);  //           =>'rcode',//'r_code',
+            // $table->string('category', 50);  //              =>'dcat',//'d_cat',
+            // $table->string('category_code', 50);  //         =>'dcat#',//'d_cat_#',
+            // $table->string('region', 50);  //                =>'rname',//'r_name',
+            // $table->string('region_code', 50);  //           =>'rcode',//'r_code',
 
             $table->tinyInteger('active');
             $table->timestamps();
 
-            $table->foreign('parent_id')->references('id')->on('companies');
+            // $table->foreign('parent_id')->references('id')->on('companies');
         });
     }
 

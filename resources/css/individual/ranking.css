@@ -1,0 +1,107 @@
+.squarebutton {
+    font-family: 'nissan_brandlight', Helvetica, Arial, sans-serif;
+    text-align: left;
+    padding: 100px 50px;
+    font-size: 35px;
+    color: #FFFFFF;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.button-sales, .button-fleet, .button-service, .button-parts, .button-admin{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.ranking .accordion-header {
+    border: none;
+}
+.ranking .accordion-item {
+    border:none;
+    background-color: white;
+}
+.ranking .accordion-body {
+    background-color: black;
+}
+.ranking .accordion-button {
+    padding: 0;
+}
+.ranking h4 {
+    color: white;
+}
+.ranking .accordion-body a {
+    color: #4169E1;
+    font-size: 12px;
+}
+
+.ranking-dialog h3,h2 {
+    color: #c40030;
+}
+.rankings-modal-title-wrap{
+    margin-top: -41px;
+    padding-bottom: 16px;
+    border-bottom: solid 1px #cccccc;
+}
+.rankings-table-title-wrap{
+    margin-top: 24px;
+}
+.rankings-table-title-wrap h3{
+    font-size: 28px !important;
+    text-transform: uppercase;
+}
+.ranking .el-table .cell {
+    white-space: nowrap;
+}
+.el-table__header thead tr{
+    background-color: #4c4c4c;
+    color: white;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+.el-table__header thead tr th{
+    background-color: #4c4c4c;
+    color: white;
+    line-height: 1.42857143;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: lighter;
+}
+.bold-text{
+    font-weight: bold;
+}
+.warning-row td.reg{
+    color: red;
+}
+
+.T-P td.sales-name{
+    color: #B47C37;
+}
+.T-A td.sales-name{
+    color: #BC2628;
+}
+.T-D td.sales-name{
+    color: #546E22;
+}
+.T-C td.sales-name{
+    color: #525357;
+}
+
+.fa-print {
+    float: right;
+    margin-right: 20px;
+    margin-top: -15px;
+}
+.modal-dialog {
+    width: 900px;
+}
+td a {
+    font-size: 12px;
+}
+
+#myPopup-Results h4 {
+    font-size: 20px !important;
+}
+
+#myPopup-Results h4::before {
+    content: 'YTD ';
+}

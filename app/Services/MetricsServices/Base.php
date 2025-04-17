@@ -2,7 +2,9 @@
 
 namespace App\Services\MetricsServices;
 
+use App\Helper\Color;
 use App\Helper\Defination;
+use App\Helper\Utility;
 use App\Models\Metric;
 use App\Services\BaseService;
 use Illuminate\Support\Collection;
@@ -20,8 +22,60 @@ class Base extends BaseService {
      */
     protected function getDateString($month) {
         $monthNum = $this->monthArray[$month];
-        return intval($monthNum) <= 3 ? (intval(config('elite.YEAR'))+1).'-'.$monthNum.'-01' : config('elite.YEAR').'-'.$monthNum.'-01';
-        //  $test = intval($monthNum) <= 3 ? (intval(config('elite.YEAR'))+1).'-'.$monthNum.'-01' : config('elite.YEAR').'-'.$monthNum.'-01';
+        return intval($monthNum) <= 3 ? (intval(config('app.theme'))+1).'-'.$monthNum.'-01' : config('app.theme').'-'.$monthNum.'-01';
+        //  $test = intval($monthNum) <= 3 ? (intval(config('app.theme'))+1).'-'.$monthNum.'-01' : config('app.theme').'-'.$monthNum.'-01';
+    }
+
+    /**
+     * @param string $label
+     * @param string $index
+     * @param array $data
+     * @return array
+     */
+    protected function _buildDashboardMetricsChartData(string $type, string $index, string $label, array $data) {
+        return [
+            'label'=>$label,
+            'backgroundColor' => COLOR::getColor(intVal($index), $type),
+            'data'=>$data
+        ];
+    }
+
+    /**
+     * @param $metrics
+     * @param $metricPoints
+     * @return int|mixed
+     */
+    protected function buildMetricSummary($metrics, $metricPoints) {
+        $summaryPoints = 0;
+        if(!$metricPoints) return $summaryPoints;
+        foreach($metrics as $id => $cm) {
+            // if this metric has points
+            $hasPoints = data_get($cm, 'has_points', true);
+            if (!$hasPoints) continue;
+            // if points is empty, use default points from metric defination
+            $summaryPoints += $metricPoints[$id] !== '' ? $metricPoints[$id] : data_get($cm, 'point_default');
+        }
+        return $summaryPoints;
+    }
+
+
+    /**
+     * @param $trainingData
+     * @return array
+     */
+    protected function buildSharedMetricsData($trainingData) {
+        $result = [];
+        $shared = $this->getSharedMetrics();
+        foreach ($shared as $id => $m) {
+            $p = [];
+            foreach(Utility::MONTHS_SHORT as $month) {
+                $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
+                $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
+                $p[] = $value && isset($value[$m['identifier']]) ? $value[$m['identifier']] : 0;
+            }
+            $result[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_SHARED, $m['order'], $m['label'], $p);
+        }
+        return $result;
     }
 
     /**
@@ -29,7 +83,6 @@ class Base extends BaseService {
      */
     public function getSharedMetrics() {
         return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)
-            ->where('year', config('elite.YEAR'))
             ->orderBy('order')->get();
     }
 
@@ -39,7 +92,6 @@ class Base extends BaseService {
      */
     public function getAllMetricsByPosition(string $position) {
         return Metric::where('position', '=', $position)
-            ->where('year', config('elite.YEAR'))
             ->orderBy('order')->get();
     }
 
@@ -49,7 +101,6 @@ class Base extends BaseService {
      */
     public function getMetricsByPosition(string $position): Collection {
         return Metric::where('position', '=', $position)
-            ->where('year', config('elite.YEAR'))
             ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
             ->orderBy('order')
             ->get();
@@ -61,7 +112,6 @@ class Base extends BaseService {
      */
     public function getTrainingMetricByPosition(string $position): Metric {
         return Metric::where('position', '=', $position)
-            ->where('year', config('elite.YEAR'))
             ->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
     }
 }

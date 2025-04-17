@@ -11,7 +11,7 @@ class PreImportFaqs extends PreImportJson
      *
      * @var string
      */
-    protected $signature = 'pre-import:faqs';
+    protected $signature = 'pre-import:faqs {theme}';
 
     /**
      * The console command description.
@@ -25,7 +25,7 @@ class PreImportFaqs extends PreImportJson
      *
      */
     protected function importData() {
-        DB::table('faqs')->where('year', '=', config('elite.YEAR'))->delete();
+        DB::table('faqs')->delete();
         $faqs = $this->data['faqs'];
         foreach ($faqs as $q) {
             Faq::factory()->create($q);

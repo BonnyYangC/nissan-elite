@@ -5,7 +5,7 @@
         <div class="">
             <div class="d-flex justify-content-center">
                 <div class="program-section">
-                    <img class="" alt="" src="{{ asset('images/program/Nissan_IELITE_Program_header.png') }}">
+                    <img class="" alt="" src="{{ theme_image('program/Nissan_IELITE_Program_header.png') }}">
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -25,7 +25,7 @@
             </div>
             <div class="d-flex justify-content-center">
                 <div class="program-section">
-                    <img class="" alt="" src="{{ asset('images/program/Nissan_IELITE_Program.png') }}">
+                    <img class="" alt="" src="{{ theme_image('program/Nissan_IELITE_Program.png') }}">
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -34,7 +34,7 @@
                     &nbsp;
                     <div class="program_ele_border">
                         <div class="d-flex justify-content-center">
-                            <img class="img-responsive center-block" src="{{ asset('images/nissan/Nissan_ELITE_DE-White.png') }}" width="75%">
+                            <img class="img-responsive center-block" src="{{ theme_image('nissan/Nissan_ELITE_DE-White.png') }}" width="75%">
                         </div>
                         <p class="text-center"><br>
                             <strong>Whole of Dealership</strong>
@@ -45,7 +45,7 @@
                     <div class="program_ele_border">
 
                         <div style="float:left; width:60%">
-                            <img src="{{ asset('images/nissan/Nissan_ELITE_i_ELITE-White.png') }}" class="img-responsive center-block" style="width: 100%">
+                            <img src="{{ theme_image('nissan/Nissan_ELITE_i_ELITE-White.png') }}" class="img-responsive center-block" style="width: 100%">
                             <p class="text-center"><br>
                                 Dealer Principal<br>
                                 Sales Manager<br>
@@ -84,7 +84,7 @@
                             </ul>
                         </div>
                         <div style="float:right; margin-top:60px;">
-                            <img src="{{ asset('images/program/nissan_elite_model.png') }}" class="pull-right img-responsive" width="120">
+                            <img src="{{ theme_image('program/nissan_elite_model.png') }}" class="pull-right img-responsive" width="120">
                         </div>
                         <div style="height:1px; margin-top:­1px;clear: both;overflow:hidden;"></div>
                     </div>
@@ -95,7 +95,7 @@
                     <h3 class="text-center text-capitalize">Recognition in front of your peers:</h3>
 
                     <p class="text-center" style="font-size: 16px;">Whole Team, Dealer Principals and High Achieving Individuals</p>
-                    <img src="{{ asset('images/nissan/Nissan_ELITE_Horz-White.png') }}" class="img-responsive center-block" width="80%">
+                    <img src="{{ theme_image('nissan/Nissan_ELITE_Horz-White.png') }}" class="img-responsive center-block" width="80%">
                     <p class="text-center">All {{ config('elite.PROGRAM_I_ELITE') }} status recognition awards including the {{ config('elite.PROGRAM_DEALERSHIP') }} and Nissan Global Awards will be presented at your state Product Challenge event.</p>
 
                 </div>

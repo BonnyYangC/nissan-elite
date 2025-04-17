@@ -5,22 +5,13 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PreImportJson extends Command
 {   
     protected $signature = 'pre-import-json-stub';
     protected $data;
     protected $fileName;
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.
@@ -50,7 +41,8 @@ class PreImportJson extends Command
      * @param $fileName
      */
     private function loadData($fileName) {
-        $data = json_decode(file_get_contents($fileName), true);
+        $data = json_decode(Storage::disk('elite')->get($this->argument('theme').'/'.$this->fileName), true);
+
         $this->data = is_array($this->data) ? array_merge($this->data, $data) : $data;
     }
 

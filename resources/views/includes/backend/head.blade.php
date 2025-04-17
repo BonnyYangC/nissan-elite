@@ -33,7 +33,10 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="{{ url('/css/admin/header.css?a=3') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url('/css/admin/dashboard.css?a=3') }}" />
+<!-- Load common CSS -->
+<link rel="stylesheet" href="{{ mix('css/admin.css') }}" />
+
+<!-- Load theme-specific CSS -->
+{{-- <link href="{{ asset('themes/' . config('app.theme') . '/css/admin/header.css') }}" rel="stylesheet"> --}}
 
 <script src="{{ asset('js/admin/main.js') }}"></script>

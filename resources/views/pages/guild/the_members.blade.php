@@ -5,7 +5,7 @@
         @include('pages.guild.buttons')
         </div>
         <div class="guild-banner">
-            <img class="img-responsive center-block" alt="" src="{{ asset('images/md_guild/The_Guild.png') }}">
+            <img class="img-responsive center-block" alt="" src="{{ theme_image('md_guild/The_Guild.png') }}">
         </div>
     </div>
 @endsection

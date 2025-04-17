@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="page-widget col-3">
-                <h1 style="font-size: 100px;">{{ env('FY_WITH_YEAR') }}</h1>
+                <h1 style="font-size: 100px;">{{ config('theme.'.config('app.theme') . '.FY_WITH_YEAR') }}</h1>
                 <h3>RANKINGS &amp; {{ config('elite.PROGRAM_AWARD_UNIT') }}</h3>
                 @include('pages.widgets.side_panel.loyalty_points', [$ytd, $historical])
                 @include('pages.widgets.side_panel.year_to_date', [$ytd])

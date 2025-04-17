@@ -28,7 +28,6 @@ class MetricFactory extends Factory
             //'metrics' => $this->faker->json(100),
             //'guides' => $this->faker->json(100),
             //'ref' => $this->faker->text(50),
-            'year' => config('elite.YEAR'),
             //'updated_at' => Carbon::now(),
             //'created_at' => Carbon::now()
         ];

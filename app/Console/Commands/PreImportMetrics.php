@@ -13,7 +13,7 @@ class PreImportMetrics extends PreImportJson
      *
      * @var string
      */
-    protected $signature = 'pre-import:metrics';
+    protected $signature = 'pre-import:metrics {theme}';
 
     /**
      * The console command description.
@@ -23,11 +23,8 @@ class PreImportMetrics extends PreImportJson
     protected $description = 'Pre import metrics defination from json file';
     protected $fileName = 'metrics_defination.json';
 
-    /**
-     *
-     */
     protected function importData() {
-        DB::table('metrics')->where('year', '=', config('elite.YEAR'))->delete();
+        DB::table('metrics')->delete();
         $metrics = $this->data['metrics'];
         $this->seedSharedMetrics(data_get($metrics, Defination::METRICS_TYPE_SHARED, []));
         $this->seedCustomMetrics(data_get($metrics, Defination::METRICS_TYPE_CUSTOM, []));

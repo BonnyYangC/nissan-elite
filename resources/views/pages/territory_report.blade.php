@@ -6,7 +6,7 @@
         <div class="d-flex elite-page territory_report col-11">
             <div class="col-3 px-3">
                 <h2 class="my-5" >
-                    <span class='page-header-title'>Territory Report {{ config('elite.YEAR') }}</span>
+                    <span class='page-header-title'>Territory Report {{ config('app.theme') }}</span>
                 </h2>
             </div>
             <div class="col-9 px-1">

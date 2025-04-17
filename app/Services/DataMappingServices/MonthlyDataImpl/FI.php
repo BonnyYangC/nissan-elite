@@ -10,6 +10,9 @@ class FI extends MonthlyDataMapping {
         'nfsa' => 'points_nfsa',
         'nfsa_result' => 'sales_nfsa_',
 
+        'rff' => 'points_',
+        'rff_result' => 'sales_',
+
         'lrb' => 'points_nfsa_LRB',
         'lrb_result' => 'sales_nfsa_LRB_',
 
@@ -21,8 +24,6 @@ class FI extends MonthlyDataMapping {
         'penetration' => 'points_nfsa_PEN',
         'penetration_result' => 'pcent_nfsa_PEN',
 
-        'pmp' => 'points_PMP',
-        'pmp_result' => 'sales_PMP',
 
         'nfv' => 'points_NFV',
         'nfv_result' => 'sales_NFV',
