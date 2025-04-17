@@ -17,7 +17,6 @@ class CreateUserPositionsTable extends Migration
             $table->id();
             $table->string('employee_code', 50);
             $table->string('position_code', 50)->nullable();
-            $table->year('year')->default(2023);
             $table->timestamps();
 
             $table->foreign('employee_code')->references('employee_code')->on('users');

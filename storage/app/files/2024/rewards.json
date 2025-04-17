@@ -1,0 +1,137 @@
+{
+  "rewards" : [
+    {
+      "position": "M",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "26000",
+      "bronze_reward": "500",
+      "silver": "36000",
+      "silver_reward": "1200",
+      "gold": "45000",
+      "gold_reward": "2000",
+      "max": "50000"
+    },{
+      "position": "R",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "23000",
+      "bronze_reward": "500",
+      "silver": "32000",
+      "silver_reward": "1200",
+      "gold": "40000",
+      "gold_reward": "2000",
+      "max": "50000"
+    },{
+      "position": "F",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "20000",
+      "bronze_reward": "500",
+      "silver": "28000",
+      "silver_reward": "1200",
+      "gold": "35000",
+      "gold_reward": "2000",
+      "max": "40000"
+    },{
+      "position": "SC",
+      "commendation": "8000",
+      "commendation_reward": "GIFT",
+      "bronze": "12000",
+      "bronze_reward": "500",
+      "silver": "20000",
+      "silver_reward": "750",
+      "gold": "27000",
+      "gold_reward": "1000",
+      "max": "45000"
+    },{
+      "position": "I",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "20000",
+      "bronze_reward": "500",
+      "silver": "27000",
+      "silver_reward": "750",
+      "gold": "36000",
+      "gold_reward": "1000",
+      "max": "50000"
+    },{
+      "position": "SM",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "22000",
+      "bronze_reward": "500",
+      "silver": "32000",
+      "silver_reward": "850",
+      "gold": "40000",
+      "gold_reward": "1500",
+      "max": "50000"
+    },{
+      "position": "SA",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "22000",
+      "bronze_reward": "500",
+      "silver": "32000",
+      "silver_reward": "850",
+      "gold": "40000",
+      "gold_reward": "1500",
+      "max": "50000"
+    },{
+      "position": "PM",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "22000",
+      "bronze_reward": "500",
+      "silver": "32000",
+      "silver_reward": "850",
+      "gold": "40000",
+      "gold_reward": "1500",
+      "max": "50000"
+    },{
+      "position": "PS",
+      "commendation": "12000",
+      "commendation_reward": "GIFT",
+      "bronze": "22000",
+      "bronze_reward": "500",
+      "silver": "32000",
+      "silver_reward": "850",
+      "gold": "40000",
+      "gold_reward": "1500",
+      "max": "50000"
+    },{
+      "position": "TM",
+      "commendation": "1000",
+      "commendation_reward": "GIFT",
+      "bronze": "2000",
+      "bronze_reward": "500",
+      "silver": "3000",
+      "silver_reward": "850",
+      "gold": "4000",
+      "gold_reward": "1500",
+      "max": "5000"
+    },{
+      "position": "TA",
+      "commendation": "1000",
+      "commendation_reward": "GIFT",
+      "bronze": "2000",
+      "bronze_reward": "500",
+      "silver": "3000",
+      "silver_reward": "850",
+      "gold": "4000",
+      "gold_reward": "1500",
+      "max": "5000"
+    },{
+      "position": "T",
+      "commendation": "1000",
+      "commendation_reward": "GIFT",
+      "bronze": "2000",
+      "bronze_reward": "500",
+      "silver": "3000",
+      "silver_reward": "850",
+      "gold": "4000",
+      "gold_reward": "1500",
+      "max": "5000"
+    }
+  ]
+}

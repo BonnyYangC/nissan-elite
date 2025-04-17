@@ -18,7 +18,7 @@ class Position extends Model {
 
     use HasFactory;
 
-    protected $connection = 'mysql_nissan'; // Use the 'mysql_nissan' connection
+    // protected $connection = 'mysql_nissan'; // Use the 'mysql_nissan' connection
     
     /**
      * The attributes that should be cast.

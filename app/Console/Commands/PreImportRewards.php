@@ -12,7 +12,7 @@ class PreImportRewards extends PreImportJson
      *
      * @var string
      */
-    protected $signature = 'pre-import:rewards';
+    protected $signature = 'pre-import:rewards {theme}';
 
     /**
      * The console command description.

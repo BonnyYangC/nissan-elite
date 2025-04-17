@@ -10,7 +10,7 @@ class Region extends Model
 {
     use HasFactory;
 
-    protected $connection = 'mysql_nissan'; // Use the 'mysql_nissan' connection
+    // protected $connection = 'mysql_nissan'; // Use the 'mysql_nissan' connection
     
     const REGION_ALL = 'All';
     const REGION_EASTERN = 'Eastern';

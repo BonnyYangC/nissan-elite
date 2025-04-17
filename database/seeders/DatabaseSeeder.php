@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->loadData(__DIR__.'/regions.json');
-        $this->loadData(__DIR__.'/companies_defination.json');
+        // $this->loadData(__DIR__.'/companies_defination.json');
         $this->loadData(__DIR__.'/positions.json');
         $this->loadData(__DIR__.'/admins.json');
         $this->loadData(__DIR__.'/acls.json');
@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
     protected function seed() {
         $this->seedRegions();
         $this->seedPositions();
-        $this->seedCompanies();
+        // $this->seedCompanies();
         $this->seedAdmins();
         $this->seedAcls();
     }

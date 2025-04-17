@@ -13,7 +13,7 @@ class PreImportMetrics extends PreImportJson
      *
      * @var string
      */
-    protected $signature = 'pre-import:metrics';
+    protected $signature = 'pre-import:metrics {theme}';
 
     /**
      * The console command description.
@@ -23,9 +23,6 @@ class PreImportMetrics extends PreImportJson
     protected $description = 'Pre import metrics defination from json file';
     protected $fileName = 'metrics_defination.json';
 
-    /**
-     *
-     */
     protected function importData() {
         DB::table('metrics')->delete();
         $metrics = $this->data['metrics'];

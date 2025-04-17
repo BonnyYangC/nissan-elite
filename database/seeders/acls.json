@@ -41,7 +41,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "M": [
@@ -88,7 +88,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "R": [
@@ -132,7 +132,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "SC": [
@@ -176,7 +176,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "I": [
@@ -220,7 +220,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "PM": [
@@ -267,7 +267,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "PS": [
@@ -311,7 +311,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "SM": [
@@ -358,7 +358,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "SA": [
@@ -402,7 +402,7 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
             }
         ],
         "REGION_STAFF": [
@@ -443,7 +443,95 @@
                 "page": "account"
             },
             {
-                "page": "faq"
+                "page": "help"
+            }
+        ],
+        "TA": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "help"
+            }
+        ],
+        "TM": [
+            {
+                "page": "dashboard"
+            },
+            {
+                "page": "metrics"
+            },
+            {
+                "page": "ranking"
+            },
+            {
+                "page": "incentives"
+            },
+            {
+                "page": "member_guide"
+            },
+            {
+                "page": "future_sales"
+            },
+            {
+                "page": "program"
+            },
+            {
+                "page": "calendar"
+            },
+            {
+                "page": "product_challenge"
+            },
+            {
+                "page": "awards"
+            },
+            {
+                "page": "loyalty"
+            },
+            {
+                "page": "guild"
+            },
+            {
+                "page": "account"
+            },
+            {
+                "page": "help"
             }
         ]
     }

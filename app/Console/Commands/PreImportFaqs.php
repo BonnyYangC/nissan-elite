@@ -11,7 +11,7 @@ class PreImportFaqs extends PreImportJson
      *
      * @var string
      */
-    protected $signature = 'pre-import:faqs';
+    protected $signature = 'pre-import:faqs {theme}';
 
     /**
      * The console command description.
