@@ -74,6 +74,7 @@ class RankingsController extends Controller {
             $this->service->get_ranking($positions, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){
+            // return response()->json([
             echo JsonBuilder::Success([
                 'blocks'=>array_values($result),
                 'modalTitle'=>$modalTitle,

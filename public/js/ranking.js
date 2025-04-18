@@ -76,7 +76,7 @@
                 this.lastSelectedType = type;
                 axios.get(
                     '/get_ranking?role='+role+'&action='+action+'&type='+type
-                ).then(function(res){
+                ).then(function (res) {
                     if(res.data.error_no === 100){
                         that.blocks = res.data.data.blocks;
                         //console.log('block:', that.blocks);

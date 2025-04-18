@@ -22,20 +22,7 @@ class ThemeMiddleware
         // Set the theme in the config 
         config(['app.theme' => $theme]);
 
-         var_dump($domain, $theme);
-        // switch ($domain) {
-        //     case 'domain1.com':
-        //         config(['view.path' => resource_path('views/themes/domain1')]);
-        //         break;
-
-        //     case 'domain2.com':
-        //         config(['view.path' => resource_path('views/themes/domain2')]);
-        //         break;
-
-        //     default:
-        //         config(['view.path' => resource_path('views/themes/default')]);
-        //         break;
-        // }
+        //  var_dump($domain, $theme);
         return $next($request);
     }
 }
