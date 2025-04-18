@@ -20,7 +20,7 @@ $(document).ready(function () {
                 ).then(function(res){
                     console.log('send email error:', res);
                     debugger;
-                    if(res.data.error_no === 100){
+                    if(res.data.success){
                         that.$message(
                             {
                                 message: 'Your enquiry has been sent to our support email address',

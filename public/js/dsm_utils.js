@@ -116,7 +116,7 @@ if(dsmEl){
                 $.get(
                     '/region/load_report?region=' + this.regionName.trim(),
                     function(res){
-                        if(res.error_no === 100){
+                        if(res.success){
                             that.tableData = res.data;
                         }
                         that.isLoadingRemoteData = false;

@@ -77,7 +77,7 @@
                 axios.get(
                     '/get_ranking?role='+role+'&action='+action+'&type='+type
                 ).then(function (res) {
-                    if(res.data.error_no === 100){
+                    if(res.data.success){
                         that.blocks = res.data.data.blocks;
                         //console.log('block:', that.blocks);
                         that.modalTitle = res.data.data.modalTitle;

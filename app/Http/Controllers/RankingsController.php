@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\{Defination, JsonBuilder, Role};
+use App\Helper\{Defination, Role};
 use App\Models\{Position, Ranking};
 use App\Services\RankingService;
 use Illuminate\Http\Request;
@@ -74,14 +74,13 @@ class RankingsController extends Controller {
             $this->service->get_ranking($positions, $awardType, $thisPeriod->format('Y-m-d'));
 
         if($result && count($result) > 0){
-            // return response()->json([
-            echo JsonBuilder::Success([
+            return $this->success([
                 'blocks'=>array_values($result),
                 'modalTitle'=>$modalTitle,
                 'tableTitle' => $tableTitle
             ]);
         }else{
-            echo JsonBuilder::Error();
+            return $this->error();
         }
     }
 }
