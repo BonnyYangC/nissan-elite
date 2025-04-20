@@ -16,16 +16,9 @@
                             <img src="{{ asset('loyalty_status.png') }}" width="100%" />
                         </div>
                         <div class="historical-data">
-                            <h3>FY24 YTD : {{ number_format($ytd, 0) }} </h3>
-                            {{-- <h3>FY25 YTD : {{ number_format($ytd, 0) }} </h3>
-                            <h3>FY24 YTD : {{ number_format(isset($historical['all']['2024-01-01']) ? $historical['all']['2024-01-01'] : 0, 0) }} </h3> --}}
-                            <h3>FY23 YTD : {{ number_format(isset($historical['all']['2023-01-01']) ? $historical['all']['2023-01-01'] : 0, 0) }} </h3>
-                            <h3>FY22 YTD : {{ number_format(isset($historical['all']['2022-01-01']) ? $historical['all']['2022-01-01'] : 0, 0) }} </h3>
-                            <h3>FY21 YTD : {{ number_format(isset($historical['all']['2021-01-01']) ? $historical['all']['2021-01-01'] : 0, 0) }} </h3>
-                            <h3>FY20 YTD : {{ number_format(isset($historical['all']['2020-01-01']) ? $historical['all']['2020-01-01'] : 0, 0) }} </h3>
-                            <h3>FY19 YTD : {{ number_format(isset($historical['all']['2019-01-01']) ? $historical['all']['2019-01-01'] : 0, 0) }} </h3>
-
-                            <h3>PRIOR HISTORY - Loyalty to the brand: {{ number_format($historical['loyalty_to_brand'], 0) }} </h3>
+                            @foreach ($historical['all'] as $key => $value)
+                            <h3>{{ $key }} : {{ $value }} </h3>
+                            @endforeach
                         </div>
                     </div>
                 </div>

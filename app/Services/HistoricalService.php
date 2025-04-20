@@ -20,10 +20,21 @@ class HistoricalService extends BaseService {
                 'loyalty_to_brand' => 0
             ];
         }
+        $currentYear = date('y', strtotime(config('app.theme')));
+        $loyaltyToBrand = History::getLoyaltyToTheBrandData($currentUser->employee_code);
+        $all = History::getAllHistoricalData($currentUser->employee_code)->pluck('amount', 'period')
+            ->reduce(function ($carry, $value, $key) use ($loyaltyToBrand, $currentYear) {
+                $year = date('y', strtotime($key));
+                if ($year <= '18') {
+                    return data_set($carry, 'PRIOR HISTORY - Loyalty to the brand', number_format($loyaltyToBrand, 0));
+                } else if($year < $currentYear) {
+                    return data_set($carry, 'FY'.$year.' YTD', number_format($value, 0));
+                }
+        }, []);
+
         return [
-            'all' => History::getAllHistoricalData($currentUser->employee_code)->pluck('amount', 'period')->all(),
-            'total' => History::getTotalHistoricalData($currentUser->employee_code),
-            'loyalty_to_brand' => History::getLoyaltyToTheBrandData($currentUser->employee_code)
+            'all' => $all,
+            'total' => History::getTotalHistoricalData($currentUser->employee_code)
         ];
     }
 }

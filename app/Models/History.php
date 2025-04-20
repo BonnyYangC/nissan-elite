@@ -61,6 +61,7 @@ class History extends Model {
      */
     public static function getAllHistoricalData(string $employeeCode) {
         return History::select('period', 'amount')
-        ->where('member_id', $employeeCode)->get();
+        ->where('member_id', $employeeCode)
+        ->orderBy('period', 'DESC')->get(); //keep orderby
     }
 }
