@@ -15,10 +15,10 @@ class Technician extends MonthlyDataMapping {
         '5_star' => 'points_ce_dlr_5Star_AS_TECH', //'points_ce_SOS3',
         '5_star_result' => 'score_ce_dlr_5Star_AS_TECH', //'score_ce_SOS3',
 
-        'train_partTech' => 'Points_train_partTech',
-        'train_partTech_result' => 'training_Q_partTech',
-        'train_QuizTech' => 'Points_train_QuizTech',
-        'train_QuizTech_result' => 'Pcent_train_QuizTech',
+        'train_partTech' => 'points_train_PartTech',
+        'train_partTech_result' => 'training_Q_PartTech',
+        'train_QuizTech' => 'points_train_QuizTech',
+        'train_QuizTech_result' => 'pcent_train_QuizTech',
 
     ];
 }

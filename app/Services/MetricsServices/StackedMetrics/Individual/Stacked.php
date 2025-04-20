@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\MetricsServices\StackedMetrics\Default;
+namespace App\Services\MetricsServices\StackedMetrics\Individual;
 
 use App\Helper\Defination;
 use App\Helper\Utility;

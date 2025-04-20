@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\{Defination, JsonBuilder, Role};
+use App\Helper\{Defination, Role};
 use App\Mail\{PasswordEnquiry, ResetPassword};
 use App\Models\{Dealer, User};
 use App\Services\UserService;
@@ -51,16 +51,16 @@ class UsersController extends Controller {
                 try {
                     Mail::to($user->email)->send(new ResetPassword($user->firstname));
                     Mail::to(config('elite.SUPPORT_EMAIL_ADDRESS'))->send(new PasswordEnquiry($user->email, $user->firstname));
-                    echo JsonBuilder::Success();
+                    return $this->success();
                 } catch (\Exception $exception) {
                     $emailSent = false;
-                    echo JsonBuilder::Error($exception);
+                    return $this->error($exception);
                 }
             }else{
-                echo JsonBuilder::Error('email not found');
+                return $this->error('email not found');
             }
         }else{
-            echo JsonBuilder::Error('email not valid');
+            return $this->error('email not valid');
         }
     }
 
@@ -70,9 +70,9 @@ class UsersController extends Controller {
     public function user_search(Request $request) {
         $usersData = $this->service->searchUser(trim($request->query('q')));
         if($usersData && $usersData->count() > 0){
-            echo JsonBuilder::Success($usersData);
+            return $this->success($usersData);
         }else{
-            echo JsonBuilder::Error();
+            return $this->error();
         }
     }
 

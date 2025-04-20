@@ -17,7 +17,7 @@ class Stacked {
                 $isD1Positioned ? 'd1' : 'f1'
             );
         }
-        return new MS\StackedMetrics\Default\Stacked($serviceResolver);
+        return new MS\StackedMetrics\Individual\Stacked($serviceResolver);
         
     }
 

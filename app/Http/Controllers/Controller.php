@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Acl, User};
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, ApiResponse;
 
     public $dataForView = [
         'menuName'=>null,

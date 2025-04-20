@@ -62,7 +62,7 @@ Zepto(function($){
                     axios.get(
                         '/admin/users/search?q=' + queryString
                     ).then(function(res){
-                        if(res.status === 200 && res.data.error_no === 100){
+                        if(res.status === 200 && res.data.success){
                             // 表示找到了结果
                             that.users = res.data.data;
                             cb(res.data.data)
