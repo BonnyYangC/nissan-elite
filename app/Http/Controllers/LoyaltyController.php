@@ -32,8 +32,12 @@ class LoyaltyController extends Controller {
 
         //year to date
         $this->dataForView['ytd'] = $ytd;
-
-        //historical points
+//new UserResource($user);
+        //historical points   
+        $year = date('y', strtotime(config('app.theme').'-01-01'));
+        $historical['all'] = array_merge([
+            'FY'.$year.' YTD' => number_format($ytd, 0)
+        ], $historical['all']);
         $this->dataForView['historical'] = $historical;
         return $this->render('pages.loyalty');
     }
