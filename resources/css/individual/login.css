@@ -11,10 +11,12 @@
 .login-white {
     color: #ffffff;
 }
-.nissan-logo {
+.login-content .nissan-logo {
     width: 75%;
 }
-
+.nissan-elite-brand {
+    width: 75%;
+}
 .bt-login{
     background-color: #bd0031;
     color: #ffffff;

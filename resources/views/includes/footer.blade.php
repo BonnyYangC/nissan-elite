@@ -20,7 +20,7 @@
             </nav>
         </div>
         <div class="col-lg-3 mt-2">
-            <img class="img-fluid" src="{{ theme_image('nissan/Nissan_ELITE_i_ELITE-Black.png') }}">
+            <img class="img-fluid" src="{{ theme_image('nissan/Nissan_ELITE_i_ELITE.png') }}">
         </div>
     </div>
 </div>

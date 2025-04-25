@@ -61,7 +61,7 @@
             </div>
             <div class="col-2">
                 <a href="{{ route('future_sales') }}">
-                    <img class="tiles-img" src="{{ theme_image('tiles/future_sales_incentive.png') }}" style="margin-bottom:30px;" width="332">
+                    <img class="tiles-img" src="{{ theme_image('tiles/future_sales.png') }}" style="margin-bottom:30px;" width="332">
                 </a>
             </div>
             <div class="col-2">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-2">
                 <a target="_blank" href="https://www.nissan.com.au/about-nissan/news-and-events.html">
-                    <img class="tiles-img" src="{{ theme_image('tiles/whatsnews_nissannews.png') }}" style="margin-bottom:30px;" width="332">
+                    <img class="tiles-img" src="{{ theme_image('tiles/whatsnew.png') }}" style="margin-bottom:30px;" width="332">
                 </a>
             </div>
         </div>
