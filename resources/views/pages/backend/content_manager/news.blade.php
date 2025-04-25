@@ -35,10 +35,10 @@
                 <tr>
                     <td>{{ $n->title }}</td>
                     <td>
-                        <img width="120" class="thumbnail" src="{{ asset('/images/news/images/'.$n->image) }}" alt="">
+                        <img width="120" class="thumbnail" src="{{ asset('/elite/news/images/'.$n->image) }}" alt="">
                     </td>
                     <td>
-                        <a href="{{ asset('/images/news/pdfs/'.$n->pdf) }}" target="_blank">View PDF</a>
+                        <a href="{{ asset('/elite/news/pdfs/'.$n->pdf) }}" target="_blank">View PDF</a>
                     </td>
                     <td>
                         <a class="button is-small is-link" href="{{ route('admin.news.info', ['news' => $n->id]) }}">

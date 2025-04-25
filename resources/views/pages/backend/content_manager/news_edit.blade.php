@@ -63,7 +63,7 @@
                                     </div>
                                     <p>
                                         @if($news->image)
-                                        <img src="{{ asset('/images/news/images/'.$news->image) }}" alt="" width="200" class="thumbnail">
+                                        <img src="{{ asset('/elite/news/images/'.$news->image) }}" alt="" width="200" class="thumbnail">
                                         @endif
                                     </p>
                                 </div>
@@ -96,7 +96,7 @@
                                     </div>
                                     <p>
                                         @if($news->pdf)
-                                        <a class="button is-link" href="{{ asset('/images/news/pdfs/'.$news->pdf) }}" target="_blank">
+                                        <a class="button is-link" href="{{ asset('/elite/news/pdfs/'.$news->pdf) }}" target="_blank">
                                             View PDF
                                         </a>
                                         @endif

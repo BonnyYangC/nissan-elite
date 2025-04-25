@@ -48,6 +48,12 @@ return [
             'url' => env('APP_URL').'/elite',
         ],
 
+        'themes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/themes'),
+            'url' => env('APP_URL').'/themes',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -74,6 +80,7 @@ return [
 
     'links' => [
         public_path('elite') => storage_path('app/files'),
+        public_path('themes') => storage_path('app/themes'),
     ],
 
 ];
