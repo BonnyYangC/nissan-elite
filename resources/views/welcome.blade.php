@@ -2,19 +2,12 @@
 
 @section('content')
 
-<div align="center">
-    <div class="row justify-content-center">
-        <div class="col-lg-2 col-md-2 col-xs-3">
-            <a href="{{ url('/') }}">
-                <img class="img-responsive center-block nissan-logo" style=" margin-bottom: 30%" src="{{ theme_image('nissan/Nissan_logo.png') }}">
-            </a>
-        </div>
-    </div>
-
+<div align="center" class="welcome-content">
+    {{-- @include(theme_view('welcome_header')) --}}
+    @include('pages.widgets.logo')
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <!--<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 program_logo">-->
-            <img class="img-responsive center-block nissan-logo" alt="" src="{{ theme_image('nissan/Nissan_ELITE_Main-Black.png') }}">
+            <img class="img-responsive center-block nissan-elite-brand" alt="" src="{{ theme_image('nissan/Nissan_ELITE_Main.png') }}">
         </div>
     </div>
     <div class="row justify-content-center mt-5">

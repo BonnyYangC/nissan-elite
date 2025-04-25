@@ -3,12 +3,12 @@
         margin-left: 25%;
     }
 }
-.nissan-logo {
+.welcome-content .nissan-logo {
      width: 75%;
+     margin-bottom: 30%
  }
-
-.program_logo {
-    margin-top: -2%;
+.nissan-elite-brand {
+    width: 75%;
 }
 .bg_img {
     background-repeat: repeat-y;
