@@ -5,12 +5,12 @@ if (!function_exists('theme_image')) {
         
         $theme = $theme ?? config('app.theme', 'default');
 
-        $themePath = public_path("themes/{$theme}/images/{$filename}");
-        $defaultPath = public_path("themes/default/images/{$filename}");
+        $themeImagePath = "{$theme}/images/{$filename}";
+        $defaultImagePath = "default/images/{$filename}";
 
-        if (file_exists($themePath)) {
+        if (Storage::disk('themes')->exists($themeImagePath)) {
             return asset("themes/{$theme}/images/{$filename}");
-        } elseif (file_exists($defaultPath)) {
+        } elseif (Storage::disk('themes')->exists($defaultImagePath)) {
             return asset("themes/default/images/{$filename}");
         }
 
@@ -23,13 +23,11 @@ if (!function_exists('theme_view')) {
         $theme = $theme ?? config('app.theme', 'default');
         $themeViewPath = 'themes.' . $theme . '.' . $view;
         $defaultViewPath = 'themes.default.' . $view;
-        // dd($themeViewPath, View::exists($themeViewPath));
+        
         if (View::exists($themeViewPath)) {
-            // return view($themeViewPath, $data, $mergeData);
             return $themeViewPath;
         }
         return $defaultViewPath;
-        // return view($defaultViewPath, $data, $mergeData);
     }
 
 }

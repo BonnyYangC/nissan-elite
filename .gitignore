@@ -15,7 +15,5 @@ app/storage/log/usage_log
 /storage/app/public
 /public/*.png
 
-# public/css/app.css
-# public/js/app.js
-# yarn.lock
-# composer.lock
+public/themes
+public/elite
