@@ -53,25 +53,29 @@
             </div>
         </div>
 
-        <div class="row justify-content-center" style="margin-top:3%;">
+        <div class="row justify-content-center" style="margin-top:3%;margin-bottom:30px;">
             <div class="col-2">
                 <a target="_blank" href="https://nmacorp.okta.com/app/UserHome">
-                    <img class="tiles-img" src="{{ theme_image('tiles/nissan_academy.png') }}" style="margin-bottom:30px;" width="332">
+                    <img class="tiles-img" src="{{ theme_image('tiles/nissan_academy.png') }}" width="332">
                 </a>
             </div>
             <div class="col-2">
+                @if(config('theme.'.config('app.theme') . '.feature_further_sales'))
                 <a href="{{ route('future_sales') }}">
-                    <img class="tiles-img" src="{{ theme_image('tiles/future_sales.png') }}" style="margin-bottom:30px;" width="332">
+                @else
+                <a href="{{ '#' }}">
+                @endif
+                    <img class="tiles-img" src="{{ theme_image('tiles/future_sales.png') }}" width="332">
                 </a>
             </div>
             <div class="col-2">
                 <a target="_blank" href="https://nmacorp.okta.com/app/UserHome">
-                    <img class="tiles-img" src="{{ theme_image('tiles/ce.png') }}" style="margin-bottom:30px;" width="332">
+                    <img class="tiles-img" src="{{ theme_image('tiles/ce.png') }}" width="332">
                 </a>
             </div>
             <div class="col-2">
                 <a target="_blank" href="https://www.nissan.com.au/about-nissan/news-and-events.html">
-                    <img class="tiles-img" src="{{ theme_image('tiles/whatsnew.png') }}" style="margin-bottom:30px;" width="332">
+                    <img class="tiles-img" src="{{ theme_image('tiles/whatsnew.png') }}" width="332">
                 </a>
             </div>
         </div>
