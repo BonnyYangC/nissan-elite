@@ -21,12 +21,11 @@
 <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}" defer></script>
 <script src="{{ asset('js/dsm_utils.js') }}" defer></script>
 <script src="{{ asset('js/dashboard_utils.js') }}" defer></script>
 <script src="{{ asset('js/ranking.js') }}" defer></script>
 <script src="{{ asset('js/calendar.js') }}" defer></script>
-<script src="{{ asset('js/login.js') }}" defer></script>
 
 <!-- Styles -->
 <link href="{{ mix('css/app.css') }}" rel="stylesheet">
