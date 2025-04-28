@@ -10,6 +10,9 @@ window.Vue = require('vue').default;
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import SearchComponent from './components/SearchComponent.vue';
+import ForgetPasswordComponent from './components/ForgetPasswordComponent.vue';
+// import RankingComponent from './components/RankingComponent.vue';
 
 Vue.use(ElementUI);
 
@@ -34,3 +37,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 import Calendar from 'js-year-calendar';
 import 'js-year-calendar/dist/js-year-calendar.css';
+
+new Vue({
+  render: h => h(SearchComponent),
+}).$mount('#nav-app-wrap');
+
+new Vue({
+  render: h => h(ForgetPasswordComponent),
+}).$mount('#forgotpassword');
+
+// new Vue({
+//   render: h => h(RankingComponent),
+// }).$mount('#member-ranking-app');
