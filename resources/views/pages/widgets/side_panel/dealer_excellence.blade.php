@@ -16,8 +16,7 @@
                     @endif
                     <p class="txt-white">
                         <a target="_blank" href="{{ route('jump_to_dealer') }}">
-                            <button style="background-color:#4169E1; width:100%; margin:0 auto; font-size:11px;"
-                                    type="button" class="btn btn-primary btn-block">
+                            <button type="button" class="btn nissan-button">
                                 View {{ config('theme.' . config('app.theme') . '.FY_WITH_YEAR') }} Rankings
                             </button>
                         </a>

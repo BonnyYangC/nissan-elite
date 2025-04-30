@@ -14,7 +14,7 @@
                     @else
                         <span class="fs-30 span-red">X</span>
                         <a href="{{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}" target="_blank">
-                            <button style="background-color:#4169E1; width:100%; margin:0 auto; font-size:11px;" type="button" class="btn btn-primary btn-block">Register Now</button>
+                            <button type="button" class="btn nissan-button">Register Now</button>
                         </a>
                     @endif
 

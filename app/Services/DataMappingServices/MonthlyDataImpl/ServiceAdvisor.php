@@ -16,9 +16,9 @@ class ServiceAdvisor extends MonthlyDataMapping {
         'service_retention' =>'points_Retent_1',
         'service_retention_result' =>'pcent_RETENT_1',
 
-        'reentry_pen' => 'points_PMP%retails',
-        'reentry_pen_result' => 'pcent_PMP%retails',
-
+        'retention' => 'points_Retent_5',
+        'retention_result' => 'pcent_RETENT_5',
+        
         'loyalty' => 'points_loyalty',
         'loyalty_result' => 'sales_loyalty',
 

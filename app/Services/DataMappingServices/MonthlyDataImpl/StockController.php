@@ -21,5 +21,8 @@ class StockController extends MonthlyDataMapping {
 
         '5_star' => 'points_ce_dlr_5Star_S',
         '5_star_result' => 'score_ce_dlr_5Star_S',
+
+        'ce' => 'points_ce_dlr_survey_S',
+        'ce_result' => 'pcent_ce_dlr_survey_S',
     ];
 }
