@@ -7,49 +7,23 @@ use Illuminate\Console\Command;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
-class PreImportGuildMembers extends Command
+class PreImportGuildMembers extends PreImportCsv
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'pre-import:guild-members {filePath}';
+    protected $signature = 'pre-import:guild-members {theme}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Pre import guild member from csv file';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $fileName = 'guild_members.csv';
 
-    /**
-     * @throws \League\Csv\Exception
-     */
-    public function handle()
-    {
-        $filePath = __DIR__.'/'.$this->argument('filePath');
-        var_dump($filePath);
 
+    protected function importData()
+    {
+
+        $this->connection->table('guild_members')->truncate();
         $successCount = 0;
 
-        if(file_exists($filePath)){
-            \DB::table('guild_members')->delete();
-
-            $csvReader = Reader::createFromPath($filePath,'r');
-            $records = (new Statement())->process($csvReader);
             $type = 1;
-            foreach ($records as $lineNumber => $record) {
+            foreach ($this->data as $lineNumber => $record) {
                 if (strstr($record[0], 'PLATINUM MEMBERS')) {
                     //'PLATINUM MEMBERS (500,000+)'
                     $type = 1;
@@ -75,9 +49,6 @@ class PreImportGuildMembers extends Command
             }
 
             echo 'Guild_members table has updated Success: '.$successCount.PHP_EOL;
-        }
-        else{
-            echo 'File is not exists.'.PHP_EOL;
-        }
+
     }
 }

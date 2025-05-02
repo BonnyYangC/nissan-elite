@@ -43,7 +43,7 @@
                     <div class="form-footer" style="padding-left:0; padding-right:0">
                         <div class="row text-nowrap">
                             <div class="col-xs-12">
-                                <a style="color:white !important;" lass="txt-grey9 fs-12" href="#forgotpassword">
+                                <a style="color:white !important;" lass="txt-grey9 fs-12" href="#forgot-password">
                                     Forgot password?
                                 </a>
                             </div>
@@ -132,7 +132,7 @@
                     <a href="#">login</a>
                 </p>
             </section>
-            <section>
+            <section id="forgot-password">
                 <div class="col-10 fgp-wrap">
                     <div id="forgotpassword"></div>
                 </div>
@@ -150,7 +150,7 @@
         background-image: url('{{ theme_image('login/gtr-background.jpg') }}');
     }
 
-    #forgotpassword {
+    .fgp-wrap {
         background-image: url('{{ theme_image('login/red-back.jpg') }}');
     }
 </style>

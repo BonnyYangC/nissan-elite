@@ -9,7 +9,7 @@
             <tr align="center">
                 <td>
                     <a href="https://nmacorp.okta.com/app/UserHome" target="_blank">
-                        <button style="background-color:#4169E1; color: #FFFFFF; width:100%; margin:0 auto; font-weight: lighter; font-size:11px;" type="button" class="btn btn-primary btn-block">
+                        <button type="button" class="btn nissan-button">
                             Check Training Academy to secure <br>your Compulsory Criteria (refer Member guide)
                         </button>
                     </a>

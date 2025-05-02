@@ -1,0 +1,21 @@
+.footer, .footer a {
+  color: #b58631;
+}
+.nav-footer .navbar-nav .nav-link {
+  color: #b58631;
+}
+.nav-footer .navbar-nav .nav-link:hover {
+  color: white;
+}
+.nissan-button {
+  background-color: #008080;
+  border-color: #008080;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  background-color: #008080;
+  color: #fff;
+}
+.btn-leader-board {
+  color: #008080;
+}

@@ -66,7 +66,7 @@ footer {
     color: #c40030;
     background-color: #000000;
 }
-.nav-footer a {
+.nav-footer .navbar-nav .nav-link {
     color: #ffffff;
 }
 .nav-footer ul {
