@@ -7,7 +7,7 @@ use App\Models\Position;
 
 class PreImportAwards extends PreImportCsv
 {
-    protected $signature = 'pre-import:awards';
+    protected $signature = 'pre-import:awards {theme}';
 
     protected $description = 'Pre import awards status from csv file';
     protected $fileName = 'awards.csv';
@@ -15,6 +15,7 @@ class PreImportAwards extends PreImportCsv
 
     protected function importData()
     {
+        $this->connection->table('awards')->truncate();
         $successCount = 0;
         static $type = "";
         static $subType = "";

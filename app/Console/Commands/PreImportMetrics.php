@@ -24,7 +24,7 @@ class PreImportMetrics extends PreImportJson
     protected $fileName = 'metrics_defination.json';
 
     protected function importData() {
-        DB::table('metrics')->delete();
+        $this->connection->table('metrics')->truncate();
         $metrics = $this->data['metrics'];
         $this->seedSharedMetrics(data_get($metrics, Defination::METRICS_TYPE_SHARED, []));
         $this->seedCustomMetrics(data_get($metrics, Defination::METRICS_TYPE_CUSTOM, []));

@@ -12,6 +12,7 @@ class PreImportJson extends Command
     protected $signature = 'pre-import-json-stub';
     protected $data;
     protected $fileName;
+    protected $connection;
 
     /**
      * Execute the console command.
@@ -20,27 +21,25 @@ class PreImportJson extends Command
      */
     public function handle()
     {
-        $this->loadData(__DIR__.'/'.$this->fileName);
+        $this->loadData();
 
         try {
             Model::unguard();
-            DB::beginTransaction();
+            $this->connection = DB::connection('mysql_'.$this->argument('theme'));
+            $this->connection->beginTransaction();
             $this->importData();
-            DB::commit();
+            $this->connection->commit();
             var_dump("{$this->fileName} import finished");
         } catch (Throwable $ex) {
             var_dump("{$this->fileName} import failed: { $ex->getMessage() }");
-            DB::rollBack();
+            $this->connection->rollBack();
             throw $ex;
         } finally{
             Model::reguard();
         }
     }
 
-    /**
-     * @param $fileName
-     */
-    private function loadData($fileName) {
+    private function loadData() {
         $data = json_decode(Storage::disk('elite')->get($this->argument('theme').'/'.$this->fileName), true);
 
         $this->data = is_array($this->data) ? array_merge($this->data, $data) : $data;
