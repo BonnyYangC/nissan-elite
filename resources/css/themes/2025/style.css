@@ -11,3 +11,11 @@
   background-color: #008080;
   border-color: #008080;
 }
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  background-color: #008080;
+  color: #fff;
+}
+.btn-leader-board {
+  color: #008080;
+}
