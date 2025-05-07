@@ -7,6 +7,7 @@ class ProductChallengeController extends Controller
 {
     public function __invoke() {
         $this->dataForView['menuName'] = Defination::PAGE_PRODUCT_CHALLENGE;
+        $this->dataForView['events'] = json_decode(config('theme.' . config('app.theme') . '.product_challenge_events'));
         return $this->render('pages.product_challenge');
     }
 }
