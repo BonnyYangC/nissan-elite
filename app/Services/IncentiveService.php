@@ -39,7 +39,7 @@ class IncentiveService {
         }
         if ($request->hasFile('pdf')) {
             $pdffileName = $request->pdf->getClientOriginalName();
-            $request->image->storeAs('incentives/pdfs', $pdffileName, 'elite');
+            $request->pdf->storeAs('incentives/pdfs', $pdffileName, 'elite');
             $input['pdf'] = $pdffileName;
         }
         $this->update($input);
