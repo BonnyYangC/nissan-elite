@@ -108,9 +108,9 @@ class Base extends BaseService {
 
     /**
      * @param string $position
-     * @return Metric
+     * @return Metric | null
      */
-    public function getTrainingMetricByPosition(string $position): Metric {
+    public function getTrainingMetricByPosition(string $position) {
         return Metric::where('position', '=', $position)
             ->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
     }

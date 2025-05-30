@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helper\Defination;
 use App\Services\DataMappingServices as DMS;
 use App\Helper\Role;
+use App\Services\DataMappingServices\Factories\ValidatorFactory;
 use App\Services\ExportServices\{Admin, LoyaltyHistorical, RegionStaff, TerritoryReport, User, Ranking};
 use App\Repositories\{PositionRepository, RegionRepository};
 use League\Csv\Reader;
@@ -15,11 +16,13 @@ class DataService extends BaseService {
 
     private $regionRepo;
     private $positionRepo;
+    private $validatorFactory;
 
-    public function __construct(ServiceResolver $serviceResolver, RegionRepository $regionRepository, PositionRepository $positionRepository) {
+    public function __construct(ServiceResolver $serviceResolver, RegionRepository $regionRepository, PositionRepository $positionRepository, ValidatorFactory $validatorFactory) {
         parent::__construct($serviceResolver);
         $this->regionRepo = $regionRepository;
         $this->positionRepo = $positionRepository;
+        $this->validatorFactory = $validatorFactory;
     }
 
     /**
@@ -44,28 +47,34 @@ class DataService extends BaseService {
 
         $resultValue = [];
         $updateCount = 0;
-        $failCount = 0;
+        $failedCount = 0;
+        $failedRows = [];
         $ignoredCount = 0;
+        $ignoredRows = [];
+        $headerFields = [];
 
         $filePath = storage_path('app/public/'.$dataFile);
         if(file_exists($filePath)){
             $csvReader = Reader::createFromPath($filePath,'r');
+            $headerFields = $csvReader->fetchOne(0);
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
 
             $mappingServices = $this->getImporationService($dataType);
             foreach($mappingServices as $service) {
                 $modelKey = $service->getKeyForModel();
-            
-                foreach ($records as $lineNumber => $record) {
+                $validationKey = $service->getKeyForValidate();
 
-                    if(!isset($record[$modelKey['primary']]) || !$service->validate(trim($record[$modelKey['primary']]))) {
-                        $failCount++;
-                        continue;
+                foreach ($records as $lineNumber => $record) {
+                    if(!isset($record[$modelKey['primary']]) || !$service::isValidate($record, $validationKey)) {
+                        $failedCount++;
+                        $failedRows[] = $record;
+                        break;
                     }
-                    if ($service::isIgnored($record[$modelKey['primary']])) {
+                    if ($service::isIgnored($record, $validationKey)) {
                         $ignoredCount++;
-                        continue;
+                        $ignoredRows[] = $record;
+                        break;
                     }
                     if (isset($modelKey['mapping'])) {
                         $keys = array_keys($modelKey['mapping']);
@@ -83,16 +92,20 @@ class DataService extends BaseService {
                             if ($model->save()) {
                                 $updateCount++;
                             } else {
-                                $failCount++;
+                                $failedCount++;
+                                $failedRows[] = $record;
                             }
                         }
                     }
                 }
             }
             $resultValue['type'] = Defination::ACTION_TYPE_SYNC;
-            $resultValue['update'] = $updateCount / $mappingServices->count();
-            $resultValue['ignore'] = $ignoredCount / $mappingServices->count();
-            $resultValue['wrong'] = $failCount / $mappingServices->count();
+            $resultValue['header'] = $headerFields;
+            $resultValue['update']['count'] = 'Synced: '.$updateCount;
+            $resultValue['ignore']['count'] = 'Ignored: '.$ignoredCount;
+            $resultValue['ignore']['data'] = $ignoredRows;
+            $resultValue['wrong']['count'] = 'Failed: '.$failedCount;
+            $resultValue['wrong']['data'] = $failedRows;
         }
         else{
             echo 'File is not exists.'.PHP_EOL;
@@ -127,17 +140,19 @@ class DataService extends BaseService {
             $headerFields = $csvReader->fetchOne(0);
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
+            // $mappingService = $this->validatorFactory->make($dataType);
             $mappingService = $this->getValidationService($dataType);
             $modelKey = $mappingService->getKeyForModel();
+            $validationKey = $mappingService->getKeyForValidate();
 
             foreach ($records as $lineNumber => $record) {
 
-                if(!isset($record[$modelKey['primary']]) || !$mappingService->validate(trim($record[$modelKey['primary']]))) {
+                if(!isset($record[$modelKey['primary']]) || !$mappingService::isValidate($record, $validationKey)) {
                     $wrongCount++;
                     $wrongRows[] = $record;
                     continue;
                 }
-                if ($mappingService::isIgnored($record[$modelKey['primary']])) {
+                if ($mappingService::isIgnored($record, $validationKey)) {
                     $ignoredCount++;
                     $ignoredRows[] = $record;
                     continue;
@@ -179,15 +194,16 @@ class DataService extends BaseService {
 
             }
             $resultValue['type'] = Defination::ACTION_TYPE_VALIDATE;
+            $resultValue['wrong']['count'] = 'Wrong : (' . $wrongCount . ') ';
+            if ($wrongCount) $resultValue['wrong']['count'] .= $mappingService->getValidateMessage();
+            $resultValue['wrong']['header'] = $wrongCount ? $headerFields : [];
+            $resultValue['wrong']['data'] = $wrongRows;
             $resultValue['new']['count'] = 'New : ' . $newRowCount;
             $resultValue['new']['header'] = $newRowCount ? $headerFields : [];
             $resultValue['new']['data'] = $newRows;
             $resultValue['ignore']['count'] = 'Ignore : ' . $ignoredCount;
             $resultValue['ignore']['header'] = $ignoredCount ? $headerFields : [];
             $resultValue['ignore']['data'] = $ignoredRows;
-            $resultValue['wrong']['count'] = 'Wrong : ' . $wrongCount;
-            $resultValue['wrong']['header'] = $wrongCount ? $headerFields : [];
-            $resultValue['wrong']['data'] = $wrongRows;
             $resultValue['find']['count'] = 'Find : ' . $findCount;
             $resultValue['find']['header'] = $findCount ? $headers : [];
             $resultValue['find']['data'] = $findRows;

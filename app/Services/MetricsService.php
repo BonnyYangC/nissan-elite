@@ -27,9 +27,9 @@ class MetricsService extends BaseService {
     }
 
     /**
-     * @return Metric|void
+     * @return Metric|array
      */
-    public function getTrainingData(string $positionCode): Metric {
+    public function getTrainingData(string $positionCode) {
         $currentUser = $this->getCurrentUser();
         $results = $this->repository->getMetricsPointsByPosition($currentUser->employee_code, $positionCode);
         $trainingData = $results->keyBy('period');//->only(['train_online', 'train_competency', 'train_mastery', 'train_bonus', 'train_pathway', 'period']);

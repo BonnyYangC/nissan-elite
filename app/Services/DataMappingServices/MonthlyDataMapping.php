@@ -2,12 +2,12 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Helper\Defination;
-use App\Helper\Utility;
+use App\Helper\{Defination, Utility};
 use App\Models\{Result, User};
+use App\Services\DataMappingServices\Interfaces\{Ignore, Valid};
 use App\Services\DataMappingServices\MonthlyDataImpl\{MonthlyImportationTrait, MonthlyValidationTrait};
 
-class MonthlyDataMapping {
+class MonthlyDataMapping implements Ignore, Valid {
     use MonthlyValidationTrait, MonthlyImportationTrait;
 
     /** @var array  */
@@ -45,6 +45,26 @@ class MonthlyDataMapping {
         $this->actionType = $action;
     }
 
+    // implement Ignore interface
+    public static function isIgnored(array $record, array $key): bool {
+        return false;
+    }
+
+    // implement Valid interface
+    public static function isValidate(array $record, array $key): bool {
+        $model = User::where('employee_code', $record[$key['employ']])->first();
+        return $model ? true : false;
+    }
+
+    public function getValidateMessage(): string {
+        return '';
+    }
+    
+    public function getKeyForValidate(): array {
+        $key = [];
+        $key['employ'] = 'regi#';
+        return $key;
+    }
 
     /**
      * get primary key according to data file type
@@ -119,25 +139,6 @@ class MonthlyDataMapping {
             }, []);
     }
 
-    /**
-     * to see if this record is ignored
-     *
-     * @param $value
-     * @return bool
-     */
-    public static function isIgnored($value) {
-        $result = false;
-        return $result;
-    }
-
-    /**
-     * @param string $employeeCode
-     * @return bool
-     */
-    public function validate(string $employeeCode) {
-        $model = User::where('employee_code', $employeeCode)->first();
-        return $model ? true : false;
-    }
 
     protected function getMetricsMappingField(string $metric) {
         return data_get($this->metricsMappingArray, $metric);

@@ -10,10 +10,12 @@ class Individual extends Base {
 
     /**
      * @param $data
-     * @return Metric
+     * @return Metric | array
      */
     public function buildTrainingData(string $positionCode, $data) {
         $trainingDefination = $this->getTrainingMetricByPosition($positionCode);
+        if (!$trainingDefination)
+            return [];
         $trainingDefination->chart_data = json_encode($this->buildStackedTrainingData($trainingDefination, $data));
         $trainingDefination->chart_name = 'chart_'.$trainingDefination->identifier;
         return $trainingDefination;

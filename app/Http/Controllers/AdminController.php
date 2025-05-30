@@ -52,11 +52,6 @@ class AdminController extends Controller {
         $actonType = $request->input('action_type');
         $dataType = $request->input('for');
 
-        $parameter = [
-            'year' => config('elite.YEAR', 2021),
-            'month' => $request->input('month'),
-        ];
-
         if ($request->hasFile('file')) {
             $dataFile = $request->file->storeAS('file', $dataType.date('Y-m-d').'.csv', 'public');
             if($actonType == Defination::ACTION_TYPE_SYNC){

@@ -134,17 +134,9 @@
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "PKCompetency",
                             "color": "#22AA99"
-                        },
-                        "train_mastery": {
-                            "label": "Mastery",
-                            "color": "#6633CC"
                         }
                     },
                     "guides": [{
@@ -291,7 +283,7 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [
@@ -355,10 +347,6 @@
                         "train_online": {
                             "label": "Online",
                             "color": "#E67300"
-                        },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
                         },
                         "train_competency": {
                             "label": "PKCompetency",
@@ -531,17 +519,13 @@
                     "order": 7,
                     "title": "TRAINING GUIDE",
                     "metrics": {
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#AAAA11"
                         },
                         "train_competency": {
                             "label": "PKCompetency",
                             "color": "#22AA99"
-                        },
-                        "train_bonus": {
-                            "label": "Online",
-                            "color": "#AAAA11"
                         },
                         "train_mastery": {
                             "label": "Mastery",
@@ -623,7 +607,7 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [
@@ -686,10 +670,6 @@
                         "train_online": {
                             "label": "Online",
                             "color": "#E67300"
-                        },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
                         },
                         "train_competency": {
                             "label": "PKCompetency",
@@ -869,7 +849,7 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [
@@ -1059,7 +1039,7 @@
                             "label": "F1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [
@@ -1102,10 +1082,6 @@
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "Competency",
                             "color": "#22AA99"
@@ -1113,10 +1089,6 @@
                         "train_bonus": {
                             "label": "Bonus",
                             "color": "#AAAA11"
-                        },
-                        "train_mastery": {
-                            "label": "Mastery",
-                            "color": "#6633CC"
                         }
                     },
                     "guides": [{
@@ -1189,7 +1161,7 @@
                             "label": "F1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [
@@ -1232,21 +1204,9 @@
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "Competency",
                             "color": "#22AA99"
-                        },
-                        "train_bonus": {
-                            "label": "Bonus",
-                            "color": "#AAAA11"
-                        },
-                        "train_mastery": {
-                            "label": "Mastery",
-                            "color": "#6633CC"
                         }
                     },
                     "guides": [{
@@ -1339,7 +1299,6 @@
                     "identifier": "reentry_pen",
                     "order": 5,
                     "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN %",
-                    "period": "quarterly",
                     "metrics": {
                         "reentry_pen":{
                             "label": " re-entry pen",
@@ -1446,10 +1405,6 @@
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "PKCompetency",
                             "color": "#22AA99"
@@ -1457,6 +1412,10 @@
                         "train_mastery": {
                             "label": "Mastery",
                             "color": "#6633CC"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#AAAA11"
                         }
                     },
                     "guides": [{
@@ -1576,7 +1535,7 @@
                             "label": "F1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%.100"
                         }
                     },
                     "guides": [
@@ -1640,10 +1599,6 @@
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "PKCompetency",
                             "color": "#22AA99"
@@ -1705,51 +1660,18 @@
                     ]
                 },
                 {
-                    "identifier": "quiz",
-                    "label": "Quiz",
-                    "order": 3,
-                    "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS",
-                    "metrics": {
-                        "train_partTech":{
-                            "label": "Part Tech",
-                            "point_default": 0,
-                            "score_default": "NO",
-                            "score_format": "b"
-                        },
-                        "train_QuizTech":{
-                            "label": "Quiz Tech",
-                            "point_default": 0,
-                            "score_default": "0%",
-                            "score_format": "%"
-                        }
-                    },
-                    "guides": [{
-                        "title": "PRODUCT / TECH QUIZ – QUARTERLY BONUS POINTS GUIDE",
-                        "top": ["Technician", "Participation", "≥80%", "≥100%"],
-                        "rows": [["Master Technician", 55, 85, 105], ["Advanced Technician", 55, 85, 105]]
-                    }]
-                },
-                {
                     "identifier": "training",
                     "label": "Training",
-                    "order": 4,
+                    "order": 3,
                     "title": "TRAINING",
                     "metrics": {
                         "train_online": {
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "Competency",
                             "color": "#22AA99"
-                        },
-                        "train_bonus": {
-                            "label": "Bonus",
-                            "color": "#AAAA11"
                         },
                         "train_mastery": {
                             "label": "Mastery",
@@ -1817,17 +1739,9 @@
                             "label": "Online",
                             "color": "#E67300"
                         },
-                        "train_pathway": {
-                            "label": "Pathway",
-                            "color": "#994499"
-                        },
                         "train_competency": {
                             "label": "Competency",
                             "color": "#22AA99"
-                        },
-                        "train_bonus": {
-                            "label": "Bonus",
-                            "color": "#AAAA11"
                         },
                         "train_mastery": {
                             "label": "Mastery",
