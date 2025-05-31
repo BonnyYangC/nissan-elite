@@ -35,7 +35,7 @@ class GuildRepository {
      * @return
      */
     public function getMembers() {
-        return Members::get()->reduce(function($r, $m) {
+        return Members::orderByDesc('retired')->get()->reduce(function($r, $m) {
             switch($m->type) {
                 case 1:
                     $r['PLATINUM'][] = $m;

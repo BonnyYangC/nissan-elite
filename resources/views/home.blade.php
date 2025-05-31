@@ -60,7 +60,7 @@
                 </a>
             </div>
             <div class="col-2">
-                @if(config('theme.'.config('app.theme') . '.feature_further_sales'))
+                @if(theme_config('feature_further_sales'))
                 <a href="{{ route('future_sales') }}">
                 @else
                 <a href="{{ '#' }}">

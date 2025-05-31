@@ -7,7 +7,7 @@
       "bronze": "25000",
       "bronze_reward": "500",
       "silver": "35000",
-      "silver_reward": "1200",
+      "silver_reward": "1000",
       "gold": "45000",
       "gold_reward": "2000",
       "max": "50000"
@@ -18,7 +18,7 @@
       "bronze": "20000",
       "bronze_reward": "500",
       "silver": "30000",
-      "silver_reward": "1200",
+      "silver_reward": "1000",
       "gold": "40000",
       "gold_reward": "2000",
       "max": "50000"

@@ -96,8 +96,8 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>Go to
-                                    <a href="{{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}" target="_blank">
-                                        {{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}</a>
+                                    <a href="{{ theme_config('eventRegisterUrl') }}" target="_blank">
+                                        {{ theme_config('eventRegisterUrl') }}</a>
                                     and successfully complete the
                                     {{config('app.theme')}}
                                     {{config('elite.PROGRAM_NAME')}}

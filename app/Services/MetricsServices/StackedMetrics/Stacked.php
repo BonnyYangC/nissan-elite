@@ -9,7 +9,7 @@ class Stacked {
     private $position;
 
     public function get($serviceResolver) {
-        $isCombined = config('theme.'.config('app.theme') . '.feature_metrics_stacked_combination');
+        $isCombined = theme_config('feature_metrics_stacked_combination');
         $isD1Positioned = in_array($this->position, [Role::FLEET_SALES_EXECUTIVES, Role::SALES_MANAGER, Role::RETAIL_SALES_CONSULTANTS, Role::STOCK_CONTROLLER, Role::FI]);
         $isF1Positioned = in_array($this->position, [Role::PARTS_MANAGER, Role::PARTS_SALES_REP, Role::SERVICE_ADVISERS, Role::SERVICE_MANAGER, Role::MASTER_TECHNICIAN, Role::ADVANCED_TECHNICIAN]);
         if($isCombined) {

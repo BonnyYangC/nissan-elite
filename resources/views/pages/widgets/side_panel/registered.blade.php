@@ -13,7 +13,7 @@
                         <p class="m-2 txt-white">250 {{ config('elite.PROGRAM_AWARD_UNIT') }} applied to Monthly points</p>
                     @else
                         <span class="fs-30 span-red">X</span>
-                        <a href="{{ config('theme.' . config('app.theme') . '.eventRegisterUrl') }}" target="_blank">
+                        <a href="{{ theme_config('eventRegisterUrl') }}" target="_blank">
                             <button type="button" class="btn nissan-button">Register Now</button>
                         </a>
                     @endif

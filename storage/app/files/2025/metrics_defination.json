@@ -322,7 +322,7 @@
                     "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
                     "metrics": {
                         "ce":{
-                            "label": "Customer Experience",
+                            "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -498,7 +498,7 @@
                     "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
                     "metrics": {
                         "ce":{
-                            "label": "Customer Experience",
+                            "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -646,7 +646,7 @@
                     "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
                     "metrics": {
                         "ce":{
-                            "label": "Customer Experience",
+                            "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -714,7 +714,7 @@
                     },
                     "guides": [{
                         "title": "retail fleet facility GUIDE",
-                        "top": ["F&I Manager", "Contract"],
+                        "top": ["F&I Manager", "per unit"],
                         "rows": [["Category A, B, C", 50]]
                     }]
                 },
@@ -1242,7 +1242,7 @@
                     "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
                     "metrics": {
                         "gp_cpro":{
-                            "label": "GRP",
+                            "label": "WSGRP",
                             "point_default": 0,
                             "score_default": 0,
                             "score_format": "$"
@@ -1298,7 +1298,7 @@
                 {
                     "identifier": "reentry_pen",
                     "order": 5,
-                    "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN %",
+                    "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN % (QUARTERLY)",
                     "metrics": {
                         "reentry_pen":{
                             "label": " re-entry pen",
@@ -1309,7 +1309,7 @@
                     },
                     "guides": [
                         {
-                            "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN % GUIDE",
+                            "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN % (QUARTERLY) GUIDE",
                             "top": ["Service Manager", "5%", "20%", "30%", "50%"],
                             "rows": [["Category A", 500, 1000, 2000, 3000],["Category B", 500, 1000, 2000, 3000], ["Category C", 500, 1000, 2000, 3000]]
                         }
@@ -1380,7 +1380,7 @@
                     "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
                     "metrics": {
                         "ce":{
-                            "label": "Customer Experience",
+                            "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -1455,7 +1455,7 @@
                     "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
                     "metrics": {
                         "gp_cpro":{
-                            "label": "Genuine Parts",
+                            "label": "WSGPR",
                             "point_default": 0,
                             "score_default": 0,
                             "score_format": "$"
@@ -1475,7 +1475,7 @@
                     "title": "1 YEAR SERVICE RETENTION %",
                     "metrics": {
                         "service_retention":{
-                            "label": "Service Retention",
+                            "label": "1yr Retent",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -1574,7 +1574,7 @@
                     "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
                     "metrics": {
                         "ce":{
-                            "label": "Customer Experience",
+                            "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
                             "score_format": "%"
@@ -1654,7 +1654,7 @@
                         {
                             "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
                             "top": ["Technician", "≥4.3", "≥4.5"],
-                            "rows": [["Master Technician", 220, 350], ["Advanced Technician", 220, 350]],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
                             "note": "Score based on R3M"
                         }
                     ]
@@ -1681,7 +1681,7 @@
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
-                        "rows": [["New Technical Online Module Suite (O)", "", 50, ""],
+                        "rows": [["New Technical Online Module Suite (O)", 50, "", ""],
                             ["Product Knowledge Competency", "", 250, ""],
                             ["Mastery Goal Achievement", 100, 250, 250]],
                         "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 41"
@@ -1751,7 +1751,7 @@
                     "guides": [{
                         "title": "TRAINING GUIDE",
                         "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
-                        "rows": [["New Technical Online Module Suite (O)", "", 50, ""],
+                        "rows": [["New Technical Online Module Suite (O)", 50, "", ""],
                             ["Product Knowledge Competency", "", 250, ""],
                             ["Mastery Goal Achievement", 100, 250, 250]],
                         "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 41"
