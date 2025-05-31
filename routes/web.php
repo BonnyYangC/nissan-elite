@@ -70,8 +70,8 @@ Route::group(['prefix' => 'region', 'middleware' => 'auth'],function (){
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function (){
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-    Route::post('/data_process', [App\Http\Controllers\AdminController::class, 'data_process'])->name('admin.data_process');
-    Route::get('/data_export/{type}', [App\Http\Controllers\AdminController::class, 'data_export'])->name('admin.data_export');
+    Route::post('/data_process', [App\Http\Controllers\ApiControllers\DataProcessController::class, 'data_process'])->name('admin.data_process');
+    Route::get('/data_export/{type}', [App\Http\Controllers\ApiControllers\DataExportController::class, 'data_export'])->name('admin.data_export');
 
     Route::get('/users/search', [App\Http\Controllers\UsersController::class, 'user_search'])->name('admin.users.search');
     Route::get('/users/mock/{user}', [App\Http\Controllers\UsersController::class, 'member_mock'])->name('admin.users.mock');

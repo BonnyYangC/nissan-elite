@@ -2,6 +2,7 @@
 
 namespace App\Services\DataMappingServices;
 
+use App\Repositories\RegionRepository;
 use Illuminate\Support\Collection;
 
 class RegionStaff extends Base {
@@ -19,13 +20,10 @@ class RegionStaff extends Base {
     /** @var Collection */
     private $regions;
 
-    /**
-     * RegionStaff constructor.
-     * @param Collection $regions
-     */
-    public function __construct(Collection $regions) {
+
+    public function __construct(RegionRepository $regionRepository) {
         Parent::__construct();
-        $this->regions = $regions;
+        $this->regions = $regionRepository->load();
     }
 
 

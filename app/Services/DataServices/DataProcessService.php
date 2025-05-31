@@ -1,39 +1,27 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\DataServices;
 
-use App\Helper\Defination;
+use App\Helper\{Defination, Role};
 use App\Services\DataMappingServices as DMS;
-use App\Helper\Role;
-use App\Services\DataMappingServices\Factories\ValidatorFactory;
-use App\Services\ExportServices\{Admin, LoyaltyHistorical, RegionStaff, TerritoryReport, User, Ranking};
+use App\Services\DataMappingServices\Factories\{ImporterFactory, ValidatorFactory};
 use App\Repositories\{PositionRepository, RegionRepository};
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Illuminate\Support\Collection;
 
-class DataService extends BaseService {
+class DataProcessService {
 
     private $regionRepo;
     private $positionRepo;
     private $validatorFactory;
+    private $importerFactory;
 
-    public function __construct(ServiceResolver $serviceResolver, RegionRepository $regionRepository, PositionRepository $positionRepository, ValidatorFactory $validatorFactory) {
-        parent::__construct($serviceResolver);
+    public function __construct(RegionRepository $regionRepository, PositionRepository $positionRepository, ValidatorFactory $validatorFactory, ImporterFactory $importerFactory) {
         $this->regionRepo = $regionRepository;
         $this->positionRepo = $positionRepository;
         $this->validatorFactory = $validatorFactory;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPositions() {
-        return $this->positionRepo->loadMembers();
-    }
-
-    public function getPositionsWithT() {
-        return $this->positionRepo->loadMembersWithT();
+        $this->importerFactory = $importerFactory;
     }
 
     /**
@@ -140,11 +128,10 @@ class DataService extends BaseService {
             $headerFields = $csvReader->fetchOne(0);
             $csvReader->setHeaderOffset(0);
             $records = (new Statement())->process($csvReader);
-            // $mappingService = $this->validatorFactory->make($dataType);
-            $mappingService = $this->getValidationService($dataType);
+            $mappingService = $this->validatorFactory->make($dataType);
             $modelKey = $mappingService->getKeyForModel();
             $validationKey = $mappingService->getKeyForValidate();
-
+            
             foreach ($records as $lineNumber => $record) {
 
                 if(!isset($record[$modelKey['primary']]) || !$mappingService::isValidate($record, $validationKey)) {
@@ -248,37 +235,6 @@ class DataService extends BaseService {
         return $returnValue;
     }
 
-    /**
-     * @param $type
-     */
-    private function getValidationService($type) {
-        $actionType = Defination::ACTION_TYPE_VALIDATE;
-        $returnValue = null;
-        switch ($type) {
-            case Defination::DATA_TYPE_USERS_INFO :
-                $returnValue = new DMS\ValidationImpl\User();
-                break;
-            case Defination::DATA_TYPE_DEALERS_INFO :
-                $returnValue = new DMS\ValidationImpl\Dealer($this->regionRepo->load());
-                break;
-            case Defination::DATA_TYPE_REGION_STAFF_INFO :
-                $returnValue = new DMS\ValidationImpl\RegionStaff($this->regionRepo->load());
-                break;
-            case Defination::DATA_TYPE_LOYALTY_HISTORICAL:
-                $returnValue = new DMS\ValidationImpl\LoyaltyHistorical();
-                break;
-            case Defination::DATA_TYPE_RANKING :
-                $returnValue = new DMS\ValidationImpl\Ranking();
-                break;
-            case Defination::DATA_TYPE_TERRITORY_REPORT:
-                $returnValue = new DMS\ValidationImpl\TerritoryReport();
-                break;
-            default:
-                $returnValue = $this->getMonthlyDataService($type, $actionType);
-                break;
-        }
-        return $returnValue;
-    }
 
     /**
      * @param $type
@@ -323,43 +279,4 @@ class DataService extends BaseService {
         return $returnValue;
     }
 
-    /**
-     * @param string $type
-     * @param array $parameters
-     */
-    public function export(string $type, array $parameters) {
-        return $this->getExportService($type, $parameters)->export();
-    }
-
-    /**
-     * @param $type
-     * @param $parameters
-     * @return Admin|LoyaltyHistorical|Ranking|RegionStaff|TerritoryReport|User
-     */
-    private function getExportService($type, $parameters) {
-        $ReturnValue = null;
-        switch ($type) {
-            case 'admin':
-                $ReturnValue = new Admin();
-                break;
-            case 'region_staff':
-                $ReturnValue = new RegionStaff();
-                break;
-            case 'user':
-                $ReturnValue = new User($this->serviceResolver, $parameters);
-                break;
-            case 'historical_export':
-                $ReturnValue = new LoyaltyHistorical();
-                break;
-            case 'territory_report':
-                $ReturnValue = new TerritoryReport($this->serviceResolver, $parameters);
-                break;
-            case 'ranking':
-                $ReturnValue = new Ranking($this->serviceResolver, $parameters);
-                break;
-            default:
-                break;
-        }
-        return $ReturnValue;
-    }
 }
