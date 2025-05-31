@@ -25,9 +25,10 @@ class Stacked extends Base
         $metricsDefinations = $this->getAllMetricsByPosition($positionCode);
 
         $returnValue = array_merge(
-            $this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData),
+            $this->buildStackedMetricData($metricsDefinations, $metrics),
             $this->buildCombinedData($metricsDefinations, $metrics),
-            $this->buildSharedMetricsData($trainingData)
+            $this->buildSharedMetricsData($trainingData),
+            $this->buildTrainingData($metricsDefinations, $trainingData)
         );
         return json_encode($returnValue);
     }
@@ -59,18 +60,17 @@ class Stacked extends Base
         return $result;
     }
 
-    private function buildStackedMetricData($metricsDefinations, $metricsData, $trainingData) {
+    private function buildStackedMetricData($metricsDefinations, $metricsData) {
         $points = [];
         $filteredMetrics = $metricsDefinations->filter(function ($defination) {
-            return !in_array($defination->identifier, [$this->combinedMetrics, '5_star', 'ce']);
+            return !in_array($defination->identifier, [$this->combinedMetrics, '5_star', 'ce', Defination::METRICS_TYPE_TRAINING]);
         });
         foreach ($filteredMetrics as $m) {
             if(count($m->metrics) > 1) {
                 $tp = [];
-                $data = $m->identifier === Defination::METRICS_TYPE_TRAINING ? $trainingData : $metricsData;
                 foreach(Utility::MONTHS_SHORT as $month) {
                     $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
-                    $value = data_get($data, $dateString, null); //isset($data[$dateString]) ? $data[$dateString] : null;
+                    $value = data_get($metricsData, $dateString, null); //isset($data[$dateString]) ? $data[$dateString] : null;
                     $tp[] = $this->buildMetricSummary($m->metrics, $value);
                 }
                 $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
@@ -80,12 +80,29 @@ class Stacked extends Base
                 $p = [];
                 foreach(Utility::MONTHS_SHORT as $month) {
                     $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
-                    $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
+                    $value = data_get($metricsData, $dateString, null);
                     $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
                 }
                 $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $cm['label'], $p);
             }
         }
+        return $points;
+    }
+
+    private function buildTrainingData($metricsDefinations, $trainingData): array {
+        $points = [];
+        $trainingMetric = $metricsDefinations->filter(function ($defination) {
+            return $defination->identifier === Defination::METRICS_TYPE_TRAINING;
+        })->first();
+
+        $tp = [];
+        foreach(Utility::MONTHS_SHORT as $month) {
+            $dateString = $this->getDateString($month);
+            $value = data_get($trainingData, $dateString, null);
+            $tp[] = $this->buildMetricSummary($trainingMetric->metrics, $value);
+        }
+        $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $trainingMetric['order'], $trainingMetric['label'], $tp);
+
         return $points;
     }
 }

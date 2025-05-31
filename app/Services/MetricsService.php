@@ -37,15 +37,4 @@ class MetricsService extends BaseService {
         return $service->buildTrainingData($positionCode, $trainingData);
     }
 
-    /**
-     * @return false|string
-     */
-    public function getStackedMetricsData(string $positionCode) {
-        $results = $this->repository->getMetricsPointsByPosition($this->currentUser->employee_code, $positionCode);
-        $metrics = $results->pluck('metrics', 'period');
-        $trainingData = $results->keyBy('period');
-        
-        $service = (new MS\StackedMetrics\Stacked())->byPosition($positionCode)->get($this->serviceResolver);
-        return $service->buildStackedMetricsData($positionCode, $metrics, $trainingData);
-    }
 }
