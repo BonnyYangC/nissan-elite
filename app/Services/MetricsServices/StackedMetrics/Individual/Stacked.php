@@ -2,12 +2,21 @@
 
 namespace App\Services\MetricsServices\StackedMetrics\Individual;
 
-use App\Helper\Defination;
-use App\Helper\Utility;
-use App\Services\MetricsServices\Base;
+use App\Helper\{Defination, Utility};
+use App\Repositories\MetricsRepository;
+use App\Services\MetricsServices\MetricsTrait;
 
-class Stacked extends Base {
+class Stacked {
 
+    use MetricsTrait;
+
+    private $repository;
+    private $position;
+
+    public function __construct(MetricsRepository $repository, string $position) {
+        $this->repository = $repository;
+        $this->position = $position;
+    }
 
     /**
      * @param $metrics
@@ -15,7 +24,7 @@ class Stacked extends Base {
      * @return false|string
      */
     public function buildStackedMetricsData(string $positionCode, $metrics, $trainingData) {
-        $metricsDefinations = $this->getAllMetricsByPosition($positionCode);
+        $metricsDefinations = $this->repository->getAllMetricsByPosition($positionCode);
         $returnValue = array_merge(
             $this->buildStackedMetricData($metricsDefinations, $metrics, $trainingData),
             $this->buildSharedMetricsData($trainingData)
