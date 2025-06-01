@@ -1,19 +1,28 @@
 <?php
 
-namespace App\Services\MetricsServices\StackedMetrics\Themed;
+namespace App\Services\MetricsServices\StackedMetrics\Combined;
 
-use App\Helper\Defination;
-use App\Helper\Utility;
+use App\Helper\{Defination, Utility};
 use App\Models\Metric;
-use App\Services\MetricsServices\Base;
+use App\Repositories\MetricsRepository;
+use App\Services\MetricsServices\MetricsTrait;
 
-class Stacked extends Base
-{
+class Stacked {
+    use MetricsTrait;
+
+    private $repository;
     private $combinedMetrics;
+    private $position;
 
-    public function setCombinedMetrics($value) {
-        $this->combinedMetrics = $value;
-        return $this;
+    public function __construct(MetricsRepository $repository, string $position) {
+        $this->repository = $repository;
+        $this->position = $position;
+    }
+
+    private function setCombinedMetrics($position) {
+        $isD1Positioned = in_array($position, json_decode(theme_config('positions_with_D1')));
+        $isF1Positioned = in_array($position, json_decode(theme_config('positions_with_F1')));
+        return $isD1Positioned ? Metric::METRIC_D1 : Metric::METRIC_F1;
     }
 
     /**
@@ -22,7 +31,8 @@ class Stacked extends Base
      * @return false|string
      */
     public function buildStackedMetricsData(string $positionCode, $metrics, $trainingData) {
-        $metricsDefinations = $this->getAllMetricsByPosition($positionCode);
+        $metricsDefinations = $this->repository->getAllMetricsByPosition($positionCode);
+        $this->combinedMetrics = $this->setCombinedMetrics($this->position);
 
         $returnValue = array_merge(
             $this->buildStackedMetricData($metricsDefinations, $metrics),
@@ -38,7 +48,6 @@ class Stacked extends Base
      * CE Survey         (CE Survey)
      */
     private function buildCombinedData($metricsDefinations, $metricsData) {
-
         $filteredMetrics = $metricsDefinations->filter(function ($defination) {
             return in_array($defination->identifier, [$this->combinedMetrics, Metric::METRIC_5_STAR, Metric::METRIC_CE]);
         })->keyby('identifier');

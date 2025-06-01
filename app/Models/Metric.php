@@ -13,7 +13,8 @@ class Metric extends Model
     const METRIC_F1 = 'f1';
     const METRIC_5_STAR = '5_star';
     const METRIC_CE = 'ce';
-
+    const METRIC_PERIOD_QUARTERLY = 'quarterly';
+    
     /**
      * The attributes that should be cast.
      *

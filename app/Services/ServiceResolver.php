@@ -42,24 +42,8 @@ class ServiceResolver {
      * Create a new service instance.
      *
      */
-    public function metricsService(): MetricsService {
-        return $this->make(MetricsService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
     public function historicalService(): HistoricalService {
         return $this->make(HistoricalService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
-    public function gageService(): GageService {
-        return $this->make(GageService::class);
     }
 
     /**
