@@ -2,7 +2,11 @@
 
 namespace App\Services\DataMappingServices;
 
+use App\Models\Dealer;
+use App\Models\Position;
+
 class User extends Base {
+    
     /** @var array  */
     public $mappingArray = [
         'employee_code'=>'regi#_',
@@ -18,6 +22,28 @@ class User extends Base {
         'dept'=>'dept_code',
         'active'=>'status'
     ];
+
+    // implement Ignore interface
+    public static function isIgnored(array $record, array $key): bool {
+        return in_array($record[$key['dealer']], [55]);
+    }
+
+    // implement Ignore interface
+    public static function isValidate(array $record, array $key): bool {
+        $dealer = Dealer::where('code', $record[$key['dealer']])->first();
+        // $position = Position::where('code', $record[$key['position']])->first();
+        return /*$position &&*/ $dealer ? true : false;
+    }
+    public function getValidateMessage(): string {
+        return 'Please check dealer/position exist or not!';
+    }
+
+    public function getKeyForValidate(): array {
+        $key = [];
+        $key['dealer'] = 'dcode';
+        $key['position'] = 'sp_';
+        return $key;
+    }
 
     /**
      * built data map for data uploader

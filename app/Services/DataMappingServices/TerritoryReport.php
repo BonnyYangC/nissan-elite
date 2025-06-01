@@ -3,8 +3,7 @@
 namespace App\Services\DataMappingServices;
 
 use App\Helper\Defination;
-use App\Models\TerritoryReport as TerritoryReportModel;
-use App\Models\User;
+use App\Models\{Dealer, User};
 use Carbon\Carbon;
 
 class TerritoryReport extends Base {
@@ -30,6 +29,28 @@ class TerritoryReport extends Base {
         'cr_ytd_lifetime' => 'points_ytd_historical_',
     ];
 
+    // implement Ignore interface
+    public static function isIgnored(array $record, array $key): bool {
+        return in_array($record[$key['dealer']], [55, NULL]);
+    }
+
+    // implement Valid interface
+    public static function isValidate(array $record, array $key): bool {
+        $dealer = Dealer::where('code', $record[$key['dealer']])->first();
+        $employee = User::where('employee_code', $record[$key['employee']])->first();
+        return $dealer && $employee ? true : false;
+    }
+
+    public function getValidateMessage(): string {
+        return 'Please check employee/dealer exist or not!';
+    }
+
+    public function getKeyForValidate(): array {
+        $key = [];
+        $key['employee'] = 'regi#_';
+        $key['dealer'] = 'dcode';
+        return $key;
+    }
 
     /**
      * get primary key according to data file type
@@ -41,15 +62,6 @@ class TerritoryReport extends Base {
         $key['primary'] = 'regi#_';
         return $key;
     }
-
-    /**
-     * get model according data file type
-     *
-     * @param $actionType
-     * @param $modelKey
-     * @param $record
-     * @return TerritoryReportModel
-     */
 
 
     /**

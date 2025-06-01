@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Defination;
-use App\Services\DataService;
+use App\Services\PositionService;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
-    /** @var DataService  */
-    private $dataService;
+    /** @var PositionService  */
+    private $service;
 
-    /**
-     * Create a new controller instance.
-     * @param DataService $dataService
-     * @return void
-     */
-    public function __construct(DataService $dataService, Request $request) {
+    public function __construct(PositionService $positionService, Request $request) {
         parent::__construct($request);
-        $this->dataService = $dataService;
+        $this->service = $positionService;
     }
 
     /**
@@ -27,7 +22,7 @@ class AdminController extends Controller {
      */
     public function dashboard() {
         $this->dataForView['menuName'] = Defination::PAGE_DASHBOARD;
-        $this->dataForView['positions'] = $this->dataService->getPositionsWithT();
+        $this->dataForView['positions'] = $this->service->getPositionsWithT();
         $this->dataForView['summary'] = [
             Defination::DATA_TYPE_RANKING => 'Nissan Rankings',
             Defination::DATA_TYPE_TERRITORY_REPORT =>'Region Territory Report'
@@ -39,34 +34,6 @@ class AdminController extends Controller {
             Defination::DATA_TYPE_LOYALTY_HISTORICAL =>'Loyalty Historical'
         ];
         return $this->render('pages.backend.dashboard');
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
-     * @throws \League\Csv\Exception
-     * @throws \League\Csv\UnableToProcessCsv
-     */
-    public function data_process(Request $request) {
-
-        $actonType = $request->input('action_type');
-        $dataType = $request->input('for');
-
-        $parameter = [
-            'year' => config('elite.YEAR', 2021),
-            'month' => $request->input('month'),
-        ];
-
-        if ($request->hasFile('file')) {
-            $dataFile = $request->file->storeAS('file', $dataType.date('Y-m-d').'.csv', 'public');
-            if($actonType == Defination::ACTION_TYPE_SYNC){
-                $this->dataForView['result'] = $this->dataService->importation($dataFile, $dataType);
-            }else{
-                $this->dataForView['result'] = $this->dataService->validation($dataFile, $dataType);
-            }
-
-        }
-        return $this->render('pages.backend.resulting');
     }
 
     /**
@@ -99,11 +66,4 @@ class AdminController extends Controller {
 
     }
 
-    /**
-     * @param Request $request
-     * @param string $type
-     */
-    public function data_export(Request $request, string $type) {
-        return $this->dataService->export($type, $request->input());
-    }
 }

@@ -2,36 +2,34 @@
 
 namespace App\Services\DataMappingServices;
 
-class Base {
+use App\Services\DataMappingServices\Interfaces\{Ignore, Valid};
+
+class Base implements Ignore, Valid {
     /** @var array  */
     public $mappingArray = [];
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
+    
     public function __construct() { }
 
-    /**
-     * to see if this record is ignored
-     *
-     * @param $value
-     * @return bool
-     */
-    public static function isIgnored($value) {
-        $result = false;
-        return $result;
+    // implement Ignore interface
+    public static function isIgnored(array $record, array $key): bool {
+        return false;
     }
 
-    /**
-     * @param string $employeeCode
-     * @return bool
-     */
-    public function validate(string $employeeCode) {
+    // implement Valid interface
+    public static function isValidate(array $record, array $key): bool {
         return true;
     }
     
+    public function getKeyForValidate(): array {
+        $key = [];
+        $key['employee'] = 'regi#_';
+        return $key;
+    }
+
+    public function getValidateMessage(): string {
+        return '';
+    }
+
     /**
      * get primary key according to data file type
      *

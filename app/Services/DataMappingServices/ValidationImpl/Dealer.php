@@ -2,8 +2,9 @@
 
 namespace App\Services\DataMappingServices\ValidationImpl;
 
-use App\Services\DataMappingServices\Dealer as BaseDealer;
 use App\Models\Dealer as DealerModel;
+use App\Repositories\RegionRepository;
+use App\Services\DataMappingServices\Dealer as BaseDealer;
 use Illuminate\Support\Collection;
 
 class Dealer extends BaseDealer {
@@ -29,13 +30,9 @@ class Dealer extends BaseDealer {
     /** @var Collection */
     private $regions;
 
-    /**
-     * RegionStaff constructor.
-     * @param Collection $regions
-     */
-    public function __construct(Collection $regions) {
+    public function __construct(RegionRepository $regionRepository) {
         Parent::__construct();
-        $this->regions = $regions;
+        $this->regions = $regionRepository->load();
     }
 
     /**

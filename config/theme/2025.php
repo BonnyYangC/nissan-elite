@@ -8,7 +8,7 @@ return array (
   'FY_LAST_YEAR'=>'FY24',
   'LAST_YEAR_EVENT_URL'=>"https://staging.nissanelite.com.au/elite_individual",
 
-  'STACKED_METRICS_WITH_COMBINATION'=>true,
+  'feature_metrics_stacked_combination'=>true,
 
   'product_challenge_events' => '[{"event":"Brisbane","date":"","venue":""},{"event":"Townsville","date":"","venue":""},{"event":"Launceston","date":"","venue":""},{"event":"Melbourne","date":"","venue":""},{"event":"Sydney","date":"","venue":""},{"event":"Adelaide","date":"","venue":""},{"event":"Perth","date":"","venue":""}]',
   'product_challenge_photos_url' => "https://nissanevents.pixieset.com/nissanproductchallenge2024/",

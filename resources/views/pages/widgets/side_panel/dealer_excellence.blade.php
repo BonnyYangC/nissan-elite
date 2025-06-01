@@ -17,7 +17,7 @@
                     <p class="txt-white">
                         <a target="_blank" href="{{ route('jump_to_dealer') }}">
                             <button type="button" class="btn nissan-button">
-                                View {{ config('theme.' . config('app.theme') . '.FY_WITH_YEAR') }} Rankings
+                                View {{ theme_config('FY_WITH_YEAR') }} Rankings
                             </button>
                         </a>
                     </p>

@@ -11,7 +11,7 @@
                 </span>
             @elseif ($viewLastYear)
                 <span style="padding-right:40px">
-                    <a href="{{route('api.back_to_current_year')}}">BACK TO FY24</a>
+                    <a href="{{route('api.back_to_current_year')}}">BACK TO {{theme_config('FY_WITH_YEAR')}}</a>
                 </span>
             @elseif ($mock)
                 <span style="padding-right:40px">

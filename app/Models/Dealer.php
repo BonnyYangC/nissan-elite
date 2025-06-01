@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Dealer
  * @package App\Models
- * @property $parent_id
  * @property string code
  */
 class Dealer extends Model

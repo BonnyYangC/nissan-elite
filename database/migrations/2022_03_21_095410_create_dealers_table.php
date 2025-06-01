@@ -15,7 +15,6 @@ class CreateDealersTable extends Migration
     {
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('parent_id')->notnull();
 
             $table->string('code', 50)->notnull()->unique();  //          =>'dcode',//'d_code',
             $table->string('name');  //          =>'dname',//'d_name',
@@ -34,7 +33,6 @@ class CreateDealersTable extends Migration
             $table->tinyInteger('active');
             $table->timestamps();
 
-            // $table->foreign('parent_id')->references('id')->on('companies');
         });
     }
 

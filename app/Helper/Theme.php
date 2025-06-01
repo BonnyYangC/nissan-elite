@@ -1,4 +1,10 @@
 <?php
+if (!function_exists('theme_config')) {
+    function theme_config($key) {
+        return config('theme.' . config('app.theme') . '.' . $key);
+    }
+
+}
 
 if (!function_exists('theme_image')) {
     function theme_image($filename, $theme = null) {
@@ -19,7 +25,7 @@ if (!function_exists('theme_image')) {
 }
 
 if (!function_exists('theme_view')) {
-    function theme_view($view, $data = [], $mergeData = [], $theme = null) {
+    function theme_view($view, /*$data = [], $mergeData = [],*/ $theme = null) {
         $theme = $theme ?? config('app.theme', 'default');
         $themeViewPath = 'themes.' . $theme . '.' . $view;
         $defaultViewPath = 'themes.default.' . $view;

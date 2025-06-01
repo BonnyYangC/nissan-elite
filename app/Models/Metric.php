@@ -9,14 +9,10 @@ class Metric extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-
-    ];
+    const METRIC_D1 = 'd1';
+    const METRIC_F1 = 'f1';
+    const METRIC_5_STAR = '5_star';
+    const METRIC_CE = 'ce';
 
     /**
      * The attributes that should be cast.

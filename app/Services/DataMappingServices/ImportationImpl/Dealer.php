@@ -19,7 +19,6 @@ class Dealer extends BaseDealer {
         $model = DealerModel::where('code', trim($record[$modelKey['primary']]))->first();
         if(!$model){
             $model = new DealerModel();
-            $model->parent_id = 1;
             $model->updated_at = Carbon::now();
             $model->created_at = Carbon::now();
         }
