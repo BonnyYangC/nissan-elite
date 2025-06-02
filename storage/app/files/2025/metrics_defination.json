@@ -702,25 +702,8 @@
                     }]
                 },
                 {
-                    "identifier": "rff",
-                    "order": 2,
-                    "title": "retail fleet facility",
-                    "metrics": {
-                        "rff":{
-                            "label": "RFF",
-                            "point_default": 0,
-                            "score_default": 0
-                        }
-                    },
-                    "guides": [{
-                        "title": "retail fleet facility GUIDE",
-                        "top": ["F&I Manager", "per unit"],
-                        "rows": [["Category A, B, C", 50]]
-                    }]
-                },
-                {
                     "identifier": "lrb",
-                    "order": 3,
+                    "order": 2,
                     "title": "Loyalty & Retention Bonus",
                     "metrics": {
                         "lrb":{
@@ -733,6 +716,23 @@
                         "title": "Loyalty Retention Bonus Guide",
                         "top": ["F&I Manager", "Loyalty & Retention Bonus"],
                         "rows": [["Category A, B, C", 10]]
+                    }]
+                },
+                {
+                    "identifier": "rff",
+                    "order": 3,
+                    "title": "retail fleet facility",
+                    "metrics": {
+                        "rff":{
+                            "label": "RFF",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [{
+                        "title": "retail fleet facility GUIDE",
+                        "top": ["F&I Manager", "per unit"],
+                        "rows": [["Category A, B, C", 50]]
                     }]
                 },
                 {
@@ -1634,7 +1634,7 @@
                     },
                     "guides": [{
                         "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
-                        "top": ["Technician", "≥95.0%", "≥99.75%"],
+                        "top": ["Technician", "≥95.0%", "≥97%"],
                         "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
                     }]
                 },
