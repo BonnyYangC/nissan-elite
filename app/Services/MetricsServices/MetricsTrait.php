@@ -2,7 +2,8 @@
 
 namespace App\Services\MetricsServices;
 
-use App\Helper\{Color, Defination, Utility};
+use App\Models\Metric;
+use App\Helper\{Color, Utility};
 
 trait MetricsTrait {
   private $monthArray = [
@@ -66,7 +67,7 @@ trait MetricsTrait {
               $value = isset($trainingData[$dateString]) ? $trainingData[$dateString] : null;
               $p[] = $value && isset($value[$m['identifier']]) ? $value[$m['identifier']] : 0;
           }
-          $result[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_SHARED, $m['order'], $m['label'], $p);
+          $result[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_SHARED, $m['order'], $m['label'], $p);
       }
       return $result;
   }

@@ -26,8 +26,8 @@ class PreImportMetrics extends PreImportJson
     protected function importData() {
         $this->connection->table('metrics')->truncate();
         $metrics = $this->data['metrics'];
-        $this->seedSharedMetrics(data_get($metrics, Defination::METRICS_TYPE_SHARED, []));
-        $this->seedCustomMetrics(data_get($metrics, Defination::METRICS_TYPE_CUSTOM, []));
+        $this->seedSharedMetrics(data_get($metrics, Metric::METRICS_TYPE_SHARED, []));
+        $this->seedCustomMetrics(data_get($metrics, Metric::METRICS_TYPE_CUSTOM, []));
     }
 
     /**
@@ -35,7 +35,7 @@ class PreImportMetrics extends PreImportJson
      */
     private function seedSharedMetrics(array $metrics) {
         foreach ($metrics as $m) {
-            $m['type'] = Defination::METRICS_TYPE_SHARED;
+            $m['type'] = Metric::METRICS_TYPE_SHARED;
             Metric::factory()->create($m);
         }
     }
@@ -46,7 +46,7 @@ class PreImportMetrics extends PreImportJson
     private function seedCustomMetrics(array $metrics) {
         foreach ($metrics as $position => $ms) {
             foreach ($ms as $m) {
-                $m['type'] = Defination::METRICS_TYPE_CUSTOM;
+                $m['type'] = Metric::METRICS_TYPE_CUSTOM;
                 $m['position'] = $position;
                 Metric::factory()->create($m);
             }

@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Models\Metric;
 
 class Color {
     const COLOR_1 = "#3366CC";
@@ -31,10 +32,10 @@ class Color {
     static function getColor(int $index, string $type) {
         $color = null;
         switch ($type) {
-            case Defination::METRICS_TYPE_SHARED:
+            case Metric::METRICS_TYPE_SHARED:
                 $color = constant('self::' . self::COLOR_PREFIX . intVal($index+self::SHARED_METRICS_COLOR_BASE));
                 break;
-            case Defination::METRICS_TYPE_TRAINING:
+            case Metric::METRICS_TYPE_TRAINING:
                 $color = constant('self::' . self::COLOR_PREFIX . self::TRAINING_COLOR_BASE);
                 break;
             default:
