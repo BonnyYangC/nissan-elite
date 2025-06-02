@@ -1,4 +1,4 @@
-<div class="admin-header" id="nav-app-wrap">
+<div class="admin-header">
     <nav class="navbar is-dark">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ env('SITE_URL') }}">
@@ -59,20 +59,7 @@
                 </div>
 
                 <div class="navbar-item">
-                    <el-autocomplete
-                        v-model="keyword"
-                        style="width: 400px;"
-                        :fetch-suggestions="querySearchAsync"
-                        placeholder="Find a User By: Firstname Surname"
-                        @select="handleSelect"
-                        :hide-loading="true"
-                        :trigger-on-focus="false"
-                        :select-when-unmatched="true"
-                    >
-                        <template slot-scope="{ item }">
-                            <p class="name">${ item.firstname } ${ item.lastname } - ${ item.name }(${ item.position_code })</p>
-                        </template>
-                    </el-autocomplete>
+                    <div id="nav-app-wrap"></div>
                 </div>
             </div>
 
@@ -92,14 +79,4 @@
 
     </nav>
 
-    <el-dialog
-        title="Question"
-        :visible.sync="dialogVisible"
-        width="30%" style="z-index: 9999;">
-          <span slot="footer" class="dialog-footer">
-              <el-button icon="el-icon-share" type="success" @click="mockHandler">Mock</el-button>
-              <el-button icon="el-icon-edit-outline" type="primary" @click="editHandler">Edit</el-button>
-              <el-button icon="el-icon-close" @click="dialogVisible = false">Cancel</el-button>
-          </span>
-    </el-dialog>
 </div>

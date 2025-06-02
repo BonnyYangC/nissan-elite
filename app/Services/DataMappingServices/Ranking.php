@@ -3,6 +3,7 @@
 namespace App\Services\DataMappingServices;
 
 use App\Helper\Utility;
+use App\Models\{User, Position};
 
 class Ranking extends Base {
     /** @var array  */
@@ -10,12 +11,28 @@ class Ranking extends Base {
         'period'        => 'mthyr_g_',
         'employee_code' =>'regi#_',
         'rank'          =>'rank_STATUS_',
-        'total'         =>'yr_2024_status',
+        'total'         =>'yr_2025_status',
         'rank_platinum' =>'rank_PLATINUM_',
-        'total_platinum'=>'yr_2024_platinum_',
+        'total_platinum'=>'yr_2025_platinum_',
         'rank_state'    =>'state_rank_',
         'position'      =>'sp_',
     ];
+    public static function isValidate(array $record, array $key): bool {
+        $user = User::where('employee_code', $record[$key['employ']])->first();
+        $position = Position::where('code', $record[$key['position']])->first();
+        return $user && $position ? true : false;
+    }
+
+    public function getValidateMessage(): string {
+        return 'Please check employee/position exist or not!';
+    }
+
+    public function getKeyForValidate(): array {
+        $key = [];
+        $key['employ'] = 'regi#_';
+        $key['position'] = 'sp_';
+        return $key;
+    }
 
     /**
      * get primary key according to data file type
@@ -39,14 +56,14 @@ class Ranking extends Base {
      */
     public function buildData($model, $row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
-        $statusRank = isset($row['rank_STATUS_']) && isset($row['yr_2024_status']) ? [
-            'rank' => $row['rank_STATUS_'] && $row['rank_STATUS_'] !== '' ? $row['rank_STATUS_'] : null,
-            'total' => $row['yr_2024_status'] && $row['yr_2024_status'] !== '' ? $row['yr_2024_status'] : 0,
-        ] : [];
-        $platinumRank = isset($row['rank_PLATINUM_']) && isset($row['yr_2024_platinum_']) ? [
-            'rank_platinum' => $row['rank_PLATINUM_'] && $row['rank_PLATINUM_'] !== '' ? $row['rank_PLATINUM_'] : null,
-            'total_platinum' => $row['yr_2024_platinum_'] && $row['yr_2024_platinum_'] !== '' ? $row['yr_2024_platinum_'] : 0,
-        ] : [];
+        $statusRank = [
+            'rank' => Utility::getArrayAttribute($row, $this->mappingArray['rank'], null),
+            'total' => Utility::getArrayAttribute($row, $this->mappingArray['total'], 0),
+        ];
+        $platinumRank = [
+            'rank_platinum' => Utility::getArrayAttribute($row, $this->mappingArray['rank_platinum'], null),
+            'total_platinum' => Utility::getArrayAttribute($row, $this->mappingArray['total_platinum'], 0),
+        ];
         return array_merge([
             'period'        => Utility::formatPeriod($row[$this->mappingArray['period']]),
             'employee_code' =>$row[$this->mappingArray['employee_code']],

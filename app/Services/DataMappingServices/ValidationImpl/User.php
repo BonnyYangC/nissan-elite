@@ -98,12 +98,4 @@ class User extends BaseUser {
         return $result;
     }
 
-   /**
-    // * @param  \DateTimeInterface $date
-     * @return string
-     */
- //   protected function serializeDate(DataTimeInterface $date){
-
-  //      return $date->format('Y-m-d');
-  //  }
 }

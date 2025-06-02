@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Defination;
-use App\Services\DataService;
+use App\Services\PositionService;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
-    /** @var DataService  */
-    private $dataService;
+    /** @var PositionService  */
+    private $service;
 
-    /**
-     * Create a new controller instance.
-     * @param DataService $dataService
-     * @return void
-     */
-    public function __construct(DataService $dataService, Request $request) {
+    public function __construct(PositionService $positionService, Request $request) {
         parent::__construct($request);
-        $this->dataService = $dataService;
+        $this->service = $positionService;
     }
 
     /**
@@ -27,7 +22,7 @@ class AdminController extends Controller {
      */
     public function dashboard() {
         $this->dataForView['menuName'] = Defination::PAGE_DASHBOARD;
-        $this->dataForView['positions'] = $this->dataService->getPositionsWithT();
+        $this->dataForView['positions'] = $this->service->getPositionsWithT();
         $this->dataForView['summary'] = [
             Defination::DATA_TYPE_RANKING => 'Nissan Rankings',
             Defination::DATA_TYPE_TERRITORY_REPORT =>'Region Territory Report'
@@ -43,34 +38,6 @@ class AdminController extends Controller {
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
-     * @throws \League\Csv\Exception
-     * @throws \League\Csv\UnableToProcessCsv
-     */
-    public function data_process(Request $request) {
-
-        $actonType = $request->input('action_type');
-        $dataType = $request->input('for');
-
-        $parameter = [
-            'year' => config('elite.YEAR', 2021),
-            'month' => $request->input('month'),
-        ];
-
-        if ($request->hasFile('file')) {
-            $dataFile = $request->file->storeAS('file', $dataType.date('Y-m-d').'.csv', 'public');
-            if($actonType == Defination::ACTION_TYPE_SYNC){
-                $this->dataForView['result'] = $this->dataService->importation($dataFile, $dataType);
-            }else{
-                $this->dataForView['result'] = $this->dataService->validation($dataFile, $dataType);
-            }
-
-        }
-        return $this->render('pages.backend.resulting');
-    }
-
-    /**
-     * @param Request $request
      * @return mixed
      */
     public function system_config(Request $request) {
@@ -78,10 +45,10 @@ class AdminController extends Controller {
         $content = [
             'PROGRAM_NAME' => $request->input('program_name'),
             'PROGRAM_SHORT_NAME' => $request->input('program_short_name'),
-            'PROGRAM_SHORT_NAME_WITH_YEAR' => $request->input('program_short_name_with_year'),
+            // 'PROGRAM_SHORT_NAME_WITH_YEAR' => $request->input('program_short_name_with_year'),
             'PROGRAM_I_ELITE' => $request->input('program_i_elite'),
             'PROGRAM_DEALERSHIP' => $request->input('program_dealership'),
-            'YEAR' => $request->input('year'),
+            // 'YEAR' => $request->input('year'),
             'PROGRAM_AWARD_UNIT' => $request->input('program_award_unit'),
             'PRODUCT_CHALLENGE_WINNER' => $request->input('product_challenge_winner'),
             'PAGE_SIZE' => $request->input('page_size'),
@@ -99,11 +66,4 @@ class AdminController extends Controller {
 
     }
 
-    /**
-     * @param Request $request
-     * @param string $type
-     */
-    public function data_export(Request $request, string $type) {
-        return $this->dataService->export($type, $request->input());
-    }
 }

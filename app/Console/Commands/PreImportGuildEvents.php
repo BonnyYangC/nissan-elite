@@ -3,84 +3,46 @@
 namespace App\Console\Commands;
 
 use App\Models\Guild\Events;
-use Illuminate\Console\Command;
-use League\Csv\Reader;
-use League\Csv\Statement;
 
-class PreImportGuildEvents extends Command
+class PreImportGuildEvents extends PreImportCsv
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'pre-import:guild-events {filePath}';
+    protected $signature = 'pre-import:guild-events {theme}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Pre import guild events from csv file';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $fileName = 'guild_events.csv';
+
+    protected function importData()
     {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @throws \League\Csv\Exception
-     */
-    public function handle()
-    {
-
-        $filePath = __DIR__.'/'.$this->argument('filePath');
-        var_dump($filePath);
-
+        $this->connection->table('guild_events')->truncate();
         $successCount = 0;
 
-        if(file_exists($filePath)){
-            \DB::table('guild_events')->where('year', '=', config('elite.YEAR'))->delete();
-
-            $csvReader = Reader::createFromPath($filePath,'r');
-            $records = (new Statement())->process($csvReader);
-            $type = 1;
-            foreach ($records as $lineNumber => $record) {
-                if (strstr($record[0], 'PLATINUM MEMBERS')) {
-                    //'PLATINUM MEMBERS (500,000+)'
-                    $type = 1;
-                    continue;
-                } else if (strstr($record[0], 'GOLD MEMBERS')) {
-                    //'PLATINUM MEMBERS (500,000+)'
-                    $type = 2;
-                    continue;
-                } else if (strstr($record[0], 'LIFETIME MEMBERS')) {
-                    //'LIFETIME MEMBERS - RETIRED'
-                    $type = 3;
-                    continue;
-                } else if (!$record[0]) {
-                    continue;
-                }
-
-                Events::factory()->create([
-                    'type' => $type,
-                    'member' => $record[0],
-                    'dealer' => $record[1]
-                ]);
-                $successCount++;
+        $type = 1;
+        foreach ($this->data as $lineNumber => $record) {
+            if (strstr($record[0], 'PLATINUM MEMBERS')) {
+                //'PLATINUM MEMBERS (500,000+)'
+                $type = 1;
+                continue;
+            } else if (strstr($record[0], 'GOLD MEMBERS')) {
+                //'PLATINUM MEMBERS (500,000+)'
+                $type = 2;
+                continue;
+            } else if (strstr($record[0], 'LIFETIME MEMBERS')) {
+                //'LIFETIME MEMBERS - RETIRED'
+                $type = 3;
+                continue;
+            } else if (!$record[0]) {
+                continue;
             }
 
-            echo 'Guild_events table has updated Success: '.$successCount.PHP_EOL;
+            Events::factory()->create([
+                'type' => $type,
+                'member' => $record[0],
+                'dealer' => $record[1]
+            ]);
+            $successCount++;
         }
-        else{
-            echo 'File is not exists.'.PHP_EOL;
-        }
+
+        echo 'Guild_events table has updated Success: '.$successCount.PHP_EOL;
     }
 }

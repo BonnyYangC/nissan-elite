@@ -10,6 +10,9 @@ class FI extends MonthlyDataMapping {
         'nfsa' => 'points_nfsa',
         'nfsa_result' => 'sales_nfsa_',
 
+        'rff' => 'points_nfsa_facility',
+        'rff_result' => 'sales_nfsa_ffacility',
+
         'lrb' => 'points_nfsa_LRB',
         'lrb_result' => 'sales_nfsa_LRB_',
 
@@ -21,19 +24,16 @@ class FI extends MonthlyDataMapping {
         'penetration' => 'points_nfsa_PEN',
         'penetration_result' => 'pcent_nfsa_PEN',
 
-        'pmp' => 'points_PMP',
-        'pmp_result' => 'sales_PMP',
-
-        'nfv' => 'points_NFV',
-        'nfv_result' => 'sales_NFV',
+        'nfv' => 'points_nfsa_NFV',
+        'nfv_result' => 'sales_nfsa_NFV',
         'nfv_nfsa' => 'points_NFV%',
         'nfv_nfsa_result' => 'pcent_NFV%',
 
         'nfv_retails' => 'points_NFV%_Retail',
         'nfv_retails_result' => 'pcent_NFV%Retail',
 
-        'nic_sale_nfsa' => 'points_NIC_Fnfsa',
-        'nic_sale_nfsa_result' => 'sales_NIC_fnfsa',
+        'nic_sale_nfsa' => 'points_nfsa_NICF',
+        'nic_sale_nfsa_result' => 'sales_nfsa_NICF_',
 
         'd1' => 'points_ce_dlr_D1_S',
         'd1_result' => 'score_ce_dlr_D1_S',

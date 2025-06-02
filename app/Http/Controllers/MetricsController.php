@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Defination;
-use App\Services\MetricsService;
+use App\Services\MetricsServices\IndividualMetrics;
+use App\Services\MetricsServices\TrainingMetrics;
 use Illuminate\Http\Request;
 
 class MetricsController extends Controller {
 
-    /** @var MetricsService  */
-    private $service;
+    private $individualService;
+    private $trainingService;
 
-    /**
-     * MetricsController constructor.
-     * @param MetricsService $service
-     * @param Request $request
-     */
-    public function __construct(MetricsService $service, Request $request) {
+    public function __construct(IndividualMetrics $individualMetricsService, TrainingMetrics $trainingMetricService,  Request $request) {
         parent::__construct($request);
-        $this->service = $service;
+        $this->individualService = $individualMetricsService;
+        $this->trainingService = $trainingMetricService;
     }
 
     /**
@@ -29,9 +26,9 @@ class MetricsController extends Controller {
         $this->dataForView['menuName'] = Defination::PAGE_METRICS;
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         //metrics
-        $this->dataForView['metrics'] = $this->service->getMetricsData($selectedPosition);
+        $this->dataForView['metrics'] = $this->individualService->get($selectedPosition);
         //training
-        $this->dataForView['training'] = $this->service->getTrainingData($selectedPosition);
+        $this->dataForView['training'] = $this->trainingService->get($selectedPosition);
         return $this->render('pages.metrics');
     }
 }

@@ -12,7 +12,7 @@ class PreImportRewards extends PreImportJson
      *
      * @var string
      */
-    protected $signature = 'pre-import:rewards';
+    protected $signature = 'pre-import:rewards {theme}';
 
     /**
      * The console command description.
@@ -26,7 +26,7 @@ class PreImportRewards extends PreImportJson
      *
      */
     protected function importData() {
-        DB::table('rewards')->where('year', '=', config('elite.YEAR'))->delete();
+        DB::table('rewards')->delete();
         $rewards = $this->data['rewards'];
         foreach ($rewards as $r) {
             Reward::factory()->create($r);

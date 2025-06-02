@@ -15,8 +15,8 @@
                 <div class="row w-100">
                     @foreach($news as $item)
                     <div class="col-4">
-                        <a href="{{ asset('/images/news/pdfs/'.$item->pdf) }}" target="_blank">
-                            <img style="height: 280px;max-width: 100%;" src="{{ asset('/images/news/images/'.$item->image) }}" alt="{{ $item->title }}">
+                        <a href="{{ asset('/elite/news/pdfs/'.$item->pdf) }}" target="_blank">
+                            <img style="height: 280px;max-width: 100%;" src="{{ asset('/elite/news/images/'.$item->image) }}" alt="{{ $item->title }}">
                         </a>
                         <p>{{ $item->title }}<br></p><br>
                     </div>

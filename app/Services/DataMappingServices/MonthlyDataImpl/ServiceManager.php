@@ -19,8 +19,8 @@ class ServiceManager extends MonthlyDataMapping {
         'service_retention' => 'points_Retent_1',
         'service_retention_result' => 'pcent_RETENT_1',
 
-        'pmp' => 'points_PMP%retails' ,
-        'pmp_result' =>  'pcent_PMP%retails' ,
+        'reentry_pen' => 'points_reEntry',
+        'reentry_pen_result' =>  'pcent_reEntry',
 
         'loyalty' => 'points_loyalty',
         'loyalty_result' => 'sales_loyalty',

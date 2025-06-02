@@ -1,0 +1,34 @@
+
+.monthly-point h3, .leader-board h3, .dollar-rewards h3, .current-status-level h3, .metrics-chart h3, .dashboard-widget h3{
+    color: #c40030;
+}
+.dashboard-section {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3%;
+    margin-bottom: 3%;
+}
+
+.btn-leader-board {
+    font-size: 12px;
+}
+.leader-board-table tr td a.matched {
+    font-family: 'nissan_brandregular', SansSerif, serif;
+}
+
+.leader-board-table a:hover {
+    color: #c40030;
+    text-decoration: none;
+}
+.dollar-rewards h3 .no-transform{
+    font-size : 16px;
+    text-transform: lowercase;
+}
+
+.dollar-rewards-table .matched {
+    color: #c40030;
+    background-color: #f5f5f5;
+}
+
+.span-red {
+    color: #c40030;
+}

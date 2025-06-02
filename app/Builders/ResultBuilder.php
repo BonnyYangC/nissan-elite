@@ -9,8 +9,7 @@ class ResultBuilder extends BaseBuilder
   }
 
   public function yearToDate(string $employee_code, string $position): self {
-    return $this->currentYear()
-      ->byPosition($position)
+    return $this->byPosition($position)
       ->where('employee_code', $employee_code);
   }
 }

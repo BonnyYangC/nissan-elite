@@ -1,0 +1,15 @@
+.bg-site-image{
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    /*top: 0;
+    bottom: 0;*/
+    visibility: visible;
+    background-attachment: fixed;
+}
+
+.tiles-img {
+    width: 100%;
+}

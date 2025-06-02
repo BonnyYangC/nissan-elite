@@ -1,0 +1,1763 @@
+{
+    "metrics": {
+        "shared": [
+            {
+                "identifier": "excellence",
+                "label": "Dealer Excellence",
+                "order": 1,
+                "title": "Excellence"
+            },
+            {
+                "identifier": "registration",
+                "label": "Registration",
+                "order": 2,
+                "title": "Registration"
+            },
+            {
+                "identifier": "incentive",
+                "label": "Incentive",
+                "order": 3,
+                "title": "Incentive"
+            }
+        ],
+        "custom": {
+            "F": [
+                {
+                    "identifier": "new_vehicle",
+                    "order": 1,
+                    "title": "NEW VEHICLE SALES",
+                    "metrics": {
+                        "new_vehicle":{
+                            "label": "New Vehicle Sales",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [{
+                        "title": "NEW VEHICLE SALES GUIDE",
+                        "top": ["Fleet Sales Executive", "per sale"],
+                        "rows": [["Category A", 100], ["Category B", 100], ["Category C", 250]],
+                        "note": "Status Sales earn points for Status level awards & end year Reward, Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved<br>Refer page 20 of member guide"
+                    }]
+                },
+                {
+                    "identifier": "new_vehicle_fleet",
+                    "order": 2,
+                    "title": "New Vehicle Fleet Sales v Fleet Target",
+                    "metrics": {
+                        "new_vehicle_fleet": {
+                            "label": "Sales v Target",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "New Vehicle Fleet Sales v Fleet Target GUIDE",
+                            "top": ["Fleet Sales Executive", "≥100%", "≥110%", "≥120%", "≥140%"],
+                            "rows": [["Category A", 740, 1040, 1440, 1640], ["Category B", 740, 1040, 1440, 1640], ["Category C", 740, 1040, 1440, 1640]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "volume",
+                    "order": 3,
+                    "title": "Fleet Sales Volume Growth - Quarterly",
+                    "period": "quarterly",
+                    "metrics": {
+                        "volume":{
+                            "label": "Volume Growth",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "Fleet Sales Volume Growth - Quarterly GUIDE",
+                            "top": ["Fleet Sales Executive", "≥10%", "≥20%", "≥50%", "100%", ">100%"],
+                            "rows": [["Category A", 360, 460, 560, 760, 1000], ["Category B", 360, 460, 560, 760, 1000], ["Category C", 360, 460, 560, 760, 1000]],
+                            "note": "(metric measured Quarterly only)"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "d1",
+                    "order": 4,
+                    "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "d1":{
+                            "label": "D1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Fleet Sales Executive", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 5,
+                    "title": "Sales 5 Star Rating",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "Sales 5 Star Rating GUIDE",
+                            "top": ["Fleet Sales Executive", "≥4.7", "≥4.9"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "October, November and December score based on Single Month<br>January, February, March score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 6,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "PKCompetency",
+                            "color": "#22AA99"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE - FLEET SALES EXECUTIVE",
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 21-22",
+                        "top": ["Competency Modules", "Points Quarterly"],
+                        "rows": [["Certified Fleet Executive (VC & A)", 230],
+                            ["Product Knowledge Competency (O)", 250]]
+                    }]
+                }
+            ],
+            "M": [
+                {
+                    "identifier": "matched_ow",
+                    "order": 1,
+                    "title": "MATCHED ORDER WRITE",
+                    "metrics": {
+                        "matched_ow":{
+                            "label": "Matched OW",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "MATCHED ORDER WRITE GUIDE",
+                            "top": ["Sales Manager", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
+                            "rows": [["Category A", 560, 400, 310], ["Category B", 560, 310, ""], ["Category C", 560, 310, ""]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "new_vehicle",
+                    "order": 2,
+                    "title": "NEW VEHICLE PERFORMANCE TO TARGET",
+                    "metrics": {
+                        "new_vehicle":{
+                            "label": "New Vehicle Sales",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
+                            "top": ["Sales Manager (% of Target)", "100%", "110%", "120%", "≥140%"],
+                            "rows": [["Category A", 1000, 1200, 1400, 1800], ["Category B", 1000, 1100, 1200, 1400],
+                                ["Category C", 1000, 1100, 1200, 1400]],
+                            "note": "Category A: Each full percentage point(rounded down) over 100% target will earn an additional 20 points.<br>Category B & C: Each full percentage point(rounded down) over 100% target will earn an additional 10 points.<br>(capped to 140% of target achievement)."
+                        }
+                    ]
+                },
+                {
+                    "identifier": "nfv",
+                    "order": 3,
+                    "title": "NFV% of Total NFSA eligible contracts",
+                    "metrics": {
+                        "nfv":{
+                            "label": "NFV%",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NFV% of Total NFSA eligible contracts GUIDE",
+                            "top": ["Sales Manager", "≥40%", "≥50%"],
+                            "rows": [["Category A", 100, 200], ["Category B", 100, 200], ["Category C", 100, 200]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "nic_sale",
+                    "label": "NIC sale",
+                    "order": 4,
+                    "title": "NIC sale",
+                    "metrics": {
+                        "nic_sale": {
+                            "label": "NIC sale",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NIC sale GUIDE",
+                            "top": ["Sales Manager", "per unit"],
+                            "rows": [["Category A", 60], ["Category B", 60], ["Category C", 60]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "apnur",
+                    "label": "APNUR",
+                    "order": 5,
+                    "title": "APNUR PERFORMANCE",
+                    "metrics": {
+                        "apnur_n":{
+                            "label": "NAVARA",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        },
+                        "apnur_x":{
+                            "label": "XTRAIL",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        },
+                        "apnur_p":{
+                            "label": "PATROL",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "APNUR PERFORMANCE GUIDE",
+                            "colspan": "Navara APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        },
+                        {
+                            "colspan": "PATROL APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        },
+                        {
+                            "colspan": "XTRAIL APNUR vs Target",
+                            "top": ["Sales Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 110, 175, 275]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "d1",
+                    "order": 6,
+                    "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "d1":{
+                            "label": "D1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Sales Manager", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 7,
+                    "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M) GUIDE",
+                            "top": ["Sales Manager", "≥4.7", "≥4.9"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "ce",
+                    "order": 8,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
+                    "metrics": {
+                        "ce":{
+                            "label": "CE Survey",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M) GUIDE",
+                            "top": ["Sales Manager", "≥30%", "≥40%", "≥50%"],
+                            "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
+                            "note": "Retail Sales Consultant based on individual surveys"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 9,
+                    "title": "TRAINING",
+                    "ref": "Refer to the <a href=\"\\member_guide\">ELITE Member Guide</a> for full details.",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "PKCompetency",
+                            "color": "#22AA99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#AAAA11"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 15-16",
+                        "note": "Sales Manager is eligible for 500 bonus points in September and March when 100% of Retail Team have completed their online pathway",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "h/yr", "Points Yearly"],
+                        "rows": [["Certified Dealership Manager Sales (O & VC)", "", 160, "", ""],
+                            ["Product Knowledge Competency (O)", "", 250, "", ""],
+                            ["Mastery Goal Achievement", 100, 250, "", 250],
+                            ["Bonus", "", "", 500, ""]]
+                    }]
+                }
+            ],
+            "R": [
+                {
+                    "identifier": "new_vehicle",
+                    "label": "New Vehicle Sales",
+                    "order": 1,
+                    "title": "NEW VEHICLE SALES PERFORMANCE",
+                    "metrics": {
+                        "new_vehicle":{
+                            "label": "Sales",
+                            "point_default": 0,
+                            "score_default": 0
+                        },
+                        "new_vehicle_performance":{
+                            "label": "DLR%",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NEW VEHICLE SALES PERFORMANCE GUIDE",
+                            "top": ["Retail Sales Consultant", "Retail", "Fleet"],
+                            "rows": [["Category A", 100, 100], 
+                            ["Category B", 100, 100], 
+                            ["Category C", 250, 250]]
+                        },
+                        {
+                            "title": "NEW VEHICLE PERFORMANCE TO TARGET GUIDE",
+                            "top": ["Retail Sales Consultant", "100%", "≥110%", "≥120%", "≥140%"],
+                            "rows": [["Category A", 250, 310, 400, 500], 
+                            ["Category B", 250, 310, 400, 500], 
+                            ["Category C", 250, 310, 400, 500]],
+                            "note": "Status Sales earn points for Status level awards & end year Reward Platinum Sales earn points for Platinum Award achievement when Gold Status level achieved\n\rRefer page 14 of member guide"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "nfv",
+                    "order": 2,
+                    "title": "NFV% of Total NFSA eligible contracts",
+                    "metrics": {
+                        "nfv":{
+                            "label": "NFV%",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NFV% of Total NFSA eligible contracts GUIDE",
+                            "top": ["Retail Sales Consultant", "≥40%", "≥50%"],
+                            "rows": [["Category A", 100, 200], ["Category B", 100, 200], ["Category C", 100, 200]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "nic_sale",
+                    "label": "NIC sale",
+                    "order": 3,
+                    "title": "NISSAN INTELLIGENT CHOICE – CERTIFIED PRE OWNED",
+                    "metrics": {
+                        "nic_sale":{
+                            "label": "NIC sale",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NIC SALES GUIDE",
+                            "top": ["Retail Sales Consultant", "per unit"],
+                            "rows": [["Category A", 60], ["Category B", 60], ["Category C", 60]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "d1",
+                    "order": 4,
+                    "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "d1":{
+                            "label": "D1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Retail Sales Consultant", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 5,
+                    "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M) GUIDE",
+                            "top": ["Retail Sales Consultant", "≥4.7", "≥4.9"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "ce",
+                    "order": 6,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
+                    "metrics": {
+                        "ce":{
+                            "label": "CE Survey",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M) GUIDE",
+                            "top": ["Retail Sales Consultant", "≥30%", "≥40%", "≥50%"],
+                            "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
+                            "note": "Retail Sales Consultant based on Dealership surveys"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 7,
+                    "title": "TRAINING GUIDE",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#AAAA11"
+                        },
+                        "train_competency": {
+                            "label": "PKCompetency",
+                            "color": "#22AA99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 15-16",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Sales Consultant (O & VC)", "", 260, ""],
+                            ["Certified Sales Executive (VC & A)", "", 300, ""], 
+                            ["Product Knowledge Competency (O)", "", 250, ""], 
+                            ["E-POWER CERTIFIED", "", 100, ""],
+                            ["Mastery Goal Achievement", 100, 250, 250]]
+                    }]
+                }
+            ],
+            "SC": [
+                {
+                    "identifier": "comp_ow",
+                    "order": 1,
+                    "title": "OW DATA ENTRY COMPLIANCE",
+                    "metrics": {
+                        "comp_ow":{
+                            "label": "OW Data",
+                            "point_default": 0,
+                            "score_default": "0"
+                        }
+                    },
+                    "guides": [{
+                        "title": "OW DATA ENTRY COMPLIANCE GUIDE",
+                        "top": ["Stock Controller", "≤ 1 Missed Day", "2-3 Missed Days"],
+                        "rows": [["Category A", 675, 240], ["Category B", 675, 240], ["Category C", 675, 240]]
+                    }]
+                },
+                {
+                    "identifier": "matched_ow",
+                    "order": 2,
+                    "title": "MATCHED ORDER WRITE",
+                    "metrics": {
+                        "matched_ow":{
+                            "label": "Matched OW",
+                            "point_default": 0,
+                            "score_default": "0"
+                        }
+                    },
+                    "guides": [{
+                        "title": "MATCHED ORDER WRITE GUIDE",
+                        "top": ["Stock Controller", "0 or 1 unit Variation", "2 unit Variation", "3 unit Variation"],
+                        "rows": [["Category A", 560, 400, 310], ["Category B", 560, 310, ""], ["Category C", 560, 310, ""]]
+                    }]
+                },
+                {
+                    "identifier": "reg_ret",
+                    "order": 3,
+                    "title": "Registration v Retails Compliance",
+                    "metrics": {
+                        "reg_ret":{
+                            "label": "Reg VS. Retail",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "Registration v Retails Compliance GUIDE",
+                        "top": ["Stock Controller", "≥90%"],
+                        "rows": [["Category A", 750], ["Category B", 750], ["Category C", 750]],
+                        "note": "All Sales Types registered in same month as retailed."
+                    }]
+                },
+                {
+                    "identifier": "d1",
+                    "order": 4,
+                    "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "d1":{
+                            "label": "D1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Stock Controller", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 5,
+                    "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M) GUIDE",
+                            "top": ["Stock Controller", "≥4.7", "≥4.9"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "ce",
+                    "order": 6,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
+                    "metrics": {
+                        "ce":{
+                            "label": "CE Survey",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M) GUIDE",
+                            "top": ["Sales Manager", "≥30%", "≥40%", "≥50%"],
+                            "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
+                            "note": "based on individual surveys"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 7,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "PKCompetency",
+                            "color": "#22AA99"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Delivery Method", "Points per Quarter"],
+                        "rows": [["*Stock Controller (O)", 0, 60], ["Product Knowledge Competency (O)", 0, 250]],
+                        "criteria": "Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 26"
+                    }]
+                }],
+            "I": [
+                {
+                    "identifier": "nfsa",
+                    "order": 1,
+                    "title": "NFSA Contracts",
+                    "metrics": {
+                        "nfsa":{
+                            "label": "NFSA Contracts",
+                            "point_default": 0,
+                            "score_default": "0"
+                        }
+                    },
+                    "guides": [{
+                        "title": "NFSA Contracts GUIDE",
+                        "top": ["F&I Manager", "NFSA Finance Contract"],
+                        "rows": [["Category A, B, C", 100]]
+                    }]
+                },
+                {
+                    "identifier": "lrb",
+                    "order": 2,
+                    "title": "Loyalty & Retention Bonus",
+                    "metrics": {
+                        "lrb":{
+                            "label": "Loyalty",
+                            "point_default": 0,
+                            "score_default": "0"
+                        }
+                    },
+                    "guides": [{
+                        "title": "Loyalty Retention Bonus Guide",
+                        "top": ["F&I Manager", "Loyalty & Retention Bonus"],
+                        "rows": [["Category A, B, C", 10]]
+                    }]
+                },
+                {
+                    "identifier": "rff",
+                    "order": 3,
+                    "title": "retail fleet facility",
+                    "metrics": {
+                        "rff":{
+                            "label": "RFF",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [{
+                        "title": "retail fleet facility GUIDE",
+                        "top": ["F&I Manager", "per unit"],
+                        "rows": [["Category A, B, C", 50]]
+                    }]
+                },
+                {
+                    "identifier": "insurance",
+                    "label": "Insurance",
+                    "order": 4,
+                    "title": "Insurance – MVI & MVI/NFSA pkg",
+                    "metrics": {
+                        "insurance_mvi":{
+                            "label": "MVI",
+                            "point_default": 0,
+                            "score_default": "0"
+                        },
+                        "insurance_pkg":{
+                            "label": "PKG",
+                            "point_default": 0,
+                            "score_default": "0"
+                        }
+                    },
+                    "guides": [{
+                        "title": "INSURANCE – MVI & MVI/NFSA PKG Guide",
+                        "top": ["F&I Manager", "MVI Motor Vehicle Insurance", "Package"],
+                        "rows": [["Category A, B, C", 40, 10]]
+                    }]
+                },
+                {
+                    "identifier": "penetration",
+                    "order": 5,
+                    "title": "NFSA FINANCE PENETRATION",
+                    "metrics": {
+                        "penetration":{
+                            "label": "Penetration",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "NFSA FINANCE PENETRATION Guide",
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide to earn end-year Giftcard Reward<br>40% achievement @ 31 March = Sum(monthly Penetration%) / 12 months",
+                        "top": ["F&I Manager", "≥20%", "≥30%", "≥40%", "≥50%"],
+                        "rows": [["Category A, B, C", 250, 500, 750, 1000]]
+                    }]
+                },
+                {
+                    "identifier": "nfv",
+                    "label": "NFV",
+                    "order": 6,
+                    "title": "NFV CONTRACTS & NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS",
+                    "metrics": {
+                        "nfv":{
+                            "label": "NFV",
+                            "point_default": 0,
+                            "score_default": "0"
+                        },
+                        "nfv_nfsa":{
+                            "label": "NFV%",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "NFV CONTRACTS Guide",
+                        "top": ["F&I Manager", "per unit"],
+                        "rows": [["Category A, B, C", 30]]
+                    },{
+                        "title": "NFV% OF TOTAL NFSA ELIGIBLE CONTRACTS GUIDE",
+                        "top": ["F&I Manager", "≥40%", "≥50%"],
+                        "rows": [["Category A, B, C", 100, 200]]
+                    }]
+                },
+                {
+                    "identifier": "nfv_retails",
+                    "order": 7,
+                    "title": "NFV% of RETAILS",
+                    "metrics": {
+                        "nfv_retails":{
+                            "label": "NFV of RETAILS",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "NFV% of RETAILS GUIDE",
+                        "top": ["F&I Manager", "≥15%", "≥20%"],
+                        "rows": [["Category A, B, C", 100,200]]
+                    }]
+                },
+                {
+                    "identifier": "nic_sale_nfsa",
+                    "order": 8,
+                    "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA ",
+                    "metrics": {
+                        "nic_sale_nfsa":{
+                            "label": "NIC sale NFSA",
+                            "point_default": 0,
+                            "score_default": "0"
+                        }
+                    },
+                    "guides": [{
+                        "title": "NISSAN INTELLIGENT CHOICE SALE FINANCED BY NFSA GUIDE",
+                        "top": ["F&I Manager", "per unit"],
+                        "rows": [["Category A, B, C", 75]]
+                    }]
+                },
+                {
+                    "identifier": "d1",
+                    "order": 9,
+                    "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "d1":{
+                            "label": "D1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (D1 / DELIVERED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["F&I Manager", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 10,
+                    "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SALES 5 STAR RATING R3M) GUIDE",
+                            "top": ["F&I Manager", "≥4.7", "≥4.9"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                }],
+            "PM": [
+                {
+                    "identifier": "grp",
+                    "order": 1,
+                    "title": "Nissan Genuine replacement Parts (GRP)",
+                    "metrics": {
+                        "grp":{
+                            "label": "GRP",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "NISSAN GENUINE REPLACEMENT PARTS (GRP) Guide",
+                        "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 300, 450, 600]]
+                    }]
+                },
+                {
+                    "identifier": "acc",
+                    "order": 2,
+                    "title": "Nissan Genuine Accessories (QUARTERLY)",
+                    "period": "quarterly",
+                    "metrics": {
+                        "acc":{
+                            "label": "Accessories",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "Nissan Genuine Accessories GUIDE (QUARTERLY) ",
+                        "top": ["Parts Manager", "≥90%", "≥100%", "≥110%"],
+                        "rows": [["Category A, B, C", 900, 1100, 1800]]
+                    }]
+                },
+                {
+                    "identifier": "apnur",
+                    "label": "APNUR",
+                    "order": 3,
+                    "title": "APNUR PERFORMANCE -  NAVARA, X-TRAIL, ALL MODELS",
+                    "metrics": {
+                        "apnur_n":{
+                            "label": "NAVARA",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        },
+                        "apnur_x":{
+                            "label": "X-TRAIL",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        },
+                        "apnur_am":{
+                            "label": "ALL MODELS",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "APNUR PERFORMANCE – NAVARA, X-TRAIL, ALL MODELS GUIDE",
+                            "colspan": "APNUR PERFORMANCE - NAVARA",
+                            "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 220, 345, 550]]
+                        },
+                        {
+                            "colspan": "APNUR PERFORMANCE – X-TRAIL",
+                            "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 220, 345, 550]]
+                        },
+                        {
+                            "colspan": "APNUR PERFORMANCE - ALL MODELS",
+                            "top": ["Parts Manager", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 220, 345, 550]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "gp_cpro",
+                    "order": 4,
+                    "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
+                    "metrics": {
+                        "gp_cpro":{
+                            "label": "Genuine Parts",
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
+                        }
+                    },
+                    "guides": [{
+                        "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO GUIDE",
+                        "top": ["Parts Manager", "≥$100.00", "≥$140.00", "≥$180.00"],
+                        "rows": [["Category A, B, C", 155, 255, 355]]
+                    }
+                    ]
+                },
+                {
+                    "identifier": "bw_cpro",
+                    "order": 5,
+                    "title": "BRAKE AND WIPER PARTS SALES PER CPRO",
+                    "metrics": {
+                        "bw_cpro":{
+                            "label": "Brakes & Wipers",
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
+                        }
+                    },
+                    "guides": [{
+                        "title": "BRAKE AND WIPER PARTS SALES PER CPRO GUIDE",
+                        "top": ["Parts Manager", "≥$10.00", "≥$20.00", "≥$30.00"],
+                        "rows": [["Category A, B, C", 155, 255, 355]]
+                    }]
+                },
+                {
+                    "identifier": "rim",
+                    "label": "RIM",
+                    "order": 6,
+                    "title": "RIM % Useage",
+                    "metrics": {
+                        "rim":{
+                            "label": "RIM % Useage",
+                            "point_default": 0,
+                            "score_order": 2,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        },
+                        "rim_qualifier":{
+                            "label": "Compliance",
+                            "has_points": false,
+                            "score_order": 1,
+                            "score_default": "0%",
+                            "score_format": "%",
+                            "score_style": "text-red"
+                        }
+                    },
+                    "guides": [{
+                        "title": "RIM % Useage GUIDE",
+                        "top": ["Parts Manager", "45%", "55%", "65%"],
+                        "rows": [["Category A, B, C", 220, 345, 550]],
+                        "note": "<span style='color:#c40030'>1. RIM Item Compliance - must achieve minimum of 80% to qualify to earn any points.</span><br>2. RIM Order Line Compliance - points awarded based on performance bands."
+                    }]
+                },
+                {
+                    "identifier": "f1",
+                    "order": 7,
+                    "title": "FCUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "f1":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Parts Manager", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 8,
+                    "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
+                            "top": ["Parts Manager", "≥4.3", "≥4.5"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 9,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#22AA99"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#AAAA11"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Quarterly", "Points H/yrly", "Points Yearly"],
+                        "rows": [["Certified Dealership Manager (VC & A)", 150, "", ""],
+                            ["Product Knowledge Competency", 250, "", ""], 
+                            ["Bonus", "", 500, ""]],
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 49-50"
+                    }]
+                }],
+            "PS": [
+                {
+                    "identifier": "grp",
+                    "order": 1,
+                    "title": "Nissan Genuine replacement Parts",
+                    "metrics": {
+                        "grp":{
+                            "label": "GRP",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "Nissan Genuine Replacement Parts Guide",
+                        "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 475, 680, 880]]
+                    }]
+                },
+                {
+                    "identifier": "trade_sale",
+                    "label": "Trade Sales",
+                    "order": 2,
+                    "period": "quarterly",
+                    "title": "Trade Parts Sales per unit in Operation - QUARTERLY",
+                    "metrics": {
+                        "trade_sale_pvfy":{
+                            "label": "Trade Sales vs FY24",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        },
+                        "trade_sale_pvlq":{
+                            "label": "Trade Sales vs previous",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "Trade Parts Sales per unit in Operation Guide",
+                        "colspan": "Quarterly Performance vs FY24 Total",
+                        "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                        "rows": [["Category A, B, C", 1900, 2400, 3520]]
+                        },
+                        {
+                            "colspan": "Quarterly Performace vs previous quarter",
+                            "top": ["Parts Sales Representative", "≥100%", "≥110%", "≥120%"],
+                            "rows": [["Category A, B, C", 2300, 2700, 3500]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "f1",
+                    "order": 3,
+                    "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "f1":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Parts Sales Representative", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 4,
+                    "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
+                            "top": ["Parts Sales Representative", "≥4.3", "≥4.5"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 5,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#22AA99"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Quarterly"],
+                        "rows": [["Certified Parts Advisor (O & VC)", 120], ["Product Knowledge Competency", 250]],
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 49-50"
+                    }]
+                }],
+            "SM": [
+                {
+                    "identifier": "cpro_target",
+                    "order": 1,
+                    "title": "Customer Paid Repair Orders vs Target",
+                    "metrics": {
+                        "cpro_target":{
+                            "label": "CPRO",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [{
+                        "title": "Customer Paid Repair Orders vs Target GUIDE",
+                        "top": ["Service Manager", "≥100% Target", "≥110% Target", "≥120% Target"],
+                        "rows": [["Category A", 306, 426, 546], ["Category B", 306, 426, 546],["Category C", 306, 426, 546]],
+                        "note": "(monthly target as shown in iNsight Portal (target 100%))"
+                    }]
+                },
+                {
+                    "identifier": "gp_cpro",
+                    "order": 2,
+                    "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
+                    "metrics": {
+                        "gp_cpro":{
+                            "label": "WSGRP",
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
+                        }
+                    },
+                    "guides": [{
+                        "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO GUIDE",
+                        "top": ["Service Manager", "≥$100", "≥$140", "≥$180"],
+                        "rows": [["Category A", 306, 426, 546],["Category B", 306, 426, 546], ["Category C", 306, 426, 546]]
+                    }
+                    ]
+                },
+                {
+                    "identifier": "retention",
+                    "order": 3,
+                    "title": "5 YEAR SERVICE RETENTION % (AS REPORTED IN INSIGHT DEALER PORTAL)",
+                    "metrics": {
+                        "retention":{
+                            "label": "5YR Retent",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "5 YEAR SERVICE RETENTION % (AS REPORTED IN INSIGHT DEALER PORTAL) GUIDE",
+                            "top": ["Service Manager", "≥45%", "≥55%", "≥65%", "≥75%"],
+                            "rows": [["Category A", 308, 388, 468, 600],["Category B", 308, 388, 468, 600], ["Category C", 308, 388, 468, 600]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "service_retention",
+                    "order": 4,
+                    "title": "1 YEAR SERVICE RETENTION %",
+                    "metrics": {
+                        "service_retention":{
+                            "label": " 1yr Retent",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "1 YEAR SERVICE RETENTION % GUIDE",
+                            "top": ["Service Manager", "≥50%", "≥60%", "≥70%", "≥80%"],
+                            "rows": [["Category A", 240, 320, 400, 480],["Category B", 240, 320, 400, 480], ["Category C", 240, 320, 400, 480]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "reentry_pen",
+                    "order": 5,
+                    "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN % (QUARTERLY)",
+                    "metrics": {
+                        "reentry_pen":{
+                            "label": " re-entry pen",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN % (QUARTERLY) GUIDE",
+                            "top": ["Service Manager", "5%", "20%", "30%", "50%"],
+                            "rows": [["Category A", 500, 1000, 2000, 3000],["Category B", 500, 1000, 2000, 3000], ["Category C", 500, 1000, 2000, 3000]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "loyalty",
+                    "order": 6,
+                    "title": "Loyalty per Loyalty Sales",
+                    "metrics": {
+                        "loyalty":{
+                            "label": "Loyalty",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [{
+                        "title": "Loyalty GUIDE",
+                        "top": ["Service Manager", "per loyalty sale"],
+                        "rows": [["Category A", 110],["Category B", 110], ["Category C", 220]]
+                    }]
+                },
+                {
+                    "identifier": "f1",
+                    "order": 7,
+                    "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "f1":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Service Manager", "95+"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 8,
+                    "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
+                            "top": ["Service Manager", "≥4.3", "≥4.5"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "ce",
+                    "order": 9,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
+                    "metrics": {
+                        "ce":{
+                            "label": "CE Survey",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M) GUIDE",
+                            "top": ["Service Manager", "≥20%", "≥25%", "≥30%"],
+                            "rows": [["Category A", 100, 150, 175], ["Category B", 100, 150, 175], ["Category C", 100, 150, 175]],
+                            "note": "Based on total Dealer surveys"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 10,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "PKCompetency",
+                            "color": "#22AA99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        },
+                        "train_bonus": {
+                            "label": "Bonus",
+                            "color": "#AAAA11"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points H/yrly ","Points Yearly"],
+                        "rows": [["Certified Dealership Manager (VC & A)", "", 150, "", ""], 
+                            ["Product Knowledge Competency", "", 250, "", ""],
+                            ["Mastery Goal Achievement", 100, 250, "", 250], 
+                            ["Bonus", "", "", 500, ""]],
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 37/38"
+                    }]
+                }],
+            "SA": [
+                {
+                    "identifier": "cpro_target",
+                    "order": 1,
+                    "title": "Customer Paid Repair Orders vs Target",
+                    "metrics": {
+                        "cpro_target":{
+                            "label": "CPRO",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "Customer Paid Repair Orders vs Target GUIDE",
+                            "top": ["Service Advisor", "≥100% Target", "≥110% Target", "≥120% Target"],
+                            "rows": [["Category A & B", 306, 426, 546], ["Category C", 306, 426, 546]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "gp_cpro",
+                    "order": 2,
+                    "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO",
+                    "metrics": {
+                        "gp_cpro":{
+                            "label": "WSGPR",
+                            "point_default": 0,
+                            "score_default": 0,
+                            "score_format": "$"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "GENUINE PARTS PER CPRO – DLR GEN PARTS SALES VALUE/CPRO GUIDE",
+                            "top": ["Service Advisor", "≥$100.00", "≥$140.00", "≥$180.00"],
+                            "rows": [["Category A & B", 306, 426, 546], ["Category C", 306, 426, 546]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "service_retention",
+                    "order": 3,
+                    "title": "1 YEAR SERVICE RETENTION %",
+                    "metrics": {
+                        "service_retention":{
+                            "label": "1yr Retent",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "1 YEAR SERVICE RETENTION % GUIDE",
+                            "top": ["Service Advisor", "≥50%", "≥60%", "≥70%", "≥80%"],
+                            "rows": [["Category A & B", 240, 320, 400, 480], ["Category C", 240, 320, 400, 480]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "retention",
+                    "order": 4,
+                    "title": "5 YEAR SERVICE RETENTION % (AS REPORTED IN INSIGHT DEALER PORTAL)",
+                    "metrics": {
+                        "retention":{
+                            "label": "5YR Retent",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "5 YEAR SERVICE RETENTION % (AS REPORTED IN INSIGHT DEALER PORTAL) GUIDE",
+                            "top": ["Service Advisor", "≥45%", "≥55%", "≥65%", "≥75%"],
+                            "rows": [["Category A", 308, 388, 468, 600],["Category B", 308, 388, 468, 600], ["Category C", 308, 388, 468, 600]]
+                        }
+                    ]
+                },
+                {
+                    "identifier": "loyalty",
+                    "order": 5,
+                    "title": "Loyalty per Loyalty Sales",
+                    "metrics": {
+                        "loyalty":{
+                            "label": "Loyalty",
+                            "point_default": 0,
+                            "score_default": 0
+                        }
+                    },
+                    "guides": [{
+                        "title": "Loyalty GUIDE",
+                        "top": ["Service Advisor", "per loyalty sale"],
+                        "rows": [["Category A & B", 110], ["Category C", 220]]
+                    }]
+                },
+                {
+                    "identifier": "f1",
+                    "order": 6,
+                    "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "f1":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
+                            "top": ["Service Advisor", "≥95%"],
+                            "rows": [["Category A", 250], ["Category B", 250], ["Category C", 250]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 7,
+                    "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
+                            "top": ["Service Advisor", "≥4.3", "≥4.5"],
+                            "rows": [["Category A", 220, 355], ["Category B", 220, 355], ["Category C", 220, 355]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "ce",
+                    "order": 8,
+                    "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M)",
+                    "metrics": {
+                        "ce":{
+                            "label": "CE Survey",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%"
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M) GUIDE",
+                            "top": ["Service Advisor", "≥20%", "≥25%", "≥30%"],
+                            "rows": [["Category A", 100, 150, 175], ["Category B", 100, 150, 175], ["Category C", 100, 150, 175]],
+                            "note": "Based on total Dealer surveys"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 9,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "PKCompetency",
+                            "color": "#22AA99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["Certified Service Advisor (O)", "", 230, ""],
+                            ["Certified Service Executive  (VC & A)", "", 300, ""], 
+                            ["Product Knowledge Competency", "", 250, ""],
+                            ["Mastery Goal Achievement", 100, 250, 250]],
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 37/38"
+                    }]
+                }],
+            "TM": [
+                {
+                    "identifier": "f1",
+                    "order": 1,
+                    "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "f1":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [{
+                        "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
+                        "top": ["Technician", "≥95.0%", "≥97%"],
+                        "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
+                    }]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 2,
+                    "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
+                            "top": ["Technician", "≥4.3", "≥4.5"],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 3,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#22AA99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["New Technical Online Module Suite (O)", 50, "", ""],
+                            ["Product Knowledge Competency", "", 250, ""],
+                            ["Mastery Goal Achievement", 100, 250, 250]],
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 41"
+                    }]
+                }
+            ],
+            "TA": [
+                {
+                    "identifier": "f1",
+                    "order": 1,
+                    "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "metrics": {
+                        "f1":{
+                            "label": "F1",
+                            "point_default": 0,
+                            "score_default": "0%",
+                            "score_format": "%.100",
+                            "score_decimals": 1
+                        }
+                    },
+                    "guides": [{
+                        "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M) GUIDE",
+                        "top": ["Technician", "≥95.0%", "≥97%"],
+                        "rows": [["Master Technician", 450, 900], ["Advanced Technician", 450, 900]]
+                    }]
+                },
+                {
+                    "identifier": "5_star",
+                    "order": 2,
+                    "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M)",
+                    "metrics": {
+                        "5_star":{
+                            "label": "5 Star",
+                            "point_default": 0,
+                            "score_format": "f",
+                            "score_decimals": 2
+                        }
+                    },
+                    "guides": [
+                        {
+                            "title": "CUSTOMER EXPERIENCE (SERVICE 5 STAR RATING R3M) GUIDE",
+                            "top": ["Technician", "≥4.3", "≥4.5"],
+                            "rows": [["Master Technician", 175, 325], ["Advanced Technician", 175, 325]],
+                            "note": "Score based on R3M"
+                        }
+                    ]
+                },
+                {
+                    "identifier": "training",
+                    "label": "Training",
+                    "order": 3,
+                    "title": "TRAINING",
+                    "metrics": {
+                        "train_online": {
+                            "label": "Online",
+                            "color": "#E67300"
+                        },
+                        "train_competency": {
+                            "label": "Competency",
+                            "color": "#22AA99"
+                        },
+                        "train_mastery": {
+                            "label": "Mastery",
+                            "color": "#6633CC"
+                        }
+                    },
+                    "guides": [{
+                        "title": "TRAINING GUIDE",
+                        "top": ["Competency Modules", "Points Monthly", "Points Quarterly", "Points Yearly"],
+                        "rows": [["New Technical Online Module Suite (O)", 50, "", ""],
+                            ["Product Knowledge Competency", "", 250, ""],
+                            ["Mastery Goal Achievement", 100, 250, 250]],
+                        "criteria": "CRITERIA: Refer to the ELITE Member Guide for full details to earn end-year Giftcard Reward – page 41"
+                    }]
+                }
+            ]
+        }
+    }
+}

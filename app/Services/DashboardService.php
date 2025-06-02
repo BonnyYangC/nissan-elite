@@ -6,6 +6,7 @@ use App\Models\Position;
 use App\Repositories\RegionRepository;
 use App\Services\GageServices\Current;
 use App\Services\GageServices\Techician;
+use App\Services\MetricsServices\StackedMetrics;
 use App\Services\ServiceResolver;
 
 class DashboardService {
@@ -15,10 +16,12 @@ class DashboardService {
 
     /** @var ServiceResolver  */
     private $resolver;
+    private $stackedMetricsService;
 
-    public function __construct(ServiceResolver $resolver, RegionRepository $regionRepository) {
+    public function __construct(ServiceResolver $resolver, StackedMetrics $stackedMetricsService, RegionRepository $regionRepository) {
         $this->regionRepo = $regionRepository;
         $this->resolver = $resolver;
+        $this->stackedMetricsService = $stackedMetricsService;
     }
 
     public function getRegions() {
@@ -46,7 +49,7 @@ class DashboardService {
             'rankingStatus' => $this->resolver->rankingService()->getCurrentRanking($selectedPosition),
             'ytd' => $ytd,
             'status' => (object)$statusChart,
-            'stackedMetrics' => $this->resolver->metricsService()->getStackedMetricsData($selectedPosition),
+            'stackedMetrics' => $this->stackedMetricsService->get($selectedPosition),
             'historical' => $this->resolver->historicalService()->getHistoricalData()
         ], $this->resolver->rankingService()->getRankingDataByPosition($selectedPosition));
     }

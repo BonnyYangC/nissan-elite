@@ -50,7 +50,7 @@
         </li>
         @endif
 
-        @if (in_array(\App\Helper\Defination::PAGE_FUTURE_SALES, $acls))
+        @if (theme_config('feature_further_sales') && in_array(\App\Helper\Defination::PAGE_FUTURE_SALES, $acls))
         <li class="nav-item {{ isset($menuName) && $menuName==\App\Helper\Defination::PAGE_FUTURE_SALES?'current':null }}">
             <a class="nav-link" href="{{ route('future_sales') }}">Future Sales</a>
         </li>

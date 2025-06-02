@@ -1,0 +1,46 @@
+{
+    "faqs": [
+        {
+            "question": "How and when do I have to register?",
+            "answer": "<p>Members must register once every program year. FY25 program starts 1 Apr 2025 – 31 March 2026 at <a href=\"https://www.nissanelite.com.au/reg2025\">https://www.nissanelite.com.au/reg2025</a>.</p>",
+            "status": 1,
+            "sorting": 1
+        },
+        {
+            "question": "How do I join Nissan ELITE?",
+            "answer": "<p>Refer to “Are you eligible?” on the login page. You must be enrolled on the Nissan Dealer User Management portal and hold a 5-digit registration number and be in a Nissan ELITE eligible role. You will be automatically rolled over into Nissan ELITE, receiving a Welcome Pack with your details, and notification for your compulsory registration at <a href=\"https://www.nissanelite.com.au/reg2025\">https://www.nissanelite.com.au/reg2025</a>. On completion you will receive an e-Mail confirmation and only then be eligible to earn Awards/Rewards within Nissan ELITE.</p>",
+            "status": 1,
+            "sorting": 2
+        },
+        {
+            "question": "Am I eligible to participate in Sprint Incentives?",
+            "answer": "<p>Yes, providing the criteria is applicable to your role and all ELITE & Sprint Incentive T&Cs are met.  Nissan ELITE registration is compulsory for all incentives.</p>",
+            "status": 1,
+            "sorting": 3
+        },
+        {
+            "question": "Am I eligible in Nissan ELITE if I am enrolled on the Nissan Dealer User Management portal?",
+            "answer": "<p>If you are enrolled on the Nissan Dealer User Management portal in an eligible ELITE role you are a member of ELITE but NOT an eligible member until you have registered in the current program period. Every member must register once in every Nissan ELITE period (current program 1 Apr – 31 March) to be eligible.</p>",
+            "status": 1,
+            "sorting": 4
+        },
+        {
+            "question": "What is the Nissan ELITE period?",
+            "answer": "<p>Annual Program from - 1 Apr – 31 March </p>",
+            "status": 1,
+            "sorting": 5
+        },
+        {
+            "question": "Where can I find my metrics and criteria for Nissan ELITE?",
+            "answer": "<p>Go to the Members Guide tab and click your department/role tab. You will find all information about Nissan ELITE here.</p>",
+            "status": 1,
+            "sorting": 6
+        },
+        {
+            "question": "What is the best way to get around the website to learn about ELITE?",
+            "answer": "<p>Help is provided in the MEMBER GUIDE tab by selecting the NAVIGATING THE SITE button. Our ELITE Service Team is also available on info@nissanelite.com.au or 03 9544 9054.</p>",
+            "status": 1,
+            "sorting": 7
+        }
+    ]
+}

@@ -21,7 +21,6 @@ class CreateAwardsTable extends Migration
             $table->string('sub_type', 50);
             $table->string('position')->nullable();
             $table->string('state')->nullable();
-            $table->year('year')->default(2024);
         });
     }
 

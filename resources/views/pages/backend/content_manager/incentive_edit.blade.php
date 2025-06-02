@@ -124,7 +124,7 @@
                                     </div>
                                     <p>
                                         @if($incentive->image)
-                                        <img src="{{ asset('/images/incentives/images/'.$incentive->image) }}" alt="" width="200" class="thumbnail">
+                                        <img src="{{ asset('/elite/incentives/images/'.$incentive->image) }}" alt="" width="200" class="thumbnail">
                                         @endif
                                     </p>
                                 </div>
@@ -157,7 +157,7 @@
                                     </div>
                                     <p>
                                         @if($incentive->pdf)
-                                        <a class="button is-link" href="{{ asset('/images/incentives/pdf/'.$incentive->pdf) }}" target="_blank">
+                                        <a class="button is-link" href="{{ asset('/elite/incentives/pdfs/'.$incentive->pdf) }}" target="_blank">
                                             View PDF
                                         </a>
                                         @endif

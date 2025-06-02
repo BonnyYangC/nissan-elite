@@ -13,17 +13,11 @@
         }
     </script>
 
-    <div class="justify-content-center" align="center">
-        <div class="row justify-content-center">
-            <div class="col-lg-2 col-md-2 col-xs-3">
-                <a href="{{ url('/') }}">
-                    <img class="img-responsive center-block nissan-logo" src="{{ asset('images/nissan/Nissan_logo.png') }}">
-                </a>
-            </div>
-        </div>
+    <div class="justify-content-center login-content" align="center">
+        @include('pages.widgets.logo')
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <img class="nissan-logo" alt="" src="{{ asset('images/nissan/Nissan_ELITE_i_ELITE-Black.png?a=1') }}">
+                <img class="nissan-elite-brand" alt="" src="{{ theme_image('nissan/Nissan_ELITE_i_ELITE.png') }}">
             </div>
         </div>
         <div class="row justify-content-center" style="padding-bottom: 15%">
@@ -49,7 +43,7 @@
                     <div class="form-footer" style="padding-left:0; padding-right:0">
                         <div class="row text-nowrap">
                             <div class="col-xs-12">
-                                <a style="color:white !important;" lass="txt-grey9 fs-12" href="#forgotpassword">
+                                <a style="color:white !important;" lass="txt-grey9 fs-12" href="#forgot-password">
                                     Forgot password?
                                 </a>
                             </div>
@@ -102,9 +96,10 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>Go to
-                                    <a href="{{ env('eventRegisterUrl') }}" target="_blank">{{ env('eventRegisterUrl') }}</a>
+                                    <a href="{{ theme_config('eventRegisterUrl') }}" target="_blank">
+                                        {{ theme_config('eventRegisterUrl') }}</a>
                                     and successfully complete the
-                                    {{config('elite.YEAR')}}
+                                    {{config('app.theme')}}
                                     {{config('elite.PROGRAM_NAME')}}
                                     registration form including a requirement to accept the program terms and conditions as directed. On completion, you will receive a confirmation e-Mail for your {{config('elite.PROGRAM_NAME')}} registration.
                                 </p>
@@ -137,20 +132,25 @@
                     <a href="#">login</a>
                 </p>
             </section>
-            <section>
-                <div class="col-10" id="forgotpassword">
-                    <div class="fgp-wrap">
-                        <p class="txt-white">Forgot Password?</p>
-                        <p class="txt-white">Please enter your registered email address.</p>
-                        <input class="form-control" id="Email" name="Email" placeholder="Email Address" type="email" v-model="email">
-                        <button :loading="inProgress" class="btn btn-block fgp-submit-btn" v-on:click="onSubmit($event)">Submit</button>
-                        <p class="txt-white fs-12">
-                            Go back to
-                            <a href="#"><strong class="login-white">login</strong></a>
-                        </p>
-                    </div>
+            <section id="forgot-password">
+                <div class="col-10 fgp-wrap">
+                    <div id="forgotpassword"></div>
                 </div>
             </section>
         </div>
     </div>
 @endsection
+
+<style>
+    #register {
+        background-image: url('{{ theme_image('login/juke-background.jpg') }}');
+    }
+
+    #eligible {
+        background-image: url('{{ theme_image('login/gtr-background.jpg') }}');
+    }
+
+    .fgp-wrap {
+        background-image: url('{{ theme_image('login/red-back.jpg') }}');
+    }
+</style>

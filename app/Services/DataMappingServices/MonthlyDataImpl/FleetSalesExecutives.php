@@ -22,7 +22,5 @@ class FleetSalesExecutives extends MonthlyDataMapping {
         '5_star' => 'points_ce_ind_5star_S',
         '5_star_result' => 'score_ce_ind_5star_S',
 
-        'ce' => 'points_ce_ind_survey_S',
-        'ce_result' => 'pcent_ce_ind_survey_S',
     ];
 }

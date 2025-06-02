@@ -1,0 +1,111 @@
+
+.elite-page {
+    background-color: #ffffff;
+}
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+.page-header-title {
+    font-size: 25px;
+    padding-top: 0;
+    vertical-align: top;
+    padding-bottom: 5px;
+}
+
+.page-widget {
+    padding-right: 2%;
+}
+
+.page-section-wrap {
+    padding-right: 2%;
+    padding-left: 2%;
+}
+/*table*/
+
+.nissan-table-header {
+    background: #4c4c4c;
+    color: #FFFFFF;
+}
+
+.nissan-table-header a {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+.nissan-table-body-grey {
+    background: #c2c2c2;
+}
+.nissan-table-body-light-grey {
+    background-color: #f5f5f5;
+}
+.nissan-table-cell-grey {
+    background: #c2c2c2;
+    color: #000000;
+}
+.nissan-table-cell-light-grey {
+    background: #d5d5d5;
+    color: #000000;
+}
+/*button*/
+.nissan-button {
+    background-color: #4169E1;
+    color: white;
+    width: 100%;
+    font-size: 11px;
+}
+.nissan-button:hover {
+    color: white;
+}
+.elite-button {
+    width: 100%;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.elite-button:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.elite-button-active {
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #555555;
+}
+.elite-button-active:hover {
+    color: #FFFFFF;
+    background: #2b2c2e;
+    text-decoration: none;
+}
+
+/*accordion*/
+.accordion-button::after {
+    background-image: none;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: none;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #212529;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.accordion-button {
+    color: #212529;
+    padding: 9px;
+}
+
+.accordion-item {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.accordion-header {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 3px;
+}
+
+.accordion-body {
+    background-color: white;
+}

@@ -2,11 +2,8 @@
 
 namespace App\Services\DataMappingServices\ImportationImpl;
 
-use App\Helper\Defination;
 use App\Services\DataMappingServices\TerritoryReport as BaseTerritoryReport;
 use App\Models\TerritoryReport as TerritoryReportModel;
-use App\Models\User;
-use Carbon\Carbon;
 
 class TerritoryReport extends BaseTerritoryReport {
     /**
@@ -19,7 +16,7 @@ class TerritoryReport extends BaseTerritoryReport {
      */
     public function getModel($modelKey, $record, $key) {
         // $this->handleUser(trim($record[$modelKey['primary']]), $actionType);
-        $model = TerritoryReportModel::currentYear()->where('employee_code', trim($record[$modelKey['primary']]))->first();
+        $model = TerritoryReportModel::where('employee_code', trim($record[$modelKey['primary']]))->first();
         if(!$model){
             $model = TerritoryReportModel::factory()->make();
             // $model = new TerritoryReportModel();

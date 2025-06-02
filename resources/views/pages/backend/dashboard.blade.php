@@ -143,7 +143,7 @@
                             <div class="field-body">
                                 <div class="field is-narrow">
                                     <div class="control">
-                                        <input class="input" type="text" name="year" placeholder="Which year you want to display" value="{{ config('elite.YEAR') }}">
+                                        <input class="input" type="text" name="year" placeholder="Which year you want to display" value="{{ config('app.theme') }}">
                                     </div>
                                 </div>
                                 <p class="help has-text-grey is-size-6">Which year's data the user will see</p>

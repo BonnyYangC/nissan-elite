@@ -9,3 +9,9 @@
         </div>
     </div>
 @endsection
+<style>
+    .guild-header {
+        background-image: url('{{ theme_image('md_guild/Nissan_Elite_Guild_bg.png') }}');
+    }
+
+</style>

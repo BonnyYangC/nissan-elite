@@ -30,7 +30,4 @@ class Defination {
     const DATA_TYPE_REGION_STAFF_INFO = 'region_staff';
     const DATA_TYPE_LOYALTY_HISTORICAL = 'history';
 
-    const METRICS_TYPE_TRAINING = 'training';
-    const METRICS_TYPE_SHARED = 'shared';
-    const METRICS_TYPE_CUSTOM = 'custom';
 }

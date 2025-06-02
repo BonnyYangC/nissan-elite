@@ -12,8 +12,8 @@
                         <span class="fs-30 span-red">&#10004</span>
                     @else
                         <a href="{{ route('member_guide') }}" target="_blank">
-                            <button style="background-color:#4169E1; color: #FFFFFF; width:100%; margin:0 auto; font-weight: lighter; font-size:11px;" type="button" class="btn btn-primary btn-block">
-                                Compulsory at 31 March {{ config('elite.YEAR')+1 }}
+                            <button type="button" class="btn nissan-button">
+                                Compulsory at 31 March {{ config('app.theme') + 1 }}
                                 <br>Refer Member Guide
                             </button>
                         </a>

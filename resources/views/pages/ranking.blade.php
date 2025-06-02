@@ -14,14 +14,14 @@
                     @foreach($userGroups1 as $index => $group)
                     <div class="accordion-item mb-3 mx-3">
                         <div class="accordion-header {{ $group['className'] }}" id="{{ 'heading-' . $group['name'] }}">
-                            <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{'#collapse'.$group['name']}}" aria-expanded="true" aria-controls="{{'collapse'.$group['name']}}">
+                            <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{'#collapse' . $group['name']}}" aria-expanded="true" aria-controls="{{'collapse' . $group['name']}}">
                                 <div class="squarebutton w-100"></div>
                             </a>
                         </div>
-                        <div id="{{'collapse'.$group['name']}}" class="accordion-collapse collapse" aria-labelledby="{{ 'heading-' . $group['name'] }}">
+                        <div id="{{'collapse' . $group['name']}}" class="accordion-collapse collapse" aria-labelledby="{{ 'heading-' . $group['name'] }}">
                             <div class="accordion-body d-flex">
                                 @foreach($group['members'] as $member)
-                                    <div class="col-{{ 12/count($group['members']) }}">
+                                    <div class="col-{{ 12 / count($group['members']) }}">
                                         <h4>{{ $member['name'] }}</h4>
                                         <table class="table">
                                             @if ($group['showAwardType'])
@@ -31,7 +31,7 @@
                                                     </tr>
 
                                                     @foreach($rankingForAll as $action)
-                                                        <tr v-if="{{ $member['className'] .'_'. $sh }}">
+                                                        <tr v-if="{{ $member['className'] . '_' . $sh }}">
                                                             <td> - <a href="#myPopup" v-on:click.prevent="handleClick('{{ $member['role'] }}','{{ $action }}','{{ $sh }}')">{{ $action }}</a></td>
                                                         </tr>
                                                     @endforeach
@@ -61,14 +61,14 @@
                     @foreach($userGroups2 as $group)
                         <div class="accordion-item mb-3 mx-3">
                             <div class="accordion-header {{ $group['className'] }}" id="{{ 'heading-' . $group['name'] }}">
-                                <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{'#collapse'.$group['name']}}" aria-expanded="true" aria-controls="{{'collapse'.$group['name']}}">
+                                <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{'#collapse' . $group['name']}}" aria-expanded="true" aria-controls="{{'collapse' . $group['name']}}">
                                     <div class="squarebutton w-100"></div>
                                 </a>
                             </div>
-                            <div id="{{'collapse'.$group['name']}}" class="accordion-collapse collapse" aria-labelledby="{{ 'heading-' . $group['name'] }}">
+                            <div id="{{'collapse' . $group['name']}}" class="accordion-collapse collapse" aria-labelledby="{{ 'heading-' . $group['name'] }}">
                                 <div class="accordion-body d-flex">
                                     @foreach($group['members'] as $member)
-                                        <div class="col-{{ 12/count($group['members']) }}">
+                                        <div class="col-{{ 12 / count($group['members']) }}">
                                             <h4>{{ $member['name'] }}</h4>
                                             <table class="table">
                                                 @if ($group['showAwardType'])
@@ -78,7 +78,7 @@
                                                         </tr>
 
                                                         @foreach($rankingForAll as $action)
-                                                            <tr v-if="{{ $member['className'] .'_'. $sh }}">
+                                                            <tr v-if="{{ $member['className'] . '_' . $sh }}">
                                                                 <td> - <a href="#myPopup" v-on:click.prevent="handleClick('{{ $member['role'] }}','{{ $action }}','{{ $sh }}')">{{ $action }}</a></td>
                                                             </tr>
                                                         @endforeach
@@ -112,14 +112,14 @@
                     @foreach($userGroups3 as $index => $group)
                         <div class="accordion-item mb-3 mx-3">
                             <div class="accordion-header {{ $group['className'] }}" id="{{ 'heading-' . $group['name'] }}">
-                                <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{'#collapse'.$group['name']}}" aria-expanded="true" aria-controls="{{'collapse'.$group['name']}}">
+                                <a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{'#collapse' . $group['name']}}" aria-expanded="true" aria-controls="{{'collapse' . $group['name']}}">
                                     <div class="squarebutton w-100"></div>
                                 </a>
                             </div>
-                            <div id="{{'collapse'.$group['name']}}" class="accordion-collapse collapse" aria-labelledby="{{ 'heading-' . $group['name'] }}">
+                            <div id="{{'collapse' . $group['name']}}" class="accordion-collapse collapse" aria-labelledby="{{ 'heading-' . $group['name'] }}">
                                 <div class="accordion-body d-flex">
                                     @foreach($group['members'] as $member)
-                                        <div class="col-{{ 12/count($group['members']) }}">
+                                        <div class="col-{{ 12 / count($group['members']) }}">
                                             <h4>{{ $member['name'] }}</h4>
                                             <table class="table">
                                                 @if ($group['showAwardType'])
@@ -129,7 +129,7 @@
                                                         </tr>
 
                                                         @foreach($rankingForAll as $action)
-                                                            <tr v-if="{{ $member['className'] .'_'. $sh }}">
+                                                            <tr v-if="{{ $member['className'] . '_' . $sh }}">
                                                                 <td> - <a href="#myPopup" v-on:click.prevent="handleClick('{{ $member['role'] }}','{{ $action }}','{{ $sh }}')">{{ $action }}</a></td>
                                                             </tr>
                                                         @endforeach
@@ -168,7 +168,7 @@
                     </div>
                     <div class="mb-3" v-for="(block, idx) in blocks" :key="idx">
                         <h2 style="padding-left: 6%">${ block.title }</h2>
-                        <el-table :data="block.rows" stripe :row-class-name="tableRowClassName">
+                        <el-table :data="block . rows" stripe :row-class-name="tableRowClassName">
                             <el-table-column align="center" property="r" label="Rank" width="60"></el-table-column>
                             <el-table-column class-name="bold-text sales-name" property="n" label="Name" width="300"></el-table-column>
                             <el-table-column property="d" label="Dealer" width="400"></el-table-column>
@@ -186,3 +186,20 @@
 </div>
 @endsection
 
+<style>
+    .button-sales{
+        background-image: url('{{ theme_image('rankings/Sales.png') }}');
+    }
+    .button-fleet{
+        background-image: url('{{ theme_image('rankings/Fleet.png') }}');
+    }
+    .button-service{
+        background-image: url('{{ theme_image('rankings/Service.png') }}');
+    }
+    .button-parts{
+        background-image: url('{{ theme_image('rankings/Parts.png') }}');
+    }
+    .button-admin{
+        background-image: url('{{ theme_image('rankings/Admin.png') }}');
+    }
+</style>

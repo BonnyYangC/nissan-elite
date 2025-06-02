@@ -179,6 +179,24 @@
             "title": "Head Office",
             "platinum_ranking": 0,
             "department": null
+        },
+        {
+            "code": "T",
+            "title": "Technician",
+            "platinum_ranking": 0,
+            "department": "Service Tech"
+        },
+        {
+            "code": "TM",
+            "title": "Master Technician",
+            "platinum_ranking": 0,
+            "department": "Service Tech"
+        },
+        {
+            "code": "TA",
+            "title": "Advanced Technician",
+            "platinum_ranking": 0,
+            "department": "Service Tech"
         }
     ]
 }

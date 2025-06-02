@@ -1,7 +1,7 @@
 @extends('pages.guild')
 @section('guild_header')
     <div class="d-flex flex-column align-items-center guild-event-header">
-        <img class="guild-event-banner" src="/images/md_guild/2024/Guild_events_header.png"/>
+        <img class="guild-event-banner" src="{{ theme_image('md_guild/Guild_events_header.png') }}"/>
         <div class="guild-buttons" style="margin-top: 4%;">
         @include('pages.guild.buttons')
         </div>
@@ -11,10 +11,13 @@
     <div class="d-flex">
         <div class="col-10 offset-1" style="padding-top: 2%">
             <h3>
-                the guild fy23 – gold coast – Saturday 14 september – monday 16 september 2024
+                THE GUILD FY24 WILL CONVENE IN 2025 TBA
             </h3>
             <p>
-                Celebrating THE FY23 GUILD on the Gold Coast!  The biggest achievement since the GUILD inception in 2000!  And what a weekend was had by our new inductees joining with eligible Foundation members to see what this MOC hosted weekend is all about.  The enjoyment of having your partner along to share your achievements, meeting new people, forming new friendships, getting the adrenalin up on Jet Skis or enjoying sightseeing and shopping between dinners. This is THE GUILD!
+                Invitations will be emailed to eligible Foundation members, along with our new inductees in FY24. A great weekend is in store for our eligible GUILD MEMBERS in 2025 and below are our new inductees for FY24 Platinum (500,000+) and new to Gold (325,000+).
+            </p>
+            <p>
+                Congratulations on the excellent achievement and Loyalty to the Brand shown here.
             </p>
             <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/7c6c496225fb/nissan-dealer-excellence-fy18-results-3120310?e=1dac1983c2">
                 Click here to view edm content
@@ -56,62 +59,16 @@
 
             <table>
                 <tbody>
-                    <tr style="line-height: 2em;"><td width=13%>2024</td><td>GOLD COAST – QT Hotel, dinner at The Glasshouse, Jet Skiing experience and La Luna Beach Club </td></tr>
-                    <tr style="line-height: 2em;"><td width=13%>2023</td><td>MELBOURNE – Sheraton Hotel, VIP at MCG Hawthorns Presidents function, THE LUME and gala dinner</td></tr>
-                    <tr style="line-height: 2em;"><td width=13%>2022</td><td>DARWIN NORTHERN TOP END – DoubleTree by Hilton, with gala dinner at Pee Wee’s at the Point</td></tr>
-                    <tr style="line-height: 2em;"><td width=13%>2021</td><td>NOOSA QUEENSLAND - Sofitel Resort, gala dinner at Bistro C and Catalina Extravaganza</td></tr>
-                    <tr style="line-height: 2em;"><td width=13%>2020</td><td>CANCELLED – COVID19, Dealer Trophy presentation and complimentary Travel Voucher</td></tr>
-                    <tr style="line-height: 2em;"><td>2019</td><td>HOBART TASMANIA – Hobart Grand Chancellor,  with Gala dinner at Frogmore Creek and MONA Cruise</td></tr>
-                    <tr style="line-height: 2em;"><td>2018</td><td>PORT DOUGLAS - Sheraton Grand Mirage Resort with dinner at The Watergate Restaurant</td></tr>
-                    <tr style="line-height: 2em;"><td>2017</td><td>HAMILTON ISLAND – Reef View Hotel with dinner on The Bommie Deck pier</td></tr>
-                    <tr style="line-height: 2em;"><td>2016</td><td>ULURU RED CENTRE – Sales in the Desert Hotel with dinner Under the Outback Sky experience</td></tr>
-                    <tr style="line-height: 2em;"><td>2014</td><td>BAROSSA VALLEY – Novatel Barossa Valley Resort with dinner at Yalumba Signature Cellar and wine tastings </td></tr>
-                    <tr style="line-height: 2em;"><td>2013</td><td>MELBOURNE – Langham Hotel with cocktails and Bon Jovi Concert at Etihad stadium</td></tr>
-                    <tr style="line-height: 2em;"><td>2012</td><td>SYDNEY HARBOUR – The Sebel Pier One Hotel with dinner on the Blue Room harbour cruise</td></tr>
-                    <tr style="line-height: 2em;"><td>2010</td><td>MELBOURNE – The Windsor Hotel with cocktails at the Princess Theatre and Hairspray musical</td></tr>
-                    <tr style="line-height: 2em;"><td>2008</td><td>HOBART TASMANIA – Grand Chancellor Hotel and dinner at Marque IV restaurant</td></tr>
-                    <tr style="line-height: 2em;"><td>2007</td><td>GOLD COAST – The Sheraton Mirage with dinner at Elysian Fields Estate</td></tr>
-                    <tr style="line-height: 2em;"><td>2006</td><td>MELBOURNE – Crown Towers with dinner on Colonial Tramcar Restaurant and The Boy from OZ musical</td></tr>
-                    <tr style="line-height: 2em;"><td>2005</td><td>MELBOURNE – Westin Hotel with cocktails at the Regent and The Lion King musical</td></tr>
-                    <tr style="line-height: 2em;"><td>2004</td><td>MELBOURNE – Crown Towers with dinner in the Garden Room and river cruise to MCG for Richmond v Sydney   </td></tr>
-                    <tr style="line-height: 2em;"><td>2003</td><td>MELBOURNE – Sheraton Towers Southgate with dinner in Yarra Room</td></tr>
-                    <tr style="line-height: 2em;"><td>2001</td><td>MELBOURNE – Crown Towers Melbourne with dinner and Mornington Peninsula Golf</td></tr>
-                    <tr style="line-height: 2em;"><td>2000</td><td>MELBOURNE – Crown Towers Melbourne with dinner and Mornington Peninsula Golf</td></tr>
+                    <tr style="line-height: 2em;"><td width=13%>2024</td><td>GOLD COAST – QT Hotel, gala dinner at The Glasshouse, Jet Skiing experience and La Luna Beach Club </td></tr>
+                    @include(theme_view('guild_event_past', 'default'))
+
                 </tbody>
             </table>
         </div>
         <div class="page-widget col-3">
             <p>&nbsp;</p>
             <p>&nbsp;</p>
-            <div class="row">
-                <iframe src="https://destination.com.au/nissan/ELITE/NIS1117_NISSAN_Product_Challenge_-_Video_4_Guild_2.mp4" frameborder="0" allowfullscreen></iframe>
-                <p class="txt-red">FY23/2024 GOLD COAST</p>
-                <a href="https://nissanevents.pixieset.com/nissanguildgoldcoast/">View video above and click this link to view photos</a>
-            </div>
-            <p>&nbsp;</p>
-            <div class="row">
-                <iframe src="https://destination.com.au/nissan/ELITE/Product%20Challenge/NIS1092%20-%20Nissan%20ELITE%20Product%20Challenge%20Guild%20Video%202023%20-%20Melbourne.mp4" frameborder="0" allowfullscreen></iframe>
-                <p class="txt-red">FY22/2023 MELBOURNE</p>
-                <a href="https://nissanevents.pixieset.com/nissanelitetheguild2022copy/">View video above and click this link to view photos</a>
-            </div>
-            <p>&nbsp;</p>
-            <div class="row">
-                <iframe src=" https://destination.com.au/nissan/ELITE/Product%20Challenge/Nissan%20Darwin%20Video.mp4" frameborder="0" allowfullscreen></iframe>
-                <p class="txt-red">FY21/2022 DARWIN</p>
-                <a href="https://nissanevents.pixieset.com/nissanelitetheguild2022/">View video above and click this link to view photos</a>
-            </div>
-            <p>&nbsp;</p>
-            <div class="row">
-                <iframe src="https://destination.com.au/nissan/ELITE/The_Guild/3695-NIS1018-Nissan_ELITE_Guild_2021.mp4" frameborder="0" allowfullscreen></iframe>
-                <p class="txt-red">FY20/2021 NOOSA</p>
-                <a href="https://nissanevents.pixieset.com/nissantheguildnoosafy20/">View video above and click this link to view photos</a>
-            </div>
-            <p>&nbsp;</p>
-            <div class="row">
-                <iframe src="https://www.youtube.com/embed/KaBL4Y18oco" frameborder="0" allowfullscreen></iframe>
-                <p class="txt-red">FY18/2019 HOBART</p>
-                <a href="https://nissanevents.pixieset.com/nissaneliteguildevent/">View video above and click this link to view photos</a>
-            </div>
+            @include(theme_view('guild_event_video', 'default'))
         </div>
     </div>
 @endsection

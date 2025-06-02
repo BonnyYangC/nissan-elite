@@ -39,8 +39,7 @@ class DealerRegion extends Base {
      * @return DealerRegionModel
      */
     public function getModel($modelKey, $record, $key) {
-        $model = DealerRegionModel::currentYear()
-            ->where('code',trim($record[$modelKey['primary']]))
+        $model = DealerRegionModel::where('code',trim($record[$modelKey['primary']]))
             ->first();
         if(!$model){
             $model = DealerRegionModel::factory()->make();

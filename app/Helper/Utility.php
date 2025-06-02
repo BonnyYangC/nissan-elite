@@ -71,6 +71,10 @@ class Utility {
         }
     }
 
+    public static function getArrayAttribute(array $record, string $key, $defaultValue) {
+        return data_get($record, $key, $defaultValue);
+    }
+
     /**
      * @param $pct
      * @return string

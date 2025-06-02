@@ -9,7 +9,7 @@ class MetricBuilder extends BaseBuilder
   }
 
   public function definations(string $employee_code, string $position): self {
-    return $this->currentYear()
+    return $this
       ->where('employee_code', $employee_code)
       ->byPosition($position);
   }

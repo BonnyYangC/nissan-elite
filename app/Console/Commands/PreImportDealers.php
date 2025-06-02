@@ -69,7 +69,6 @@ class PreImportDealers extends Command
 
     private function buildData($row) {
         return [
-            'parent_id' => 1,
             'code' => $row['code'],
             'name' => $row['name'],
             'address' => $row['address'],
