@@ -2,7 +2,7 @@
 
 namespace App\Services\MetricsServices\StackedMetrics\Combined;
 
-use App\Helper\{Defination, Utility};
+use App\Helper\Utility;
 use App\Models\Metric;
 use App\Repositories\MetricsRepository;
 use App\Services\MetricsServices\MetricsTrait;
@@ -62,9 +62,9 @@ class Stacked {
                 $quality[] = intval(isset($value[$this->combinedMetrics]) ? $value[$this->combinedMetrics] : 0) + intval(isset($value['5_star']) ? $value['5_star'] : 0);
             }
         }
-        $result[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $filteredMetrics['5_star']['order'], 'CE Quality', $quality);
+        $result[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $filteredMetrics['5_star']['order'], 'CE Quality', $quality);
         if(isset($filteredMetrics[Metric::METRIC_CE])) {
-            $result[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $filteredMetrics['ce']['order'], 'CE Survey', $survey);
+            $result[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $filteredMetrics['ce']['order'], 'CE Survey', $survey);
         }
         return $result;
     }
@@ -72,7 +72,7 @@ class Stacked {
     private function buildStackedMetricData($metricsDefinations, $metricsData) {
         $points = [];
         $filteredMetrics = $metricsDefinations->filter(function ($defination) {
-            return !in_array($defination->identifier, [$this->combinedMetrics, '5_star', 'ce', Defination::METRICS_TYPE_TRAINING]);
+            return !in_array($defination->identifier, [$this->combinedMetrics, '5_star', 'ce', Metric::METRICS_TYPE_TRAINING]);
         });
         foreach ($filteredMetrics as $m) {
             if(count($m->metrics) > 1) {
@@ -82,7 +82,7 @@ class Stacked {
                     $value = data_get($metricsData, $dateString, null); //isset($data[$dateString]) ? $data[$dateString] : null;
                     $tp[] = $this->buildMetricSummary($m->metrics, $value);
                 }
-                $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
+                $points[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
                 continue;
             }
             foreach ($m->metrics as $id => $cm) {
@@ -92,7 +92,7 @@ class Stacked {
                     $value = data_get($metricsData, $dateString, null);
                     $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
                 }
-                $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $cm['label'], $p);
+                $points[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $m['order'], $cm['label'], $p);
             }
         }
         return $points;
@@ -101,7 +101,7 @@ class Stacked {
     private function buildTrainingData($metricsDefinations, $trainingData): array {
         $points = [];
         $trainingMetric = $metricsDefinations->filter(function ($defination) {
-            return $defination->identifier === Defination::METRICS_TYPE_TRAINING;
+            return $defination->identifier === Metric::METRICS_TYPE_TRAINING;
         })->first();
         if (!$trainingMetric)
             return [];
@@ -111,7 +111,7 @@ class Stacked {
             $value = data_get($trainingData, $dateString, null);
             $tp[] = $this->buildMetricSummary($trainingMetric->metrics, $value);
         }
-        $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $trainingMetric['order'], $trainingMetric['label'], $tp);
+        $points[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $trainingMetric['order'], $trainingMetric['label'], $tp);
 
         return $points;
     }

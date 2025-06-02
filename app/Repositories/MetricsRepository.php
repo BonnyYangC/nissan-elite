@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Helper\Defination;
 use App\Models\Metric;
 use Illuminate\Support\Collection;
 
@@ -13,7 +12,7 @@ class MetricsRepository {
      * @return mixed
      */
     public function getSharedMetrics() {
-        return Metric::where('type', '=', Defination::METRICS_TYPE_SHARED)
+        return Metric::where('type', '=', Metric::METRICS_TYPE_SHARED)
             ->orderBy('order')->get();
     }
 
@@ -32,7 +31,7 @@ class MetricsRepository {
      */
     public function getMetricsByPosition(string $position): Collection {
         return Metric::where('position', '=', $position)
-            ->where('identifier', '!=', Defination::METRICS_TYPE_TRAINING)
+            ->where('identifier', '!=', Metric::METRICS_TYPE_TRAINING)
             ->orderBy('order')
             ->get();
     }
@@ -43,7 +42,7 @@ class MetricsRepository {
      */
     public function getTrainingMetricByPosition(string $position) {
         return Metric::where('position', '=', $position)
-            ->where('identifier', '=', Defination::METRICS_TYPE_TRAINING)->first();
+            ->where('identifier', '=', Metric::METRICS_TYPE_TRAINING)->first();
     }
 
 }

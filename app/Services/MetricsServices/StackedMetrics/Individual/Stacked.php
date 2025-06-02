@@ -2,7 +2,8 @@
 
 namespace App\Services\MetricsServices\StackedMetrics\Individual;
 
-use App\Helper\{Defination, Utility};
+use App\Helper\Utility;
+use App\Models\Metric;
 use App\Repositories\MetricsRepository;
 use App\Services\MetricsServices\MetricsTrait;
 
@@ -43,13 +44,13 @@ class Stacked {
         foreach ($metricsDefinations as $m) {
             if(count($m->metrics) > 1) {
                 $tp = [];
-                $data = $m->identifier === Defination::METRICS_TYPE_TRAINING ? $trainingData : $metricsData;
+                $data = $m->identifier === Metric::METRICS_TYPE_TRAINING ? $trainingData : $metricsData;
                 foreach(Utility::MONTHS_SHORT as $month) {
                     $dateString = $this->getDateString($month); //date('Y-m-01', strtotime($month));
                     $value = data_get($data, $dateString, null); //isset($data[$dateString]) ? $data[$dateString] : null;
                     $tp[] = $this->buildMetricSummary($m->metrics, $value);
                 }
-                $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
+                $points[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $m['order'], $m['label'], $tp);
                 continue;
             }
             foreach ($m->metrics as $id => $cm) {
@@ -59,7 +60,7 @@ class Stacked {
                     $value = isset($metricsData[$dateString]) ? $metricsData[$dateString] : null;
                     $p[] = $value && isset($value[$id]) ? $value[$id] : 0;
                 }
-                $points[] = $this->_buildDashboardMetricsChartData(Defination::METRICS_TYPE_CUSTOM, $m['order'], $cm['label'], $p);
+                $points[] = $this->_buildDashboardMetricsChartData(Metric::METRICS_TYPE_CUSTOM, $m['order'], $cm['label'], $p);
             }
         }
         return $points;

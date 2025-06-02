@@ -21,9 +21,9 @@ class MemberGuideController extends Controller
         // dd(Storage::url('MEMBERS_GUIDE.pdf'));
         switch ($request->input('type')) {
             case 'region-staff':
-                return response()->file(storage_path('app/files/ELITE_WEBSITE_HOW_TO_HEAD_OFFICE_REGION_STAFF.pdf'), ['content-type'=>'application/pdf']);
+                return response()->file(storage_path('app/files/'.config('app.theme').'/ELITE_WEBSITE_HOW_TO_HEAD_OFFICE_REGION_STAFF.pdf'), ['content-type'=>'application/pdf']);
             case 'member':
-                return response()->file(storage_path('app/files/ELITE_WEBSITE_HOW_TO_GUIDE_MEMBERS.pdf'), ['content-type'=>'application/pdf']);
+                return response()->file(storage_path('app/files/'.config('app.theme').'/ELITE_WEBSITE_HOW_TO_GUIDE_MEMBERS.pdf'), ['content-type'=>'application/pdf']);
             default:
                 if ($request->input('page')) {
                     $this->dataForView['pdf_src'] = "/elite/".config('app.theme')."/MEMBERS_GUIDE.pdf#page=" . $request->input('page');
