@@ -103,7 +103,8 @@ class Stacked {
         $trainingMetric = $metricsDefinations->filter(function ($defination) {
             return $defination->identifier === Defination::METRICS_TYPE_TRAINING;
         })->first();
-
+        if (!$trainingMetric)
+            return [];
         $tp = [];
         foreach(Utility::MONTHS_SHORT as $month) {
             $dateString = $this->getDateString($month);
