@@ -2,6 +2,7 @@
 
 namespace App\Services\DataMappingServices\ImportationImpl;
 
+use App\Models\User;
 use App\Services\DataMappingServices\Base;
 use App\Models\UserPositions as UserPositionsModel;
 
@@ -14,12 +15,26 @@ class UserPositions extends Base {
         // 'position_code' => 'sp_techcert'
     ];
 
+    // implement Valid interface
+    public static function isValidate(array $record, array $key): bool {
+        $position = trim($record[$key['position']]) !== 'N/A';
+        $user = User::where('employee_code',trim($record[$key['employee']]))->first();
+        return $position && $user ? true : false;
+    }
+    
+    public function getKeyForValidate(): array {
+        $key = [];
+        $key['employee'] = 'regi#_';
+        $key['position'] = 'sp_';
+        return $key;
+    }
+
     /**
      * get model according data file type
      *
      * @param $modelKey
      * @param $record
-     * @return UserPositionsModel
+     * @return UserPositionsModel | null
      */
     public function getModel($modelKey, $record, $key) {
         $model = UserPositionsModel::where('employee_code',trim($record[$modelKey['primary']]))

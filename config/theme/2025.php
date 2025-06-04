@@ -17,4 +17,8 @@ return array (
   'product_challenge_table_registe_url' => "#",
   'product_challenge_info_url' => "#",
 
+  // calculate by imageColorAllocate($this->image, 0, 128, 128)
+  'status_level_wheel_surround_color' => 32896,
+  // calculate by imageColorAllocate($this->image, 0xED, 0xEB, 0xEB)
+  'status_level_wheel_text_color' => 16777215,
 );
