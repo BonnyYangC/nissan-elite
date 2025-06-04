@@ -52,11 +52,11 @@ class Current extends GageService
         $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $statusLevel3ArcColor,   $this->gageDia / 4,  $this->gageDia / 2);
         $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $statusLevel4ArcColor,      $this->gageDia / 4,  $this->gageDia / 2);
 
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent4, 101,       theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
 
         $this->whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent1, $white);
         $this->whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent2, $white);
@@ -68,7 +68,7 @@ class Current extends GageService
         $this->needleOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $completePercent, $grey, $white);
 
         // // Jo's grey arrow for first sector below consul   //start at 5% and finish 7% before consul, with 2% for arrowhead
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, 3, $percent1 - 4, $grey,         $this->gageDia * .55,  $this->gageDia * .56);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, 3, $percent1 - 4, theme_config('status_level_wheel_text_color'),         $this->gageDia * .55,  $this->gageDia * .56);
 
         // // arrowhead
         $arrowThickness = 20;
@@ -84,7 +84,7 @@ class Current extends GageService
         $y2 = $y1 - sin(deg2rad($angle - 90 + $arrowAngle)) * 70;
         $x3 = $x1 + cos(deg2rad($angle - 90 - $arrowAngle)) * 70;
         $y3 = $y1 - sin(deg2rad($angle - 90 - $arrowAngle)) * 70;
-        imagefilledpolygon($this->image, [$x1, $y1, $x2, $y2, $x3, $y3], $no_of_points = 3, $grey);
+        imagefilledpolygon($this->image, [$x1, $y1, $x2, $y2, $x3, $y3], $no_of_points = 3, theme_config('status_level_wheel_text_color'));
 
         putenv('GDFONTPATH=' . realpath('.'));
 
@@ -113,17 +113,17 @@ class Current extends GageService
 
         $s1 = round(180 + $percent1 * 1.788);
         $s2 = round(180 + $percent2 * 1.8);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, $statusLevel1Text, $fontFile, $size = 33, $pad = 0);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, theme_config('status_level_wheel_text_color'), $statusLevel1Text, $fontFile, $size = 33, $pad = 0);
 
         $s3 = round(180 + $percent3 * 1.8);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, $statusLevel2Text, $fontFile, $size = 33, $pad = 0);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, theme_config('status_level_wheel_text_color'), $statusLevel2Text, $fontFile, $size = 33, $pad = 0);
 
         $s4 = round(180 + $percent4 * 1.8);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, $statusLevel3Text, $fontFile, $size = 33, $pad = 0);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, theme_config('status_level_wheel_text_color'), $statusLevel3Text, $fontFile, $size = 33, $pad = 0);
 
         $s4 = round(180 + $percent4 * 1.82);
         $s5 = round(180 + 100 * 1.8);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, $statusLevel4Text, $fontFile, $size = 33, $pad = 0);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, theme_config('status_level_wheel_text_color'), $statusLevel4Text, $fontFile, $size = 33, $pad = 0);
 
         $textX = $this->xCenter - 100;
         if (!$complete) {
