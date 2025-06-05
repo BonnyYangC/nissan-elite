@@ -92,16 +92,16 @@ class Loyalty extends GageService
         $statusLevel4Text = LoyaltyStatus::STATUS_LEVEL_4;
 
         $s1 = round(180 + $percent1 * 0.4);
-        $s2 = round(180 + $percent2 * 0.8);
+        $s2 = round(180 + $percent2 * 0.9);
         $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, theme_config('status_level_wheel_text_color'), $statusLevel1Text, $fontFile, $size = 33, $pad = 0);
 
-        $s3 = round(180 + $percent3 * 1.2);
+        $s3 = round(180 + $percent3 * 1.33);
         $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, theme_config('status_level_wheel_text_color'), $statusLevel2Text, $fontFile, $size = 33, $pad = 0);
 
-        $s4 = round(180 + $percent4 * 1.1);
+        $s4 = round(180 + $percent4 * 0.95);
         $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, theme_config('status_level_wheel_text_color'), $statusLevel3Text, $fontFile, $size = 33, $pad = 0);
 
-        $s4 = round(180 + $percent4 * 1.2);
+        $s4 = round(180 + $percent4 * 1.1);
         $s5 = round(180 + 100 * 1.8);
         $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, theme_config('status_level_wheel_text_color'), $statusLevel4Text, $fontFile, $size = 33, $pad = 0);
 

@@ -6,6 +6,6 @@
   <div class="historical-data">
     @foreach ($historical['all'] as $key => $value)
     <h3>{{ $key }} : {{ $value }} </h3>
-  @endforeach
+    @endforeach
   </div>
 </div>
