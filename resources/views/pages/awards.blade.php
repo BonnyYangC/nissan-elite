@@ -55,7 +55,7 @@
                 </div>
                 <div class="page-widget col-3">
                     <img src="{{ theme_image('awards/Elite_trophies_National.png') }}" class="w-100" alt="" />
-                    <img src="{{ theme_image('awards/state_trophy.png') }}" class="w-100" alt="" />
+                    <img src="{{ theme_image('awards/state_trophy.png') }}" class="w-100 mt-1" alt="" />
                 </div>
             </div>
             <div class="page-section-wrap dashboard-section"></div>
