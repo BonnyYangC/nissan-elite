@@ -56,7 +56,7 @@ class DataProcessService {
                 $validationKey = $service->getKeyForValidate();
 
                 foreach ($records as $lineNumber => $record) {
-                    if(!isset($record[$modelKey['primary']]) || !$service::isValidate($record, $validationKey)) {
+                    if(!isset($record[$modelKey['primary']]) || !$service->isValidate($record, $validationKey)) {
                         $failedCount[$serviceKey]++;
                         $failedRows[$serviceKey][] = $record;
                         continue;

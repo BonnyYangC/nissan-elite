@@ -51,7 +51,7 @@ class MonthlyDataMapping implements Ignore, Valid {
     }
 
     // implement Valid interface
-    public static function isValidate(array $record, array $key): bool {
+    public function isValidate(array $record, array $key): bool {
         $model = User::where('employee_code', $record[$key['employ']])->first();
         return $model ? true : false;
     }

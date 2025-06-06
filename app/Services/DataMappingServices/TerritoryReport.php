@@ -35,7 +35,7 @@ class TerritoryReport extends Base {
     }
 
     // implement Valid interface
-    public static function isValidate(array $record, array $key): bool {
+    public function isValidate(array $record, array $key): bool {
         $dealer = Dealer::where('code', $record[$key['dealer']])->first();
         $employee = User::where('employee_code', $record[$key['employee']])->first();
         return $dealer && $employee ? true : false;

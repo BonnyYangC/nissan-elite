@@ -8,55 +8,62 @@
                     <span class='page-header-title'>HIGH ACHIEVER AWARDS {{ theme_config('FY_LAST_YEAR') }}</span>
                 </h1>
             </div>
-            <div class="d-flex">
-                <div class="page-section-wrap col-9">
-                    @foreach($awards as $type => $subtypes)
-                    <div class="awards-section">
-                        <h2>{{$type}}</h2>
-                        <table class="table mt-1">
-                            @foreach($subtypes as $subType => $members)
-                            <thead class="nissan-table-header">
-                                <tr class="table-top-row">
-                                    @if($type !== App\Models\AwardsType::GOLD_STATUS)
-                                    <td><strong>1<sup>st</sup>{{$subType}}</strong></td>
-                                    <td></td>
-                                    <td></td>
-                                    @else
-                                    <td><strong>{{$subType}}</strong></td>
-                                    <td></td>
-                                    @endif
-                                    @if($type === App\Models\AwardsType::PLATINUM_NATIONAL)
-                                    <td></td>
-                                    @endif
-                                </tr>
-                            </thead>
-                            <tbody class="nissan-table-body-light-grey">
-                                @foreach($members as $member)
-                                <tr class="active">
-                                    @if($type !== App\Models\AwardsType::GOLD_STATUS)
-                                    <td>{{$member['position']}}</td>
-                                    <td>{{$member['member']}}</td>
-                                    <td>{{$member['dealer']}}</td>
-                                    @else
-                                    <td>{{$member['member']}}</td>
-                                    <td>{{$member['dealer']}}</td>
-                                    @endif
-                                    @if($type === App\Models\AwardsType::PLATINUM_NATIONAL)
-                                    <td>{{$member['state']}}</td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                            </tbody>
-                            @endforeach
-                        </table>
-                        <p><em></em></p>
+            <div class="d-flex flex-column">
+                @foreach($awards as $type => $subtypes)
+                    <div class="d-flex">
+                        <div class="page-section-wrap col-9">
+                            <div class="awards-section">
+                                <h2>{{$type}}</h2>
+                                <table class="table mt-1">
+                                    @foreach($subtypes as $subType => $members)
+                                    <thead class="nissan-table-header">
+                                        <tr class="table-top-row">
+                                            @if($type !== App\Models\AwardsType::GOLD_STATUS)
+                                            <td><strong>1<sup>st</sup>{{$subType}}</strong></td>
+                                            <td></td>
+                                            <td></td>
+                                            @else
+                                            <td><strong>{{$subType}}</strong></td>
+                                            <td></td>
+                                            @endif
+                                            @if($type === App\Models\AwardsType::PLATINUM_NATIONAL)
+                                            <td></td>
+                                            @endif
+                                        </tr>
+                                    </thead>
+                                    <tbody class="nissan-table-body-light-grey">
+                                        @foreach($members as $member)
+                                        <tr class="active">
+                                            @if($type !== App\Models\AwardsType::GOLD_STATUS)
+                                            <td>{{$member['position']}}</td>
+                                            <td>{{$member['member']}}</td>
+                                            <td>{{$member['dealer']}}</td>
+                                            @else
+                                            <td>{{$member['member']}}</td>
+                                            <td>{{$member['dealer']}}</td>
+                                            @endif
+                                            @if($type === App\Models\AwardsType::PLATINUM_NATIONAL)
+                                            <td>{{$member['state']}}</td>
+                                            @endif
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    @endforeach
+                                </table>
+                                <p><em></em></p>
+                            </div>
+                        </div>
+                        <div class="page-widget col-3">
+                            @if($type == \App\Models\AwardsType::PLATINUM_NATIONAL)
+                            <img src="{{ theme_image('awards/national_trophy.png') }}" class="w-100 mt-1" alt="" />
+                            @elseif($type == \App\Models\AwardsType::PLATINUM_STATE)
+                            <div class="state_trophy">
+                                <img src="{{ theme_image('awards/state_trophy.png') }}" class="w-100"  alt="" />
+                            </div>
+                            @endif
+                        </div>
                     </div>
-                    @endforeach
-                </div>
-                <div class="page-widget col-3">
-                    <img src="{{ theme_image('awards/Elite_trophies_National.png') }}" class="w-100" alt="" />
-                    <img src="{{ theme_image('awards/state_trophy.png') }}" class="w-100 mt-1" alt="" />
-                </div>
+                @endforeach
             </div>
             <div class="page-section-wrap dashboard-section"></div>
         </div>
