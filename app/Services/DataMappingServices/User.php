@@ -29,7 +29,7 @@ class User extends Base {
     }
 
     // implement Ignore interface
-    public static function isValidate(array $record, array $key): bool {
+    public function isValidate(array $record, array $key): bool {
         $dealer = Dealer::where('code', $record[$key['dealer']])->first();
         // $position = Position::where('code', $record[$key['position']])->first();
         return /*$position &&*/ $dealer ? true : false;

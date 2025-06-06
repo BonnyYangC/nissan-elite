@@ -16,7 +16,7 @@ class UserPositions extends Base {
     ];
 
     // implement Valid interface
-    public static function isValidate(array $record, array $key): bool {
+    public function isValidate(array $record, array $key): bool {
         $position = trim($record[$key['position']]) !== 'N/A';
         $user = User::where('employee_code',trim($record[$key['employee']]))->first();
         return $position && $user ? true : false;
