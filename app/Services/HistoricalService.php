@@ -19,13 +19,6 @@ class HistoricalService {
     public function getHistoricalData(): array {
         /** @var User $currentUser */
         $currentUser = $this->getCurrentUser();
-        if (!$currentUser->employee_code) {
-            return [
-                'all' => [],
-                'total' => 0,
-                'loyalty_to_brand' => 0
-            ];
-        }
         $currentYear = substr(config('app.theme'), -2);
         return [
             'all' => $this->buildHistoricalData($currentYear, $currentUser->employee_code),

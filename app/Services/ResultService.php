@@ -4,14 +4,21 @@ namespace App\Services;
 
 use App\Helper\Utility;
 use App\Models\Result;
+use App\Repositories\ResultRepository;
+use App\Traits\User as UserTrait;
 
-class ResultService extends BaseService {
+class ResultService {
 
-    /**
-     * @return false|string
-     */
+    use UserTrait;
+
+    private $repository;
+
+    public function __construct(ResultRepository $resultRepository) {
+        $this->repository = $resultRepository;
+    }
+
     public function buildMonthlyData(string $positionCode) {
-        $results = $this->getResultsByPosition($this->currentUser->employee_code, $positionCode);
+        $results = $this->repository->getResultsByPosition($this->getCurrentUser()->employee_code, $positionCode);
         $resultsData = $results->reduce(function ($r, $result) {
             $r[date("M", strtotime($result->period))] = $result->credit_mtd;
             return $r;
@@ -27,18 +34,11 @@ class ResultService extends BaseService {
 
     }
 
-    // should use repository patten
-    private function getResultsByPosition(string $employeeCode, string $position) {
-        return Result::where('employee_code', $employeeCode)
-            ->where('position', $position)
-            ->get();
-    }
-
     /**
      * @return mixed
      */
     public function getYearToDateData(string $position) {
-        $employeeCode = $this->currentUser->employee_code;
+        $employeeCode = $this->getCurrentUser()->employee_code;
         return $employeeCode ? Result::yearToDate($employeeCode, $position)
             ->max('credit_ytd') : 0;
     }
