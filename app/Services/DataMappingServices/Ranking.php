@@ -17,22 +17,6 @@ class Ranking extends Base {
         'rank_state'    =>'state_rank_',
         'position'      =>'sp_',
     ];
-    public static function isValidate(array $record, array $key): bool {
-        $user = User::where('employee_code', $record[$key['employ']])->first();
-        $position = Position::where('code', $record[$key['position']])->first();
-        return $user && $position ? true : false;
-    }
-
-    public function getValidateMessage(): string {
-        return 'Please check employee/position exist or not!';
-    }
-
-    public function getKeyForValidate(): array {
-        $key = [];
-        $key['employ'] = 'regi#_';
-        $key['position'] = 'sp_';
-        return $key;
-    }
 
     private $hasRanking = false;
     private $hasPlatinumRanking = false;

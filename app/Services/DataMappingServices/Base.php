@@ -16,7 +16,7 @@ class Base implements Ignore, Valid {
     }
 
     // implement Valid interface
-    public static function isValidate(array $record, array $key): bool {
+    public function isValidate(array $record, array $key): bool {
         return true;
     }
     
