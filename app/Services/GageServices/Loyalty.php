@@ -8,7 +8,7 @@ use App\Services\StatusServices\Loyalty as LoyaltyStatus;
 
 class Loyalty extends GageService
 {
-      public function loyalty_status_level($complete) {
+    public function loyalty_status_level($complete) {
 
         $fileName = 'loyalty_status.png';
         ini_set('display_errors', 1);
@@ -53,10 +53,10 @@ class Loyalty extends GageService
         $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $statusLevel3ArcColor,     $this->gageDia / 4,  $this->gageDia / 2);
         $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $statusLevel4ArcColor,   $this->gageDia / 4,  $this->gageDia / 2);
 
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
-        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, $lightgrey,         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, 0,         $percent1, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent1, $percent2, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent2, $percent3, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
+        $this->drawArc($this->image, $this->xCenter, $this->yCenter, $percent3, $percent4, theme_config('status_level_wheel_surround_color'),         $this->gageDia * .51,  $this->gageDia * .6);
 
         $this->whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent1, $white);
         $this->whiteDividerInArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia, $percent2, $white);
@@ -92,18 +92,18 @@ class Loyalty extends GageService
         $statusLevel4Text = LoyaltyStatus::STATUS_LEVEL_4;
 
         $s1 = round(180 + $percent1 * 0.4);
-        $s2 = round(180 + $percent2 * 0.8);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, $grey, $statusLevel1Text, $fontFile, $size = 33, $pad = 0);
+        $s2 = round(180 + $percent2 * 0.9);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s1, $s2, theme_config('status_level_wheel_text_color'), $statusLevel1Text, $fontFile, $size = 33, $pad = 0);
 
-        $s3 = round(180 + $percent3 * 1.2);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, $grey, $statusLevel2Text, $fontFile, $size = 33, $pad = 0);
+        $s3 = round(180 + $percent3 * 1.33);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s2, $s3, theme_config('status_level_wheel_text_color'), $statusLevel2Text, $fontFile, $size = 33, $pad = 0);
+
+        $s4 = round(180 + $percent4 * 0.95);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, theme_config('status_level_wheel_text_color'), $statusLevel3Text, $fontFile, $size = 33, $pad = 0);
 
         $s4 = round(180 + $percent4 * 1.1);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s3, $s4, $grey, $statusLevel3Text, $fontFile, $size = 33, $pad = 0);
-
-        $s4 = round(180 + $percent4 * 1.2);
         $s5 = round(180 + 100 * 1.8);
-        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, $grey, $statusLevel4Text, $fontFile, $size = 33, $pad = 0);
+        $this->textOnArc($this->image, $this->xCenter, $this->yCenter, $this->gageDia / 1.85, $s4, $s5, theme_config('status_level_wheel_text_color'), $statusLevel4Text, $fontFile, $size = 33, $pad = 0);
 
         $textX = $this->xCenter - 100;
         if (!$complete) {

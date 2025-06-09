@@ -9,10 +9,10 @@ class Loyalty {
     const STATUS_LEVEL_2      = 'Silver';
     const STATUS_LEVEL_1        = 'Bronze';
 
-    const STATUS_LEVEL_4_COLOR       = '#545454'; //Platinum
-    const STATUS_LEVEL_3_COLOR    = '#CD7F32'; //Gold
+    const STATUS_LEVEL_4_COLOR       = '#8C7853'; //Platinum
+    const STATUS_LEVEL_3_COLOR    = '#FFD700'; //Gold
     const STATUS_LEVEL_2_COLOR      = '#C0C0C0'; //Silver
-    const STATUS_LEVEL_1_COLOR        = '#8C7853'; //Bronze
+    const STATUS_LEVEL_1_COLOR        = '#8B4513'; //Bronze
 
     const MAX_LEVEL_4 = 850000;
     const MAX_LEVEL_3 = 500000;

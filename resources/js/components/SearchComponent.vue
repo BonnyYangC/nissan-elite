@@ -1,29 +1,19 @@
 <template>
+  <!-- :hide-loading="true" :select-when-unmatched="true"  :debounce="300" :trigger-on-focus="false"-->
   <div>
-    <el-autocomplete
-        v-model="search"
-        style="width: 400px;"
-        :fetch-suggestions="querySearchAsync"
-        placeholder="Find a User By: Firstname Surname"
-        @select="handleSelect"
-        :empty-text="noDataText"
-        :hide-loading="true"
-        :trigger-on-focus="false"
-        :select-when-unmatched="true">
-        <template slot-scope="{ item }">
-            <p class="name">{{ item.firstname }} {{ item.lastname }} - {{ item.name }}({{ item.position_code }})</p>
-        </template>
+    <el-autocomplete ref="autoInput" v-model="search" style="width: 400px;" :fetch-suggestions="querySearchAsync"
+      placeholder="Find a User By: Firstname Surname" @select="handleSelect" :empty-text="noDataText"
+      :popper-append-to-body="false">
+      <template #default="{ item }">
+        <p class="name">{{ item.firstname }} {{ item.lastname }} - {{ item.name }}({{ item.position_code }})</p>
+      </template>
     </el-autocomplete>
 
-    <el-dialog
-    append-to-body
-    title="Question"
-    :visible.sync="dialogVisible"
-    width="30%">
+    <el-dialog append-to-body title="Question" :visible.sync="dialogVisible" width="30%">
       <span slot="footer" class="dialog-footer">
-          <el-button icon="el-icon-share" type="success" @click="mockHandler">Mock</el-button>
-          <el-button icon="el-icon-edit-outline" type="primary" @click="editHandler">Edit</el-button>
-          <el-button icon="el-icon-close" @click="dialogVisible = false">Cancel</el-button>
+        <el-button icon="el-icon-share" type="success" @click="mockHandler">Mock</el-button>
+        <el-button icon="el-icon-edit-outline" type="primary" @click="editHandler">Edit</el-button>
+        <el-button icon="el-icon-close" @click="dialogVisible = false">Cancel</el-button>
       </span>
     </el-dialog>
   </div>
@@ -34,7 +24,7 @@ export default {
   data() {
     return {
       search: '',
-      noDataText: '',
+      noDataText: null,
       dialogVisible: false,
       currentItem: null
     };
@@ -43,6 +33,16 @@ export default {
     search(newValue) {
       // console.log('Search value:', newValue); // For debug, See if search updates
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.autoInput.$el.querySelector('input').addEventListener('blur', () => {
+        console.log('Input lost focus!');
+      });
+
+      const inputEl = this.$refs.autoInput?.$el?.querySelector('input');
+      if (inputEl) inputEl.focus();
+    });
   },
   methods: {
     async querySearchAsync(queryString, callback) {
@@ -75,22 +75,22 @@ export default {
         callback([]);
       }
     },
-    handleSelect(item){
-        this.dialogVisible = true;
-        this.currentItem = item;
+    handleSelect(item) {
+      this.dialogVisible = true;
+      this.currentItem = item;
     },
-    mockHandler(){
-        this.dialogVisible = false;
-        if(!this.currentItem.dealer_code){
-            // nissan staff
-            window.open('/admin/region_staff/mock/' + this.currentItem.id, '_blank');
-        }else{
-            window.open('/admin/users/mock/' + this.currentItem.id, '_blank');
-        }
+    mockHandler() {
+      this.dialogVisible = false;
+      if (!this.currentItem.dealer_code) {
+        // nissan staff
+        window.open('/admin/region_staff/mock/' + this.currentItem.id, '_blank');
+      } else {
+        window.open('/admin/users/mock/' + this.currentItem.id, '_blank');
+      }
     },
-    editHandler(){
-        this.dialogVisible = false;
-        window.location.href = '/admin/users/' + this.currentItem.id;
+    editHandler() {
+      this.dialogVisible = false;
+      window.location.href = '/admin/users/' + this.currentItem.id;
     }
   }
 };

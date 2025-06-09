@@ -6,7 +6,7 @@ return array (
   'eventRegisterUrl'=>"https://www.nissanelite.com.au/reg2025",
   'FY_WITH_YEAR'=>'FY25',
   'FY_LAST_YEAR'=>'FY24',
-  'LAST_YEAR_EVENT_URL'=>"https://staging.nissanelite.com.au/elite_individual",
+  'LAST_YEAR_EVENT_URL'=>"https://nissanelite.com.au/elite_individual",
 
   'feature_metrics_stacked_combination'=>true,
   'positions_with_D1' => '["F", "M", "R", "SC", "I"]',
@@ -17,4 +17,8 @@ return array (
   'product_challenge_table_registe_url' => "#",
   'product_challenge_info_url' => "#",
 
+  // calculate by imageColorAllocate($this->image, 0, 128, 128)
+  'status_level_wheel_surround_color' => 32896,
+  // calculate by imageColorAllocate($this->image, 0xED, 0xEB, 0xEB)
+  'status_level_wheel_text_color' => 16777215,
 );

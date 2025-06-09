@@ -10,23 +10,14 @@
             </div>
             <div class="d-flex">
                 <div class="col-9 page-section-wrap">
-                    <div>
-                        <h3>Current Status Level</h3>
-                        <div class="mt-2">
-                            <img src="{{ asset('loyalty_status.png') }}" width="100%" />
-                        </div>
-                        <div class="historical-data">
-                            @foreach ($historical['all'] as $key => $value)
-                            <h3>{{ $key }} : {{ $value }} </h3>
-                            @endforeach
-                        </div>
-                    </div>
+                @include(theme_view('loyalty_content'), [$historical])
                 </div>
                 <div class="page-widget col-3">
                     @include('pages.widgets.side_panel.loyalty_points', [$ytd, $historical])
-                    @include('pages.widgets.side_panel.loyalty_legend')
+                    @include(theme_view('loyalty_legend'))
                 </div>
             </div>
         </div>
     </div>
 @endsection
+

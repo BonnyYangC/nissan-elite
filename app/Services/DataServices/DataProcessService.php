@@ -9,6 +9,7 @@ use App\Repositories\{PositionRepository, RegionRepository};
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Illuminate\Support\Collection;
+use PhpParser\Node\Stmt\TryCatch;
 
 class DataProcessService {
 
@@ -34,11 +35,12 @@ class DataProcessService {
     public function importation($dataFile, $dataType) {
 
         $resultValue = [];
-        $updateCount = 0;
-        $failedCount = 0;
-        $failedRows = [];
-        $ignoredCount = 0;
-        $ignoredRows = [];
+
+        $updateCount = [0,0,0];
+        $failedCount = [0,0,0];
+        $failedRows = [[],[],[]];
+        $ignoredCount = [0,0,0];
+        $ignoredRows = [[],[],[]];
         $headerFields = [];
 
         $filePath = storage_path('app/public/'.$dataFile);
@@ -49,26 +51,27 @@ class DataProcessService {
             $records = (new Statement())->process($csvReader);
 
             $mappingServices = $this->getImporationService($dataType);
-            foreach($mappingServices as $service) {
+            foreach($mappingServices as $serviceKey => $service) {
                 $modelKey = $service->getKeyForModel();
                 $validationKey = $service->getKeyForValidate();
 
                 foreach ($records as $lineNumber => $record) {
-                    if(!isset($record[$modelKey['primary']]) || !$service::isValidate($record, $validationKey)) {
-                        $failedCount++;
-                        $failedRows[] = $record;
-                        break;
+                    if(!isset($record[$modelKey['primary']]) || !$service->isValidate($record, $validationKey)) {
+                        $failedCount[$serviceKey]++;
+                        $failedRows[$serviceKey][] = $record;
+                        continue;
                     }
                     if ($service::isIgnored($record, $validationKey)) {
-                        $ignoredCount++;
-                        $ignoredRows[] = $record;
-                        break;
+                        $ignoredCount[$serviceKey]++;
+                        $ignoredRows[$serviceKey][] = $record;
+                        continue;
                     }
                     if (isset($modelKey['mapping'])) {
                         $keys = array_keys($modelKey['mapping']);
                     } else {
                         $keys = [$modelKey['primary']];
                     }
+
                     foreach($keys as $key) {
                         $model = $service->getModel($modelKey, $record, $key);
 
@@ -78,22 +81,24 @@ class DataProcessService {
                                 $model->$fieldName = $value == '-' ? 0 : $value;
                             }
                             if ($model->save()) {
-                                $updateCount++;
+                                $updateCount[$serviceKey]++;
                             } else {
-                                $failedCount++;
-                                $failedRows[] = $record;
+                                $failedCount[$serviceKey]++;
+                                $failedRows[$serviceKey][] = $record;
                             }
                         }
                     }
                 }
+
+
             }
             $resultValue['type'] = Defination::ACTION_TYPE_SYNC;
             $resultValue['header'] = $headerFields;
-            $resultValue['update']['count'] = 'Synced: '.$updateCount;
-            $resultValue['ignore']['count'] = 'Ignored: '.$ignoredCount;
-            $resultValue['ignore']['data'] = $ignoredRows;
-            $resultValue['wrong']['count'] = 'Failed: '.$failedCount;
-            $resultValue['wrong']['data'] = $failedRows;
+            $resultValue['update']['count'] = 'Synced: '.$updateCount[0];//.$updateCount[1].$updateCount[2];
+            $resultValue['ignore']['count'] = 'Ignored: '.$ignoredCount[0];//.$ignoredCount[1].$ignoredCount[2];
+            $resultValue['ignore']['data'] = $ignoredRows[0];
+            $resultValue['wrong']['count'] = 'Failed: '.$failedCount[0];//.$failedCount[1].$failedCount[2];
+            $resultValue['wrong']['data'] = $failedRows[0];
         }
         else{
             echo 'File is not exists.'.PHP_EOL;
@@ -134,7 +139,7 @@ class DataProcessService {
             
             foreach ($records as $lineNumber => $record) {
 
-                if(!isset($record[$modelKey['primary']]) || !$mappingService::isValidate($record, $validationKey)) {
+                if(!isset($record[$modelKey['primary']]) || !$mappingService->isValidate($record, $validationKey)) {
                     $wrongCount++;
                     $wrongRows[] = $record;
                     continue;

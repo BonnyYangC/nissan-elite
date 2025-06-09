@@ -29,7 +29,7 @@ class User extends Base {
     }
 
     // implement Ignore interface
-    public static function isValidate(array $record, array $key): bool {
+    public function isValidate(array $record, array $key): bool {
         $dealer = Dealer::where('code', $record[$key['dealer']])->first();
         // $position = Position::where('code', $record[$key['position']])->first();
         return /*$position &&*/ $dealer ? true : false;
@@ -68,7 +68,7 @@ class User extends Base {
             'dealer_code'=>$row['dcode'] ? $row['dcode'] : null,
             'position_code'=> !($row['sp_'] === 'N/A' || $row['sp_'] === '') ? $row['sp_'] : null,
             'dept'=>$row['dept_code'],
-            'active'=>$row['status'] === 'inactive' ? 0 : 1
+            'active'=>($row['status'] === 'inactive' || $row['status'] === 'ineligible') ? 0 : 1
         ];
     }
 }

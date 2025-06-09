@@ -112,7 +112,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -480,7 +480,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -628,7 +628,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -870,7 +870,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1060,7 +1060,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1182,7 +1182,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1299,6 +1299,7 @@
                     "identifier": "reentry_pen",
                     "order": 5,
                     "title": "NISSAN MORE CUSTOMER RE-ENTRY PEN % (QUARTERLY)",
+                    "period": "quarterly",
                     "metrics": {
                         "reentry_pen":{
                             "label": " re-entry pen",
@@ -1362,7 +1363,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
@@ -1556,7 +1557,7 @@
                             "label": "5 Star",
                             "point_default": 0,
                             "score_format": "f",
-                            "score_decimals": 1
+                            "score_decimals": 2
                         }
                     },
                     "guides": [
