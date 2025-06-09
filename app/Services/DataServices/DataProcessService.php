@@ -139,7 +139,7 @@ class DataProcessService {
             
             foreach ($records as $lineNumber => $record) {
 
-                if(!isset($record[$modelKey['primary']]) || !$mappingService::isValidate($record, $validationKey)) {
+                if(!isset($record[$modelKey['primary']]) || !$mappingService->isValidate($record, $validationKey)) {
                     $wrongCount++;
                     $wrongRows[] = $record;
                     continue;
