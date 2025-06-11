@@ -24,19 +24,19 @@ class LoyaltyHistorical {
             SELECT
                 r.employee_code,
                 concat(u.firstname,' ',u.lastname) AS NAME,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period<'2019-01-01') AS loyaly2brand,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period<'2019-01-01') AS loyaly2brand,
                 r.total AS this_year,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2019-01-01') AS fy19,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2020-01-01') AS fy20,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2021-01-01') AS fy21,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2022-01-01') AS fy22,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2023-01-01') AS fy23,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2024-01-01') AS fy24,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2025-01-01') AS fy25,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2026-01-01') AS fy26,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2027-01-01') AS fy27,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period='2028-01-01') AS fy28,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code)+r.total AS total_points_hist
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2019-01-01') AS fy19,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2020-01-01') AS fy20,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2021-01-01') AS fy21,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2022-01-01') AS fy22,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2023-01-01') AS fy23,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2024-01-01') AS fy24,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2025-01-01') AS fy25,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2026-01-01') AS fy26,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2027-01-01') AS fy27,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2028-01-01') AS fy28,
+                (select SUM(amount) FROM nissan_elite_production.nissan_history h WHERE h.member_id=r.employee_code)+r.total AS total_points_hist
                     FROM rankings r
                     left JOIN users u ON u.employee_code=r.employee_code
                     WHERE r.period=(select max(period) FROM rankings)
