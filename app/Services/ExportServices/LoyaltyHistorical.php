@@ -24,7 +24,7 @@ class LoyaltyHistorical {
             SELECT
                 r.employee_code,
                 concat(u.firstname,' ',u.lastname) AS NAME,
-                (select SUM(amount) FROM nissan_history h WHERE h.member_id=r.employee_code AND h.period<'2019-01-01') AS loyaly2brand,
+                (select SUM(amount) FROM nissan_elite_staging.nissan_history h WHERE h.member_id=r.employee_code AND h.period<'2019-01-01') AS loyaly2brand,
                 r.total AS this_year,
                 (select SUM(amount) FROM nissan_elite_staging.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2019-01-01') AS fy19,
                 (select SUM(amount) FROM nissan_elite_staging.nissan_history h WHERE h.member_id=r.employee_code AND h.period='2020-01-01') AS fy20,
