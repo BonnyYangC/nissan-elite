@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\DataMappingServices\Factories;
+namespace App\Services\DataServices\Factories;
 
 use App\Helper\Defination;
 use App\Services\DataMappingServices as DMS;

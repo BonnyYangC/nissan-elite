@@ -17,15 +17,26 @@ class LoyaltyHistorical extends Base {
     public function getKeyForModel(): array {
         $key = [];
         $key['primary'] = 'regi#_';
-        //$key['secondary'] = ['yr_92_18_t_loyaltyAC_', 'yr_2019_', 'yr_2020_', 'yr_2021'];
-        $key['mapping'] = [
+        //$key['mapping'] = [
+        //     'yr_92_18_t_loyaltyAC_' => '2018-01-01',
+        //     'yr_2019_' => '2019-01-01',
+        //     'yr_2020_' => '2020-01-01',
+        //     'yr_2021' => '2021-01-01',
+        //     'yr_2022' => '2022-01-01',
+        //     'yr_2023' => '2023-01-01',
+        //     'yr_2024' => '2024-01-01'
+        // ];
+        $result = [
             'yr_92_18_t_loyaltyAC_' => '2018-01-01',
-            'yr_2019_' => '2019-01-01',
-            'yr_2020_' => '2020-01-01',
-            'yr_2021' => '2021-01-01',
-            'yr_2022' => '2022-01-01',
-            'yr_2023' => '2023-01-01'
         ];
+
+        for ($y = 2019; $y < config('app.theme'); $y++) {
+            $suffix = ($y >= 2021) ? '' : '_'; // remove underscore from 2021 onward
+            $k = "yr_{$y}{$suffix}";
+            $value = "{$y}-01-01";
+            $result[$k] = $value;
+        }
+        $key['mapping'] = $result;
         return $key;
     }
 

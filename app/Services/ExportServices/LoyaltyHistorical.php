@@ -8,16 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class LoyaltyHistorical {
 
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct() { }
+    use Exporter;
 
-    /**
-     *
-     */
     public function export() {
         $today = Carbon::today(env('DEFAULT_TIMEZONE'));
         $query = "

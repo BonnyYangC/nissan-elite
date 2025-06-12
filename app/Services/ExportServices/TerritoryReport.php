@@ -4,23 +4,17 @@ namespace App\Services\ExportServices;
 
 use App\Helper\Utility;
 use App\Models\User;
-use App\Services\BaseService;
-use App\Services\ServiceResolver;
+use App\Services\TerritoryReportService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class TerritoryReport extends BaseService {
-    private $parameters;
+class TerritoryReport{
+    
+    use Exporter;
+    private $service;
 
-    /**
-     * Create a new service instance.
-     *
-     * @param ServiceResolver $serviceResolver
-     * @param $parameters
-     */
-    public function __construct(ServiceResolver $serviceResolver, $parameters) {
-        parent::__construct($serviceResolver);
-        $this->parameters = $parameters;
+    public function __construct(TerritoryReportService $service) {
+        $this->service = $service;
     }
 
     /**
@@ -35,7 +29,7 @@ class TerritoryReport extends BaseService {
         ] : [$admin->region->code];
         $dept = isset($this->parameters['dept']) ? $this->parameters['dept'] : 'All';
         $dealer = isset($this->parameters['dealer']) ? $this->parameters['dealer'] : null;
-        $report = $this->serviceResolver->territoryReportService()->load($regions, $dept, $dealer);
+        $report = $this->service->load($regions, $dept, $dealer);
         $contentMap = [
             'Region' => 'region',
             'Dealer' => 'd',

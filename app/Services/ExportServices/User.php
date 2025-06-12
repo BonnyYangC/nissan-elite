@@ -3,23 +3,17 @@
 namespace App\Services\ExportServices;
 
 use App\Helper\Utility;
-use App\Services\BaseService;
-use App\Services\ServiceResolver;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class User extends BaseService {
-    private $parameters;
+class User {
+    
+    use Exporter;
+    private $service;
 
-    /**
-     * Create a new service instance.
-     *
-     * @param ServiceResolver $serviceResolver
-     * @param $parameters
-     */
-    public function __construct(ServiceResolver $serviceResolver, $parameters) {
-        parent::__construct($serviceResolver);
-        $this->parameters = $parameters;
+    public function __construct(UserService $service) {
+        $this->service = $service;
     }
 
     /**
@@ -33,7 +27,7 @@ class User extends BaseService {
         ] : [$admin->region->code];
         $dept = isset($this->parameters['dept']) ? $this->parameters['dept'] : 'All';
         $dealer = isset($this->parameters['dealer']) ? $this->parameters['dealer'] : null;
-        $users = $this->serviceResolver->userService()->loadActiveMember($regions, $dept, $dealer);
+        $users = $this->service->loadActiveMember($regions, $dept, $dealer);
         $contentMap = [
             'Region Code' => 'region',
             'Dealer Code' => 'dealer_code',
