@@ -22,7 +22,8 @@ class LoyaltyController extends Controller {
         $this->dataForView['menuName'] = Defination::PAGE_LOYALTY;
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
         $ytd = $this->resultService->getYearToDateData($selectedPosition);
-        $historical = $this->historicalService->getHistoricalData();
+        $ytd = $ytd ? $ytd : 0;
+        $historical = $this->historicalService->getHistoricalData($ytd);
 
         (new Loyalty())->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
 

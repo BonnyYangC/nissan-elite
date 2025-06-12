@@ -31,7 +31,7 @@ class DashboardService {
     public function buildMemberDashboardData(string $selectedPosition) {
         //year to date
         $ytd = $this->resolver->resultService()->getYearToDateData($selectedPosition);
-        $ytd = $ytd ? $ytd : '';
+        $ytd = $ytd ? $ytd : 0;
         //current status level
         $statusChart = array_merge([
             'ytd' => $ytd
@@ -50,7 +50,7 @@ class DashboardService {
             'ytd' => $ytd,
             'status' => (object)$statusChart,
             'stackedMetrics' => $this->stackedMetricsService->get($selectedPosition),
-            'historical' => $this->resolver->historicalService()->getHistoricalData()
+            'historical' => $this->resolver->historicalService()->getHistoricalData($ytd)
         ], $this->resolver->rankingService()->getRankingDataByPosition($selectedPosition));
     }
 }
