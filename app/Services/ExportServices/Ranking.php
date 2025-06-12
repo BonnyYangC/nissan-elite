@@ -5,23 +5,11 @@ namespace App\Services\ExportServices;
 use App\Helper\Role;
 use App\Helper\Utility;
 use App\Models\Ranking as RankingModel;
-use App\Services\BaseService;
-use App\Services\ServiceResolver;
 use Carbon\Carbon;
 
-class Ranking extends BaseService {
-    private $parameters;
-
-    /**
-     * Create a new service instance.
-     *
-     * @param ServiceResolver $serviceResolver
-     * @param $parameters
-     */
-    public function __construct(ServiceResolver $serviceResolver, $parameters) {
-        parent::__construct($serviceResolver);
-        $this->parameters = $parameters;
-    }
+class Ranking {
+    
+    use Exporter;
 
     /**
      *
