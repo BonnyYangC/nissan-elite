@@ -1,0 +1,1 @@
+<strong style="color:#c40030">Registration, Dealer Excellence and Incentive points are credited in the above graph in the month they were earned.</strong>

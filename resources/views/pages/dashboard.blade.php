@@ -59,6 +59,7 @@
                     @else
                         @include('pages.widgets.metrics_chart.single_role', [$currentUser, $stackedMetrics])
                     @endif
+                    @include(theme_view('dashboard_foot'))
                 </div>
             </div>
         </div>
