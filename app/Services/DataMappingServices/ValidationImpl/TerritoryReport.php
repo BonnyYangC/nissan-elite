@@ -5,24 +5,27 @@ namespace App\Services\DataMappingServices\ValidationImpl;
 use App\Helper\Defination;
 use App\Services\DataMappingServices\TerritoryReport as BaseTerritoryReport;
 use App\Models\TerritoryReport as TerritoryReportModel;
-use App\Models\User;
-use Carbon\Carbon;
 
 class TerritoryReport extends BaseTerritoryReport {
-    use ValidationTrait;
-    /**
-     * get model according data file type
-     *
-     * @param $actionType
-     * @param $modelKey
-     * @param $record
-     * @return TerritoryReportModel
-     */
-    public function getModel($modelKey, $record) {
-        // $this->handleUser(trim($record[$modelKey['primary']]), $actionType);
-        $model = TerritoryReportModel::where('employee_code', trim($record[$modelKey['primary']]))->first();
-        return $model;
-    }
+    use ValidationTrait, ValidateTrait;
 
- 
+    public function validateModel($row) {
+
+        $conditions = [
+            'employee_code' => trim($row['regi#_']), //$record[$modelKey['primary']])
+        ];
+        $existModel = TerritoryReportModel::where($conditions)->first();
+        if (!$existModel)
+            return [Defination::VALIDATION_STATUS_NEW, [$row], []];
+
+        $newData = $this->buildData($row);
+        $formattedRow = [];
+        $headers = [];
+        foreach ($newData as $fieldName => $value) {
+            $equal = $this->compareValue($fieldName, $existModel, $value);
+            $formattedRow = array_merge($formattedRow, $this->buildResultData($fieldName, $existModel, $value, $equal));
+            $headers = array_merge($headers, $this->buildHeaderForResultData($fieldName));
+        }
+        return [Defination::VALIDATION_STATUS_FIND, [$formattedRow], $headers];
+    }
 }

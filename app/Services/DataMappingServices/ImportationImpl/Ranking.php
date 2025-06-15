@@ -5,22 +5,27 @@ namespace App\Services\DataMappingServices\ImportationImpl;
 use App\Helper\Utility;
 use App\Services\DataMappingServices\Ranking as BaseRanking;
 use App\Models\Ranking as RankingModel;
+use Carbon\Carbon;
 
 class Ranking extends BaseRanking {
-    /**
-     * get model according data file type
-     *
-     * @param $actionType
-     * @param $modelKey
-     * @param $record
-     * @return RankingModel
-     */
-    public function getModel($modelKey, $record, $key) {
-        $model = RankingModel::where('employee_code', trim($record[$modelKey['primary']]))
-            ->where('period', Utility::formatPeriod($record['mthyr_g_']))->first();
-        if(!$model){
-            $model = RankingModel::factory()->make();
+
+    use ImportTrait;
+
+    public function importModel($row) {
+        $timestamp = Carbon::now();
+        $conditions = [
+            'employee_code' => trim($row['regi#_']),
+            'period' => Utility::formatPeriod($row['mthyr_g_'])
+        ];
+        $exists = RankingModel::where($conditions)->exists();
+        $data = array_merge($this->buildData($row), [
+            'updated_at' => $timestamp,
+        ]);
+        
+        if (!$exists) {
+            $data['created_at'] = $timestamp;
         }
-        return $model;
+
+        return RankingModel::updateOrInsert($conditions, $data);
     }
 }

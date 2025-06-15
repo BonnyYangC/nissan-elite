@@ -2,9 +2,7 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Helper\Defination;
-use App\Models\{Dealer, User};
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class TerritoryReport extends Base {
 
@@ -36,9 +34,14 @@ class TerritoryReport extends Base {
 
     // implement Valid interface
     public function isValidate(array $record, array $key): bool {
-        $dealer = Dealer::where('code', $record[$key['dealer']])->first();
-        $employee = User::where('employee_code', $record[$key['employee']])->first();
-        return $dealer && $employee ? true : false;
+        $validator = Validator::make($record, [
+            'regi#_' => 'required|string|exists:users,employee_code',
+            'dcode' => 'required|string|exists:dealers,code'
+        ]);
+        return !$validator->fails();
+        // $dealer = Dealer::where('code', $record[$key['dealer']])->first();
+        // $employee = User::where('employee_code', $record[$key['employee']])->first();
+        // return $dealer && $employee ? true : false;
     }
 
     public function getValidateMessage(): string {
@@ -73,19 +76,10 @@ class TerritoryReport extends Base {
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         return [
-            /*'dsm_full_name'         =>'elit~dreg_dcode::n_fullname',//'amba_deal~regi_rcode::n_fullname',
-            'region_name'           =>'rname_',//'amba_deal~regi_rcode::r_name',
-            'region_code'           =>'rcode_',//'amba_deal~regi_rcode::r_code',
-            'dealer_code'           =>'dcode',//'d_code',
-            'dealer_name'           =>'dname',//'d_name',
-            'dealer_cat'            =>'dcat',//'d_cat',  // dealer's category, metro or district ...
-            'sp_code'               =>'sp_code',
-            'n_fullname'            =>'n_fullname',
-            'position'              =>'position',*/
-            'employee_code'         =>$row['regi#_'],
+            // 'employee_code'         =>$row['regi#_'],
             'award_status'          =>$row['award_status'],
             'credits_monthly_04'    =>$row['elit~engi_regi#04mthyrg::POINTS_MTHLY'] !== '' ? $row['elit~engi_regi#04mthyrg::POINTS_MTHLY'] : 0,
             'credits_monthly_05'    =>$row['elit~engi_regi#05mthyrg::POINTS_MTHLY'] !== '' ? $row['elit~engi_regi#05mthyrg::POINTS_MTHLY'] : 0,
@@ -103,14 +97,5 @@ class TerritoryReport extends Base {
             'cr_ytd_platinum'       =>$row['points_ytd_platinum_'] !== '' ? $row['points_ytd_platinum_'] : 0,
             'cr_ytd_lifetime'       =>$row['points_ytd_historical_'] !== '' ? $row['points_ytd_historical_'] : 0,  //for Point YTD Historical
         ];
-    }
-
-    private function handleUser(string $employeeCode, string $actionType) {
-        $model = User::where('employee_code', $employeeCode)->first();
-        if( $actionType == Defination::ACTION_TYPE_SYNC && !$model){
-            $model = new User();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
-        }
     }
 }

@@ -1,12 +1,6 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Services\DataMappingServices\MonthlyDataMapping;
-
-class PartsSalesRep extends MonthlyDataMapping {
-    /** @var array  */
-    public $metricsMappingArray = [
+return [
         'grp' => 'points_GRP',
         'grp_result' => 'pcent_GRP',
 
@@ -21,6 +15,3 @@ class PartsSalesRep extends MonthlyDataMapping {
         '5_star' => 'points_ce_dlr_5Star_AS',
         '5_star_result' => 'score_ce_dlr_5Star_AS',
     ];
-
- 
-}

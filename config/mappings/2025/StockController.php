@@ -1,12 +1,6 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Services\DataMappingServices\MonthlyDataMapping;
-
-class StockController extends MonthlyDataMapping {
-    /** @var array  */
-    public $metricsMappingArray = [
+return [
         'comp_ow' => 'points_compOW',
         'comp_ow_result' => 'score_compOW',
 
@@ -25,4 +19,3 @@ class StockController extends MonthlyDataMapping {
         'ce' => 'points_ce_dlr_survey_S',
         'ce_result' => 'pcent_ce_dlr_survey_S',
     ];
-}

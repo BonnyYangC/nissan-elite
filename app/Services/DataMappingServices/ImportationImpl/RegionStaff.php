@@ -8,24 +8,24 @@ use Carbon\Carbon;
 
 class RegionStaff extends BaseRegionStaff {
 
-    /**
-     * get model according data file type
-     *
-     * @param $modelKey
-     * @param $record
-     * @return RegionStaffModel
-     */
-    public function getModel($modelKey, $record, $key) {
-        $model = RegionStaffModel::where('email', trim($record[$modelKey['primary']]))->first();
-        if(!$model){
-            $model = new RegionStaffModel();
-            $model->updated_at = Carbon::now();
-            $model->created_at = Carbon::now();
-            $model->admin = 0;
-            // list($firstName, $surName) = explode(' ', $record['full name']);
-            $model->password = bcrypt(strtoupper(trim($record['Surname'])).'1');
-        }
+    use ImportTrait;
+
+    public function importModel($row) {
+        $timestamp = Carbon::now();
+        $conditions = [
+            'email' => trim($row['Email']) //trim($record[$modelKey['primary']])
+        ];
+        $exists = RegionStaffModel::where($conditions)->exists();
+        $data = array_merge($this->buildData($row), [
+            'updated_at' => $timestamp,
+        ]);
         
-        return $model;
+        if (!$exists) {
+            $data['admin'] = 0;
+            $data['password'] = bcrypt(strtoupper(trim($row['Surname'])).'1');
+            $data['created_at'] = $timestamp;
+        }
+
+        return RegionStaffModel::updateOrInsert($conditions, $data);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Services\DataMappingServices;
 
+use Illuminate\Support\Facades\Validator;
+
 class LoyaltyHistorical extends Base {
 
     /** @var array  */
@@ -40,7 +42,13 @@ class LoyaltyHistorical extends Base {
         return $key;
     }
 
-    
+    public function isValidate(array $record, array $key): bool {
+        $validator = Validator::make($record, [
+            'regi#_' => 'required|string|exists:users,employee_code'
+        ]);
+        // dd($validator->errors()->all());
+        return !$validator->fails();
+    }
 
     /**
      * built data map for data uploader
@@ -51,7 +59,7 @@ class LoyaltyHistorical extends Base {
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row, $modelKey, $key){
         ini_set('max_execution_time', 180); //3 minutes
         return [
             'member_id' => $row['regi#_'],

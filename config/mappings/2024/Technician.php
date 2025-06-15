@@ -1,0 +1,17 @@
+<?php
+
+return [
+        // as new points_ce_dlr_D1_AS starts from OCT, need to Backward compatibility with Apr ~ Sep data (points_ce_FFT3)
+        'f1' => 'points_ce_dlr_D1_AS_TECH', //'points_ce_FFT3',
+        'f1_result' => 'score_ce_dlr_D1_AS_TECH', //'score_ce_FFT3',
+
+        // as new points_ce_dlr_5Star_AS starts from OCT, need to Backward compatibility with Apr ~ Sep data (points_ce_SOS3)
+        '5_star' => 'points_ce_dlr_5Star_AS_TECH', //'points_ce_SOS3',
+        '5_star_result' => 'score_ce_dlr_5Star_AS_TECH', //'score_ce_SOS3',
+
+        'train_partTech' => 'points_train_PartTech',
+        'train_partTech_result' => 'training_Q_PartTech',
+        'train_QuizTech' => 'points_train_QuizTech',
+        'train_QuizTech_result' => 'pcent_train_QuizTech',
+
+    ];
