@@ -50,7 +50,7 @@ class DashboardService {
             'ytd' => $ytd,
             'status' => (object)$statusChart,
             'stackedMetrics' => $this->stackedMetricsService->get($selectedPosition),
-            'historical' => $this->resolver->historicalService()->getHistoricalData($ytd)
+            'historical' => $this->resolver->historicalService()->getHistoricalData()
         ], $this->resolver->rankingService()->getRankingDataByPosition($selectedPosition));
     }
 }

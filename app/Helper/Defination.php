@@ -30,4 +30,6 @@ class Defination {
     const DATA_TYPE_REGION_STAFF_INFO = 'region_staff';
     const DATA_TYPE_LOYALTY_HISTORICAL = 'history';
 
+    const VALIDATION_STATUS_NEW = 'new';
+    const VALIDATION_STATUS_FIND = 'find';
 }

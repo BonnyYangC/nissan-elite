@@ -2,11 +2,12 @@
 
 namespace App\Services\DataMappingServices\ValidationImpl;
 
+use App\Helper\Defination;
 use App\Services\DataMappingServices\User as BaseUser;
 use App\Models\User as UserModel;
 
 class User extends BaseUser {
-    use ValidationTrait;
+    use ValidationTrait, ValidateTrait;
 
     /** @var array  */
     public $mappingArray = [
@@ -29,15 +30,24 @@ class User extends BaseUser {
         'excellence_eligible' => 'excellence_eligible',
     ];
 
-    /**
-     * get model according data file type
-     *
-     * @param $modelKey
-     * @param $record
-     * @return UserModel
-     */
-    public function getModel($modelKey, $record) {
-        return UserModel::where('employee_code',trim($record[$modelKey['primary']]))->with("eligible")->first();
+    public function validateModel($row) {
+
+        $conditions = [
+            'employee_code' => trim($row['regi#_'])
+        ];
+        $existModel = UserModel::where($conditions)->with("eligible")->first();
+        if (!$existModel)
+            return [Defination::VALIDATION_STATUS_NEW, [$row], []];
+
+        $newData = $this->buildData($row);
+        $formattedRow = [];
+        $headers = [];
+        foreach ($newData as $fieldName => $value) {
+            $equal = $this->compareValue($fieldName, $existModel, $value);
+            $formattedRow = array_merge($formattedRow, $this->buildResultData($fieldName, $existModel, $value, $equal));
+            $headers = array_merge($headers, $this->buildHeaderForResultData($fieldName));
+        }
+        return [Defination::VALIDATION_STATUS_FIND, [$formattedRow], $headers];
     }
 
     /**
@@ -49,7 +59,7 @@ class User extends BaseUser {
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $row, $modelKey, $key){
+    private function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         return [
             'employee_code'=>$row['regi#_'],

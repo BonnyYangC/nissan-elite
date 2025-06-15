@@ -37,3 +37,13 @@ if (!function_exists('theme_view')) {
     }
 
 }
+
+
+if (!function_exists('theme_mappings')) {
+    function theme_mappings($type, $theme = null) {
+        $theme = $theme ?? config('app.theme', 'default');
+
+        return config('mappings.' . $theme . '.' . $type);
+    }
+
+}

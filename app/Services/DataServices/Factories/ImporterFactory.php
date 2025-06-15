@@ -23,7 +23,7 @@ class ImporterFactory
     public function __construct(Container $container, IndividualFactory $individualFactory) {
         $this->container = $container;
         $this->individualFactory = $individualFactory;
-      }
+    }
 
     public function make(string $type)
     {

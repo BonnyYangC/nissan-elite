@@ -1,12 +1,6 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Services\DataMappingServices\MonthlyDataMapping;
-
-class RetailSalesConsultants extends MonthlyDataMapping {
-    /** @var array  */
-    public $metricsMappingArray = [
+return [
         'new_vehicle' => 'points_SALES_STATUS_',
         'new_vehicle_result' => 'sales_status',
         'new_vehicle_performance' => 'points_NVR',
@@ -27,4 +21,3 @@ class RetailSalesConsultants extends MonthlyDataMapping {
         'ce' => 'points_ce_dlr_survey_S',
         'ce_result' => 'pcent_ce_dlr_survey_S',
     ];
-}

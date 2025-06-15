@@ -2,13 +2,12 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Helper\{Defination, Utility};
-use App\Models\{Result, User};
 use App\Services\DataMappingServices\Interfaces\{Ignore, Valid};
-use App\Services\DataMappingServices\MonthlyDataImpl\{MonthlyImportationTrait, MonthlyValidationTrait};
+use App\Services\DataMappingServices\ValidationImpl\MonthlyValidationTrait;
+use Illuminate\Support\Facades\Validator;
 
 class MonthlyDataMapping implements Ignore, Valid {
-    use MonthlyValidationTrait, MonthlyImportationTrait;
+    use MonthlyValidationTrait;
 
     /** @var array  */
     public $metricsMappingArray = [];
@@ -34,17 +33,6 @@ class MonthlyDataMapping implements Ignore, Valid {
         'lifetime' => 'POINTS_ytd_historical',
     ];
 
-    private $actionType = Defination::ACTION_TYPE_SYNC;
-
-    /**
-     * Create a new service instance.
-     *
-     * @return void
-     */
-    public function __construct(string $action) {
-        $this->actionType = $action;
-    }
-
     // implement Ignore interface
     public static function isIgnored(array $record, array $key): bool {
         return false;
@@ -52,8 +40,12 @@ class MonthlyDataMapping implements Ignore, Valid {
 
     // implement Valid interface
     public function isValidate(array $record, array $key): bool {
-        $model = User::where('employee_code', $record[$key['employ']])->first();
-        return $model ? true : false;
+        $validator = Validator::make($record, [
+            'regi#' => 'required|string|exists:users,employee_code'
+        ]);
+        return !$validator->fails();
+        // $model = User::where('employee_code', $record[$key['employ']])->first();
+        // return $model ? true : false;
     }
 
     public function getValidateMessage(): string {
@@ -77,18 +69,9 @@ class MonthlyDataMapping implements Ignore, Valid {
         return $key;
     }
 
-    /**
-     * get model according data file type
-     *
-     * @param $key
-     * @param $modelKey
-     * @param $record
-     * @return Result
-     */
-    public function getModel($modelKey, $record) {
-        return $this->actionType == Defination::ACTION_TYPE_SYNC ?
-        $this->getModelForImportation($modelKey, $record) :
-        $this->getModelForValidation($modelKey, $record);
+    public function setMatricsMappingArray($value) {
+        $this->metricsMappingArray = $value;
+        return $this;
     }
 
     /**
@@ -100,13 +83,13 @@ class MonthlyDataMapping implements Ignore, Valid {
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         return [
-            'period'        => Utility::formatPeriod($row['mthyrg']),
-            'employee_code' =>$row['regi#'],
+            // 'period'        => Utility::formatPeriod($row['mthyrg']),
+            // 'employee_code' =>$row['regi#'],
             'position'      =>$row['sp'],
-            'metrics' => $this->metricsMapping($row),
+            'metrics' => json_encode($this->metricsMapping($row)),
 
             'train_online' => isset($row['points_train_online']) && $row['points_train_online'] !== '' ? $row['points_train_online'] : 0,
             'train_competency' => isset($row['points_train_competency']) && $row['points_train_competency'] !== '' ? $row['points_train_competency'] : 0,

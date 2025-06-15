@@ -50,7 +50,7 @@ class RegionStaff extends Base {
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         // list($firstName, $surName) = explode(' ', $row['full name']);
         return [

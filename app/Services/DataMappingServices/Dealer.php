@@ -2,6 +2,8 @@
 
 namespace App\Services\DataMappingServices;
 
+use Illuminate\Support\Facades\Validator;
+
 class Dealer extends Base {
     /** @var array  */
     public $mappingArray = [
@@ -27,6 +29,20 @@ class Dealer extends Base {
         return $key;
     }
 
+    public function isValidate(array $record, array $key): bool {
+        $validator = Validator::make($record, [
+            'dcode' => 'required|string',
+            'dname' => 'required|string',
+            'rcode' => 'required|string',
+            'rname' => 'required|string',
+            'deal~regi_rcode::rcode' => 'required|string',
+            'dcat' => 'required|string',
+            'dcat#' => 'required|string',
+        ]);
+        // dd($validator->errors()->all());
+        return !$validator->fails();
+    }
+
     /**
      * built data map for data uploader
      *
@@ -36,10 +52,10 @@ class Dealer extends Base {
      * @param [string] $key
      * @return array
      */
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         return [
-            'code' => trim($row['dcode']),
+            // 'code' => trim($row['dcode']),
             'name' => $row['dname'],
             'address' => $row['addr_street'],
             'suburb' => $row['addr_city'],
