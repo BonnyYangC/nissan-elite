@@ -1,12 +1,6 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Services\DataMappingServices\MonthlyDataMapping;
-
-class FI extends MonthlyDataMapping {
-    /** @var array  */
-    public $metricsMappingArray = [
+return [
         'nfsa' => 'points_nfsa',
         'nfsa_result' => 'sales_nfsa_',
 
@@ -41,4 +35,3 @@ class FI extends MonthlyDataMapping {
         '5_star' => 'points_ce_dlr_5Star_S',
         '5_star_result' => 'score_ce_dlr_5Star_S',
     ];
-}

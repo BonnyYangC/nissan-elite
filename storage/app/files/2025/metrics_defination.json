@@ -325,7 +325,8 @@
                             "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -501,7 +502,8 @@
                             "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -649,7 +651,8 @@
                             "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -1384,7 +1387,8 @@
                             "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -1578,7 +1582,8 @@
                             "label": "CE Survey",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [

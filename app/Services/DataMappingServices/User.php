@@ -2,8 +2,7 @@
 
 namespace App\Services\DataMappingServices;
 
-use App\Models\Dealer;
-use App\Models\Position;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Base {
     
@@ -30,9 +29,10 @@ class User extends Base {
 
     // implement Ignore interface
     public function isValidate(array $record, array $key): bool {
-        $dealer = Dealer::where('code', $record[$key['dealer']])->first();
-        // $position = Position::where('code', $record[$key['position']])->first();
-        return /*$position &&*/ $dealer ? true : false;
+        $validator = Validator::make($record, [
+            'dcode' => 'required|string|exists:dealers,code'
+        ]);
+        return !$validator->fails();
     }
     public function getValidateMessage(): string {
         return 'Please check dealer/position exist or not!';
@@ -43,32 +43,5 @@ class User extends Base {
         $key['dealer'] = 'dcode';
         $key['position'] = 'sp_';
         return $key;
-    }
-
-    /**
-     * built data map for data uploader
-     *
-     * @param $model
-     * @param [array] $row
-     * @param [array] $modelKey
-     * @param [string] $key
-     * @return array
-     */
-    public function buildData($model, $row, $modelKey, $key){
-        ini_set('max_execution_time', 180); //3 minutes
-        return [
-            'employee_code'=>$row['regi#_'],
-            'salutation'=>$row['n_title_'],
-            'firstname'=>$row['n_fname_trim_'],
-            'lastname'=>$row['n_sname_trim_'],
-            'date_birth'=>$row['date_birth']?date('Y-m-d',strtotime($row['date_birth'])): null,
-            'mobile'=>$row['ph_mobile_'],
-            'email'=>$row['addr_email'],
-            'date_created'=>$row['date_created'] ? date('Y-m-d',strtotime($row['date_created'])) : null,
-            'dealer_code'=>$row['dcode'] ? $row['dcode'] : null,
-            'position_code'=> !($row['sp_'] === 'N/A' || $row['sp_'] === '') ? $row['sp_'] : null,
-            'dept'=>$row['dept_code'],
-            'active'=>($row['status'] === 'inactive' || $row['status'] === 'ineligible') ? 0 : 1
-        ];
     }
 }

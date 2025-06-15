@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Services\DataMappingServices\MonthlyDataMapping;
-
-class ServiceAdvisor extends MonthlyDataMapping {
-    /** @var array  */
-    public $metricsMappingArray = [
+return [
         'cpro_target' => 'points_CPRO',
         'cpro_target_result' => 'pcent_CPRO',
 
         'gp_cpro' => 'points_WSgrp',
         'gp_cpro_result' => 'sales_WSgrp',
 
-        'service_retention' =>'points_Retent_1',
-        'service_retention_result' =>'pcent_RETENT_1',
-
         'retention' => 'points_Retent_5',
         'retention_result' => 'pcent_RETENT_5',
-        
+
+        'service_retention' => 'points_Retent_1',
+        'service_retention_result' => 'pcent_RETENT_1',
+
+        'reentry_pen' => 'points_reEntry',
+        'reentry_pen_result' =>  'pcent_reEntry',
+
         'loyalty' => 'points_loyalty',
         'loyalty_result' => 'sales_loyalty',
 
@@ -31,4 +28,3 @@ class ServiceAdvisor extends MonthlyDataMapping {
         'ce' => 'points_ce_dlr_survey_SER',
         'ce_result' => 'pcent_ce_dlr_survey_SER',
     ];
-}

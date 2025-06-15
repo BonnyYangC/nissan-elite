@@ -1,24 +1,8 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Models\Result;
-use App\Helper\Utility;
+namespace App\Services\DataMappingServices\ValidationImpl;
 
 trait MonthlyValidationTrait {
-    /**
-     * get model according data file type
-     *
-     * @param $actionType
-     * @param $modelKey
-     * @param $record
-     * @return Result
-     */
-    public function getModelForValidation($modelKey, $record) {
-        $model = Result::where('employee_code', trim($record[$modelKey['primary']]))
-            ->where('period', Utility::formatPeriod($record['mthyrg']))->first();
-        return $model;
-    }
 
     /**
      * @param $field

@@ -2,22 +2,41 @@
 
 namespace App\Services\DataMappingServices\ValidationImpl;
 
+use App\Helper\Defination;
 use App\Services\DataMappingServices\LoyaltyHistorical as BaseLoyaltyHistorical;
 use App\Models\History;
 
-
 class LoyaltyHistorical extends BaseLoyaltyHistorical {
     // use ValidationTrait;
-/**
-     * get model according data file type
-     *
-     * @param $modelKey
-     * @param $record
-     */
-    public function getModel($modelKey, $record) {
-        $model = History::where('member_id', trim($record[$modelKey['primary']]))->get();
-            // ->where('period', trim($modelKey['mapping'][$key]))->first();       
-        return $model;
+    use ValidateTrait;
+
+    public function validateModel($row) {
+        $findRows = [];
+        $newRows = [];
+        $formattedRow = [];
+        $headers = [];
+        $conditions = [
+            'member_id' => trim($row['regi#_'])
+        ];
+        $existModels = History::where($conditions)->get();
+
+        $modelKey = $this->getKeyForModel();
+        $status = collect(array_keys($modelKey['mapping']))->map(function ($key) use ($row, $modelKey, $findRows, $newRows, $formattedRow, $existModels) {
+            $newData = $this->buildData($row, $modelKey, $key);
+            list($equal, $matchedModel) = $this->compareRow($existModels, $newData);
+            if ($matchedModel) {
+                $formattedRow = array_merge($formattedRow, $this->buildResultRow($matchedModel, $newData, $equal));
+                $findRows[] = $formattedRow;
+                return true;
+            } else {
+                $formattedRow = array_merge($formattedRow, $this->buildResultRow($matchedModel, $newData, $equal));
+                $newRows[] = $formattedRow;
+                return false;
+            }
+        })->filter(function ($result) {
+            return $result === false; })->count() === 0;
+        $headers = array_merge($headers, $this->buildHeaderForResultData($existModels[0]));
+        return $status ? [Defination::VALIDATION_STATUS_FIND, $findRows, $headers] : [Defination::VALIDATION_STATUS_NEW, $newRows, $headers];
     }
 
     public function compareRow($models, $newValue) {

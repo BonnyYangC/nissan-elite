@@ -31,7 +31,7 @@ class DashboardService {
     public function buildMemberDashboardData(string $selectedPosition) {
         //year to date
         $ytd = $this->resolver->resultService()->getYearToDateData($selectedPosition);
-        $ytd = $ytd ? $ytd : '';
+        $ytd = $ytd ? $ytd : 0;
         //current status level
         $statusChart = array_merge([
             'ytd' => $ytd

@@ -1,12 +1,6 @@
 <?php
 
-namespace App\Services\DataMappingServices\MonthlyDataImpl;
-
-use App\Services\DataMappingServices\MonthlyDataMapping;
-
-class SalesManager extends MonthlyDataMapping {
-    /** @var array  */
-    public $metricsMappingArray = [
+return [
         'matched_ow' => 'points_matchOW',
         'matched_ow_result' => 'score_matchOW',
 
@@ -34,5 +28,4 @@ class SalesManager extends MonthlyDataMapping {
 
         'ce' => 'points_ce_dlr_survey_S',
         'ce_result' => 'pcent_ce_dlr_survey_S',
-        ];
-}
+    ];

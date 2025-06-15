@@ -25,7 +25,7 @@ class Ranking extends Base {
         $hasUserPosition = UserPositions::where('employee_code', $record[$key['employ']])->where('position_code', $record[$key['position']])->first();
         $this->hasRanking = isset($record[$this->mappingArray['rank']]) && isset($record[$this->mappingArray['total']]);
         $this->hasPlatinumRanking = isset($record[$this->mappingArray['rank_platinum']]) && isset($record[$this->mappingArray['total_platinum']]);
-        return $hasUserPosition && ($this->hasRanking || $this->hasPlatinumRanking) ? true : false;
+        return /*$hasUserPosition && */($this->hasRanking || $this->hasPlatinumRanking) ? true : false;
     }
 
     public function getValidateMessage(): string {
@@ -50,16 +50,7 @@ class Ranking extends Base {
         return $key;
     }
 
-    /**
-     * built data map for data uploader
-     *
-     * @param $model
-     * @param [array] $row
-     * @param [array] $modelKey
-     * @param [string] $key
-     * @return array
-     */
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         $statusRank = $this->hasRanking ? [
             'rank' => Utility::getArrayAttribute($row, $this->mappingArray['rank'], null),
@@ -70,8 +61,8 @@ class Ranking extends Base {
             'total_platinum' => Utility::getArrayAttribute($row, $this->mappingArray['total_platinum'], 0),
         ] : [];
         return array_merge([
-            'period'        => Utility::formatPeriod($row[$this->mappingArray['period']]),
-            'employee_code' =>$row[$this->mappingArray['employee_code']],
+            // 'period'        => Utility::formatPeriod($row[$this->mappingArray['period']]),
+            // 'employee_code' =>$row[$this->mappingArray['employee_code']],
             'rank_state'    =>$row[$this->mappingArray['rank_state']],
             'position'      =>$row[$this->mappingArray['position']],
         ], $statusRank, $platinumRank);

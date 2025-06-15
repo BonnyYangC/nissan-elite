@@ -2,13 +2,14 @@
 
 namespace App\Services\DataMappingServices\ValidationImpl;
 
+use App\Helper\Defination;
 use App\Models\Dealer as DealerModel;
 use App\Repositories\RegionRepository;
 use App\Services\DataMappingServices\Dealer as BaseDealer;
 use Illuminate\Support\Collection;
 
 class Dealer extends BaseDealer {
-    use ValidationTrait;
+    use ValidationTrait, ValidateTrait;
 
     /** @var array  */
     public $mappingArray = [
@@ -35,22 +36,31 @@ class Dealer extends BaseDealer {
         $this->regions = $regionRepository->load();
     }
 
-    /**
-     * get model according data file type
-     *
-     * @param $modelKey
-     * @param $record
-     * @return DealerModel
-     */
-    public function getModel($modelKey, $record) {
-        return DealerModel::where('code', trim($record[$modelKey['primary']]))->with('regions')->first();
+    public function validateModel($row) {
+
+        $conditions = [
+            'code' => trim($row['dcode'])
+        ];
+        $existModel = DealerModel::where($conditions)->with("regions")->first();
+        if (!$existModel)
+            return [Defination::VALIDATION_STATUS_NEW, [$row], []];
+
+        $newData = $this->buildData($row);
+        $formattedRow = [];
+        $headers = [];
+        foreach ($newData as $fieldName => $value) {
+            $equal = $this->compareValue($fieldName, $existModel, $value);
+            $formattedRow = array_merge($formattedRow, $this->buildResultData($fieldName, $existModel, $value, $equal));
+            $headers = array_merge($headers, $this->buildHeaderForResultData($fieldName));
+        }
+        return [Defination::VALIDATION_STATUS_FIND, [$formattedRow], $headers];
     }
 
-    public function buildData($model, $row, $modelKey, $key){
+    public function buildData($row){
         ini_set('max_execution_time', 180); //3 minutes
         
         $region = explode(' Region', $row['rname']);
-        return array_merge(parent::buildData($model, $row, $modelKey, $key), [
+        return array_merge(parent::buildData($row), [
             'region' => empty($region[0]) ? '' : $this->regions->filter(function($r) use ($row, $region) {return $r->title === $region[0];})->first()->code,
             'region_code' => $row['rcode'],
             'category' => $row['dcat'],
@@ -58,6 +68,7 @@ class Dealer extends BaseDealer {
             'active' => 1
         ]);
     }
+
     public function compareValue($field, $oldModel, $newValue) {
         $oldValue = isset($oldModel->$field) ? $oldModel->$field : data_get($oldModel->regions, $field, null);
         return $oldValue == $newValue ? true : false;
