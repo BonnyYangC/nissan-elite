@@ -72,7 +72,10 @@ class Utility {
     }
 
     public static function getArrayAttribute(array $record, string $key, $defaultValue) {
-        return data_get($record, $key, $defaultValue);
+        // why not set $defaultValue to data_get, if data_get($record, $key) == null, $defaultValue won't be use, will return null
+        //empty() checks for empty strings (""), null, false, 0, and empty arrays.
+        $value = data_get($record, $key) ?? '';  // Fallback to '' if null
+        return empty($value) ? $defaultValue : $value;  // If it's empty, set default to $defaultValue
     }
 
     /**
