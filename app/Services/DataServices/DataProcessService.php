@@ -67,5 +67,4 @@ class DataProcessService {
             echo 'File is not exists.'.PHP_EOL;
         }
     }
-
 }
