@@ -13,7 +13,7 @@
                 @include(theme_view('loyalty_content'), [$historical])
                 </div>
                 <div class="page-widget col-3">
-                    @include('pages.widgets.side_panel.loyalty_points', [$ytd, $historical])
+                    @include('pages.widgets.side_panel.loyalty_points', [$historical])
                     @include(theme_view('loyalty_legend'))
                 </div>
             </div>
