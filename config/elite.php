@@ -10,5 +10,4 @@
   'SUPPORT_EMAIL_NAME' => 'NISSAN ELITE SUPPORT',
   'ADMIN_USER' => 'admin@admin.com',
   'ADMIN_PASSWORD' => 'Pamjo1',
-  'dealExcellenceOverviewUrl'=>"http://dealership.nissanelite.com.au/"
 );
