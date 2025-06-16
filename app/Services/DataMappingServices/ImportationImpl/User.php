@@ -2,7 +2,7 @@
 
 namespace App\Services\DataMappingServices\ImportationImpl;
 
-use App\Jobs\ProcessUserEligible;
+use App\Jobs\{ProcessUserEligible, ProcessUserPosition};
 use App\Services\DataMappingServices\User as BaseUser;
 use App\Models\User as UserModel;
 use Carbon\Carbon;
@@ -37,6 +37,8 @@ class User extends BaseUser {
         $returnValue = $this->traitImport($headerFields, $rows);
         //emit event to update user_eligible
         ProcessUserEligible::dispatch($returnValue['update']['data']);
+        //emit event to update user_position
+        ProcessUserPosition::dispatch($returnValue['update']['data']);
 
         return $returnValue;
     }
