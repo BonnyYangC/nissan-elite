@@ -48,10 +48,13 @@ class Controller extends BaseController
             
             if (session('mock')) {
                 $this->dataForView['mock'] = true;
-                $currentUser = session('mock-user');
+                $mockedUser = session('mock-user');
                 $this->dataForView['acls'] = [];
-                $position = $currentUser->positions()->get($currentUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
-                $this->dataForView['selectedPosition'] = collect(['code' => $currentUser->position->code, 'title' => $position ? $position : $currentUser->position->title]);
+                $position = $mockedUser->positions()->get($mockedUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
+                $this->dataForView['selectedPosition'] = collect([
+                    'code' => $mockedUser->position->code, 
+                    'title' => $position ? $position : $mockedUser->position->title
+                ]);
             } else {
                 /** @var User $currentUser */
                 $currentUser = Auth::user();
@@ -60,11 +63,19 @@ class Controller extends BaseController
                 //check if specified a role by asPosition
                 if (!session('selected_position') && $currentUser) {
                     $position = $currentUser->positions()->get($currentUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
-                    session(['selected_position' => collect(['code' => $currentUser->position->code, 'title' => $position ? $position : $currentUser->position->title])]);
+                    session(['selected_position' => collect([
+                        'code' => $currentUser->position->code, 
+                        'title' => $position ? $position : $currentUser->position->title
+                        ])
+                    ]);
                 }
 
                 if ($role = $request->query('asPosition')) {
-                    session(['selected_position' => collect(['code' => $role, 'title' => $currentUser->positions()->get($role)])]);
+                    session(['selected_position' => collect([
+                        'code' => $role, 
+                        'title' => $currentUser->positions()->get($role)
+                        ])
+                    ]);
                 }
                 $this->dataForView['selectedPosition'] = session('selected_position');
             }

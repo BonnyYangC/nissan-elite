@@ -14,11 +14,11 @@ class HistoryRepository {
             ->sum('amount');
     }
 
-    // get total loyalty until current year
-    public function getTotalHistoricalData(?string $employeeCode) {
+    // get total loyalty until last year
+    public function getLoyaltyToLastYear(?string $employeeCode) {
         $currentYearString = config('app.theme') . '-01-01';
         return History::where('member_id', $employeeCode)
-        ->where('period', '<=', $currentYearString)
+            ->where('period', '<', $currentYearString)
             ->sum('amount');
     }
 
