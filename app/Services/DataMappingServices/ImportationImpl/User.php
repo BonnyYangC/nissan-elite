@@ -38,7 +38,7 @@ class User extends BaseUser {
         //emit event to update user_eligible
         ProcessUserEligible::dispatch($returnValue['update']['data']);
         //emit event to update user_position
-        ProcessUserPosition::dispatch($returnValue['update']['data']);
+        //ProcessUserPosition::dispatch($returnValue['update']['data']);
 
         return $returnValue;
     }
