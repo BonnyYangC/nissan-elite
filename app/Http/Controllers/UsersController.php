@@ -204,7 +204,7 @@ class UsersController extends Controller {
         $currentUser = Auth::user();
         Auth::logout();
         //$this->render('user/dealership_coming_soon');
-        return redirect( config('dealer.dealExcellenceOverviewUrl') .'admin/mock/'. md5(rand()). '/'. base64_encode($currentUser->email));
+        return redirect( config('dealership.dealExcellenceOverviewUrl') .'admin/mock/'. md5(rand()). '/'. base64_encode($currentUser->email));
     }
 
     /**
@@ -215,9 +215,9 @@ class UsersController extends Controller {
         /** @var User $currentUser */
         $currentUser = Auth::user();
         if ($currentUser->position_code === Role::SALES_MANAGER) {
-            return redirect( config('dealer.dealExcellenceOverviewUrl') .'api?role='. $currentUser->position_code . '&code='. $currentUser->dealer_code);
+            return redirect( config('dealership.dealExcellenceOverviewUrl') .'api?role='. $currentUser->position_code . '&code='. $currentUser->dealer_code);
         } else {
-            return redirect( config('dealer.dealExcellenceOverviewUrl') .'api?role=AP');
+            return redirect( config('dealership.dealExcellenceOverviewUrl') .'api?role=AP');
         }
     }
 
