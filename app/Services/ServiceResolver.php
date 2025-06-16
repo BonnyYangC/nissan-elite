@@ -42,22 +42,6 @@ class ServiceResolver {
      * Create a new service instance.
      *
      */
-    public function historicalService(): HistoricalService {
-        return $this->make(HistoricalService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
-    public function userService(): UserService {
-        return $this->make(UserService::class);
-    }
-
-    /**
-     * Create a new service instance.
-     *
-     */
     public function territoryReportService(): TerritoryReportService {
         return $this->make(TerritoryReportService::class);
     }
