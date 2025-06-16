@@ -19,12 +19,12 @@
                     @if(!$mock)
                         <a href="{{ $menuName == \App\Helper\Defination::PAGE_DASHBOARD ? route('loyalty') : route('dashboard') }}">
                             <button style="font-size:20px;" type="button" class="btn nissan-button">
-                                {{ number_format(floatval($historical['total']) + floatval($ytd), 0) }}
+                                {{ number_format(floatval($historical['total']), 0) }}
                             </button>
                         </a>
                     @else
                         <button style="font-size:20px;" type="button" class="btn nissan-button">
-                            {{ number_format(floatval($historical['total']) + floatval($ytd), 0) }}
+                            {{ number_format(floatval($historical['total']), 0) }}
                         </button>
                     @endif
                 </td>

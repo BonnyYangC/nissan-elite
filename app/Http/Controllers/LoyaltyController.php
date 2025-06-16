@@ -21,13 +21,13 @@ class LoyaltyController extends Controller {
     public function loyalty() {
         $this->dataForView['menuName'] = Defination::PAGE_LOYALTY;
         $selectedPosition = $this->dataForView['selectedPosition']->get('code');
-        $ytd = $this->resultService->getYearToDateData($selectedPosition);
+        // $ytd = $this->resultService->getYearToDateData($selectedPosition);
         $historical = $this->historicalService->getHistoricalData();
 
-        (new Loyalty())->loyalty_status_level(floatval($historical['total']) + floatval($ytd));
+    (new Loyalty())->loyalty_status_level(floatval($historical['total'])/* + floatval($ytd)*/);
 
         //year to date
-        $this->dataForView['ytd'] = $ytd;
+        // $this->dataForView['ytd'] = $ytd;
         $this->dataForView['historical'] = $historical;
         return $this->render('pages.loyalty');
     }
