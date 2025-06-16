@@ -25,7 +25,7 @@ class Ranking extends Base {
         $hasUserPosition = UserPositions::where('employee_code', $record[$key['employ']])->where('position_code', $record[$key['position']])->first();
         $this->hasRanking = isset($record[$this->mappingArray['rank']]) && isset($record[$this->mappingArray['total']]);
         $this->hasPlatinumRanking = isset($record[$this->mappingArray['rank_platinum']]) && isset($record[$this->mappingArray['total_platinum']]);
-        return /*$hasUserPosition && */($this->hasRanking || $this->hasPlatinumRanking) ? true : false;
+        return $hasUserPosition && ($this->hasRanking || $this->hasPlatinumRanking) ? true : false;
     }
 
     public function getValidateMessage(): string {
