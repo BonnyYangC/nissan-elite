@@ -17,11 +17,13 @@ class DashboardService {
     /** @var ServiceResolver  */
     private $resolver;
     private $stackedMetricsService;
+    private $loyaltyService;
 
-    public function __construct(ServiceResolver $resolver, StackedMetrics $stackedMetricsService, RegionRepository $regionRepository) {
+    public function __construct(ServiceResolver $resolver, StackedMetrics $stackedMetricsService, RegionRepository $regionRepository, LoyaltyService $loyaltyService) {
         $this->regionRepo = $regionRepository;
         $this->resolver = $resolver;
         $this->stackedMetricsService = $stackedMetricsService;
+        $this->loyaltyService = $loyaltyService;
     }
 
     public function getRegions() {
@@ -50,7 +52,7 @@ class DashboardService {
             'ytd' => $ytd,
             'status' => (object)$statusChart,
             'stackedMetrics' => $this->stackedMetricsService->get($selectedPosition),
-            'historical' => $this->resolver->historicalService()->getHistoricalData()
+            'historical' => $this->loyaltyService->buildLoyaltyData($ytd)
         ], $this->resolver->rankingService()->getRankingDataByPosition($selectedPosition));
     }
 }

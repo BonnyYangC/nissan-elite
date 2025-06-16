@@ -7,22 +7,18 @@ use App\Models\History;
 class HistoryRepository {
 
 
-    /**
-     * @param string $employeeCode
-     * @return mixed
-     */
+    // get total loyalty before 2019-01-01
     public function getLoyaltyToTheBrandData(?string $employeeCode) {
         return History::where('period', '<', '2019-01-01')
             ->where('member_id', $employeeCode)
             ->sum('amount');
     }
 
-    /**
-     * @param string $employeeCode
-     * @return mixed
-     */
-    public function getTotalHistoricalData(?string $employeeCode) {
+    // get total loyalty until last year
+    public function getLoyaltyToLastYear(?string $employeeCode) {
+        $currentYearString = config('app.theme') . '-01-01';
         return History::where('member_id', $employeeCode)
+            ->where('period', '<', $currentYearString)
             ->sum('amount');
     }
 

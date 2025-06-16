@@ -26,7 +26,7 @@
                 <div class="page-widget col-3">
                     <h1 style="font-size: 100px;">{{ theme_config('FY_WITH_YEAR') }}</h1>
                     <h3>RANKINGS &amp; {{ config('elite.PROGRAM_AWARD_UNIT') }}</h3>
-                    @include('pages.widgets.side_panel.loyalty_points', [$ytd, $historical])
+                    @include('pages.widgets.side_panel.loyalty_points', [$historical])
                     @include('pages.widgets.side_panel.year_to_date', [$ytd])
                     @include('pages.widgets.side_panel.current_rank', [$currentUser, $rankingStatus])
                     @include('pages.widgets.side_panel.criteria', [$currentUser])
