@@ -55,7 +55,7 @@ class User extends BaseUser {
             'dealer_code'=>$row['dcode'] ? $row['dcode'] : null,
             'position_code'=> !($row['sp_'] === 'N/A' || $row['sp_'] === '') ? $row['sp_'] : null,
             'dept'=>$row['dept_code'],
-            'active'=>($row['status'] === 'inactive' || $row['status'] === 'ineligible') ? 0 : 1
+            'active'=>($row['status'] === 'inactive'/* || $row['status'] === 'ineligible'*/) ? 0 : 1
         ];
     }
 
