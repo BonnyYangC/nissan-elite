@@ -1,7 +1,8 @@
-
-.logo-img {
-  max-width: 200px;
-  height: auto;
+.welcome-middle-section {
+  height: 30%;
+}
+.welcome-foot-section {
+  height: 50%;
 }
 
 .header-logo {
