@@ -1,8 +1,7 @@
-<div class="row header-logo">
-  <div class="col-lg-2 col-md-2 col-xs-3">
+<div class="flex-grow-0" style="height: 25%;">
+  <div class="h-100 d-flex header-logo align-items-center">
     <a href="{{ url('/') }}">
-      <img class="img-responsive center-block nissan-logo"
-        src="{{ theme_image('nissan/Nissan_logo.png') }}">
+      <img src="{{ theme_image('nissan/Nissan_logo.png') }}" alt="Nissan Logo Image" class="img-fluid logo-img">
     </a>
   </div>
 </div>

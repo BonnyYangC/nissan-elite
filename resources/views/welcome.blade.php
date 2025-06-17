@@ -2,63 +2,47 @@
 
 @section('content')
 
-<div align="center" class="welcome-content">
-    {{-- @include(theme_view('welcome_header')) --}}
-    @include('pages.widgets.logo')
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <img class="img-responsive center-block nissan-elite-brand" alt="" src="{{ theme_image('nissan/Nissan_ELITE_Main.png') }}">
+    <div class="vh-100 d-flex flex-column">
+        <!-- Row 1: 20% height -->
+        @include('pages.widgets.logo')
+
+        <!-- Row 2: 60% height -->
+        <div class="flex-grow-0" style="height: 30%;">
+            <div class="h-100 d-flex justify-content-center align-items-center">
+                <img class="nissan-elite-brand img-fluid" src="{{ theme_image('nissan/Nissan_ELITE_Main.png') }}" alt="Nissan Elite Image">    
+            </div>
+        </div>
+
+        <!-- Row 3: 20% height -->
+        <div class="flex-grow-0" style="height: 20%;">
+            <div class="h-100 container">
+                <div class="row h-100 justify-content-center">
+                    {{-- Entry point for Nissan Elite Dealership --}}
+                    <div class="col-lg-2 col-md-3 col-sm-5 col-6 d-flex align-items-center justify-content-center p-1">
+                        <a href="{{ config('dealership.dealExcellenceOverviewUrl', '') }}"
+                            class="w-100 h-100 position-relative dealership-wrapper">
+                            <img src="{{ theme_image('nissan/ELITE_DE_button.png') }}" alt="Elite Dealership Button"
+                                class="img-fluid h-100 w-100 dealership-img-static" style="object-fit: contain;">
+
+                            <img src="{{ theme_image('nissan/ELITE_DE_button.png') }}"
+                                alt="Elite Dealership Active Button" class="img-fluid position-absolute dealership-img-active"
+                                style="object-fit: contain; width: 90%; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
+                        </a>
+                    </div>
+
+                    {{-- Entry point for Nissan Elite Individual --}}
+                    <div class="col-lg-2 col-md-3 col-sm-5 col-6 d-flex align-items-center justify-content-center p-1">
+                        <a href="{{ route('elite_individual') }}" class="w-100 h-100 position-relative individual-wrapper">
+                            <img src="{{ theme_image('nissan/ELITE_iELITE_button.png') }}" alt="Elite Individual Button"
+                                class="img-fluid h-100 w-100 individual-img-static" style="object-fit: contain;">
+                            <img src="{{ theme_image('nissan/ELITE_iELITE_button.png') }}" alt="Elite Individual Active Button"
+                                class="img-fluid position-absolute individual-img-active"
+                                style="object-fit: contain; width: 90%; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-5">
-        {{--entry point for Nissan Elite Dealership --}}
-        <div id="dealership" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-xs-6 pb-3">
-            <!--<a href="http://dealership.nessanelite.com.au">-->
-            <a href="{{ config('dealership.dealExcellenceOverviewUrl','') }}" style="">
-                <img id="dealership_static" class="img-fluid mx-auto img-static" src="{{ theme_image('nissan/ELITE_DE_button.png') }}">
-                <img id="dealership_active" class="img-fluid mx-auto img-active" src="{{ theme_image('nissan/ELITE_DE_button.png') }}" style="width:90%">
-            </a>
-        </div>
-        {{--entry point for Nissan Elite Individual --}}
-        <div id="individule" class="col-xl-2 col-lg-2 col-md-2 col-sm-5 col-xs-6">
-            <a href="{{ route('elite_individual') }}">
-                <img id="individual_static" class="img-fluid mx-auto img-static" src="{{ theme_image('nissan/ELITE_iELITE_button.png') }}">
-                <img id="individual_active" class="img-fluid mx-auto img-active" src="{{ theme_image('nissan/ELITE_iELITE_button.png') }}" style="width:90%">
-            </a>
-    </div>
-</div>
-
-<script>
-    (function(){
-
-        $dealerElement = document.getElementById('dealership');
-        $dealerStaticElement = document.getElementById('dealership_static');
-        $dealerActiveElement = document.getElementById('dealership_active');
-        $dealerElement.addEventListener("mouseenter", function() {
-
-            $dealerStaticElement.style.opacity = 0;
-            $dealerActiveElement.style.opacity = 1;
-        });
-        $dealerElement.addEventListener("mouseleave", function() {
-
-            $dealerStaticElement.style.opacity = 1;
-            $dealerActiveElement.style.opacity = 0;
-        });
-
-        $individualElement = document.getElementById('individule');
-        $individualStaticElement = document.getElementById('individual_static');
-        $individualActiveElement = document.getElementById('individual_active');
-        $individualElement.addEventListener("mouseenter", function() {
-
-            $individualStaticElement.style.opacity = 0;
-            $individualActiveElement.style.opacity = 1;
-        });
-        $individualElement.addEventListener("mouseleave", function() {
-
-            $individualStaticElement.style.opacity = 1;
-            $individualActiveElement.style.opacity = 0;
-        });
-    })();
-</script>
 
 @endsection
