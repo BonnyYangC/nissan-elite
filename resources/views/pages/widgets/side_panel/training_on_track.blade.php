@@ -8,7 +8,7 @@
         <tbody class="nissan-table-body-grey">
             <tr align="center">
                 <td>
-                    <a href="https://nmacorp.okta.com/app/UserHome" target="_blank">
+                    <a href="{{ $trainingUrl }}" target="_blank">
                         <button type="button" class="btn nissan-button">
                             Check Training Academy to secure <br>your Compulsory Criteria (refer Member guide)
                         </button>

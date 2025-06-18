@@ -1,14 +1,11 @@
-@media (max-width : 768px) {
-    #individule {
-        margin-left: 25%;
-    }
-}
 .welcome-content .nissan-logo {
      width: 75%;
      margin-bottom: 30%
  }
 .nissan-elite-brand {
-    width: 75%;
+    /* width: 75%; */
+    max-height: 100%;
+    object-fit: contain;
 }
 .bg_img {
     background-repeat: repeat-y;
@@ -22,27 +19,30 @@
     position: absolute;
     background-attachment: fixed;
 }
-#individule {
-    /*margin-top : 2%;*/
-    background-position: center;
-    background-size: cover;
-    position:relative;
+
+.dealership-img-static,
+.individual-img-static {
+    opacity: 1;
 }
-#dealership {
-    /*margin-top : 2%;*/
-    margin-right : 1%;
-    background-position: center;
-    background-size: cover;
-    position:relative;
-}
-.img-static {
-    display: block;
-    position:absolute;
-    background: transparent;
-    margin-left: -15px;
-}
-.img-active {
-    display: block;
-    position:absolute;
+
+.dealership-img-active,
+.individual-img-active {
     opacity: 0;
+}
+
+/* Hover Effect: Swap Images */
+.dealership-wrapper:hover .dealership-img-static {
+    opacity: 0;
+}
+
+.dealership-wrapper:hover .dealership-img-active {
+    opacity: 1;
+}
+
+.individual-wrapper:hover .individual-img-static {
+    opacity: 0;
+}
+
+.individual-wrapper:hover .individual-img-active {
+    opacity: 1;
 }

@@ -48,7 +48,7 @@ class Controller extends BaseController
             
             if (session('mock')) {
                 $this->dataForView['mock'] = true;
-                $mockedUser = session('mock-user');
+                $currentUser = $mockedUser = session('mock-user');
                 $this->dataForView['acls'] = [];
                 $position = $mockedUser->positions()->get($mockedUser->position->code); // user positions() comes from result table, when new project starts, result table is empty, so use $currentUser->position->title as backup
                 $this->dataForView['selectedPosition'] = collect([

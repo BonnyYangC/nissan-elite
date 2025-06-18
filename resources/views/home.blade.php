@@ -55,7 +55,7 @@
 
         <div class="row justify-content-center" style="margin-top:3%;margin-bottom:30px;">
             <div class="col-2">
-                <a target="_blank" href="https://nmacorp.okta.com/app/UserHome">
+                <a target="_blank" href="{{ $trainingUrl }}">
                     <img class="tiles-img" src="{{ theme_image('tiles/nissan_academy.png') }}" width="332">
                 </a>
             </div>
@@ -69,7 +69,7 @@
                 </a>
             </div>
             <div class="col-2">
-                <a target="_blank" href="https://nmacorp.okta.com/app/UserHome">
+                <a target="_blank" href="{{ $trainingUrl }}">
                     <img class="tiles-img" src="{{ theme_image('tiles/ce.png') }}" width="332">
                 </a>
             </div>
