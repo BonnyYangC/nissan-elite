@@ -21,4 +21,7 @@ return array (
   'status_level_wheel_surround_color' => 32896,
   // calculate by imageColorAllocate($this->image, 0xED, 0xEB, 0xEB)
   'status_level_wheel_text_color' => 16777215,
+
+  'training_url_members' => "https://nmalogin.okta.com/",
+  'training_url_region_HO' => "https://nmacorp.okta.com/app/UserHome"
 );

@@ -33,12 +33,14 @@ class DashboardController extends Controller {
 
         $this->dataForView = array_merge(
             $this->dataForView, 
-            $this->service->buildMemberDashboardData($selectedPosition)
+            $this->service->buildMemberDashboardData($selectedPosition),
+            ['trainingUrl' => theme_config('training_url_members')]
         );
         return $this->render('pages.dashboard');
     }
 
     private function regionStaffDashboard() {
+        $this->dataForView['trainingUrl'] = theme_config('training_url_region_HO');
         $this->dataForView['regions'] = $this->service->getRegions();
         return $this->render('pages.territory_report');
     }
