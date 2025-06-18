@@ -1,10 +1,16 @@
+.logo-section {
+  height: 20%;
+}
 .welcome-middle-section {
-  height: 30%;
+  height: 25%;
 }
 .welcome-foot-section {
   height: 50%;
 }
-
+.logo-img {
+  max-width: 150px;
+  height: auto;
+}
 .header-logo {
   display: flex;
   justify-content: left;
