@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Builders\UserBuilder;
+use App\Helper\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -57,6 +58,10 @@ class User extends Authenticatable
         return $this->hasOne(Position::class, 'code', 'position_code');
     }
 
+    public function isMember(): bool {
+        return !in_array($this->position_code, Position::REGION_STAFF_POSITIONS);
+    }
+    
     /**
      */
     public function positions() {

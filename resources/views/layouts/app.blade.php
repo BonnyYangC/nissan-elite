@@ -3,7 +3,7 @@
     <head>
         @include('includes.head')
     </head>
-    <body class="h-100">
+    <body class="vh-100">
         <div class="bg-site-image">
             @if($header)
             <div class="container">

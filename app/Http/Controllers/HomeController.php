@@ -2,29 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Traits\User;
 
-class HomeController extends Controller {
+class HomeController {
 
-    /**
-     * entry point
-     *
-     */
-    public function index()
-    {
+    use User;
 
-        /*if(Auth::guard('user')->check()){
-            return redirect()->route('welcome');
-        }
-        if(Auth::guard('admin')->check()){
-            return redirect()->route('admin.home');
-        }
-        return redirect('login');*/
-        // if(Auth::check()){
-            return view('home');
-        // }
-
-        //return redirect("login");
+    public function index(){
+        $trainingUrl = theme_config($this->getCurrentUser()->isMember() ? 'training_url_members' : 'training_url_region_HO');
+        return view('home', ['trainingUrl' => $trainingUrl]);
     }
 }
