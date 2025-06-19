@@ -11,7 +11,7 @@
             </div>
             <div class="col-9 px-1">
                 <p class="my-5 pr-1" style="float: right;">
-                    <a href="https://nmacorp.okta.com/app/UserHome" class="btn btn-default" target="_blank" style="background-color: #cccccc;">
+                    <a href="{{ $trainingUrl }}" class="btn btn-default" target="_blank" style="background-color: #cccccc;">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Academy</a>&nbsp;
                     <a href="{{ route('region.jump_to_dealer') }}" class="btn btn-danger">
                         <i class="fa fa-arrow-circle-o-right"></i>&nbsp;Nissan Dealer Excellence</a>&nbsp;

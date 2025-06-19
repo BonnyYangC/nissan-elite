@@ -1,4 +1,16 @@
-.row.header-logo {
+.logo-section {
+  height: 23%;
+}
+.welcome-middle-section {
+  height: 35%;
+  padding-top: 2%;
+}
+
+.welcome-foot-section {
+  height: 45%;
+}
+
+.header-logo {
   display: flex;
   justify-content: center;
 }
