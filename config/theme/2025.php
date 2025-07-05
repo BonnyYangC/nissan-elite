@@ -12,9 +12,9 @@ return array (
   'positions_with_D1' => '["F", "M", "R", "SC", "I"]',
   'positions_with_F1' => '["PM", "PS", "SM", "SA", "TM", "TA"]',
 
-  'product_challenge_events' => '[{"event":"Adelaide","date":"Wednesday 13 August","venue":"The Playford"},{"event":"Perth","date":"Friday 15 August","venue":"Crown Perth"},{"event":"Brisbane","date":"Thursday 21 August","venue":"InterContental"},{"event":"Townsville","date":"Saturday 23 August","venue":"The Ville"},{"event":"Melbourne","date":"Tuesday 9 September","venue":"Grand Hyatt"},{"event":"Sydney","date":"Thursday 11 September","venue":"Aqua Luna"},{"event":"Launceston","date":"Friday 19 September","venue":"Silo Hotel"}]',
+  'product_challenge_events' => '[{"event":"Adelaide","date":"Wednesday 13 August","venue":"The Playford"},{"event":"Perth","date":"Friday 15 August","venue":"Crown Perth"},{"event":"Brisbane","date":"Thursday 21 August","venue":"InterContental"},{"event":"Townsville","date":"Saturday 23 August","venue":"The Ville"},{"event":"Melbourne","date":"Tuesday 9 September","venue":"Grand Hyatt"},{"event":"Sydney","date":"Thursday 11 September","venue":"Aqua Luna"},{"event":"Launceston","date":"Friday 19 September","venue":"Peppers Silo"}]',
   'product_challenge_photos_url' => "https://nissanevents.pixieset.com/nissanproductchallenge2024/",
-  'product_challenge_table_registe_url' => "#",
+  'product_challenge_table_registe_url' => "https://destination.eventsair.com/elite-pc25/registration/Site/Register",
   'product_challenge_info_url' => "#",
 
   // calculate by imageColorAllocate($this->image, 0, 128, 128)
