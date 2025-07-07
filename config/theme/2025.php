@@ -15,7 +15,7 @@ return array (
   'product_challenge_events' => '[{"event":"Adelaide","date":"Wednesday 13 August","venue":"The Playford"},{"event":"Perth","date":"Friday 15 August","venue":"Crown Perth"},{"event":"Brisbane","date":"Thursday 21 August","venue":"InterContental"},{"event":"Townsville","date":"Saturday 23 August","venue":"The Ville"},{"event":"Melbourne","date":"Tuesday 9 September","venue":"Grand Hyatt"},{"event":"Sydney","date":"Thursday 11 September","venue":"Aqua Luna"},{"event":"Launceston","date":"Friday 19 September","venue":"Peppers Silo"}]',
   'product_challenge_photos_url' => "https://nissanevents.pixieset.com/nissanproductchallenge2024/",
   'product_challenge_table_registe_url' => "https://destination.eventsair.com/elite-pc25/registration/Site/Register",
-  'product_challenge_info_url' => "#",
+  'product_challenge_info_url' => "https://us1.campaign-archive.com/?e=%5bUNIQID%5d&u=b638801141c7c48ffb9b0915a&id=0fd22c57c1",
 
   // calculate by imageColorAllocate($this->image, 0, 128, 128)
   'status_level_wheel_surround_color' => 32896,
