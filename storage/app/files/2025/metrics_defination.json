@@ -135,7 +135,7 @@
                             "color": "#E67300"
                         },
                         "train_competency": {
-                            "label": "PKCompetency",
+                            "label": "Competency",
                             "color": "#22AA99"
                         }
                     },
@@ -350,7 +350,7 @@
                             "color": "#E67300"
                         },
                         "train_competency": {
-                            "label": "PKCompetency",
+                            "label": "Competency",
                             "color": "#22AA99"
                         },
                         "train_bonus": {
@@ -526,7 +526,7 @@
                             "color": "#AAAA11"
                         },
                         "train_competency": {
-                            "label": "PKCompetency",
+                            "label": "Competency",
                             "color": "#22AA99"
                         },
                         "train_mastery": {
@@ -658,7 +658,7 @@
                     "guides": [
                         {
                             "title": "CUSTOMER EXPERIENCE (SURVEY RESPONSE RATE R3M) GUIDE",
-                            "top": ["Sales Manager", "≥30%", "≥40%", "≥50%"],
+                            "top": ["Stock Controller", "≥30%", "≥40%", "≥50%"],
                             "rows": [["Category A", 50, 125, 175], ["Category B", 50, 125, 175], ["Category C", "-", 125, 175]],
                             "note": "based on individual surveys"
                         }
@@ -675,7 +675,7 @@
                             "color": "#E67300"
                         },
                         "train_competency": {
-                            "label": "PKCompetency",
+                            "label": "Competency",
                             "color": "#22AA99"
                         }
                     },
@@ -1411,7 +1411,7 @@
                             "color": "#E67300"
                         },
                         "train_competency": {
-                            "label": "PKCompetency",
+                            "label": "Competency",
                             "color": "#22AA99"
                         },
                         "train_mastery": {
@@ -1606,7 +1606,7 @@
                             "color": "#E67300"
                         },
                         "train_competency": {
-                            "label": "PKCompetency",
+                            "label": "Competency",
                             "color": "#22AA99"
                         },
                         "train_mastery": {
