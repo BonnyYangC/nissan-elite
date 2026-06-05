@@ -21,17 +21,24 @@ class PreImportGuildEvents extends PreImportCsv
         foreach ($this->data as $lineNumber => $record) {
             if (strstr($record[0], 'PLATINUM MEMBERS')) {
                 //'PLATINUM MEMBERS (500,000+)'
+                var_dump('11111',$record[0]);
                 $type = 1;
                 continue;
             } else if (strstr($record[0], 'GOLD MEMBERS')) {
                 //'PLATINUM MEMBERS (500,000+)'
+                var_dump('22222', $record[0]);
                 $type = 2;
                 continue;
-            } else if (strstr($record[0], 'LIFETIME MEMBERS')) {
-                //'LIFETIME MEMBERS - RETIRED'
+            // } else {
+            //     var_dump('33333',$record[0]);
+            // }
+            } else if (strstr($record[0], 'DIAMOND')) {
+                //'DIAMOND centurian(tba) Member (1,000,000+) Million Club'
+                var_dump('33333',$record[0]);
                 $type = 3;
                 continue;
             } else if (!$record[0]) {
+                var_dump(value: '44444');
                 continue;
             }
 

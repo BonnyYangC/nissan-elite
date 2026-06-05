@@ -20,14 +20,14 @@ class GuildRepository {
                     $r['GOLD'][] = $m;
                     break;
                 case 3:
-                    $r['LIFETIME'][] = $m;
+                    $r['DIAMOND'][] = $m;
                     break;
             }
             return $r;
         }, [
             'PLATINUM' => [],
             'GOLD' => [],
-            'LIFETIME' => []
+            'DIAMOND' => []
         ]);
     }
 
@@ -46,12 +46,16 @@ class GuildRepository {
                 case 3:
                     $r['LIFETIME'][] = $m;
                     break;
+                case 4:
+                    $r['DIAMOND'][] = $m;
+                    break;
             }
             return $r;
         }, [
             'PLATINUM' => [],
             'GOLD' => [],
-            'LIFETIME' => []
+            'LIFETIME' => [],
+            'DIAMOND' => []
         ]);
     }
 }

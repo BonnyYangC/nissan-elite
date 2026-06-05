@@ -11,6 +11,18 @@
     <div class="d-flex">
         <div class="col-10 offset-1" style="padding-top: 2%">
             @include(theme_view('guild_event_content'))
+           <h3>Diamond Members (1,000,000+)</h3>
+            <table class="table table-striped">
+                <tbody>
+                    @foreach($results['DIAMOND'] as $val)
+                        <tr>
+                            <td style="width:50%;">{{ $val->member }}</td>
+                            <td>{{ $val->dealer }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
             <h3>Platinum Members (500,000+)</h3>
             <table class="table table-striped">
                 <tbody>
