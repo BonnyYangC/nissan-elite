@@ -91,7 +91,8 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -283,7 +284,8 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%.100"
+                            "score_format": "%.100",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -460,7 +462,8 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -609,7 +612,8 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%.100"
+                            "score_format": "%.100",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -852,7 +856,8 @@
                             "label": "D1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%.100"
+                            "score_format": "%.100",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -1036,13 +1041,14 @@
                 {
                     "identifier": "f1",
                     "order": 7,
-                    "title": "FCUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
+                    "title": "CUSTOMER EXPERIENCE (F1 / FIXED RIGHT FIRST TIME R3M)",
                     "metrics": {
                         "f1":{
                             "label": "F1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%.100"
+                            "score_format": "%.100",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -1164,7 +1170,8 @@
                             "label": "F1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%.100"
+                            "score_format": "%.100",
+			    "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -1229,7 +1236,8 @@
                             "label": "CPRO",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [{
@@ -1443,7 +1451,8 @@
                             "label": "CPRO",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%"
+                            "score_format": "%",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [
@@ -1540,7 +1549,8 @@
                             "label": "F1",
                             "point_default": 0,
                             "score_default": "0%",
-                            "score_format": "%.100"
+                            "score_format": "%.100",
+                            "score_decimals": 1
                         }
                     },
                     "guides": [

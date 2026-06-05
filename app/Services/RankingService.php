@@ -244,7 +244,9 @@ class RankingService extends BaseService {
 
         $result = [];
         $resultsData = Ranking::getRankingsBy($positions, $period, $type)->groupBy('state'); //group by rank state
-        $position = count($positions) > 1 ? Role::TECHNICIAN : $positions[0];
+	$position = count($positions) > 1 ? Role::TECHNICIAN : $positions[0];
+	//var_dump('1111', json_encode($resultsData));
+	exit;
         // Loop result set to convert array to new structure for frontend json
         foreach($resultsData as $key => $items){
             $result[$key] = [
@@ -281,7 +283,11 @@ class RankingService extends BaseService {
      * @return array
      */
     private function _convertRankingRowForFrontendJson($item, string $key, string $role){
-        return [
+	    if(!$item[$key]) {
+		    var_dump('2222', $key);
+		    var_dump('2222', json_encode($item)); 
+	    }	    
+	    return [
             'cn'=>  $this->_parseUserStatusLevel($item[$key], $role),  //  The row's class name
             'r' =>  $item['rank'], // status/platinum rank
             //'rp' =>  $rank ? $rank : $item['rank_platinum'], // rank platinum
@@ -305,8 +311,10 @@ class RankingService extends BaseService {
     private function _parseUserStatusLevel($completed, string $role){
         /**
          * @var GageStatus $status
-         */
+	 */
+//	    var_dump('2222', $role);
         $status = $this->serviceResolver->statusService()->getStatus($completed, $role);
+//	    var_dump('3333', $status);
         return $status->getClassString();
     }
 }

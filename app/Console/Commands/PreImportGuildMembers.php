@@ -36,7 +36,11 @@ class PreImportGuildMembers extends PreImportCsv
                     //'LIFETIME MEMBERS - RETIRED'
                     $type = 3;
                     continue;
-                } else if (!$record[0]) {
+                } else if (strstr($record[0], 'DIAMOND')) {
+                    //'DIAMOND CENTURIAN MEMBER (1,000,000+)'
+                    $type = 4;
+                    continue;
+		} else if (!$record[0]) {
                     continue;
                 }
                 Members::factory()->create([

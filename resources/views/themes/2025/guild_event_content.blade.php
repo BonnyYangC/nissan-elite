@@ -1,13 +1,9 @@
 <h3>
-  THE GUILD FY24 WILL CONVENE IN 2025 TBA
+  THE GUILD FY24 Inductees
 </h3>
 <p>
-  Invitations will be emailed to eligible Foundation members, along with our new inductees in FY24. A great weekend is
-  in store for our eligible GUILD MEMBERS in 2025 and below are our new inductees for FY24 Platinum (500,000+) and new
-  to Gold (325,000+).
-</p>
-<p>
-  Congratulations on the excellent achievement and Loyalty to the Brand shown here.
+Our eligible GUILD MEMBERS in 2025, and below new inductees for FY24 Platinum (500,000+) and new to Gold (325,000+).
+Congratulations on the excellent achievement and Loyalty to the Brand shown here.
 </p>
 <!--<a class="edm-link" target="_blank" href="https://mailchi.mp/7c6c496225fb/nissan-dealer-excellence-fy18-results-3120310?e=1dac1983c2">
   Click here to view edm content

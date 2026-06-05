@@ -85,7 +85,8 @@ class Ranking extends Model {
         }
         if ($take && $take > 0) {
             $query = $query->take($take);
-        }
+	}
+	var_dump('1111', $query->toSql());
         return $query->orderBy('position')->orderBy('state')->orderBy('rank')->get();
     }
 

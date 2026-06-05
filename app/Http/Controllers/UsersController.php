@@ -52,9 +52,9 @@ class UsersController extends Controller {
                     Mail::to($user->email)->send(new ResetPassword($user->firstname));
                     Mail::to(config('elite.SUPPORT_EMAIL_ADDRESS'))->send(new PasswordEnquiry($user->email, $user->firstname));
                     return $this->success();
-                } catch (\Exception $exception) {
+		} catch (\Exception $exception) {
                     $emailSent = false;
-                    return $this->error($exception);
+                    return $this->error($exception->getMessage());
                 }
             }else{
                 return $this->error('email not found');

@@ -27,8 +27,8 @@ class PreImportGuildEvents extends PreImportCsv
                 //'PLATINUM MEMBERS (500,000+)'
                 $type = 2;
                 continue;
-            } else if (strstr($record[0], 'LIFETIME MEMBERS')) {
-                //'LIFETIME MEMBERS - RETIRED'
+            } else if (strstr($record[0], 'DIAMOND')) {
+                //'DIAMOND centurian(tba) Member (1,000,000+) Million Club'
                 $type = 3;
                 continue;
             } else if (!$record[0]) {

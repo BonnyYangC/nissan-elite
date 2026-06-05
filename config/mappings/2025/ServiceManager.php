@@ -13,8 +13,8 @@ return [
         'service_retention' => 'points_Retent_1',
         'service_retention_result' => 'pcent_RETENT_1',
 
-        'reentry_pen' => 'points_reEntry',
-        'reentry_pen_result' =>  'pcent_reEntry',
+	'reentry_pen' => 'points_MoreReEntry',
+        'reentry_pen_result' => 'pcent_moreReEntry',
 
         'loyalty' => 'points_loyalty',
         'loyalty_result' => 'sales_loyalty',

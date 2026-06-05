@@ -13,6 +13,20 @@
     <div class="d-flex justify-content-center">
         <div class="col-10">
             <p>&nbsp;</p>
+            <h3>Diamond Members (1,000,000+)</h3>
+
+            <table class="table table-striped">
+                <tbody>
+                    @foreach($results['DIAMOND'] as $val)
+                        <tr>
+                            <td width=30%>{{ $val->member }}</td>
+                            <td>{{ $val->dealer }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+	    </table>
+
+	    <p>&nbsp;</p>
             <h3>PLATINUM MEMBERS (500,000+)</h3>
 
             <table class="table table-striped">

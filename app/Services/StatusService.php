@@ -22,8 +22,10 @@ class StatusService extends BaseService {
             $position = $position->code;
         }
 
+//var_dump('3333', $position);
         $rewards = Reward::byPosition($position)->first();
-        if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
+//var_dump('4444', $position, json_encode($rewards));
+	if (in_array($position, array_merge(Position::TECHNICIAN_POSITIONS, [Role::TECHNICIAN]))) {
             return new Techician($rewards, $completed, $position);
         } else {
             return new Current($rewards, $completed);
